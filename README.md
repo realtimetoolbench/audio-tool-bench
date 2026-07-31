@@ -1,8 +1,8 @@
-# Audio Tool Bench
+# Real-Time Audio Tool Bench
 
-> **Anonymous Notice**: This repository is an anonymized snapshot for **NeurIPS 2026** double-blind review. All author identifiers, affiliations, and personal paths have been removed. Full code and data will be released upon publication.
+> **Anonymous Notice**: This repository is an anonymized release for **NeurIPS 2026** double-blind review. All author identifiers, affiliations, and personal paths have been removed. The benchmark code, all 1,040 tasks, main evaluation traces, and both released audio conditions are included.
 
-Audio Tool Bench evaluates **end-to-end tool-calling for voice-native AI** — Realtime/Live API models that consume streaming audio and emit tool calls within a single WebSocket session. The benchmark probes information gathering, tool-invocation timing, multi-turn memory, and recovery from interruptions.
+Real-Time Audio Tool Bench evaluates **end-to-end tool-calling for voice-native AI** — Realtime/Live API models that consume streaming audio and emit tool calls within a single WebSocket session. The benchmark probes information gathering, tool-invocation timing, multi-turn memory, and recovery from interruptions.
 
 ## What's in this repository
 
@@ -26,15 +26,41 @@ Audio Tool Bench evaluates **end-to-end tool-calling for voice-native AI** — R
 Both audio caches mirror `data/tasks/` directly by canonical task ID; there is
 no separate `original`/`expand` layer.
 
-## What's not in this repository
+## Audio and Trace Artifacts
 
-Run logs, paper figures, and generated paper tables are not bundled. The full
-TTS, voice-cloning, and raw trace artifacts are included through Git LFS. Install
-Git LFS before cloning or pulling the release:
+The audio for all 1,040 benchmark tasks is tracked in this repository through
+Git LFS under `data/audio/tts_1040/` and `data/audio/voice_clone_1040/`. Run
+`git lfs install` before cloning, otherwise each `.pcm` file resolves to a
+131-byte pointer instead of audio.
 
 ```bash
 git lfs install
-git clone <repository-url>
+```
+
+An LFS-free copy of the same artifacts is also available as a single anonymous
+Figshare deposit (4.19 GB, CC BY 4.0):
+
+[https://figshare.com/s/5635155a03e3faae60d3](https://figshare.com/s/5635155a03e3faae60d3)
+
+| File | Size | Contents |
+|---|---:|---|
+| `tts_1040.tar.zst` | 1.77 GB | Clean TTS audio for all 1,040 tasks |
+| `voice_clone_1040.tar.zst` | 2.4 GB | Voice-cloned rendering of the same 1,040 tasks |
+| `traces_1040.tar.zst` | 28 MB | Task traces for the TTS and voice-cloning conditions |
+| `SHA256SUMS` | 0.25 kB | Per-file checksums |
+
+Audio is PCM16, 24 kHz, mono. Archives are compressed with Zstandard.
+
+Extract:
+
+```bash
+tar --use-compress-program=unzstd -xf tts_1040.tar.zst
+```
+
+Verify:
+
+```bash
+shasum -a 256 -c SHA256SUMS
 ```
 
 The small Common Voice reference set used by the voice-cloning appendix
@@ -42,19 +68,19 @@ experiments is bundled under `data/voice_clones/` so XTTS, accent, and mixed
 noise runs can be reproduced deterministically. DEMAND background-noise audio is
 not bundled; set `AUDIO_TOOL_BENCH_DEMAND_ROOT` to a local DEMAND_16k download.
 
-The full pre-computed datasets, human baselines, and ablation traces will be released as supplementary material upon acceptance.
+Run logs, paper figures, generated paper tables, and unreleasable human
+recordings are not bundled.
 
-## Supported providers
+## Evaluated models
 
-| Provider | Default model | Env var |
+| Provider | Evaluated model ID | Env var |
 |---|---|---|
+| OpenAI | `gpt-realtime-1.5` | `OPENAI_API_KEY` |
+| OpenAI | `gpt-realtime` | `OPENAI_API_KEY` |
 | OpenAI | `gpt-realtime-mini` | `OPENAI_API_KEY` |
-| Google | `gemini-2.5-flash-native-audio-preview-12-2025` | `GOOGLE_API_KEY` |
-| xAI | `grok-3-fast` | `XAI_API_KEY` |
-| Alibaba | `qwen3-omni-flash-realtime` | `DASHSCOPE_API_KEY` |
-| ByteDance | `doubao-1.5-realtime-voice-pro` | `VOLCENGINE_API_KEY` |
-| Zhipu | `glm-4-voice` | `ZHIPU_API_KEY` |
-| MiniMax | `speech-2.6` | `MINIMAX_API_KEY` |
+| Google | `gemini-3.1-flash-live-preview` | `GOOGLE_API_KEY` |
+| xAI | `grok-voice-think-fast-1.0` | `XAI_API_KEY` |
+| Alibaba | `qwen3.5-omni-plus-realtime` | `DASHSCOPE_API_KEY` |
 
 `OPENAI_API_KEY` is always required (TTS synthesis uses OpenAI). Other keys are needed only for the corresponding provider.
 
@@ -378,7 +404,7 @@ The non-US accent condition deterministically balances
 
 ```bibtex
 @inproceedings{anonymous2026audiotoolbench,
-  title     = {Audio Tool Bench: Evaluating End-to-End Tool-Calling for Voice-Native AI},
+  title     = {Real-Time Audio Tool Bench: Evaluating End-to-End Tool-Calling for Voice-Native AI},
   author    = {Anonymous},
   booktitle = {Advances in Neural Information Processing Systems},
   year      = {2026},
