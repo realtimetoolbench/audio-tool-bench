@@ -1,0 +1,190 @@
+{
+  "task_id": "int_000036",
+  "description": "Interruption (correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shenzhen.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shenzhen, I meant Guangzhou.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shenzhen",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Hanting Hotel Tianhe for check-in 2026-05-27, for 2 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-27",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 9.027060102760336
+    },
+    {
+      "speaker": "user",
+      "text": "Book it under Wang Fang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Wang Fang"
+        ]
+      },
+      "timestamp": 15.031868026288418
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_attractions.city=Chengdu"
+        ]
+      },
+      "timestamp": 18.98741015390808
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 ticket for Du Fu Thatched Cottage on 2026-03-11 in the afternoon.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-11",
+          "book_attraction_ticket.ticket_count=1",
+          "book_attraction_ticket.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 23.043473000377556
+    },
+    {
+      "speaker": "user",
+      "text": "Set the visitor name to Ma Liang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.visitor_name=Ma Liang"
+        ]
+      },
+      "timestamp": 30.104678869818954
+    },
+    {
+      "speaker": "user",
+      "text": "Book train G1 from Beijing to Shanghai on 2026-03-03 for Zhou Jun in First Class.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.date=2026-03-03",
+          "book_train.passenger_name=Zhou Jun",
+          "book_train.seat_class=First Class",
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 34.26421680512627
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_gz_004",
+        "checkin_date": "2026-05-27",
+        "nights": 2,
+        "guest_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_003",
+        "date": "2026-03-11",
+        "time_slot": "afternoon",
+        "visitor_name": "Ma Liang",
+        "ticket_count": 1
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_001",
+        "date": "2026-03-03",
+        "passenger_name": "Zhou Jun",
+        "seat_class": "First Class"
+      }
+    }
+  ],
+  "transcript_hash": "a9c89565601a",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 4,
+    "search_attractions": 5,
+    "book_attraction_ticket": 7,
+    "search_trains": 8,
+    "book_train": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": "travel",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_hotels",
+      "param": "city",
+      "wrong_value": "Shenzhen"
+    }
+  }
+}

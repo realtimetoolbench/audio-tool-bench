@@ -1,0 +1,138 @@
+{
+  "task_id": "int_000028",
+  "description": "Interruption (cancellation): 6 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "multi",
+  "tools": [
+    "search_medicine",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_doctors",
+    "book_appointment",
+    "search_parking"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find cold medicine. Also search attractions in Beijing. And help me book a doctor appointment later.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Temple of Heaven tickets for 2026-04-12.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-04-12"
+        ]
+      },
+      "timestamp": 7.594794937601222
+    },
+    {
+      "speaker": "user",
+      "text": "Make it afternoon. Name: Lucas Martinez.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.time_slot=afternoon",
+          "book_attraction_ticket.visitor_name=Lucas Martinez"
+        ]
+      },
+      "timestamp": 13.110084871016983
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the doctor. I don't need it.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "doctor",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Ticket count: 4.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 23.192275296813435
+    },
+    {
+      "speaker": "user",
+      "text": "Search parking in Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_parking.city=Chengdu"
+        ]
+      },
+      "timestamp": 27.082366177098972
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_medicine",
+      "params": {}
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_004",
+        "date": "2026-04-12",
+        "time_slot": "afternoon",
+        "visitor_name": "Lucas Martinez",
+        "ticket_count": 4
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Chengdu"
+      }
+    }
+  ],
+  "transcript_hash": "f139a9a8906c",
+  "info_complete_turn": {
+    "search_medicine": 1,
+    "search_attractions": 1,
+    "book_attraction_ticket": 5,
+    "search_parking": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 6,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "doctor",
+    "template": null,
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_doctors",
+    "book_appointment"
+  ]
+}

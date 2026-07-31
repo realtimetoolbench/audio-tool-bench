@@ -1,0 +1,517 @@
+{
+  "task_name": "tint_000063",
+  "start_time": "2026-07-29T03:54:05.888327",
+  "end_time": "2026-07-29T03:54:38.045408",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 118200
+      },
+      "assistant_response": "好的，我马上帮你查找从北京到上海的航班信息。请稍等。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，我马上帮你查找从北京到上海的航班信息。请稍等。",
+          "tool_calls": [
+            {
+              "id": "call_9xasM0fkcrH9GVeW",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "北京",
+                "destination": "上海"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "好的，我马上帮你查找从北京到上海的航班信息。请稍等。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_9xasM0fkcrH9GVeW",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "北京",
+            "destination": "上海"
+          },
+          "result": {
+            "success": false,
+            "output": "Sorry, no flights found from 北京 to 上海.",
+            "raw_output": null,
+            "error": "Route not found: ('北京', '上海')",
+            "latency_ms": 0.03504753112792969
+          },
+          "latency_ms": 0.03504753112792969,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 9164.780139923096,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 268800,
+        "event_count": 84,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "好的，我马上帮你查找从北京到上海的航班信息。请稍等。"
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Hold on, first check my balance for account number 6222021234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "check_balance.account_number=6222021234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 339000
+      },
+      "assistant_response": "抱歉，我刚刚查询账户的时候，系统提示账户不存在或号码有误。能否请您再确认一下账户号码，或者提供其他的号码？然后我们再来查一次。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_kQD0QjUIlSp6wkvy",
+              "name": "check_balance",
+              "arguments": {
+                "account_number": "62202124567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "抱歉，我刚刚查询账户的时候，系统提示账户不存在或号码有误。能否请您再确认一下账户号码，或者提供其他的号码？然后我们再来查一次。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_kQD0QjUIlSp6wkvy",
+          "tool_name": "check_balance",
+          "arguments": {
+            "account_number": "62202124567890"
+          },
+          "result": {
+            "success": false,
+            "error": "账户不存在或账户号码错误",
+            "output": "账户不存在或账户号码错误",
+            "raw_output": {
+              "success": false,
+              "error": "账户不存在或账户号码错误",
+              "output": "账户不存在或账户号码错误"
+            },
+            "latency_ms": 0.010251998901367188
+          },
+          "latency_ms": 0.010251998901367188
+        }
+      ],
+      "total_latency_ms": 4219.395160675049,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 645600,
+        "event_count": 142,
+        "latency": {
+          "speech_ms": 1104.82568359375,
+          "tool_call_ms": 446.702880859375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the flight search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 106800
+      },
+      "assistant_response": "奇怪，目前我这边没有查到从北京到上海的航班。可能是系统暂时有延迟或者当前没有可用的航班。要不我们稍后再试一下，或者您有具体的日期或者舱位需求，我可以帮您更精确地查找。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_4HzraeCFgB6y2wTN",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "北京",
+                "destination": "上海"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "奇怪，目前我这边没有查到从北京到上海的航班。可能是系统暂时有延迟或者当前没有可用的航班。要不我们稍后再试一下，或者您有具体的日期或者舱位需求，我可以帮您更精确地查找。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_4HzraeCFgB6y2wTN",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "北京",
+            "destination": "上海"
+          },
+          "result": {
+            "success": false,
+            "output": "Sorry, no flights found from 北京 to 上海.",
+            "raw_output": null,
+            "error": "Route not found: ('北京', '上海')",
+            "latency_ms": 0.016927719116210938
+          },
+          "latency_ms": 0.016927719116210938
+        }
+      ],
+      "total_latency_ms": 6609.890937805176,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 751200,
+        "event_count": 171,
+        "latency": {
+          "speech_ms": 1301.5830078125,
+          "tool_call_ms": 594.108154296875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.545233917975743,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-05.",
+        "timestamp": 16.545233917975743,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-05"
+          ]
+        },
+        "audio_size_bytes": 201600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2737.4508380889893,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.979670186516447,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use passenger name Liu Yang and airline China Eastern.",
+        "timestamp": 20.979670186516447,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.passenger_name=Liu Yang"
+          ]
+        },
+        "audio_size_bytes": 162600
+      },
+      "assistant_response": "没问题，",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "没问题，",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2333.324909210205,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 12000,
+        "event_count": 20,
+        "latency": {
+          "speech_ms": 1.48193359375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.33582478709551,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Beijing.",
+        "timestamp": 26.33582478709551,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 72600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1362.5421524047852,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.91772072887195,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the Beijing Hotel for check-in 2026-03-15 for 3 nights.",
+        "timestamp": 30.91772072887195,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-15",
+            "book_hotel.nights=3"
+          ]
+        },
+        "audio_size_bytes": 247800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3246.809244155884,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.26301746180826,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set guest name Zhang Wei, then search attractions in Xi'an.",
+        "timestamp": 37.26301746180826,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.guest_name=Zhang Wei",
+            "search_attractions.city=Xi'an"
+          ]
+        },
+        "audio_size_bytes": 174000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2475.684881210327,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 11,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "check_balance": {
+        "speech_ms": 1104.82568359375,
+        "tool_call_ms": 446.702880859375
+      },
+      "book_flight": {
+        "speech_ms": 1.48193359375
+      }
+    },
+    "info_complete_turn": {
+      "check_balance": 2,
+      "search_flights": 1,
+      "book_flight": 5,
+      "search_hotels": 6,
+      "book_hotel": 8,
+      "search_attractions": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_hotels', 'check_balance', 'search_attractions', 'book_hotel', 'search_flights', 'book_flight'}，实际: {'check_balance', 'search_flights'}，缺失: {'search_hotels', 'book_flight', 'search_attractions', 'book_hotel'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.0,
+    "behavior_score_details": "check_balance: 0(param_mismatch), search_flights: 0(param_mismatch), book_flight: 0(not_called), search_hotels: 0(not_called), book_hotel: 0(not_called), search_attractions: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "check_balance",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "account_number: '6222021234567890' vs '62202124567890'"
+        },
+        {
+          "tool": "search_flights",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "origin: 'Beijing' vs '北京'; destination: 'Shanghai' vs '上海'"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_hotels",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_attractions",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "parameter_reasoning": 1,
+        "missing_call": 4
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 6,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 4,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

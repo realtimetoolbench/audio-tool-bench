@@ -1,0 +1,54 @@
+# Audio Tool Bench v3.1 — Tool-Phase Interruption Benchmark
+# Usage: python3 scripts/run_benchmark.py --config benchmark_v31.yaml [--eval-only]
+#
+# v3.1 tests model behavior when interrupted during the tool-call phase.
+# Difference from v3.0 (speech-phase): the interruption occurs after function_call
+# has been emitted and the model is waiting for results, not while the model is speaking.
+# Trigger mechanism is a dangling call (no result returned), not a keyword.
+#
+# Scenario matrix (5 types):
+#   tool_cancel         — user cancels the domain of the dangling tool
+#   tool_correction     — user corrects the parameters of the dangling tool
+#   priority_no_return  — inject urgent task B; result of A never returns (tests state recovery)
+#   priority_late_return — inject B; result of A returns during B's execution (tests multi-task parallelism)
+#   priority_early_return — inject B; result of A returns before resume (tests dedup memory)
+
+provider: openai
+
+key_groups:
+  key1:
+    env: OPENAI_API_KEY
+    models:
+      - gpt-realtime-mini
+      - gpt-realtime
+      - gpt-realtime-1.5
+  key2:
+    env: OPENAI_API_KEY_2
+    models:
+      - gpt-4o-realtime-preview-2024-12-17
+      - gpt-4o-realtime-preview-2025-06-03
+
+match_modes:
+  - lenient
+
+# Group by scenario; each group is scored independently
+task_sets:
+  tool_cancel: data/tasks/interruption_v31/tool_cancel
+  tool_correction: data/tasks/interruption_v31/tool_correction
+  priority_no_return: data/tasks/interruption_v31/priority_no_return
+  priority_late_return: data/tasks/interruption_v31/priority_late_return
+  priority_early_return: data/tasks/interruption_v31/priority_early_return
+
+# v3.1-specific scoring config
+scoring:
+  weights:
+    tool_correctness: 0.50
+    interrupt_handling: 0.30
+    call_timing: 0.20
+  # ignored_interrupt is a veto condition:
+  # if the model still calls forbidden_tools (cancel) after the interrupt, or fails to call
+  # priority_tool first (priority) → direct fail
+  ignored_interrupt_is_veto: true
+  # redundant_call: in late_return / early_return, re-invoking a dangling tool whose
+  # result has already been returned
+  redundant_call_penalty: true

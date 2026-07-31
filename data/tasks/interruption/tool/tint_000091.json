@@ -1,0 +1,218 @@
+{
+  "task_id": "tint_000091",
+  "description": "Interruption (priority_late_return): 6 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_cars",
+    "book_car",
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_doctors",
+    "book_appointment"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search cars in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_cars.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that—search sports events in Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_sports_events.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_cars",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book a ticket for China Open Tennis.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 10.201953669923581
+    },
+    {
+      "speaker": "user",
+      "text": "Seat zone Center Court. One ticket.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Center Court",
+          "book_sports_ticket.ticket_count=1"
+        ]
+      },
+      "timestamp": 15.082845016214783
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Emily Wang. Phone 13867894321. ID number 310115198805062345.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Emily Wang",
+          "book_sports_ticket.id_number=310115198805062345",
+          "book_sports_ticket.phone=13867894321"
+        ]
+      },
+      "timestamp": 19.457486631616224
+    },
+    {
+      "speaker": "user",
+      "text": "Now search doctors in Shanghai.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_doctors.city=Shanghai"
+        ]
+      },
+      "timestamp": 26.233397869654127
+    },
+    {
+      "speaker": "user",
+      "text": "Book an appointment with doctor Liu Yang on 2026-03-03 in the afternoon.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.date=2026-03-03",
+          "book_appointment.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 30.76854089979968
+    },
+    {
+      "speaker": "user",
+      "text": "Patient name Mason White.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.patient_name=Mason White"
+        ]
+      },
+      "timestamp": 37.1534016666438
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Volkswagen Passat for Ma Liang, pickup 2026-03-27, for 3 days.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_car.days=3",
+          "book_car.pickup_date=2026-03-27",
+          "book_car.renter_name=Ma Liang"
+        ]
+      },
+      "timestamp": 45.574387407478156
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_bj_003",
+        "seat_zone": "Center Court",
+        "ticket_count": 1,
+        "buyer_name": "Emily Wang",
+        "phone": "13867894321",
+        "id_number": "310115198805062345"
+      }
+    },
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_sh_002",
+        "date": "2026-03-03",
+        "time_slot": "afternoon",
+        "patient_name": "Mason White"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_sh_002",
+        "pickup_date": "2026-03-27",
+        "days": 3,
+        "renter_name": "Ma Liang"
+      }
+    }
+  ],
+  "transcript_hash": "5d9f9b22679b",
+  "info_complete_turn": {
+    "search_sports_events": 2,
+    "book_sports_ticket": 5,
+    "search_doctors": 6,
+    "book_appointment": 8,
+    "search_cars": 1,
+    "book_car": 10
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_cars",
+    "inserted_tools": [
+      "search_sports_events",
+      "book_sports_ticket",
+      "search_doctors",
+      "book_appointment"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_doctors",
+    "book_appointment"
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "task_id": "ms_000051",
+  "scenario_type": "multi_step",
+  "server": "spotify",
+  "template": "artist_deep_dive_7",
+  "description": "Search artist, get top tracks, get artist info, create playlist, add tracks, update playlist details, play",
+  "tools": [
+    "search_artists",
+    "get_artist_top_tracks",
+    "get_artist",
+    "create_playlist",
+    "add_tracks_to_playlist",
+    "update_playlist_details",
+    "play_context"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find the artist Amara Sinclair for me.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_artists"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me her top tracks and also get some info about her.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_artist_top_tracks",
+          "get_artist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create a playlist called Top Hits.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_playlist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add her top tracks to that playlist and update its description to say A collection of the best tracks.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_tracks_to_playlist",
+          "update_playlist_details"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Now play the Top Hits playlist.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "play_context"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_artists",
+      "params": {
+        "query": "Amara Sinclair"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_artist_top_tracks",
+      "params": {
+        "artist_id": "artist_009"
+      },
+      "param_source": {
+        "artist_id": {
+          "from_tool": "search_artists",
+          "field": "artist_id"
+        }
+      }
+    },
+    {
+      "tool": "get_artist",
+      "params": {
+        "artist_id": "artist_009"
+      },
+      "param_source": {
+        "artist_id": {
+          "from_tool": "search_artists",
+          "field": "artist_id"
+        }
+      }
+    },
+    {
+      "tool": "create_playlist",
+      "params": {
+        "name": "Top Hits"
+      },
+      "param_source": {
+        "name": "user"
+      }
+    },
+    {
+      "tool": "add_tracks_to_playlist",
+      "params": {
+        "playlist_id": "playlist_1",
+        "track_ids": [
+          "track_020",
+          "track_019",
+          "track_021"
+        ]
+      },
+      "param_source": {
+        "playlist_id": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        },
+        "track_ids": {
+          "from_tool": "get_artist_top_tracks",
+          "field": "song_id"
+        }
+      }
+    },
+    {
+      "tool": "update_playlist_details",
+      "params": {
+        "playlist_id": "playlist_1",
+        "description": "A collection of the best tracks"
+      },
+      "param_source": {
+        "playlist_id": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        },
+        "description": "user"
+      }
+    },
+    {
+      "tool": "play_context",
+      "params": {
+        "context_uri": "playlist:playlist_1"
+      },
+      "param_source": {
+        "context_uri": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        }
+      }
+    }
+  ],
+  "chain_depth": 7,
+  "info_complete_turn": {
+    "search_artists": 1,
+    "get_artist_top_tracks": 1,
+    "get_artist": 1,
+    "create_playlist": 3,
+    "add_tracks_to_playlist": 3,
+    "update_playlist_details": 4,
+    "play_context": 4
+  }
+}

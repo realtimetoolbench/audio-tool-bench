@@ -1,0 +1,142 @@
+{
+  "task_id": "ms_000025",
+  "scenario_type": "multi_step",
+  "server": "google_calendar",
+  "template": "create_and_move_5",
+  "description": "List calendars, create event, create new calendar, move event, get event",
+  "tools": [
+    "list_calendars",
+    "create_event",
+    "create_calendar",
+    "move_event",
+    "get_event"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you show me the calendars I have right now?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_calendars"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create an event called Team standup starting on July 15th, 2026 at 4 PM and ending on July 23rd at 11 AM in my primary calendar.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_event"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Also, please create a new calendar named Travel.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_calendar"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Move that Team standup event to the new Travel calendar you just made.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "move_event"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Finally, can you get the details of the Team standup event?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_event"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_calendars",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "create_event",
+      "params": {
+        "calendar_id": "cal_001",
+        "title": "Team standup",
+        "start_time": "2026-07-15T16:00:00",
+        "end_time": "2026-07-23T11:00:00"
+      },
+      "param_source": {
+        "calendar_id": {
+          "from_tool": "list_calendars",
+          "field": "calendar_id"
+        },
+        "title": "user",
+        "start_time": "user",
+        "end_time": "user"
+      }
+    },
+    {
+      "tool": "create_calendar",
+      "params": {
+        "name": "Travel"
+      },
+      "param_source": {
+        "name": "user"
+      }
+    },
+    {
+      "tool": "move_event",
+      "params": {
+        "event_id": "event_1",
+        "new_calendar_id": "calendar_1"
+      },
+      "param_source": {
+        "event_id": {
+          "from_tool": "create_event",
+          "field": "event_id"
+        },
+        "new_calendar_id": {
+          "from_tool": "create_calendar",
+          "field": "calendar_id"
+        }
+      }
+    },
+    {
+      "tool": "get_event",
+      "params": {
+        "event_id": "event_1"
+      },
+      "param_source": {
+        "event_id": {
+          "from_tool": "create_event",
+          "field": "event_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 5,
+  "info_complete_turn": {
+    "list_calendars": 1,
+    "create_event": 2,
+    "create_calendar": 3,
+    "move_event": 3,
+    "get_event": 3
+  }
+}

@@ -1,0 +1,620 @@
+{
+  "task_name": "tint_000035",
+  "start_time": "2026-07-29T01:01:10.909244",
+  "end_time": "2026-07-29T01:03:58.198776",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for 2026-03-18 to 2026-03-20 for 1 adult, and also handle flights and a restaurant booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-03-18",
+            "book_restaurant.party_size=1",
+            "search_flights.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 502800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_bg7g7MvduU5TfXTy",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-18"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 27658.02001953125,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 31,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel search. Cancel anything related to hotels.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 168600
+      },
+      "assistant_response": "Got it, I've stopped the hotel search. Let's focus on flights and a restaurant booking instead. Could you tell me your departure and arrival cities for the flight, and any preference for the restaurant, like cuisine type, or should I just pick a nice spot in Shanghai?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, I've stopped the hotel search. Let's focus on flights and a restaurant booking instead. Could you tell me your departure and arrival cities for the flight, and any preference for the restaurant, like cuisine type, or should I just pick a nice spot in Shanghai?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 12649.873971939087,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 631200,
+        "event_count": 103,
+        "latency": {
+          "speech_ms": 1097.38720703125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.176179561851058,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Suzhou.",
+        "timestamp": 14.176179561851058,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_restaurants.city=Suzhou"
+          ]
+        },
+        "audio_size_bytes": 86400
+      },
+      "assistant_response": "I found two great options in Suzhou:\n\n1. Songhelou Restaurant, a Jiangsu cuisine spot in Gusu, rated 4.7 out of 5.\n2. Dexing Noodle House, also Jiangsu cuisine, located in Pingjiang, rated 4.5 out of 5.\n\nWould you like to make a reservation at one of these, and if so, for what date, time, party size, and contact details? And don't forget to let me know about your flight details too!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_XiV98F67HouC5mjr",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Suzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found two great options in Suzhou:\n\n1. Songhelou Restaurant, a Jiangsu cuisine spot in Gusu, rated 4.7 out of 5.\n2. Dexing Noodle House, also Jiangsu cuisine, located in Pingjiang, rated 4.5 out of 5.\n\nWould you like to make a reservation at one of these, and if so, for what date, time, party size, and contact details? And don't forget to let me know about your flight details too!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_XiV98F67HouC5mjr",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Suzhou:\n\n1. Songhelou Restaurant (ID: rst_su_001)\n   Cuisine: Jiangsu\n   Location: Gusu\n   Rating: 4.7/5.0\n\n2. Dexing Noodle House (ID: rst_su_002)\n   Cuisine: Jiangsu\n   Location: Pingjiang\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_su_001",
+                "name": "Songhelou Restaurant",
+                "cuisine": "Jiangsu",
+                "location": "Gusu",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_su_002",
+                "name": "Dexing Noodle House",
+                "cuisine": "Jiangsu",
+                "location": "Pingjiang",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.10585784912109375
+          },
+          "latency_ms": 0.10585784912109375
+        }
+      ],
+      "total_latency_ms": 22003.315925598145,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1123200,
+        "event_count": 198,
+        "latency": {
+          "speech_ms": 3716.8720703125,
+          "tool_call_ms": 2081.7470703125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 18.426575009861665,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Dexing Noodle House on 2026-04-18 at 20:00.",
+        "timestamp": 18.426575009861665,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-04-18",
+            "book_restaurant.time=20:00"
+          ]
+        },
+        "audio_size_bytes": 249600
+      },
+      "assistant_response": "I can book that for you. I'll need to know the number of people in your party, as well as a contact name and phone number to complete the reservation. Could you provide those details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can book that for you. I'll need to know the number of people in your party, as well as a contact name and phone number to complete the reservation. Could you provide those details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 16980.627059936523,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 403200,
+        "event_count": 76,
+        "latency": {
+          "speech_ms": 11034.161376953125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 23.973670272026403,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set party size to 1 and use contact name Olivia Brown.",
+        "timestamp": 23.973670272026403,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Olivia Brown"
+          ]
+        },
+        "audio_size_bytes": 170400
+      },
+      "assistant_response": "Sure, I can do that. Could you provide a contact phone number for the reservation as well?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can do that. Could you provide a contact phone number for the reservation as well?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10961.307048797607,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 189600,
+        "event_count": 46,
+        "latency": {
+          "speech_ms": 7537.111083984375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.971081290035876,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13855667788 for the restaurant booking.",
+        "timestamp": 29.971081290035876,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.phone=13855667788"
+          ]
+        },
+        "audio_size_bytes": 244200
+      },
+      "assistant_response": "Your reservation at Dexing Noodle House is confirmed for April 18, 2026 at 20:00 for one person. The contact name is Olivia Brown, and the phone number on file is 138-5556-6788. If there's anything else I can assist you with, including flight details, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_0Bwd5cPU1QOzzFox",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_su_002",
+                "date": "2026-04-18",
+                "time": "20:00",
+                "party_size": 1,
+                "contact_name": "Olivia Brown",
+                "phone": "138-5556-6788"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your reservation at Dexing Noodle House is confirmed for April 18, 2026 at 20:00 for one person. The contact name is Olivia Brown, and the phone number on file is 138-5556-6788. If there's anything else I can assist you with, including flight details, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_0Bwd5cPU1QOzzFox",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_su_002",
+            "date": "2026-04-18",
+            "time": "20:00",
+            "party_size": 1,
+            "contact_name": "Olivia Brown",
+            "phone": "138-5556-6788"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_su_002\nRestaurant: Dexing Noodle House\nDate: 2026-04-18\nTime: 20:00\nParty size: 1\nContact: Olivia Brown (138-5556-6788)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_su_002",
+              "restaurant_name": "Dexing Noodle House",
+              "date": "2026-04-18",
+              "time": "20:00",
+              "party_size": 1,
+              "contact_name": "Olivia Brown",
+              "phone": "138-5556-6788",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.05984306335449219
+          },
+          "latency_ms": 0.05984306335449219
+        }
+      ],
+      "total_latency_ms": 20161.595106124878,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 847200,
+        "event_count": 198,
+        "latency": {
+          "speech_ms": 7925.574951171875,
+          "tool_call_ms": 5252.984130859375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 35.85453938809131,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai for 2026-03-18.",
+        "timestamp": 35.85453938809131,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 234000
+      },
+      "assistant_response": "I’ve found four economy flights from Beijing to Shanghai on March 18, 2026:\n\n1. CA1234 - Air China, departing 08:00 and arriving 10:30, ¥800\n2. MU5678 - China Eastern, departing 10:00 and arriving 12:30, ¥750\n3. CA1456 - Air China, departing 14:00 and arriving 16:30, ¥850\n4. MU5890 - China Eastern, departing 18:00 and arriving 20:30, ¥900\n\nLet me know which flight you'd like to book and under what passenger name.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ri9GrqZyjfzfuUvS",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I’ve found four economy flights from Beijing to Shanghai on March 18, 2026:\n\n1. CA1234 - Air China, departing 08:00 and arriving 10:30, ¥800\n2. MU5678 - China Eastern, departing 10:00 and arriving 12:30, ¥750\n3. CA1456 - Air China, departing 14:00 and arriving 16:30, ¥850\n4. MU5890 - China Eastern, departing 18:00 and arriving 20:30, ¥900\n\nLet me know which flight you'd like to book and under what passenger name.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ri9GrqZyjfzfuUvS",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.13780593872070312
+          },
+          "latency_ms": 0.13780593872070312
+        }
+      ],
+      "total_latency_ms": 28200.57702064514,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1670400,
+        "event_count": 254,
+        "latency": {
+          "speech_ms": 6740.344970703125,
+          "tool_call_ms": 5260.133056640625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 41.61044652074388,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight CA1456 on Air China for passenger Zhang Wei.",
+        "timestamp": 41.61044652074388,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.passenger_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 201000
+      },
+      "assistant_response": "Your flight on Air China, CA1456, departing March 18, 2026, is confirmed for passenger Zhang Wei. If you need any more help, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_HS9eYMDA5nqy4wR5",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_003",
+                "passenger_name": "Zhang Wei",
+                "date": "2026-03-18"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your flight on Air China, CA1456, departing March 18, 2026, is confirmed for passenger Zhang Wei. If you need any more help, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_HS9eYMDA5nqy4wR5",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_003",
+            "passenger_name": "Zhang Wei",
+            "date": "2026-03-18"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_003\nPassenger: Zhang Wei\nDate: 2026-03-18\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_003",
+              "passenger_name": "Zhang Wei",
+              "date": "2026-03-18",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.04506111145019531
+          },
+          "latency_ms": 0.04506111145019531
+        }
+      ],
+      "total_latency_ms": 28664.78204727173,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 501600,
+        "event_count": 119,
+        "latency": {
+          "speech_ms": 11386.298095703125,
+          "tool_call_ms": 10356.553955078125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_restaurants": {
+        "speech_ms": 3716.8720703125,
+        "tool_call_ms": 2081.7470703125
+      },
+      "book_restaurant": {
+        "speech_ms": 7925.574951171875,
+        "tool_call_ms": 5252.984130859375
+      },
+      "search_flights": {
+        "speech_ms": 6740.344970703125,
+        "tool_call_ms": 5260.133056640625
+      },
+      "book_flight": {
+        "speech_ms": 11386.298095703125,
+        "tool_call_ms": 10356.553955078125
+      }
+    },
+    "info_complete_turn": {
+      "search_restaurants": 3,
+      "book_restaurant": 6,
+      "search_flights": 7,
+      "book_flight": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_restaurant.phone: 期望'13855667788', 实际'138-5556-6788'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.75,
+    "behavior_score_details": "search_restaurants: 1(correct), book_restaurant: 0(param_mismatch), search_flights: 1(correct), book_flight: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_restaurant",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13855667788' vs '138-5556-6788'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

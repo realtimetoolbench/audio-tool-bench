@@ -1,0 +1,546 @@
+{
+  "task_name": "tint_000066",
+  "start_time": "2026-07-29T00:46:48.096270",
+  "end_time": "2026-07-29T00:49:28.539741",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Chengdu to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 118800
+      },
+      "assistant_response": "Alright, we’re looking for flights from Chengdu to Shanghai. Do you have a particular cabin class in mind, like Economy, Business, or First Class, or should I find all options for you?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Alright, we’re looking for flights from Chengdu to Shanghai. Do you have a particular cabin class in mind, like Economy, Business, or First Class, or should I find all options for you?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 15938.753128051758,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 487200,
+        "event_count": 96
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Chengdu, I meant Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 95400
+      },
+      "assistant_response": "Got it! We're searching for flights from Beijing to Shanghai. Do you have a preferred cabin class, or should I show you everything available?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! We're searching for flights from Beijing to Shanghai. Do you have a preferred cabin class, or should I show you everything available?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 27038.328886032104,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 345600,
+        "event_count": 72,
+        "latency": {
+          "speech_ms": 7466.130615234375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.121798551223808,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use origin Beijing and destination Shanghai for the flight search.",
+        "timestamp": 10.121798551223808,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 197400
+      },
+      "assistant_response": "Here are the options from Beijing to Shanghai:\n\n1. Air China, flight CA1234 – departs at 08:00 and arrives at 10:30, price ¥800.\n\n2. China Eastern, flight MU5678 – departs at 10:00 and arrives at 12:30, price ¥750.\n\n3. Air China, flight CA1456 – departs at 14:00 and arrives at 16:30, price ¥850.\n\n4. China Eastern, flight MU5890 – departs at 18:00 and arrives at 20:30, price ¥900.\n\nWhich one works best for you?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_lo4RTJnVoJ4VMh4s",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are the options from Beijing to Shanghai:\n\n1. Air China, flight CA1234 – departs at 08:00 and arrives at 10:30, price ¥800.\n\n2. China Eastern, flight MU5678 – departs at 10:00 and arrives at 12:30, price ¥750.\n\n3. Air China, flight CA1456 – departs at 14:00 and arrives at 16:30, price ¥850.\n\n4. China Eastern, flight MU5890 – departs at 18:00 and arrives at 20:30, price ¥900.\n\nWhich one works best for you?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_lo4RTJnVoJ4VMh4s",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.11801719665527344
+          },
+          "latency_ms": 0.11801719665527344
+        }
+      ],
+      "total_latency_ms": 20337.29600906372,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1531200,
+        "event_count": 308,
+        "latency": {
+          "speech_ms": 10040.0810546875,
+          "tool_call_ms": 8103.630126953125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.791375561354915,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-05-12 for passenger Xie Peng.",
+        "timestamp": 16.791375561354915,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-05-12",
+            "book_flight.passenger_name=Xie Peng"
+          ]
+        },
+        "audio_size_bytes": 269400
+      },
+      "assistant_response": "Your flight is booked! Xie Peng is confirmed on China Eastern flight MU5678 from Beijing to Shanghai on 2026-05-12. You’re all set!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_SwrG7VSIOuuAERhX",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "passenger_name": "Xie Peng",
+                "date": "2026-05-12"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your flight is booked! Xie Peng is confirmed on China Eastern flight MU5678 from Beijing to Shanghai on 2026-05-12. You’re all set!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_SwrG7VSIOuuAERhX",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "passenger_name": "Xie Peng",
+            "date": "2026-05-12"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Xie Peng\nDate: 2026-05-12\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Xie Peng",
+              "date": "2026-05-12",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.04410743713378906
+          },
+          "latency_ms": 0.04410743713378906
+        }
+      ],
+      "total_latency_ms": 26019.68288421631,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 405600,
+        "event_count": 137,
+        "latency": {
+          "speech_ms": 19277.541748046875,
+          "tool_call_ms": 17759.593017578125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 22.108880590465514,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set airline China Eastern for that flight booking. Then search restaurants in Chengdu.",
+        "timestamp": 22.108880590465514,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 238200
+      },
+      "assistant_response": "I found a couple of great options in Chengdu:\n\n1. Chen Mapo Tofu – a top-rated Sichuan spot in downtown, rating 4.7 out of 5.\n\n2. Lao Ma Tou Hotpot – a fantastic hotpot restaurant in Jinjiang, rating 4.8 out of 5.\n\nHungry for some spicy goodness? Let me know if you'd like to book a table at one of these!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_B1tMLdEFoPwNpDba",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found a couple of great options in Chengdu:\n\n1. Chen Mapo Tofu – a top-rated Sichuan spot in downtown, rating 4.7 out of 5.\n\n2. Lao Ma Tou Hotpot – a fantastic hotpot restaurant in Jinjiang, rating 4.8 out of 5.\n\nHungry for some spicy goodness? Let me know if you'd like to book a table at one of these!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_B1tMLdEFoPwNpDba",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.11491775512695312
+          },
+          "latency_ms": 0.11491775512695312
+        }
+      ],
+      "total_latency_ms": 22606.998682022095,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 904800,
+        "event_count": 203,
+        "latency": {
+          "speech_ms": 15471.872314453125,
+          "tool_call_ms": 13700.84423828125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.71390894549979,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book restaurant Lao Ma Tou Hotpot on 2026-04-20 at 19:00 for 4 people.",
+        "timestamp": 29.71390894549979,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-04-20",
+            "book_restaurant.party_size=4",
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 324600
+      },
+      "assistant_response": "I’ll go ahead and book a table at Lao Ma Tou Hotpot for you. Can you provide the contact name and phone number for the reservation?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I’ll go ahead and book a table at Lao Ma Tou Hotpot for you. Can you provide the contact name and phone number for the reservation?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 19907.08875656128,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 316800,
+        "event_count": 72,
+        "latency": {
+          "speech_ms": 9940.1796875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 36.40156069683022,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use party size 4. Contact name Isabella Jackson, phone 13877949128.",
+        "timestamp": 36.40156069683022,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Isabella Jackson",
+            "book_restaurant.phone=13877949128"
+          ]
+        },
+        "audio_size_bytes": 303600
+      },
+      "assistant_response": "Your reservation at Lao Ma Tou Hotpot in Chengdu is confirmed for April 20, 2026, at 19:00 for 4 people. The booking is under Isabella Jackson, and the contact number is 13877949128. Everything’s all set—enjoy your meal!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_fB8OtCR471xCZgNw",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_cd_002",
+                "date": "2026-04-20",
+                "time": "19:00",
+                "party_size": 4,
+                "contact_name": "Isabella Jackson",
+                "phone": "13877949128"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your reservation at Lao Ma Tou Hotpot in Chengdu is confirmed for April 20, 2026, at 19:00 for 4 people. The booking is under Isabella Jackson, and the contact number is 13877949128. Everything’s all set—enjoy your meal!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_fB8OtCR471xCZgNw",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_cd_002",
+            "date": "2026-04-20",
+            "time": "19:00",
+            "party_size": 4,
+            "contact_name": "Isabella Jackson",
+            "phone": "13877949128"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_cd_002\nRestaurant: Lao Ma Tou Hotpot\nDate: 2026-04-20\nTime: 19:00\nParty size: 4\nContact: Isabella Jackson (13877949128)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_cd_002",
+              "restaurant_name": "Lao Ma Tou Hotpot",
+              "date": "2026-04-20",
+              "time": "19:00",
+              "party_size": 4,
+              "contact_name": "Isabella Jackson",
+              "phone": "13877949128",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.09083747863769531
+          },
+          "latency_ms": 0.09083747863769531
+        }
+      ],
+      "total_latency_ms": 28587.91494369507,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 748800,
+        "event_count": 218,
+        "latency": {
+          "speech_ms": 21132.114013671875,
+          "tool_call_ms": 17556.02099609375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 7,
+    "total_llm_calls": 11,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "wrong_params": {
+      "search_flights.origin": "Chengdu"
+    },
+    "corrected_params": {
+      "search_flights.origin": "Beijing"
+    },
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_flights": {
+        "speech_ms": 7466.130615234375
+      },
+      "book_flight": {
+        "speech_ms": 19277.541748046875,
+        "tool_call_ms": 17759.593017578125
+      },
+      "book_restaurant": {
+        "speech_ms": 21132.114013671875,
+        "tool_call_ms": 17556.02099609375
+      }
+    },
+    "info_complete_turn": {
+      "search_flights": 2,
+      "book_flight": 4,
+      "search_restaurants": 1,
+      "book_restaurant": 7
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "dangling_not_intercepted",
+    "details": "完全匹配预期工具: {'search_flights', 'book_flight', 'search_restaurants', 'book_restaurant'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 5,
+    "extra_turns_details": "search_flights: +1 turns (info@2, call@3); search_restaurants: +4 turns (info@1, call@5)",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_flights: 1(correct), book_flight: 1(correct), search_restaurants: 1(correct), book_restaurant: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [],
+      "error_types": {},
+      "phase_counts": {
+        "pre": 0,
+        "post": 0,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {},
+      "primary_error": null
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "task_id": "pro_001003",
+  "description": "Generated: 4 tools, 4 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "get_transaction_history",
+    "search_cars",
+    "book_car",
+    "search_parking"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m headed to Beijing soon and I’m thinking it might just be easier to have a rental car lined up while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_cars.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "After that I’ll be in Shanghai for a bit too, and I’m already stressing about where to leave the car—parking there always feels like a gamble.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_parking.city=Shanghai"
+        ]
+      },
+      "timestamp": 9.088793141912129
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I was skimming my card activity and noticed some stuff I don’t recognize—my account number is 6217001234567890.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "get_transaction_history.account_number=6217001234567890"
+        ]
+      },
+      "timestamp": 19.107873427322524
+    },
+    {
+      "speaker": "user",
+      "text": "Alright, let’s do it—go ahead and reserve the Buick GL8 for pickup on 2026-03-13, for 8 days, under Song Qi.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.days=8",
+          "book_car.pickup_date=2026-03-13",
+          "book_car.renter_name=Song Qi"
+        ]
+      },
+      "timestamp": 27.95196460162574
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6217001234567890"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_bj_004",
+        "pickup_date": "2026-03-13",
+        "days": 8,
+        "renter_name": "Song Qi"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "a93d97142557",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 4,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "get_transaction_history": 3,
+    "search_cars": 1,
+    "book_car": 4,
+    "search_parking": 2
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "headed to Beijing soon",
+      "easier to have a rental car lined up",
+      "parking there always feels like a gamble",
+      "noticed some stuff I don’t recognize",
+      "go ahead and reserve"
+    ],
+    "ambiguity_notes": "Strong intent: user casually sets travel context, brings up parking and transaction review, then clearly confirms the car booking with full details."
+  }
+}

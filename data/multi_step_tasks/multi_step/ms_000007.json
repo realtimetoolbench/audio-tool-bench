@@ -1,0 +1,117 @@
+{
+  "task_id": "ms_000007",
+  "scenario_type": "multi_step",
+  "server": "gmail",
+  "template": "draft_and_send_4",
+  "description": "List contacts, create draft, update draft, send draft",
+  "tools": [
+    "list_contacts",
+    "create_draft",
+    "update_draft",
+    "send_draft"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you list my contacts for me?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_contacts"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create a draft with the subject Meeting follow-up and the body Here's the latest project update. Send it to the first contact on my list.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_draft"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Update that draft to say: Updated: Hi, just following up on our earlier conversation. Let me know if you have questions.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "update_draft"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Go ahead and send that draft now.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "send_draft"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_contacts",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "create_draft",
+      "params": {
+        "to": [
+          "brian.torres@gmail.com"
+        ],
+        "subject": "Meeting follow-up",
+        "body": "Here's the latest project update."
+      },
+      "param_source": {
+        "to": {
+          "from_tool": "list_contacts",
+          "field": "email_address"
+        },
+        "subject": "user",
+        "body": "user"
+      }
+    },
+    {
+      "tool": "update_draft",
+      "params": {
+        "draft_id": "draft_1",
+        "body": "Updated: Hi, just following up on our earlier conversation. Let me know if you have questions."
+      },
+      "param_source": {
+        "draft_id": {
+          "from_tool": "create_draft",
+          "field": "draft_id"
+        },
+        "body": "user"
+      }
+    },
+    {
+      "tool": "send_draft",
+      "params": {
+        "draft_id": "draft_1"
+      },
+      "param_source": {
+        "draft_id": {
+          "from_tool": "create_draft",
+          "field": "draft_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 4,
+  "info_complete_turn": {
+    "list_contacts": 1,
+    "create_draft": 2,
+    "update_draft": 3,
+    "send_draft": 3
+  }
+}

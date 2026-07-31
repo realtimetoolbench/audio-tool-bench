@@ -1,0 +1,192 @@
+{
+  "task_id": "tint_000066",
+  "description": "Interruption (tool_correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_flights.destination=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 9.344669085140652
+    },
+    {
+      "speaker": "user",
+      "text": "Book Golden Dragon for 2026-03-03 at 18:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-03",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 13.344889595680677
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 4. Contact name Zhang Wei. Phone 13864788741.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.party_size=4",
+          "book_restaurant.phone=13864788741"
+        ]
+      },
+      "timestamp": 18.946519796408964
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 24.566734493474012
+    },
+    {
+      "speaker": "user",
+      "text": "Book The Peninsula Beijing. Check in 2026-03-02 for 2 nights. Guest name Liu Yang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-02",
+          "book_hotel.guest_name=Liu Yang",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 29.223716752382458
+    },
+    {
+      "speaker": "user",
+      "text": "Continue: set guest name Liu Yang. Search flights Beijing to Shanghai. Book flight CA1234 on 2026-03-12 for Zhang Wei with Air China.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-03-12",
+          "book_flight.passenger_name=Zhang Wei",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 36.08106434677149
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_010",
+        "date": "2026-03-03",
+        "time": "18:00",
+        "party_size": 4,
+        "contact_name": "Zhang Wei",
+        "phone": "13864788741"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_001",
+        "checkin_date": "2026-03-02",
+        "nights": 2,
+        "guest_name": "Liu Yang"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_001",
+        "date": "2026-03-12",
+        "passenger_name": "Zhang Wei"
+      }
+    }
+  ],
+  "transcript_hash": "164cc9f1c765",
+  "info_complete_turn": {
+    "search_restaurants": 3,
+    "book_restaurant": 5,
+    "search_hotels": 6,
+    "book_hotel": 7,
+    "search_flights": 8,
+    "book_flight": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "wrong_params": {
+      "search_restaurants.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_restaurants.city": "Beijing"
+    }
+  }
+}

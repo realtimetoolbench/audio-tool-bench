@@ -1,0 +1,218 @@
+{
+  "task_id": "tint_000037",
+  "description": "Interruption (priority_no_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "list_bills"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on—first list my bills.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the hotel search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel Park Hyatt Beijing.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 13.17576065423162
+    },
+    {
+      "speaker": "user",
+      "text": "Set check-in to 2026-03-15 and stay 3 nights.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-15",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 17.975995655986708
+    },
+    {
+      "speaker": "user",
+      "text": "Use guest name Wang Fang for the booking.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Wang Fang"
+        ]
+      },
+      "timestamp": 22.726563946812963
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Chengdu.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_attractions.city=Chengdu"
+        ]
+      },
+      "timestamp": 27.335255674857592
+    },
+    {
+      "speaker": "user",
+      "text": "Book 3 tickets to Giant Panda Base for 2026-03-19 in the afternoon.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-19",
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 31.759867788948693
+    },
+    {
+      "speaker": "user",
+      "text": "Set visitor name Chen Ming for the attraction tickets.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.visitor_name=Chen Ming"
+        ]
+      },
+      "timestamp": 38.58375147823205
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing, then book Beijing Garden for 2026-03-20 at 20:00 for 7 people; contact Zhang Wei, phone 13812345678.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.date=2026-03-20",
+          "book_restaurant.party_size=7",
+          "book_restaurant.phone=13812345678",
+          "book_restaurant.time=20:00",
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 44.749875705744294
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_bills",
+      "params": {}
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_002",
+        "checkin_date": "2026-03-15",
+        "nights": 3,
+        "guest_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_001",
+        "date": "2026-03-19",
+        "time_slot": "afternoon",
+        "visitor_name": "Chen Ming",
+        "ticket_count": 3
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_007",
+        "date": "2026-03-20",
+        "time": "20:00",
+        "party_size": 7,
+        "contact_name": "Zhang Wei",
+        "phone": "13812345678"
+      }
+    }
+  ],
+  "transcript_hash": "b5c8b051a783",
+  "info_complete_turn": {
+    "list_bills": 1,
+    "search_hotels": 1,
+    "book_hotel": 6,
+    "search_attractions": 7,
+    "book_attraction_ticket": 9,
+    "search_restaurants": 10,
+    "book_restaurant": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "list_bills"
+  ]
+}

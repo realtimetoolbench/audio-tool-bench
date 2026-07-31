@@ -1,0 +1,149 @@
+{
+  "task_id": "pro_000409",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m heading out from Beijing to Shanghai for that work thing, so I’ve been thinking through the train options between those two cities.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "And since I’m still around, I’m also mapping out a little sightseeing in Beijing so I don’t waste the free time.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 9.325205510174497
+    },
+    {
+      "speaker": "user",
+      "text": "For the Great Wall day, I’m set on Badaling in the morning on 2026-03-16, and it’s two tickets under Gao Yan.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-16",
+          "book_attraction_ticket.ticket_count=2",
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Gao Yan"
+        ]
+      },
+      "timestamp": 18.0516511799646
+    },
+    {
+      "speaker": "user",
+      "text": "Oh, and the visitor name is Gao Yan, and it’s definitely 2 of us going that day.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 26.43271707887915
+    },
+    {
+      "speaker": "user",
+      "text": "Then for the Beijing-to-Shanghai leg, I’m on train G1 on 2026-04-29—Second Class—and it’s under He Xia, and after that I’m probably just going to head straight to the hotel and then…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-04-29",
+          "book_train.passenger_name=He Xia",
+          "book_train.seat_class=Second Class"
+        ]
+      },
+      "timestamp": 33.063139473649
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_001",
+        "date": "2026-04-29",
+        "passenger_name": "He Xia",
+        "seat_class": "Second Class"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_002",
+        "date": "2026-03-16",
+        "time_slot": "morning",
+        "visitor_name": "Gao Yan",
+        "ticket_count": 2
+      }
+    }
+  ],
+  "transcript_hash": "1947e0e27095",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_trains": 1,
+    "book_train": 5,
+    "search_attractions": 2,
+    "book_attraction_ticket": 3
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m heading out from Beijing to Shanghai",
+      "thinking through the train options",
+      "mapping out a little sightseeing in Beijing",
+      "set on Badaling in the morning on 2026-03-16",
+      "on train G1 on 2026-04-29"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed plans with specific train, dates, names, and ticket details; no requests or execution/authorization phrasing."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_attractions",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_attraction_ticket",
+      "book_train"
+    ]
+  },
+  "expected_tool_if_act": "search_trains",
+  "expected_params_if_act": {
+    "origin": "Beijing",
+    "destination": "Shanghai"
+  }
+}

@@ -1,0 +1,775 @@
+{
+  "task_name": "tint_000013",
+  "start_time": "2026-07-29T00:31:48.653981",
+  "end_time": "2026-07-29T00:33:49.591727",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search cars in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_cars.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 70800
+      },
+      "assistant_response": "Alright, let's see what kind of rental cars we can find in Shanghai. What type of car are you looking for? Economy, comfort, luxury, or business?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Alright, let's see what kind of rental cars we can find in Shanghai. What type of car are you looking for? Economy, comfort, luxury, or business?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9978.456020355225,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 420000,
+        "event_count": 83
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that—search sports events in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_sports_events.city=Beijing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_cars",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 145200
+      },
+      "assistant_response": "Here’s what we’ve got in Beijing:\n\n1. The CBA Playoffs: Beijing Shougang vs Guangdong Tigers on March 6th. That’s basketball at the Cadillac Arena, with a great atmosphere.\n\n2. The CSL match: Beijing Guuoan vs Shanghai Shenhua on March 1st at the Workers’ Stadium. That’s a big football showdown.\n\n3. The China Open Tennis on March 21st at the National Tennis Center—high-level tennis action.\n\nAny of these catch your eye?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_XXRkVfn5uNMxkm26",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here’s what we’ve got in Beijing:\n\n1. The CBA Playoffs: Beijing Shougang vs Guangdong Tigers on March 6th. That’s basketball at the Cadillac Arena, with a great atmosphere.\n\n2. The CSL match: Beijing Guuoan vs Shanghai Shenhua on March 1st at the Workers’ Stadium. That’s a big football showdown.\n\n3. The China Open Tennis on March 21st at the National Tennis Center—high-level tennis action.\n\nAny of these catch your eye?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_XXRkVfn5uNMxkm26",
+          "tool_name": "search_sports_events",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 sports events in Beijing:\n\n1. CBA Playoffs: Beijing Shougang vs Guangdong Tigers (ID: evt_bj_001)\n   Sport: Basketball\n   Venue: Cadillac Arena\n   Date/Time: 2026-03-06 19:35\n   Match: Beijing Shougang vs Guangdong Tigers\n   Price: ¥180-1280\n   Available zones: VIP, Stand A, Stand B, Stand C\n   Rating: 8.8/10.0\n\n2. CSL: Beijing Guoan vs Shanghai Shenhua (ID: evt_bj_002)\n   Sport: Football\n   Venue: Workers' Stadium\n   Date/Time: 2026-03-01 19:30\n   Match: Beijing Guoan vs Shanghai Shenhua\n   Price: ¥120-680\n   Available zones: Home Stand, Away Stand, Neutral Stand, Regular Stand\n   Rating: 8.5/10.0\n\n3. China Open Tennis (ID: evt_bj_003)\n   Sport: Tennis\n   Venue: National Tennis Center\n   Date/Time: 2026-03-21 14:00\n   Price: ¥280-2880\n   Available zones: Center Court, Court 1, Court 2\n   Rating: 9.2/10.0\n\n",
+            "raw_output": [
+              {
+                "event_id": "evt_bj_001",
+                "name": "CBA Playoffs: Beijing Shougang vs Guangdong Tigers",
+                "sport_type": "Basketball",
+                "venue": "Cadillac Arena",
+                "date": "2026-03-06",
+                "time": "19:35",
+                "home_team": "Beijing Shougang",
+                "away_team": "Guangdong Tigers",
+                "price_range": "180-1280",
+                "available_zones": [
+                  "VIP",
+                  "Stand A",
+                  "Stand B",
+                  "Stand C"
+                ],
+                "rating": 8.8
+              },
+              {
+                "event_id": "evt_bj_002",
+                "name": "CSL: Beijing Guoan vs Shanghai Shenhua",
+                "sport_type": "Football",
+                "venue": "Workers' Stadium",
+                "date": "2026-03-01",
+                "time": "19:30",
+                "home_team": "Beijing Guoan",
+                "away_team": "Shanghai Shenhua",
+                "price_range": "120-680",
+                "available_zones": [
+                  "Home Stand",
+                  "Away Stand",
+                  "Neutral Stand",
+                  "Regular Stand"
+                ],
+                "rating": 8.5
+              },
+              {
+                "event_id": "evt_bj_003",
+                "name": "China Open Tennis",
+                "sport_type": "Tennis",
+                "venue": "National Tennis Center",
+                "date": "2026-03-21",
+                "time": "14:00",
+                "home_team": null,
+                "away_team": null,
+                "price_range": "280-2880",
+                "available_zones": [
+                  "Center Court",
+                  "Court 1",
+                  "Court 2"
+                ],
+                "rating": 9.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05888938903808594
+          },
+          "latency_ms": 0.05888938903808594
+        }
+      ],
+      "total_latency_ms": 15792.670011520386,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1195200,
+        "event_count": 244,
+        "latency": {
+          "speech_ms": 5910.341064453125,
+          "tool_call_ms": 4835.365966796875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.201953669923581,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book a ticket for China Open Tennis.",
+        "timestamp": 10.201953669923581,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 101400
+      },
+      "assistant_response": "Sure thing! Let’s lock down your ticket for the China Open Tennis. I’ll just need a few quick details: \n\nWhich seat zone would you like—Center Court, Court 1, or Court 2? And how many tickets do you need? I'll also need your full name, phone number, and ID card number to complete the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing! Let’s lock down your ticket for the China Open Tennis. I’ll just need a few quick details: \n\nWhich seat zone would you like—Center Court, Court 1, or Court 2? And how many tickets do you need? I'll also need your full name, phone number, and ID card number to complete the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9774.381160736084,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 756000,
+        "event_count": 150,
+        "latency": {
+          "speech_ms": 1616.66015625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.082845016214783,
+      "input_chunk": {
+        "role": "user",
+        "content": "Seat zone Center Court. One ticket.",
+        "timestamp": 15.082845016214783,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_sports_ticket.seat_zone=Center Court",
+            "book_sports_ticket.ticket_count=1"
+          ]
+        },
+        "audio_size_bytes": 100800
+      },
+      "assistant_response": "Great, we’ve got you one ticket for the Center Court. Now I just need your full name, phone number, and ID card number so we can finish the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great, we’ve got you one ticket for the Center Court. Now I just need your full name, phone number, and ID card number so we can finish the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 26234.65609550476,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 400800,
+        "event_count": 84,
+        "latency": {
+          "speech_ms": 5873.186279296875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.457486631616224,
+      "input_chunk": {
+        "role": "user",
+        "content": "Buyer name Emily Wang. Phone 13867894321. ID number 310115198805062345.",
+        "timestamp": 19.457486631616224,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_sports_ticket.buyer_name=Emily Wang",
+            "book_sports_ticket.id_number=310115198805062345",
+            "book_sports_ticket.phone=13867894321"
+          ]
+        },
+        "audio_size_bytes": 466800
+      },
+      "assistant_response": "You're all set! Emily Wang has one confirmed ticket for the China Open Tennis at Center Court, Row 15, Seat 25. The booking is done, and you're ready to enjoy the match on March 21st. If you need anything else, just give me a shout!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_tBs6eiFBAQWYLfAf",
+              "name": "book_sports_ticket",
+              "arguments": {
+                "event_id": "evt_bj_003",
+                "seat_zone": "Center Court",
+                "ticket_count": 1,
+                "buyer_name": "Emily Wang",
+                "phone": "13867894321",
+                "id_number": "310115198505062345"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "You're all set! Emily Wang has one confirmed ticket for the China Open Tennis at Center Court, Row 15, Seat 25. The booking is done, and you're ready to enjoy the match on March 21st. If you need anything else, just give me a shout!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_tBs6eiFBAQWYLfAf",
+          "tool_name": "book_sports_ticket",
+          "arguments": {
+            "event_id": "evt_bj_003",
+            "seat_zone": "Center Court",
+            "ticket_count": 1,
+            "buyer_name": "Emily Wang",
+            "phone": "13867894321",
+            "id_number": "310115198505062345"
+          },
+          "result": {
+            "success": true,
+            "output": "Sports ticket booking successful!\n\nBooking ID: SP80001\nEvent ID: evt_bj_003\nEvent: China Open Tennis\nVenue: National Tennis Center\nDate: 2026-03-21\nZone: Center Court\nSeats: Center Court Row 15 Seat 25\nQuantity: 1\nBuyer: Emily Wang\nPhone: 13867894321\nID: 310115****2345\nTotal: ¥2880\nStatus: Confirmed (Real-name Required)\n",
+            "raw_output": {
+              "booking_id": "SP80001",
+              "event_id": "evt_bj_003",
+              "event_name": "China Open Tennis",
+              "venue": "National Tennis Center",
+              "date": "2026-03-21",
+              "seat_zone": "Center Court",
+              "ticket_count": 1,
+              "seats": [
+                "Center Court Row 15 Seat 25"
+              ],
+              "buyer_name": "Emily Wang",
+              "phone": "13867894321",
+              "id_number": "310115198505062345",
+              "total_price": 2880,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.09107589721679688
+          },
+          "latency_ms": 0.09107589721679688
+        }
+      ],
+      "total_latency_ms": 14384.85598564148,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 655200,
+        "event_count": 208,
+        "latency": {
+          "speech_ms": 4961.0908203125,
+          "tool_call_ms": 3902.011962890625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.233397869654127,
+      "input_chunk": {
+        "role": "user",
+        "content": "Now search doctors in Shanghai.",
+        "timestamp": 26.233397869654127,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "search_doctors.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 88800
+      },
+      "assistant_response": "Here are two top doctors in Shanghai:\n\n1. Dr. Chen Jing at Ruijin Hospital, specializing in digestive system diseases, with over 22 years of experience. \n\n2. Dr. Liu Yang at Huashan Hospital, a neurology specialist focused on nervous system diseases, with 16 years of experience.\n\nNeed help booking an appointment or more details on a particular doctor?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_lHPEy9Z6wrmnKrCE",
+              "name": "search_doctors",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are two top doctors in Shanghai:\n\n1. Dr. Chen Jing at Ruijin Hospital, specializing in digestive system diseases, with over 22 years of experience. \n\n2. Dr. Liu Yang at Huashan Hospital, a neurology specialist focused on nervous system diseases, with 16 years of experience.\n\nNeed help booking an appointment or more details on a particular doctor?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_lHPEy9Z6wrmnKrCE",
+          "tool_name": "search_doctors",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 doctors in Shanghai:\n\n1. Dr. Chen Jing (ID: doc_sh_001)\n   Hospital: Ruijin Hospital\n   Department: Internal Medicine\n   Specialty: Digestive System Disease\n   Title: Chief Physician\n   Rating: 4.8/5.0\n   Experience: 22 years\n   Available: 2026-03-02, 2026-03-04\n\n2. Dr. Liu Yang (ID: doc_sh_002)\n   Hospital: Huashan Hospital\n   Department: Neurology\n   Specialty: Nervous System Disease\n   Title: Associate Chief Physician\n   Rating: 4.9/5.0\n   Experience: 16 years\n   Available: 2026-03-03, 2026-03-05\n\n",
+            "raw_output": [
+              {
+                "doctor_id": "doc_sh_001",
+                "name": "Chen Jing",
+                "hospital": "Ruijin Hospital",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Digestive System Disease",
+                "rating": 4.8,
+                "experience_years": 22,
+                "available_dates": [
+                  "2026-03-02",
+                  "2026-03-04"
+                ]
+              },
+              {
+                "doctor_id": "doc_sh_002",
+                "name": "Liu Yang",
+                "hospital": "Huashan Hospital",
+                "department": "Neurology",
+                "title": "Associate Chief Physician",
+                "specialty": "Nervous System Disease",
+                "rating": 4.9,
+                "experience_years": 16,
+                "available_dates": [
+                  "2026-03-03",
+                  "2026-03-05"
+                ]
+              }
+            ],
+            "error": null,
+            "count": 2,
+            "doctors": [
+              {
+                "doctor_id": "doc_sh_001",
+                "name": "Chen Jing",
+                "hospital": "Ruijin Hospital",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Digestive System Disease",
+                "rating": 4.8,
+                "experience_years": 22,
+                "available_dates": [
+                  "2026-03-02",
+                  "2026-03-04"
+                ]
+              },
+              {
+                "doctor_id": "doc_sh_002",
+                "name": "Liu Yang",
+                "hospital": "Huashan Hospital",
+                "department": "Neurology",
+                "title": "Associate Chief Physician",
+                "specialty": "Nervous System Disease",
+                "rating": 4.9,
+                "experience_years": 16,
+                "available_dates": [
+                  "2026-03-03",
+                  "2026-03-05"
+                ]
+              }
+            ],
+            "latency_ms": 0.08320808410644531
+          },
+          "latency_ms": 0.08320808410644531
+        }
+      ],
+      "total_latency_ms": 10019.90294456482,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1056000,
+        "event_count": 203,
+        "latency": {
+          "speech_ms": 1121.684814453125,
+          "tool_call_ms": 515.19091796875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.76854089979968,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book an appointment with doctor Liu Yang on 2026-03-03 in the afternoon.",
+        "timestamp": 30.76854089979968,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.date=2026-03-03",
+            "book_appointment.time_slot=afternoon"
+          ]
+        },
+        "audio_size_bytes": 283200
+      },
+      "assistant_response": "Got it! Now I just need the patient’s full name so we can confirm the booking with Dr. Liu Yang on March 3rd in the afternoon.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! Now I just need the patient’s full name so we can confirm the booking with Dr. Liu Yang on March 3rd in the afternoon.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 14718.26195716858,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 372000,
+        "event_count": 79,
+        "latency": {
+          "speech_ms": 1207.30908203125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.1534016666438,
+      "input_chunk": {
+        "role": "user",
+        "content": "Patient name Mason White.",
+        "timestamp": 37.1534016666438,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.patient_name=Mason White"
+          ]
+        },
+        "audio_size_bytes": 72000
+      },
+      "assistant_response": "Your appointment is confirmed! Mason White has an afternoon slot with Dr. Liu Yang at Huashan Hospital on March 3rd. The queue number is 13. You're all set to go!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Oeb5WUtPzxDcD5Xe",
+              "name": "book_appointment",
+              "arguments": {
+                "doctor_id": "doc_sh_002",
+                "date": "2026-03-03",
+                "time_slot": "afternoon",
+                "patient_name": "Mason White"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your appointment is confirmed! Mason White has an afternoon slot with Dr. Liu Yang at Huashan Hospital on March 3rd. The queue number is 13. You're all set to go!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Oeb5WUtPzxDcD5Xe",
+          "tool_name": "book_appointment",
+          "arguments": {
+            "doctor_id": "doc_sh_002",
+            "date": "2026-03-03",
+            "time_slot": "afternoon",
+            "patient_name": "Mason White"
+          },
+          "result": {
+            "success": true,
+            "output": "Doctor appointment booked successfully!\n\nAppointment ID: MZ8DNCBGTM\nDoctor ID: doc_sh_002\nDoctor: Liu Yang\nHospital: Huashan Hospital\nDepartment: Neurology\nDate: 2026-03-03\nTime slot: afternoon\nPatient: Mason White\nQueue number: 13\nStatus: Confirmed\n",
+            "raw_output": {
+              "appointment_id": "MZ8DNCBGTM",
+              "doctor_id": "doc_sh_002",
+              "doctor_name": "Liu Yang",
+              "hospital": "Huashan Hospital",
+              "department": "Neurology",
+              "date": "2026-03-03",
+              "time_slot": "afternoon",
+              "patient_name": "Mason White",
+              "patient_phone": null,
+              "id_number": null,
+              "symptoms": "Not provided",
+              "status": "Confirmed",
+              "queue_number": 13
+            },
+            "error": null,
+            "latency_ms": 0.28324127197265625,
+            "message": "Appointment booked successfully",
+            "appointment": {
+              "appointment_id": "MZ8DNCBGTM",
+              "doctor_id": "doc_sh_002",
+              "doctor_name": "Liu Yang",
+              "hospital": "Huashan Hospital",
+              "department": "Neurology",
+              "date": "2026-03-03",
+              "time_slot": "afternoon",
+              "patient_name": "Mason White",
+              "patient_phone": null,
+              "id_number": null,
+              "symptoms": "Not provided",
+              "status": "Confirmed",
+              "queue_number": 13
+            }
+          },
+          "latency_ms": 0.28324127197265625
+        }
+      ],
+      "total_latency_ms": 14944.628953933716,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 429600,
+        "event_count": 151,
+        "latency": {
+          "speech_ms": 10891.056640625,
+          "tool_call_ms": 10017.104736328125
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 88800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1522.1548080444336,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 45.574387407478156,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Volkswagen Passat for Ma Liang, pickup 2026-03-27, for 3 days.",
+        "timestamp": 45.574387407478156,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_car.days=3",
+            "book_car.pickup_date=2026-03-27",
+            "book_car.renter_name=Ma Liang"
+          ]
+        },
+        "audio_size_bytes": 270600
+      },
+      "assistant_response": "Absolutely!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Absolutely!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3557.603120803833,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 17
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 14,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_cars",
+    "inserted_tools": [
+      "search_sports_events",
+      "book_sports_ticket",
+      "search_doctors",
+      "book_appointment"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_sports_events": {
+        "speech_ms": 5910.341064453125,
+        "tool_call_ms": 4835.365966796875
+      },
+      "book_sports_ticket": {
+        "speech_ms": 4961.0908203125,
+        "tool_call_ms": 3902.011962890625
+      },
+      "search_doctors": {
+        "speech_ms": 1121.684814453125,
+        "tool_call_ms": 515.19091796875
+      },
+      "book_appointment": {
+        "speech_ms": 10891.056640625,
+        "tool_call_ms": 10017.104736328125
+      }
+    },
+    "info_complete_turn": {
+      "search_sports_events": 2,
+      "book_sports_ticket": 5,
+      "search_doctors": 6,
+      "book_appointment": 8,
+      "search_cars": 1,
+      "book_car": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'book_sports_ticket', 'search_cars', 'search_sports_events', 'search_doctors', 'book_car', 'book_appointment'}，实际: {'search_doctors', 'search_sports_events', 'book_appointment', 'book_sports_ticket'}，缺失: {'book_car', 'search_cars'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.5,
+    "behavior_score_details": "search_sports_events: 1(correct), book_sports_ticket: 0(param_mismatch), search_doctors: 1(correct), book_appointment: 1(correct), search_cars: 0(not_called), book_car: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_sports_ticket",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "id_number: '310115198805062345' vs '310115198505062345'"
+        },
+        {
+          "tool": "search_cars",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_car",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "missing_call": 2
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 1,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

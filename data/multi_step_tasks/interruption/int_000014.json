@@ -1,0 +1,158 @@
+{
+  "task_id": "int_000014",
+  "description": "Interruption (redirection): 5 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "check_balance",
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Check the balance for account number 6228480012345678.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "check_balance.account_number=6228480012345678"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search movies in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_movies.city=Beijing"
+        ]
+      },
+      "timestamp": 6.036709969617295
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—before that, search attractions in Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "check_balance",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book attraction tickets for Summer Palace on 2026-03-10, afternoon slot.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-10",
+          "book_attraction_ticket.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 15.447742994510536
+    },
+    {
+      "speaker": "user",
+      "text": "Set visitor name Zhou Jun and ticket count 2 for the Summer Palace booking.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=2",
+          "book_attraction_ticket.visitor_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 22.254970157312115
+    },
+    {
+      "speaker": "user",
+      "text": "Now, back to the check_balance—continue the original request.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 28.594136054542616
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 ticket for Kung Fu Panda 4 at CGV Xidan, showtime 19:00, buyer name Wang Fang.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Wang Fang",
+          "book_movie_ticket.cinema=CGV Xidan",
+          "book_movie_ticket.seat_count=1",
+          "book_movie_ticket.showtime=19:00"
+        ]
+      },
+      "timestamp": 34.75314903355967
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_003",
+        "date": "2026-03-10",
+        "time_slot": "afternoon",
+        "visitor_name": "Zhou Jun",
+        "ticket_count": 2
+      }
+    },
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6228480012345678"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_bj_004",
+        "cinema": "CGV Xidan",
+        "showtime": "19:00",
+        "seat_count": 1,
+        "buyer_name": "Wang Fang"
+      }
+    }
+  ],
+  "transcript_hash": "0d829df9af9b",
+  "info_complete_turn": {
+    "search_attractions": 3,
+    "book_attraction_ticket": 5,
+    "check_balance": 1,
+    "search_movies": 2,
+    "book_movie_ticket": 7
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "check_balance",
+    "generated": true
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "task_id": "int_000016",
+  "description": "Interruption (cancellation): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "tool_category": "multi",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_sports_events",
+    "book_sports_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai. Also look up a game I can attend.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use train D321.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 7.013830965478407
+    },
+    {
+      "speaker": "user",
+      "text": "Book it for 2026-03-20.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_train.date=2026-03-20"
+        ]
+      },
+      "timestamp": 11.245912086806419
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the game. Cancel that.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "game",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Passenger name: Zhou Jun.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.passenger_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 20.712060356263276
+    },
+    {
+      "speaker": "user",
+      "text": "Seat class: First Class.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 24.727284793584936
+    },
+    {
+      "speaker": "user",
+      "text": "Confirm the train booking only. No game plans.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 28.97319443420203
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_003",
+        "date": "2026-03-20",
+        "passenger_name": "Zhou Jun",
+        "seat_class": "First Class"
+      }
+    }
+  ],
+  "transcript_hash": "82c7c3045a04",
+  "info_complete_turn": {
+    "search_trains": 1,
+    "book_train": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "game",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_sports_events",
+    "book_sports_ticket"
+  ]
+}

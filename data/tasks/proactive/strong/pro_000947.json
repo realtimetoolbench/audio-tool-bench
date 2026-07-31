@@ -1,0 +1,185 @@
+{
+  "task_id": "pro_000947",
+  "description": "Generated: 7 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train",
+    "search_hotels",
+    "book_hotel",
+    "get_transaction_history"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m gonna be in Beijing for a bit, and I kinda want to squeeze in some sightseeing while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Beijing",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "After that I’m thinking of heading from Beijing over to Shanghai, just to switch things up.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 8.305075243718026
+    },
+    {
+      "speaker": "user",
+      "text": "And yeah, once I’m in Shanghai I’ll probably just stay in the city somewhere convenient.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 16.343858165914448
+    },
+    {
+      "speaker": "user",
+      "text": "The Forbidden City is the big one for me—morning on 2026-03-24 would be perfect. It’ll be 3 tickets, and put it under Liu Yang.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-24",
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Liu Yang"
+        ]
+      },
+      "timestamp": 23.993749849252357
+    },
+    {
+      "speaker": "user",
+      "text": "Yep, go ahead and lock that Forbidden City plan in—Liu Yang, 3 of us.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 32.999800555766946
+    },
+    {
+      "speaker": "user",
+      "text": "For the train, G3 on 2026-03-06 sounds right. Passenger name is Li Na, and First Class would be great—yeah, book that.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-03-06",
+          "book_train.passenger_name=Li Na",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 39.921181939934435
+    },
+    {
+      "speaker": "user",
+      "text": "And for the Shanghai stay, Pudong Shangri-La works—check in 2026-03-17 for 3 nights, under Zhang Wei. Also, I was trying to reconcile my spending—my card/account number is 6228480012345678 if you can pull the recent transaction history. Oh, and yes, First Class on that train is definitely what I want.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-17",
+          "book_hotel.guest_name=Zhang Wei",
+          "book_hotel.nights=3",
+          "get_transaction_history.account_number=6228480012345678",
+          "search_trains.destination=Shanghai"
+        ]
+      },
+      "timestamp": 49.308154806425634
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_001",
+        "date": "2026-03-24",
+        "time_slot": "morning",
+        "visitor_name": "Liu Yang",
+        "ticket_count": 3
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-06",
+        "passenger_name": "Li Na",
+        "seat_class": "First Class"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_002",
+        "checkin_date": "2026-03-17",
+        "nights": 3,
+        "guest_name": "Zhang Wei"
+      }
+    },
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6228480012345678"
+      }
+    }
+  ],
+  "transcript_hash": "ef14a9f590bb",
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_attractions": 1,
+    "book_attraction_ticket": 4,
+    "search_trains": 7,
+    "book_train": 6,
+    "search_hotels": 3,
+    "book_hotel": 7,
+    "get_transaction_history": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "wanna squeeze in some sightseeing",
+      "heading from Beijing over to Shanghai",
+      "stay in Shanghai somewhere convenient",
+      "morning on 2026-03-24 would be perfect",
+      "go ahead and lock that plan in",
+      "yeah, book that",
+      "works—check in ... for 3 nights",
+      "pull the recent transaction history"
+    ],
+    "ambiguity_notes": "Strong intent overall, but one constraint is at risk: the last turn bundles hotel booking confirmation with a transaction-history request; also some booking parameters may need to be split to keep each checklist item appearing exactly once."
+  }
+}

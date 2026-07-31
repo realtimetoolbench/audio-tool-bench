@@ -1,0 +1,126 @@
+{
+  "task_id": "tint_000015",
+  "description": "Interruption (tool_cancel): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find a restaurant in Beijing near Wangfujing, cuisine Peking duck, for 2 people at 7:00 PM tomorrow. Also help me book a hotel later.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Skip the restaurant. Cancel the restaurant search and any restaurant booking.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 16.59671831398926
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel Novotel Beijing Peace.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 20.517772875152232
+    },
+    {
+      "speaker": "user",
+      "text": "Set check-in date to 2026-03-23 and stay 2 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-23",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 24.975938512344023
+    },
+    {
+      "speaker": "user",
+      "text": "Use guest name Wang Fang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Wang Fang"
+        ]
+      },
+      "timestamp": 30.887619334535906
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_005",
+        "checkin_date": "2026-03-23",
+        "nights": 2,
+        "guest_name": "Wang Fang"
+      }
+    }
+  ],
+  "transcript_hash": "29c563c41208",
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "forbidden_tools": [
+      "search_restaurants",
+      "book_restaurant"
+    ]
+  },
+  "forbidden_tools": [
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "cancelled_tools": [
+    "search_restaurants",
+    "book_restaurant"
+  ]
+}

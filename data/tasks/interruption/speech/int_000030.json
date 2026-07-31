@@ -1,0 +1,188 @@
+{
+  "task_id": "int_000030",
+  "description": "Interruption (correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Chengdu.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Chengdu, I meant Chongqing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Chengdu",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Chongqing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Holiday Inn Jiangbei, check in 2026-03-06 for 2 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-06",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 9.03400269764586
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name Lucas Martinez.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Lucas Martinez"
+        ]
+      },
+      "timestamp": 15.208469662099121
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 19.86093801761696
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight CA1456 on 2026-04-12 for passenger Xu Jing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-04-12",
+          "book_flight.passenger_name=Xu Jing"
+        ]
+      },
+      "timestamp": 25.147025729707586
+    },
+    {
+      "speaker": "user",
+      "text": "Airline Air China.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 31.055664279203633
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chongqing, then book Liuyishou Hotpot on 2026-03-27 at 12:00 for 6, contact Liu Yang, phone 13833445566.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Liu Yang",
+          "book_restaurant.date=2026-03-27",
+          "book_restaurant.party_size=6",
+          "book_restaurant.phone=13833445566",
+          "book_restaurant.time=12:00",
+          "search_restaurants.city=Chongqing"
+        ]
+      },
+      "timestamp": 35.35158065258563
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_cq_003",
+        "checkin_date": "2026-03-06",
+        "nights": 2,
+        "guest_name": "Lucas Martinez"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_003",
+        "date": "2026-04-12",
+        "passenger_name": "Xu Jing"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cq_001",
+        "date": "2026-03-27",
+        "time": "12:00",
+        "party_size": 6,
+        "contact_name": "Liu Yang",
+        "phone": "13833445566"
+      }
+    }
+  ],
+  "transcript_hash": "0c751bb3d6c2",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 4,
+    "search_flights": 5,
+    "book_flight": 6,
+    "search_restaurants": 8,
+    "book_restaurant": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Chengdu",
+    "template": "business_trip",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_hotels",
+      "param": "city",
+      "wrong_value": "Chengdu"
+    }
+  }
+}

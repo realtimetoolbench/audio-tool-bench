@@ -1,0 +1,144 @@
+{
+  "task_id": "ms_000020",
+  "scenario_type": "multi_step",
+  "server": "booking",
+  "template": "book_and_modify_5",
+  "description": "Search, get property details, room types, book, modify booking",
+  "tools": [
+    "search_properties",
+    "get_property",
+    "get_room_types",
+    "create_booking",
+    "modify_booking"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I'm looking for hotels in New York from September 2nd to September 4th.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_properties"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you tell me more about the first one on the list?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_property",
+          "get_room_types"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "I'd like to book a room for two guests at that hotel for those same dates.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_booking"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Actually, can you update my booking to have five guests instead?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "modify_booking"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_properties",
+      "params": {
+        "city": "New York",
+        "check_in_date": "2026-09-02",
+        "check_out_date": "2026-09-04"
+      },
+      "param_source": {
+        "city": "user",
+        "check_in_date": "user",
+        "check_out_date": "user"
+      }
+    },
+    {
+      "tool": "get_property",
+      "params": {
+        "property_id": "PROP-80015"
+      },
+      "param_source": {
+        "property_id": {
+          "from_tool": "search_properties",
+          "field": "property_id"
+        }
+      }
+    },
+    {
+      "tool": "get_room_types",
+      "params": {
+        "property_id": "PROP-80015",
+        "check_in_date": "2026-09-02",
+        "check_out_date": "2026-09-04"
+      },
+      "param_source": {
+        "property_id": {
+          "from_tool": "search_properties",
+          "field": "property_id"
+        },
+        "check_in_date": "user",
+        "check_out_date": "user"
+      }
+    },
+    {
+      "tool": "create_booking",
+      "params": {
+        "room_type_id": "RT-80019",
+        "check_in_date": "2026-09-02",
+        "check_out_date": "2026-09-04",
+        "num_guests": 2
+      },
+      "param_source": {
+        "room_type_id": {
+          "from_tool": "get_room_types",
+          "field": "room_type_id"
+        },
+        "check_in_date": "user",
+        "check_out_date": "user",
+        "num_guests": "user"
+      }
+    },
+    {
+      "tool": "modify_booking",
+      "params": {
+        "booking_id": "booking_1",
+        "num_guests": 5
+      },
+      "param_source": {
+        "booking_id": {
+          "from_tool": "create_booking",
+          "field": "booking_id"
+        },
+        "num_guests": "user"
+      }
+    }
+  ],
+  "chain_depth": 5,
+  "info_complete_turn": {
+    "search_properties": 1,
+    "get_property": 1,
+    "get_room_types": 2,
+    "create_booking": 3,
+    "modify_booking": 4
+  }
+}

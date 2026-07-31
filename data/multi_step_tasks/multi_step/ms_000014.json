@@ -1,0 +1,120 @@
+{
+  "task_id": "ms_000014",
+  "scenario_type": "multi_step",
+  "server": "lyft",
+  "template": "estimate_and_ride_4",
+  "description": "list ride types, get estimates, request ride, get ride info",
+  "tools": [
+    "list_ride_types",
+    "get_ride_estimates",
+    "request_ride",
+    "get_ride"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "What types of rides do you have available?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_ride_types"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you get me an estimate for a ride from downtown Los Angeles to Santa Monica?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_ride_estimates"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "I'd like to request the first ride option for that same trip, from downtown LA to Santa Monica.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "request_ride"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you give me the details of that ride?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_ride"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_ride_types",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "get_ride_estimates",
+      "params": {
+        "pickup_lat": 34.0522,
+        "pickup_lng": -118.2437,
+        "dropoff_lat": 34.0195,
+        "dropoff_lng": -118.4912
+      },
+      "param_source": {
+        "pickup_lat": "user",
+        "pickup_lng": "user",
+        "dropoff_lat": "user",
+        "dropoff_lng": "user"
+      }
+    },
+    {
+      "tool": "request_ride",
+      "params": {
+        "ride_type_id": "Standard",
+        "pickup_lat": 34.0522,
+        "pickup_lng": -118.2437,
+        "dropoff_lat": 34.0195,
+        "dropoff_lng": -118.4912
+      },
+      "param_source": {
+        "ride_type_id": {
+          "from_tool": "list_ride_types",
+          "field": "name"
+        },
+        "pickup_lat": "user",
+        "pickup_lng": "user",
+        "dropoff_lat": "user",
+        "dropoff_lng": "user"
+      }
+    },
+    {
+      "tool": "get_ride",
+      "params": {
+        "ride_id": "ride_1"
+      },
+      "param_source": {
+        "ride_id": {
+          "from_tool": "request_ride",
+          "field": "ride_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 4,
+  "info_complete_turn": {
+    "list_ride_types": 1,
+    "get_ride_estimates": 2,
+    "request_ride": 3,
+    "get_ride": 3
+  }
+}

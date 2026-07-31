@@ -1,0 +1,539 @@
+{
+  "task_name": "tint_000003",
+  "start_time": "2026-04-30T16:55:51.655074",
+  "end_time": "2026-04-30T16:56:48.278945",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 87000
+      },
+      "assistant_response": "I'll help you find some great restaurants in Chengdu.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'll help you find some great restaurants in Chengdu.",
+          "tool_calls": [
+            {
+              "id": "call-a87a19de-2add-49f5-86fc-cff9c9bf1567-0",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "I'll help you find some great restaurants in Chengdu.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-a87a19de-2add-49f5-86fc-cff9c9bf1567-0",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.022172927856445312
+          },
+          "latency_ms": 0.022172927856445312,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 9110.297918319702,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 113760,
+        "event_count": 26,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "I'll help you find some great restaurants in Chengdu."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Hold on—first check my balance for account number 6217001234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "check_balance.account_number=6217001234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 337200
+      },
+      "assistant_response": "Sure, I'll check that for you right away. I'm sorry, but the system says the account number doesn't exist or is incorrect. Do you have the correct account number? If you want to proceed with the restaurant search in Chengdu, I can recommend some options or help book one.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'll check that for you right away.",
+          "tool_calls": [
+            {
+              "id": "call-48359a10-843e-41a6-a87d-7ca58704398d-1",
+              "name": "check_balance",
+              "arguments": {
+                "account_number": "621700124567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I'm sorry, but the system says the account number doesn't exist or is incorrect. Do you have the correct account number? If you want to proceed with the restaurant search in Chengdu, I can recommend some options or help book one.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-48359a10-843e-41a6-a87d-7ca58704398d-1",
+          "tool_name": "check_balance",
+          "arguments": {
+            "account_number": "621700124567890"
+          },
+          "result": {
+            "success": false,
+            "error": "账户不存在或账户号码错误",
+            "output": "账户不存在或账户号码错误",
+            "raw_output": {
+              "success": false,
+              "error": "账户不存在或账户号码错误",
+              "output": "账户不存在或账户号码错误"
+            },
+            "latency_ms": 0.010013580322265625
+          },
+          "latency_ms": 0.010013580322265625
+        }
+      ],
+      "total_latency_ms": 7607.963085174561,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 708960,
+        "event_count": 56,
+        "latency": {
+          "speech_ms": 1996.7470703125,
+          "tool_call_ms": 2418.188232421875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the restaurant search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 126000
+      },
+      "assistant_response": "Thanks, I've got the restaurant search results for Chengdu. There's Chen Mapo Tofu downtown with a 4.7 rating, and Lao Ma Tou Hotpot in Jinjiang at 4.8. Which one interests you, or would you like me to book a table?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the restaurant search results for Chengdu. There's Chen Mapo Tofu downtown with a 4.7 rating, and Lao Ma Tou Hotpot in Jinjiang at 4.8. Which one interests you, or would you like me to book a table?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6481.226921081543,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 677760,
+        "event_count": 35,
+        "latency": {
+          "speech_ms": 135.5390625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.451978860097508,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book a restaurant: Lao Ma Tou Hotpot. Date 2026-03-20.",
+        "timestamp": 15.451978860097508,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-20"
+          ]
+        },
+        "audio_size_bytes": 222600
+      },
+      "assistant_response": "Thanks, I'd be happy to help you book Lao Ma Tou Hotpot. But I need a few more details to complete the booking. Could you tell me the exact date in 2026, the time, how many people, and your contact name and phone number?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'd be happy to help you book Lao Ma Tou Hotpot. But I need a few more details to complete the booking. Could you tell me the exact date in 2026, the time, how many people, and your contact name and phone number?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8582.422018051147,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 647040,
+        "event_count": 34,
+        "latency": {
+          "speech_ms": 1068.13525390625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.922386181344155,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the booking time to 19:00 and party size to 5.",
+        "timestamp": 20.922386181344155,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.party_size=5",
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 193800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3643.688201904297,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.306058458594862,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use contact name Zhang Wei and phone 13845678901.",
+        "timestamp": 26.306058458594862,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Zhang Wei",
+            "book_restaurant.phone=13845678901"
+          ]
+        },
+        "audio_size_bytes": 246000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4204.045057296753,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.623918573913983,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai.",
+        "timestamp": 31.623918573913983,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 77400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2408.7328910827637,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 8
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.775971012492654,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book hotel Waldorf Astoria Shanghai on the Bund. Check in 2026-03-14 and stay 1 night.",
+        "timestamp": 35.775971012492654,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-14",
+            "book_hotel.nights=1"
+          ]
+        },
+        "audio_size_bytes": 330000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5078.2310962677,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 42.94234203388208,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the hotel guest name to Chen Ming. Then search flights from Beijing to Shanghai.",
+        "timestamp": 42.94234203388208,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.guest_name=Chen Ming",
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 252000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4262.995958328247,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 10
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 49.97580669887551,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight CA1234 on 2026-03-03 for passenger Zhou Jun with airline Air China.",
+        "timestamp": 49.97580669887551,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-03",
+            "book_flight.passenger_name=Zhou Jun"
+          ]
+        },
+        "audio_size_bytes": 343800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5239.5179271698,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 11
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 12,
+    "total_tool_calls": 2
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "check_balance": {
+        "speech_ms": 1996.7470703125,
+        "tool_call_ms": 2418.188232421875
+      }
+    },
+    "info_complete_turn": {
+      "check_balance": 2,
+      "search_restaurants": 1,
+      "book_restaurant": 6,
+      "search_hotels": 7,
+      "book_hotel": 9,
+      "search_flights": 9,
+      "book_flight": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "check_balance",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "account_number: '6217001234567890' vs '621700124567890'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_hotels",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_flights",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "missing_call": 5
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 6,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 5,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

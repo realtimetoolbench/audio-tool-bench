@@ -1,0 +1,154 @@
+{
+  "task_id": "ms_000041",
+  "scenario_type": "multi_step",
+  "server": "gmail",
+  "template": "compose_and_organize_6",
+  "description": "List contacts, send email, search emails, star email, add label, get thread",
+  "tools": [
+    "list_contacts",
+    "send_email",
+    "search_emails",
+    "star_email",
+    "add_label",
+    "get_thread"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you list my contacts for me?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_contacts"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Send an email to the first contact with the subject Follow-up and say Following up on our earlier conversation.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "send_email"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Search my emails for anything related to project.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_emails"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Star the first email from that search and add the label follow-up to it.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "star_email",
+          "add_label"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Get the entire thread for that first email in the search results.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_thread"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_contacts",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "send_email",
+      "params": {
+        "to": [
+          "brian.torres@gmail.com"
+        ],
+        "subject": "Follow-up",
+        "body": "Following up on our earlier conversation."
+      },
+      "param_source": {
+        "to": {
+          "from_tool": "list_contacts",
+          "field": "email_address"
+        },
+        "subject": "user",
+        "body": "user"
+      }
+    },
+    {
+      "tool": "search_emails",
+      "params": {
+        "query": "project"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "star_email",
+      "params": {
+        "email_id": "email_006"
+      },
+      "param_source": {
+        "email_id": {
+          "from_tool": "search_emails",
+          "field": "email_id"
+        }
+      }
+    },
+    {
+      "tool": "add_label",
+      "params": {
+        "email_id": "email_006",
+        "label": "follow-up"
+      },
+      "param_source": {
+        "email_id": {
+          "from_tool": "search_emails",
+          "field": "email_id"
+        },
+        "label": "user"
+      }
+    },
+    {
+      "tool": "get_thread",
+      "params": {
+        "thread_id": "thread_002"
+      },
+      "param_source": {
+        "thread_id": {
+          "from_tool": "search_emails",
+          "field": "thread_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 6,
+  "info_complete_turn": {
+    "list_contacts": 1,
+    "send_email": 2,
+    "search_emails": 3,
+    "star_email": 3,
+    "add_label": 4,
+    "get_thread": 4
+  }
+}

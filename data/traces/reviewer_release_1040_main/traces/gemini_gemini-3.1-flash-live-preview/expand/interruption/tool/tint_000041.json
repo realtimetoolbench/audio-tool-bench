@@ -1,0 +1,391 @@
+{
+  "task_name": "tint_000041",
+  "start_time": "2026-05-06T23:53:26.535554",
+  "end_time": "2026-05-07T00:02:46.400891",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search rental cars in Shanghai. Use pickup date 2026-04-27 and rental duration 8 days.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_car.days=8",
+            "book_car.pickup_date=2026-04-27"
+          ]
+        },
+        "audio_size_bytes": 338400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 31702.072143554688,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 1
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shanghai, I meant Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_cars",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_parking.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 99600
+      },
+      "assistant_response": "What type of car are you looking for? Economy, comfort, luxury, or business?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "What type of car are you looking for? Economy, comfort, luxury, or business?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1866.8251037597656,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 209792,
+        "event_count": 35,
+        "latency": {
+          "speech_ms": 130.7990550994873
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 12.347594955329058,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use account number 6217001234567890 and pull transaction history.",
+        "timestamp": 12.347594955329058,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "get_transaction_history.account_number=6217001234567890"
+          ]
+        },
+        "audio_size_bytes": 338400
+      },
+      "assistant_response": "I was not able to find any transaction history for that account number.\n\nHowever, I did find some rental cars available in Beijing. Would you like to proceed with searching for a car based on the details you provided earlier, and if so, do any of these listed cars interest you?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_12829386625888953839",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_12829386625888953230",
+              "name": "get_transaction_history",
+              "arguments": {
+                "account_number": "6217001234567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "I was not able to find any transaction history for that account number.\n\nHowever, I did find some rental cars available in Beijing. Would you like to proceed with searching for a car based on the details you provided earlier, and if so, do any of these listed cars interest you?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "output": "Found 4 rental cars in Beijing:\n\n1. Volkswagen Lavida (ID: car_bj_001)\n   Type: economy | Seats: 5\n   Price: ¥150/day | Insurance: ¥30/day\n   Rating: 4.5/5.0\n\n2. Honda Accord (ID: car_bj_002)\n   Type: comfort | Seats: 5\n   Price: ¥250/day | Insurance: ¥50/day\n   Rating: 4.7/5.0\n\n3. Audi A6 (ID: car_bj_003)\n   Type: luxury | Seats: 5\n   Price: ¥500/day | Insurance: ¥80/day\n   Rating: 4.8/5.0\n\n4. Buick GL8 (ID: car_bj_004)\n   Type: business | Seats: 7\n   Price: ¥400/day | Insurance: ¥60/day\n   Rating: 4.6/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.07700920104980469
+        },
+        {
+          "tool_name": "get_transaction_history",
+          "arguments": {
+            "account_number": "6217001234567890"
+          },
+          "output": "账户不存在或无交易记录",
+          "error": "账户不存在或无交易记录",
+          "latency_ms": 0.010013580322265625
+        }
+      ],
+      "total_latency_ms": 24284.87229347229,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 664324,
+        "event_count": 98,
+        "latency": {
+          "speech_ms": 8635.186910629272,
+          "tool_call_ms": 7184.109926223755
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 18.96907634177016,
+      "input_chunk": {
+        "role": "user",
+        "content": "Now search rental cars in Beijing.",
+        "timestamp": 18.96907634177016,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_cars.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 99000
+      },
+      "assistant_response": "I have already searched for rental cars in Beijing for you. I found a Volkswagen Lavida, Honda Accord, Audi A6, and a Buick GL8. Do any of these interest you? Or do you want me to look for a different type?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I have already searched for rental cars in Beijing for you. I found a Volkswagen Lavida, Honda Accord, Audi A6, and a Buick GL8. Do any of these interest you? Or do you want me to look for a different type?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 17807.501077651978,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 539524,
+        "event_count": 75,
+        "latency": {
+          "speech_ms": 5393.69010925293
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.105079548024996,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the car Volkswagen Lavida. Renter name Zhang Wei.",
+        "timestamp": 24.105079548024996,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_car.renter_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 159000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 484196.5410709381,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 13
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 30.140576650622236,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search parking in Beijing.",
+        "timestamp": 30.140576650622236,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 75600
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 34.80798497857796,
+      "input_chunk": {
+        "role": "user",
+        "content": "Reserve China World Trade Center Parking. Start time 2026-03-22 13:00 for 2 hours. Use license plate 浙E34567 and driver phone 13830018365. Then search shows in Nanjing.",
+        "timestamp": 34.80798497857796,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "reserve_parking_spot.driver_phone=13830018365",
+            "reserve_parking_spot.duration_hours=2",
+            "reserve_parking_spot.license_plate=浙E34567",
+            "reserve_parking_spot.start_time=2026-03-22 13:00",
+            "search_shows.city=Nanjing"
+          ]
+        },
+        "audio_size_bytes": 765600
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 7,
+    "total_llm_calls": 7,
+    "total_tool_calls": 2
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_cars",
+    "wrong_params": {
+      "search_cars.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_cars.city": "Beijing"
+    },
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_parking": {
+        "speech_ms": 130.7990550994873
+      },
+      "get_transaction_history": {
+        "speech_ms": 8635.186910629272,
+        "tool_call_ms": 7184.109926223755
+      },
+      "search_cars": {
+        "speech_ms": 5393.69010925293
+      }
+    },
+    "info_complete_turn": {
+      "get_transaction_history": 3,
+      "search_cars": 4,
+      "book_car": 5,
+      "search_parking": 2,
+      "reserve_parking_spot": 7,
+      "search_shows": 7
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=False] + priority[re-called with correction]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "search_cars",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 3 调用，info_complete_turn=4"
+        },
+        {
+          "tool": "book_car",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_parking",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "reserve_parking_spot",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_shows",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "premature_call": 1,
+        "missing_call": 4
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 5,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 4,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

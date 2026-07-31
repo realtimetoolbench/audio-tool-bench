@@ -1,0 +1,156 @@
+{
+  "task_id": "int_000012",
+  "description": "Interruption (correction): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_flights.destination=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shanghai",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Golden Dragon on 2026-03-18 at 20:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-18",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 9.696655179339949
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 1, contact name Liu Yang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Liu Yang",
+          "book_restaurant.party_size=1"
+        ]
+      },
+      "timestamp": 14.8421591403937
+    },
+    {
+      "speaker": "user",
+      "text": "Phone 13877949128.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13877949128"
+        ]
+      },
+      "timestamp": 20.03984594578869
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 24.399084569898694
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight CA1456 on 2026-03-12 for passenger Zhou Jun on Air China.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-03-12",
+          "book_flight.passenger_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 29.332455027057094
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_010",
+        "date": "2026-03-18",
+        "time": "20:00",
+        "party_size": 1,
+        "contact_name": "Liu Yang",
+        "phone": "13877949128"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_003",
+        "date": "2026-03-12",
+        "passenger_name": "Zhou Jun"
+      }
+    }
+  ],
+  "transcript_hash": "6dc3ac8e3e41",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 5,
+    "search_flights": 6,
+    "book_flight": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shanghai",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_restaurants",
+      "param": "city",
+      "wrong_value": "Shanghai"
+    }
+  }
+}

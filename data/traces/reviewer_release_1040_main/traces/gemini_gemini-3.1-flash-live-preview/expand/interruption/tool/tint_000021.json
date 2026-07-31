@@ -1,0 +1,442 @@
+{
+  "task_name": "tint_000021",
+  "start_time": "2026-05-06T21:33:54.584280",
+  "end_time": "2026-05-06T21:34:48.507226",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels. City Shenzhen. Check-in 2026-03-14. Nights 1.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-14",
+            "book_hotel.nights=1"
+          ]
+        },
+        "audio_size_bytes": 251400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_7411816877733693608",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shenzhen",
+                "checkin_date": "2026-03-14"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shenzhen",
+            "checkin_date": "2026-03-14"
+          },
+          "output": null,
+          "error": null,
+          "latency_ms": null,
+          "dangling": true,
+          "dangling_return": "never"
+        }
+      ],
+      "total_latency_ms": 6940.953254699707,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5,
+        "latency": {
+          "tool_call_ms": 4436.944007873535
+        },
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shenzhen, I meant Nanjing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_hotels.city=Nanjing"
+          ]
+        },
+        "audio_size_bytes": 97200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 0.6589889526367188,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.393344526839373,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use city Nanjing. Book Sofitel Nanjing Galaxy. Guest name Zhou Jun.",
+        "timestamp": 10.393344526839373,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Zhou Jun"
+          ]
+        },
+        "audio_size_bytes": 189000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_4372271608087320621",
+              "name": "search_hotels",
+              "arguments": {
+                "checkin_date": "2026-03-14",
+                "city": "Nanjing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_hotels",
+          "arguments": {
+            "checkin_date": "2026-03-14",
+            "city": "Nanjing"
+          },
+          "output": "Found 4 hotels in Nanjing:\n\n1. InterContinental Nanjing (ID: hotel_nj_001)\n   Location: Xinjiekou | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Sofitel Nanjing Galaxy (ID: hotel_nj_002)\n   Location: Gulou | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Jinling Hotel Nanjing (ID: hotel_nj_003)\n   Location: Xinjiekou | 4 stars\n   Price: ¥650/night | Rating: 4.5/5.0\n\n4. Hanting Hotel Xuanwu (ID: hotel_nj_004)\n   Location: Xuanwu | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.017881393432617188
+        }
+      ],
+      "total_latency_ms": 1465.9268856048584,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 8,
+        "latency": {
+          "tool_call_ms": 263.78822326660156
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.37224978798563,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights. Origin Beijing. Destination Shanghai.",
+        "timestamp": 16.37224978798563,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 149400
+      },
+      "assistant_response": "I have successfully booked your stay at the Sofitel Nanjing Galaxy under the name Joe Jun.\n\nI also found flights from Beijing to Shanghai:\n\n*   **Air China (CA1234):** Departs 08:00, Arrives 10:30 - ¥800\n*   **China Eastern (MU5678):** Departs 10:00, Arrives 12:30 - ¥750\n*   **Air China (CA1456):** Departs 14:00, Arrives 16:30 - ¥850\n*   **China Eastern (MU5890):** Departs 18:00, Arrives 20:30 - ¥900\n\nWould you like me to book any of these flights for you? Please let me know the flight ID, the date, and the passenger's name.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_2461170320603555245",
+              "name": "book_hotel",
+              "arguments": {
+                "nights": 1,
+                "guest_name": "Joe Jun",
+                "checkin_date": "2026-03-14",
+                "hotel_id": "Sofitel Nanjing Galaxy"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_2461170320603557060",
+              "name": "search_flights",
+              "arguments": {
+                "destination": "Shanghai",
+                "origin": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "I have successfully booked your stay at the Sofitel Nanjing Galaxy under the name Joe Jun.\n\nI also found flights from Beijing to Shanghai:\n\n*   **Air China (CA1234):** Departs 08:00, Arrives 10:30 - ¥800\n*   **China Eastern (MU5678):** Departs 10:00, Arrives 12:30 - ¥750\n*   **Air China (CA1456):** Departs 14:00, Arrives 16:30 - ¥850\n*   **China Eastern (MU5890):** Departs 18:00, Arrives 20:30 - ¥900\n\nWould you like me to book any of these flights for you? Please let me know the flight ID, the date, and the passenger's name.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_hotel",
+          "arguments": {
+            "nights": 1,
+            "guest_name": "Joe Jun",
+            "checkin_date": "2026-03-14",
+            "hotel_id": "Sofitel Nanjing Galaxy"
+          },
+          "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: Sofitel Nanjing Galaxy\nCheck-in: 2026-03-14\nNights: 1\nGuest: Joe Jun\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.02288818359375
+        },
+        {
+          "tool_name": "search_flights",
+          "arguments": {
+            "destination": "Shanghai",
+            "origin": "Beijing"
+          },
+          "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+          "error": null,
+          "latency_ms": 0.0400543212890625
+        }
+      ],
+      "total_latency_ms": 20399.39308166504,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 612002,
+        "event_count": 86,
+        "latency": {
+          "speech_ms": 6709.239959716797,
+          "tool_call_ms": 5825.721025466919
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 22.1848096359501,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5890. Date 2026-04-27. Passenger name Emma Taylor.",
+        "timestamp": 22.1848096359501,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-04-27",
+            "book_flight.passenger_name=Emma Taylor"
+          ]
+        },
+        "audio_size_bytes": 291000
+      },
+      "assistant_response": "That flight is now booked for Emma Taylor.\n\nYour booking ID is FL10001.\n\nIs there anything else I can help you with regarding your travel?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_18068610243294833136",
+              "name": "book_flight",
+              "arguments": {
+                "passenger_name": "Emma Taylor",
+                "flight_id": "flt_bj_sh_004",
+                "date": "2026-04-27"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "That flight is now booked for Emma Taylor.\n\nYour booking ID is FL10001.\n\nIs there anything else I can help you with regarding your travel?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_flight",
+          "arguments": {
+            "passenger_name": "Emma Taylor",
+            "flight_id": "flt_bj_sh_004",
+            "date": "2026-04-27"
+          },
+          "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_004\nPassenger: Emma Taylor\nDate: 2026-04-27\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.028133392333984375
+        }
+      ],
+      "total_latency_ms": 14860.729932785034,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 361472,
+        "event_count": 58,
+        "latency": {
+          "speech_ms": 5815.89674949646,
+          "tool_call_ms": 4886.2457275390625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 28.3964127226926,
+      "input_chunk": {
+        "role": "user",
+        "content": "Airline China Eastern.",
+        "timestamp": 28.3964127226926,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 64800
+      },
+      "assistant_response": "China Eastern is correct; that's the airline for flight MU5890 which we just booked. Is there something specific you'd like to know about them or another flight?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "China Eastern is correct; that's the airline for flight MU5890 which we just booked. Is there something specific you'd like to know about them or another flight?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10251.002788543701,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 411392,
+        "event_count": 56,
+        "latency": {
+          "speech_ms": 1127.5877952575684
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 11,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Shenzhen"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Nanjing"
+    },
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "book_hotel": {
+        "tool_call_ms": 263.78822326660156
+      },
+      "search_flights": {
+        "speech_ms": 6709.239959716797,
+        "tool_call_ms": 5825.721025466919
+      },
+      "book_flight": {
+        "speech_ms": 5815.89674949646,
+        "tool_call_ms": 4886.2457275390625
+      }
+    },
+    "info_complete_turn": {
+      "search_hotels": 2,
+      "book_hotel": 3,
+      "search_flights": 4,
+      "book_flight": 5
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[re-called with correction]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "hotel_id: 'hotel_nj_002' vs 'Sofitel Nanjing Galaxy'; guest_name: 'Zhou Jun' vs 'Joe Jun'"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "task_id": "pro_001076",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_cars",
+    "book_car",
+    "search_parking",
+    "reserve_parking_spot"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m heading to Chengdu soon, and I’m thinking I’ll just get around by a rental car while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_cars.city=Chengdu",
+          "search_parking.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also in Chengdu, I keep hearing parking can be a whole situation downtown, so I’m factoring that in too.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 7.669921168542294
+    },
+    {
+      "speaker": "user",
+      "text": "For the car itself, I’m set on a Nissan Sylphy, and it’ll be under my name, Sun Lei.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.renter_name=Sun Lei"
+        ]
+      },
+      "timestamp": 16.308890162926673
+    },
+    {
+      "speaker": "user",
+      "text": "Pickup date is 2026-03-13, and I’m keeping it for 5 days since I’ve got a bunch of running around to do.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.days=5",
+          "book_car.pickup_date=2026-03-13"
+        ]
+      },
+      "timestamp": 23.41766551958191
+    },
+    {
+      "speaker": "user",
+      "text": "Then later on I’m planning to park at Chunxi Road IFS Parking on 2026-03-23 at 17:00 for about 4 hours; plate is 沪B67890, and the driver phone I’m using is 13844556677, and after that I’ll probably just wander around and see what’s nearby...",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13844556677",
+          "reserve_parking_spot.duration_hours=4",
+          "reserve_parking_spot.license_plate=沪B67890"
+        ]
+      },
+      "timestamp": 31.311467074665433
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_cd_001",
+        "pickup_date": "2026-03-13",
+        "days": 5,
+        "renter_name": "Sun Lei"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_cd_001",
+        "start_time": "2026-03-23 17:00",
+        "duration_hours": 4,
+        "license_plate": "沪B67890",
+        "driver_phone": "13844556677"
+      }
+    }
+  ],
+  "transcript_hash": "c23b5d1a5c16",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "driving",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_cars": 1,
+    "book_car": 4,
+    "search_parking": 1,
+    "reserve_parking_spot": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m heading to Chengdu",
+      "thinking I’ll just get around by a rental car",
+      "I’m set on a Nissan Sylphy",
+      "Pickup date is 2026-03-13",
+      "planning to park at Chunxi Road IFS Parking"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates settled plans with specific car, dates, duration, parking location/time, plate, and phone; no requests or authorization verbs."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_cars",
+      "search_parking"
+    ],
+    "write_tools": [
+      "book_car",
+      "reserve_parking_spot"
+    ]
+  },
+  "expected_tool_if_act": "search_cars",
+  "expected_params_if_act": {
+    "city": "Chengdu"
+  }
+}

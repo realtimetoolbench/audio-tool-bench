@@ -1,0 +1,151 @@
+{
+  "task_id": "int_000011",
+  "description": "Interruption (redirection): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_shows",
+    "book_show_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Chengdu. Focus on Joker Xue Concert.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_shows.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 5 tickets in Stand B for Joker Xue Concert.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Stand B",
+          "book_show_ticket.ticket_count=5"
+        ]
+      },
+      "timestamp": 5.6153122526272465
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search restaurants in Beijing. Check Golden Dragon.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "show",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Golden Dragon for 2026-03-17 at 14:00, party of 5.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.date=2026-03-17",
+          "book_restaurant.party_size=5",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 17.29582081134099
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Chen Ming and phone 13877949128 for the Golden Dragon booking.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.contact_name=Chen Ming",
+          "book_restaurant.phone=13877949128"
+        ]
+      },
+      "timestamp": 23.300392373650176
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the show—continue the ticket booking.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 29.960124083741185
+    },
+    {
+      "speaker": "user",
+      "text": "Use buyer name Li Na and phone 13812345678 for the Joker Xue Concert tickets.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Li Na",
+          "book_show_ticket.phone=13812345678"
+        ]
+      },
+      "timestamp": 35.125187176836064
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_010",
+        "date": "2026-03-17",
+        "time": "14:00",
+        "party_size": 5,
+        "contact_name": "Chen Ming",
+        "phone": "13877949128"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_cd_001",
+        "seat_zone": "Stand B",
+        "ticket_count": 5,
+        "buyer_name": "Li Na",
+        "phone": "13812345678"
+      }
+    }
+  ],
+  "transcript_hash": "e4844ec0bccb",
+  "info_complete_turn": {
+    "search_restaurants": 3,
+    "book_restaurant": 5,
+    "search_shows": 1,
+    "book_show_ticket": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "show",
+    "generated": true
+  }
+}

@@ -1,0 +1,391 @@
+{
+  "task_name": "tint_000070",
+  "start_time": "2026-07-29T02:52:19.854253",
+  "end_time": "2026-07-29T02:52:54.860459",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search parking near Shanghai Hongqiao Railway Station for 2026-03-05, 10:00 to 16:00, and also help me rent a car later.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_car.pickup_date=2026-03-05",
+            "search_cars.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 499800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6152.072191238403,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 8
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Cancel the parking search and skip any parking reservation.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_parking",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 171000
+      },
+      "assistant_response": "Got it! I'll skip the parking reservation for now. We can focus on renting a car when you're ready. Just let me know the details, and we’ll find you the perfect ride.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_CpjFtlqlGCbo97t5",
+              "name": "search_parking",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Got it! I'll skip the parking reservation for now. We can focus on renting a car when you're ready. Just let me know the details, and we’ll find you the perfect ride.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_CpjFtlqlGCbo97t5",
+          "tool_name": "search_parking",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "error": "City not supported: None",
+            "available_cities": [
+              "Beijing",
+              "Shanghai",
+              "Chengdu"
+            ],
+            "output": "City not supported: None",
+            "raw_output": {
+              "success": false,
+              "error": "City not supported: None",
+              "available_cities": [
+                "Beijing",
+                "Shanghai",
+                "Chengdu"
+              ],
+              "output": "City not supported: None"
+            },
+            "latency_ms": 0.03409385681152344
+          },
+          "latency_ms": 0.03409385681152344
+        }
+      ],
+      "total_latency_ms": 6188.992977142334,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 429600,
+        "event_count": 109,
+        "latency": {
+          "speech_ms": 2347.2109375,
+          "tool_call_ms": 1.85009765625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 15.38950465074313,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search rental cars in Shanghai.",
+        "timestamp": 15.38950465074313,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 93000
+      },
+      "assistant_response": "Here are a few great rental options in Shanghai: \n\n1. Toyota Corolla (Economy) – ¥160 per day, highly rated at 4.4 out of 5.\n2. Volkswagen Passat (Comfort) – ¥280 per day, with an excellent 4.6 rating.\n3. BMW 5 Series (Luxury) – ¥600 per day, top-tier rating of 4.9 out of 5.\n\nWhich one catches your eye, or do you need any more details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_c9DAXiqwsHmMggwD",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are a few great rental options in Shanghai: \n\n1. Toyota Corolla (Economy) – ¥160 per day, highly rated at 4.4 out of 5.\n2. Volkswagen Passat (Comfort) – ¥280 per day, with an excellent 4.6 rating.\n3. BMW 5 Series (Luxury) – ¥600 per day, top-tier rating of 4.9 out of 5.\n\nWhich one catches your eye, or do you need any more details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_c9DAXiqwsHmMggwD",
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 rental cars in Shanghai:\n\n1. Toyota Corolla (ID: car_sh_001)\n   Type: economy | Seats: 5\n   Price: ¥160/day | Insurance: ¥30/day\n   Rating: 4.4/5.0\n\n2. Volkswagen Passat (ID: car_sh_002)\n   Type: comfort | Seats: 5\n   Price: ¥280/day | Insurance: ¥50/day\n   Rating: 4.6/5.0\n\n3. BMW 5 Series (ID: car_sh_003)\n   Type: luxury | Seats: 5\n   Price: ¥600/day | Insurance: ¥100/day\n   Rating: 4.9/5.0\n\n",
+            "raw_output": [
+              {
+                "car_id": "car_sh_001",
+                "model": "Toyota Corolla",
+                "type": "economy",
+                "seats": 5,
+                "price_per_day": 160,
+                "insurance": 30,
+                "rating": 4.4
+              },
+              {
+                "car_id": "car_sh_002",
+                "model": "Volkswagen Passat",
+                "type": "comfort",
+                "seats": 5,
+                "price_per_day": 280,
+                "insurance": 50,
+                "rating": 4.6
+              },
+              {
+                "car_id": "car_sh_003",
+                "model": "BMW 5 Series",
+                "type": "luxury",
+                "seats": 5,
+                "price_per_day": 600,
+                "insurance": 100,
+                "rating": 4.9
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0667572021484375
+          },
+          "latency_ms": 0.0667572021484375
+        }
+      ],
+      "total_latency_ms": 12132.315874099731,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1202400,
+        "event_count": 243,
+        "latency": {
+          "speech_ms": 2621.09033203125,
+          "tool_call_ms": 1698.568115234375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.227349743652713,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the car with car ID BMW 5 Series.",
+        "timestamp": 20.227349743652713,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 121800
+      },
+      "assistant_response": "I’ll need a couple more details to lock it in for you: what date do you want to pick up the car, and for how many days would you like to rent it? And don't forget to let me know the name for the booking. Once I have those, we’re good to go!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I’ll need a couple more details to lock it in for you: what date do you want to pick up the car, and for how many days would you like to rent it? And don't forget to let me know the name for the booking. Once I have those, we’re good to go!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5223.905086517334,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 535200,
+        "event_count": 121,
+        "latency": {
+          "speech_ms": 876.299072265625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.400364613662948,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set pickup date to 2026-03-05 and rent it for 6 days.",
+        "timestamp": 25.400364613662948,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_car.days=6"
+          ]
+        },
+        "audio_size_bytes": 239400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3190.5949115753174,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.46842383592496,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use renter name Zhang Wei and confirm the booking.",
+        "timestamp": 31.46842383592496,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_car.renter_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 139800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2114.3109798431396,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 8,
+    "total_tool_calls": 2
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_parking",
+    "forbidden_tools": [
+      "search_parking",
+      "reserve_parking_spot"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "forbidden_tool_called+dangling_not_intercepted",
+    "details": "调用了禁止工具: {'search_parking'}（预期: {'search_cars', 'book_car'}，实际: {'search_cars', 'search_parking'}，禁止: {'search_parking', 'reserve_parking_spot'}）",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "search_cars: +2 turns (info@1, call@3)",
+    "behavior_score": 0.5,
+    "behavior_score_details": "search_cars: 1(correct), book_car: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_car",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_parking",
+          "error_type": "unexpected_call",
+          "phase": "post",
+          "detail": "调了不在 expected_tools 中的工具: search_parking"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1,
+        "unexpected_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "unexpected_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

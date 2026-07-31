@@ -1,0 +1,141 @@
+{
+  "task_id": "tint_000132",
+  "description": "Interruption (tool_cancel): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Suzhou for 2026-03-15 around 19:00, and also find a restaurant in Suzhou for lunch.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-15",
+          "search_restaurants.city=Suzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the movie part. Cancel the movie search and any ticket booking.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_movies",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Suzhou.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 14.234950421541587
+    },
+    {
+      "speaker": "user",
+      "text": "Book a table at Songhelou Restaurant.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 18.575161498032635
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation for 2026-03-15 at 11:30.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.time=11:30"
+        ]
+      },
+      "timestamp": 23.231227746774262
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 6. Use the contact name Olivia Brown.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Olivia Brown",
+          "book_restaurant.party_size=6"
+        ]
+      },
+      "timestamp": 28.732522951721577
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone number 13892862812 for the booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13892862812"
+        ]
+      },
+      "timestamp": 33.63733018307164
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_su_001",
+        "date": "2026-03-15",
+        "time": "11:30",
+        "party_size": 6,
+        "contact_name": "Olivia Brown",
+        "phone": "13892862812"
+      }
+    }
+  ],
+  "transcript_hash": "70b45622f0a5",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "date",
+    "generated": true,
+    "dangling_call": "search_movies",
+    "forbidden_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ]
+  },
+  "forbidden_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "cancelled_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ]
+}

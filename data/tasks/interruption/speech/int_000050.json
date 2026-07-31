@@ -1,0 +1,147 @@
+{
+  "task_id": "int_000050",
+  "description": "Interruption (correction): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shenzhen.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shenzhen, I meant Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shenzhen",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Hyatt on the Bund, check-in 2026-03-21 for 2 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-21",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 9.187748890093713
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name Noah Wilson, for 2 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Noah Wilson"
+        ]
+      },
+      "timestamp": 14.78034350100019
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 20.056855892570777
+    },
+    {
+      "speaker": "user",
+      "text": "Book Xiao Nan Guo on 2026-03-26 at 12:00 for 8, contact Tang Xue, phone 13898776655.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Tang Xue",
+          "book_restaurant.date=2026-03-26",
+          "book_restaurant.party_size=8",
+          "book_restaurant.phone=13898776655",
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 24.873527331268846
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_003",
+        "checkin_date": "2026-03-21",
+        "nights": 2,
+        "guest_name": "Noah Wilson"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_003",
+        "date": "2026-03-26",
+        "time": "12:00",
+        "party_size": 8,
+        "contact_name": "Tang Xue",
+        "phone": "13898776655"
+      }
+    }
+  ],
+  "transcript_hash": "f45855c873f0",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 4,
+    "search_restaurants": 5,
+    "book_restaurant": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": null,
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_hotels",
+      "param": "city",
+      "wrong_value": "Shenzhen"
+    }
+  }
+}

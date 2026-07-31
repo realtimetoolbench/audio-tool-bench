@@ -1,0 +1,740 @@
+{
+  "task_name": "tint_000032",
+  "start_time": "2026-07-29T03:32:01.181970",
+  "end_time": "2026-07-29T03:32:38.980437",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search movies in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_movies.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 76200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_UgEon5P0lEsus5Ox",
+              "name": "search_movies",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4085.3450298309326,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 22,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Hold on, list my bills now.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_movies",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 72600
+      },
+      "assistant_response": "Here are the bills I found:\n\n1. Electricity bill from State Grid, amount: 156.8, due date: 2026-03-09, status: Unpaid.\n2. Water bill from Water Company, amount: 45.2, due date: 2026-03-06, status: Unpaid.\n3. Gas bill from Gas Group, amount: 89.5, due date: 2026-03-14, status: Unpaid.\n4. Electricity bill from State Grid (paid), amount: 142.3, due date: 2026-01-28, status: Paid.\n5. Internet bill from China Telecom, amount: 129.0, due date: 2026-03-02, status: Unpaid.\n\nLet me know if you need more details or want to take any action on these bills!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_PrzlRNfdBxPUS016",
+              "name": "list_bills",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are the bills I found:\n\n1. Electricity bill from State Grid, amount: 156.8, due date: 2026-03-09, status: Unpaid.\n2. Water bill from Water Company, amount: 45.2, due date: 2026-03-06, status: Unpaid.\n3. Gas bill from Gas Group, amount: 89.5, due date: 2026-03-14, status: Unpaid.\n4. Electricity bill from State Grid (paid), amount: 142.3, due date: 2026-01-28, status: Paid.\n5. Internet bill from China Telecom, amount: 129.0, due date: 2026-03-02, status: Unpaid.\n\nLet me know if you need more details or want to take any action on these bills!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_PrzlRNfdBxPUS016",
+          "tool_name": "list_bills",
+          "arguments": {},
+          "result": {
+            "success": true,
+            "count": 5,
+            "bills": [
+              {
+                "bill_id": "DL20260219001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 156.8,
+                "due_date": "2026-03-09",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215002",
+                "bill_type": "Water",
+                "company": "Water Company",
+                "account_number": "9876543210",
+                "amount": 45.2,
+                "due_date": "2026-03-06",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215003",
+                "bill_type": "Gas",
+                "company": "Gas Group",
+                "account_number": "5555666677",
+                "amount": 89.5,
+                "due_date": "2026-03-14",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260115001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 142.3,
+                "due_date": "2026-01-28",
+                "status": "Paid",
+                "billing_period": "2025-12",
+                "payment_date": "2026-01-20"
+              },
+              {
+                "bill_id": "BILL20260215004",
+                "bill_type": "Internet",
+                "company": "China Telecom",
+                "account_number": "1111222233",
+                "amount": 129.0,
+                "due_date": "2026-03-02",
+                "status": "Unpaid",
+                "billing_period": "2026-02"
+              }
+            ],
+            "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]",
+            "raw_output": {
+              "success": true,
+              "count": 5,
+              "bills": [
+                {
+                  "bill_id": "DL20260219001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 156.8,
+                  "due_date": "2026-03-09",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215002",
+                  "bill_type": "Water",
+                  "company": "Water Company",
+                  "account_number": "9876543210",
+                  "amount": 45.2,
+                  "due_date": "2026-03-06",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215003",
+                  "bill_type": "Gas",
+                  "company": "Gas Group",
+                  "account_number": "5555666677",
+                  "amount": 89.5,
+                  "due_date": "2026-03-14",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260115001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 142.3,
+                  "due_date": "2026-01-28",
+                  "status": "Paid",
+                  "billing_period": "2025-12",
+                  "payment_date": "2026-01-20"
+                },
+                {
+                  "bill_id": "BILL20260215004",
+                  "bill_type": "Internet",
+                  "company": "China Telecom",
+                  "account_number": "1111222233",
+                  "amount": 129.0,
+                  "due_date": "2026-03-02",
+                  "status": "Unpaid",
+                  "billing_period": "2026-02"
+                }
+              ],
+              "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]"
+            },
+            "error": null,
+            "latency_ms": 0.008821487426757812
+          },
+          "latency_ms": 0.008821487426757812
+        }
+      ],
+      "total_latency_ms": 5408.776760101318,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1845600,
+        "event_count": 309,
+        "latency": {
+          "speech_ms": 759.624755859375,
+          "tool_call_ms": 156.86279296875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the movie task.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 93600
+      },
+      "assistant_response": "Great! Here are the movies currently showing in Shanghai:\n\n1. \"The Wandering Earth 3\" – Sci-Fi, 150 min, rating 8.5/10. Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50. \n\n2. \"YOLO\" – Drama, 120 min, rating 7.8/10. Showtimes: 11:00, 14:30, 17:00, 20:30.\n\n3. \"Dune 2\" – Sci-Fi, 165 min, rating 8.8/10. Showtimes: 10:00, 13:30, 17:00, 20:30.\n\nWhich movie are you interested in, and do you have a preferred cinema and showtime?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ue4kbr073d7QC4Uo",
+              "name": "search_movies",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great! Here are the movies currently showing in Shanghai:\n\n1. \"The Wandering Earth 3\" – Sci-Fi, 150 min, rating 8.5/10. Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50. \n\n2. \"YOLO\" – Drama, 120 min, rating 7.8/10. Showtimes: 11:00, 14:30, 17:00, 20:30.\n\n3. \"Dune 2\" – Sci-Fi, 165 min, rating 8.8/10. Showtimes: 10:00, 13:30, 17:00, 20:30.\n\nWhich movie are you interested in, and do you have a preferred cinema and showtime?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ue4kbr073d7QC4Uo",
+          "tool_name": "search_movies",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 movies in Shanghai:\n\n1. The Wandering Earth 3 (ID: mov_sh_001)\n   Genre: Sci-Fi | Duration: 150 min\n   Rating: 8.5/10.0\n   Price: ¥50\n   Cinemas: Shanghai Film Center, Grand Cinema, Wanda Cinema Wujiaochang\n   Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50\n\n2. YOLO (ID: mov_sh_002)\n   Genre: Drama | Duration: 120 min\n   Rating: 7.8/10.0\n   Price: ¥45\n   Cinemas: Shanghai Film Center, SFC Cinema, Wanda Cinema Wujiaochang\n   Showtimes: 11:00, 14:30, 17:00, 20:30\n\n3. Dune 2 (ID: mov_sh_003)\n   Genre: Sci-Fi | Duration: 165 min\n   Rating: 8.8/10.0\n   Price: ¥55\n   Cinemas: Grand Cinema, SFC Cinema, CGV Longzhimeng\n   Showtimes: 10:00, 13:30, 17:00, 20:30\n\n",
+            "raw_output": [
+              {
+                "movie_id": "mov_sh_001",
+                "name": "The Wandering Earth 3",
+                "genre": "Sci-Fi",
+                "duration": 150,
+                "rating": 8.5,
+                "cinemas": [
+                  "Shanghai Film Center",
+                  "Grand Cinema",
+                  "Wanda Cinema Wujiaochang"
+                ],
+                "showtimes": [
+                  "10:30",
+                  "13:20",
+                  "16:10",
+                  "19:00",
+                  "21:50"
+                ],
+                "price": 50
+              },
+              {
+                "movie_id": "mov_sh_002",
+                "name": "YOLO",
+                "genre": "Drama",
+                "duration": 120,
+                "rating": 7.8,
+                "cinemas": [
+                  "Shanghai Film Center",
+                  "SFC Cinema",
+                  "Wanda Cinema Wujiaochang"
+                ],
+                "showtimes": [
+                  "11:00",
+                  "14:30",
+                  "17:00",
+                  "20:30"
+                ],
+                "price": 45
+              },
+              {
+                "movie_id": "mov_sh_003",
+                "name": "Dune 2",
+                "genre": "Sci-Fi",
+                "duration": 165,
+                "rating": 8.8,
+                "cinemas": [
+                  "Grand Cinema",
+                  "SFC Cinema",
+                  "CGV Longzhimeng"
+                ],
+                "showtimes": [
+                  "10:00",
+                  "13:30",
+                  "17:00",
+                  "20:30"
+                ],
+                "price": 55
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.047206878662109375
+          },
+          "latency_ms": 0.047206878662109375
+        }
+      ],
+      "total_latency_ms": 6567.870855331421,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1507200,
+        "event_count": 291,
+        "latency": {
+          "speech_ms": 855.805908203125,
+          "tool_call_ms": 232.219970703125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.152711626080631,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book movie tickets for movie_id The Wandering Earth 3.",
+        "timestamp": 14.152711626080631,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 172800
+      },
+      "assistant_response": "Awesome! Could you tell me which cinema you'd like to go to, and what time works best for you? That way we can lock in the showtime.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Awesome! Could you tell me which cinema you'd like to go to, and what time works best for you? That way we can lock in the showtime.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4573.633909225464,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 355200,
+        "event_count": 67,
+        "latency": {
+          "speech_ms": 497.073974609375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.237257588103255,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use cinema Wanda Cinema Wujiaochang and showtime 21:50.",
+        "timestamp": 20.237257588103255,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_movie_ticket.cinema=Wanda Cinema Wujiaochang",
+            "book_movie_ticket.showtime=21:50"
+          ]
+        },
+        "audio_size_bytes": 197400
+      },
+      "assistant_response": "Great choice! Now, how many tickets would you like to book, and what's your name for the purchase? Once I have that, I'll get everything set up.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great choice! Now, how many tickets would you like to book, and what's your name for the purchase? Once I have that, I'll get everything set up.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3983.5281372070312,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 360000,
+        "event_count": 68,
+        "latency": {
+          "speech_ms": 417.697265625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 25.917545885354482,
+      "input_chunk": {
+        "role": "user",
+        "content": "Reserve 3 seats, buyer name Wang Fang.",
+        "timestamp": 25.917545885354482,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_movie_ticket.buyer_name=Wang Fang",
+            "book_movie_ticket.seat_count=3"
+          ]
+        },
+        "audio_size_bytes": 118800
+      },
+      "assistant_response": "Your booking is all set! You’ve got 3 tickets for \"The Wandering Earth 3\" at Wanda Cinema Wujiaochang, for the showtime 21:50 on 2026-03-01. The seats are E5, E6, and E7.\n\nIf you need to adjust anything or have more questions, let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_5TWMsuNv77lvkcp1",
+              "name": "book_movie_ticket",
+              "arguments": {
+                "movie_id": "mov_sh_001",
+                "cinema": "Wanda Cinema Wujiaochang",
+                "showtime": "21:50",
+                "seat_count": 3,
+                "buyer_name": "Wang Fang"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your booking is all set! You’ve got 3 tickets for \"The Wandering Earth 3\" at Wanda Cinema Wujiaochang, for the showtime 21:50 on 2026-03-01. The seats are E5, E6, and E7.\n\nIf you need to adjust anything or have more questions, let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_5TWMsuNv77lvkcp1",
+          "tool_name": "book_movie_ticket",
+          "arguments": {
+            "movie_id": "mov_sh_001",
+            "cinema": "Wanda Cinema Wujiaochang",
+            "showtime": "21:50",
+            "seat_count": 3,
+            "buyer_name": "Wang Fang"
+          },
+          "result": {
+            "success": true,
+            "output": "Movie ticket booking successful!\n\nBooking ID: MV60001\nMovie ID: mov_sh_001\nMovie: The Wandering Earth 3\nCinema: Wanda Cinema Wujiaochang\nDate: 2026-03-01\nShowtime: 21:50\nSeats: E5, E6, E7\nTicket type: adult\nQuantity: 3\nTotal: ¥135\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "MV60001",
+              "movie_id": "mov_sh_001",
+              "movie_name": "The Wandering Earth 3",
+              "cinema": "Wanda Cinema Wujiaochang",
+              "date": "2026-03-01",
+              "showtime": "21:50",
+              "seat_count": 3,
+              "seats": [
+                "E5",
+                "E6",
+                "E7"
+              ],
+              "buyer_name": "Wang Fang",
+              "ticket_type": "adult",
+              "total_price": 135,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03600120544433594
+          },
+          "latency_ms": 0.03600120544433594
+        }
+      ],
+      "total_latency_ms": 4710.780143737793,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 643200,
+        "event_count": 192,
+        "latency": {
+          "speech_ms": 1254.68603515625,
+          "tool_call_ms": 638.597900390625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.00866524033422,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shanghai.",
+        "timestamp": 31.00866524033422,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 90000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1510.5571746826172,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.29675317127178,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book restaurant Xiao Nan Guo for 2026-03-13 at 20:00, party size 3.",
+        "timestamp": 35.29675317127178,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-13",
+            "book_restaurant.party_size=3",
+            "book_restaurant.time=20:00"
+          ]
+        },
+        "audio_size_bytes": 314400
+      },
+      "assistant_response": "Sure thing!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure thing!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3972.5561141967773,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 18
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 41.67883060842621,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set contact name Zhang Wei, phone 13856781234.",
+        "timestamp": 41.67883060842621,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Zhang Wei",
+            "book_restaurant.phone=13856781234"
+          ]
+        },
+        "audio_size_bytes": 222000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_1rPgtXBFwTkqhMbI",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai",
+                "cuisine": "Xiaonanguo"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_1rPgtXBFwTkqhMbI",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai",
+            "cuisine": "Xiaonanguo"
+          },
+          "result": {
+            "success": true,
+            "output": "No restaurants found in Shanghai matching criteria.",
+            "raw_output": [],
+            "error": null,
+            "latency_ms": 0.01811981201171875
+          },
+          "latency_ms": 0.01811981201171875
+        }
+      ],
+      "total_latency_ms": 2977.7019023895264,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 36,
+        "latency": {
+          "tool_call_ms": 3.9130859375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 14,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_movies",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_movie_ticket": {
+        "speech_ms": 1254.68603515625,
+        "tool_call_ms": 638.597900390625
+      },
+      "book_restaurant": {
+        "tool_call_ms": 3.9130859375
+      }
+    },
+    "info_complete_turn": {
+      "list_bills": 1,
+      "search_movies": 1,
+      "book_movie_ticket": 6,
+      "search_restaurants": 7,
+      "book_restaurant": 9
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_movies', 'search_restaurants', 'list_bills', 'book_restaurant', 'book_movie_ticket'}，实际: {'book_movie_ticket', 'search_movies', 'search_restaurants', 'list_bills'}，缺失: {'book_restaurant'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 5,
+    "extra_turns_details": "list_bills: +1 turns (info@1, call@2); search_movies: +2 turns (info@1, call@3); search_restaurants: +2 turns (info@7, call@9)",
+    "behavior_score": 0.8,
+    "behavior_score_details": "list_bills: 1(correct), search_movies: 1(correct), book_movie_ticket: 1(correct), search_restaurants: 1(correct), book_restaurant: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "task_id": "int_000048",
+  "description": "Interruption (correction): 6 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_trains.destination=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Suzhou.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shanghai",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_restaurants.city=Suzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Songhelou Restaurant for 2026-05-21 at 20:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-05-21",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 9.038906681121965
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 9, contact name Yang Yu, phone 13892862812.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Yang Yu",
+          "book_restaurant.party_size=9",
+          "book_restaurant.phone=13892862812"
+        ]
+      },
+      "timestamp": 14.382862403600935
+    },
+    {
+      "speaker": "user",
+      "text": "Search movies in Chongqing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_movies.city=Chongqing"
+        ]
+      },
+      "timestamp": 19.84738327082295
+    },
+    {
+      "speaker": "user",
+      "text": "Book 4 tickets for Kung Fu Panda 4 at Wanda Cinema Jiefangbei.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.cinema=Wanda Cinema Jiefangbei",
+          "book_movie_ticket.seat_count=4"
+        ]
+      },
+      "timestamp": 23.740833713746046
+    },
+    {
+      "speaker": "user",
+      "text": "Showtime 11:30, buyer name Zhao Min.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Zhao Min",
+          "book_movie_ticket.showtime=11:30"
+        ]
+      },
+      "timestamp": 29.800258593417887
+    },
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 34.225084756271094
+    },
+    {
+      "speaker": "user",
+      "text": "Book train G1 on 2026-03-26 for passenger Li Na in First Class.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.date=2026-03-26",
+          "book_train.passenger_name=Li Na",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 39.59738012829926
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_su_001",
+        "date": "2026-05-21",
+        "time": "20:00",
+        "party_size": 9,
+        "contact_name": "Yang Yu",
+        "phone": "13892862812"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cq_002",
+        "cinema": "Wanda Cinema Jiefangbei",
+        "showtime": "11:30",
+        "seat_count": 4,
+        "buyer_name": "Zhao Min"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_001",
+        "date": "2026-03-26",
+        "passenger_name": "Li Na",
+        "seat_class": "First Class"
+      }
+    }
+  ],
+  "transcript_hash": "700b24acf41e",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 4,
+    "search_movies": 5,
+    "book_movie_ticket": 7,
+    "search_trains": 8,
+    "book_train": 9
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 9,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shanghai",
+    "template": null,
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_restaurants",
+      "param": "city",
+      "wrong_value": "Shanghai"
+    }
+  }
+}

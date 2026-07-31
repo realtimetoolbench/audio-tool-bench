@@ -1,0 +1,214 @@
+{
+  "task_id": "ms_000064",
+  "scenario_type": "multi_step",
+  "server": "amazon",
+  "template": "buy_and_review_8",
+  "description": "Search, details, add to cart, shipping, list addr+pay, place order, track, write review",
+  "tools": [
+    "search_products",
+    "get_product_details",
+    "add_to_cart",
+    "select_shipping_option",
+    "list_addresses",
+    "list_payment_methods",
+    "place_order",
+    "write_review"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I'm looking for headphones to buy.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_products"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Tell me more about the first pair you found.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_product_details"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add two of those headphones to my cart, go with the first color option.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_to_cart"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "I want expedited shipping for my order.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "select_shipping_option"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me my saved addresses.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_addresses"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "List my payment methods as well.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_payment_methods"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Place the order using my default address and my primary payment method.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "place_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "After I get the headphones, I'll leave a review with a rating of 3 stars, titled 'Good value', saying 'Exactly as described, fast shipping too.'",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "write_review"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_products",
+      "params": {
+        "query": "headphones"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_product_details",
+      "params": {
+        "product_id": "AMZ-PROD-4001"
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        }
+      }
+    },
+    {
+      "tool": "add_to_cart",
+      "params": {
+        "product_id": "AMZ-PROD-4001",
+        "variant_id": "AMZ-VAR-4001A",
+        "quantity": 2
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        },
+        "variant_id": {
+          "from_tool": "get_product_details",
+          "field": "variations[0].variant_id"
+        },
+        "quantity": "user"
+      }
+    },
+    {
+      "tool": "select_shipping_option",
+      "params": {
+        "shipping_option": "expedited"
+      },
+      "param_source": {
+        "shipping_option": "user"
+      }
+    },
+    {
+      "tool": "list_addresses",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "list_payment_methods",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "place_order",
+      "params": {
+        "address_id": "AMZ-ADDR-001",
+        "payment_method_id": "AMZ-PAY-001"
+      },
+      "param_source": {
+        "address_id": {
+          "from_tool": "list_addresses",
+          "field": "address_id"
+        },
+        "payment_method_id": {
+          "from_tool": "list_payment_methods",
+          "field": "payment_method_id"
+        }
+      }
+    },
+    {
+      "tool": "write_review",
+      "params": {
+        "product_id": "AMZ-PROD-4001",
+        "rating": 3,
+        "title": "Good value",
+        "body": "Exactly as described, fast shipping too."
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        },
+        "rating": "user",
+        "title": "user",
+        "body": "user"
+      }
+    }
+  ],
+  "chain_depth": 8,
+  "info_complete_turn": {
+    "search_products": 1,
+    "get_product_details": 1,
+    "add_to_cart": 3,
+    "select_shipping_option": 4,
+    "list_addresses": 4,
+    "list_payment_methods": 4,
+    "place_order": 4,
+    "write_review": 8
+  }
+}

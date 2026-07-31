@@ -1,0 +1,829 @@
+{
+  "task_name": "tint_000073",
+  "start_time": "2026-07-29T02:58:16.862951",
+  "end_time": "2026-07-29T03:02:29.918313",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 119400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_mxjFVsMPVmGsfXXh",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_mxjFVsMPVmGsfXXh",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.051021575927734375
+          },
+          "latency_ms": 0.051021575927734375,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 8047.306060791016,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 25,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—before that, track my package with tracking number YT9876543210.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "track_package.tracking_number=YT9876543210"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 289800
+      },
+      "assistant_response": "Your package with tracking number YT9876543210 has been delivered by YTO Express. Here’s the history: picked up in Chengdu on 2024-02-13, in transit in Chongqing on 2024-02-14, and delivered in Chongqing Jiangbei on 2024-02-15.\n\nNow, regarding flights from Beijing to Shanghai, I found four economy options:\n\n1. CA1234 (ID: flt_bj_sh_001) departing at 08:00 and arriving at 10:30, priced ¥800.\n2. MU5678 (ID: flt_bj_sh_002) departing at 10:00 and arriving at 12:30, priced ¥750.\n3. CA1456 (ID: flt_bj_sh_003) departing at 14:00 and arriving at 16:30, priced ¥850.\n4. MU5890 (ID: flt_bj_sh_004) departing at 18:00 and arriving at 20:30, priced ¥900.\n\nLet me know if you’d like to book one of these flights or need more details!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Zd20V8jedCeV6XpI",
+              "name": "track_package",
+              "arguments": {
+                "tracking_number": "YT9876543210"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your package with tracking number YT9876543210 has been delivered by YTO Express. Here’s the history: picked up in Chengdu on 2024-02-13, in transit in Chongqing on 2024-02-14, and delivered in Chongqing Jiangbei on 2024-02-15.\n\nNow, regarding flights from Beijing to Shanghai, I found four economy options:\n\n1. CA1234 (ID: flt_bj_sh_001) departing at 08:00 and arriving at 10:30, priced ¥800.\n2. MU5678 (ID: flt_bj_sh_002) departing at 10:00 and arriving at 12:30, priced ¥750.\n3. CA1456 (ID: flt_bj_sh_003) departing at 14:00 and arriving at 16:30, priced ¥850.\n4. MU5890 (ID: flt_bj_sh_004) departing at 18:00 and arriving at 20:30, priced ¥900.\n\nLet me know if you’d like to book one of these flights or need more details!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Zd20V8jedCeV6XpI",
+          "tool_name": "track_package",
+          "arguments": {
+            "tracking_number": "YT9876543210"
+          },
+          "result": {
+            "success": true,
+            "output": "Package tracking successful!\n\nTracking number: YT9876543210\nCompany: YTO Express\nStatus: Delivered\n\nTracking history:\n  2024-02-13 14:00 - Chengdu: Picked Up\n  2024-02-14 20:00 - Chongqing: In Transit\n  2024-02-15 10:00 - Chongqing Jiangbei: Delivered\n",
+            "raw_output": {
+              "company": "YTO Express",
+              "status": "Delivered",
+              "history": [
+                {
+                  "time": "2024-02-13 14:00",
+                  "location": "Chengdu",
+                  "status": "Picked Up"
+                },
+                {
+                  "time": "2024-02-14 20:00",
+                  "location": "Chongqing",
+                  "status": "In Transit"
+                },
+                {
+                  "time": "2024-02-15 10:00",
+                  "location": "Chongqing Jiangbei",
+                  "status": "Delivered"
+                }
+              ]
+            },
+            "error": null,
+            "latency_ms": 0.04410743713378906
+          },
+          "latency_ms": 0.04410743713378906
+        }
+      ],
+      "total_latency_ms": 73072.28899002075,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2932800,
+        "event_count": 432,
+        "latency": {
+          "speech_ms": 1828.16357421875,
+          "tool_call_ms": 508.553955078125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the flight search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 110400
+      },
+      "assistant_response": "As mentioned, I found four economy flights from Beijing to Shanghai:\n\n1. CA1234 (ID: flt_bj_sh_001) departing at 08:00 and arriving at 10:30, priced ¥800.\n2. MU5678 (ID: flt_bj_sh_002) departing at 10:00 and arriving at 12:30, priced ¥750.\n3. CA1456 (ID: flt_bj_sh_003) departing at 14:00 and arriving at 16:30, priced ¥850.\n4. MU5890 (ID: flt_bj_sh_004) departing at 18:00 and arriving at 20:30, priced ¥900.\n\nIf you'd like to book one, just let me know which flight you prefer, the date you'd like to travel, and your name.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "As mentioned, I found four economy flights from Beijing to Shanghai:\n\n1. CA1234 (ID: flt_bj_sh_001) departing at 08:00 and arriving at 10:30, priced ¥800.\n2. MU5678 (ID: flt_bj_sh_002) departing at 10:00 and arriving at 12:30, priced ¥750.\n3. CA1456 (ID: flt_bj_sh_003) departing at 14:00 and arriving at 16:30, priced ¥850.\n4. MU5890 (ID: flt_bj_sh_004) departing at 18:00 and arriving at 20:30, priced ¥900.\n\nIf you'd like to book one, just let me know which flight you prefer, the date you'd like to travel, and your name.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 49817.76785850525,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2056800,
+        "event_count": 302,
+        "latency": {
+          "speech_ms": 4950.301025390625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 17.05738897714977,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-22.",
+        "timestamp": 17.05738897714977,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-22"
+          ]
+        },
+        "audio_size_bytes": 205200
+      },
+      "assistant_response": "I'd be happy to book that for you. Could you provide the passenger name for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'd be happy to book that for you. Could you provide the passenger name for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6152.760028839111,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 213600,
+        "event_count": 47,
+        "latency": {
+          "speech_ms": 1195.421142578125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.26603587990722,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set passenger name to Zhou Jun and airline to China Eastern.",
+        "timestamp": 21.26603587990722,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.passenger_name=Zhou Jun"
+          ]
+        },
+        "audio_size_bytes": 181200
+      },
+      "assistant_response": "Your flight on China Eastern, MU5678, is confirmed for Zhou Jun on 2026-03-22. Your booking ID is FL10001. If there's anything else you need, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_YrM48MMOsZ9QAPtk",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "passenger_name": "Zhou Jun",
+                "date": "2026-03-22"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your flight on China Eastern, MU5678, is confirmed for Zhou Jun on 2026-03-22. Your booking ID is FL10001. If there's anything else you need, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_YrM48MMOsZ9QAPtk",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "passenger_name": "Zhou Jun",
+            "date": "2026-03-22"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Zhou Jun\nDate: 2026-03-22\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Zhou Jun",
+              "date": "2026-03-22",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.013828277587890625
+          },
+          "latency_ms": 0.013828277587890625
+        }
+      ],
+      "total_latency_ms": 18908.72097015381,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 580800,
+        "event_count": 134,
+        "latency": {
+          "speech_ms": 4088.319091796875,
+          "tool_call_ms": 1110.916748046875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.105147374187467,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Chengdu.",
+        "timestamp": 27.105147374187467,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 87600
+      },
+      "assistant_response": "I found two restaurants in Chengdu for you: Chen Mapo Tofu, a Sichuan cuisine spot downtown with a 4.7 rating, and Lao Ma Tou Hotpot in Jinjiang, specializing in hotpot, with a 4.8 rating. If you'd like to make a reservation or need more options, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_kYefE93bpySVOHeF",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found two restaurants in Chengdu for you: Chen Mapo Tofu, a Sichuan cuisine spot downtown with a 4.7 rating, and Lao Ma Tou Hotpot in Jinjiang, specializing in hotpot, with a 4.8 rating. If you'd like to make a reservation or need more options, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_kYefE93bpySVOHeF",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.023126602172851562
+          },
+          "latency_ms": 0.023126602172851562
+        }
+      ],
+      "total_latency_ms": 17097.177028656006,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 741600,
+        "event_count": 143,
+        "latency": {
+          "speech_ms": 4416.570068359375,
+          "tool_call_ms": 943.614990234375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.24805408708319,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Lao Ma Tou Hotpot for 2026-03-13 at 18:00.",
+        "timestamp": 31.24805408708319,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-13",
+            "book_restaurant.time=18:00"
+          ]
+        },
+        "audio_size_bytes": 240600
+      },
+      "assistant_response": "Sure, I can help with that. How many people will the reservation be for, and could you provide the contact person's name and phone number to complete the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help with that. How many people will the reservation be for, and could you provide the contact person's name and phone number to complete the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 18606.195211410522,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 362400,
+        "event_count": 68,
+        "latency": {
+          "speech_ms": 10154.994873046875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.91703313909879,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 8; contact name Liu Yang.",
+        "timestamp": 36.91703313909879,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Liu Yang",
+            "book_restaurant.party_size=8"
+          ]
+        },
+        "audio_size_bytes": 109800
+      },
+      "assistant_response": "Thanks, I also need a contact phone number to complete the reservation. Could you provide that please?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I also need a contact phone number to complete the reservation. Could you provide that please?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8255.353689193726,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 232800,
+        "event_count": 49,
+        "latency": {
+          "speech_ms": 2984.07568359375
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 41.48918750768039,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13851574217. Then search hotels in Shanghai.",
+        "timestamp": 41.48918750768039,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.phone=13851574217",
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 257400
+      },
+      "assistant_response": "Your reservation at Lao Ma Tou Hotpot is confirmed for 8 people on 2026-03-13 at 18:00, under the contact name Liu Yang with phone number 13851574217.\n\nFor hotels in Shanghai, here are five options:\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001) - 5 stars, ¥1200/night, rating 4.8\n2. Pudong Shangri-La (ID: hotel_sh_002) - 5 stars, ¥1000/night, rating 4.7\n3. Hyatt on the Bund (ID: hotel_sh_003) - 4 stars, ¥750/night, rating 4.5\n4. Home Inn the Bund (ID: hotel_sh_004) - 3 stars, ¥400/night, rating 4.2\n5. Hanting Hotel People's Square (ID: hotel_sh_005) - 3 stars, ¥350/night, rating 4.0\n\nLet me know if you'd like to book any of these hotels.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_HQp9qxOiYjgHyk2R",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_cd_002",
+                "date": "2026-03-13",
+                "time": "18:00",
+                "party_size": 8,
+                "contact_name": "Liu Yang",
+                "phone": "13851574217"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_5L3tTE3IFG3AUcVq",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Your reservation at Lao Ma Tou Hotpot is confirmed for 8 people on 2026-03-13 at 18:00, under the contact name Liu Yang with phone number 13851574217.\n\nFor hotels in Shanghai, here are five options:\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001) - 5 stars, ¥1200/night, rating 4.8\n2. Pudong Shangri-La (ID: hotel_sh_002) - 5 stars, ¥1000/night, rating 4.7\n3. Hyatt on the Bund (ID: hotel_sh_003) - 4 stars, ¥750/night, rating 4.5\n4. Home Inn the Bund (ID: hotel_sh_004) - 3 stars, ¥400/night, rating 4.2\n5. Hanting Hotel People's Square (ID: hotel_sh_005) - 3 stars, ¥350/night, rating 4.0\n\nLet me know if you'd like to book any of these hotels.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_HQp9qxOiYjgHyk2R",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_cd_002",
+            "date": "2026-03-13",
+            "time": "18:00",
+            "party_size": 8,
+            "contact_name": "Liu Yang",
+            "phone": "13851574217"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_cd_002\nRestaurant: Lao Ma Tou Hotpot\nDate: 2026-03-13\nTime: 18:00\nParty size: 8\nContact: Liu Yang (13851574217)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_cd_002",
+              "restaurant_name": "Lao Ma Tou Hotpot",
+              "date": "2026-03-13",
+              "time": "18:00",
+              "party_size": 8,
+              "contact_name": "Liu Yang",
+              "phone": "13851574217",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0209808349609375
+          },
+          "latency_ms": 0.0209808349609375
+        },
+        {
+          "tool_call_id": "call_5L3tTE3IFG3AUcVq",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 5 hotels in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001)\n   Location: the Bund | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Pudong Shangri-La (ID: hotel_sh_002)\n   Location: Pudong | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Hyatt on the Bund (ID: hotel_sh_003)\n   Location: the Bund | 4 stars\n   Price: ¥750/night | Rating: 4.5/5.0\n\n4. Home Inn the Bund (ID: hotel_sh_004)\n   Location: the Bund | 3 stars\n   Price: ¥400/night | Rating: 4.2/5.0\n\n5. Hanting Hotel People's Square (ID: hotel_sh_005)\n   Location: People's Square | 3 stars\n   Price: ¥350/night | Rating: 4.0/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_sh_001",
+                "name": "Waldorf Astoria Shanghai on the Bund",
+                "location": "the Bund",
+                "stars": 5,
+                "price": 1200,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_sh_002",
+                "name": "Pudong Shangri-La",
+                "location": "Pudong",
+                "stars": 5,
+                "price": 1000,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_sh_003",
+                "name": "Hyatt on the Bund",
+                "location": "the Bund",
+                "stars": 4,
+                "price": 750,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_sh_004",
+                "name": "Home Inn the Bund",
+                "location": "the Bund",
+                "stars": 3,
+                "price": 400,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_sh_005",
+                "name": "Hanting Hotel People's Square",
+                "location": "People's Square",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.047206878662109375
+          },
+          "latency_ms": 0.047206878662109375
+        }
+      ],
+      "total_latency_ms": 43027.414083480835,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2577600,
+        "event_count": 442,
+        "latency": {
+          "speech_ms": 5930.430908203125,
+          "tool_call_ms": 2816.785888671875
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 47.58360615825766,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Hyatt on the Bund, check in 2026-03-21 for 3 nights, guest Zhou Jun.",
+        "timestamp": 47.58360615825766,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-21",
+            "book_hotel.guest_name=Zhou Jun",
+            "book_hotel.nights=3"
+          ]
+        },
+        "audio_size_bytes": 290400
+      },
+      "assistant_response": "Your hotel booking at the Hyatt on the Bund is confirmed for Zhou Jun, with check-in on 2026-03-21 for 3 nights. Your booking ID is HT20001. If there's anything else I can do, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_1x17Vf9FAH0jag6O",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_sh_003",
+                "checkin_date": "2026-03-21",
+                "nights": 3,
+                "guest_name": "Zhou Jun"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your hotel booking at the Hyatt on the Bund is confirmed for Zhou Jun, with check-in on 2026-03-21 for 3 nights. Your booking ID is HT20001. If there's anything else I can do, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_1x17Vf9FAH0jag6O",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_sh_003",
+            "checkin_date": "2026-03-21",
+            "nights": 3,
+            "guest_name": "Zhou Jun"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_sh_003\nCheck-in: 2026-03-21\nNights: 3\nGuest: Zhou Jun\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_sh_003",
+              "checkin_date": "2026-03-21",
+              "nights": 3,
+              "guest_name": "Zhou Jun",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.018835067749023438
+          },
+          "latency_ms": 0.018835067749023438
+        }
+      ],
+      "total_latency_ms": 10057.937860488892,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 561600,
+        "event_count": 140,
+        "latency": {
+          "speech_ms": 2094.395751953125,
+          "tool_call_ms": 889.310791015625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 17,
+    "total_tool_calls": 7
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "track_package": {
+        "speech_ms": 1828.16357421875,
+        "tool_call_ms": 508.553955078125
+      },
+      "book_flight": {
+        "speech_ms": 4088.319091796875,
+        "tool_call_ms": 1110.916748046875
+      },
+      "search_restaurants": {
+        "speech_ms": 4416.570068359375,
+        "tool_call_ms": 943.614990234375
+      },
+      "book_restaurant": {
+        "speech_ms": 5930.430908203125,
+        "tool_call_ms": 2816.785888671875
+      },
+      "search_hotels": {
+        "speech_ms": 5930.430908203125,
+        "tool_call_ms": 2816.785888671875
+      },
+      "book_hotel": {
+        "speech_ms": 2094.395751953125,
+        "tool_call_ms": 889.310791015625
+      }
+    },
+    "info_complete_turn": {
+      "track_package": 2,
+      "search_flights": 1,
+      "book_flight": 5,
+      "search_restaurants": 6,
+      "book_restaurant": 9,
+      "search_hotels": 9,
+      "book_hotel": 10
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'track_package', 'search_hotels', 'search_flights', 'book_flight', 'search_restaurants', 'book_hotel', 'book_restaurant'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 1.0,
+    "behavior_score_details": "track_package: 1(correct), search_flights: 1(correct), book_flight: 1(correct), search_restaurants: 1(correct), book_restaurant: 1(correct), search_hotels: 1(correct), book_hotel: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

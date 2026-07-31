@@ -1,0 +1,182 @@
+{
+  "task_id": "tint_000135",
+  "description": "Interruption (priority_early_return): 5 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants_delivery",
+    "place_food_order",
+    "transfer_money",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search delivery restaurants in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants_delivery.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, transfer 924.17 to Isabella Jackson.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "transfer_money.amount=924.17",
+          "transfer_money.payee_name=Isabella Jackson"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants_delivery",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Now search hotels in Wuhan.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_hotels.city=Wuhan"
+        ]
+      },
+      "timestamp": 11.093076345483347
+    },
+    {
+      "speaker": "user",
+      "text": "Book Home Inn Guanggu for Chen Ming.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_hotel.guest_name=Chen Ming"
+        ]
+      },
+      "timestamp": 15.517894051646381
+    },
+    {
+      "speaker": "user",
+      "text": "Check in on 2026-04-25 for 1 night.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-25",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 20.652884853785395
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Place a delivery order with Yang's Dumplings. Get Pan-fried Pork Dumplings and Wonton Soup.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.items=Pan-fried Pork Dumplings and Wonton Soup"
+        ]
+      },
+      "timestamp": 29.584435993572026
+    },
+    {
+      "speaker": "user",
+      "text": "Deliver to Room 505, Block F, Maple Lane Apartment. Phone 13864788741.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 505, Block F, Maple Lane Apartment",
+          "place_food_order.phone=13864788741"
+        ]
+      },
+      "timestamp": 37.46856237291192
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "transfer_money",
+      "params": {
+        "amount": 924.17,
+        "payee_name": "Isabella Jackson"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_wh_003",
+        "checkin_date": "2026-04-25",
+        "nights": 1,
+        "guest_name": "Chen Ming"
+      }
+    },
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_sh_002",
+        "items": "Pan-fried Pork Dumplings and Wonton Soup",
+        "delivery_address": "Room 505, Block F, Maple Lane Apartment",
+        "phone": "13864788741"
+      }
+    }
+  ],
+  "transcript_hash": "e44e29537ceb",
+  "info_complete_turn": {
+    "transfer_money": 2,
+    "search_hotels": 3,
+    "book_hotel": 5,
+    "search_restaurants_delivery": 1,
+    "place_food_order": 8
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants_delivery",
+    "inserted_tools": [
+      "transfer_money",
+      "search_hotels",
+      "book_hotel"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "transfer_money",
+    "search_hotels",
+    "book_hotel"
+  ]
+}

@@ -1,0 +1,795 @@
+{
+  "task_name": "tint_000029",
+  "start_time": "2026-07-29T03:30:29.968608",
+  "end_time": "2026-07-29T03:31:23.016898",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search sports events in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_cars.city=Beijing",
+            "search_sports_events.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 93600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_AV1bbK60zqKyGqFC",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_AV1bbK60zqKyGqFC",
+          "tool_name": "search_sports_events",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 sports events in Beijing:\n\n1. CBA Playoffs: Beijing Shougang vs Guangdong Tigers (ID: evt_bj_001)\n   Sport: Basketball\n   Venue: Cadillac Arena\n   Date/Time: 2026-03-06 19:35\n   Match: Beijing Shougang vs Guangdong Tigers\n   Price: ¥180-1280\n   Available zones: VIP, Stand A, Stand B, Stand C\n   Rating: 8.8/10.0\n\n2. CSL: Beijing Guoan vs Shanghai Shenhua (ID: evt_bj_002)\n   Sport: Football\n   Venue: Workers' Stadium\n   Date/Time: 2026-03-01 19:30\n   Match: Beijing Guoan vs Shanghai Shenhua\n   Price: ¥120-680\n   Available zones: Home Stand, Away Stand, Neutral Stand, Regular Stand\n   Rating: 8.5/10.0\n\n3. China Open Tennis (ID: evt_bj_003)\n   Sport: Tennis\n   Venue: National Tennis Center\n   Date/Time: 2026-03-21 14:00\n   Price: ¥280-2880\n   Available zones: Center Court, Court 1, Court 2\n   Rating: 9.2/10.0\n\n",
+            "raw_output": [
+              {
+                "event_id": "evt_bj_001",
+                "name": "CBA Playoffs: Beijing Shougang vs Guangdong Tigers",
+                "sport_type": "Basketball",
+                "venue": "Cadillac Arena",
+                "date": "2026-03-06",
+                "time": "19:35",
+                "home_team": "Beijing Shougang",
+                "away_team": "Guangdong Tigers",
+                "price_range": "180-1280",
+                "available_zones": [
+                  "VIP",
+                  "Stand A",
+                  "Stand B",
+                  "Stand C"
+                ],
+                "rating": 8.8
+              },
+              {
+                "event_id": "evt_bj_002",
+                "name": "CSL: Beijing Guoan vs Shanghai Shenhua",
+                "sport_type": "Football",
+                "venue": "Workers' Stadium",
+                "date": "2026-03-01",
+                "time": "19:30",
+                "home_team": "Beijing Guoan",
+                "away_team": "Shanghai Shenhua",
+                "price_range": "120-680",
+                "available_zones": [
+                  "Home Stand",
+                  "Away Stand",
+                  "Neutral Stand",
+                  "Regular Stand"
+                ],
+                "rating": 8.5
+              },
+              {
+                "event_id": "evt_bj_003",
+                "name": "China Open Tennis",
+                "sport_type": "Tennis",
+                "venue": "National Tennis Center",
+                "date": "2026-03-21",
+                "time": "14:00",
+                "home_team": null,
+                "away_team": null,
+                "price_range": "280-2880",
+                "available_zones": [
+                  "Center Court",
+                  "Court 1",
+                  "Court 2"
+                ],
+                "rating": 9.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.051021575927734375
+          },
+          "latency_ms": 0.051021575927734375,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 6079.110860824585,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 25,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that—cancel my ride with ride ID RIDE123456.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "cancel_ride.ride_id=RIDE123456"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_sports_events",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 218400
+      },
+      "assistant_response": "Your ride with ID \"ride_123456\" has been successfully cancelled, no fees were charged. Now, back to the sports events we found in Beijing—basketball playoffs, a football showdown, and a tennis tournament. Which one are you interested in?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_dJ22jHRibeQUfSiZ",
+              "name": "cancel_ride",
+              "arguments": {
+                "ride_id": "ride_123456"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your ride with ID \"ride_123456\" has been successfully cancelled, no fees were charged. Now, back to the sports events we found in Beijing—basketball playoffs, a football showdown, and a tennis tournament. Which one are you interested in?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_dJ22jHRibeQUfSiZ",
+          "tool_name": "cancel_ride",
+          "arguments": {
+            "ride_id": "ride_123456"
+          },
+          "result": {
+            "success": true,
+            "message": "Ride cancelled",
+            "cancellation": {
+              "ride_id": "ride_123456",
+              "reason": "Not provided",
+              "cancel_time": "2026-07-29 03:30:36",
+              "status": "Cancelled",
+              "cancellation_fee": 0
+            },
+            "output": "{\n  \"success\": true,\n  \"message\": \"Ride cancelled\",\n  \"cancellation\": {\n    \"ride_id\": \"ride_123456\",\n    \"reason\": \"Not provided\",\n    \"cancel_time\": \"2026-07-29 03:30:36\",\n    \"status\": \"Cancelled\",\n    \"cancellation_fee\": 0\n  }\n}",
+            "raw_output": {
+              "success": true,
+              "message": "Ride cancelled",
+              "cancellation": {
+                "ride_id": "ride_123456",
+                "reason": "Not provided",
+                "cancel_time": "2026-07-29 03:30:36",
+                "status": "Cancelled",
+                "cancellation_fee": 0
+              },
+              "output": "{\n  \"success\": true,\n  \"message\": \"Ride cancelled\",\n  \"cancellation\": {\n    \"ride_id\": \"ride_123456\",\n    \"reason\": \"Not provided\",\n    \"cancel_time\": \"2026-07-29 03:30:36\",\n    \"status\": \"Cancelled\",\n    \"cancellation_fee\": 0\n  }\n}"
+            },
+            "error": null,
+            "latency_ms": 0.0400543212890625
+          },
+          "latency_ms": 0.0400543212890625
+        }
+      ],
+      "total_latency_ms": 5164.06512260437,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 705600,
+        "event_count": 155,
+        "latency": {
+          "speech_ms": 1234.755859375,
+          "tool_call_ms": 485.366943359375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.903660546031814,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Wuhan.",
+        "timestamp": 10.903660546031814,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "search_restaurants.city=Wuhan"
+          ]
+        },
+        "audio_size_bytes": 83400
+      },
+      "assistant_response": "I found two restaurants in Wuhan. The first is \"Cai Lin Ji Hot Noodles\" in Hankou, with a great 4.6 rating. The second is \"Yangtze River Restaurant\" in Wuchang, rated 4.4. Any of these sound appealing, or would you like more details on one of them?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_A9Ob85pAJn43CtHq",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Wuhan"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found two restaurants in Wuhan. The first is \"Cai Lin Ji Hot Noodles\" in Hankou, with a great 4.6 rating. The second is \"Yangtze River Restaurant\" in Wuchang, rated 4.4. Any of these sound appealing, or would you like more details on one of them?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_A9Ob85pAJn43CtHq",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Wuhan"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Wuhan:\n\n1. Cai Lin Ji Hot Noodles (ID: rst_wh_001)\n   Cuisine: Hubei\n   Location: Hankou\n   Rating: 4.6/5.0\n\n2. Yangtze River Restaurant (ID: rst_wh_002)\n   Cuisine: Hubei\n   Location: Wuchang\n   Rating: 4.4/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_wh_001",
+                "name": "Cai Lin Ji Hot Noodles",
+                "cuisine": "Hubei",
+                "location": "Hankou",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_wh_002",
+                "name": "Yangtze River Restaurant",
+                "cuisine": "Hubei",
+                "location": "Wuchang",
+                "rating": 4.4
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.029802322387695312
+          },
+          "latency_ms": 0.029802322387695312
+        }
+      ],
+      "total_latency_ms": 9171.375751495361,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 715200,
+        "event_count": 167,
+        "latency": {
+          "speech_ms": 2126.31982421875,
+          "tool_call_ms": 1407.445068359375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.910663250644514,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Yangtze River Restaurant for 2026-03-14 at 14:00.",
+        "timestamp": 14.910663250644514,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_restaurant.date=2026-03-14",
+            "book_restaurant.time=14:00"
+          ]
+        },
+        "audio_size_bytes": 268200
+      },
+      "assistant_response": "I’ll need a few more details to lock in that reservation. How many people will be in your party, and what’s the best name and contact number for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I’ll need a few more details to lock in that reservation. How many people will be in your party, and what’s the best name and contact number for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5446.387052536011,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 362400,
+        "event_count": 81,
+        "latency": {
+          "speech_ms": 102.783935546875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.24835229275456,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 5, contact name Noah Wilson.",
+        "timestamp": 20.24835229275456,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_restaurant.contact_name=Noah Wilson",
+            "book_restaurant.party_size=5"
+          ]
+        },
+        "audio_size_bytes": 118200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1836.9362354278564,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 25.012261532360345,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13877665544 for the restaurant booking.",
+        "timestamp": 25.012261532360345,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_restaurant.phone=13877665544"
+          ]
+        },
+        "audio_size_bytes": 246000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3252.251148223877,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 11
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.53367751147059,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search cars in Beijing.",
+        "timestamp": 30.53367751147059,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 66000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1267.1048641204834,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 90000
+      },
+      "assistant_response": "Here are some rental car options in Beijing:\n\n1. Volkswagen Lavida, economy, ¥150/day.\n2. Honda Accord, comfort, ¥250/day.\n3. Audi A6, luxury, ¥500/day.\n4. Buick GL8, business, ¥400/day.\n\nWhich one sparks your interest, or do you need more details on any of them?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_J80G9GcqqZFWBzmJ",
+              "name": "book_restaurant",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_kYMjVfRiqRwKdpuy",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_wh_002",
+                "date": "2026-03-14",
+                "time": "14:00",
+                "party_size": 5,
+                "contact_name": "Noah Wilson",
+                "phone": "13877665444"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_8Z2YntWnMk7bq1t0",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "finish_reason": "completed",
+          "content": "Here are some rental car options in Beijing:\n\n1. Volkswagen Lavida, economy, ¥150/day.\n2. Honda Accord, comfort, ¥250/day.\n3. Audi A6, luxury, ¥500/day.\n4. Buick GL8, business, ¥400/day.\n\nWhich one sparks your interest, or do you need more details on any of them?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_J80G9GcqqZFWBzmJ",
+          "tool_name": "book_restaurant",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: MakeReservationTool.execute() missing 6 required positional arguments: 'restaurant_id', 'date', 'time', 'party_size', 'contact_name', and 'phone'",
+            "raw_output": null,
+            "error": "MakeReservationTool.execute() missing 6 required positional arguments: 'restaurant_id', 'date', 'time', 'party_size', 'contact_name', and 'phone'",
+            "latency_ms": 0.0040531158447265625
+          },
+          "latency_ms": 0.0040531158447265625
+        },
+        {
+          "tool_call_id": "call_kYMjVfRiqRwKdpuy",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_wh_002",
+            "date": "2026-03-14",
+            "time": "14:00",
+            "party_size": 5,
+            "contact_name": "Noah Wilson",
+            "phone": "13877665444"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_wh_002\nRestaurant: Yangtze River Restaurant\nDate: 2026-03-14\nTime: 14:00\nParty size: 5\nContact: Noah Wilson (13877665444)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_wh_002",
+              "restaurant_name": "Yangtze River Restaurant",
+              "date": "2026-03-14",
+              "time": "14:00",
+              "party_size": 5,
+              "contact_name": "Noah Wilson",
+              "phone": "13877665444",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.02193450927734375
+          },
+          "latency_ms": 0.02193450927734375
+        },
+        {
+          "tool_call_id": "call_8Z2YntWnMk7bq1t0",
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 rental cars in Beijing:\n\n1. Volkswagen Lavida (ID: car_bj_001)\n   Type: economy | Seats: 5\n   Price: ¥150/day | Insurance: ¥30/day\n   Rating: 4.5/5.0\n\n2. Honda Accord (ID: car_bj_002)\n   Type: comfort | Seats: 5\n   Price: ¥250/day | Insurance: ¥50/day\n   Rating: 4.7/5.0\n\n3. Audi A6 (ID: car_bj_003)\n   Type: luxury | Seats: 5\n   Price: ¥500/day | Insurance: ¥80/day\n   Rating: 4.8/5.0\n\n4. Buick GL8 (ID: car_bj_004)\n   Type: business | Seats: 7\n   Price: ¥400/day | Insurance: ¥60/day\n   Rating: 4.6/5.0\n\n",
+            "raw_output": [
+              {
+                "car_id": "car_bj_001",
+                "model": "Volkswagen Lavida",
+                "type": "economy",
+                "seats": 5,
+                "price_per_day": 150,
+                "insurance": 30,
+                "rating": 4.5
+              },
+              {
+                "car_id": "car_bj_002",
+                "model": "Honda Accord",
+                "type": "comfort",
+                "seats": 5,
+                "price_per_day": 250,
+                "insurance": 50,
+                "rating": 4.7
+              },
+              {
+                "car_id": "car_bj_003",
+                "model": "Audi A6",
+                "type": "luxury",
+                "seats": 5,
+                "price_per_day": 500,
+                "insurance": 80,
+                "rating": 4.8
+              },
+              {
+                "car_id": "car_bj_004",
+                "model": "Buick GL8",
+                "type": "business",
+                "seats": 7,
+                "price_per_day": 400,
+                "insurance": 60,
+                "rating": 4.6
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03218650817871094
+          },
+          "latency_ms": 0.03218650817871094
+        }
+      ],
+      "total_latency_ms": 9116.222858428955,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 950400,
+        "event_count": 289,
+        "latency": {
+          "speech_ms": 3543.09716796875,
+          "tool_call_ms": 0.741943359375
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 39.38355208940214,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book tickets for event China Open Tennis, seat zone Center Court, ticket count 3.",
+        "timestamp": 39.38355208940214,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_sports_ticket.seat_zone=Center Court",
+            "book_sports_ticket.ticket_count=3"
+          ]
+        },
+        "audio_size_bytes": 246600
+      },
+      "assistant_response": "I can help with that. I'll just need the buyer's full name, contact phone number, and an ID card number for the real-name registration.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can help with that. I'll just need the buyer's full name, contact phone number, and an ID card number for the real-name registration.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5880.416631698608,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 321600,
+        "event_count": 72,
+        "latency": {
+          "speech_ms": 737.9580078125
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 45.99288445507022,
+      "input_chunk": {
+        "role": "user",
+        "content": "Buyer name Isabella Jackson, phone 13855667788, ID number 440106199512044567.",
+        "timestamp": 45.99288445507022,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_sports_ticket.buyer_name=Isabella Jackson",
+            "book_sports_ticket.id_number=440106199512044567",
+            "book_sports_ticket.phone=13855667788"
+          ]
+        },
+        "audio_size_bytes": 483600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5826.883792877197,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 16,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "inserted_tools": [
+      "cancel_ride",
+      "search_restaurants",
+      "book_restaurant",
+      "search_cars"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "cancel_ride": {
+        "speech_ms": 1234.755859375,
+        "tool_call_ms": 485.366943359375
+      },
+      "search_restaurants": {
+        "speech_ms": 2126.31982421875,
+        "tool_call_ms": 1407.445068359375
+      }
+    },
+    "info_complete_turn": {
+      "cancel_ride": 2,
+      "search_restaurants": 3,
+      "book_restaurant": 6,
+      "search_cars": 1,
+      "search_sports_events": 1,
+      "book_sports_ticket": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_cars', 'search_sports_events', 'cancel_ride', 'search_restaurants', 'book_restaurant', 'book_sports_ticket'}，实际: {'search_cars', 'search_sports_events', 'cancel_ride', 'search_restaurants', 'book_restaurant'}，缺失: {'book_sports_ticket'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 9,
+    "extra_turns_details": "book_restaurant: +2 turns (info@6, call@8); search_cars: +7 turns (info@1, call@8)",
+    "behavior_score": 0.5,
+    "behavior_score_details": "cancel_ride: 0(param_mismatch), search_restaurants: 1(correct), book_restaurant: 0(param_mismatch), search_cars: 1(correct), search_sports_events: 1(correct), book_sports_ticket: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "cancel_ride",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "ride_id: 'RIDE123456' vs 'ride_123456'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13877665544' vs '13877665444'"
+        },
+        {
+          "tool": "book_sports_ticket",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1,
+        "numerical_id_error": 1,
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

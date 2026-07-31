@@ -1,0 +1,178 @@
+{
+  "task_id": "tint_000057",
+  "description": "Interruption (priority_no_return): 5 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_attractions",
+    "book_attraction_ticket",
+    "track_package"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_shows.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—before that, track my package with tracking number SF1234567890.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "track_package.tracking_number=SF1234567890"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_shows",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the show search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book a ticket for the show National Centre Concert.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 16.379846881988115
+    },
+    {
+      "speaker": "user",
+      "text": "Use seat zone First Floor and ticket count 5.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.seat_zone=First Floor",
+          "book_show_ticket.ticket_count=5"
+        ]
+      },
+      "timestamp": 22.314090388557364
+    },
+    {
+      "speaker": "user",
+      "text": "Set buyer name Wang Fang and phone 13898765432.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Wang Fang",
+          "book_show_ticket.phone=13898765432"
+        ]
+      },
+      "timestamp": 27.19313662756535
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Beijing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 32.885429146545896
+    },
+    {
+      "speaker": "user",
+      "text": "Book Forbidden City tickets for 2026-03-10 morning; visitor name Zhou Jun; ticket count 4.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-10",
+          "book_attraction_ticket.ticket_count=4",
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 37.51563282669494
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "track_package",
+      "params": {
+        "tracking_number": "SF1234567890"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_bj_003",
+        "seat_zone": "First Floor",
+        "ticket_count": 5,
+        "buyer_name": "Wang Fang",
+        "phone": "13898765432"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_001",
+        "date": "2026-03-10",
+        "time_slot": "morning",
+        "visitor_name": "Zhou Jun",
+        "ticket_count": 4
+      }
+    }
+  ],
+  "transcript_hash": "db80cca56739",
+  "info_complete_turn": {
+    "track_package": 2,
+    "search_shows": 1,
+    "book_show_ticket": 6,
+    "search_attractions": 7,
+    "book_attraction_ticket": 8
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_shows",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "track_package"
+  ]
+}

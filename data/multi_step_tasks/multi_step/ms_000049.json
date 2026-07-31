@@ -1,0 +1,176 @@
+{
+  "task_id": "ms_000049",
+  "scenario_type": "multi_step",
+  "server": "amazon",
+  "template": "full_purchase_7",
+  "description": "Search, details, add to cart, list addresses, list payments, place order, get order details",
+  "tools": [
+    "search_products",
+    "get_product_details",
+    "add_to_cart",
+    "list_addresses",
+    "list_payment_methods",
+    "place_order",
+    "get_order_details"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I'm looking for headphones.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_products"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Tell me more about the first option you found.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_product_details"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add two of those headphones to my cart, go with the first color option.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_to_cart"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me my saved addresses.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_addresses"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "List my payment methods as well.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_payment_methods"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Place the order using my default address and the first payment method.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "place_order",
+          "get_order_details"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_products",
+      "params": {
+        "query": "headphones"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_product_details",
+      "params": {
+        "product_id": "AMZ-PROD-4001"
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        }
+      }
+    },
+    {
+      "tool": "add_to_cart",
+      "params": {
+        "product_id": "AMZ-PROD-4001",
+        "variant_id": "AMZ-VAR-4001A",
+        "quantity": 2
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        },
+        "variant_id": {
+          "from_tool": "get_product_details",
+          "field": "variations[0].variant_id"
+        },
+        "quantity": "user"
+      }
+    },
+    {
+      "tool": "list_addresses",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "list_payment_methods",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "place_order",
+      "params": {
+        "address_id": "AMZ-ADDR-001",
+        "payment_method_id": "AMZ-PAY-001"
+      },
+      "param_source": {
+        "address_id": {
+          "from_tool": "list_addresses",
+          "field": "address_id"
+        },
+        "payment_method_id": {
+          "from_tool": "list_payment_methods",
+          "field": "payment_method_id"
+        }
+      }
+    },
+    {
+      "tool": "get_order_details",
+      "params": {
+        "order_id": "order_1"
+      },
+      "param_source": {
+        "order_id": {
+          "from_tool": "place_order",
+          "field": "$"
+        }
+      }
+    }
+  ],
+  "chain_depth": 7,
+  "info_complete_turn": {
+    "search_products": 1,
+    "get_product_details": 1,
+    "add_to_cart": 3,
+    "list_addresses": 3,
+    "list_payment_methods": 3,
+    "place_order": 3,
+    "get_order_details": 3
+  }
+}

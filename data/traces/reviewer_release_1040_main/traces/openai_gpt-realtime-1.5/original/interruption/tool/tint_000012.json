@@ -1,0 +1,673 @@
+{
+  "task_name": "tint_000012",
+  "start_time": "2026-04-28T23:28:04.183263",
+  "end_time": "2026-04-28T23:28:50.281277",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_shows.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 71400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_I7G3b8lMlM2IzSFO",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5824.919939041138,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 17,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—check my ride status first. Use ride ID RIDE123456.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "check_ride_status.ride_id=RIDE123456"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_shows",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 217200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_rqPUu6AHR0byNB2L",
+              "name": "check_ride_status",
+              "arguments": {
+                "ride_id": "ride123456"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_rqPUu6AHR0byNB2L",
+          "tool_name": "check_ride_status",
+          "arguments": {
+            "ride_id": "ride123456"
+          },
+          "result": {
+            "success": false,
+            "error": "Ride not found or invalid ride ID",
+            "output": "Ride not found or invalid ride ID",
+            "raw_output": {
+              "success": false,
+              "error": "Ride not found or invalid ride ID",
+              "output": "Ride not found or invalid ride ID"
+            },
+            "latency_ms": 0.010967254638671875
+          },
+          "latency_ms": 0.010967254638671875
+        }
+      ],
+      "total_latency_ms": 1854.4738292694092,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 100,
+        "latency": {
+          "tool_call_ms": 479.544189453125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the show search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 96600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'm still waiting on the results. Let me start that search again for shows in Beijing. Please hold on just a moment.",
+          "tool_calls": [
+            {
+              "id": "call_5p0u50GoIYL8sx6b",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_5p0u50GoIYL8sx6b",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 shows in Beijing:\n\n1. Jay Chou Concert (ID: show_bj_001)\n   Type: Concert\n   Venue: National Stadium Bird's Nest\n   Date/Time: 2026-03-08 19:30\n   Duration: 180 min\n   Price: ¥480-1980\n   Available zones: Floor, Stand A, Stand B, Stand C\n   Rating: 9.5/10.0\n\n2. Erta Thunderstorm (ID: show_bj_002)\n   Type: Theater\n   Venue: Capital Theatre\n   Date/Time: 2026-03-15 19:30\n   Duration: 150 min\n   Price: ¥180-680\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 8.8/10.0\n\n3. National Centre Concert (ID: show_bj_003)\n   Type: Concert\n   Venue: National Centre for the Performing Arts\n   Date/Time: 2026-03-22 19:30\n   Duration: 120 min\n   Price: ¥280-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.2/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_bj_001",
+                "name": "Jay Chou Concert",
+                "type": "Concert",
+                "venue": "National Stadium Bird's Nest",
+                "date": "2026-03-08",
+                "time": "19:30",
+                "duration": 180,
+                "price_range": "480-1980",
+                "available_zones": [
+                  "Floor",
+                  "Stand A",
+                  "Stand B",
+                  "Stand C"
+                ],
+                "rating": 9.5
+              },
+              {
+                "show_id": "show_bj_002",
+                "name": "Erta Thunderstorm",
+                "type": "Theater",
+                "venue": "Capital Theatre",
+                "date": "2026-03-15",
+                "time": "19:30",
+                "duration": 150,
+                "price_range": "180-680",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 8.8
+              },
+              {
+                "show_id": "show_bj_003",
+                "name": "National Centre Concert",
+                "type": "Concert",
+                "venue": "National Centre for the Performing Arts",
+                "date": "2026-03-22",
+                "time": "19:30",
+                "duration": 120,
+                "price_range": "280-880",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 9.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0591278076171875
+          },
+          "latency_ms": 0.0591278076171875
+        }
+      ],
+      "total_latency_ms": 6466.47310256958,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 268800,
+        "event_count": 284,
+        "latency": {
+          "speech_ms": 588.853271484375,
+          "tool_call_ms": 1870.014892578125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.64882197870007,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book tickets for the show National Centre Concert.",
+        "timestamp": 14.64882197870007,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 151200
+      },
+      "assistant_response": "Sure, I can help you with that. I just need to know how many tickets you'd like, your preferred seat zone (Orchestra, First Floor, or Second Floor), and your name and contact phone number to complete the booking. Could you provide those details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help you with that. I just need to know how many tickets you'd like, your preferred seat zone (Orchestra, First Floor, or Second Floor), and your name and contact phone number to complete the booking. Could you provide those details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6274.764060974121,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 590400,
+        "event_count": 99,
+        "latency": {
+          "speech_ms": 921.065185546875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.994554580976036,
+      "input_chunk": {
+        "role": "user",
+        "content": "Seat zone: Second Floor. Ticket count: 4.",
+        "timestamp": 19.994554580976036,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.seat_zone=Second Floor",
+            "book_show_ticket.ticket_count=4"
+          ]
+        },
+        "audio_size_bytes": 121200
+      },
+      "assistant_response": "Great, and what name and phone number should I use to book these four tickets on the Second Floor for the National Centre Concert?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great, and what name and phone number should I use to book these four tickets on the Second Floor for the National Centre Concert?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3937.7059936523438,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 309600,
+        "event_count": 58,
+        "latency": {
+          "speech_ms": 577.690185546875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 24.77784252416144,
+      "input_chunk": {
+        "role": "user",
+        "content": "Buyer name: Li Na. Phone: 13856781234.",
+        "timestamp": 24.77784252416144,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Li Na",
+            "book_show_ticket.phone=13856781234"
+          ]
+        },
+        "audio_size_bytes": 200400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_jyLQIhSjsxEWOgyF",
+              "name": "book_show_ticket",
+              "arguments": {
+                "show_id": "show_bj_003",
+                "seat_zone": "Second Floor",
+                "ticket_count": 4,
+                "buyer_name": "Li Na",
+                "phone": "13856781234"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_jyLQIhSjsxEWOgyF",
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "show_id": "show_bj_003",
+            "seat_zone": "Second Floor",
+            "ticket_count": 4,
+            "buyer_name": "Li Na",
+            "phone": "13856781234"
+          },
+          "result": {
+            "success": true,
+            "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_bj_003\nShow: National Centre Concert\nVenue: National Centre for the Performing Arts\nDate: 2026-03-22\nZone: Second Floor\nSeats: Floor Row 1 Seat 10, Floor Row 2 Seat 10, Floor Row 3 Seat 10, Floor Row 4 Seat 10\nQuantity: 4\nBuyer: Li Na\nPhone: 13856781234\nTotal: ¥1520\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "SH70001",
+              "show_id": "show_bj_003",
+              "show_name": "National Centre Concert",
+              "venue": "National Centre for the Performing Arts",
+              "date": "2026-03-22",
+              "seat_zone": "Second Floor",
+              "ticket_count": 4,
+              "seats": [
+                "Floor Row 1 Seat 10",
+                "Floor Row 2 Seat 10",
+                "Floor Row 3 Seat 10",
+                "Floor Row 4 Seat 10"
+              ],
+              "buyer_name": "Li Na",
+              "phone": "13856781234",
+              "total_price": 1520,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03790855407714844
+          },
+          "latency_ms": 0.03790855407714844
+        }
+      ],
+      "total_latency_ms": 5973.862171173096,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 197,
+        "latency": {
+          "tool_call_ms": 546.769775390625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 29.33344078781895,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Chengdu.",
+        "timestamp": 29.33344078781895,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 89400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_c2neyq7osuegUY7A",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_c2neyq7osuegUY7A",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03504753112792969
+          },
+          "latency_ms": 0.03504753112792969
+        }
+      ],
+      "total_latency_ms": 4508.493185043335,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 128,
+        "latency": {
+          "tool_call_ms": 696.02978515625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 33.696879317992526,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Lao Ma Tou Hotpot for 2026-03-26 at 11:30. Party size 10.",
+        "timestamp": 33.696879317992526,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-26",
+            "book_restaurant.party_size=10",
+            "book_restaurant.time=11:30"
+          ]
+        },
+        "audio_size_bytes": 306600
+      },
+      "assistant_response": "I'd be happy to help with that. Could you provide the name of the contact person for the reservation and a phone number to confirm the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'd be happy to help with that. Could you provide the name of the contact person for the reservation and a phone number to confirm the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5891.127109527588,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 304800,
+        "event_count": 60,
+        "latency": {
+          "speech_ms": 589.1328125
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 39.962387158158975,
+      "input_chunk": {
+        "role": "user",
+        "content": "Contact name Li Na. Phone 13892862812.",
+        "timestamp": 39.962387158158975,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Li Na",
+            "book_restaurant.phone=13892862812"
+          ]
+        },
+        "audio_size_bytes": 208800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_wZioebiPp70VqFop",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_cd_002",
+                "date": "2026-03-26",
+                "time": "11:30",
+                "party_size": 10,
+                "contact_name": "Li Na",
+                "phone": "13892862812"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_wZioebiPp70VqFop",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_cd_002",
+            "date": "2026-03-26",
+            "time": "11:30",
+            "party_size": 10,
+            "contact_name": "Li Na",
+            "phone": "13892862812"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_cd_002\nRestaurant: Lao Ma Tou Hotpot\nDate: 2026-03-26\nTime: 11:30\nParty size: 10\nContact: Li Na (13892862812)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_cd_002",
+              "restaurant_name": "Lao Ma Tou Hotpot",
+              "date": "2026-03-26",
+              "time": "11:30",
+              "party_size": 10,
+              "contact_name": "Li Na",
+              "phone": "13892862812",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03790855407714844
+          },
+          "latency_ms": 0.03790855407714844
+        }
+      ],
+      "total_latency_ms": 5359.241962432861,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 139,
+        "latency": {
+          "tool_call_ms": 973.72607421875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 15,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_shows",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "check_ride_status": {
+        "tool_call_ms": 479.544189453125
+      },
+      "book_show_ticket": {
+        "tool_call_ms": 546.769775390625
+      },
+      "search_restaurants": {
+        "tool_call_ms": 696.02978515625
+      },
+      "book_restaurant": {
+        "tool_call_ms": 973.72607421875
+      }
+    },
+    "info_complete_turn": {
+      "check_ride_status": 2,
+      "search_shows": 1,
+      "book_show_ticket": 6,
+      "search_restaurants": 7,
+      "book_restaurant": 9
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'book_restaurant', 'book_show_ticket', 'search_restaurants', 'check_ride_status', 'search_shows'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "search_shows: +2 turns (info@1, call@3)",
+    "behavior_score": 1.0,
+    "behavior_score_details": "check_ride_status: 1(correct), search_shows: 1(correct), book_show_ticket: 1(correct), search_restaurants: 1(correct), book_restaurant: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

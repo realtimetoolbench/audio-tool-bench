@@ -1,0 +1,220 @@
+{
+  "task_id": "tint_000138",
+  "description": "Interruption (priority_no_return): 6 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Guangzhou.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_shows.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—before that, search attractions in Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_attractions.city=Shanghai"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_shows",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book tickets for Shanghai Disneyland for 2026-03-26.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-26"
+        ]
+      },
+      "timestamp": 10.259090752055974
+    },
+    {
+      "speaker": "user",
+      "text": "Set the time slot to morning and use visitor name Emma Taylor.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Emma Taylor"
+        ]
+      },
+      "timestamp": 16.311995184527746
+    },
+    {
+      "speaker": "user",
+      "text": "Make it 5 attraction tickets.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=5"
+        ]
+      },
+      "timestamp": 22.664719086423723
+    },
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 27.334732197345698
+    },
+    {
+      "speaker": "user",
+      "text": "Book train G3 for 2026-04-12; passenger Mia Anderson; First Class.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_train.date=2026-04-12",
+          "book_train.passenger_name=Mia Anderson",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 32.37894999761925
+    },
+    {
+      "speaker": "user",
+      "text": "Set the seat class to First Class.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 39.1102056419445
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Cantonese Opera Classics: Orchestra seats, 4 tickets, buyer John Smith, phone 13830018365.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.buyer_name=John Smith",
+          "book_show_ticket.phone=13830018365",
+          "book_show_ticket.seat_zone=Orchestra",
+          "book_show_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 48.63290714315571
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_sh_002",
+        "date": "2026-03-26",
+        "time_slot": "morning",
+        "visitor_name": "Emma Taylor",
+        "ticket_count": 5
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-04-12",
+        "passenger_name": "Mia Anderson",
+        "seat_class": "First Class"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_gz_002",
+        "seat_zone": "Orchestra",
+        "ticket_count": 4,
+        "buyer_name": "John Smith",
+        "phone": "13830018365"
+      }
+    }
+  ],
+  "transcript_hash": "f00e58010c6b",
+  "info_complete_turn": {
+    "search_attractions": 2,
+    "book_attraction_ticket": 5,
+    "search_trains": 6,
+    "book_train": 7,
+    "search_shows": 1,
+    "book_show_ticket": 10
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_shows",
+    "inserted_tools": [
+      "search_attractions",
+      "book_attraction_ticket",
+      "search_trains",
+      "book_train"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train"
+  ]
+}

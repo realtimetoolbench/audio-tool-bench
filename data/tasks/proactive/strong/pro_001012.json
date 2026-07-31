@@ -1,0 +1,159 @@
+{
+  "task_id": "pro_001012",
+  "description": "Generated: 5 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_doctors",
+    "book_appointment",
+    "search_medicine"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m gonna be in Beijing for a bit, and I’m really trying to catch a live game while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_sports_events.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "After that, I’ll be down in Chongqing, and I’m planning to swing by a doctor there since I’ve been putting it off.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_doctors.city=Chongqing"
+        ]
+      },
+      "timestamp": 7.536414633507864
+    },
+    {
+      "speaker": "user",
+      "text": "The matchup I’m most excited about is the CBA Playoffs: Beijing Shougang vs Guangdong Tigers, and I’m thinking VIP seats for it.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=VIP"
+        ]
+      },
+      "timestamp": 16.096168234176453
+    },
+    {
+      "speaker": "user",
+      "text": "It’ll just be two tickets, and it’s under Sophia Garcia — phone number 13866778899.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Sophia Garcia",
+          "book_sports_ticket.phone=13866778899",
+          "book_sports_ticket.ticket_count=2"
+        ]
+      },
+      "timestamp": 25.86788902993416
+    },
+    {
+      "speaker": "user",
+      "text": "Oh, and for the ticket info I’m using ID number 110101199001011234… and in Chongqing the appointment’s with Peng Hui on 2026-05-15 in the afternoon for Huang Tao, and then I was also going to pick up some medicine because—",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_appointment.date=2026-05-15",
+          "book_appointment.patient_name=Huang Tao",
+          "book_appointment.time_slot=afternoon",
+          "book_sports_ticket.id_number=110101199001011234"
+        ]
+      },
+      "timestamp": 32.9114417032784
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_bj_001",
+        "seat_zone": "VIP",
+        "ticket_count": 2,
+        "buyer_name": "Sophia Garcia",
+        "phone": "13866778899",
+        "id_number": "110101199001011234"
+      }
+    },
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_cq_001",
+        "date": "2026-05-15",
+        "time_slot": "afternoon",
+        "patient_name": "Huang Tao"
+      }
+    },
+    {
+      "tool": "search_medicine",
+      "params": {}
+    }
+  ],
+  "transcript_hash": "b3bb699b6181",
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_sports_events": 1,
+    "book_sports_ticket": 5,
+    "search_doctors": 2,
+    "book_appointment": 5,
+    "search_medicine": 1
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m gonna be in Beijing",
+      "trying to catch a live game",
+      "I’ll be down in Chongqing",
+      "planning to swing by a doctor",
+      "The matchup I’m most excited about",
+      "It’ll just be two tickets",
+      "the appointment’s with Peng Hui"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates concrete upcoming plans with specific event, ticket details, and a scheduled doctor appointment; ends mid-thought transitioning to medicine."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_doctors",
+      "search_medicine",
+      "search_sports_events"
+    ],
+    "write_tools": [
+      "book_appointment",
+      "book_sports_ticket"
+    ]
+  },
+  "expected_tool_if_act": "search_sports_events",
+  "expected_params_if_act": {
+    "city": "Beijing"
+  }
+}

@@ -1,0 +1,792 @@
+{
+  "task_name": "tint_000047",
+  "start_time": "2026-07-29T03:33:43.782695",
+  "end_time": "2026-07-29T03:34:23.763993",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 104400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_zMDY8aEGqWnxtEvg",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4421.947717666626,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 30,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Hold on—list my bills now.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 77400
+      },
+      "assistant_response": "Here are your current bills:\n\n1. Electricity from State Grid: 156.8 due by 2026-03-09 (Unpaid).\n2. Water from Water Company: 45.2 due by 2026-03-06 (Unpaid).\n3. Gas from Gas Group: 89.5 due by 2026-03-14 (Unpaid).\n4. Electricity from State Grid: 142.3 due by 2026-01-28 (Paid).\n5. Internet from China Telecom: 129.0 due by 2026-03-02 (Unpaid).\n\nIf you'd like details on any specific bill or need assistance, let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_bRd6kpvmV6EtUuiK",
+              "name": "list_bills",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are your current bills:\n\n1. Electricity from State Grid: 156.8 due by 2026-03-09 (Unpaid).\n2. Water from Water Company: 45.2 due by 2026-03-06 (Unpaid).\n3. Gas from Gas Group: 89.5 due by 2026-03-14 (Unpaid).\n4. Electricity from State Grid: 142.3 due by 2026-01-28 (Paid).\n5. Internet from China Telecom: 129.0 due by 2026-03-02 (Unpaid).\n\nIf you'd like details on any specific bill or need assistance, let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_bRd6kpvmV6EtUuiK",
+          "tool_name": "list_bills",
+          "arguments": {},
+          "result": {
+            "success": true,
+            "count": 5,
+            "bills": [
+              {
+                "bill_id": "DL20260219001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 156.8,
+                "due_date": "2026-03-09",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215002",
+                "bill_type": "Water",
+                "company": "Water Company",
+                "account_number": "9876543210",
+                "amount": 45.2,
+                "due_date": "2026-03-06",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215003",
+                "bill_type": "Gas",
+                "company": "Gas Group",
+                "account_number": "5555666677",
+                "amount": 89.5,
+                "due_date": "2026-03-14",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260115001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 142.3,
+                "due_date": "2026-01-28",
+                "status": "Paid",
+                "billing_period": "2025-12",
+                "payment_date": "2026-01-20"
+              },
+              {
+                "bill_id": "BILL20260215004",
+                "bill_type": "Internet",
+                "company": "China Telecom",
+                "account_number": "1111222233",
+                "amount": 129.0,
+                "due_date": "2026-03-02",
+                "status": "Unpaid",
+                "billing_period": "2026-02"
+              }
+            ],
+            "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]",
+            "raw_output": {
+              "success": true,
+              "count": 5,
+              "bills": [
+                {
+                  "bill_id": "DL20260219001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 156.8,
+                  "due_date": "2026-03-09",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215002",
+                  "bill_type": "Water",
+                  "company": "Water Company",
+                  "account_number": "9876543210",
+                  "amount": 45.2,
+                  "due_date": "2026-03-06",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215003",
+                  "bill_type": "Gas",
+                  "company": "Gas Group",
+                  "account_number": "5555666677",
+                  "amount": 89.5,
+                  "due_date": "2026-03-14",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260115001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 142.3,
+                  "due_date": "2026-01-28",
+                  "status": "Paid",
+                  "billing_period": "2025-12",
+                  "payment_date": "2026-01-20"
+                },
+                {
+                  "bill_id": "BILL20260215004",
+                  "bill_type": "Internet",
+                  "company": "China Telecom",
+                  "account_number": "1111222233",
+                  "amount": 129.0,
+                  "due_date": "2026-03-02",
+                  "status": "Unpaid",
+                  "billing_period": "2026-02"
+                }
+              ],
+              "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]"
+            },
+            "error": null,
+            "latency_ms": 0.012874603271484375
+          },
+          "latency_ms": 0.012874603271484375
+        }
+      ],
+      "total_latency_ms": 4926.754951477051,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1579200,
+        "event_count": 254,
+        "latency": {
+          "speech_ms": 983.26611328125,
+          "tool_call_ms": 208.993408203125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the flight search.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 96600
+      },
+      "assistant_response": "Got it! I'm going to check on the flights from Beijing to Shanghai right now. Let's see what’s available. Please hold on for just a moment. Here are the available flights from Beijing to Shanghai:\n\n1. Air China flight CA1234: Departure at 08:00, arrival at 10:30, price ¥800.\n2. China Eastern flight MU5678: Departure at 10:00, arrival at 12:30, price ¥750.\n3. Air China flight CA1456: Departure at 14:00, arrival at 16:30, price ¥850.\n4. China Eastern flight MU5890: Departure at 18:00, arrival at 20:30, price ¥900.\n\nWhich one would you like to book, or is there any more detail you need?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! I'm going to check on the flights from Beijing to Shanghai right now. Let's see what’s available. Please hold on for just a moment.",
+          "tool_calls": [
+            {
+              "id": "call_q75wwt8Us1c4DOrP",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are the available flights from Beijing to Shanghai:\n\n1. Air China flight CA1234: Departure at 08:00, arrival at 10:30, price ¥800.\n2. China Eastern flight MU5678: Departure at 10:00, arrival at 12:30, price ¥750.\n3. Air China flight CA1456: Departure at 14:00, arrival at 16:30, price ¥850.\n4. China Eastern flight MU5890: Departure at 18:00, arrival at 20:30, price ¥900.\n\nWhich one would you like to book, or is there any more detail you need?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_q75wwt8Us1c4DOrP",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.02002716064453125
+          },
+          "latency_ms": 0.02002716064453125
+        }
+      ],
+      "total_latency_ms": 7892.411708831787,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1800000,
+        "event_count": 317,
+        "latency": {
+          "speech_ms": 417.43994140625,
+          "tool_call_ms": 1476.96923828125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 13.61597690610277,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-15.",
+        "timestamp": 13.61597690610277,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-15"
+          ]
+        },
+        "audio_size_bytes": 204600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2759.99116897583,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 18.305818359981686,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set passenger name to Li Na and airline to China Eastern.",
+        "timestamp": 18.305818359981686,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.passenger_name=Li Na"
+          ]
+        },
+        "audio_size_bytes": 168000
+      },
+      "assistant_response": "Sure! Could you please provide",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure! Could you please provide",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2346.780776977539,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 38400,
+        "event_count": 23,
+        "latency": {
+          "speech_ms": 0.73388671875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 24.316108740029463,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai.",
+        "timestamp": 24.316108740029463,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 75000
+      },
+      "assistant_response": "Here’s the list of hotels in Shanghai for your check-in date, 2026-03-15:\n\n1. Waldorf Astoria Shanghai on the Bund (5 stars) – ¥1200/night\n2. Pudong Shangri-La (5 stars) – ¥1000/night\n3. Hyatt on the Bund (4 stars) – ¥750/night\n4. Home Inn the Bund (3 stars) – ¥400/night\n5. Hanting Hotel People's Square (3 stars) – ¥350/night\n\nWhich hotel would you like to choose, or would you like more details on any of them?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_RTB204oRKfLDzt53",
+              "name": "book_flight",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_UxZ8kZzZlUjA69KS",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-15"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Here’s the list of hotels in Shanghai for your check-in date, 2026-03-15:\n\n1. Waldorf Astoria Shanghai on the Bund (5 stars) – ¥1200/night\n2. Pudong Shangri-La (5 stars) – ¥1000/night\n3. Hyatt on the Bund (4 stars) – ¥750/night\n4. Home Inn the Bund (3 stars) – ¥400/night\n5. Hanting Hotel People's Square (3 stars) – ¥350/night\n\nWhich hotel would you like to choose, or would you like more details on any of them?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_RTB204oRKfLDzt53",
+          "tool_name": "book_flight",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: BookFlightTool.execute() missing 1 required positional argument: 'flight_id'",
+            "raw_output": null,
+            "error": "BookFlightTool.execute() missing 1 required positional argument: 'flight_id'",
+            "latency_ms": 0.012159347534179688
+          },
+          "latency_ms": 0.012159347534179688
+        },
+        {
+          "tool_call_id": "call_UxZ8kZzZlUjA69KS",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shanghai",
+            "checkin_date": "2026-03-15"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 5 hotels in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001)\n   Location: the Bund | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Pudong Shangri-La (ID: hotel_sh_002)\n   Location: Pudong | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Hyatt on the Bund (ID: hotel_sh_003)\n   Location: the Bund | 4 stars\n   Price: ¥750/night | Rating: 4.5/5.0\n\n4. Home Inn the Bund (ID: hotel_sh_004)\n   Location: the Bund | 3 stars\n   Price: ¥400/night | Rating: 4.2/5.0\n\n5. Hanting Hotel People's Square (ID: hotel_sh_005)\n   Location: People's Square | 3 stars\n   Price: ¥350/night | Rating: 4.0/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_sh_001",
+                "name": "Waldorf Astoria Shanghai on the Bund",
+                "location": "the Bund",
+                "stars": 5,
+                "price": 1200,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_sh_002",
+                "name": "Pudong Shangri-La",
+                "location": "Pudong",
+                "stars": 5,
+                "price": 1000,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_sh_003",
+                "name": "Hyatt on the Bund",
+                "location": "the Bund",
+                "stars": 4,
+                "price": 750,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_sh_004",
+                "name": "Home Inn the Bund",
+                "location": "the Bund",
+                "stars": 3,
+                "price": 400,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_sh_005",
+                "name": "Hanting Hotel People's Square",
+                "location": "People's Square",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.046253204345703125
+          },
+          "latency_ms": 0.046253204345703125
+        }
+      ],
+      "total_latency_ms": 6051.964998245239,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1288800,
+        "event_count": 265,
+        "latency": {
+          "speech_ms": 1239.081787109375,
+          "tool_call_ms": 1.871826171875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 28.39525789302423,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book hotel Hyatt on the Bund; check in 2026-03-22.",
+        "timestamp": 28.39525789302423,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-22"
+          ]
+        },
+        "audio_size_bytes": 208200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2810.1751804351807,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 34.07530994542566,
+      "input_chunk": {
+        "role": "user",
+        "content": "Stay 5 nights; guest name Zhou Jun.",
+        "timestamp": 34.07530994542566,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.guest_name=Zhou Jun",
+            "book_hotel.nights=5"
+          ]
+        },
+        "audio_size_bytes": 110400
+      },
+      "assistant_response": "Great choice!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Great choice!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1729.062795639038,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 18
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 39.05310363541438,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shanghai.",
+        "timestamp": 39.05310363541438,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 80400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1398.6539840698242,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 43.1136858209832,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Shanghai Classic for 7 people on 2026-03-14 at 11:30; contact Chen Ming, phone 13898765432.",
+        "timestamp": 43.1136858209832,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Chen Ming",
+            "book_restaurant.date=2026-03-14",
+            "book_restaurant.party_size=7",
+            "book_restaurant.phone=13898765432",
+            "book_restaurant.time=11:30"
+          ]
+        },
+        "audio_size_bytes": 468600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5635.13708114624,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 15,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_flight": {
+        "speech_ms": 0.73388671875
+      },
+      "search_hotels": {
+        "speech_ms": 1239.081787109375,
+        "tool_call_ms": 1.871826171875
+      }
+    },
+    "info_complete_turn": {
+      "list_bills": 1,
+      "search_flights": 1,
+      "book_flight": 5,
+      "search_hotels": 6,
+      "book_hotel": 8,
+      "search_restaurants": 9,
+      "book_restaurant": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_restaurants', 'list_bills', 'book_restaurant', 'search_hotels', 'book_flight', 'book_hotel', 'search_flights'}，实际: {'search_hotels', 'book_flight', 'search_flights', 'list_bills'}，缺失: {'book_hotel', 'search_restaurants', 'book_restaurant'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 4,
+    "extra_turns_details": "list_bills: +1 turns (info@1, call@2); search_flights: +2 turns (info@1, call@3); book_flight: +1 turns (info@5, call@6)",
+    "behavior_score": 0.42857142857142855,
+    "behavior_score_details": "list_bills: 1(correct), search_flights: 1(correct), book_flight: 0(param_mismatch), search_hotels: 1(correct), book_hotel: 0(not_called), search_restaurants: 0(not_called), book_restaurant: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_flight",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "flight_id: 'flt_bj_sh_002' vs 'None'; date: '2026-03-15' vs 'None'; passenger_name: 'Li Na' vs 'None'"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_restaurants",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 1,
+        "missing_call": 3
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 3,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

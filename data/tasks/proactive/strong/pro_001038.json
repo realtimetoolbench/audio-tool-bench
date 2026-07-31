@@ -1,0 +1,193 @@
+{
+  "task_id": "pro_001038",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’ve been mapping out a few sights in Chengdu for a spring trip, just trying to see what’s worth squeezing into a day.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "And separately, I’m looking at places to stay in Beijing around mid-March, since that part of the trip is pretty much set.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 8.802288372599037
+    },
+    {
+      "speaker": "user",
+      "text": "For the travel in between, I’m planning to take the train from Beijing to Shanghai rather than fly, mostly to keep it simple.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 17.758416543204905
+    },
+    {
+      "speaker": "user",
+      "text": "For Chengdu, I’m doing Wuhou Shrine on 2026-04-12 in the morning, and it’s two tickets under John Smith.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-04-12",
+          "book_attraction_ticket.ticket_count=2",
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=John Smith"
+        ]
+      },
+      "timestamp": 27.4455442471564
+    },
+    {
+      "speaker": "user",
+      "text": "Oh—and the Wuhou Shrine entry is under the visitor name John Smith, and I’m counting 2 people total.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 35.83558202569782
+    },
+    {
+      "speaker": "user",
+      "text": "In Beijing I’m set on Holiday Inn Express, checking in 2026-03-14 for 5 nights, and it’s under Ethan Thomas.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-14",
+          "book_hotel.guest_name=Ethan Thomas",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 44.19029181624124
+    },
+    {
+      "speaker": "user",
+      "text": "Then the Beijing–Shanghai leg is on train G3 on 2026-03-15; it’s for Tang Xue in First Class… and after that I still need to figure out what time I’ll reach the hotel in Shanghai.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-03-15",
+          "book_train.passenger_name=Tang Xue",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 52.857728103836386
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_002",
+        "date": "2026-04-12",
+        "time_slot": "morning",
+        "visitor_name": "John Smith",
+        "ticket_count": 2
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_003",
+        "checkin_date": "2026-03-14",
+        "nights": 5,
+        "guest_name": "Ethan Thomas"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-15",
+        "passenger_name": "Tang Xue",
+        "seat_class": "First Class"
+      }
+    }
+  ],
+  "transcript_hash": "0425ff2df372",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "travel",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_attractions": 1,
+    "book_attraction_ticket": 4,
+    "search_hotels": 2,
+    "book_hotel": 6,
+    "search_trains": 3,
+    "book_train": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’ve been mapping out a few sights",
+      "I’m looking at places to stay",
+      "I’m planning to take the train",
+      "I’m doing Wuhou Shrine on 2026-04-12 in the morning",
+      "I’m set on Holiday Inn Express"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed plans with specific dates, names, and counts. Search context (cities/origin-destination) appears before booking details, and no execution/authorization language is used."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_attractions",
+      "search_hotels",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_attraction_ticket",
+      "book_hotel",
+      "book_train"
+    ]
+  },
+  "expected_tool_if_act": "search_attractions",
+  "expected_params_if_act": {
+    "city": "Chengdu"
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "task_id": "pro_001035",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m gonna be in Beijing for a bit, and I’ve been thinking about where to eat while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Right after that, I’m heading from Beijing over to Shanghai, so that hop is on my mind too.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai"
+        ]
+      },
+      "timestamp": 8.066772477682271
+    },
+    {
+      "speaker": "user",
+      "text": "And later on I’m also doing a Guangzhou stay, so I’ve been mentally sorting out hotel options there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Guangzhou"
+        ]
+      },
+      "timestamp": 15.622085410347946
+    },
+    {
+      "speaker": "user",
+      "text": "For that Beijing dinner, it’s at Da Dong Roast Duck on 2026-04-22 at 18:00.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.date=2026-04-22",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 23.439809826449753
+    },
+    {
+      "speaker": "user",
+      "text": "It’s a party of 5, and it’s under Huang Tao — the contact number is 13877665544.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.contact_name=Huang Tao",
+          "book_restaurant.party_size=5",
+          "book_restaurant.phone=13877665544"
+        ]
+      },
+      "timestamp": 30.30778842901014
+    },
+    {
+      "speaker": "user",
+      "text": "For the Beijing to Shanghai flight, I’m on China Eastern MU5890 on 2026-04-15, and the passenger name is Lin Bo.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-04-15",
+          "book_flight.passenger_name=Lin Bo",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 37.17479890305749
+    },
+    {
+      "speaker": "user",
+      "text": "In Guangzhou I’m staying at the Four Seasons Guangzhou, checking in 2026-03-22 for 2 nights — it’s under Song Qi, and then after that I’m probably just going to keep things pretty low-key and see how the schedule feels…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-22",
+          "book_hotel.guest_name=Song Qi",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 46.25572468856954
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_006",
+        "date": "2026-04-22",
+        "time": "18:00",
+        "party_size": 5,
+        "contact_name": "Huang Tao",
+        "phone": "13877665544"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_004",
+        "date": "2026-04-15",
+        "passenger_name": "Lin Bo"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_gz_002",
+        "checkin_date": "2026-03-22",
+        "nights": 2,
+        "guest_name": "Song Qi"
+      }
+    }
+  ],
+  "transcript_hash": "a7261935ca95",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "business_trip",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 5,
+    "search_flights": 6,
+    "book_flight": 6,
+    "search_hotels": 3,
+    "book_hotel": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m gonna be in Beijing",
+      "I’m heading from Beijing over to Shanghai",
+      "I’m also doing a Guangzhou stay",
+      "it’s at Da Dong Roast Duck",
+      "I’m on China Eastern MU5890",
+      "I’m staying at the Four Seasons Guangzhou"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed plans with concrete dates, names, and identifiers; no requests or execution/authorization language."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_flights",
+      "search_hotels",
+      "search_restaurants"
+    ],
+    "write_tools": [
+      "book_flight",
+      "book_hotel",
+      "book_restaurant"
+    ]
+  },
+  "expected_tool_if_act": "search_restaurants",
+  "expected_params_if_act": {
+    "city": "Beijing"
+  }
+}

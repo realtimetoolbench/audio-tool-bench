@@ -1,0 +1,190 @@
+{
+  "task_id": "int_000090",
+  "description": "Interruption (correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Suzhou.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Suzhou, I meant Hangzhou.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Suzhou",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel Home Inn West Lake for check-in 2026-03-17 for 2 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-17",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 9.386794310584822
+    },
+    {
+      "speaker": "user",
+      "text": "Book it under Lucas Martinez.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Lucas Martinez"
+        ]
+      },
+      "timestamp": 16.36047318253828
+    },
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 20.776713714450846
+    },
+    {
+      "speaker": "user",
+      "text": "Book train G3 on 2026-03-19 in First Class.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.date=2026-03-19",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 25.92301605341876
+    },
+    {
+      "speaker": "user",
+      "text": "Passenger name Wu Qian.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.passenger_name=Wu Qian"
+        ]
+      },
+      "timestamp": 31.317478456836454
+    },
+    {
+      "speaker": "user",
+      "text": "In Chengdu, search attractions, then book Giant Panda Base tickets for 2026-03-17 in the morning for Olivia Brown, 3 tickets.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-17",
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Olivia Brown",
+          "search_attractions.city=Chengdu"
+        ]
+      },
+      "timestamp": 35.09718444218253
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_003",
+        "checkin_date": "2026-03-17",
+        "nights": 2,
+        "guest_name": "Lucas Martinez"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-19",
+        "passenger_name": "Wu Qian",
+        "seat_class": "First Class"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_001",
+        "date": "2026-03-17",
+        "time_slot": "morning",
+        "visitor_name": "Olivia Brown",
+        "ticket_count": 3
+      }
+    }
+  ],
+  "transcript_hash": "0a94ad77ea0d",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 4,
+    "search_trains": 5,
+    "book_train": 7,
+    "search_attractions": 8,
+    "book_attraction_ticket": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Suzhou",
+    "template": "travel",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_hotels",
+      "param": "city",
+      "wrong_value": "Suzhou"
+    }
+  }
+}

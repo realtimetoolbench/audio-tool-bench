@@ -1,0 +1,326 @@
+{
+  "task_name": "tint_000010",
+  "start_time": "2026-04-30T23:37:03.932551",
+  "end_time": "2026-04-30T23:41:41.621943",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Find parking near Sanlitun Taikoo Li in Beijing for today 19:00 to 22:00, and also look up shows in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_shows.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 392400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "tool_name": "search_shows",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "output": "Found 3 shows in Beijing:\n\n1. Jay Chou Concert (ID: show_bj_001)\n   Type: Concert\n   Venue: National Stadium Bird's Nest\n   Date/Time: 2026-03-08 19:30\n   Duration: 180 min\n   Price: ¥480-1980\n   Available zones: Floor, Stand A, Stand B, Stand C\n   Rating: 9.5/10.0\n\n2. Erta Thunderstorm (ID: show_bj_002)\n   Type: Theater\n   Venue: Capital Theatre\n   Date/Time: 2026-03-15 19:30\n   Duration: 150 min\n   Price: ¥180-680\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 8.8/10.0\n\n3. National Centre Concert (ID: show_bj_003)\n   Type: Concert\n   Venue: National Centre for the Performing Arts\n   Date/Time: 2026-03-22 19:30\n   Duration: 120 min\n   Price: ¥280-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.2/10.0\n\n",
+              "error": null,
+              "latency_ms": 0.017881393432617188
+            },
+            {
+              "tool_name": "search_parking",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "output": "Found 4 parking lots:\n\n1. China World Trade Center Parking (ID: park_bj_001)\n   Address: 1 Jianguomenwai Avenue, CBD, Chaoyang District, Beijing\n   Price: ¥10/hour | Available: 120 spots\n\n2. Kerry Centre Parking (ID: park_bj_002)\n   Address: 1 Guanghua Road, CBD, Chaoyang District, Beijing\n   Price: ¥8/hour | Available: 80 spots\n\n3. Sanlitun SOHO Parking (ID: park_bj_003)\n   Address: 8 Gongti North Road, Chaoyang District, Beijing\n   Price: ¥12/hour | Available: 45 spots\n\n4. Zhongguancun Plaza Parking (ID: park_bj_004)\n   Address: 1 Zhongguancun Street, Haidian District, Beijing\n   Price: ¥8/hour | Available: 200 spots\n\n",
+              "error": null,
+              "latency_ms": 0.012874603271484375
+            }
+          ]
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "output": "Found 3 shows in Beijing:\n\n1. Jay Chou Concert (ID: show_bj_001)\n   Type: Concert\n   Venue: National Stadium Bird's Nest\n   Date/Time: 2026-03-08 19:30\n   Duration: 180 min\n   Price: ¥480-1980\n   Available zones: Floor, Stand A, Stand B, Stand C\n   Rating: 9.5/10.0\n\n2. Erta Thunderstorm (ID: show_bj_002)\n   Type: Theater\n   Venue: Capital Theatre\n   Date/Time: 2026-03-15 19:30\n   Duration: 150 min\n   Price: ¥180-680\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 8.8/10.0\n\n3. National Centre Concert (ID: show_bj_003)\n   Type: Concert\n   Venue: National Centre for the Performing Arts\n   Date/Time: 2026-03-22 19:30\n   Duration: 120 min\n   Price: ¥280-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.2/10.0\n\n",
+          "error": null,
+          "latency_ms": 0.017881393432617188
+        },
+        {
+          "tool_name": "search_parking",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "output": "Found 4 parking lots:\n\n1. China World Trade Center Parking (ID: park_bj_001)\n   Address: 1 Jianguomenwai Avenue, CBD, Chaoyang District, Beijing\n   Price: ¥10/hour | Available: 120 spots\n\n2. Kerry Centre Parking (ID: park_bj_002)\n   Address: 1 Guanghua Road, CBD, Chaoyang District, Beijing\n   Price: ¥8/hour | Available: 80 spots\n\n3. Sanlitun SOHO Parking (ID: park_bj_003)\n   Address: 8 Gongti North Road, Chaoyang District, Beijing\n   Price: ¥12/hour | Available: 45 spots\n\n4. Zhongguancun Plaza Parking (ID: park_bj_004)\n   Address: 1 Zhongguancun Street, Haidian District, Beijing\n   Price: ¥8/hour | Available: 200 spots\n\n",
+          "error": null,
+          "latency_ms": 0.012874603271484375
+        }
+      ],
+      "total_latency_ms": 28649.327754974365,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1121792,
+        "event_count": 135
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Cancel the parking part. Skip parking search and any parking reservation.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_parking",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 211800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 102712.70704269409,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 15.088023344286182,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Beijing for this weekend.",
+        "timestamp": 15.088023344286182,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 123600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "tool_name": "search_shows",
+              "arguments": {
+                "city": "Beijing",
+                "show_type": "this weekend"
+              },
+              "output": "No shows found in Beijing matching criteria.",
+              "error": null,
+              "latency_ms": 0.026941299438476562
+            }
+          ]
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Beijing",
+            "show_type": "this weekend"
+          },
+          "output": "No shows found in Beijing matching criteria.",
+          "error": null,
+          "latency_ms": 0.026941299438476562
+        }
+      ],
+      "total_latency_ms": 16266.873836517334,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 547204,
+        "event_count": 67
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 19.707092845473788,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the show ticket for show_id Erta Thunderstorm.",
+        "timestamp": 19.707092845473788,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 150000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 15592.782974243164,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 634084,
+        "event_count": 75
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.72081052070586,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use seat_zone Second Floor and ticket_count 5.",
+        "timestamp": 25.72081052070586,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.seat_zone=Second Floor",
+            "book_show_ticket.ticket_count=5"
+          ]
+        },
+        "audio_size_bytes": 145800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 11438.15803527832,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 427684,
+        "event_count": 59
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.363850010356874,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set buyer_name Wang Fang and phone 13812345678.",
+        "timestamp": 31.363850010356874,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Wang Fang",
+            "book_show_ticket.phone=13812345678"
+          ]
+        },
+        "audio_size_bytes": 238200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 103022.13406562805,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 4
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 6,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_parking",
+    "forbidden_tools": [
+      "search_parking",
+      "reserve_parking_spot"
+    ],
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad"
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[respected cancel]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_show_ticket",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_parking",
+          "error_type": "unexpected_call",
+          "phase": "pre",
+          "detail": "调了不在 expected_tools 中的工具: search_parking"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1,
+        "unexpected_call": 1
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "unexpected_call": {
+          "pre": 1,
+          "post": 0,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

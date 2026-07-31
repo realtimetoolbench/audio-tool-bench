@@ -1,0 +1,169 @@
+{
+  "task_id": "tint_000090",
+  "description": "Interruption (priority_no_return): 4 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants_delivery",
+    "place_food_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Guangzhou.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_movies.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search restaurants for delivery in Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants_delivery.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_movies",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Place a food order with delivery_id Luckin Coffee.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 10.30888195915606
+    },
+    {
+      "speaker": "user",
+      "text": "Order items: Iced Americano and Cheese Bagel.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.items=Iced Americano and Cheese Bagel"
+        ]
+      },
+      "timestamp": 15.598992154613631
+    },
+    {
+      "speaker": "user",
+      "text": "Deliver to Room 502, Building B, East Apartment. Use phone 13892862812.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 502, Building B, East Apartment",
+          "place_food_order.phone=13892862812"
+        ]
+      },
+      "timestamp": 20.875372159403273
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Dune 2 at UA Taikoo Hui for 10:00, 4 seats.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_movie_ticket.cinema=UA Taikoo Hui",
+          "book_movie_ticket.seat_count=4",
+          "book_movie_ticket.showtime=10:00"
+        ]
+      },
+      "timestamp": 32.30929593155474
+    },
+    {
+      "speaker": "user",
+      "text": "Set buyer name to John Smith.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=John Smith"
+        ]
+      },
+      "timestamp": 37.41310446058194
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_cd_003",
+        "items": "Iced Americano and Cheese Bagel",
+        "delivery_address": "Room 502, Building B, East Apartment",
+        "phone": "13892862812"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_gz_002",
+        "cinema": "UA Taikoo Hui",
+        "showtime": "10:00",
+        "seat_count": 4,
+        "buyer_name": "John Smith"
+      }
+    }
+  ],
+  "transcript_hash": "f1758d2ba2ff",
+  "info_complete_turn": {
+    "search_restaurants_delivery": 2,
+    "place_food_order": 5,
+    "search_movies": 1,
+    "book_movie_ticket": 8
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_movies",
+    "inserted_tools": [
+      "search_restaurants_delivery",
+      "place_food_order"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "search_restaurants_delivery",
+    "place_food_order"
+  ]
+}

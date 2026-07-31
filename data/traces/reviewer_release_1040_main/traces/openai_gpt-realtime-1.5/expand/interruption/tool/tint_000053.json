@@ -1,0 +1,803 @@
+{
+  "task_name": "tint_000053",
+  "start_time": "2026-05-06T16:33:19.892388",
+  "end_time": "2026-05-06T16:34:48.648610",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 116400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_TFhY2iAbyCSxWNvL",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_TFhY2iAbyCSxWNvL",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.035762786865234375
+          },
+          "latency_ms": 0.035762786865234375,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 5403.766870498657,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 23,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that—search doctors in Chongqing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_doctors.city=Chongqing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 132600
+      },
+      "assistant_response": "I've got both sets of information for you. For trains from Beijing to Shanghai, there are three options:\n\n1. G1 (ID: trn_bj_sh_001): Departs 06:00, arrives 10:28, second class ¥553, first class ¥933.\n\n2. G3 (ID: trn_bj_sh_002): Departs 07:00, arrives 11:35, same pricing as G1.\n\n3. D321 (ID: trn_bj_sh_003): Departs 08:30, arrives 16:45, second class ¥309, first class ¥494.\n\nAs for doctors in Chongqing, there's one result: Dr. Peng Hui, a chief physician specializing in gastroenterology at the First Affiliated Hospital of Chongqing Medical University. He has 18 years of experience and is available on 2026-05-09 and 2026-05-15.\n\nLet me know if you’d like to book a train or a doctor appointment!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_X5IsCyLXEkfGrqQY",
+              "name": "search_doctors",
+              "arguments": {
+                "city": "Chongqing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've got both sets of information for you. For trains from Beijing to Shanghai, there are three options:\n\n1. G1 (ID: trn_bj_sh_001): Departs 06:00, arrives 10:28, second class ¥553, first class ¥933.\n\n2. G3 (ID: trn_bj_sh_002): Departs 07:00, arrives 11:35, same pricing as G1.\n\n3. D321 (ID: trn_bj_sh_003): Departs 08:30, arrives 16:45, second class ¥309, first class ¥494.\n\nAs for doctors in Chongqing, there's one result: Dr. Peng Hui, a chief physician specializing in gastroenterology at the First Affiliated Hospital of Chongqing Medical University. He has 18 years of experience and is available on 2026-05-09 and 2026-05-15.\n\nLet me know if you’d like to book a train or a doctor appointment!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_X5IsCyLXEkfGrqQY",
+          "tool_name": "search_doctors",
+          "arguments": {
+            "city": "Chongqing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 doctors in Chongqing:\n\n1. Dr. Peng Hui (ID: doc_cq_001)\n   Hospital: The First Affiliated Hospital of Chongqing Medical University\n   Department: Internal Medicine\n   Specialty: Gastroenterology\n   Title: Chief Physician\n   Rating: 4.7/5.0\n   Experience: 18 years\n   Available: 2026-05-09, 2026-05-15\n\n",
+            "raw_output": [
+              {
+                "doctor_id": "doc_cq_001",
+                "name": "Peng Hui",
+                "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Gastroenterology",
+                "rating": 4.7,
+                "experience_years": 18,
+                "available_dates": [
+                  "2026-05-09",
+                  "2026-05-15"
+                ]
+              }
+            ],
+            "error": null,
+            "count": 1,
+            "doctors": [
+              {
+                "doctor_id": "doc_cq_001",
+                "name": "Peng Hui",
+                "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Gastroenterology",
+                "rating": 4.7,
+                "experience_years": 18,
+                "available_dates": [
+                  "2026-05-09",
+                  "2026-05-15"
+                ]
+              }
+            ],
+            "latency_ms": 0.031948089599609375
+          },
+          "latency_ms": 0.031948089599609375
+        }
+      ],
+      "total_latency_ms": 14735.577821731567,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2527200,
+        "event_count": 379,
+        "latency": {
+          "speech_ms": 1875.665283203125,
+          "tool_call_ms": 697.294189453125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.577800898852331,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book an appointment with doctor Peng Hui.",
+        "timestamp": 10.577800898852331,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 122400
+      },
+      "assistant_response": "Sure, I can help you with that. What date works best for you – May 9th or May 15th, and do you prefer a morning or afternoon time slot? Also, I’ll need the patient’s name for the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help you with that. What date works best for you – May 9th or May 15th, and do you prefer a morning or afternoon time slot? Also, I’ll need the patient’s name for the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4598.76823425293,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 475200,
+        "event_count": 90,
+        "latency": {
+          "speech_ms": 423.63525390625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.572650597959509,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the appointment date to 2026-05-15.",
+        "timestamp": 15.572650597959509,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.date=2026-05-15"
+          ]
+        },
+        "audio_size_bytes": 174000
+      },
+      "assistant_response": "Got it. I still need to know your preferred time slot — morning or afternoon — and the patient’s name to complete the appointment booking. Could you provide those details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it. I still need to know your preferred time slot — morning or afternoon — and the patient’s name to complete the appointment booking. Could you provide those details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5213.666915893555,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 422400,
+        "event_count": 71,
+        "latency": {
+          "speech_ms": 842.178955078125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.74942831352655,
+      "input_chunk": {
+        "role": "user",
+        "content": "Morning time slot, patient name Deng Hui.",
+        "timestamp": 20.74942831352655,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.patient_name=Deng Hui",
+            "book_appointment.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 114000
+      },
+      "assistant_response": "Your appointment with Dr. Peng Hui is confirmed for the morning of May 15, 2026, at The First Affiliated Hospital of Chongqing Medical University. The patient name is Deng Hui, and you've got queue number 44. If there's anything else I can do, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_LE15DNDZRg4FJ8dx",
+              "name": "book_appointment",
+              "arguments": {
+                "doctor_id": "doc_cq_001",
+                "date": "2026-05-15",
+                "time_slot": "morning",
+                "patient_name": "Deng Hui"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your appointment with Dr. Peng Hui is confirmed for the morning of May 15, 2026, at The First Affiliated Hospital of Chongqing Medical University. The patient name is Deng Hui, and you've got queue number 44. If there's anything else I can do, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_LE15DNDZRg4FJ8dx",
+          "tool_name": "book_appointment",
+          "arguments": {
+            "doctor_id": "doc_cq_001",
+            "date": "2026-05-15",
+            "time_slot": "morning",
+            "patient_name": "Deng Hui"
+          },
+          "result": {
+            "success": true,
+            "output": "Doctor appointment booked successfully!\n\nAppointment ID: 2EL9DKLUT2\nDoctor ID: doc_cq_001\nDoctor: Peng Hui\nHospital: The First Affiliated Hospital of Chongqing Medical University\nDepartment: Internal Medicine\nDate: 2026-05-15\nTime slot: morning\nPatient: Deng Hui\nQueue number: 44\nStatus: Confirmed\n",
+            "raw_output": {
+              "appointment_id": "2EL9DKLUT2",
+              "doctor_id": "doc_cq_001",
+              "doctor_name": "Peng Hui",
+              "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+              "department": "Internal Medicine",
+              "date": "2026-05-15",
+              "time_slot": "morning",
+              "patient_name": "Deng Hui",
+              "patient_phone": null,
+              "id_number": null,
+              "symptoms": "Not provided",
+              "status": "Confirmed",
+              "queue_number": 44
+            },
+            "error": null,
+            "latency_ms": 0.03910064697265625,
+            "message": "Appointment booked successfully",
+            "appointment": {
+              "appointment_id": "2EL9DKLUT2",
+              "doctor_id": "doc_cq_001",
+              "doctor_name": "Peng Hui",
+              "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+              "department": "Internal Medicine",
+              "date": "2026-05-15",
+              "time_slot": "morning",
+              "patient_name": "Deng Hui",
+              "patient_phone": null,
+              "id_number": null,
+              "symptoms": "Not provided",
+              "status": "Confirmed",
+              "queue_number": 44
+            }
+          },
+          "latency_ms": 0.03910064697265625
+        }
+      ],
+      "total_latency_ms": 14523.80919456482,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 708000,
+        "event_count": 159,
+        "latency": {
+          "speech_ms": 2794.890869140625,
+          "tool_call_ms": 1660.8056640625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 91200
+      },
+      "assistant_response": "No problem. As a reminder, here are the train options from Beijing to Shanghai:\n\n1. G1 (ID: trn_bj_sh_001): Departs 06:00, arrives 10:28.\n\n2. G3 (ID: trn_bj_sh_002): Departs 07:00, arrives 11:35.\n\n3. D321 (ID: trn_bj_sh_003): Departs 08:30, arrives 16:45.\n\nLet me know if you’d like to book one of these, and if so, which date, seat class, and passenger name you’d like to use.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "No problem. As a reminder, here are the train options from Beijing to Shanghai:\n\n1. G1 (ID: trn_bj_sh_001): Departs 06:00, arrives 10:28.\n\n2. G3 (ID: trn_bj_sh_002): Departs 07:00, arrives 11:35.\n\n3. D321 (ID: trn_bj_sh_003): Departs 08:30, arrives 16:45.\n\nLet me know if you’d like to book one of these, and if so, which date, seat class, and passenger name you’d like to use.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8788.533926010132,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1473600,
+        "event_count": 226,
+        "latency": {
+          "speech_ms": 674.51904296875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.191209090894677,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 for 2026-03-26.",
+        "timestamp": 30.191209090894677,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-03-26"
+          ]
+        },
+        "audio_size_bytes": 164400
+      },
+      "assistant_response": "Sure, I can book train G3 for you on 2026-03-26. Could you please let me know the passenger's name and whether you'd like second class or first class seats?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can book train G3 for you on 2026-03-26. Could you please let me know the passenger's name and whether you'd like second class or first class seats?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5631.016969680786,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 448800,
+        "event_count": 79,
+        "latency": {
+          "speech_ms": 1586.815185546875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.05073897093201,
+      "input_chunk": {
+        "role": "user",
+        "content": "Passenger name Zhao Min, Second Class seat.",
+        "timestamp": 35.05073897093201,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.passenger_name=Zhao Min",
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 125400
+      },
+      "assistant_response": "Your train ticket on G3 for March 26, 2026, in second class for passenger Zhao Min is confirmed. Your seat is 01F, and the booking ID is TR40001. Anything else you need?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_On3NEkIFDEY2BSRB",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-03-26",
+                "passenger_name": "Zhao Min",
+                "seat_class": "second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your train ticket on G3 for March 26, 2026, in second class for passenger Zhao Min is confirmed. Your seat is 01F, and the booking ID is TR40001. Anything else you need?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_On3NEkIFDEY2BSRB",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-03-26",
+            "passenger_name": "Zhao Min",
+            "seat_class": "second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-03-26\nPassenger: Zhao Min\nSeat: second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-03-26",
+              "passenger_name": "Zhao Min",
+              "seat_class": "second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.017881393432617188
+          },
+          "latency_ms": 0.017881393432617188
+        }
+      ],
+      "total_latency_ms": 6879.25386428833,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 578400,
+        "event_count": 141,
+        "latency": {
+          "speech_ms": 2275.732177734375,
+          "tool_call_ms": 1143.348876953125
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 40.08309673972564,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Xi'an.",
+        "timestamp": 40.08309673972564,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_attractions.city=Xi'an"
+          ]
+        },
+        "audio_size_bytes": 81000
+      },
+      "assistant_response": "Here are some top attractions in Xi'an:\n\n1. Terracotta Warriors (ID: attr_xa_001) – Historical site, rating 4.8/5, ticket ¥120, open 08:30–17:00, located in Lintong.\n\n2. Giant Wild Goose Pagoda (ID: attr_xa_002) – Historical site, rating 4.5/5, ticket ¥50, open 08:00–18:00, located in Yanta.\n\n3. Huaqing Palace (ID: attr_xa_003) – Historical site, rating 4.4/5, ticket ¥120, open 07:30–19:00, located in Lintong.\n\n4. Bell Tower (ID: attr_xa_004) – Historical site, rating 4.3/5, ticket ¥35, open 08:00–22:00, located in Beilin.\n\nLet me know if you'd like to book tickets or need more details!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_zj5TB0cB80AgItvP",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Xi'an"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are some top attractions in Xi'an:\n\n1. Terracotta Warriors (ID: attr_xa_001) – Historical site, rating 4.8/5, ticket ¥120, open 08:30–17:00, located in Lintong.\n\n2. Giant Wild Goose Pagoda (ID: attr_xa_002) – Historical site, rating 4.5/5, ticket ¥50, open 08:00–18:00, located in Yanta.\n\n3. Huaqing Palace (ID: attr_xa_003) – Historical site, rating 4.4/5, ticket ¥120, open 07:30–19:00, located in Lintong.\n\n4. Bell Tower (ID: attr_xa_004) – Historical site, rating 4.3/5, ticket ¥35, open 08:00–22:00, located in Beilin.\n\nLet me know if you'd like to book tickets or need more details!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_zj5TB0cB80AgItvP",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Xi'an"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Xi'an:\n\n1. Terracotta Warriors (ID: attr_xa_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥120\n   Hours: 08:30-17:00\n   Location: Lintong\n\n2. Giant Wild Goose Pagoda (ID: attr_xa_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Yanta\n\n3. Huaqing Palace (ID: attr_xa_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥120\n   Hours: 07:30-19:00\n   Location: Lintong\n\n4. Bell Tower (ID: attr_xa_004)\n   Type: Historical\n   Rating: 4.3/5.0\n   Ticket: ¥35\n   Hours: 08:00-22:00\n   Location: Beilin\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_xa_001",
+                "name": "Terracotta Warriors",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 120,
+                "opening_hours": "08:30-17:00",
+                "location": "Lintong"
+              },
+              {
+                "attraction_id": "attr_xa_002",
+                "name": "Giant Wild Goose Pagoda",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Yanta"
+              },
+              {
+                "attraction_id": "attr_xa_003",
+                "name": "Huaqing Palace",
+                "type": "Historical",
+                "rating": 4.4,
+                "price": 120,
+                "opening_hours": "07:30-19:00",
+                "location": "Lintong"
+              },
+              {
+                "attraction_id": "attr_xa_004",
+                "name": "Bell Tower",
+                "type": "Historical",
+                "rating": 4.3,
+                "price": 35,
+                "opening_hours": "08:00-22:00",
+                "location": "Beilin"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0457763671875
+          },
+          "latency_ms": 0.0457763671875
+        }
+      ],
+      "total_latency_ms": 13831.182956695557,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2277600,
+        "event_count": 358,
+        "latency": {
+          "speech_ms": 1619.033935546875,
+          "tool_call_ms": 685.4609375
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 44.51976378430163,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Bell Tower tickets for 2026-05-09 morning, visitor Wang Fang, 5 tickets.",
+        "timestamp": 44.51976378430163,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-05-09",
+            "book_attraction_ticket.ticket_count=5",
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=Wang Fang"
+          ]
+        },
+        "audio_size_bytes": 306600
+      },
+      "assistant_response": "Your Bell Tower tickets are booked for the morning of May 9, 2026, under the name Wang Fang. You have 5 tickets confirmed with booking ID AT50001. Let me know if there's anything else I can do for you!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_GoUd54TxcIRLBH7i",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_xa_004",
+                "date": "2026-05-09",
+                "time_slot": "morning",
+                "visitor_name": "Wang Fang",
+                "ticket_count": 5
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your Bell Tower tickets are booked for the morning of May 9, 2026, under the name Wang Fang. You have 5 tickets confirmed with booking ID AT50001. Let me know if there's anything else I can do for you!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_GoUd54TxcIRLBH7i",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_xa_004",
+            "date": "2026-05-09",
+            "time_slot": "morning",
+            "visitor_name": "Wang Fang",
+            "ticket_count": 5
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_xa_004\nDate: 2026-05-09\nTime slot: morning\nVisitor: Wang Fang\nTickets: 5\nTicket numbers: AT50001-01, AT50001-02, AT50001-03, AT50001-04, AT50001-05\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_xa_004",
+              "date": "2026-05-09",
+              "time_slot": "morning",
+              "visitor_name": "Wang Fang",
+              "ticket_count": 5,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02",
+                "AT50001-03",
+                "AT50001-04",
+                "AT50001-05"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0209808349609375
+          },
+          "latency_ms": 0.0209808349609375
+        }
+      ],
+      "total_latency_ms": 9143.158912658691,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 578400,
+        "event_count": 141,
+        "latency": {
+          "speech_ms": 2698.258056640625,
+          "tool_call_ms": 1123.575927734375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 16,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_trains",
+    "inserted_tools": [
+      "search_doctors",
+      "book_appointment"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_doctors": {
+        "speech_ms": 1875.665283203125,
+        "tool_call_ms": 697.294189453125
+      },
+      "book_appointment": {
+        "speech_ms": 2794.890869140625,
+        "tool_call_ms": 1660.8056640625
+      },
+      "book_train": {
+        "speech_ms": 2275.732177734375,
+        "tool_call_ms": 1143.348876953125
+      },
+      "search_attractions": {
+        "speech_ms": 1619.033935546875,
+        "tool_call_ms": 685.4609375
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 2698.258056640625,
+        "tool_call_ms": 1123.575927734375
+      }
+    },
+    "info_complete_turn": {
+      "search_doctors": 2,
+      "book_appointment": 5,
+      "search_trains": 1,
+      "book_train": 8,
+      "search_attractions": 9,
+      "book_attraction_ticket": 10
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'search_attractions', 'book_attraction_ticket', 'book_appointment', 'book_train', 'search_doctors', 'search_trains'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_doctors: 1(correct), book_appointment: 1(correct), search_trains: 1(correct), book_train: 1(correct), search_attractions: 1(correct), book_attraction_ticket: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

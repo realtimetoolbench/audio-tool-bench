@@ -1,0 +1,312 @@
+{
+  "task_name": "tint_000030",
+  "start_time": "2026-05-06T23:25:57.315227",
+  "end_time": "2026-05-06T23:26:12.397702",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for 2 nights starting 2026-05-06. Also plan a train trip after that.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_train.date=2026-05-06",
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 362400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_8471501353783279594",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-05-06"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shanghai",
+            "checkin_date": "2026-05-06"
+          },
+          "output": null,
+          "error": null,
+          "latency_ms": null,
+          "dangling": true,
+          "dangling_return": "never"
+        }
+      ],
+      "total_latency_ms": 7013.696908950806,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5,
+        "latency": {
+          "tool_call_ms": 3910.4790687561035
+        },
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel search. Skip all hotel steps.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 133200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1.0302066802978516,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 12.865769373553924,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 12.865769373553924,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 115800
+      },
+      "assistant_response": "I found three trains for you from Beijing to Shanghai. There are two high speed",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_8209285985023345030",
+              "name": "search_trains",
+              "arguments": {
+                "destination": "Shanghai",
+                "origin": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three trains for you from Beijing to Shanghai. There are two high speed",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_trains",
+          "arguments": {
+            "destination": "Shanghai",
+            "origin": "Beijing"
+          },
+          "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+          "error": null,
+          "latency_ms": 0.08702278137207031
+        }
+      ],
+      "total_latency_ms": 8063.766956329346,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 184832,
+        "event_count": 35,
+        "latency": {
+          "speech_ms": 5864.521265029907,
+          "tool_call_ms": 4600.8241176605225
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 17.670455415636674,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train D321.",
+        "timestamp": 17.670455415636674,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 73200
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.258323088147076,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use travel date 2026-05-06 and passenger name Zhang Wei.",
+        "timestamp": 21.258323088147076,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.passenger_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 229200
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.261165294416728,
+      "input_chunk": {
+        "role": "user",
+        "content": "Choose Second Class seat.",
+        "timestamp": 27.261165294416728,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 73800
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 5,
+    "total_tool_calls": 2
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 5864.521265029907,
+        "tool_call_ms": 4600.8241176605225
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 3,
+      "book_train": 6
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[respected cancel]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_train",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

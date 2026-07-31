@@ -1,0 +1,218 @@
+{
+  "task_id": "ms_000061",
+  "scenario_type": "multi_step",
+  "server": "uber_eats",
+  "template": "order_history_and_track_8",
+  "description": "Search restaurants, get menu, get profile, get offers, place order, get order, get order history, track order",
+  "tools": [
+    "search_restaurants",
+    "get_menu",
+    "get_profile",
+    "get_available_offers",
+    "place_order",
+    "get_order",
+    "get_order_history",
+    "track_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find me some Mexican restaurants nearby.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_restaurants"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me the menu from the first restaurant on the list.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_menu"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you get my profile details as well?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_profile"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Check if there are any available offers for that place.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_available_offers"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Place an order for the first two items from their menu using my default address and payment method, and apply the best offer.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "place_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "What's the status of my recent order?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me my order history.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_order_history"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Track my latest order right now.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "track_order"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "category": "Mexican"
+      },
+      "param_source": {
+        "category": "user"
+      }
+    },
+    {
+      "tool": "get_menu",
+      "params": {
+        "restaurant_id": "REST-56781"
+      },
+      "param_source": {
+        "restaurant_id": {
+          "from_tool": "search_restaurants",
+          "field": "restaurant_id"
+        }
+      }
+    },
+    {
+      "tool": "get_profile",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "get_available_offers",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "place_order",
+      "params": {
+        "restaurant_id": "REST-56781",
+        "items": [
+          {
+            "item_id": "ITEM-56784",
+            "quantity": 3
+          }
+        ],
+        "delivery_address_id": "addr_1",
+        "payment_method_id": "pm_1",
+        "offer_id": "OFFER-56780"
+      },
+      "param_source": {
+        "restaurant_id": {
+          "from_tool": "search_restaurants",
+          "field": "restaurant_id"
+        },
+        "items": {
+          "from_tool": "get_menu",
+          "field": "item_id",
+          "quantity": "user"
+        },
+        "delivery_address_id": {
+          "from_tool": "get_profile",
+          "field": "address[0].address_id"
+        },
+        "payment_method_id": {
+          "from_tool": "get_profile",
+          "field": "payment_method[0].method_id"
+        },
+        "offer_id": {
+          "from_tool": "get_available_offers",
+          "field": "offer_id"
+        }
+      }
+    },
+    {
+      "tool": "get_order",
+      "params": {
+        "order_id": "order_1"
+      },
+      "param_source": {
+        "order_id": {
+          "from_tool": "place_order",
+          "field": "$"
+        }
+      }
+    },
+    {
+      "tool": "get_order_history",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "track_order",
+      "params": {
+        "order_id": "order_1"
+      },
+      "param_source": {
+        "order_id": {
+          "from_tool": "place_order",
+          "field": "$"
+        }
+      }
+    }
+  ],
+  "chain_depth": 8,
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "get_menu": 1,
+    "get_profile": 1,
+    "get_available_offers": 1,
+    "place_order": 1,
+    "get_order": 1,
+    "get_order_history": 1,
+    "track_order": 1
+  }
+}

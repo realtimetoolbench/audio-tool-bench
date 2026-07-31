@@ -1,0 +1,203 @@
+{
+  "task_id": "int_000044",
+  "description": "Interruption (redirection): 7 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_doctors",
+    "book_appointment",
+    "cancel_ride",
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Chengdu.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_movies.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 4 seats for The Wandering Earth 3 at CGV Chunxi Road.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_movie_ticket.cinema=CGV Chunxi Road",
+          "book_movie_ticket.seat_count=4"
+        ]
+      },
+      "timestamp": 4.710348267253567
+    },
+    {
+      "speaker": "user",
+      "text": "Set the showtime to 13:20 and use buyer name Liu Yang.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Liu Yang",
+          "book_movie_ticket.showtime=13:20"
+        ]
+      },
+      "timestamp": 10.350353951376626
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—before that, search doctors in Chengdu and cancel ride RIDE123456.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "cancel_ride.ride_id=RIDE123456",
+          "search_doctors.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "movie",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book an appointment with doctor Zhao Lei for Li Na.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.patient_name=Li Na"
+        ]
+      },
+      "timestamp": 22.101918805173938
+    },
+    {
+      "speaker": "user",
+      "text": "Set the appointment for 2026-03-02 in the morning.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.date=2026-03-02",
+          "book_appointment.time_slot=morning"
+        ]
+      },
+      "timestamp": 27.82397056831988
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the movie.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 32.932870865492134
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 36.943785462385044
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Chuanfu Laozao for 2026-03-25 at 20:00, party size 3; contact Zhou Jun, phone 13812345678.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhou Jun",
+          "book_restaurant.date=2026-03-25",
+          "book_restaurant.party_size=3",
+          "book_restaurant.phone=13812345678",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 41.76237415840923
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_cd_001",
+        "date": "2026-03-02",
+        "time_slot": "morning",
+        "patient_name": "Li Na"
+      }
+    },
+    {
+      "tool": "cancel_ride",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cd_001",
+        "cinema": "CGV Chunxi Road",
+        "showtime": "13:20",
+        "seat_count": 4,
+        "buyer_name": "Liu Yang"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_001",
+        "date": "2026-03-25",
+        "time": "20:00",
+        "party_size": 3,
+        "contact_name": "Zhou Jun",
+        "phone": "13812345678"
+      }
+    }
+  ],
+  "transcript_hash": "6374011fb1d5",
+  "info_complete_turn": {
+    "search_doctors": 4,
+    "book_appointment": 6,
+    "cancel_ride": 4,
+    "search_movies": 1,
+    "book_movie_ticket": 3,
+    "search_restaurants": 8,
+    "book_restaurant": 9
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 9,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "movie",
+    "generated": true
+  }
+}

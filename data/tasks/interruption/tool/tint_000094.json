@@ -1,0 +1,193 @@
+{
+  "task_id": "tint_000094",
+  "description": "Interruption (tool_correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shenzhen. Check in 2026-03-12 for 5 nights.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-12",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shenzhen, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use guest name Mike Davis. Book hotel Novotel Beijing Peace.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Mike Davis",
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 11.727717336703687
+    },
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai. Date 2026-03-03.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.date=2026-03-03",
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 18.127567651333983
+    },
+    {
+      "speaker": "user",
+      "text": "Book train G1. Passenger Sun Lei. Second Class seat.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.passenger_name=Sun Lei",
+          "book_train.seat_class=Second Class"
+        ]
+      },
+      "timestamp": 23.484293913525867
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 29.494790123792296
+    },
+    {
+      "speaker": "user",
+      "text": "Book Temple of Heaven tickets for 2026-05-15, morning slot.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-05-15",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 33.600092888358745
+    },
+    {
+      "speaker": "user",
+      "text": "Visitor name John Smith. Ticket count 4.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=4",
+          "book_attraction_ticket.visitor_name=John Smith"
+        ]
+      },
+      "timestamp": 39.906918572241096
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_005",
+        "checkin_date": "2026-03-12",
+        "nights": 5,
+        "guest_name": "Mike Davis"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_001",
+        "date": "2026-03-03",
+        "passenger_name": "Sun Lei",
+        "seat_class": "Second Class"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_004",
+        "date": "2026-05-15",
+        "time_slot": "morning",
+        "visitor_name": "John Smith",
+        "ticket_count": 4
+      }
+    }
+  ],
+  "transcript_hash": "3b9d6b94e44e",
+  "info_complete_turn": {
+    "search_hotels": 3,
+    "book_hotel": 3,
+    "search_trains": 4,
+    "book_train": 5,
+    "search_attractions": 6,
+    "book_attraction_ticket": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Shenzhen"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Beijing"
+    }
+  }
+}

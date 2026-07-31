@@ -1,0 +1,161 @@
+{
+  "task_id": "tint_000038",
+  "description": "Interruption (priority_late_return): 5 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "track_package",
+    "search_restaurants_delivery",
+    "place_food_order",
+    "search_sports_events",
+    "check_balance"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search delivery restaurants in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants_delivery.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, first check my balance for account number 6222021234567890.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_balance.account_number=6222021234567890"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants_delivery",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the delivery restaurant search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Track the package with tracking number SF1234567890.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "track_package.tracking_number=SF1234567890"
+        ]
+      },
+      "timestamp": 17.53000815241798
+    },
+    {
+      "speaker": "user",
+      "text": "Place a delivery order using delivery ID KFC Lujiazui. Order items: Original Recipe Chicken and Fries.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.items=Original Recipe Chicken and Fries"
+        ]
+      },
+      "timestamp": 22.707501106436787
+    },
+    {
+      "speaker": "user",
+      "text": "Deliver to Room 106, Building B, South Apartment. Use phone 13877949128.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 106, Building B, South Apartment",
+          "place_food_order.phone=13877949128"
+        ]
+      },
+      "timestamp": 30.796279539391378
+    },
+    {
+      "speaker": "user",
+      "text": "Search sports events in Beijing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_sports_events.city=Beijing"
+        ]
+      },
+      "timestamp": 37.35936117066703
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6222021234567890"
+      }
+    },
+    {
+      "tool": "track_package",
+      "params": {
+        "tracking_number": "SF1234567890"
+      }
+    },
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_sh_001",
+        "items": "Original Recipe Chicken and Fries",
+        "delivery_address": "Room 106, Building B, South Apartment",
+        "phone": "13877949128"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    }
+  ],
+  "transcript_hash": "f873f4806ec5",
+  "info_complete_turn": {
+    "check_balance": 2,
+    "track_package": 4,
+    "search_restaurants_delivery": 1,
+    "place_food_order": 6,
+    "search_sports_events": 7
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants_delivery",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "check_balance"
+  ]
+}

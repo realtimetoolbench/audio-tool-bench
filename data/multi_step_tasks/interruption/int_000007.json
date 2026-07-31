@@ -1,0 +1,116 @@
+{
+  "task_id": "int_000007",
+  "description": "Interruption (cancellation): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou, and also look up a train option afterward.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use Hilton Hangzhou West Lake for the hotel booking.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 6.341774611371536
+    },
+    {
+      "speaker": "user",
+      "text": "Book it starting 2026-03-25.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-25"
+        ]
+      },
+      "timestamp": 11.821166294080946
+    },
+    {
+      "speaker": "user",
+      "text": "Never mind the train. Cancel the train task.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "train",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Set the stay length to 5 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 21.800302595934323
+    },
+    {
+      "speaker": "user",
+      "text": "Put the guest name as Li Na.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Li Na"
+        ]
+      },
+      "timestamp": 26.768040488601514
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_002",
+        "checkin_date": "2026-03-25",
+        "nights": 5,
+        "guest_name": "Li Na"
+      }
+    }
+  ],
+  "transcript_hash": "f81b5602e284",
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "train",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_trains",
+    "book_train"
+  ]
+}

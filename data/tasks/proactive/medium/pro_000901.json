@@ -1,0 +1,200 @@
+{
+  "task_id": "pro_000901",
+  "description": "Generated: 7 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_medicine"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Been thinking about a little trip to Shanghai sometime soon, just to get a change of scenery.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "If that happens, I might end up taking the train from Beijing down to Shanghai instead of flying.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 7.502802179862745
+    },
+    {
+      "speaker": "user",
+      "text": "Also kinda considering doing a Xi'an stop on a different weekend and seeing whatever the main attractions are there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 15.767016653597999
+    },
+    {
+      "speaker": "user",
+      "text": "Random side thing: I’ve had a scratchy throat and some congestion, so I’ve been wondering what OTC medicine would even make sense for that.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 24.26615804368118
+    },
+    {
+      "speaker": "user",
+      "text": "For Shanghai, in my head I’m picturing a one-night stay at Hanting Hotel People's Square, checking in 2026-03-24, and it’d be under Lucas Martinez.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-24",
+          "book_hotel.guest_name=Lucas Martinez",
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 34.040654589795665
+    },
+    {
+      "speaker": "user",
+      "text": "And if I really take the train idea seriously, I keep coming back to D321 on 2026-05-21 for Yang Yu, probably Second Class.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-05-21",
+          "book_train.passenger_name=Yang Yu",
+          "book_train.seat_class=Second Class"
+        ]
+      },
+      "timestamp": 44.889294421933236
+    },
+    {
+      "speaker": "user",
+      "text": "Then for Xi'an, I might do Giant Wild Goose Pagoda on 2026-04-22 in the morning—5 tickets, visitor name Chen Ming—and yeah the Shanghai hotel would just be 1 night. Not sure if I'll actually do this.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-04-22",
+          "book_attraction_ticket.ticket_count=5",
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Chen Ming",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 54.495485187811795
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_005",
+        "checkin_date": "2026-03-24",
+        "nights": 1,
+        "guest_name": "Lucas Martinez"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_003",
+        "date": "2026-05-21",
+        "passenger_name": "Yang Yu",
+        "seat_class": "Second Class"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_xa_002",
+        "date": "2026-04-22",
+        "time_slot": "morning",
+        "visitor_name": "Chen Ming",
+        "ticket_count": 5
+      }
+    },
+    {
+      "tool": "search_medicine",
+      "params": {}
+    }
+  ],
+  "transcript_hash": "3874c940c833",
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 7,
+    "style": "proactive_medium",
+    "sample_type": "dag",
+    "template": "travel",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_hotels": 5,
+    "book_hotel": 7,
+    "search_trains": 2,
+    "book_train": 6,
+    "search_attractions": 3,
+    "book_attraction_ticket": 7,
+    "search_medicine": 1
+  },
+  "intent": {
+    "strength": "medium",
+    "signals": [
+      "Been thinking about",
+      "might end up",
+      "kinda considering",
+      "I’ve been wondering",
+      "in my head I’m picturing",
+      "If I really take the idea seriously",
+      "Not sure if I'll actually do this"
+    ],
+    "ambiguity_notes": "Ambiguous intent: the user is thinking out loud about possible travel and health options, sharing concrete details but repeatedly framing them as tentative plans and ending with explicit hesitation."
+  },
+  "strength": "medium",
+  "tool_universe": {
+    "read_tools": [
+      "search_attractions",
+      "search_hotels",
+      "search_medicine",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_attraction_ticket",
+      "book_hotel",
+      "book_train"
+    ]
+  },
+  "acceptable_decisions": [
+    "offer",
+    "ask"
+  ]
+}

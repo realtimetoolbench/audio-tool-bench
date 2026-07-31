@@ -1,0 +1,221 @@
+{
+  "task_id": "tint_000077",
+  "description": "Interruption (priority_no_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—urgent: check ride status for ride RIDE789012.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_ride_status.ride_id=RIDE789012"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_trains",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the train search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book train G1.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 15.855288575008867
+    },
+    {
+      "speaker": "user",
+      "text": "Use date 2026-03-04 and passenger Liu Yang.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_train.date=2026-03-04",
+          "book_train.passenger_name=Liu Yang"
+        ]
+      },
+      "timestamp": 19.243551761377798
+    },
+    {
+      "speaker": "user",
+      "text": "Seat class: First Class.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 24.784959968656214
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 28.665349448483315
+    },
+    {
+      "speaker": "user",
+      "text": "Book Hanting Hotel People's Square for guest Chen Ming.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Chen Ming"
+        ]
+      },
+      "timestamp": 33.06611267951905
+    },
+    {
+      "speaker": "user",
+      "text": "Check in 2026-03-26 for 2 nights.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-26",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 38.7580197350769
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Chengdu, then book Giant Panda Base on 2026-03-26, afternoon, for visitor Zhou Jun, 4 tickets.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-26",
+          "book_attraction_ticket.ticket_count=4",
+          "book_attraction_ticket.time_slot=afternoon",
+          "book_attraction_ticket.visitor_name=Zhou Jun",
+          "search_attractions.city=Chengdu"
+        ]
+      },
+      "timestamp": 43.62009832261343
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_001",
+        "date": "2026-03-04",
+        "passenger_name": "Liu Yang",
+        "seat_class": "First Class"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_005",
+        "checkin_date": "2026-03-26",
+        "nights": 2,
+        "guest_name": "Chen Ming"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_001",
+        "date": "2026-03-26",
+        "time_slot": "afternoon",
+        "visitor_name": "Zhou Jun",
+        "ticket_count": 4
+      }
+    }
+  ],
+  "transcript_hash": "afb0af0ebe1b",
+  "info_complete_turn": {
+    "check_ride_status": 2,
+    "search_trains": 1,
+    "book_train": 6,
+    "search_hotels": 7,
+    "book_hotel": 9,
+    "search_attractions": 10,
+    "book_attraction_ticket": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "check_ride_status"
+  ]
+}

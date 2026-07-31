@@ -1,0 +1,151 @@
+{
+  "task_id": "pro_001016",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m heading out from Beijing and ending up in Shanghai, so I’ve been thinking through the train situation for that stretch.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I’m planning a Chengdu stop on the side, mostly to wander around and hit a couple attractions while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Chengdu"
+        ]
+      },
+      "timestamp": 9.110879799630467
+    },
+    {
+      "speaker": "user",
+      "text": "For the Beijing-to-Shanghai leg, I’m set on train G3, and it’s on 2026-05-15.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-05-15"
+        ]
+      },
+      "timestamp": 17.95451520234905
+    },
+    {
+      "speaker": "user",
+      "text": "That ticket’s under Xu Jing, and I’m sticking with Second Class this time.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.passenger_name=Xu Jing",
+          "book_train.seat_class=Second Class"
+        ]
+      },
+      "timestamp": 25.276117596938448
+    },
+    {
+      "speaker": "user",
+      "text": "In Chengdu, we’re doing the Giant Panda Base on 2026-04-10 in the afternoon—David Liu is the name on it, and it’s for 4 people, which should be fun because after that we’ll probably just keep the day loose and maybe grab something spicy if everyone’s still awake…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-04-10",
+          "book_attraction_ticket.ticket_count=4",
+          "book_attraction_ticket.time_slot=afternoon",
+          "book_attraction_ticket.visitor_name=David Liu"
+        ]
+      },
+      "timestamp": 31.992836710633725
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-05-15",
+        "passenger_name": "Xu Jing",
+        "seat_class": "Second Class"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_001",
+        "date": "2026-04-10",
+        "time_slot": "afternoon",
+        "visitor_name": "David Liu",
+        "ticket_count": 4
+      }
+    }
+  ],
+  "transcript_hash": "241983726486",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "travel",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_trains": 1,
+    "book_train": 4,
+    "search_attractions": 2,
+    "book_attraction_ticket": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m heading out from Beijing and ending up in Shanghai",
+      "I’m planning a Chengdu stop",
+      "I’m set on train G3",
+      "That ticket’s under Xu Jing",
+      "we’re doing the Giant Panda Base"
+    ],
+    "ambiguity_notes": "Strong intent: the user narrates confirmed upcoming travel and ticket details; search context comes before booking specifics, with no request/authorization language."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_attractions",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_attraction_ticket",
+      "book_train"
+    ]
+  },
+  "expected_tool_if_act": "search_trains",
+  "expected_params_if_act": {
+    "origin": "Beijing",
+    "destination": "Shanghai"
+  }
+}

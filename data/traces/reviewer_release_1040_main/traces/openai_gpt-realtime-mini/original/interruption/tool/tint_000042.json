@@ -1,0 +1,820 @@
+{
+  "task_name": "tint_000042",
+  "start_time": "2026-04-29T01:15:00.104884",
+  "end_time": "2026-04-29T01:16:12.082661",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 120600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_SKGxHCajLpjFg82C",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6394.9878215789795,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 28,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—check my ride status first for ride ID RIDE123456.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "check_ride_status.ride_id=RIDE123456"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 217800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_XtBJrtvTZQjkskQb",
+              "name": "check_ride_status",
+              "arguments": {
+                "ride_id": "ride123456"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_XtBJrtvTZQjkskQb",
+          "tool_name": "check_ride_status",
+          "arguments": {
+            "ride_id": "ride123456"
+          },
+          "result": {
+            "success": false,
+            "error": "Ride not found or invalid ride ID",
+            "output": "Ride not found or invalid ride ID",
+            "raw_output": {
+              "success": false,
+              "error": "Ride not found or invalid ride ID",
+              "output": "Ride not found or invalid ride ID"
+            },
+            "latency_ms": 0.06389617919921875
+          },
+          "latency_ms": 0.06389617919921875
+        }
+      ],
+      "total_latency_ms": 2336.1048698425293,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 89,
+        "latency": {
+          "tool_call_ms": 512.229248046875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the flight search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 108600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_uex3vXjc7qvc3WsF",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_uex3vXjc7qvc3WsF",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.13184547424316406
+          },
+          "latency_ms": 0.13184547424316406
+        }
+      ],
+      "total_latency_ms": 5410.199880599976,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 184,
+        "latency": {
+          "tool_call_ms": 671.9990234375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.449087116697314,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-15.",
+        "timestamp": 16.449087116697314,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-15"
+          ]
+        },
+        "audio_size_bytes": 203400
+      },
+      "assistant_response": "Great! I’ll proceed to book the China Eastern flight MU5678 for you. Could you please provide the passenger name for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! I’ll proceed to book the China Eastern flight MU5678 for you. Could you please provide the passenger name for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 12153.86986732483,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 357600,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 858.094970703125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.583946698947642,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use passenger name Wang Fang and airline China Eastern.",
+        "timestamp": 21.583946698947642,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.passenger_name=Wang Fang"
+          ]
+        },
+        "audio_size_bytes": 165000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ltCxPrQlSmD4eHU5",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "passenger_name": "Wang Fang",
+                "date": "2026-03-15"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ltCxPrQlSmD4eHU5",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "passenger_name": "Wang Fang",
+            "date": "2026-03-15"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Wang Fang\nDate: 2026-03-15\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Wang Fang",
+              "date": "2026-03-15",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0209808349609375
+          },
+          "latency_ms": 0.0209808349609375
+        }
+      ],
+      "total_latency_ms": 10974.782943725586,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 115,
+        "latency": {
+          "tool_call_ms": 721.034912109375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.089000465233745,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Hangzhou.",
+        "timestamp": 27.089000465233745,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Hangzhou"
+          ]
+        },
+        "audio_size_bytes": 75600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_p3qQhg5zi8UJMaFX",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_p3qQhg5zi8UJMaFX",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Hangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_hz_001",
+                "name": "West Lake State Guesthouse",
+                "location": "West Lake",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_hz_002",
+                "name": "Hilton Hangzhou West Lake",
+                "location": "West Lake",
+                "stars": 4,
+                "price": 800,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_hz_003",
+                "name": "Home Inn West Lake",
+                "location": "West Lake",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.3
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.009059906005859375
+          },
+          "latency_ms": 0.009059906005859375
+        }
+      ],
+      "total_latency_ms": 9649.709701538086,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 137,
+        "latency": {
+          "tool_call_ms": 6316.6845703125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.431657883668485,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book West Lake State Guesthouse with check-in 2026-03-02 for 4 nights.",
+        "timestamp": 31.431657883668485,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-02",
+            "book_hotel.nights=4"
+          ]
+        },
+        "audio_size_bytes": 288000
+      },
+      "assistant_response": "Great choice! Could you please provide the guest's name for the booking? That way, I can finalize everything.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great choice! Could you please provide the guest's name for the booking? That way, I can finalize everything.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7868.359327316284,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 261600,
+        "event_count": 52,
+        "latency": {
+          "speech_ms": 909.683837890625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.685858677182814,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the hotel guest name to Li Na.",
+        "timestamp": 37.685858677182814,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.guest_name=Li Na"
+          ]
+        },
+        "audio_size_bytes": 102000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_m8yp7LSAyhyEiAKY",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_hz_001",
+                "guest_name": "Lina",
+                "checkin_date": "2026-03-02",
+                "nights": 4
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_m8yp7LSAyhyEiAKY",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_hz_001",
+            "guest_name": "Lina",
+            "checkin_date": "2026-03-02",
+            "nights": 4
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_hz_001\nCheck-in: 2026-03-02\nNights: 4\nGuest: Lina\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_hz_001",
+              "checkin_date": "2026-03-02",
+              "nights": 4,
+              "guest_name": "Lina",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.019788742065429688
+          },
+          "latency_ms": 0.019788742065429688
+        }
+      ],
+      "total_latency_ms": 4638.12780380249,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 128,
+        "latency": {
+          "tool_call_ms": 364.0517578125
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 41.98499029032587,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Chengdu.",
+        "timestamp": 41.98499029032587,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 88800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_kFSs0i9BaBqO6yrN",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_kFSs0i9BaBqO6yrN",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.102996826171875
+          },
+          "latency_ms": 0.102996826171875
+        }
+      ],
+      "total_latency_ms": 3609.4861030578613,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 111,
+        "latency": {
+          "tool_call_ms": 767.083984375
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 46.17779522542966,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Lao Ma Tou Hotpot on 2026-03-14 at 11:30 for 2 people; contact Chen Ming at 13822970109.",
+        "timestamp": 46.17779522542966,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Chen Ming",
+            "book_restaurant.date=2026-03-14",
+            "book_restaurant.party_size=2",
+            "book_restaurant.phone=13822970109",
+            "book_restaurant.time=11:30"
+          ]
+        },
+        "audio_size_bytes": 484200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_BlfALK2t9K810UpS",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_cd_002",
+                "date": "2026-03-14",
+                "time": "11:30",
+                "party_size": 2,
+                "contact_name": "Chen Ming",
+                "phone": "13822970109"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_BlfALK2t9K810UpS",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_cd_002",
+            "date": "2026-03-14",
+            "time": "11:30",
+            "party_size": 2,
+            "contact_name": "Chen Ming",
+            "phone": "13822970109"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_cd_002\nRestaurant: Lao Ma Tou Hotpot\nDate: 2026-03-14\nTime: 11:30\nParty size: 2\nContact: Chen Ming (13822970109)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_cd_002",
+              "restaurant_name": "Lao Ma Tou Hotpot",
+              "date": "2026-03-14",
+              "time": "11:30",
+              "party_size": 2,
+              "contact_name": "Chen Ming",
+              "phone": "13822970109",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.102996826171875
+          },
+          "latency_ms": 0.102996826171875
+        }
+      ],
+      "total_latency_ms": 8929.47506904602,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 156,
+        "latency": {
+          "tool_call_ms": 1116.900146484375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 18,
+    "total_tool_calls": 7
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "check_ride_status": {
+        "tool_call_ms": 512.229248046875
+      },
+      "book_flight": {
+        "tool_call_ms": 721.034912109375
+      },
+      "search_hotels": {
+        "tool_call_ms": 6316.6845703125
+      },
+      "book_hotel": {
+        "tool_call_ms": 364.0517578125
+      },
+      "search_restaurants": {
+        "tool_call_ms": 767.083984375
+      },
+      "book_restaurant": {
+        "tool_call_ms": 1116.900146484375
+      }
+    },
+    "info_complete_turn": {
+      "check_ride_status": 2,
+      "search_flights": 1,
+      "book_flight": 5,
+      "search_hotels": 6,
+      "book_hotel": 8,
+      "search_restaurants": 9,
+      "book_restaurant": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_hotel.guest_name: 期望'Li Na', 实际'Lina'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "search_flights: +2 turns (info@1, call@3)",
+    "behavior_score": 0.8571428571428571,
+    "behavior_score_details": "check_ride_status: 1(correct), search_flights: 1(correct), book_flight: 1(correct), search_hotels: 1(correct), book_hotel: 0(param_mismatch), search_restaurants: 1(correct), book_restaurant: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "guest_name: 'Li Na' vs 'Lina'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

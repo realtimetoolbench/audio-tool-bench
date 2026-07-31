@@ -1,0 +1,677 @@
+{
+  "task_name": "tint_000003",
+  "start_time": "2026-05-06T11:58:41.533288",
+  "end_time": "2026-05-06T11:59:23.130919",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Suzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_shows.city=Suzhou"
+          ]
+        },
+        "audio_size_bytes": 62400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_mJg0qD8ut0ZbHvQw",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Suzhou"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_mJg0qD8ut0ZbHvQw",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 shows in Suzhou:\n\n1. Kunqu Opera Peony Pavilion (ID: show_su_001)\n   Type: Theater\n   Venue: Suzhou Grand Theatre\n   Date/Time: 2026-04-29 19:30\n   Duration: 160 min\n   Price: ¥180-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.0/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_su_001",
+                "name": "Kunqu Opera Peony Pavilion",
+                "type": "Theater",
+                "venue": "Suzhou Grand Theatre",
+                "date": "2026-04-29",
+                "time": "19:30",
+                "duration": 160,
+                "price_range": "180-880",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 9.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04410743713378906
+          },
+          "latency_ms": 0.04410743713378906,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 5090.565919876099,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 21,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_shows",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 166800
+      },
+      "assistant_response": "Great! We’ve got a few flights from Beijing to Shanghai:\n\n1. Air China flight CA1234, leaving at 08:00 and arriving at 10:30, economy class for ¥800.\n\n2. China Eastern flight MU5678, leaving at 10:00 and arriving at 12:30, economy class for ¥750.\n\n3. Air China flight CA1456, leaving at 14:00 and arriving at 16:30, economy class for ¥850.\n\n4. China Eastern flight MU5890, leaving at 18:00 and arriving at 20:30, economy class for ¥900.\n\nNow, which one are you interested in booking, or would you like more details on any specific flight?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_CcwCkW75tpMkv453",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great! We’ve got a few flights from Beijing to Shanghai:\n\n1. Air China flight CA1234, leaving at 08:00 and arriving at 10:30, economy class for ¥800.\n\n2. China Eastern flight MU5678, leaving at 10:00 and arriving at 12:30, economy class for ¥750.\n\n3. Air China flight CA1456, leaving at 14:00 and arriving at 16:30, economy class for ¥850.\n\n4. China Eastern flight MU5890, leaving at 18:00 and arriving at 20:30, economy class for ¥900.\n\nNow, which one are you interested in booking, or would you like more details on any specific flight?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_CcwCkW75tpMkv453",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.07510185241699219
+          },
+          "latency_ms": 0.07510185241699219
+        }
+      ],
+      "total_latency_ms": 5144.490003585815,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1699200,
+        "event_count": 286,
+        "latency": {
+          "speech_ms": 1316.088623046875,
+          "tool_call_ms": 449.31298828125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.176720210445895,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-05-21.",
+        "timestamp": 10.176720210445895,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_flight.date=2026-05-21"
+          ]
+        },
+        "audio_size_bytes": 205800
+      },
+      "assistant_response": "Great choice! Could you please provide the passenger name for the booking? That way we can reserve the flight.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great choice! Could you please provide the passenger name for the booking? That way we can reserve the flight.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4385.713815689087,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 256800,
+        "event_count": 51,
+        "latency": {
+          "speech_ms": 1125.2138671875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.726299506062423,
+      "input_chunk": {
+        "role": "user",
+        "content": "Passenger name is Deng Hui; airline is China Eastern.",
+        "timestamp": 14.726299506062423,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_flight.passenger_name=Deng Hui"
+          ]
+        },
+        "audio_size_bytes": 154800
+      },
+      "assistant_response": "Fantastic! Your flight has been booked. The booking ID is FL10001, and it’s confirmed for Deng Hui on 2026-05-21. \n\nIf you need anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_gjSFAfr44gylNeUA",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "passenger_name": "Deng Hui",
+                "date": "2026-05-21"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Fantastic! Your flight has been booked. The booking ID is FL10001, and it’s confirmed for Deng Hui on 2026-05-21. \n\nIf you need anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_gjSFAfr44gylNeUA",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "passenger_name": "Deng Hui",
+            "date": "2026-05-21"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Deng Hui\nDate: 2026-05-21\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Deng Hui",
+              "date": "2026-05-21",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.04696846008300781
+          },
+          "latency_ms": 0.04696846008300781
+        }
+      ],
+      "total_latency_ms": 5366.420030593872,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 518400,
+        "event_count": 132,
+        "latency": {
+          "speech_ms": 1727.785888671875,
+          "tool_call_ms": 1009.27587890625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.6711256239999,
+      "input_chunk": {
+        "role": "user",
+        "content": "Check ride status for ride RIDE123456.",
+        "timestamp": 20.6711256239999,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "check_ride_status.ride_id=RIDE123456"
+          ]
+        },
+        "audio_size_bytes": 167400
+      },
+      "assistant_response": "It seems that the ride ID might not be correct or the ride hasn’t been found. Could you double-check the ride ID and provide any additional details? I’m here to help!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ziiN9StGBsy7rdah",
+              "name": "check_ride_status",
+              "arguments": {
+                "ride_id": "ride123456"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "It seems that the ride ID might not be correct or the ride hasn’t been found. Could you double-check the ride ID and provide any additional details? I’m here to help!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ziiN9StGBsy7rdah",
+          "tool_name": "check_ride_status",
+          "arguments": {
+            "ride_id": "ride123456"
+          },
+          "result": {
+            "success": false,
+            "error": "Ride not found or invalid ride ID",
+            "output": "Ride not found or invalid ride ID",
+            "raw_output": {
+              "success": false,
+              "error": "Ride not found or invalid ride ID",
+              "output": "Ride not found or invalid ride ID"
+            },
+            "latency_ms": 0.07390975952148438
+          },
+          "latency_ms": 0.07390975952148438
+        }
+      ],
+      "total_latency_ms": 4599.251747131348,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 410400,
+        "event_count": 94,
+        "latency": {
+          "speech_ms": 1401.3291015625,
+          "tool_call_ms": 617.22412109375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 94200
+      },
+      "assistant_response": "Sure! Let's continue with the search for shows in Suzhou. \n\nWe found the \"Kunqu Opera Peony Pavilion\" at the Suzhou Grand Theatre on 2026-04-29 at 19:30. \n\nWould you like to book tickets for that show? If so, let me know how many tickets and the seating area you'd prefer.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure! Let's continue with the search for shows in Suzhou. \n\nWe found the \"Kunqu Opera Peony Pavilion\" at the Suzhou Grand Theatre on 2026-04-29 at 19:30. \n\nWould you like to book tickets for that show? If so, let me know how many tickets and the seating area you'd prefer.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3990.5147552490234,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 772800,
+        "event_count": 128,
+        "latency": {
+          "speech_ms": 677.3681640625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.35814525381928,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the show ticket for Kunqu Opera Peony Pavilion, Orchestra seats.",
+        "timestamp": 30.35814525381928,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.seat_zone=Orchestra"
+          ]
+        },
+        "audio_size_bytes": 205800
+      },
+      "assistant_response": "Got it! Could you tell me how many tickets you'd like to book and the buyer's name along with a contact phone number? That way, I can complete the booking for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! Could you tell me how many tickets you'd like to book and the buyer's name along with a contact phone number? That way, I can complete the booking for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4276.23724937439,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 398400,
+        "event_count": 74,
+        "latency": {
+          "speech_ms": 710.93017578125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.662962838061596,
+      "input_chunk": {
+        "role": "user",
+        "content": "Ticket count 2; buyer name John Smith.",
+        "timestamp": 36.662962838061596,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.buyer_name=John Smith",
+            "book_show_ticket.ticket_count=2"
+          ]
+        },
+        "audio_size_bytes": 116400
+      },
+      "assistant_response": "Thanks! Could you also provide a contact phone number for the booking? That way, I'll finalize everything.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks! Could you also provide a contact phone number for the booking? That way, I'll finalize everything.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2935.490131378174,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 276000,
+        "event_count": 51,
+        "latency": {
+          "speech_ms": 710.5537109375
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 41.413290982456466,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone number 13800112233.",
+        "timestamp": 41.413290982456466,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.phone=13800112233"
+          ]
+        },
+        "audio_size_bytes": 184200
+      },
+      "assistant_response": "Your tickets are booked! The booking ID is SH70001. You’ve got two orchestra seats for the Kunqu Opera Peony Pavilion on April 29, 2026. If you need anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_H0TOkVlw3gOm3Ujj",
+              "name": "book_show_ticket",
+              "arguments": {
+                "show_id": "show_su_001",
+                "seat_zone": "Orchestra",
+                "ticket_count": 2,
+                "buyer_name": "John Smith",
+                "phone": "13801112233"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your tickets are booked! The booking ID is SH70001. You’ve got two orchestra seats for the Kunqu Opera Peony Pavilion on April 29, 2026. If you need anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_H0TOkVlw3gOm3Ujj",
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "show_id": "show_su_001",
+            "seat_zone": "Orchestra",
+            "ticket_count": 2,
+            "buyer_name": "John Smith",
+            "phone": "13801112233"
+          },
+          "result": {
+            "success": true,
+            "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_su_001\nShow: Kunqu Opera Peony Pavilion\nVenue: Suzhou Grand Theatre\nDate: 2026-04-29\nZone: Orchestra\nSeats: Orchestra Row 8 Seat 12, Orchestra Row 9 Seat 12\nQuantity: 2\nBuyer: John Smith\nPhone: 13801112233\nTotal: ¥1360\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "SH70001",
+              "show_id": "show_su_001",
+              "show_name": "Kunqu Opera Peony Pavilion",
+              "venue": "Suzhou Grand Theatre",
+              "date": "2026-04-29",
+              "seat_zone": "Orchestra",
+              "ticket_count": 2,
+              "seats": [
+                "Orchestra Row 8 Seat 12",
+                "Orchestra Row 9 Seat 12"
+              ],
+              "buyer_name": "John Smith",
+              "phone": "13801112233",
+              "total_price": 1360,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.28705596923828125
+          },
+          "latency_ms": 0.28705596923828125
+        }
+      ],
+      "total_latency_ms": 5800.422191619873,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 540000,
+        "event_count": 149,
+        "latency": {
+          "speech_ms": 1738.4638671875,
+          "tool_call_ms": 833.2451171875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 14,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_shows",
+    "inserted_tools": [
+      "search_flights",
+      "book_flight",
+      "check_ride_status"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_flights": {
+        "speech_ms": 1316.088623046875,
+        "tool_call_ms": 449.31298828125
+      },
+      "book_flight": {
+        "speech_ms": 1727.785888671875,
+        "tool_call_ms": 1009.27587890625
+      },
+      "check_ride_status": {
+        "speech_ms": 1401.3291015625,
+        "tool_call_ms": 617.22412109375
+      },
+      "book_show_ticket": {
+        "speech_ms": 1738.4638671875,
+        "tool_call_ms": 833.2451171875
+      }
+    },
+    "info_complete_turn": {
+      "search_flights": 2,
+      "book_flight": 4,
+      "check_ride_status": 5,
+      "search_shows": 1,
+      "book_show_ticket": 9
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_show_ticket.phone: 期望'13800112233', 实际'13801112233'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.8,
+    "behavior_score_details": "search_flights: 1(correct), book_flight: 1(correct), check_ride_status: 1(correct), search_shows: 1(correct), book_show_ticket: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_show_ticket",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13800112233' vs '13801112233'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

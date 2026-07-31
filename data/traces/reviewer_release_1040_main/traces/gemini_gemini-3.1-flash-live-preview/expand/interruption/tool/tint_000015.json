@@ -1,0 +1,572 @@
+{
+  "task_name": "tint_000015",
+  "start_time": "2026-05-06T21:19:45.944538",
+  "end_time": "2026-05-06T21:23:00.084888",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Shanghai to Beijing for 2026-04-18, and also help me with a hotel and a restaurant booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-04-18"
+          ]
+        },
+        "audio_size_bytes": 400200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_1825778210400446444",
+              "name": "search_flights",
+              "arguments": {
+                "destination": "Beijing",
+                "origin": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_flights",
+          "arguments": {
+            "destination": "Beijing",
+            "origin": "Shanghai"
+          },
+          "output": null,
+          "error": null,
+          "latency_ms": null,
+          "dangling": true,
+          "dangling_return": "never"
+        }
+      ],
+      "total_latency_ms": 9900.815963745117,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5,
+        "latency": {
+          "tool_call_ms": 6604.196071624756
+        },
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the flight search. Skip flights entirely.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 137400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_1825778210400444653",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_1825778210400446958",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "output": "Found 7 hotels in Beijing:\n\n1. The Peninsula Beijing (ID: hotel_bj_001)\n   Location: Wangfujing | 5 stars\n   Price: ¥1800/night | Rating: 4.9/5.0\n\n2. Park Hyatt Beijing (ID: hotel_bj_002)\n   Location: CBD | 5 stars\n   Price: ¥1500/night | Rating: 4.8/5.0\n\n3. Holiday Inn Express (ID: hotel_bj_003)\n   Location: Zhongguancun | 3 stars\n   Price: ¥450/night | Rating: 4.2/5.0\n\n4. Beijing Hotel (ID: hotel_bj_004)\n   Location: Downtown | 4 stars\n   Price: ¥600/night | Rating: 4.4/5.0\n\n5. Novotel Beijing Peace (ID: hotel_bj_005)\n   Location: Downtown | 4 stars\n   Price: ¥550/night | Rating: 4.5/5.0\n\n6. Grand Mercure Beijing (ID: hotel_bj_006)\n   Location: Downtown | 4 stars\n   Price: ¥700/night | Rating: 4.6/5.0\n\n7. Home Inn Dongzhimen (ID: hotel_bj_007)\n   Location: Downtown | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.028133392333984375
+        },
+        {
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "output": "Found 11 restaurants in Beijing:\n\n1. Shu Xiang Yuan (ID: rst_bj_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.5/5.0\n\n2. Mala Youhuo (ID: rst_bj_002)\n   Cuisine: Sichuan\n   Location: Chaoyang\n   Rating: 4.3/5.0\n\n3. Jingwei Zhai (ID: rst_bj_003)\n   Cuisine: Beijing\n   Location: Downtown\n   Rating: 4.7/5.0\n\n4. Quanjude Roast Duck (ID: rst_bj_004)\n   Cuisine: Beijing\n   Location: Qianmen\n   Rating: 4.6/5.0\n\n5. Chuan Ban (ID: rst_bj_005)\n   Cuisine: Sichuan\n   Location: CBD\n   Rating: 4.4/5.0\n\n6. Da Dong Roast Duck (ID: rst_bj_006)\n   Cuisine: Beijing\n   Location: CBD\n   Rating: 4.8/5.0\n\n7. Beijing Garden (ID: rst_bj_007)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.7/5.0\n\n8. Imperial Kitchen (ID: rst_bj_008)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.6/5.0\n\n9. China Palace (ID: rst_bj_009)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.5/5.0\n\n10. Golden Dragon (ID: rst_bj_010)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.3/5.0\n\n11. Green Lotus (ID: rst_bj_011)\n   Cuisine: Vegetarian\n   Location: Wangfujing\n   Rating: 4.6/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.04673004150390625
+        }
+      ],
+      "total_latency_ms": 1.1267662048339844,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7,
+        "latency": {
+          "tool_call_ms": 0.2570152282714844
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.009159391995341,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shenzhen.",
+        "timestamp": 14.009159391995341,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_hotels.city=Shenzhen"
+          ]
+        },
+        "audio_size_bytes": 77400
+      },
+      "assistant_response": "Could you give me your check in date and the number of nights you'll be staying? Also, do you have a preference for the restaurant booking, like cuisine or location in Shenzhen?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Could you give me your check in date and the number of nights you'll be staying? Also, do you have a preference for the restaurant booking, like cuisine or location in Shenzhen?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10885.199069976807,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 344672,
+        "event_count": 54,
+        "latency": {
+          "speech_ms": 3059.7190856933594
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 18.158519859446436,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the hotel Home Inn Futian CBD.",
+        "timestamp": 18.158519859446436,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 99600
+      },
+      "assistant_response": "I can help with that, but I need your check in date, the number of nights you'll be staying, and the name of the guest for the reservation. Also, did you still want to book a restaurant in Shenzhen?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can help with that, but I need your check in date, the number of nights you'll be staying, and the name of the guest for the reservation. Also, did you still want to book a restaurant in Shenzhen?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 113782.89890289307,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 424352,
+        "event_count": 60,
+        "latency": {
+          "speech_ms": 104257.68518447876
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 22.409191461467273,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set check-in to 2026-04-18 and stay 5 nights.",
+        "timestamp": 22.409191461467273,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.nights=5"
+          ]
+        },
+        "audio_size_bytes": 210600
+      },
+      "assistant_response": "I still need the guest's name for the reservation. And what about the restaurant booking? Do you have any preferences for cuisine or location in Shenzhen?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I still need the guest's name for the reservation. And what about the restaurant booking? Do you have any preferences for cuisine or location in Shenzhen?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 11713.38701248169,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 360002,
+        "event_count": 50,
+        "latency": {
+          "speech_ms": 3042.41681098938
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.439396159220742,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use guest name Yang Yu for the hotel booking.",
+        "timestamp": 27.439396159220742,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Yang Yu"
+          ]
+        },
+        "audio_size_bytes": 135000
+      },
+      "assistant_response": "I've successfully booked your room at the Home Inn Futian CBD for five nights, checking in on April 18th, 2026, under the name Yang Yu. Your booking ID is HT20001.\n\nNow, regarding the restaurant booking in Shenzhen, do you have any preferences for cuisine or location?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_3361346668753163463",
+              "name": "book_hotel",
+              "arguments": {
+                "checkin_date": "2026-04-18",
+                "nights": 5,
+                "hotel_id": "Home Inn Futian CBD",
+                "guest_name": "Yang Yu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've successfully booked your room at the Home Inn Futian CBD for five nights, checking in on April 18th, 2026, under the name Yang Yu. Your booking ID is HT20001.\n\nNow, regarding the restaurant booking in Shenzhen, do you have any preferences for cuisine or location?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_hotel",
+          "arguments": {
+            "checkin_date": "2026-04-18",
+            "nights": 5,
+            "hotel_id": "Home Inn Futian CBD",
+            "guest_name": "Yang Yu"
+          },
+          "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: Home Inn Futian CBD\nCheck-in: 2026-04-18\nNights: 5\nGuest: Yang Yu\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.010013580322265625
+        }
+      ],
+      "total_latency_ms": 21067.81792640686,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 756484,
+        "event_count": 94,
+        "latency": {
+          "speech_ms": 4391.023874282837,
+          "tool_call_ms": 2791.417121887207
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 32.85925991498791,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Nanjing.",
+        "timestamp": 32.85925991498791,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_restaurants.city=Nanjing"
+          ]
+        },
+        "audio_size_bytes": 90000
+      },
+      "assistant_response": "I found two restaurants in Nanjing:\n\n1.  **Nanjing Impressions** (ID: rst\\_nj\\_001) in Xinjiekou, serving Jiangsu cuisine with a 4.7 rating.\n2.  **Lao Men Dong Restaurant** (ID: rst\\_nj\\_002) in Qinhuai, also serving Jiangsu cuisine with a 4.5 rating.\n\nWould you like me to book a table at either of these? If so, please let me know which one, the date and time, the party size, and a contact name and phone number.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_1895215850641636834",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Nanjing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found two restaurants in Nanjing:\n\n1.  **Nanjing Impressions** (ID: rst\\_nj\\_001) in Xinjiekou, serving Jiangsu cuisine with a 4.7 rating.\n2.  **Lao Men Dong Restaurant** (ID: rst\\_nj\\_002) in Qinhuai, also serving Jiangsu cuisine with a 4.5 rating.\n\nWould you like me to book a table at either of these? If so, please let me know which one, the date and time, the party size, and a contact name and phone number.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Nanjing"
+          },
+          "output": "Found 2 restaurants in Nanjing:\n\n1. Nanjing Impressions (ID: rst_nj_001)\n   Cuisine: Jiangsu\n   Location: Xinjiekou\n   Rating: 4.7/5.0\n\n2. Lao Men Dong Restaurant (ID: rst_nj_002)\n   Cuisine: Jiangsu\n   Location: Qinhuai\n   Rating: 4.5/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.012874603271484375
+        }
+      ],
+      "total_latency_ms": 4850.89111328125,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 86912,
+        "event_count": 25,
+        "latency": {
+          "speech_ms": 2398.0369567871094,
+          "tool_call_ms": 1315.3207302093506
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.57765724169996,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Lao Men Dong Restaurant on 2026-05-06 at 18:00 for 5 people. Use contact Li Na, phone 13864788741.",
+        "timestamp": 37.57765724169996,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Li Na",
+            "book_restaurant.date=2026-05-06",
+            "book_restaurant.party_size=5",
+            "book_restaurant.phone=13864788741",
+            "book_restaurant.time=18:00"
+          ]
+        },
+        "audio_size_bytes": 515400
+      },
+      "assistant_response": "Your reservation at Lao Men Dong Restaurant is confirmed for May 6th, 2026, at 18:00 for five people. The booking ID is BK1001, and it's under contact Li Na. Is there anything else I can help you with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_10377140767963691692",
+              "name": "book_restaurant",
+              "arguments": {
+                "date": "2026-05-06",
+                "contact_name": "Li Na",
+                "restaurant_id": "rst_nj_002",
+                "time": "18:00",
+                "party_size": 5,
+                "phone": "1386478741"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your reservation at Lao Men Dong Restaurant is confirmed for May 6th, 2026, at 18:00 for five people. The booking ID is BK1001, and it's under contact Li Na. Is there anything else I can help you with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "date": "2026-05-06",
+            "contact_name": "Li Na",
+            "restaurant_id": "rst_nj_002",
+            "time": "18:00",
+            "party_size": 5,
+            "phone": "1386478741"
+          },
+          "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_nj_002\nRestaurant: Lao Men Dong Restaurant\nDate: 2026-05-06\nTime: 18:00\nParty size: 5\nContact: Li Na (1386478741)\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.036716461181640625
+        }
+      ],
+      "total_latency_ms": 21931.44416809082,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 553444,
+        "event_count": 70,
+        "latency": {
+          "speech_ms": 7872.369289398193,
+          "tool_call_ms": 6859.744071960449
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 14,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "forbidden_tools": [
+      "search_flights",
+      "book_flight"
+    ],
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_hotels": {
+        "speech_ms": 3059.7190856933594
+      },
+      "book_hotel": {
+        "speech_ms": 4391.023874282837,
+        "tool_call_ms": 2791.417121887207
+      },
+      "search_restaurants": {
+        "speech_ms": 2398.0369567871094,
+        "tool_call_ms": 1315.3207302093506
+      },
+      "book_restaurant": {
+        "speech_ms": 7872.369289398193,
+        "tool_call_ms": 6859.744071960449
+      }
+    },
+    "info_complete_turn": {
+      "search_hotels": 3,
+      "book_hotel": 6,
+      "search_restaurants": 7,
+      "book_restaurant": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=False] + priority[respected cancel]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "search_hotels",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 2 调用，info_complete_turn=3"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "hotel_id: 'hotel_sz_004' vs 'Home Inn Futian CBD'"
+        },
+        {
+          "tool": "search_restaurants",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 2 调用，info_complete_turn=7"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13864788741' vs '1386478741'"
+        }
+      ],
+      "error_types": {
+        "premature_call": 2,
+        "parameter_reasoning": 1,
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

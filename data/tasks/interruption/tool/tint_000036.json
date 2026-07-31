@@ -1,0 +1,168 @@
+{
+  "task_id": "tint_000036",
+  "description": "Interruption (tool_correction): 5 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "get_transaction_history"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Beijing.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Beijing, I meant Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_shows",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_shows.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search shows in Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 9.384331659356402
+    },
+    {
+      "speaker": "user",
+      "text": "Book 4 VIP tickets for show Teahouse.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_show_ticket.seat_zone=VIP",
+          "book_show_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 14.06955318001716
+    },
+    {
+      "speaker": "user",
+      "text": "Use buyer name Chen Ming and phone 13898765432.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Chen Ming",
+          "book_show_ticket.phone=13898765432"
+        ]
+      },
+      "timestamp": 19.27487090103231
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai. Book Chuanfu Laozao on 2026-03-22 at 14:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-22",
+          "book_restaurant.time=14:00",
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 24.991354567787578
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 10 at 14:00. Contact Wang Fang, phone 13864788741. Then get transaction history for account 6222021234567890.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Wang Fang",
+          "book_restaurant.party_size=10",
+          "book_restaurant.phone=13864788741",
+          "get_transaction_history.account_number=6222021234567890"
+        ]
+      },
+      "timestamp": 31.621480792826745
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_cd_002",
+        "seat_zone": "VIP",
+        "ticket_count": 4,
+        "buyer_name": "Chen Ming",
+        "phone": "13898765432"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_001",
+        "date": "2026-03-22",
+        "time": "14:00",
+        "party_size": 10,
+        "contact_name": "Wang Fang",
+        "phone": "13864788741"
+      }
+    },
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6222021234567890"
+      }
+    }
+  ],
+  "transcript_hash": "866298cc37c9",
+  "info_complete_turn": {
+    "search_shows": 2,
+    "book_show_ticket": 5,
+    "search_restaurants": 6,
+    "book_restaurant": 7,
+    "get_transaction_history": 7
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_shows",
+    "wrong_params": {
+      "search_shows.city": "Beijing"
+    },
+    "corrected_params": {
+      "search_shows.city": "Chengdu"
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "task_id": "int_000047",
+  "description": "Interruption (redirection): 5 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_doctors",
+    "book_appointment",
+    "get_transaction_history"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search doctors in Guangzhou. Then book an appointment with doctor Guo Ping for patient Song Qi.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_appointment.patient_name=Song Qi",
+          "search_doctors.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the appointment on 2026-04-08, morning slot.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_appointment.date=2026-04-08",
+          "book_appointment.time_slot=morning"
+        ]
+      },
+      "timestamp": 7.4696151739702685
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search movies in Guangzhou. Then book 3 seats for The Wandering Earth 3 at Jinyi Cinema Tianhe, 19:00, buyer He Xia.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=He Xia",
+          "book_movie_ticket.cinema=Jinyi Cinema Tianhe",
+          "book_movie_ticket.seat_count=3",
+          "book_movie_ticket.showtime=19:00",
+          "search_movies.city=Guangzhou"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "doctor",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Confirm the movie ticket booking: showtime 19:00, seat count 3, buyer name He Xia.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 22.762211485977964
+    },
+    {
+      "speaker": "user",
+      "text": "Now pull transaction history for account 6217001234567890.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "get_transaction_history.account_number=6217001234567890"
+        ]
+      },
+      "timestamp": 29.418149433527248
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the doctor—continue.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 35.63995202753406
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_gz_001",
+        "cinema": "Jinyi Cinema Tianhe",
+        "showtime": "19:00",
+        "seat_count": 3,
+        "buyer_name": "He Xia"
+      }
+    },
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_gz_002",
+        "date": "2026-04-08",
+        "time_slot": "morning",
+        "patient_name": "Song Qi"
+      }
+    },
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6217001234567890"
+      }
+    }
+  ],
+  "transcript_hash": "801f0c276021",
+  "info_complete_turn": {
+    "search_movies": 3,
+    "book_movie_ticket": 3,
+    "search_doctors": 1,
+    "book_appointment": 2,
+    "get_transaction_history": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 6,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "doctor",
+    "template": null,
+    "generated": true
+  }
+}

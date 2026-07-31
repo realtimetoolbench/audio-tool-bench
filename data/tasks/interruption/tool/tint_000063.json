@@ -1,0 +1,185 @@
+{
+  "task_id": "tint_000063",
+  "description": "Interruption (priority_late_return): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "check_balance"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, first check my balance for account number 6222021234567890.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_balance.account_number=6222021234567890"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_flights",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the flight search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5678 on 2026-03-05.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-03-05"
+        ]
+      },
+      "timestamp": 16.545233917975743
+    },
+    {
+      "speaker": "user",
+      "text": "Use passenger name Liu Yang and airline China Eastern.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.passenger_name=Liu Yang"
+        ]
+      },
+      "timestamp": 20.979670186516447
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 26.33582478709551
+    },
+    {
+      "speaker": "user",
+      "text": "Book the Beijing Hotel for check-in 2026-03-15 for 3 nights.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-15",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 30.91772072887195
+    },
+    {
+      "speaker": "user",
+      "text": "Set guest name Zhang Wei, then search attractions in Xi'an.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Zhang Wei",
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 37.26301746180826
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6222021234567890"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-05",
+        "passenger_name": "Liu Yang"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_004",
+        "checkin_date": "2026-03-15",
+        "nights": 3,
+        "guest_name": "Zhang Wei"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    }
+  ],
+  "transcript_hash": "050f8a393b55",
+  "info_complete_turn": {
+    "check_balance": 2,
+    "search_flights": 1,
+    "book_flight": 5,
+    "search_hotels": 6,
+    "book_hotel": 8,
+    "search_attractions": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "check_balance"
+  ]
+}

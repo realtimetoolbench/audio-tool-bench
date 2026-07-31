@@ -1,0 +1,192 @@
+{
+  "task_id": "tint_000150",
+  "description": "Interruption (priority_early_return): 5 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "get_transaction_history",
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Guangzhou.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search movies in Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_movies.city=Shanghai"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie tickets for The Wandering Earth 3.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 9.594320606458748
+    },
+    {
+      "speaker": "user",
+      "text": "Use Grand Cinema and the 16:10 showtime.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.cinema=Grand Cinema",
+          "book_movie_ticket.showtime=16:10"
+        ]
+      },
+      "timestamp": 15.191322942436303
+    },
+    {
+      "speaker": "user",
+      "text": "Book 4 seats and set buyer name to Ma Liang.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Ma Liang",
+          "book_movie_ticket.seat_count=4"
+        ]
+      },
+      "timestamp": 20.016125035085757
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Get transaction history for account number 6228480012345678.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "get_transaction_history.account_number=6228480012345678"
+        ]
+      },
+      "timestamp": 29.15819168543374
+    },
+    {
+      "speaker": "user",
+      "text": "Book Bingsheng Restaurant on 2026-04-12 at 19:00 for 9 people.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-04-12",
+          "book_restaurant.party_size=9",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 34.975057065890084
+    },
+    {
+      "speaker": "user",
+      "text": "Set contact name Lin Bo and phone 13800112233.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Lin Bo",
+          "book_restaurant.phone=13800112233"
+        ]
+      },
+      "timestamp": 40.81083197210076
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_sh_001",
+        "cinema": "Grand Cinema",
+        "showtime": "16:10",
+        "seat_count": 4,
+        "buyer_name": "Ma Liang"
+      }
+    },
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6228480012345678"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_gz_001",
+        "date": "2026-04-12",
+        "time": "19:00",
+        "party_size": 9,
+        "contact_name": "Lin Bo",
+        "phone": "13800112233"
+      }
+    }
+  ],
+  "transcript_hash": "4c9b3ec38849",
+  "info_complete_turn": {
+    "search_movies": 2,
+    "book_movie_ticket": 5,
+    "get_transaction_history": 7,
+    "search_restaurants": 1,
+    "book_restaurant": 9
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "inserted_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ]
+}

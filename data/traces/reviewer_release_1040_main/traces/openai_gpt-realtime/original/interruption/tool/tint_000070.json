@@ -1,0 +1,387 @@
+{
+  "task_name": "tint_000070",
+  "start_time": "2026-04-28T12:03:03.340602",
+  "end_time": "2026-04-28T12:03:39.681068",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search parking near Shanghai Hongqiao Railway Station for 2026-03-05, 10:00 to 16:00, and also help me rent a car later.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_car.pickup_date=2026-03-05",
+            "search_cars.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 496200
+      },
+      "assistant_response": "你想找上海虹桥火车站附近的停车场，没问题！不过具体的时段和价格信息我这边暂时查不了，但我可以先帮你找出有哪些停车场。接下来再帮你安排租车。咱们一步步来，先找停车场开始吧！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "你想找上海虹桥火车站附近的停车场，没问题！不过具体的时段和价格信息我这边暂时查不了，但我可以先帮你找出有哪些停车场。接下来再帮你安排租车。咱们一步步来，先找停车场开始吧！",
+          "tool_calls": [
+            {
+              "id": "call_J1DLYhUhgBYkVZmA",
+              "name": "search_parking",
+              "arguments": {
+                "city": "上海"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "你想找上海虹桥火车站附近的停车场，没问题！不过具体的时段和价格信息我这边暂时查不了，但我可以先帮你找出有哪些停车场。接下来再帮你安排租车。咱们一步步来，先找停车场开始吧！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 14172.11389541626,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 938400,
+        "event_count": 178,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "你想找上海虹桥火车站附近的停车场，没问题！不过具体的时段和价格信息我这边暂时查不了，但我可以先帮你找出有哪些停车场。接下来再帮你安排租车。咱们一步步来，先找停车场开始吧！"
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Cancel the parking search and skip any parking reservation.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_parking",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 174000
+      },
+      "assistant_response": "好的，我马上停止停车场的查询。那我们直接进入下一步，帮你安排租车吧！你想在什么时间、什么车型的基础上租车呢？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，我马上停止停车场的查询。那我们直接进入下一步，帮你安排租车吧！你想在什么时间、什么车型的基础上租车呢？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2751.9712448120117,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 537600,
+        "event_count": 99,
+        "latency": {
+          "speech_ms": 971.73486328125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 15.38950465074313,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search rental cars in Shanghai.",
+        "timestamp": 15.38950465074313,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 91800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_OT8Lm7b7AcrvXx8i",
+              "name": "search_cars",
+              "arguments": {
+                "city": "上海"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_OT8Lm7b7AcrvXx8i",
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "上海"
+          },
+          "result": {
+            "success": false,
+            "output": "Sorry, no rental cars available in 上海.",
+            "raw_output": null,
+            "error": "City not found: 上海",
+            "latency_ms": 0.04124641418457031
+          },
+          "latency_ms": 0.04124641418457031
+        }
+      ],
+      "total_latency_ms": 3794.930934906006,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 100,
+        "latency": {
+          "tool_call_ms": 788.832763671875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.227349743652713,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the car with car ID BMW 5 Series.",
+        "timestamp": 20.227349743652713,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 123000
+      },
+      "assistant_response": "我明白你的意思，不过我需要一些额外的细节，比如你打算哪一天取车，以及租几天。还有你的名字也要确认一下。你把这些信息告诉我，我就能帮你完成预订！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "我明白你的意思，不过我需要一些额外的细节，比如你打算哪一天取车，以及租几天。还有你的名字也要确认一下。你把这些信息告诉我，我就能帮你完成预订！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5840.533971786499,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 664800,
+        "event_count": 121,
+        "latency": {
+          "speech_ms": 602.2861328125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.400364613662948,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set pickup date to 2026-03-05 and rent it for 6 days.",
+        "timestamp": 25.400364613662948,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_car.days=6"
+          ]
+        },
+        "audio_size_bytes": 237000
+      },
+      "assistant_response": "好的，现在就差你的名字了。请告诉我用哪个名字来预订这辆车，我马上给你搞定！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，现在就差你的名字了。请告诉我用哪个名字来预订这辆车，我马上给你搞定！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5384.282112121582,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 364800,
+        "event_count": 72,
+        "latency": {
+          "speech_ms": 591.913818359375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.46842383592496,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use renter name Zhang Wei and confirm the booking.",
+        "timestamp": 31.46842383592496,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_car.renter_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 147600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_zGl7fcOBgVChDfEw",
+              "name": "book_car",
+              "arguments": {
+                "car_id": "BMW 5 Series",
+                "pickup_date": "2026-03-05",
+                "days": 6,
+                "renter_name": "Zhang Wei"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_zGl7fcOBgVChDfEw",
+          "tool_name": "book_car",
+          "arguments": {
+            "car_id": "BMW 5 Series",
+            "pickup_date": "2026-03-05",
+            "days": 6,
+            "renter_name": "Zhang Wei"
+          },
+          "result": {
+            "success": true,
+            "output": "Car rental booking successful!\n\nBooking ID: CR30001\nCar ID: BMW 5 Series\nPickup: 2026-03-05\nDays: 6\nRenter: Zhang Wei\nInsurance: Included\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "CR30001",
+              "car_id": "BMW 5 Series",
+              "pickup_date": "2026-03-05",
+              "days": 6,
+              "renter_name": "Zhang Wei",
+              "with_insurance": true,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0209808349609375
+          },
+          "latency_ms": 0.0209808349609375
+        }
+      ],
+      "total_latency_ms": 4390.707969665527,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 129,
+        "latency": {
+          "tool_call_ms": 1008.920166015625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 9,
+    "total_tool_calls": 2
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_parking",
+    "forbidden_tools": [
+      "search_parking",
+      "reserve_parking_spot"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "book_car": {
+        "tool_call_ms": 1008.920166015625
+      }
+    },
+    "info_complete_turn": {
+      "search_cars": 1,
+      "book_car": 6
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: search_cars.city: 期望'Shanghai', 实际'上海'; book_car.car_id: 期望'car_sh_003', 实际'BMW 5 Series'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "search_cars: +2 turns (info@1, call@3)",
+    "behavior_score": 0.0,
+    "behavior_score_details": "search_cars: 0(param_mismatch), book_car: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "search_cars",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "city: 'Shanghai' vs '上海'"
+        },
+        {
+          "tool": "book_car",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "car_id: 'car_sh_003' vs 'BMW 5 Series'"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

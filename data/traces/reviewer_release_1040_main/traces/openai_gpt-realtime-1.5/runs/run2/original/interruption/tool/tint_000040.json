@@ -1,0 +1,609 @@
+{
+  "task_name": "tint_000040",
+  "start_time": "2026-07-29T02:41:32.524161",
+  "end_time": "2026-07-29T02:44:32.711380",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Find a restaurant in Sanlitun, Beijing for 2 people tonight at 7 pm, and also handle flights and a hotel booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 345600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_pLLlQrxvlGsNhvzg",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Beijing",
+                "cuisine": "Sanlitun"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 11103.79695892334,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 28,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the restaurant. Cancel the restaurant search and any restaurant booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 219000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1.2972354888916016,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 9
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 15.411918402734283,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 15.411918402734283,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_flights.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 109800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4843.75,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.386761889461795,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the flight MU5678 on 2026-03-21 with China Eastern.",
+        "timestamp": 20.386761889461795,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-03-21"
+          ]
+        },
+        "audio_size_bytes": 262800
+      },
+      "assistant_response": "I can book that flight for you, but I'll need the passenger's name to complete the reservation. Could you provide that for me, please?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_W58uSxDW3E6qN3hf",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I can book that flight for you, but I'll need the passenger's name to complete the reservation. Could you provide that for me, please?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_W58uSxDW3E6qN3hf",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04696846008300781
+          },
+          "latency_ms": 0.04696846008300781
+        }
+      ],
+      "total_latency_ms": 30423.544883728027,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 290400,
+        "event_count": 88,
+        "latency": {
+          "speech_ms": 22354.13916015625,
+          "tool_call_ms": 4195.26611328125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 26.10095449023771,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the passenger name to Liu Yang for that flight booking.",
+        "timestamp": 26.10095449023771,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.passenger_name=Liu Yang"
+          ]
+        },
+        "audio_size_bytes": 162000
+      },
+      "assistant_response": "Your flight has been successfully booked for Liu Yang on March 21, 2026, on flight MU5678. The booking ID is FL10001. Now, you mentioned also needing a hotel booking. Could you tell me which city and check-in date you'd like for the hotel?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_u3A65sGXlb29k4nm",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "passenger_name": "Liu Yang",
+                "date": "2026-03-21"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your flight has been successfully booked for Liu Yang on March 21, 2026, on flight MU5678. The booking ID is FL10001. Now, you mentioned also needing a hotel booking. Could you tell me which city and check-in date you'd like for the hotel?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_u3A65sGXlb29k4nm",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "passenger_name": "Liu Yang",
+            "date": "2026-03-21"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Liu Yang\nDate: 2026-03-21\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Liu Yang",
+              "date": "2026-03-21",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.032901763916015625
+          },
+          "latency_ms": 0.032901763916015625
+        }
+      ],
+      "total_latency_ms": 18548.2280254364,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 720000,
+        "event_count": 155,
+        "latency": {
+          "speech_ms": 10671.30029296875,
+          "tool_call_ms": 9278.10107421875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 32.06568731697264,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Hangzhou.",
+        "timestamp": 32.06568731697264,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_hotels.city=Hangzhou"
+          ]
+        },
+        "audio_size_bytes": 76800
+      },
+      "assistant_response": "I found three hotels in Hangzhou for you:\n\n1. West Lake State Guesthouse – a luxurious 5-star option at ¥1500 per night with a 4.9/5 rating.\n2. Hilton Hangzhou West Lake – a comfortable 4-star choice at ¥800 per night, rated 4.6/5.\n3. Home Inn West Lake – a budget-friendly 3-star hotel at ¥450 per night, with a 4.3/5 rating.\n\nLet me know which hotel you'd like to book, the check-in date, number of nights, and the guest name, and I'll take care of the booking for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ABLqNYa2oXCKJhNI",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three hotels in Hangzhou for you:\n\n1. West Lake State Guesthouse – a luxurious 5-star option at ¥1500 per night with a 4.9/5 rating.\n2. Hilton Hangzhou West Lake – a comfortable 4-star choice at ¥800 per night, rated 4.6/5.\n3. Home Inn West Lake – a budget-friendly 3-star hotel at ¥450 per night, with a 4.3/5 rating.\n\nLet me know which hotel you'd like to book, the check-in date, number of nights, and the guest name, and I'll take care of the booking for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ABLqNYa2oXCKJhNI",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Hangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_hz_001",
+                "name": "West Lake State Guesthouse",
+                "location": "West Lake",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_hz_002",
+                "name": "Hilton Hangzhou West Lake",
+                "location": "West Lake",
+                "stars": 4,
+                "price": 800,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_hz_003",
+                "name": "Home Inn West Lake",
+                "location": "West Lake",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.3
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.09083747863769531
+          },
+          "latency_ms": 0.09083747863769531
+        }
+      ],
+      "total_latency_ms": 42899.99008178711,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1528800,
+        "event_count": 246,
+        "latency": {
+          "speech_ms": 6520.852783203125,
+          "tool_call_ms": 2746.89794921875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 36.14510385035283,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the hotel Home Inn West Lake, check in on 2026-03-06, for 3 nights.",
+        "timestamp": 36.14510385035283,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-06",
+            "book_hotel.nights=3"
+          ]
+        },
+        "audio_size_bytes": 283800
+      },
+      "assistant_response": "The hotel booking is confirmed! Liu Yang will be staying at Home Inn West Lake, checking in on 2026-03-06 for three nights. The booking ID is HT20001. If there's anything else I can help with, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_AhL6DzZLmIwngaKu",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_hz_003",
+                "checkin_date": "2026-03-06",
+                "nights": 3,
+                "guest_name": "Liu Yang"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "The hotel booking is confirmed! Liu Yang will be staying at Home Inn West Lake, checking in on 2026-03-06 for three nights. The booking ID is HT20001. If there's anything else I can help with, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_AhL6DzZLmIwngaKu",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_hz_003",
+            "checkin_date": "2026-03-06",
+            "nights": 3,
+            "guest_name": "Liu Yang"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_hz_003\nCheck-in: 2026-03-06\nNights: 3\nGuest: Liu Yang\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_hz_003",
+              "checkin_date": "2026-03-06",
+              "nights": 3,
+              "guest_name": "Liu Yang",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.04100799560546875
+          },
+          "latency_ms": 0.04100799560546875
+        }
+      ],
+      "total_latency_ms": 42918.22695732117,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 669600,
+        "event_count": 147,
+        "latency": {
+          "speech_ms": 9806.019775390625,
+          "tool_call_ms": 8020.146728515625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 42.96465463068055,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use guest name Zhang Wei for the hotel booking.",
+        "timestamp": 42.96465463068055,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 133800
+      },
+      "assistant_response": "The hotel booking has already been confirmed under the name Liu Yang. If you'd like me to change the guest name to Zhang Wei, I'll need to know if there's a specific process for modifying that booking or if you would prefer to cancel and rebook. Unfortunately, I don't have a direct way to edit an existing booking. Would you like to cancel the current reservation and rebook under Zhang Wei, or would you like to keep it as is?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "The hotel booking has already been confirmed under the name Liu Yang. If you'd like me to change the guest name to Zhang Wei, I'll need to know if there's a specific process for modifying that booking or if you would prefer to cancel and rebook. Unfortunately, I don't have a direct way to edit an existing booking. Would you like to cancel the current reservation and rebook under Zhang Wei, or would you like to keep it as is?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 29438.771963119507,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1128000,
+        "event_count": 164,
+        "latency": {
+          "speech_ms": 5907.382080078125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "forbidden_tools": [
+      "search_restaurants",
+      "book_restaurant"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_flight": {
+        "speech_ms": 10671.30029296875,
+        "tool_call_ms": 9278.10107421875
+      },
+      "search_hotels": {
+        "speech_ms": 6520.852783203125,
+        "tool_call_ms": 2746.89794921875
+      },
+      "book_hotel": {
+        "speech_ms": 5907.382080078125
+      }
+    },
+    "info_complete_turn": {
+      "search_flights": 3,
+      "book_flight": 5,
+      "search_hotels": 6,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch+premature_call",
+    "details": "参数不匹配: book_hotel.guest_name: 期望'Zhang Wei', 实际'Liu Yang'",
+    "call_timing": "book_hotel 在 step 7 调用，但信息要到 turn 8 才收齐",
+    "extra_turns": 1,
+    "extra_turns_details": "search_flights: +1 turns (info@3, call@4)",
+    "behavior_score": 0.75,
+    "behavior_score_details": "search_flights: 1(correct), book_flight: 1(correct), search_hotels: 1(correct), book_hotel: 0(premature_call)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 7 调用，info_complete_turn=8"
+        }
+      ],
+      "error_types": {
+        "premature_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

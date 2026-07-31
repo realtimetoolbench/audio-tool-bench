@@ -1,0 +1,780 @@
+{
+  "task_name": "int_000021",
+  "start_time": "2026-05-06T12:14:56.979181",
+  "end_time": "2026-05-06T12:15:58.348284",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shenzhen.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 112800
+      },
+      "assistant_response": "哎呀，看起来目前没有找到从北京到深圳的火车信息。有可能是暂时的数",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_TQyar02awGXkv1mf",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shenzhen"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "哎呀，看起来目前没有找到从北京到深圳的火车信息。有可能是暂时的数",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_TQyar02awGXkv1mf",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shenzhen"
+          },
+          "result": {
+            "success": false,
+            "output": "Sorry, no trains found from Beijing to Shenzhen.",
+            "raw_output": null,
+            "error": "Route not found: Beijing -> Shenzhen",
+            "latency_ms": 0.026941299438476562
+          },
+          "latency_ms": 0.026941299438476562
+        }
+      ],
+      "total_latency_ms": 4238.739967346191,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 96000,
+        "event_count": 80,
+        "interrupted": true,
+        "interrupt_trigger_type": "forced",
+        "partial_transcript": "哎呀，看起来目前没有找到从北京到深圳的火车信息。有可能是暂时的数"
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shenzhen, I meant Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "keyword",
+            "keyword": "Shenzhen",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 100800
+      },
+      "assistant_response": "好的，我帮你查到了几趟从北京到上海的列车：\n\n1. G1 高铁，早上6:00出发，10:28到，全程4小时28分钟，二等座553元，一等座933元。\n\n2. G3 高铁，早上7:00出发，11:35到，4小时35分钟，票价和G1一样。\n\n3. D321 动车，早上8:30出发，下午4:45到，全程8小时15分钟，二等座309元，一等座494元。\n\n你想选哪一趟呢？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_AOlEmzIYuzmKg75D",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "好的，我帮你查到了几趟从北京到上海的列车：\n\n1. G1 高铁，早上6:00出发，10:28到，全程4小时28分钟，二等座553元，一等座933元。\n\n2. G3 高铁，早上7:00出发，11:35到，4小时35分钟，票价和G1一样。\n\n3. D321 动车，早上8:30出发，下午4:45到，全程8小时15分钟，二等座309元，一等座494元。\n\n你想选哪一趟呢？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_AOlEmzIYuzmKg75D",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.048160552978515625
+          },
+          "latency_ms": 0.048160552978515625
+        }
+      ],
+      "total_latency_ms": 10221.027135848999,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1884000,
+        "event_count": 334,
+        "latency": {
+          "speech_ms": 1414.221923828125,
+          "tool_call_ms": 824.07421875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.20109469010393,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train D321 on 2026-03-16.",
+        "timestamp": 10.20109469010393,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-16"
+          ]
+        },
+        "audio_size_bytes": 181200
+      },
+      "assistant_response": "没问题，好的，接下来咱们就来订 D321 这趟车的票。请告诉我乘车人的姓名，还有是想订二等座还是一等座呢？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "没问题，好的，接下来咱们就来订 D321 这趟车的票。请告诉我乘车人的姓名，还有是想订二等座还是一等座呢？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5116.555213928223,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 544800,
+        "event_count": 101,
+        "latency": {
+          "speech_ms": 750.14599609375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.81339726655855,
+      "input_chunk": {
+        "role": "user",
+        "content": "Passenger name Feng Jie, Second Class.",
+        "timestamp": 14.81339726655855,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.passenger_name=Feng Jie",
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 106800
+      },
+      "assistant_response": "车票已经订好了！Feng Jie 的二等座车票，车次是 D321，出发日期 2026 年 5 月 16 日，座位：二等座 01F，订单已确认。祝旅途愉快！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_WjiD4vk5cSpuHW3w",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_003",
+                "date": "2026-05-16",
+                "passenger_name": "Feng Jie",
+                "seat_class": "second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "车票已经订好了！Feng Jie 的二等座车票，车次是 D321，出发日期 2026 年 5 月 16 日，座位：二等座 01F，订单已确认。祝旅途愉快！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_WjiD4vk5cSpuHW3w",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_003",
+            "date": "2026-05-16",
+            "passenger_name": "Feng Jie",
+            "seat_class": "second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_003\nDate: 2026-05-16\nPassenger: Feng Jie\nSeat: second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_003",
+              "date": "2026-05-16",
+              "passenger_name": "Feng Jie",
+              "seat_class": "second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.02384185791015625
+          },
+          "latency_ms": 0.02384185791015625
+        }
+      ],
+      "total_latency_ms": 6288.039922714233,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 667200,
+        "event_count": 185,
+        "latency": {
+          "speech_ms": 2180.47314453125,
+          "tool_call_ms": 1528.38720703125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.825541662685826,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Guangzhou.",
+        "timestamp": 19.825541662685826,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_hotels.city=Guangzhou"
+          ]
+        },
+        "audio_size_bytes": 79200
+      },
+      "assistant_response": "我找到广州这边几家酒店：\n\n1. The Ritz-Carlton Guangzhou，位于珠江新城，5星，1600元每晚，评分4.8。\n\n2. Four Seasons Guangzhou，位于珠江新城，5星，1700元每晚，评分4.9。\n\n3. White Swan Hotel，位于沙面岛，5星，1100元每晚，评分4.7。\n\n4. Hanting Hotel Tianhe，位于天河区，3星，380元每晚，评分4.2。\n\n你有心仪的选项吗？还是需要更多信息？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_qs72mvHGULwCIPbI",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Guangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "我找到广州这边几家酒店：\n\n1. The Ritz-Carlton Guangzhou，位于珠江新城，5星，1600元每晚，评分4.8。\n\n2. Four Seasons Guangzhou，位于珠江新城，5星，1700元每晚，评分4.9。\n\n3. White Swan Hotel，位于沙面岛，5星，1100元每晚，评分4.7。\n\n4. Hanting Hotel Tianhe，位于天河区，3星，380元每晚，评分4.2。\n\n你有心仪的选项吗？还是需要更多信息？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_qs72mvHGULwCIPbI",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Guangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 hotels in Guangzhou:\n\n1. The Ritz-Carlton Guangzhou (ID: hotel_gz_001)\n   Location: Zhujiang New Town | 5 stars\n   Price: ¥1600/night | Rating: 4.8/5.0\n\n2. Four Seasons Guangzhou (ID: hotel_gz_002)\n   Location: Zhujiang New Town | 5 stars\n   Price: ¥1700/night | Rating: 4.9/5.0\n\n3. White Swan Hotel (ID: hotel_gz_003)\n   Location: Shamian Island | 5 stars\n   Price: ¥1100/night | Rating: 4.7/5.0\n\n4. Hanting Hotel Tianhe (ID: hotel_gz_004)\n   Location: Tianhe | 3 stars\n   Price: ¥380/night | Rating: 4.2/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_gz_001",
+                "name": "The Ritz-Carlton Guangzhou",
+                "location": "Zhujiang New Town",
+                "stars": 5,
+                "price": 1600,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_gz_002",
+                "name": "Four Seasons Guangzhou",
+                "location": "Zhujiang New Town",
+                "stars": 5,
+                "price": 1700,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_gz_003",
+                "name": "White Swan Hotel",
+                "location": "Shamian Island",
+                "stars": 5,
+                "price": 1100,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_gz_004",
+                "name": "Hanting Hotel Tianhe",
+                "location": "Tianhe",
+                "stars": 3,
+                "price": 380,
+                "rating": 4.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04315376281738281
+          },
+          "latency_ms": 0.04315376281738281
+        }
+      ],
+      "total_latency_ms": 10073.342323303223,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1790400,
+        "event_count": 320,
+        "latency": {
+          "speech_ms": 1559.63671875,
+          "tool_call_ms": 824.65771484375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 24.632489699410964,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book White Swan Hotel, check in 2026-05-09 for 2 nights.",
+        "timestamp": 24.632489699410964,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-05-09",
+            "book_hotel.nights=2"
+          ]
+        },
+        "audio_size_bytes": 244800
+      },
+      "assistant_response": "酒店已经订好了！Feng Jie 在白天鹅宾馆，2026年5月9日入住，连住两晚。订单已确认。祝他在广州住得舒适愉快！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_j34XkC5attsLk6Oc",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_gz_003",
+                "checkin_date": "2026-05-09",
+                "nights": 2,
+                "guest_name": "Feng Jie"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "酒店已经订好了！Feng Jie 在白天鹅宾馆，2026年5月9日入住，连住两晚。订单已确认。祝他在广州住得舒适愉快！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_j34XkC5attsLk6Oc",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_gz_003",
+            "checkin_date": "2026-05-09",
+            "nights": 2,
+            "guest_name": "Feng Jie"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_gz_003\nCheck-in: 2026-05-09\nNights: 2\nGuest: Feng Jie\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_gz_003",
+              "checkin_date": "2026-05-09",
+              "nights": 2,
+              "guest_name": "Feng Jie",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.028848648071289062
+          },
+          "latency_ms": 0.028848648071289062
+        }
+      ],
+      "total_latency_ms": 7206.186056137085,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 590400,
+        "event_count": 165,
+        "latency": {
+          "speech_ms": 1935.85205078125,
+          "tool_call_ms": 1192.873291015625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 29.967723624044627,
+      "input_chunk": {
+        "role": "user",
+        "content": "Guest name Zhao Min. Search restaurants in Chengdu.",
+        "timestamp": 29.967723624044627,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Zhao Min",
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 147600
+      },
+      "assistant_response": "在成都，有两家很不错的餐厅：\n\n1. 陈麻婆豆腐，主打川菜，位置在市中心，评分4.7。\n\n2. 老码头火锅，主要是火锅，位于锦江区，评分4.8。\n\n你对哪一家感兴趣？还是想了解更多？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_M0TBsyBiCriXLBss",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "在成都，有两家很不错的餐厅：\n\n1. 陈麻婆豆腐，主打川菜，位置在市中心，评分4.7。\n\n2. 老码头火锅，主要是火锅，位于锦江区，评分4.8。\n\n你对哪一家感兴趣？还是想了解更多？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_M0TBsyBiCriXLBss",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03314018249511719
+          },
+          "latency_ms": 0.03314018249511719
+        }
+      ],
+      "total_latency_ms": 7159.769058227539,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 897600,
+        "event_count": 179,
+        "latency": {
+          "speech_ms": 1623.855712890625,
+          "tool_call_ms": 915.136474609375
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.88537453584095,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Lao Ma Tou Hotpot on 2026-04-10 at 18:00 for 6, contact Cao Yun, phone 13800112233.",
+        "timestamp": 35.88537453584095,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Cao Yun",
+            "book_restaurant.date=2026-04-10",
+            "book_restaurant.party_size=6",
+            "book_restaurant.phone=13800112233",
+            "book_restaurant.time=18:00"
+          ]
+        },
+        "audio_size_bytes": 471600
+      },
+      "assistant_response": "老码头火锅的预订已经成功！时间是2026年5月10日晚上18:00，一共6个人，联系人是赵敏，电话13801112233。祝大家用餐愉快！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_aXF7foAC3LX2RNTx",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_cd_002",
+                "date": "2026-05-10",
+                "time": "18:00",
+                "party_size": 6,
+                "contact_name": "Zhao Min",
+                "phone": "13801112233"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "老码头火锅的预订已经成功！时间是2026年5月10日晚上18:00，一共6个人，联系人是赵敏，电话13801112233。祝大家用餐愉快！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_aXF7foAC3LX2RNTx",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_cd_002",
+            "date": "2026-05-10",
+            "time": "18:00",
+            "party_size": 6,
+            "contact_name": "Zhao Min",
+            "phone": "13801112233"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_cd_002\nRestaurant: Lao Ma Tou Hotpot\nDate: 2026-05-10\nTime: 18:00\nParty size: 6\nContact: Zhao Min (13801112233)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_cd_002",
+              "restaurant_name": "Lao Ma Tou Hotpot",
+              "date": "2026-05-10",
+              "time": "18:00",
+              "party_size": 6,
+              "contact_name": "Zhao Min",
+              "phone": "13801112233",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.052928924560546875
+          },
+          "latency_ms": 0.052928924560546875
+        }
+      ],
+      "total_latency_ms": 11058.147192001343,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 770400,
+        "event_count": 205,
+        "latency": {
+          "speech_ms": 2589.44921875,
+          "tool_call_ms": 1685.126220703125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 15,
+    "total_tool_calls": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": null,
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_trains",
+      "param": "destination",
+      "wrong_value": "Shenzhen"
+    },
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "manual",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 1414.221923828125,
+        "tool_call_ms": 824.07421875
+      },
+      "book_train": {
+        "speech_ms": 2180.47314453125,
+        "tool_call_ms": 1528.38720703125
+      },
+      "search_hotels": {
+        "speech_ms": 1559.63671875,
+        "tool_call_ms": 824.65771484375
+      },
+      "book_hotel": {
+        "speech_ms": 1623.855712890625,
+        "tool_call_ms": 915.136474609375
+      },
+      "search_restaurants": {
+        "speech_ms": 1623.855712890625,
+        "tool_call_ms": 915.136474609375
+      },
+      "book_restaurant": {
+        "speech_ms": 2589.44921875,
+        "tool_call_ms": 1685.126220703125
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 2,
+      "book_train": 4,
+      "search_hotels": 5,
+      "book_hotel": 7,
+      "search_restaurants": 7,
+      "book_restaurant": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch+premature_call",
+    "details": "参数不匹配: book_train.date: 期望'2026-03-16', 实际'2026-05-16'; book_hotel.guest_name: 期望'Zhao Min', 实际'Feng Jie'; book_restaurant.date: 期望'2026-04-10', 实际'2026-05-10'; book_restaurant.contact_name: 期望'Cao Yun', 实际'Zhao Min'; book_restaurant.phone: 期望'13800112233', 实际'13801112233'",
+    "call_timing": "book_hotel 在 step 6 调用，但信息要到 turn 7 才收齐",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.5,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 0(param_mismatch), search_hotels: 1(correct), book_hotel: 0(premature_call), search_restaurants: 1(correct), book_restaurant: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "search_trains",
+          "error_type": "premature_call",
+          "phase": "pre",
+          "detail": "在 step 1 调用，info_complete_turn=2"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "date: '2026-03-16' vs '2026-05-16'"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 6 调用，info_complete_turn=7"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "date: '2026-04-10' vs '2026-05-10'; contact_name: 'Cao Yun' vs 'Zhao Min'; phone: '13800112233' vs '13801112233'"
+        }
+      ],
+      "error_types": {
+        "premature_call": 2,
+        "entity_mishearing": 1,
+        "parameter_reasoning": 1
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 1,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

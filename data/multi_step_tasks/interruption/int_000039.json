@@ -1,0 +1,184 @@
+{
+  "task_id": "int_000039",
+  "description": "Interruption (redirection): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search attractions in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_attractions.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book attraction ticket for Shanghai Disneyland on 2026-03-23.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-23"
+        ]
+      },
+      "timestamp": 4.670766872906957
+    },
+    {
+      "speaker": "user",
+      "text": "Use the morning time slot; visitor name Wang Fang.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Wang Fang"
+        ]
+      },
+      "timestamp": 10.68349626533207
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, first search shows in Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_shows.city=Shanghai"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "attraction",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book show ticket for Secret Love in Peach Blossom Land; Second Floor seats; 3 tickets.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Second Floor",
+          "book_show_ticket.ticket_count=3"
+        ]
+      },
+      "timestamp": 21.539793529848552
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Wang Fang; phone 13864788741.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Wang Fang",
+          "book_show_ticket.phone=13864788741"
+        ]
+      },
+      "timestamp": 29.084893983320782
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the attraction.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 34.05068153509434
+    },
+    {
+      "speaker": "user",
+      "text": "Finish the original plan: book 5 attraction tickets; search trains Beijing to Shanghai; then book train G3 on 2026-03-18 for Zhou Jun in First Class.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=5",
+          "book_train.date=2026-03-18",
+          "book_train.passenger_name=Zhou Jun",
+          "book_train.seat_class=First Class",
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 37.90463621645789
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_sh_003",
+        "seat_zone": "Second Floor",
+        "ticket_count": 3,
+        "buyer_name": "Wang Fang",
+        "phone": "13864788741"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_sh_002",
+        "date": "2026-03-23",
+        "time_slot": "morning",
+        "visitor_name": "Wang Fang",
+        "ticket_count": 5
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-18",
+        "passenger_name": "Zhou Jun",
+        "seat_class": "First Class"
+      }
+    }
+  ],
+  "transcript_hash": "763c9aac14de",
+  "info_complete_turn": {
+    "search_shows": 4,
+    "book_show_ticket": 6,
+    "search_attractions": 1,
+    "book_attraction_ticket": 8,
+    "search_trains": 8,
+    "book_train": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "attraction",
+    "generated": true
+  }
+}

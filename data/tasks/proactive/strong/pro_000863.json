@@ -1,0 +1,204 @@
+{
+  "task_id": "pro_000863",
+  "description": "Generated: 7 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_cars",
+    "book_car",
+    "search_parking",
+    "reserve_parking_spot",
+    "search_flights",
+    "book_flight",
+    "search_hotels"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’ve got that Shanghai trip coming up, and I’m flying from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing",
+          "search_parking.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "While I’m there I’m planning to stay in Shanghai, so I’ve been thinking through hotel options around the city.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 7.334082471375465
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I’ll be driving in Shanghai at least one evening, so I’ve been scoping out parking around town.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 15.62168553846075
+    },
+    {
+      "speaker": "user",
+      "text": "And separately, later on I’m in Chengdu and I’m planning on getting a rental car there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_cars.city=Chengdu"
+        ]
+      },
+      "timestamp": 23.617531532732304
+    },
+    {
+      "speaker": "user",
+      "text": "For that Beijing-to-Shanghai leg, I’m on China Eastern, flight MU5678, on 2026-05-03, and it’s under Emma Taylor.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-05-03",
+          "book_flight.passenger_name=Emma Taylor"
+        ]
+      },
+      "timestamp": 30.800568606488802
+    },
+    {
+      "speaker": "user",
+      "text": "For Chengdu, the rental is a Toyota Camry starting 2026-03-26 for 5 days, and the renter name is Cao Yun.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.days=5",
+          "book_car.pickup_date=2026-03-26",
+          "book_car.renter_name=Cao Yun"
+        ]
+      },
+      "timestamp": 39.53398116208706
+    },
+    {
+      "speaker": "user",
+      "text": "And for parking in Shanghai, it’s Xujiahui Grand Gateway Parking on 2026-05-30 18:00 for 4 hours; plate is 苏F89012, and the driver phone is 13877949128… I’m just hoping traffic isn’t a mess when I roll in.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13877949128",
+          "reserve_parking_spot.duration_hours=4",
+          "reserve_parking_spot.license_plate=苏F89012",
+          "reserve_parking_spot.start_time=2026-05-30 18:00"
+        ]
+      },
+      "timestamp": 47.46149141278535
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_cd_002",
+        "pickup_date": "2026-03-26",
+        "days": 5,
+        "renter_name": "Cao Yun"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_sh_002",
+        "start_time": "2026-05-30 18:00",
+        "duration_hours": 4,
+        "license_plate": "苏F89012",
+        "driver_phone": "13877949128"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-05-03",
+        "passenger_name": "Emma Taylor"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "51a8e8940657",
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_cars": 4,
+    "book_car": 6,
+    "search_parking": 1,
+    "reserve_parking_spot": 7,
+    "search_flights": 1,
+    "book_flight": 5,
+    "search_hotels": 2
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’ve got that Shanghai trip coming up",
+      "I’m flying from Beijing to Shanghai",
+      "planning to stay in Shanghai",
+      "driving in Shanghai",
+      "later on I’m in Chengdu and planning on getting a rental car",
+      "I’m on China Eastern, flight MU5678",
+      "rental is a Toyota Camry starting 2026-03-26 for 5 days",
+      "parking… Xujiahui Grand Gateway Parking on 2026-05-30 18:00 for 4 hours"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed upcoming travel and logistics with specific flight, car, and parking details; no direct requests or execution/authorization phrasing."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_cars",
+      "search_flights",
+      "search_hotels",
+      "search_parking"
+    ],
+    "write_tools": [
+      "book_car",
+      "book_flight",
+      "reserve_parking_spot"
+    ]
+  },
+  "expected_tool_if_act": "search_cars",
+  "expected_params_if_act": {
+    "city": "Chengdu"
+  }
+}

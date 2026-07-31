@@ -1,0 +1,172 @@
+{
+  "task_id": "tint_000006",
+  "description": "Interruption (tool_correction): 5 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_movies",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_movies.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie ticket: movie The Wandering Earth 3 at CGV Chunxi Road.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.cinema=CGV Chunxi Road"
+        ]
+      },
+      "timestamp": 8.554009447979873
+    },
+    {
+      "speaker": "user",
+      "text": "Set showtime 13:20 and 4 seats; buyer name Li Na.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Li Na",
+          "book_movie_ticket.seat_count=4",
+          "book_movie_ticket.showtime=13:20"
+        ]
+      },
+      "timestamp": 14.655810150314824
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 19.66900178892144
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Shanghai Classic for 2026-03-18 at 18:00; party size 5.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-18",
+          "book_restaurant.party_size=5",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 24.52493268773194
+    },
+    {
+      "speaker": "user",
+      "text": "Set contact Zhang Wei, phone 13856781234; search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.phone=13856781234",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 31.273141557532636
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cd_001",
+        "cinema": "CGV Chunxi Road",
+        "showtime": "13:20",
+        "seat_count": 4,
+        "buyer_name": "Li Na"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-03-18",
+        "time": "18:00",
+        "party_size": 5,
+        "contact_name": "Zhang Wei",
+        "phone": "13856781234"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "e08598c61760",
+  "info_complete_turn": {
+    "search_movies": 2,
+    "book_movie_ticket": 4,
+    "search_restaurants": 5,
+    "book_restaurant": 7,
+    "search_flights": 7
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_movies",
+    "wrong_params": {
+      "search_movies.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_movies.city": "Chengdu"
+    }
+  }
+}

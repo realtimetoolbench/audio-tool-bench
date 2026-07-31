@@ -1,0 +1,172 @@
+{
+  "task_id": "int_000006",
+  "description": "Interruption (correction): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "tool_category": "multi",
+  "tools": [
+    "get_transaction_history",
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_flights",
+    "book_flight",
+    "search_hotels"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Get transaction history for account number 6228480012345678.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "get_transaction_history.account_number=6228480012345678"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search sports events in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 5.720300011807137
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shanghai",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_sports_events.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book CSL: Beijing Guoan vs Shanghai Shenhua, Away Stand, 5 tickets.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Away Stand",
+          "book_sports_ticket.ticket_count=5"
+        ]
+      },
+      "timestamp": 14.47428705790401
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Wang Fang, phone 13892862812, ID number 110101199001011234.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Wang Fang",
+          "book_sports_ticket.id_number=110101199001011234",
+          "book_sports_ticket.phone=13892862812"
+        ]
+      },
+      "timestamp": 20.86625296649972
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 26.903917481238842
+    },
+    {
+      "speaker": "user",
+      "text": "Book China Eastern MU5890 on 2026-03-17 for passenger Zhou Jun, and search hotels in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-03-17",
+          "book_flight.passenger_name=Zhou Jun",
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 31.652382465688337
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6228480012345678"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_bj_002",
+        "seat_zone": "Away Stand",
+        "ticket_count": 5,
+        "buyer_name": "Wang Fang",
+        "phone": "13892862812",
+        "id_number": "110101199001011234"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_004",
+        "date": "2026-03-17",
+        "passenger_name": "Zhou Jun"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "2b7e8767cb4a",
+  "info_complete_turn": {
+    "get_transaction_history": 1,
+    "search_sports_events": 3,
+    "book_sports_ticket": 5,
+    "search_flights": 6,
+    "book_flight": 7,
+    "search_hotels": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shanghai",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_sports_events",
+      "param": "city",
+      "wrong_value": "Shanghai"
+    }
+  }
+}

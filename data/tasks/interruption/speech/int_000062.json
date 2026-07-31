@@ -1,0 +1,175 @@
+{
+  "task_id": "int_000062",
+  "description": "Interruption (correction): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "multi",
+  "tools": [
+    "pay_bill",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Pay bill BILL20260215004.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "pay_bill.bill_id=BILL20260215004"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 4.223577531264525
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shanghai",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book attraction ticket for Summer Palace on 2026-05-21 in the morning.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-05-21",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 12.978215518660972
+    },
+    {
+      "speaker": "user",
+      "text": "For visitor Li Na, 3 tickets.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.visitor_name=Li Na"
+        ]
+      },
+      "timestamp": 19.24243120688734
+    },
+    {
+      "speaker": "user",
+      "text": "Search movies in Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_movies.city=Chengdu"
+        ]
+      },
+      "timestamp": 23.656020028937093
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie ticket for Kung Fu Panda 4 at Wanda Cinema Jinhua, showtime 16:30, 3 seats, buyer Olivia Brown; then search restaurants in Nanjing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Olivia Brown",
+          "book_movie_ticket.cinema=Wanda Cinema Jinhua",
+          "book_movie_ticket.seat_count=3",
+          "book_movie_ticket.showtime=16:30",
+          "search_restaurants.city=Nanjing"
+        ]
+      },
+      "timestamp": 28.181078008195506
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "pay_bill",
+      "params": {
+        "bill_id": "BILL20260215004"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_003",
+        "date": "2026-05-21",
+        "time_slot": "morning",
+        "visitor_name": "Li Na",
+        "ticket_count": 3
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cd_003",
+        "cinema": "Wanda Cinema Jinhua",
+        "showtime": "16:30",
+        "seat_count": 3,
+        "buyer_name": "Olivia Brown"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Nanjing"
+      }
+    }
+  ],
+  "transcript_hash": "16a88d8a7ccd",
+  "info_complete_turn": {
+    "pay_bill": 1,
+    "search_attractions": 3,
+    "book_attraction_ticket": 5,
+    "search_movies": 6,
+    "book_movie_ticket": 7,
+    "search_restaurants": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shanghai",
+    "template": null,
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_attractions",
+      "param": "city",
+      "wrong_value": "Shanghai"
+    }
+  }
+}

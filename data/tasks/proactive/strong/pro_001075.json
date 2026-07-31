@@ -1,0 +1,149 @@
+{
+  "task_id": "pro_001075",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_cars",
+    "book_car",
+    "search_parking",
+    "reserve_parking_spot"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m gonna be in Beijing for a bit, and I’m trying to keep the logistics simple while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_parking.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also in Beijing, I’m planning to drive around a lot, so I’ve been thinking about where I’ll leave the car when I’m near the office area.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_cars.city=Beijing"
+        ]
+      },
+      "timestamp": 8.234126326452536
+    },
+    {
+      "speaker": "user",
+      "text": "For the car part, I’m set on a Honda Accord, picking it up on 2026-03-19.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.pickup_date=2026-03-19"
+        ]
+      },
+      "timestamp": 18.457676049564483
+    },
+    {
+      "speaker": "user",
+      "text": "I’m keeping it for 7 days, and it’s under my name, Mia Anderson.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.days=7",
+          "book_car.renter_name=Mia Anderson"
+        ]
+      },
+      "timestamp": 24.757169915590396
+    },
+    {
+      "speaker": "user",
+      "text": "Parking-wise I’m planning on China World Trade Center Parking starting 2026-03-04 17:00 for 3 hours; the plate is 京A12345 and my phone is 13813897597, and after that I’ll probably head over to—",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13813897597",
+          "reserve_parking_spot.duration_hours=3",
+          "reserve_parking_spot.license_plate=京A12345",
+          "reserve_parking_spot.start_time=2026-03-04 17:00"
+        ]
+      },
+      "timestamp": 30.563604869565992
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_bj_002",
+        "pickup_date": "2026-03-19",
+        "days": 7,
+        "renter_name": "Mia Anderson"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_bj_001",
+        "start_time": "2026-03-04 17:00",
+        "duration_hours": 3,
+        "license_plate": "京A12345",
+        "driver_phone": "13813897597"
+      }
+    }
+  ],
+  "transcript_hash": "96e60f48df54",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "driving",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_cars": 2,
+    "book_car": 4,
+    "search_parking": 1,
+    "reserve_parking_spot": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m gonna be in Beijing",
+      "planning to drive around a lot",
+      "set on a Honda Accord",
+      "picking it up on 2026-03-19",
+      "keeping it for 7 days",
+      "parking-wise I’m planning on China World Trade Center Parking"
+    ],
+    "ambiguity_notes": "Strong intent: the user narrates firm upcoming plans with specific car and parking details; no execution/authorization language is used."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_cars",
+      "search_parking"
+    ],
+    "write_tools": [
+      "book_car",
+      "reserve_parking_spot"
+    ]
+  },
+  "expected_tool_if_act": "search_cars",
+  "expected_params_if_act": {
+    "city": "Beijing"
+  }
+}

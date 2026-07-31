@@ -1,0 +1,167 @@
+{
+  "task_id": "ms_000033",
+  "scenario_type": "multi_step",
+  "server": "booking",
+  "template": "book_and_cancel_6",
+  "description": "Search properties, get property details, get room types, create booking, get booking, cancel booking",
+  "tools": [
+    "search_properties",
+    "get_property",
+    "get_room_types",
+    "create_booking",
+    "get_booking",
+    "cancel_booking"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I'm looking for places to stay in New York from September 2nd to the 4th, 2026.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_properties"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you tell me more about the first property you found there?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_property"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "What room types are available at that property for the same dates, September 2nd to 4th?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_room_types"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Book a room for two guests at that property from September 2nd to 4th, please choose the first room type available.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_booking"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me my booking details and then cancel that booking.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_booking",
+          "cancel_booking"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_properties",
+      "params": {
+        "city": "New York",
+        "check_in_date": "2026-09-02",
+        "check_out_date": "2026-09-04"
+      },
+      "param_source": {
+        "city": "user",
+        "check_in_date": "user",
+        "check_out_date": "user"
+      }
+    },
+    {
+      "tool": "get_property",
+      "params": {
+        "property_id": "PROP-80015"
+      },
+      "param_source": {
+        "property_id": {
+          "from_tool": "search_properties",
+          "field": "property_id"
+        }
+      }
+    },
+    {
+      "tool": "get_room_types",
+      "params": {
+        "property_id": "PROP-80015",
+        "check_in_date": "2026-09-02",
+        "check_out_date": "2026-09-04"
+      },
+      "param_source": {
+        "property_id": {
+          "from_tool": "search_properties",
+          "field": "property_id"
+        },
+        "check_in_date": "user",
+        "check_out_date": "user"
+      }
+    },
+    {
+      "tool": "create_booking",
+      "params": {
+        "room_type_id": "RT-80019",
+        "check_in_date": "2026-09-02",
+        "check_out_date": "2026-09-04",
+        "num_guests": 2
+      },
+      "param_source": {
+        "room_type_id": {
+          "from_tool": "get_room_types",
+          "field": "room_type_id"
+        },
+        "check_in_date": "user",
+        "check_out_date": "user",
+        "num_guests": "user"
+      }
+    },
+    {
+      "tool": "get_booking",
+      "params": {
+        "booking_id": "booking_1"
+      },
+      "param_source": {
+        "booking_id": {
+          "from_tool": "create_booking",
+          "field": "booking_id"
+        }
+      }
+    },
+    {
+      "tool": "cancel_booking",
+      "params": {
+        "booking_id": "booking_1"
+      },
+      "param_source": {
+        "booking_id": {
+          "from_tool": "create_booking",
+          "field": "booking_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 6,
+  "info_complete_turn": {
+    "search_properties": 1,
+    "get_property": 1,
+    "get_room_types": 3,
+    "create_booking": 4,
+    "get_booking": 4,
+    "cancel_booking": 4
+  }
+}

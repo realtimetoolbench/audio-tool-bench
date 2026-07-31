@@ -1,0 +1,221 @@
+{
+  "task_id": "tint_000043",
+  "description": "Interruption (priority_late_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel",
+    "search_trains",
+    "book_train",
+    "check_balance"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search attractions in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_attractions.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, first check my balance for account number 6222021234567890.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_balance.account_number=6222021234567890"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_attractions",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the attraction search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book attraction tickets for attraction ID Yu Garden.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 16.337411142260713
+    },
+    {
+      "speaker": "user",
+      "text": "Set the ticket date to 2026-03-20 and the time slot to afternoon.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-20",
+          "book_attraction_ticket.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 21.658736240733464
+    },
+    {
+      "speaker": "user",
+      "text": "Use visitor name Liu Yang and ticket count 3.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.visitor_name=Liu Yang"
+        ]
+      },
+      "timestamp": 27.869920071433363
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 33.50048317319849
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel with hotel ID Beijing Hotel for guest name Zhang Wei.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Zhang Wei"
+        ]
+      },
+      "timestamp": 37.45493530408935
+    },
+    {
+      "speaker": "user",
+      "text": "Set hotel check-in date 2026-03-20 for 3 nights.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-20",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 44.275938864279915
+    },
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai, then book train ID D321 on 2026-03-14 for passenger name Liu Yang in First Class.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_train.date=2026-03-14",
+          "book_train.passenger_name=Liu Yang",
+          "book_train.seat_class=First Class",
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 50.152405727742746
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6222021234567890"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_sh_004",
+        "date": "2026-03-20",
+        "time_slot": "afternoon",
+        "visitor_name": "Liu Yang",
+        "ticket_count": 3
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_004",
+        "checkin_date": "2026-03-20",
+        "nights": 3,
+        "guest_name": "Zhang Wei"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_003",
+        "date": "2026-03-14",
+        "passenger_name": "Liu Yang",
+        "seat_class": "First Class"
+      }
+    }
+  ],
+  "transcript_hash": "5560b9c2f3c4",
+  "info_complete_turn": {
+    "check_balance": 2,
+    "search_attractions": 1,
+    "book_attraction_ticket": 6,
+    "search_hotels": 7,
+    "book_hotel": 9,
+    "search_trains": 10,
+    "book_train": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "check_balance"
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "task_id": "int_000043",
+  "description": "Interruption (cancellation): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Nanjing. Also, later help with a flight.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Nanjing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Nanjing Impressions for 2026-03-02 at 19:00.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-02",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 6.500605999512798
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 1. Contact name Zhang Wei.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.party_size=1"
+        ]
+      },
+      "timestamp": 12.148047860482313
+    },
+    {
+      "speaker": "user",
+      "text": "Phone 13855443322.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13855443322"
+        ]
+      },
+      "timestamp": 17.3475121210945
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 20.860875715148964
+    },
+    {
+      "speaker": "user",
+      "text": "Book Novotel Beijing Peace. Check in 2026-05-06 for 5 nights.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-06",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 25.549274387522843
+    },
+    {
+      "speaker": "user",
+      "text": "Never mind the flight.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 6,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "flight",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name Ethan Thomas.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Ethan Thomas"
+        ]
+      },
+      "timestamp": 35.68769996093012
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_nj_001",
+        "date": "2026-03-02",
+        "time": "19:00",
+        "party_size": 1,
+        "contact_name": "Zhang Wei",
+        "phone": "13855443322"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_005",
+        "checkin_date": "2026-05-06",
+        "nights": 5,
+        "guest_name": "Ethan Thomas"
+      }
+    }
+  ],
+  "transcript_hash": "d29a7d1b2b03",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 4,
+    "search_hotels": 5,
+    "book_hotel": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "flight",
+    "template": "business_trip",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_flights",
+    "book_flight"
+  ]
+}

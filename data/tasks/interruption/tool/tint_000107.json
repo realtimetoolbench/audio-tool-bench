@@ -1,0 +1,217 @@
+{
+  "task_id": "tint_000107",
+  "description": "Interruption (priority_early_return): 6 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "cancel_ride",
+    "search_restaurants",
+    "book_restaurant",
+    "search_cars"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search sports events in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_cars.city=Beijing",
+          "search_sports_events.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that—cancel my ride with ride ID RIDE123456.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "cancel_ride.ride_id=RIDE123456"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_sports_events",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Wuhan.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_restaurants.city=Wuhan"
+        ]
+      },
+      "timestamp": 10.903660546031814
+    },
+    {
+      "speaker": "user",
+      "text": "Book Yangtze River Restaurant for 2026-03-14 at 14:00.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.date=2026-03-14",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 14.910663250644514
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 5, contact name Noah Wilson.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.contact_name=Noah Wilson",
+          "book_restaurant.party_size=5"
+        ]
+      },
+      "timestamp": 20.24835229275456
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13877665544 for the restaurant booking.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.phone=13877665544"
+        ]
+      },
+      "timestamp": 25.012261532360345
+    },
+    {
+      "speaker": "user",
+      "text": "Search cars in Beijing.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 30.53367751147059
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book tickets for event China Open Tennis, seat zone Center Court, ticket count 3.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Center Court",
+          "book_sports_ticket.ticket_count=3"
+        ]
+      },
+      "timestamp": 39.38355208940214
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Isabella Jackson, phone 13855667788, ID number 440106199512044567.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Isabella Jackson",
+          "book_sports_ticket.id_number=440106199512044567",
+          "book_sports_ticket.phone=13855667788"
+        ]
+      },
+      "timestamp": 45.99288445507022
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "cancel_ride",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_wh_002",
+        "date": "2026-03-14",
+        "time": "14:00",
+        "party_size": 5,
+        "contact_name": "Noah Wilson",
+        "phone": "13877665544"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_bj_003",
+        "seat_zone": "Center Court",
+        "ticket_count": 3,
+        "buyer_name": "Isabella Jackson",
+        "phone": "13855667788",
+        "id_number": "440106199512044567"
+      }
+    }
+  ],
+  "transcript_hash": "bc5e88b3443d",
+  "info_complete_turn": {
+    "cancel_ride": 2,
+    "search_restaurants": 3,
+    "book_restaurant": 6,
+    "search_cars": 1,
+    "search_sports_events": 1,
+    "book_sports_ticket": 10
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "inserted_tools": [
+      "cancel_ride",
+      "search_restaurants",
+      "book_restaurant",
+      "search_cars"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "cancel_ride",
+    "search_restaurants",
+    "book_restaurant",
+    "search_cars"
+  ]
+}

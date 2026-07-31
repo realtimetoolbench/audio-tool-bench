@@ -1,0 +1,161 @@
+{
+  "task_id": "int_000068",
+  "description": "Interruption (correction): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_sports_events",
+    "book_sports_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_sports_events.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Shenzhen.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shanghai",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_restaurants.city=Shenzhen"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Lao Sichuan for 2026-05-03 at 19:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-05-03",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 9.31274094905695
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 1.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.party_size=1"
+        ]
+      },
+      "timestamp": 14.549230220351289
+    },
+    {
+      "speaker": "user",
+      "text": "Contact name Song Qi, phone 13851574217.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Song Qi",
+          "book_restaurant.phone=13851574217"
+        ]
+      },
+      "timestamp": 17.87016284583514
+    },
+    {
+      "speaker": "user",
+      "text": "Search sports events in Shanghai for CSL: Shanghai Port vs Shandong Taishan.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 22.729426071849385
+    },
+    {
+      "speaker": "user",
+      "text": "Book 4 tickets in Home Stand, buyer Emily Wang, phone 13864788741, ID 110101199001011234.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Emily Wang",
+          "book_sports_ticket.id_number=110101199001011234",
+          "book_sports_ticket.phone=13864788741",
+          "book_sports_ticket.seat_zone=Home Stand",
+          "book_sports_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 29.435933481778957
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sz_001",
+        "date": "2026-05-03",
+        "time": "19:00",
+        "party_size": 1,
+        "contact_name": "Song Qi",
+        "phone": "13851574217"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_sh_002",
+        "seat_zone": "Home Stand",
+        "ticket_count": 4,
+        "buyer_name": "Emily Wang",
+        "phone": "13864788741",
+        "id_number": "110101199001011234"
+      }
+    }
+  ],
+  "transcript_hash": "f747a48e8e39",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 5,
+    "search_sports_events": 1,
+    "book_sports_ticket": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shanghai",
+    "template": "sports_event",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_restaurants",
+      "param": "city",
+      "wrong_value": "Shanghai"
+    }
+  }
+}

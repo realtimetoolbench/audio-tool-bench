@@ -1,0 +1,164 @@
+{
+  "task_id": "int_000057",
+  "description": "Interruption (cancellation): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants_delivery",
+    "place_food_order",
+    "search_parking",
+    "reserve_parking_spot",
+    "search_doctors",
+    "book_appointment"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Order KFC delivery from KFC Lujiazui to Room 1505, Building I, Silver Creek Residence. Also, book a doctor appointment.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 1505, Building I, Silver Creek Residence"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Get Original Recipe Chicken and Fries. Use phone 13800112233.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "place_food_order.items=Original Recipe Chicken and Fries",
+          "place_food_order.phone=13800112233"
+        ]
+      },
+      "timestamp": 8.671048823638802
+    },
+    {
+      "speaker": "user",
+      "text": "Search delivery restaurants in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_parking.city=Shanghai",
+          "search_restaurants_delivery.city=Shanghai"
+        ]
+      },
+      "timestamp": 14.431952476498424
+    },
+    {
+      "speaker": "user",
+      "text": "Search parking in Shanghai near Lujiazui IFC Parking.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 19.316682546956798
+    },
+    {
+      "speaker": "user",
+      "text": "Reserve Lujiazui IFC Parking. Start 2026-03-26 09:00 for 1 hour.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "reserve_parking_spot.duration_hours=1",
+          "reserve_parking_spot.start_time=2026-03-26 09:00"
+        ]
+      },
+      "timestamp": 25.029333702680276
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the doctor.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 5,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "doctor",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "For the parking reservation, use license plate 粤C23456.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "reserve_parking_spot.license_plate=粤C23456"
+        ]
+      },
+      "timestamp": 34.784802689491364
+    },
+    {
+      "speaker": "user",
+      "text": "Use driver phone 13812345678 for the parking reservation.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13812345678"
+        ]
+      },
+      "timestamp": 40.640670372640784
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_sh_001",
+        "items": "Original Recipe Chicken and Fries",
+        "delivery_address": "Room 1505, Building I, Silver Creek Residence",
+        "phone": "13800112233"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_sh_001",
+        "start_time": "2026-03-26 09:00",
+        "duration_hours": 1,
+        "license_plate": "粤C23456",
+        "driver_phone": "13812345678"
+      }
+    }
+  ],
+  "transcript_hash": "5e61cd932261",
+  "info_complete_turn": {
+    "search_restaurants_delivery": 3,
+    "place_food_order": 2,
+    "search_parking": 3,
+    "reserve_parking_spot": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "doctor",
+    "template": null,
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_doctors",
+    "book_appointment"
+  ]
+}

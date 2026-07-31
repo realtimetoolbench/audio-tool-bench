@@ -1,0 +1,170 @@
+{
+  "task_id": "tint_000136",
+  "description": "Interruption (tool_cancel): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai on 2026-03-22, and also plan Shanghai attractions and book a Beijing hotel.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_attractions.city=Shanghai",
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Cancel the train search. Skip trains entirely.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_trains",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 14.357640593213924
+    },
+    {
+      "speaker": "user",
+      "text": "Book an attraction ticket for Shanghai Disneyland.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 18.592792178299483
+    },
+    {
+      "speaker": "user",
+      "text": "Set the Shanghai Disneyland ticket date to 2026-03-23 and the time slot to morning.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-23",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 24.14726663174602
+    },
+    {
+      "speaker": "user",
+      "text": "Use visitor name Wang Fang and ticket count 1 for the Shanghai Disneyland booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=1",
+          "book_attraction_ticket.visitor_name=Wang Fang"
+        ]
+      },
+      "timestamp": 31.71853018225783
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 39.056565689519864
+    },
+    {
+      "speaker": "user",
+      "text": "Book Beijing Hotel for 1 night with check-in 2026-05-06, guest name Sun Lei.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-06",
+          "book_hotel.guest_name=Sun Lei",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 43.5908391411118
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_sh_002",
+        "date": "2026-03-23",
+        "time_slot": "morning",
+        "visitor_name": "Wang Fang",
+        "ticket_count": 1
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_004",
+        "checkin_date": "2026-05-06",
+        "nights": 1,
+        "guest_name": "Sun Lei"
+      }
+    }
+  ],
+  "transcript_hash": "82e36bf7b795",
+  "info_complete_turn": {
+    "search_attractions": 1,
+    "book_attraction_ticket": 6,
+    "search_hotels": 1,
+    "book_hotel": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ]
+  },
+  "forbidden_tools": [
+    "search_trains",
+    "book_train"
+  ],
+  "cancelled_tools": [
+    "search_trains",
+    "book_train"
+  ]
+}

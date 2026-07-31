@@ -1,0 +1,132 @@
+{
+  "task_id": "int_000017",
+  "description": "Interruption (redirection): 5 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_books",
+    "reserve_book",
+    "search_hotels"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search books and prep to reserve the book titled \"Python Crash Course\" for reader He Xia.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "reserve_book.reader_name=He Xia"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also search hotels in Hangzhou.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 7.088857273657098
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search parking in Shanghai. Then reserve a spot at Xujiahui Grand Gateway Parking starting 2026-03-14 16:00 for 6 hours.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "reserve_parking_spot.duration_hours=6",
+          "reserve_parking_spot.start_time=2026-03-14 16:00",
+          "search_parking.city=Shanghai"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "book",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Finish the parking reservation: license plate 粤C23456, driver phone 13800112233.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13800112233",
+          "reserve_parking_spot.license_plate=粤C23456"
+        ]
+      },
+      "timestamp": 21.830960020280855
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the book.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 28.989490472061274
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_sh_002",
+        "start_time": "2026-03-14 16:00",
+        "duration_hours": 6,
+        "license_plate": "粤C23456",
+        "driver_phone": "13800112233"
+      }
+    },
+    {
+      "tool": "search_books",
+      "params": {}
+    },
+    {
+      "tool": "reserve_book",
+      "params": {
+        "book_id": "ISBN9787020008735",
+        "reader_name": "He Xia"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    }
+  ],
+  "transcript_hash": "0da6f0675ebd",
+  "info_complete_turn": {
+    "search_parking": 3,
+    "reserve_parking_spot": 4,
+    "search_books": 1,
+    "reserve_book": 1,
+    "search_hotels": 2
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 5,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "book",
+    "template": null,
+    "generated": true
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "task_id": "ms_000011",
+  "scenario_type": "multi_step",
+  "server": "robinhood",
+  "template": "search_and_trade_4",
+  "description": "Search stocks, get portfolio, place order, get order status",
+  "tools": [
+    "search_stocks",
+    "get_portfolio",
+    "place_order",
+    "get_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you look up some information on NVDA stocks?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_stocks"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me my current portfolio as well.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_portfolio"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "I want to sell 8 shares of that NVDA stock with a market order.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "place_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Check the status of that sell order for me.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_order"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_stocks",
+      "params": {
+        "query": "NVDA"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_portfolio",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "place_order",
+      "params": {
+        "symbol": "NVDA",
+        "side": "sell",
+        "quantity": 8,
+        "order_type": "market"
+      },
+      "param_source": {
+        "symbol": {
+          "from_tool": "search_stocks",
+          "field": "symbol"
+        },
+        "side": "user",
+        "quantity": "user",
+        "order_type": "user"
+      }
+    },
+    {
+      "tool": "get_order",
+      "params": {
+        "order_id": "order_1"
+      },
+      "param_source": {
+        "order_id": {
+          "from_tool": "place_order",
+          "field": "order_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 4,
+  "info_complete_turn": {
+    "search_stocks": 1,
+    "get_portfolio": 1,
+    "place_order": 3,
+    "get_order": 3
+  }
+}

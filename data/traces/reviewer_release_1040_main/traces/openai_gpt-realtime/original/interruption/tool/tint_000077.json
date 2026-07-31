@@ -1,0 +1,794 @@
+{
+  "task_name": "tint_000077",
+  "start_time": "2026-04-28T12:07:02.273436",
+  "end_time": "2026-04-28T12:07:50.393977",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 116400
+      },
+      "assistant_response": "你要去北京到上海？太棒了！我马上帮你看看有哪些火车可以选。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "你要去北京到上海？太棒了！我马上帮你看看有哪些火车可以选。",
+          "tool_calls": [
+            {
+              "id": "call_9po6j0RdFC6Ve85R",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "北京",
+                "destination": "上海"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "你要去北京到上海？太棒了！我马上帮你看看有哪些火车可以选。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7561.356067657471,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 304800,
+        "event_count": 88,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "你要去北京到上海？太棒了！我马上帮你看看有哪些火车可以选。"
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—urgent: check ride status for ride RIDE789012.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "check_ride_status.ride_id=RIDE789012"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 196200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_0IeBheQGQs1aLeNq",
+              "name": "check_ride_status",
+              "arguments": {
+                "ride_id": "RIDE789012"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_0IeBheQGQs1aLeNq",
+          "tool_name": "check_ride_status",
+          "arguments": {
+            "ride_id": "RIDE789012"
+          },
+          "result": {
+            "success": true,
+            "ride_status": {
+              "ride_id": "RIDE789012",
+              "status": "In Progress",
+              "driver_name": "Driver Li",
+              "driver_phone": "139****5678",
+              "car_plate": "Beijing B67890",
+              "car_type": "economy",
+              "pickup_location": "Lujiazui, Pudong, Shanghai",
+              "dropoff_location": "Xujiahui, Xuhui, Shanghai",
+              "estimated_arrival": "15 minutes",
+              "current_location": "5 km traveled"
+            },
+            "output": "{\n  \"success\": true,\n  \"ride_status\": {\n    \"ride_id\": \"RIDE789012\",\n    \"status\": \"In Progress\",\n    \"driver_name\": \"Driver Li\",\n    \"driver_phone\": \"139****5678\",\n    \"car_plate\": \"Beijing B67890\",\n    \"car_type\": \"economy\",\n    \"pickup_location\": \"Lujiazui, Pudong, Shanghai\",\n    \"dropoff_location\": \"Xujiahui, Xuhui, Shanghai\",\n    \"estimated_arrival\": \"15 minutes\",\n    \"current_location\": \"5 km traveled\"\n  }\n}",
+            "raw_output": {
+              "success": true,
+              "ride_status": {
+                "ride_id": "RIDE789012",
+                "status": "In Progress",
+                "driver_name": "Driver Li",
+                "driver_phone": "139****5678",
+                "car_plate": "Beijing B67890",
+                "car_type": "economy",
+                "pickup_location": "Lujiazui, Pudong, Shanghai",
+                "dropoff_location": "Xujiahui, Xuhui, Shanghai",
+                "estimated_arrival": "15 minutes",
+                "current_location": "5 km traveled"
+              },
+              "output": "{\n  \"success\": true,\n  \"ride_status\": {\n    \"ride_id\": \"RIDE789012\",\n    \"status\": \"In Progress\",\n    \"driver_name\": \"Driver Li\",\n    \"driver_phone\": \"139****5678\",\n    \"car_plate\": \"Beijing B67890\",\n    \"car_type\": \"economy\",\n    \"pickup_location\": \"Lujiazui, Pudong, Shanghai\",\n    \"dropoff_location\": \"Xujiahui, Xuhui, Shanghai\",\n    \"estimated_arrival\": \"15 minutes\",\n    \"current_location\": \"5 km traveled\"\n  }\n}"
+            },
+            "error": null,
+            "latency_ms": 0.011920928955078125
+          },
+          "latency_ms": 0.011920928955078125
+        }
+      ],
+      "total_latency_ms": 2080.4412364959717,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 132,
+        "latency": {
+          "tool_call_ms": 534.748046875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the train search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 110400
+      },
+      "assistant_response": "好的，我这就继续为你查看从北京到上海的火车信息。稍等一下哦！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，我这就继续为你查看从北京到上海的火车信息。稍等一下哦！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3442.446231842041,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 316800,
+        "event_count": 67,
+        "latency": {
+          "speech_ms": 325.500244140625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.855288575008867,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G1.",
+        "timestamp": 15.855288575008867,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 51000
+      },
+      "assistant_response": "明白！那我们现在就来预订这趟G1次列车的票。你可以告诉我出发日期是哪天，还有乘车人的姓名、座位等级（比如一等座或二等座）吗？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "明白！那我们现在就来预订这趟G1次列车的票。你可以告诉我出发日期是哪天，还有乘车人的姓名、座位等级（比如一等座或二等座）吗？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4261.171102523804,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 624000,
+        "event_count": 118,
+        "latency": {
+          "speech_ms": 448.911376953125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.243551761377798,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use date 2026-03-04 and passenger Liu Yang.",
+        "timestamp": 19.243551761377798,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-03-04",
+            "book_train.passenger_name=Liu Yang"
+          ]
+        },
+        "audio_size_bytes": 194400
+      },
+      "assistant_response": "好的，咱们就用2026年3月4日，乘客姓名是刘洋。请问你想选一等座还是二等座呢？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，咱们就用2026年3月4日，乘客姓名是刘洋。请问你想选一等座还是二等座呢？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5440.9050941467285,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 537600,
+        "event_count": 94,
+        "latency": {
+          "speech_ms": 558.130126953125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 24.784959968656214,
+      "input_chunk": {
+        "role": "user",
+        "content": "Seat class: First Class.",
+        "timestamp": 24.784959968656214,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 66600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_vPUsU5I79RPBBQvd",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "G1",
+                "date": "2026-03-04",
+                "passenger_name": "刘洋",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_vPUsU5I79RPBBQvd",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "G1",
+            "date": "2026-03-04",
+            "passenger_name": "刘洋",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: G1\nDate: 2026-03-04\nPassenger: 刘洋\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "G1",
+              "date": "2026-03-04",
+              "passenger_name": "刘洋",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.018835067749023438
+          },
+          "latency_ms": 0.018835067749023438
+        }
+      ],
+      "total_latency_ms": 3207.8750133514404,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 122,
+        "latency": {
+          "tool_call_ms": 775.016845703125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 28.665349448483315,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai.",
+        "timestamp": 28.665349448483315,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 78000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_eII5ffMe9U4TeDIU",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "上海"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_eII5ffMe9U4TeDIU",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "上海"
+          },
+          "result": {
+            "success": false,
+            "output": "Sorry, no hotel information available for 上海.",
+            "raw_output": null,
+            "error": "City not found: 上海",
+            "latency_ms": 0.014781951904296875
+          },
+          "latency_ms": 0.014781951904296875
+        }
+      ],
+      "total_latency_ms": 3141.503095626831,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 79,
+        "latency": {
+          "tool_call_ms": 479.14208984375
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 33.06611267951905,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Hanting Hotel People's Square for guest Chen Ming.",
+        "timestamp": 33.06611267951905,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.guest_name=Chen Ming"
+          ]
+        },
+        "audio_size_bytes": 163200
+      },
+      "assistant_response": "好的，那请告诉我你打算入住上海的康庭酒店（人民广场店）从哪一天开始，以及住几晚呢？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，那请告诉我你打算入住上海的康庭酒店（人民广场店）从哪一天开始，以及住几晚呢？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4381.907939910889,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 410400,
+        "event_count": 80,
+        "latency": {
+          "speech_ms": 392.5322265625
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 38.7580197350769,
+      "input_chunk": {
+        "role": "user",
+        "content": "Check in 2026-03-26 for 2 nights.",
+        "timestamp": 38.7580197350769,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-26",
+            "book_hotel.nights=2"
+          ]
+        },
+        "audio_size_bytes": 175200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_gwaI7fX1dPFSwHN9",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "康庭酒店（人民广场店）",
+                "checkin_date": "2026-03-26",
+                "nights": 2,
+                "guest_name": "Chen Ming"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_gwaI7fX1dPFSwHN9",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "康庭酒店（人民广场店）",
+            "checkin_date": "2026-03-26",
+            "nights": 2,
+            "guest_name": "Chen Ming"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: 康庭酒店（人民广场店）\nCheck-in: 2026-03-26\nNights: 2\nGuest: Chen Ming\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "康庭酒店（人民广场店）",
+              "checkin_date": "2026-03-26",
+              "nights": 2,
+              "guest_name": "Chen Ming",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.017881393432617188
+          },
+          "latency_ms": 0.017881393432617188
+        }
+      ],
+      "total_latency_ms": 6287.025928497314,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 131,
+        "latency": {
+          "tool_call_ms": 1730.316650390625
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 43.62009832261343,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Chengdu, then book Giant Panda Base on 2026-03-26, afternoon, for visitor Zhou Jun, 4 tickets.",
+        "timestamp": 43.62009832261343,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-26",
+            "book_attraction_ticket.ticket_count=4",
+            "book_attraction_ticket.time_slot=afternoon",
+            "book_attraction_ticket.visitor_name=Zhou Jun",
+            "search_attractions.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 420000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_kVTp3VaXf5rkDpHg",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_tUkXl4GdA4xXEehK",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_cd_001",
+                "date": "2026-03-26",
+                "time_slot": "afternoon",
+                "visitor_name": "Zhou Jun",
+                "ticket_count": 4
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_kVTp3VaXf5rkDpHg",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Chengdu:\n\n1. Giant Panda Base (ID: attr_cd_001)\n   Type: Zoo\n   Rating: 4.8/5.0\n   Ticket: ¥58\n   Hours: 07:30-18:00\n   Location: Chenghua\n\n2. Wuhou Shrine (ID: attr_cd_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Wuhou\n\n3. Du Fu Thatched Cottage (ID: attr_cd_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Qingyang\n\n4. Kuanzhai Alley (ID: attr_cd_004)\n   Type: Sightseeing\n   Rating: 4.3/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Qingyang\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_cd_001",
+                "name": "Giant Panda Base",
+                "type": "Zoo",
+                "rating": 4.8,
+                "price": 58,
+                "opening_hours": "07:30-18:00",
+                "location": "Chenghua"
+              },
+              {
+                "attraction_id": "attr_cd_002",
+                "name": "Wuhou Shrine",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Wuhou"
+              },
+              {
+                "attraction_id": "attr_cd_003",
+                "name": "Du Fu Thatched Cottage",
+                "type": "Historical",
+                "rating": 4.4,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Qingyang"
+              },
+              {
+                "attraction_id": "attr_cd_004",
+                "name": "Kuanzhai Alley",
+                "type": "Sightseeing",
+                "rating": 4.3,
+                "price": 0,
+                "opening_hours": "24 hours",
+                "location": "Qingyang"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04506111145019531
+          },
+          "latency_ms": 0.04506111145019531
+        },
+        {
+          "tool_call_id": "call_tUkXl4GdA4xXEehK",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_cd_001",
+            "date": "2026-03-26",
+            "time_slot": "afternoon",
+            "visitor_name": "Zhou Jun",
+            "ticket_count": 4
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_cd_001\nDate: 2026-03-26\nTime slot: afternoon\nVisitor: Zhou Jun\nTickets: 4\nTicket numbers: AT50001-01, AT50001-02, AT50001-03, AT50001-04\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_cd_001",
+              "date": "2026-03-26",
+              "time_slot": "afternoon",
+              "visitor_name": "Zhou Jun",
+              "ticket_count": 4,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02",
+                "AT50001-03",
+                "AT50001-04"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.029802322387695312
+          },
+          "latency_ms": 0.029802322387695312
+        }
+      ],
+      "total_latency_ms": 8308.149814605713,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 163,
+        "latency": {
+          "tool_call_ms": 721.68603515625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 17,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "check_ride_status": {
+        "tool_call_ms": 534.748046875
+      },
+      "book_train": {
+        "tool_call_ms": 775.016845703125
+      },
+      "search_hotels": {
+        "tool_call_ms": 479.14208984375
+      },
+      "book_hotel": {
+        "tool_call_ms": 1730.316650390625
+      },
+      "search_attractions": {
+        "tool_call_ms": 721.68603515625
+      },
+      "book_attraction_ticket": {
+        "tool_call_ms": 721.68603515625
+      }
+    },
+    "info_complete_turn": {
+      "check_ride_status": 2,
+      "search_trains": 1,
+      "book_train": 6,
+      "search_hotels": 7,
+      "book_hotel": 9,
+      "search_attractions": 10,
+      "book_attraction_ticket": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'book_attraction_ticket', 'search_attractions', 'book_train', 'search_trains', 'book_hotel', 'check_ride_status', 'search_hotels'}，实际: {'book_attraction_ticket', 'search_attractions', 'book_train', 'book_hotel', 'check_ride_status', 'search_hotels'}，缺失: {'search_trains'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.42857142857142855,
+    "behavior_score_details": "check_ride_status: 1(correct), search_trains: 0(not_called), book_train: 0(param_mismatch), search_hotels: 0(param_mismatch), book_hotel: 0(param_mismatch), search_attractions: 1(correct), book_attraction_ticket: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "search_trains",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "train_id: 'trn_bj_sh_001' vs 'G1'; passenger_name: 'Liu Yang' vs '刘洋'"
+        },
+        {
+          "tool": "search_hotels",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "city: 'Shanghai' vs '上海'"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "hotel_id: 'hotel_sh_005' vs '康庭酒店（人民广场店）'"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1,
+        "parameter_reasoning": 3
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 1,
+          "post": 0,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 3,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

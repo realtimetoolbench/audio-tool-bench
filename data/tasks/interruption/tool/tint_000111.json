@@ -1,0 +1,180 @@
+{
+  "task_id": "tint_000111",
+  "description": "Interruption (priority_late_return): 5 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Chongqing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_hotels.city=Chongqing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search movies in Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_movies.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie tickets for The Wandering Earth 3 at Wanda Cinema Jinhua.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.cinema=Wanda Cinema Jinhua"
+        ]
+      },
+      "timestamp": 9.908880143383492
+    },
+    {
+      "speaker": "user",
+      "text": "Set the showtime to 21:50 and reserve 3 seats. Buyer name Noah Wilson.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Noah Wilson",
+          "book_movie_ticket.seat_count=3",
+          "book_movie_ticket.showtime=21:50"
+        ]
+      },
+      "timestamp": 16.509804696724483
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the JW Marriott Chongqing. Check in 2026-03-05.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-05"
+        ]
+      },
+      "timestamp": 27.50025768228468
+    },
+    {
+      "speaker": "user",
+      "text": "Stay 1 night. Guest name Mia Anderson.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Mia Anderson",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 33.109933033898
+    },
+    {
+      "speaker": "user",
+      "text": "After booking, search attractions in Xi'an.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 38.1338528258653
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cd_001",
+        "cinema": "Wanda Cinema Jinhua",
+        "showtime": "21:50",
+        "seat_count": 3,
+        "buyer_name": "Noah Wilson"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_cq_001",
+        "checkin_date": "2026-03-05",
+        "nights": 1,
+        "guest_name": "Mia Anderson"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    }
+  ],
+  "transcript_hash": "50cd9d0a517c",
+  "info_complete_turn": {
+    "search_movies": 2,
+    "book_movie_ticket": 4,
+    "search_hotels": 1,
+    "book_hotel": 7,
+    "search_attractions": 8
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "inserted_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ]
+}

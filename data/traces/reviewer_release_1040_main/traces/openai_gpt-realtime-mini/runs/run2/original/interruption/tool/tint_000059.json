@@ -1,0 +1,753 @@
+{
+  "task_name": "tint_000059",
+  "start_time": "2026-07-29T03:40:24.004477",
+  "end_time": "2026-07-29T03:40:56.766123",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 88800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_9rhjB0x7vRy0R9Ts",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_9rhjB0x7vRy0R9Ts",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Shanghai:\n\n1. Chuanfu Laozao (ID: rst_sh_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.6/5.0\n\n2. Shanghai Classic (ID: rst_sh_002)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.4/5.0\n\n3. Xiao Nan Guo (ID: rst_sh_003)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_sh_001",
+                "name": "Chuanfu Laozao",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_sh_002",
+                "name": "Shanghai Classic",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_sh_003",
+                "name": "Xiao Nan Guo",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.029325485229492188
+          },
+          "latency_ms": 0.029325485229492188,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 4168.481826782227,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 22,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Hold on—list my bills now.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 69600
+      },
+      "assistant_response": "Here are your current bills:\n\n1. Electricity from State Grid, amount: 156.8, due on 2026-03-09, unpaid.\n2. Water from the Water Company, amount: 45.2, due on 2026-03-06, unpaid.\n3. Gas from Gas Group, amount: 89.5, due on 2026-03-14, unpaid.\n4. Electricity from State Grid, amount: 142.3, paid on 2026-01-20, for billing period 2025-12.\n5. Internet from China Telecom, amount: 129.0, due on 2026-03-02, unpaid.\n\nIf you'd like details on any specific bill or need help managing them, let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ovaJoSPigTDK6ff2",
+              "name": "list_bills",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are your current bills:\n\n1. Electricity from State Grid, amount: 156.8, due on 2026-03-09, unpaid.\n2. Water from the Water Company, amount: 45.2, due on 2026-03-06, unpaid.\n3. Gas from Gas Group, amount: 89.5, due on 2026-03-14, unpaid.\n4. Electricity from State Grid, amount: 142.3, paid on 2026-01-20, for billing period 2025-12.\n5. Internet from China Telecom, amount: 129.0, due on 2026-03-02, unpaid.\n\nIf you'd like details on any specific bill or need help managing them, let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ovaJoSPigTDK6ff2",
+          "tool_name": "list_bills",
+          "arguments": {},
+          "result": {
+            "success": true,
+            "count": 5,
+            "bills": [
+              {
+                "bill_id": "DL20260219001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 156.8,
+                "due_date": "2026-03-09",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215002",
+                "bill_type": "Water",
+                "company": "Water Company",
+                "account_number": "9876543210",
+                "amount": 45.2,
+                "due_date": "2026-03-06",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215003",
+                "bill_type": "Gas",
+                "company": "Gas Group",
+                "account_number": "5555666677",
+                "amount": 89.5,
+                "due_date": "2026-03-14",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260115001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 142.3,
+                "due_date": "2026-01-28",
+                "status": "Paid",
+                "billing_period": "2025-12",
+                "payment_date": "2026-01-20"
+              },
+              {
+                "bill_id": "BILL20260215004",
+                "bill_type": "Internet",
+                "company": "China Telecom",
+                "account_number": "1111222233",
+                "amount": 129.0,
+                "due_date": "2026-03-02",
+                "status": "Unpaid",
+                "billing_period": "2026-02"
+              }
+            ],
+            "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]",
+            "raw_output": {
+              "success": true,
+              "count": 5,
+              "bills": [
+                {
+                  "bill_id": "DL20260219001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 156.8,
+                  "due_date": "2026-03-09",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215002",
+                  "bill_type": "Water",
+                  "company": "Water Company",
+                  "account_number": "9876543210",
+                  "amount": 45.2,
+                  "due_date": "2026-03-06",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215003",
+                  "bill_type": "Gas",
+                  "company": "Gas Group",
+                  "account_number": "5555666677",
+                  "amount": 89.5,
+                  "due_date": "2026-03-14",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260115001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 142.3,
+                  "due_date": "2026-01-28",
+                  "status": "Paid",
+                  "billing_period": "2025-12",
+                  "payment_date": "2026-01-20"
+                },
+                {
+                  "bill_id": "BILL20260215004",
+                  "bill_type": "Internet",
+                  "company": "China Telecom",
+                  "account_number": "1111222233",
+                  "amount": 129.0,
+                  "due_date": "2026-03-02",
+                  "status": "Unpaid",
+                  "billing_period": "2026-02"
+                }
+              ],
+              "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]"
+            },
+            "error": null,
+            "latency_ms": 0.008821487426757812
+          },
+          "latency_ms": 0.008821487426757812
+        }
+      ],
+      "total_latency_ms": 5387.1009349823,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1833600,
+        "event_count": 291,
+        "latency": {
+          "speech_ms": 984.439208984375,
+          "tool_call_ms": 203.117919921875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the restaurant search.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 112200
+      },
+      "assistant_response": "Sure! We’ve got three great options in Shanghai:\n\n1. Chuanfu Laozao – Sichuan cuisine in downtown, rated 4.6.\n2. Shanghai Classic – Shanghainese cuisine in Pudong, rated 4.4.\n3. Xiao Nan Guo – Shanghainese cuisine in Pudong, rated 4.5.\n\nWhich one would you like to explore further?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure! We’ve got three great options in Shanghai:\n\n1. Chuanfu Laozao – Sichuan cuisine in downtown, rated 4.6.\n2. Shanghai Classic – Shanghainese cuisine in Pudong, rated 4.4.\n3. Xiao Nan Guo – Shanghainese cuisine in Pudong, rated 4.5.\n\nWhich one would you like to explore further?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4267.565965652466,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 854400,
+        "event_count": 143,
+        "latency": {
+          "speech_ms": 394.856689453125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.484632957250255,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the restaurant Shanghai Classic.",
+        "timestamp": 14.484632957250255,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 110400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1735.9251976013184,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.54027754009914,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the booking date to 2026-03-15 and time to 19:00.",
+        "timestamp": 19.54027754009914,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-15",
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 259200
+      },
+      "assistant_response": "Great choice! Let's get that",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Great choice! Let's get that",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3358.4110736846924,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 19200,
+        "event_count": 22,
+        "latency": {
+          "speech_ms": 1.326171875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 25.31845933138474,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 8; contact name Li Na.",
+        "timestamp": 25.31845933138474,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Li Na",
+            "book_restaurant.party_size=8"
+          ]
+        },
+        "audio_size_bytes": 103200
+      },
+      "assistant_response": "Perfect! Could you tell me",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Perfect! Could you tell me",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1664.600133895874,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 19200,
+        "event_count": 22,
+        "latency": {
+          "speech_ms": 1.6162109375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 29.814257551523287,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13892862812. Then search hotels in Shanghai.",
+        "timestamp": 29.814257551523287,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.phone=13892862812",
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 257400
+      },
+      "assistant_response": "Got it! I'll",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Got it! I'll",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3367.065668106079,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 19
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.639723586994414,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Pudong Shangri-La: check in 2026-03-25 for 1 night, guest name Wang Fang.",
+        "timestamp": 35.639723586994414,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-25",
+            "book_hotel.guest_name=Wang Fang",
+            "book_hotel.nights=1"
+          ]
+        },
+        "audio_size_bytes": 309000
+      },
+      "assistant_response": "Everything is all set! The restaurant reservation at Shanghai Classic is confirmed for March 15, 2026, at 7:00 PM for 8 people under the name Lina. The hotel booking at Pudong Shangri-La is also confirmed for March 25, 2026, for one night under the name Wang Fang. \n\nIf you need any more details or help, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_mGFc9C9qXEAO04A2",
+              "name": "book_restaurant",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_H3v65OUCCzvuTuYh",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_sh_002",
+                "date": "2026-03-15",
+                "time": "19:00",
+                "party_size": 8,
+                "contact_name": "Lina",
+                "phone": "13828628112"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_WMQKxNCQK6zRAi7L",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-25"
+              }
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_iyZt3CO7jsQ83Akg",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_sh_002",
+                "checkin_date": "2026-03-25",
+                "nights": 1,
+                "guest_name": "Wang Fang"
+              }
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "finish_reason": "completed",
+          "content": "Everything is all set! The restaurant reservation at Shanghai Classic is confirmed for March 15, 2026, at 7:00 PM for 8 people under the name Lina. The hotel booking at Pudong Shangri-La is also confirmed for March 25, 2026, for one night under the name Wang Fang. \n\nIf you need any more details or help, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_mGFc9C9qXEAO04A2",
+          "tool_name": "book_restaurant",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: MakeReservationTool.execute() missing 6 required positional arguments: 'restaurant_id', 'date', 'time', 'party_size', 'contact_name', and 'phone'",
+            "raw_output": null,
+            "error": "MakeReservationTool.execute() missing 6 required positional arguments: 'restaurant_id', 'date', 'time', 'party_size', 'contact_name', and 'phone'",
+            "latency_ms": 0.012636184692382812
+          },
+          "latency_ms": 0.012636184692382812
+        },
+        {
+          "tool_call_id": "call_H3v65OUCCzvuTuYh",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_sh_002",
+            "date": "2026-03-15",
+            "time": "19:00",
+            "party_size": 8,
+            "contact_name": "Lina",
+            "phone": "13828628112"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_sh_002\nRestaurant: Shanghai Classic\nDate: 2026-03-15\nTime: 19:00\nParty size: 8\nContact: Lina (13828628112)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_sh_002",
+              "restaurant_name": "Shanghai Classic",
+              "date": "2026-03-15",
+              "time": "19:00",
+              "party_size": 8,
+              "contact_name": "Lina",
+              "phone": "13828628112",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.031948089599609375
+          },
+          "latency_ms": 0.031948089599609375
+        },
+        {
+          "tool_call_id": "call_WMQKxNCQK6zRAi7L",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shanghai",
+            "checkin_date": "2026-03-25"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 5 hotels in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001)\n   Location: the Bund | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Pudong Shangri-La (ID: hotel_sh_002)\n   Location: Pudong | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Hyatt on the Bund (ID: hotel_sh_003)\n   Location: the Bund | 4 stars\n   Price: ¥750/night | Rating: 4.5/5.0\n\n4. Home Inn the Bund (ID: hotel_sh_004)\n   Location: the Bund | 3 stars\n   Price: ¥400/night | Rating: 4.2/5.0\n\n5. Hanting Hotel People's Square (ID: hotel_sh_005)\n   Location: People's Square | 3 stars\n   Price: ¥350/night | Rating: 4.0/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_sh_001",
+                "name": "Waldorf Astoria Shanghai on the Bund",
+                "location": "the Bund",
+                "stars": 5,
+                "price": 1200,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_sh_002",
+                "name": "Pudong Shangri-La",
+                "location": "Pudong",
+                "stars": 5,
+                "price": 1000,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_sh_003",
+                "name": "Hyatt on the Bund",
+                "location": "the Bund",
+                "stars": 4,
+                "price": 750,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_sh_004",
+                "name": "Home Inn the Bund",
+                "location": "the Bund",
+                "stars": 3,
+                "price": 400,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_sh_005",
+                "name": "Hanting Hotel People's Square",
+                "location": "People's Square",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03814697265625
+          },
+          "latency_ms": 0.03814697265625
+        },
+        {
+          "tool_call_id": "call_iyZt3CO7jsQ83Akg",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_sh_002",
+            "checkin_date": "2026-03-25",
+            "nights": 1,
+            "guest_name": "Wang Fang"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_sh_002\nCheck-in: 2026-03-25\nNights: 1\nGuest: Wang Fang\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_sh_002",
+              "checkin_date": "2026-03-25",
+              "nights": 1,
+              "guest_name": "Wang Fang",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.02288818359375
+          },
+          "latency_ms": 0.02288818359375
+        }
+      ],
+      "total_latency_ms": 8803.751230239868,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 895200,
+        "event_count": 343,
+        "latency": {
+          "speech_ms": 2780.81591796875,
+          "tool_call_ms": 6.23779296875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 14,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_hotel": {
+        "speech_ms": 2780.81591796875,
+        "tool_call_ms": 6.23779296875
+      }
+    },
+    "info_complete_turn": {
+      "list_bills": 1,
+      "search_restaurants": 1,
+      "book_restaurant": 7,
+      "search_hotels": 7,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_restaurant.contact_name: 期望'Li Na', 实际'Lina'; book_restaurant.phone: 期望'13892862812', 实际'13828628112'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 3,
+    "extra_turns_details": "list_bills: +1 turns (info@1, call@2); book_restaurant: +1 turns (info@7, call@8); search_hotels: +1 turns (info@7, call@8)",
+    "behavior_score": 0.8,
+    "behavior_score_details": "list_bills: 1(correct), search_restaurants: 1(correct), book_restaurant: 0(param_mismatch), search_hotels: 1(correct), book_hotel: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_restaurant",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "contact_name: 'Li Na' vs 'Lina'; phone: '13892862812' vs '13828628112'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

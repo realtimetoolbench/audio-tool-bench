@@ -1,0 +1,156 @@
+{
+  "task_id": "int_000021",
+  "description": "Interruption (correction): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shanghai",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Beijing Garden for 2026-03-19 at 19:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-19",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 9.51901688277053
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 5, contact name Liu Yang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Liu Yang",
+          "book_restaurant.party_size=5"
+        ]
+      },
+      "timestamp": 14.785174590063416
+    },
+    {
+      "speaker": "user",
+      "text": "Phone 13856781234.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13856781234"
+        ]
+      },
+      "timestamp": 19.27781524605049
+    },
+    {
+      "speaker": "user",
+      "text": "Search movies in Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_movies.city=Chengdu"
+        ]
+      },
+      "timestamp": 23.518989960512464
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 ticket for Kung Fu Panda 4 at CGV Chunxi Road, showtime 11:30, buyer name Chen Ming.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Chen Ming",
+          "book_movie_ticket.cinema=CGV Chunxi Road",
+          "book_movie_ticket.seat_count=1",
+          "book_movie_ticket.showtime=11:30"
+        ]
+      },
+      "timestamp": 28.18276680276169
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_007",
+        "date": "2026-03-19",
+        "time": "19:00",
+        "party_size": 5,
+        "contact_name": "Liu Yang",
+        "phone": "13856781234"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cd_003",
+        "cinema": "CGV Chunxi Road",
+        "showtime": "11:30",
+        "seat_count": 1,
+        "buyer_name": "Chen Ming"
+      }
+    }
+  ],
+  "transcript_hash": "b1dfc564424f",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 5,
+    "search_movies": 6,
+    "book_movie_ticket": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shanghai",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_restaurants",
+      "param": "city",
+      "wrong_value": "Shanghai"
+    }
+  }
+}

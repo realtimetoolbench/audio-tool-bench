@@ -1,0 +1,166 @@
+{
+  "task_id": "int_000005",
+  "description": "Interruption (redirection): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_cars",
+    "book_car",
+    "search_courses",
+    "enroll_course"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search courses for Guitar for Beginners. Use student name Luo Fei.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "enroll_course.student_name=Luo Fei"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "List the available sessions for Guitar for Beginners.",
+      "metadata": {
+        "phase": "original"
+      },
+      "timestamp": 5.989042384773201
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search parking in Beijing. Then reserve Sanlitun SOHO Parking for 2026-03-03 15:00.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "reserve_parking_spot.start_time=2026-03-03 15:00",
+          "search_parking.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "course",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "For Sanlitun SOHO Parking, reserve duration 1 hour. License plate 沪B67890.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "reserve_parking_spot.duration_hours=1",
+          "reserve_parking_spot.license_plate=沪B67890"
+        ]
+      },
+      "timestamp": 19.420796588549564
+    },
+    {
+      "speaker": "user",
+      "text": "Add driver phone 13867894321 to the Sanlitun SOHO Parking reservation. Then search cars in Beijing.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13867894321",
+          "search_cars.city=Beijing"
+        ]
+      },
+      "timestamp": 25.704146826762923
+    },
+    {
+      "speaker": "user",
+      "text": "Book car Volkswagen Lavida. Pickup date 2026-03-16. Rent for 10 days.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_car.days=10",
+          "book_car.pickup_date=2026-03-16"
+        ]
+      },
+      "timestamp": 34.115745198756876
+    },
+    {
+      "speaker": "user",
+      "text": "Set renter name Lin Bo. OK, back to the course—continue.",
+      "metadata": {
+        "phase": "return",
+        "contains_params": [
+          "book_car.renter_name=Lin Bo"
+        ]
+      },
+      "timestamp": 41.01551844468753
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_bj_003",
+        "start_time": "2026-03-03 15:00",
+        "duration_hours": 1,
+        "license_plate": "沪B67890",
+        "driver_phone": "13867894321"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_bj_001",
+        "pickup_date": "2026-03-16",
+        "days": 10,
+        "renter_name": "Lin Bo"
+      }
+    },
+    {
+      "tool": "search_courses",
+      "params": {}
+    },
+    {
+      "tool": "enroll_course",
+      "params": {
+        "course_id": "MUS101",
+        "student_name": "Luo Fei"
+      }
+    }
+  ],
+  "transcript_hash": "ca04c40a7e17",
+  "info_complete_turn": {
+    "search_parking": 3,
+    "reserve_parking_spot": 5,
+    "search_cars": 5,
+    "book_car": 7,
+    "search_courses": 1,
+    "enroll_course": 1
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "course",
+    "template": null,
+    "generated": true
+  }
+}

@@ -1,0 +1,749 @@
+{
+  "task_name": "tint_000063",
+  "start_time": "2026-07-29T02:27:01.386981",
+  "end_time": "2026-07-29T02:28:42.615474",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 118200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_NNI9GMy7vtZ2Kkac",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_NNI9GMy7vtZ2Kkac",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.06699562072753906
+          },
+          "latency_ms": 0.06699562072753906,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 8920.073986053467,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 30,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Hold on, first check my balance for account number 6222021234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "check_balance.account_number=6222021234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 339000
+      },
+      "assistant_response": "It looks like there's an issue with the account number you provided—it might be incorrect or not found. Could you double-check the account details? Once you've confirmed, I can try again or suggest other ways to get your balance info.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_K9mx1VEGRpJDzZi0",
+              "name": "check_balance",
+              "arguments": {
+                "account_number": "62202124567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "It looks like there's an issue with the account number you provided—it might be incorrect or not found. Could you double-check the account details? Once you've confirmed, I can try again or suggest other ways to get your balance info.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_K9mx1VEGRpJDzZi0",
+          "tool_name": "check_balance",
+          "arguments": {
+            "account_number": "62202124567890"
+          },
+          "result": {
+            "success": false,
+            "error": "账户不存在或账户号码错误",
+            "output": "账户不存在或账户号码错误",
+            "raw_output": {
+              "success": false,
+              "error": "账户不存在或账户号码错误",
+              "output": "账户不存在或账户号码错误"
+            },
+            "latency_ms": 0.009059906005859375
+          },
+          "latency_ms": 0.009059906005859375
+        }
+      ],
+      "total_latency_ms": 10071.614027023315,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 547200,
+        "event_count": 119,
+        "latency": {
+          "speech_ms": 2216.99462890625,
+          "tool_call_ms": 3.679931640625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the flight search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 106800
+      },
+      "assistant_response": "Great! Here are the available flights from Beijing to Shanghai: \n\n1. Air China, Flight CA1234, departs at 08:00 and arrives at 10:30, price: ¥800.\n\n2. China Eastern, Flight MU5678, departs at 10:00 and arrives at 12:30, price: ¥750.\n\n3. Air China, Flight CA1456, departs at 14:00 and arrives at 16:30, price: ¥850.\n\n4. China Eastern, Flight MU5890, departs at 18:00 and arrives at 20:30, price: ¥900.\n\nDo any of these flights work for you? If so, let me know which one you'd like to book.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! Here are the available flights from Beijing to Shanghai: \n\n1. Air China, Flight CA1234, departs at 08:00 and arrives at 10:30, price: ¥800.\n\n2. China Eastern, Flight MU5678, departs at 10:00 and arrives at 12:30, price: ¥750.\n\n3. Air China, Flight CA1456, departs at 14:00 and arrives at 16:30, price: ¥850.\n\n4. China Eastern, Flight MU5890, departs at 18:00 and arrives at 20:30, price: ¥900.\n\nDo any of these flights work for you? If so, let me know which one you'd like to book.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 15354.354858398438,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1660800,
+        "event_count": 262,
+        "latency": {
+          "speech_ms": 465.704833984375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.545233917975743,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-05.",
+        "timestamp": 16.545233917975743,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-05"
+          ]
+        },
+        "audio_size_bytes": 201600
+      },
+      "assistant_response": "Sure! Could you please provide the passenger name so I can proceed with the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure! Could you please provide the passenger name so I can proceed with the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9372.972965240479,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 220800,
+        "event_count": 45,
+        "latency": {
+          "speech_ms": 5943.14501953125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.979670186516447,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use passenger name Liu Yang and airline China Eastern.",
+        "timestamp": 20.979670186516447,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.passenger_name=Liu Yang"
+          ]
+        },
+        "audio_size_bytes": 162600
+      },
+      "assistant_response": "Your flight has been booked successfully! The booking ID is FL10001. It's for Liu Yang on China Eastern, departing on 2026-03-05. \n\nIf you need anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_1vHTJNkJV28AOWCG",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "passenger_name": "Liu Yang",
+                "date": "2026-03-05"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your flight has been booked successfully! The booking ID is FL10001. It's for Liu Yang on China Eastern, departing on 2026-03-05. \n\nIf you need anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_1vHTJNkJV28AOWCG",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "passenger_name": "Liu Yang",
+            "date": "2026-03-05"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Liu Yang\nDate: 2026-03-05\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Liu Yang",
+              "date": "2026-03-05",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.013113021850585938
+          },
+          "latency_ms": 0.013113021850585938
+        }
+      ],
+      "total_latency_ms": 14480.93318939209,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 561600,
+        "event_count": 140,
+        "latency": {
+          "speech_ms": 4008.4091796875,
+          "tool_call_ms": 3153.877197265625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.33582478709551,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Beijing.",
+        "timestamp": 26.33582478709551,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 72600
+      },
+      "assistant_response": "Here are some great hotel options in Beijing for your check-in date:\n\n1. The Peninsula Beijing – 5-star, ¥1800 per night, located in Wangfujing, with a 4.9/5 rating.\n\n2. Park Hyatt Beijing – 5-star, ¥1500 per night, in the CBD, rated 4.8/5.\n\n3. Holiday Inn Express – 3-star, ¥450 per night, in Zhongguancun, rated 4.2/5.\n\nDo any of these sound good? Let me know if you'd like details on booking one!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_WNZDg3JjcJmhh2Wn",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing",
+                "checkin_date": "2026-03-05"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are some great hotel options in Beijing for your check-in date:\n\n1. The Peninsula Beijing – 5-star, ¥1800 per night, located in Wangfujing, with a 4.9/5 rating.\n\n2. Park Hyatt Beijing – 5-star, ¥1500 per night, in the CBD, rated 4.8/5.\n\n3. Holiday Inn Express – 3-star, ¥450 per night, in Zhongguancun, rated 4.2/5.\n\nDo any of these sound good? Let me know if you'd like details on booking one!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_WNZDg3JjcJmhh2Wn",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Beijing",
+            "checkin_date": "2026-03-05"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 7 hotels in Beijing:\n\n1. The Peninsula Beijing (ID: hotel_bj_001)\n   Location: Wangfujing | 5 stars\n   Price: ¥1800/night | Rating: 4.9/5.0\n\n2. Park Hyatt Beijing (ID: hotel_bj_002)\n   Location: CBD | 5 stars\n   Price: ¥1500/night | Rating: 4.8/5.0\n\n3. Holiday Inn Express (ID: hotel_bj_003)\n   Location: Zhongguancun | 3 stars\n   Price: ¥450/night | Rating: 4.2/5.0\n\n4. Beijing Hotel (ID: hotel_bj_004)\n   Location: Downtown | 4 stars\n   Price: ¥600/night | Rating: 4.4/5.0\n\n5. Novotel Beijing Peace (ID: hotel_bj_005)\n   Location: Downtown | 4 stars\n   Price: ¥550/night | Rating: 4.5/5.0\n\n6. Grand Mercure Beijing (ID: hotel_bj_006)\n   Location: Downtown | 4 stars\n   Price: ¥700/night | Rating: 4.6/5.0\n\n7. Home Inn Dongzhimen (ID: hotel_bj_007)\n   Location: Downtown | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_bj_001",
+                "name": "The Peninsula Beijing",
+                "location": "Wangfujing",
+                "stars": 5,
+                "price": 1800,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_bj_002",
+                "name": "Park Hyatt Beijing",
+                "location": "CBD",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_bj_003",
+                "name": "Holiday Inn Express",
+                "location": "Zhongguancun",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_bj_004",
+                "name": "Beijing Hotel",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 600,
+                "rating": 4.4
+              },
+              {
+                "hotel_id": "hotel_bj_005",
+                "name": "Novotel Beijing Peace",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 550,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_bj_006",
+                "name": "Grand Mercure Beijing",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 700,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_bj_007",
+                "name": "Home Inn Dongzhimen",
+                "location": "Downtown",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.1
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.07200241088867188
+          },
+          "latency_ms": 0.07200241088867188
+        }
+      ],
+      "total_latency_ms": 14064.795732498169,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1221600,
+        "event_count": 238,
+        "latency": {
+          "speech_ms": 4583.28515625,
+          "tool_call_ms": 2116.2939453125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.91772072887195,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the Beijing Hotel for check-in 2026-03-15 for 3 nights.",
+        "timestamp": 30.91772072887195,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-15",
+            "book_hotel.nights=3"
+          ]
+        },
+        "audio_size_bytes": 247800
+      },
+      "assistant_response": "Great choice! Could you please provide the guest name for the booking? Once I have that, I can complete the reservation.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great choice! Could you please provide the guest name for the booking? Once I have that, I can complete the reservation.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10375.576972961426,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 302400,
+        "event_count": 57,
+        "latency": {
+          "speech_ms": 2272.61767578125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.26301746180826,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set guest name Zhang Wei, then search attractions in Xi'an.",
+        "timestamp": 37.26301746180826,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.guest_name=Zhang Wei",
+            "search_attractions.city=Xi'an"
+          ]
+        },
+        "audio_size_bytes": 174000
+      },
+      "assistant_response": "Here are some top attractions in Xi’an:\n\n1. The Terracotta Warriors – a must-see, rated 4.8/5, located in Lintong, ticket ¥120.\n2. The Giant Wild Goose Pagoda – historical site, rated 4.5/5, in Yanta, ticket ¥50.\n3. Huaqing Palace – another historical gem, rated 4.4/5, in Lintong, ticket ¥120.\n4. The Bell Tower – located in Beilin, rated 4.3/5, ticket ¥35.\n\nIf you'd like to know more or need help with anything else, let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_1xSzyqPLGtJkAqFP",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_bj_004",
+                "guest_name": "Zhang Wei",
+                "checkin_date": "2026-03-15",
+                "nights": 3
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_32OX83a5ER9GzICV",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Xi'an"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Here are some top attractions in Xi’an:\n\n1. The Terracotta Warriors – a must-see, rated 4.8/5, located in Lintong, ticket ¥120.\n2. The Giant Wild Goose Pagoda – historical site, rated 4.5/5, in Yanta, ticket ¥50.\n3. Huaqing Palace – another historical gem, rated 4.4/5, in Lintong, ticket ¥120.\n4. The Bell Tower – located in Beilin, rated 4.3/5, ticket ¥35.\n\nIf you'd like to know more or need help with anything else, let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_1xSzyqPLGtJkAqFP",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_bj_004",
+            "guest_name": "Zhang Wei",
+            "checkin_date": "2026-03-15",
+            "nights": 3
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_bj_004\nCheck-in: 2026-03-15\nNights: 3\nGuest: Zhang Wei\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_bj_004",
+              "checkin_date": "2026-03-15",
+              "nights": 3,
+              "guest_name": "Zhang Wei",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0209808349609375
+          },
+          "latency_ms": 0.0209808349609375
+        },
+        {
+          "tool_call_id": "call_32OX83a5ER9GzICV",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Xi'an"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Xi'an:\n\n1. Terracotta Warriors (ID: attr_xa_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥120\n   Hours: 08:30-17:00\n   Location: Lintong\n\n2. Giant Wild Goose Pagoda (ID: attr_xa_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Yanta\n\n3. Huaqing Palace (ID: attr_xa_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥120\n   Hours: 07:30-19:00\n   Location: Lintong\n\n4. Bell Tower (ID: attr_xa_004)\n   Type: Historical\n   Rating: 4.3/5.0\n   Ticket: ¥35\n   Hours: 08:00-22:00\n   Location: Beilin\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_xa_001",
+                "name": "Terracotta Warriors",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 120,
+                "opening_hours": "08:30-17:00",
+                "location": "Lintong"
+              },
+              {
+                "attraction_id": "attr_xa_002",
+                "name": "Giant Wild Goose Pagoda",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Yanta"
+              },
+              {
+                "attraction_id": "attr_xa_003",
+                "name": "Huaqing Palace",
+                "type": "Historical",
+                "rating": 4.4,
+                "price": 120,
+                "opening_hours": "07:30-19:00",
+                "location": "Lintong"
+              },
+              {
+                "attraction_id": "attr_xa_004",
+                "name": "Bell Tower",
+                "type": "Historical",
+                "rating": 4.3,
+                "price": 35,
+                "opening_hours": "08:00-22:00",
+                "location": "Beilin"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04792213439941406
+          },
+          "latency_ms": 0.04792213439941406
+        }
+      ],
+      "total_latency_ms": 18578.5973072052,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1303200,
+        "event_count": 293,
+        "latency": {
+          "speech_ms": 3412.283935546875,
+          "tool_call_ms": 1069.61572265625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 14,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "check_balance": {
+        "speech_ms": 2216.99462890625,
+        "tool_call_ms": 3.679931640625
+      },
+      "book_flight": {
+        "speech_ms": 4008.4091796875,
+        "tool_call_ms": 3153.877197265625
+      },
+      "search_hotels": {
+        "speech_ms": 4583.28515625,
+        "tool_call_ms": 2116.2939453125
+      },
+      "book_hotel": {
+        "speech_ms": 3412.283935546875,
+        "tool_call_ms": 1069.61572265625
+      },
+      "search_attractions": {
+        "speech_ms": 3412.283935546875,
+        "tool_call_ms": 1069.61572265625
+      }
+    },
+    "info_complete_turn": {
+      "check_balance": 2,
+      "search_flights": 1,
+      "book_flight": 5,
+      "search_hotels": 6,
+      "book_hotel": 8,
+      "search_attractions": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: check_balance.account_number: 期望'6222021234567890', 实际'62202124567890'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.8333333333333334,
+    "behavior_score_details": "check_balance: 0(param_mismatch), search_flights: 1(correct), book_flight: 1(correct), search_hotels: 1(correct), book_hotel: 1(correct), search_attractions: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "check_balance",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "account_number: '6222021234567890' vs '62202124567890'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

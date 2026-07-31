@@ -1,0 +1,223 @@
+{
+  "task_id": "tint_000042",
+  "description": "Interruption (priority_no_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—check my ride status first for ride ID RIDE123456.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_ride_status.ride_id=RIDE123456"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_flights",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the flight search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5678 on 2026-03-15.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-03-15"
+        ]
+      },
+      "timestamp": 16.449087116697314
+    },
+    {
+      "speaker": "user",
+      "text": "Use passenger name Wang Fang and airline China Eastern.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.passenger_name=Wang Fang"
+        ]
+      },
+      "timestamp": 21.583946698947642
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 27.089000465233745
+    },
+    {
+      "speaker": "user",
+      "text": "Book West Lake State Guesthouse with check-in 2026-03-02 for 4 nights.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-02",
+          "book_hotel.nights=4"
+        ]
+      },
+      "timestamp": 31.431657883668485
+    },
+    {
+      "speaker": "user",
+      "text": "Set the hotel guest name to Li Na.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Li Na"
+        ]
+      },
+      "timestamp": 37.685858677182814
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chengdu.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Chengdu"
+        ]
+      },
+      "timestamp": 41.98499029032587
+    },
+    {
+      "speaker": "user",
+      "text": "Book Lao Ma Tou Hotpot on 2026-03-14 at 11:30 for 2 people; contact Chen Ming at 13822970109.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Chen Ming",
+          "book_restaurant.date=2026-03-14",
+          "book_restaurant.party_size=2",
+          "book_restaurant.phone=13822970109",
+          "book_restaurant.time=11:30"
+        ]
+      },
+      "timestamp": 46.17779522542966
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-15",
+        "passenger_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_001",
+        "checkin_date": "2026-03-02",
+        "nights": 4,
+        "guest_name": "Li Na"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_002",
+        "date": "2026-03-14",
+        "time": "11:30",
+        "party_size": 2,
+        "contact_name": "Chen Ming",
+        "phone": "13822970109"
+      }
+    }
+  ],
+  "transcript_hash": "09f96b42e634",
+  "info_complete_turn": {
+    "check_ride_status": 2,
+    "search_flights": 1,
+    "book_flight": 5,
+    "search_hotels": 6,
+    "book_hotel": 8,
+    "search_restaurants": 9,
+    "book_restaurant": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "check_ride_status"
+  ]
+}

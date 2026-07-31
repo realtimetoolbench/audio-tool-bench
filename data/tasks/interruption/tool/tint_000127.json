@@ -1,0 +1,216 @@
+{
+  "task_id": "tint_000127",
+  "description": "Interruption (priority_early_return): 6 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_shows",
+    "book_show_ticket",
+    "search_restaurants_delivery",
+    "place_food_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Wuhan.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Wuhan"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search restaurant delivery options in Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants_delivery.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Place a delivery order from Starbucks CBD.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 10.364266307488203
+    },
+    {
+      "speaker": "user",
+      "text": "Add Matcha Latte and Muffin to the delivery order.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.items=Matcha Latte and Muffin"
+        ]
+      },
+      "timestamp": 15.556687135759251
+    },
+    {
+      "speaker": "user",
+      "text": "Deliver to Room 1602, Tower 1, Oak Tree Court, and use phone 13844556677.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 1602, Tower 1, Oak Tree Court",
+          "place_food_order.phone=13844556677"
+        ]
+      },
+      "timestamp": 20.843787175490835
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Yangtze River Restaurant for 2026-03-22 at 19:00.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-22",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 32.00342023542008
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 1, contact name Sophia Garcia.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Sophia Garcia",
+          "book_restaurant.party_size=1"
+        ]
+      },
+      "timestamp": 37.69748998885649
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13856781234, then search shows in Chongqing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.phone=13856781234",
+          "search_shows.city=Chongqing"
+        ]
+      },
+      "timestamp": 42.64745694037053
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 ticket for G.E.M. Concert in the Floor zone; buyer Sarah Chen, phone 13830018365.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Sarah Chen",
+          "book_show_ticket.phone=13830018365",
+          "book_show_ticket.seat_zone=Floor",
+          "book_show_ticket.ticket_count=1"
+        ]
+      },
+      "timestamp": 48.31503997139364
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_bj_004",
+        "items": "Matcha Latte and Muffin",
+        "delivery_address": "Room 1602, Tower 1, Oak Tree Court",
+        "phone": "13844556677"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_wh_002",
+        "date": "2026-03-22",
+        "time": "19:00",
+        "party_size": 1,
+        "contact_name": "Sophia Garcia",
+        "phone": "13856781234"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_cq_001",
+        "seat_zone": "Floor",
+        "ticket_count": 1,
+        "buyer_name": "Sarah Chen",
+        "phone": "13830018365"
+      }
+    }
+  ],
+  "transcript_hash": "baf49a7ee044",
+  "info_complete_turn": {
+    "search_restaurants_delivery": 2,
+    "place_food_order": 5,
+    "search_restaurants": 1,
+    "book_restaurant": 9,
+    "search_shows": 9,
+    "book_show_ticket": 10
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "inserted_tools": [
+      "search_restaurants_delivery",
+      "place_food_order"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "search_restaurants_delivery",
+    "place_food_order"
+  ]
+}

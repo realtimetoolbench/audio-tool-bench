@@ -1,0 +1,196 @@
+{
+  "task_id": "ms_000072",
+  "scenario_type": "multi_step",
+  "server": "gmail",
+  "template": "full_draft_workflow_8",
+  "description": "List contacts, create draft, update draft, send draft, search emails, reply, star, get thread",
+  "tools": [
+    "list_contacts",
+    "create_draft",
+    "update_draft",
+    "send_draft",
+    "search_emails",
+    "reply_to_email",
+    "star_email",
+    "get_thread"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you list my contacts?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_contacts"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create a draft email with the subject Meeting notes and the body saying Notes from today's meeting. Send it to the first contact in my list.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_draft"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Update that draft with this body instead: Updated: Here is the latest update with revisions.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "update_draft"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Go ahead and send that draft now.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "send_draft"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Search my emails for anything with the word budget.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_emails"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Reply to the first email in those results with Got it, will follow up, and star that same email. Also, get the full thread for it.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "reply_to_email",
+          "star_email",
+          "get_thread"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_contacts",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "create_draft",
+      "params": {
+        "to": [
+          "brian.torres@gmail.com"
+        ],
+        "subject": "Meeting notes",
+        "body": "Notes from today's meeting."
+      },
+      "param_source": {
+        "to": {
+          "from_tool": "list_contacts",
+          "field": "email_address"
+        },
+        "subject": "user",
+        "body": "user"
+      }
+    },
+    {
+      "tool": "update_draft",
+      "params": {
+        "draft_id": "draft_1",
+        "body": "Updated: Here is the latest update with revisions."
+      },
+      "param_source": {
+        "draft_id": {
+          "from_tool": "create_draft",
+          "field": "draft_id"
+        },
+        "body": "user"
+      }
+    },
+    {
+      "tool": "send_draft",
+      "params": {
+        "draft_id": "draft_1"
+      },
+      "param_source": {
+        "draft_id": {
+          "from_tool": "create_draft",
+          "field": "draft_id"
+        }
+      }
+    },
+    {
+      "tool": "search_emails",
+      "params": {
+        "query": "budget"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "reply_to_email",
+      "params": {
+        "email_id": "email_017",
+        "body": "Got it, will follow up."
+      },
+      "param_source": {
+        "email_id": {
+          "from_tool": "search_emails",
+          "field": "email_id"
+        },
+        "body": "user"
+      }
+    },
+    {
+      "tool": "star_email",
+      "params": {
+        "email_id": "email_017"
+      },
+      "param_source": {
+        "email_id": {
+          "from_tool": "search_emails",
+          "field": "email_id"
+        }
+      }
+    },
+    {
+      "tool": "get_thread",
+      "params": {
+        "thread_id": "thread_002"
+      },
+      "param_source": {
+        "thread_id": {
+          "from_tool": "search_emails",
+          "field": "thread_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 8,
+  "info_complete_turn": {
+    "list_contacts": 1,
+    "create_draft": 2,
+    "update_draft": 3,
+    "send_draft": 3,
+    "search_emails": 5,
+    "reply_to_email": 6,
+    "star_email": 6,
+    "get_thread": 6
+  }
+}

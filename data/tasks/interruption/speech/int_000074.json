@@ -1,0 +1,160 @@
+{
+  "task_id": "int_000074",
+  "description": "Interruption (cancellation): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai. Also, later find a restaurant reservation.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5890 on 2026-05-24 for David Liu with China Eastern.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-05-24",
+          "book_flight.passenger_name=David Liu"
+        ]
+      },
+      "timestamp": 7.45592613568758
+    },
+    {
+      "speaker": "user",
+      "text": "Use China Eastern for that flight booking.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 13.277956835417067
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Nanjing.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Nanjing"
+        ]
+      },
+      "timestamp": 18.380102082854357
+    },
+    {
+      "speaker": "user",
+      "text": "Book Hanting Hotel Xuanwu for Sun Lei.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Sun Lei"
+        ]
+      },
+      "timestamp": 22.818666126306134
+    },
+    {
+      "speaker": "user",
+      "text": "Check in 2026-03-11 for 3 nights.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-11",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 27.462591222900404
+    },
+    {
+      "speaker": "user",
+      "text": "Never mind the restaurant. Cancel that.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 6,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "restaurant",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Finish the flight and hotel bookings only. No restaurant task.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 36.693194409036494
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_004",
+        "date": "2026-05-24",
+        "passenger_name": "David Liu"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_nj_004",
+        "checkin_date": "2026-03-11",
+        "nights": 3,
+        "guest_name": "Sun Lei"
+      }
+    }
+  ],
+  "transcript_hash": "347ec3957af3",
+  "info_complete_turn": {
+    "search_flights": 1,
+    "book_flight": 2,
+    "search_hotels": 4,
+    "book_hotel": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "restaurant",
+    "template": "business_trip",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_restaurants",
+    "book_restaurant"
+  ]
+}

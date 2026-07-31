@@ -1,0 +1,196 @@
+{
+  "task_id": "pro_001042",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m mapping out that little spring trip, and Guangzhou is definitely on the itinerary for the hotel part.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Before that, I’m taking the train route from Beijing over to Shanghai, so I’m building the rest of the schedule around that ride.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 8.46597748282352
+    },
+    {
+      "speaker": "user",
+      "text": "And while I’m still in Beijing, I want to squeeze in some sightseeing—just thinking through the main attractions there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 17.666944403616696
+    },
+    {
+      "speaker": "user",
+      "text": "For Guangzhou, I’m set on the White Swan Hotel, checking in on 2026-03-04 and staying 4 nights.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-04",
+          "book_hotel.nights=4"
+        ]
+      },
+      "timestamp": 26.38139381489504
+    },
+    {
+      "speaker": "user",
+      "text": "That Guangzhou stay is under Ethan Thomas, by the way.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.guest_name=Ethan Thomas"
+        ]
+      },
+      "timestamp": 34.492603740760416
+    },
+    {
+      "speaker": "user",
+      "text": "For the Beijing-to-Shanghai leg, I’m on train D321 on 2026-03-02—Ethan Thomas—and I’m doing First Class.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-03-02",
+          "book_train.passenger_name=Ethan Thomas",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 39.96883959375909
+    },
+    {
+      "speaker": "user",
+      "text": "Oh, and for Beijing later on, it’s the Summer Palace on 2026-05-06 in the morning—Li Na’s name—and we’ve got 4 tickets… I’m still sorting out what we do right after that.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-05-06",
+          "book_attraction_ticket.ticket_count=4",
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Li Na"
+        ]
+      },
+      "timestamp": 47.783024040947176
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_gz_003",
+        "checkin_date": "2026-03-04",
+        "nights": 4,
+        "guest_name": "Ethan Thomas"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_003",
+        "date": "2026-03-02",
+        "passenger_name": "Ethan Thomas",
+        "seat_class": "First Class"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_003",
+        "date": "2026-05-06",
+        "time_slot": "morning",
+        "visitor_name": "Li Na",
+        "ticket_count": 4
+      }
+    }
+  ],
+  "transcript_hash": "7b10846dbcfe",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "travel",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 5,
+    "search_trains": 2,
+    "book_train": 6,
+    "search_attractions": 3,
+    "book_attraction_ticket": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m mapping out that little spring trip",
+      "definitely on the itinerary",
+      "I’m taking the train route from Beijing over to Shanghai",
+      "I’m set on the White Swan Hotel",
+      "I’m on train D321",
+      "it’s the Summer Palace on 2026-05-06 in the morning"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates fixed plans and specific booking details; search context appears earlier than booking details; no execution/authorization phrasing."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_attractions",
+      "search_hotels",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_attraction_ticket",
+      "book_hotel",
+      "book_train"
+    ]
+  },
+  "expected_tool_if_act": "search_hotels",
+  "expected_params_if_act": {
+    "city": "Guangzhou"
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "task_id": "tint_000032",
+  "description": "Interruption (priority_no_return): 5 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "list_bills"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_movies.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, list my bills now.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_movies",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the movie task.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie tickets for movie_id The Wandering Earth 3.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 14.152711626080631
+    },
+    {
+      "speaker": "user",
+      "text": "Use cinema Wanda Cinema Wujiaochang and showtime 21:50.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_movie_ticket.cinema=Wanda Cinema Wujiaochang",
+          "book_movie_ticket.showtime=21:50"
+        ]
+      },
+      "timestamp": 20.237257588103255
+    },
+    {
+      "speaker": "user",
+      "text": "Reserve 3 seats, buyer name Wang Fang.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Wang Fang",
+          "book_movie_ticket.seat_count=3"
+        ]
+      },
+      "timestamp": 25.917545885354482
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 31.00866524033422
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Xiao Nan Guo for 2026-03-13 at 20:00, party size 3.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-13",
+          "book_restaurant.party_size=3",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 35.29675317127178
+    },
+    {
+      "speaker": "user",
+      "text": "Set contact name Zhang Wei, phone 13856781234.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.phone=13856781234"
+        ]
+      },
+      "timestamp": 41.67883060842621
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_bills",
+      "params": {}
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_sh_001",
+        "cinema": "Wanda Cinema Wujiaochang",
+        "showtime": "21:50",
+        "seat_count": 3,
+        "buyer_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_003",
+        "date": "2026-03-13",
+        "time": "20:00",
+        "party_size": 3,
+        "contact_name": "Zhang Wei",
+        "phone": "13856781234"
+      }
+    }
+  ],
+  "transcript_hash": "1c4086a8ec62",
+  "info_complete_turn": {
+    "list_bills": 1,
+    "search_movies": 1,
+    "book_movie_ticket": 6,
+    "search_restaurants": 7,
+    "book_restaurant": 9
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_movies",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "list_bills"
+  ]
+}

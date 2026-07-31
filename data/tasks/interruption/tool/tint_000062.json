@@ -1,0 +1,199 @@
+{
+  "task_id": "tint_000062",
+  "description": "Interruption (priority_no_return): 6 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_cars",
+    "book_car",
+    "check_ride_status",
+    "track_package"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—before that, track my package with tracking number SF1234567890.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "track_package.tracking_number=SF1234567890"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the restaurant search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book a table at Imperial Kitchen for 2026-03-25.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-25"
+        ]
+      },
+      "timestamp": 15.113195851203386
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation time to 18:00 and party size to 5.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.party_size=5",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 20.676193859897097
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Wang Fang and phone 13830018365 for the reservation.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Wang Fang",
+          "book_restaurant.phone=13830018365"
+        ]
+      },
+      "timestamp": 26.664090845379555
+    },
+    {
+      "speaker": "user",
+      "text": "Search rental cars in Chengdu.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_cars.city=Chengdu"
+        ]
+      },
+      "timestamp": 32.977515363208965
+    },
+    {
+      "speaker": "user",
+      "text": "Book the Toyota Camry starting 2026-03-21 for 5 days.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_car.days=5",
+          "book_car.pickup_date=2026-03-21"
+        ]
+      },
+      "timestamp": 37.71363345667476
+    },
+    {
+      "speaker": "user",
+      "text": "Set the renter name to Wang Fang, then check ride status for ride ID RIDE123456.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_car.renter_name=Wang Fang",
+          "check_ride_status.ride_id=RIDE123456"
+        ]
+      },
+      "timestamp": 43.25835349087947
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "track_package",
+      "params": {
+        "tracking_number": "SF1234567890"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_008",
+        "date": "2026-03-25",
+        "time": "18:00",
+        "party_size": 5,
+        "contact_name": "Wang Fang",
+        "phone": "13830018365"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_cd_002",
+        "pickup_date": "2026-03-21",
+        "days": 5,
+        "renter_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    }
+  ],
+  "transcript_hash": "1d07dfb688b0",
+  "info_complete_turn": {
+    "track_package": 2,
+    "search_restaurants": 1,
+    "book_restaurant": 6,
+    "search_cars": 7,
+    "book_car": 9,
+    "check_ride_status": 9
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "track_package"
+  ]
+}

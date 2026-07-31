@@ -1,0 +1,186 @@
+{
+  "task_id": "pro_000926",
+  "description": "Generated: 7 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket",
+    "cancel_ride"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m mapping out a little trip—starting in Beijing and ending up in Shanghai.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "And I’ll probably do a stopover in Hangzhou for a few days, so I’ve been thinking about where to stay there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 6.444743426325916
+    },
+    {
+      "speaker": "user",
+      "text": "Later in the month I’m also hoping to swing by Xi'an and do the touristy stuff.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 14.421740664672033
+    },
+    {
+      "speaker": "user",
+      "text": "If that G3 train on 2026-03-14 is still a good option, yeah, go ahead and lock it in for Li Na—First Class.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-03-14",
+          "book_train.passenger_name=Li Na",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 21.50925986739323
+    },
+    {
+      "speaker": "user",
+      "text": "And yep, First Class is the one—let’s stick with that.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 29.919065764724316
+    },
+    {
+      "speaker": "user",
+      "text": "For Hangzhou, the West Lake State Guesthouse sounds perfect—please reserve it from 2026-03-13 for 3 nights under Zhang Wei.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-13",
+          "book_hotel.guest_name=Zhang Wei",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 35.7398973549255
+    },
+    {
+      "speaker": "user",
+      "text": "Oh—and in Xi'an, Huaqing Palace on 2026-03-25 at 09:00 for Li Na, just 1 ticket. Also, I’ve got a ride I’m not taking anymore—RIDE789012—so that can be canceled.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-25",
+          "book_attraction_ticket.ticket_count=1",
+          "book_attraction_ticket.time_slot=09:00",
+          "book_attraction_ticket.visitor_name=Li Na",
+          "cancel_ride.ride_id=RIDE789012"
+        ]
+      },
+      "timestamp": 45.328972146904306
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-14",
+        "passenger_name": "Li Na",
+        "seat_class": "First Class"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_001",
+        "checkin_date": "2026-03-13",
+        "nights": 3,
+        "guest_name": "Zhang Wei"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_xa_003",
+        "date": "2026-03-25",
+        "time_slot": "09:00",
+        "visitor_name": "Li Na",
+        "ticket_count": 1
+      }
+    },
+    {
+      "tool": "cancel_ride",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    }
+  ],
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_trains": 1,
+    "book_train": 4,
+    "search_hotels": 2,
+    "book_hotel": 6,
+    "search_attractions": 3,
+    "book_attraction_ticket": 7,
+    "cancel_ride": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "mapping out a little trip",
+      "stopover in Hangzhou for a few days",
+      "hoping to swing by Xi'an",
+      "go ahead and lock it in",
+      "please reserve it",
+      "just 1 ticket",
+      "ride I’m not taking anymore—so that can be canceled"
+    ],
+    "ambiguity_notes": "Strong intent overall: early turns set travel context and cities, later turns casually confirm specific bookings and a ride cancellation. One minor compression: the final turn bundles an attraction booking confirmation with a ride cancel, but both are stated clearly."
+  },
+  "transcript_hash": "f6507154455a"
+}

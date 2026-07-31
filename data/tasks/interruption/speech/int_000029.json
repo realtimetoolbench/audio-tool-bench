@@ -1,0 +1,216 @@
+{
+  "task_id": "int_000029",
+  "description": "Interruption (redirection): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "get_transaction_history",
+    "search_parking",
+    "reserve_parking_spot",
+    "search_doctors",
+    "book_appointment"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search parking in Chengdu. Target parking is Chunxi Road IFS Parking.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_parking.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Reserve Chunxi Road IFS Parking starting 2026-04-12 16:00 for 6 hours.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_appointment.time_slot=afternoon",
+          "reserve_parking_spot.duration_hours=6",
+          "reserve_parking_spot.start_time=2026-04-12 16:00"
+        ]
+      },
+      "timestamp": 6.404449937299094
+    },
+    {
+      "speaker": "user",
+      "text": "Use license plate 沪B67890 and driver phone 13845678901 for the parking reservation.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13845678901",
+          "reserve_parking_spot.license_plate=沪B67890"
+        ]
+      },
+      "timestamp": 12.875320756250144
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—before that, search restaurants in Shenzhen. Focus on Lao Sichuan.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants.city=Shenzhen"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "parking",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Lao Sichuan on 2026-03-06 at 12:00.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.date=2026-03-06",
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 27.116611378025205
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 3. Contact name Isabella Jackson.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.contact_name=Isabella Jackson",
+          "book_restaurant.party_size=3"
+        ]
+      },
+      "timestamp": 32.46933571798036
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13830018365 for the restaurant booking. Then pull transaction history for account 6228480012345678.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.phone=13830018365",
+          "get_transaction_history.account_number=6228480012345678"
+        ]
+      },
+      "timestamp": 37.71580901463892
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the parking—continue with the remaining tasks.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 46.35075769190762
+    },
+    {
+      "speaker": "user",
+      "text": "Search doctors in Beijing. Book an appointment with doctor Wang Fang for patient Feng Jie.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_appointment.patient_name=Feng Jie",
+          "search_doctors.city=Beijing"
+        ]
+      },
+      "timestamp": 52.08154378829967
+    },
+    {
+      "speaker": "user",
+      "text": "Set the appointment date to 2026-03-04 in the afternoon.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_appointment.date=2026-03-04"
+        ]
+      },
+      "timestamp": 59.830700427893355
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sz_001",
+        "date": "2026-03-06",
+        "time": "12:00",
+        "party_size": 3,
+        "contact_name": "Isabella Jackson",
+        "phone": "13830018365"
+      }
+    },
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6228480012345678"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_cd_001",
+        "start_time": "2026-04-12 16:00",
+        "duration_hours": 6,
+        "license_plate": "沪B67890",
+        "driver_phone": "13845678901"
+      }
+    },
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_bj_003",
+        "date": "2026-03-04",
+        "time_slot": "afternoon",
+        "patient_name": "Feng Jie"
+      }
+    }
+  ],
+  "transcript_hash": "d490c043ad78",
+  "info_complete_turn": {
+    "search_restaurants": 4,
+    "book_restaurant": 7,
+    "get_transaction_history": 7,
+    "search_parking": 1,
+    "reserve_parking_spot": 3,
+    "search_doctors": 9,
+    "book_appointment": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "parking",
+    "template": null,
+    "generated": true
+  }
+}

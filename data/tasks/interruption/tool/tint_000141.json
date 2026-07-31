@@ -1,0 +1,172 @@
+{
+  "task_id": "tint_000141",
+  "description": "Interruption (tool_cancel): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Shanghai to Wuhan on 2026-03-26.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also handle hotels and a restaurant booking in Wuhan after that.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Wuhan",
+          "search_restaurants.city=Wuhan"
+        ]
+      },
+      "timestamp": 5.8046798636122166
+    },
+    {
+      "speaker": "user",
+      "text": "Skip the flight search and do not book any flight.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_flights",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Wuhan.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 17.54203239640486
+    },
+    {
+      "speaker": "user",
+      "text": "Book Shangri-La Wuhan for check-in 2026-03-27.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-27"
+        ]
+      },
+      "timestamp": 22.06818551789371
+    },
+    {
+      "speaker": "user",
+      "text": "Set the hotel stay to 4 nights for guest Chen Ming.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Chen Ming",
+          "book_hotel.nights=4"
+        ]
+      },
+      "timestamp": 27.08058776402335
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Wuhan.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 32.775211601224015
+    },
+    {
+      "speaker": "user",
+      "text": "Book Yangtze River Restaurant on 2026-03-19 at 20:00 for 5 people. Use contact Isabella Jackson, phone 13864788741.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Isabella Jackson",
+          "book_restaurant.date=2026-03-19",
+          "book_restaurant.party_size=5",
+          "book_restaurant.phone=13864788741",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 36.847779196808276
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_wh_001",
+        "checkin_date": "2026-03-27",
+        "nights": 4,
+        "guest_name": "Chen Ming"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_wh_002",
+        "date": "2026-03-19",
+        "time": "20:00",
+        "party_size": 5,
+        "contact_name": "Isabella Jackson",
+        "phone": "13864788741"
+      }
+    }
+  ],
+  "transcript_hash": "5ae3365d1a0a",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 6,
+    "search_restaurants": 2,
+    "book_restaurant": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "forbidden_tools": [
+      "search_flights",
+      "book_flight"
+    ]
+  },
+  "forbidden_tools": [
+    "search_flights",
+    "book_flight"
+  ],
+  "cancelled_tools": [
+    "search_flights",
+    "book_flight"
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "task_id": "tint_000114",
+  "description": "Interruption (tool_correction): 5 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket",
+    "search_flights"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Wuhan.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Wuhan, I meant Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Chengdu"
+        ]
+      },
+      "timestamp": 9.156815866176759
+    },
+    {
+      "speaker": "user",
+      "text": "Book a table at Lao Ma Tou Hotpot for 2026-03-26 at 14:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-26",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 13.51088857941821
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 5. Contact name Zhou Jun. Phone 13899887766.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhou Jun",
+          "book_restaurant.party_size=5",
+          "book_restaurant.phone=13899887766"
+        ]
+      },
+      "timestamp": 19.578706889644323
+    },
+    {
+      "speaker": "user",
+      "text": "Search movies in Chengdu. Book The Wandering Earth 3 at Wanda Cinema Jinhua for 16:10.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.cinema=Wanda Cinema Jinhua",
+          "book_movie_ticket.showtime=16:10",
+          "search_movies.city=Chengdu"
+        ]
+      },
+      "timestamp": 25.52061627156357
+    },
+    {
+      "speaker": "user",
+      "text": "Two seats. Buyer name He Xia. Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=He Xia",
+          "book_movie_ticket.seat_count=2",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 32.57290238697069
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_002",
+        "date": "2026-03-26",
+        "time": "14:00",
+        "party_size": 5,
+        "contact_name": "Zhou Jun",
+        "phone": "13899887766"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cd_001",
+        "cinema": "Wanda Cinema Jinhua",
+        "showtime": "16:10",
+        "seat_count": 2,
+        "buyer_name": "He Xia"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "43569ed7a9ba",
+  "info_complete_turn": {
+    "search_restaurants": 3,
+    "book_restaurant": 5,
+    "search_movies": 6,
+    "book_movie_ticket": 7,
+    "search_flights": 7
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "wrong_params": {
+      "search_restaurants.city": "Wuhan"
+    },
+    "corrected_params": {
+      "search_restaurants.city": "Chengdu"
+    }
+  }
+}

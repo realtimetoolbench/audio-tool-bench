@@ -1,0 +1,161 @@
+{
+  "task_id": "int_000013",
+  "description": "Interruption (cancellation): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing. Also, later help me with a flight.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the Holiday Inn Express for me.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 6.368150679213941
+    },
+    {
+      "speaker": "user",
+      "text": "Check in on 2026-03-18. Stay 4 nights. Guest name Chen Ming.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-18",
+          "book_hotel.guest_name=Chen Ming",
+          "book_hotel.nights=4"
+        ]
+      },
+      "timestamp": 11.239344579226085
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chengdu.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Chengdu"
+        ]
+      },
+      "timestamp": 17.130744063358723
+    },
+    {
+      "speaker": "user",
+      "text": "Book Lao Ma Tou Hotpot.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 21.759706055134615
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation for 2026-03-04 at 18:00 for 4 people.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-04",
+          "book_restaurant.party_size=4",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 25.61797485050471
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the flight.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 6,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "flight",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Liu Yang and phone 13898765432 for the restaurant booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Liu Yang",
+          "book_restaurant.phone=13898765432"
+        ]
+      },
+      "timestamp": 36.50435605692883
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_003",
+        "checkin_date": "2026-03-18",
+        "nights": 4,
+        "guest_name": "Chen Ming"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_002",
+        "date": "2026-03-04",
+        "time": "18:00",
+        "party_size": 4,
+        "contact_name": "Liu Yang",
+        "phone": "13898765432"
+      }
+    }
+  ],
+  "transcript_hash": "fe01cad809ac",
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 3,
+    "search_restaurants": 4,
+    "book_restaurant": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "flight",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_flights",
+    "book_flight"
+  ]
+}

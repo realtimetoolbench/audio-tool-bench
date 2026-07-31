@@ -1,0 +1,562 @@
+{
+  "task_name": "tint_000064",
+  "start_time": "2026-07-29T01:27:21.924659",
+  "end_time": "2026-07-29T01:29:31.910207",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Suzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_shows.city=Suzhou"
+          ]
+        },
+        "audio_size_bytes": 67200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_OvCVWr8einfohjYS",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Suzhou"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_OvCVWr8einfohjYS",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 shows in Suzhou:\n\n1. Kunqu Opera Peony Pavilion (ID: show_su_001)\n   Type: Theater\n   Venue: Suzhou Grand Theatre\n   Date/Time: 2026-04-29 19:30\n   Duration: 160 min\n   Price: ¥180-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.0/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_su_001",
+                "name": "Kunqu Opera Peony Pavilion",
+                "type": "Theater",
+                "venue": "Suzhou Grand Theatre",
+                "date": "2026-04-29",
+                "time": "19:30",
+                "duration": 160,
+                "price_range": "180-880",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 9.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.06103515625
+          },
+          "latency_ms": 0.06103515625,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 5595.808029174805,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 23,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search rental cars in Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_cars.city=Chengdu"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_shows",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 137400
+      },
+      "assistant_response": "Great! We've got a couple of options in Chengdu. The Nissan Sylphy is an economy car, with 5 seats, and costs about ¥140 per day. The Toyota Camry is a comfort car, also 5 seats, for ¥260 per day.\n\nWhich type are you leaning towards, or do you need more details on one of them?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_IOLwVmxBvDPiCEjV",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great! We've got a couple of options in Chengdu. The Nissan Sylphy is an economy car, with 5 seats, and costs about ¥140 per day. The Toyota Camry is a comfort car, also 5 seats, for ¥260 per day.\n\nWhich type are you leaning towards, or do you need more details on one of them?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_IOLwVmxBvDPiCEjV",
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 rental cars in Chengdu:\n\n1. Nissan Sylphy (ID: car_cd_001)\n   Type: economy | Seats: 5\n   Price: ¥140/day | Insurance: ¥25/day\n   Rating: 4.3/5.0\n\n2. Toyota Camry (ID: car_cd_002)\n   Type: comfort | Seats: 5\n   Price: ¥260/day | Insurance: ¥45/day\n   Rating: 4.7/5.0\n\n",
+            "raw_output": [
+              {
+                "car_id": "car_cd_001",
+                "model": "Nissan Sylphy",
+                "type": "economy",
+                "seats": 5,
+                "price_per_day": 140,
+                "insurance": 25,
+                "rating": 4.3
+              },
+              {
+                "car_id": "car_cd_002",
+                "model": "Toyota Camry",
+                "type": "comfort",
+                "seats": 5,
+                "price_per_day": 260,
+                "insurance": 45,
+                "rating": 4.7
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05316734313964844
+          },
+          "latency_ms": 0.05316734313964844
+        }
+      ],
+      "total_latency_ms": 12420.868873596191,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 739200,
+        "event_count": 152,
+        "latency": {
+          "speech_ms": 4172.81103515625,
+          "tool_call_ms": 1674.949951171875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.304659930452665,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the Toyota Camry.",
+        "timestamp": 10.304659930452665,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 63000
+      },
+      "assistant_response": "Sure! Could you tell me the pickup date and how many days you'll need the rental for? That way, we can get everything booked for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure! Could you tell me the pickup date and how many days you'll need the rental for? That way, we can get everything booked for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4127.529859542847,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 326400,
+        "event_count": 63,
+        "latency": {
+          "speech_ms": 1981.42236328125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.879499878317482,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set pickup date to 2026-03-26 and rent for 10 days.",
+        "timestamp": 14.879499878317482,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_car.days=10",
+            "book_car.pickup_date=2026-03-26"
+          ]
+        },
+        "audio_size_bytes": 243000
+      },
+      "assistant_response": "Perfect! Now, could you please provide the name of the renter and a contact phone number? That way, I can proceed with the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect! Now, could you please provide the name of the renter and a contact phone number? That way, I can proceed with the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 34911.88597679138,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 321600,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 30339.56298828125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.146665901106537,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use renter name Wang Fang.",
+        "timestamp": 20.146665901106537,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_car.renter_name=Wang Fang"
+          ]
+        },
+        "audio_size_bytes": 76200
+      },
+      "assistant_response": "Great! And could you also share a contact phone number for the booking? Once I have that, I'll go ahead and finalize everything.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! And could you also share a contact phone number for the booking? Once I have that, I'll go ahead and finalize everything.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9161.19408607483,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 307200,
+        "event_count": 59,
+        "latency": {
+          "speech_ms": 4505.0771484375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 94800
+      },
+      "assistant_response": "Your Toyota Camry rental is all set! The booking ID is CR30001. The pickup date is 2026-03-26, for 10 days. If you need to make any changes or have more details, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_bcpvs3yrDlymB9WM",
+              "name": "book_car",
+              "arguments": {
+                "car_id": "car_cd_002",
+                "renter_name": "Wang Fang",
+                "pickup_date": "2026-03-26",
+                "days": 10
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your Toyota Camry rental is all set! The booking ID is CR30001. The pickup date is 2026-03-26, for 10 days. If you need to make any changes or have more details, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_bcpvs3yrDlymB9WM",
+          "tool_name": "book_car",
+          "arguments": {
+            "car_id": "car_cd_002",
+            "renter_name": "Wang Fang",
+            "pickup_date": "2026-03-26",
+            "days": 10
+          },
+          "result": {
+            "success": true,
+            "output": "Car rental booking successful!\n\nBooking ID: CR30001\nCar ID: car_cd_002\nPickup: 2026-03-26\nDays: 10\nRenter: Wang Fang\nInsurance: Included\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "CR30001",
+              "car_id": "car_cd_002",
+              "pickup_date": "2026-03-26",
+              "days": 10,
+              "renter_name": "Wang Fang",
+              "with_insurance": true,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03504753112792969
+          },
+          "latency_ms": 0.03504753112792969
+        }
+      ],
+      "total_latency_ms": 17520.22671699524,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 597600,
+        "event_count": 154,
+        "latency": {
+          "speech_ms": 4967.7001953125,
+          "tool_call_ms": 3450.354248046875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 28.894758091168374,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book show tickets for Kunqu Opera Peony Pavilion, Second Floor, 5 tickets.",
+        "timestamp": 28.894758091168374,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.seat_zone=Second Floor",
+            "book_show_ticket.ticket_count=5"
+          ]
+        },
+        "audio_size_bytes": 223800
+      },
+      "assistant_response": "Got it! I’ll need your name and contact phone number to complete the booking. Could you share those details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! I’ll need your name and contact phone number to complete the booking. Could you share those details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 15647.096157073975,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 268800,
+        "event_count": 53,
+        "latency": {
+          "speech_ms": 4628.530029296875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.55707316310551,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set buyer name Mike Davis and phone 13877949128.",
+        "timestamp": 35.55707316310551,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Mike Davis",
+            "book_show_ticket.phone=13877949128"
+          ]
+        },
+        "audio_size_bytes": 235200
+      },
+      "assistant_response": "All set! Your tickets for the Kunqu Opera Peony Pavilion on the Second Floor are confirmed. The booking ID is SH70001, for Mike Davis. \n\nIf you need anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_QqckqrZYLJTbgqjZ",
+              "name": "book_show_ticket",
+              "arguments": {
+                "show_id": "show_su_001",
+                "seat_zone": "Second Floor",
+                "ticket_count": 5,
+                "buyer_name": "Mike Davis",
+                "phone": "13877949128"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "All set! Your tickets for the Kunqu Opera Peony Pavilion on the Second Floor are confirmed. The booking ID is SH70001, for Mike Davis. \n\nIf you need anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_QqckqrZYLJTbgqjZ",
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "show_id": "show_su_001",
+            "seat_zone": "Second Floor",
+            "ticket_count": 5,
+            "buyer_name": "Mike Davis",
+            "phone": "13877949128"
+          },
+          "result": {
+            "success": true,
+            "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_su_001\nShow: Kunqu Opera Peony Pavilion\nVenue: Suzhou Grand Theatre\nDate: 2026-04-29\nZone: Second Floor\nSeats: Floor Row 1 Seat 10, Floor Row 2 Seat 10, Floor Row 3 Seat 10, Floor Row 4 Seat 10, Floor Row 5 Seat 10\nQuantity: 5\nBuyer: Mike Davis\nPhone: 13877949128\nTotal: ¥1900\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "SH70001",
+              "show_id": "show_su_001",
+              "show_name": "Kunqu Opera Peony Pavilion",
+              "venue": "Suzhou Grand Theatre",
+              "date": "2026-04-29",
+              "seat_zone": "Second Floor",
+              "ticket_count": 5,
+              "seats": [
+                "Floor Row 1 Seat 10",
+                "Floor Row 2 Seat 10",
+                "Floor Row 3 Seat 10",
+                "Floor Row 4 Seat 10",
+                "Floor Row 5 Seat 10"
+              ],
+              "buyer_name": "Mike Davis",
+              "phone": "13877949128",
+              "total_price": 1900,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.051021575927734375
+          },
+          "latency_ms": 0.051021575927734375
+        }
+      ],
+      "total_latency_ms": 30591.47310256958,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 499200,
+        "event_count": 148,
+        "latency": {
+          "speech_ms": 2971.104736328125,
+          "tool_call_ms": 770.634765625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 12,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 8,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_shows",
+    "inserted_tools": [
+      "search_cars",
+      "book_car"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_cars": {
+        "speech_ms": 4172.81103515625,
+        "tool_call_ms": 1674.949951171875
+      },
+      "book_car": {
+        "speech_ms": 4505.0771484375
+      },
+      "book_show_ticket": {
+        "speech_ms": 2971.104736328125,
+        "tool_call_ms": 770.634765625
+      }
+    },
+    "info_complete_turn": {
+      "search_cars": 2,
+      "book_car": 5,
+      "search_shows": 1,
+      "book_show_ticket": 8
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'search_cars', 'search_shows', 'book_car', 'book_show_ticket'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 1,
+    "extra_turns_details": "book_car: +1 turns (info@5, call@6)",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_cars: 1(correct), book_car: 1(correct), search_shows: 1(correct), book_show_ticket: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "task_id": "ms_000074",
+  "scenario_type": "multi_step",
+  "server": "gmail",
+  "template": "full_draft_workflow_8",
+  "description": "List contacts, create draft, update draft, send draft, search emails, reply, star, get thread",
+  "tools": [
+    "list_contacts",
+    "create_draft",
+    "update_draft",
+    "send_draft",
+    "search_emails",
+    "reply_to_email",
+    "star_email",
+    "get_thread"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you list my contacts for me?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_contacts"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create a draft with the subject Project update and say Here is the latest update. Send it to the first contact on my list.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_draft"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Actually, update that draft to say Updated: Here is the latest update with revisions.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "update_draft"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Go ahead and send that draft now.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "send_draft"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Search my emails for anything related to project.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_emails"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Reply to the first email in the search results with Got it, will follow up.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "reply_to_email"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Star that same email.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "star_email"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me the thread for that email.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_thread"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_contacts",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "create_draft",
+      "params": {
+        "to": [
+          "brian.torres@gmail.com"
+        ],
+        "subject": "Project update",
+        "body": "Here is the latest update."
+      },
+      "param_source": {
+        "to": {
+          "from_tool": "list_contacts",
+          "field": "email_address"
+        },
+        "subject": "user",
+        "body": "user"
+      }
+    },
+    {
+      "tool": "update_draft",
+      "params": {
+        "draft_id": "draft_1",
+        "body": "Updated: Here is the latest update with revisions."
+      },
+      "param_source": {
+        "draft_id": {
+          "from_tool": "create_draft",
+          "field": "draft_id"
+        },
+        "body": "user"
+      }
+    },
+    {
+      "tool": "send_draft",
+      "params": {
+        "draft_id": "draft_1"
+      },
+      "param_source": {
+        "draft_id": {
+          "from_tool": "create_draft",
+          "field": "draft_id"
+        }
+      }
+    },
+    {
+      "tool": "search_emails",
+      "params": {
+        "query": "project"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "reply_to_email",
+      "params": {
+        "email_id": "email_1",
+        "body": "Got it, will follow up."
+      },
+      "param_source": {
+        "email_id": {
+          "from_tool": "search_emails",
+          "field": "email_id"
+        },
+        "body": "user"
+      }
+    },
+    {
+      "tool": "star_email",
+      "params": {
+        "email_id": "email_1"
+      },
+      "param_source": {
+        "email_id": {
+          "from_tool": "search_emails",
+          "field": "email_id"
+        }
+      }
+    },
+    {
+      "tool": "get_thread",
+      "params": {
+        "thread_id": "thread_1"
+      },
+      "param_source": {
+        "thread_id": {
+          "from_tool": "search_emails",
+          "field": "thread_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 8,
+  "info_complete_turn": {
+    "list_contacts": 1,
+    "create_draft": 2,
+    "update_draft": 3,
+    "send_draft": 3,
+    "search_emails": 5,
+    "reply_to_email": 6,
+    "star_email": 6,
+    "get_thread": 6
+  }
+}

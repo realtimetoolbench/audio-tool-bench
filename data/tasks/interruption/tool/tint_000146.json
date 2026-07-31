@@ -1,0 +1,182 @@
+{
+  "task_id": "tint_000146",
+  "description": "Interruption (tool_cancel): 6 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Shenzhen for 2026-05-12 at 19:30, and also plan lunch in Shenzhen plus flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-05-12",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing",
+          "search_restaurants.city=Shenzhen"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the movie. Cancel the movie search and do not book any movie tickets.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_movies",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shenzhen.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 16.073292852336124
+    },
+    {
+      "speaker": "user",
+      "text": "Book Jiang Hotpot Shenzhen for 2026-05-12 at 12:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 20.453736755273113
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 4. Contact name Mia Anderson.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Mia Anderson",
+          "book_restaurant.party_size=4"
+        ]
+      },
+      "timestamp": 26.350879248300615
+    },
+    {
+      "speaker": "user",
+      "text": "Phone 13899887766. Confirm the restaurant booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13899887766"
+        ]
+      },
+      "timestamp": 31.131550419079126
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 37.03393364103246
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5890 on 2026-03-03 for passenger Feng Jie.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-03-03",
+          "book_flight.passenger_name=Feng Jie"
+        ]
+      },
+      "timestamp": 41.94954379918542
+    },
+    {
+      "speaker": "user",
+      "text": "Airline China Eastern. Confirm the flight booking.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 47.76047258186286
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sz_003",
+        "date": "2026-05-12",
+        "time": "12:00",
+        "party_size": 4,
+        "contact_name": "Mia Anderson",
+        "phone": "13899887766"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_004",
+        "date": "2026-03-03",
+        "passenger_name": "Feng Jie"
+      }
+    }
+  ],
+  "transcript_hash": "b72f86b3e525",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 6,
+    "search_flights": 1,
+    "book_flight": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 9,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_movies",
+    "forbidden_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ]
+  },
+  "forbidden_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "cancelled_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ]
+}

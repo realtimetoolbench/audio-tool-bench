@@ -1,0 +1,692 @@
+{
+  "task_name": "tint_000002",
+  "start_time": "2026-05-06T11:58:05.254884",
+  "end_time": "2026-05-06T11:59:48.206189",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Guangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_restaurants.city=Guangzhou"
+          ]
+        },
+        "audio_size_bytes": 95400
+      },
+      "assistant_response": "Sure, I'd be happy to help you find some restaurants in Guangzhou.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'd be happy to help you find some restaurants in Guangzhou.",
+          "tool_calls": [
+            {
+              "id": "call-4dddeaa7-0060-4e0b-9019-a6e7480bab27-0",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Guangzhou"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure, I'd be happy to help you find some restaurants in Guangzhou.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9478.769779205322,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 181920,
+        "event_count": 27,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "Sure, I'd be happy to help you find some restaurants in Guangzhou."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search sports events in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_sports_events.city=Shanghai"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 139800
+      },
+      "assistant_response": "Got it, I'll check for sports events in Shanghai first. I've found two upcoming sports events in Shanghai for you. The first is a basketball game, Shanghai Sharks versus Liaoning Steelers on March 9th at Yuanshen Sports Center. The second is a football match, Shanghai Port versus Shandong Taishan on March 16th at Shanghai Stadium. Do you want to book tickets for either, or should we go back to finding restaurants in Guangzhou?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, I'll check for sports events in Shanghai first.",
+          "tool_calls": [
+            {
+              "id": "call-79d96040-68bd-4520-9a39-0fa9c6d2aca0-1",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found two upcoming sports events in Shanghai for you. The first is a basketball game, Shanghai Sharks versus Liaoning Steelers on March 9th at Yuanshen Sports Center. The second is a football match, Shanghai Port versus Shandong Taishan on March 16th at Shanghai Stadium. Do you want to book tickets for either, or should we go back to finding restaurants in Guangzhou?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-79d96040-68bd-4520-9a39-0fa9c6d2aca0-1",
+          "tool_name": "search_sports_events",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 sports events in Shanghai:\n\n1. CBA: Shanghai Sharks vs Liaoning Steelers (ID: evt_sh_001)\n   Sport: Basketball\n   Venue: Yuanshen Sports Center\n   Date/Time: 2026-03-09 19:35\n   Match: Shanghai Sharks vs Liaoning Steelers\n   Price: ¥150-980\n   Available zones: VIP, Stand A, Stand B\n   Rating: 8.3/10.0\n\n2. CSL: Shanghai Port vs Shandong Taishan (ID: evt_sh_002)\n   Sport: Football\n   Venue: Shanghai Stadium\n   Date/Time: 2026-03-16 19:30\n   Match: Shanghai Port vs Shandong Taishan\n   Price: ¥150-880\n   Available zones: Home Stand, Away Stand, Neutral Stand\n   Rating: 8.7/10.0\n\n",
+            "raw_output": [
+              {
+                "event_id": "evt_sh_001",
+                "name": "CBA: Shanghai Sharks vs Liaoning Steelers",
+                "sport_type": "Basketball",
+                "venue": "Yuanshen Sports Center",
+                "date": "2026-03-09",
+                "time": "19:35",
+                "home_team": "Shanghai Sharks",
+                "away_team": "Liaoning Steelers",
+                "price_range": "150-980",
+                "available_zones": [
+                  "VIP",
+                  "Stand A",
+                  "Stand B"
+                ],
+                "rating": 8.3
+              },
+              {
+                "event_id": "evt_sh_002",
+                "name": "CSL: Shanghai Port vs Shandong Taishan",
+                "sport_type": "Football",
+                "venue": "Shanghai Stadium",
+                "date": "2026-03-16",
+                "time": "19:30",
+                "home_team": "Shanghai Port",
+                "away_team": "Shandong Taishan",
+                "price_range": "150-880",
+                "available_zones": [
+                  "Home Stand",
+                  "Away Stand",
+                  "Neutral Stand"
+                ],
+                "rating": 8.7
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.11515617370605469
+          },
+          "latency_ms": 0.11515617370605469
+        }
+      ],
+      "total_latency_ms": 10639.04094696045,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1303200,
+        "event_count": 66,
+        "latency": {
+          "speech_ms": 1428.563720703125,
+          "tool_call_ms": 2157.506591796875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.684430400039142,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book sports tickets for event CBA: Shanghai Sharks vs Liaoning Steelers, seat zone Stand B.",
+        "timestamp": 10.684430400039142,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_sports_ticket.seat_zone=Stand B"
+          ]
+        },
+        "audio_size_bytes": 270000
+      },
+      "assistant_response": "Thanks, I'd be happy to help you book those tickets. To complete the booking, I'll need a few more details from you: how many tickets, the buyer's name, a contact phone number, and the ID card number for real-name registration. Once I have those, I can proceed.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'd be happy to help you book those tickets. To complete the booking, I'll need a few more details from you: how many tickets, the buyer's name, a contact phone number, and the ID card number for real-name registration. Once I have those, I can proceed.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9891.475915908813,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 782400,
+        "event_count": 36,
+        "latency": {
+          "speech_ms": 1269.134765625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 18.659106718206704,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set ticket count to 5. Buyer name Hu Bin.",
+        "timestamp": 18.659106718206704,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_sports_ticket.buyer_name=Hu Bin",
+            "book_sports_ticket.ticket_count=5"
+          ]
+        },
+        "audio_size_bytes": 127800
+      },
+      "assistant_response": "Thanks, I've noted the ticket count as 5 and buyer name as Hu Bin. Could you also provide your phone number and ID card number? These are required for the booking. Once I have those, I can proceed.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've noted the ticket count as 5 and buyer name as Hu Bin. Could you also provide your phone number and ID card number? These are required for the booking. Once I have those, I can proceed.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5835.800886154175,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 610560,
+        "event_count": 32,
+        "latency": {
+          "speech_ms": 1208.388916015625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.007578769279093,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13845678901 and ID number 610104199404096789 for the ticket purchase.",
+        "timestamp": 24.007578769279093,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_sports_ticket.id_number=610104199404096789",
+            "book_sports_ticket.phone=13845678901"
+          ]
+        },
+        "audio_size_bytes": 495600
+      },
+      "assistant_response": "Thanks, I've got the phone number as 13845678901 and the ID number as 610141944096789. Great, your booking is confirmed with ID SP80001. The total comes to ¥1900, and the status is confirmed with real-name requirement. Your seats are in Stand B, rows 10 through 14. If there's anything else I can assist with, like the restaurant search in Guangzhou, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the phone number as 13845678901 and the ID number as 610141944096789.",
+          "tool_calls": [
+            {
+              "id": "call-080c7e1b-9b28-4a2d-93f2-d820d5b394ad-2",
+              "name": "book_sports_ticket",
+              "arguments": {
+                "event_id": "evt_sh_001",
+                "seat_zone": "Stand B",
+                "ticket_count": 5,
+                "buyer_name": "Hu Bin",
+                "phone": "13845678901",
+                "id_number": "610141944096789"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your booking is confirmed with ID SP80001. The total comes to ¥1900, and the status is confirmed with real-name requirement. Your seats are in Stand B, rows 10 through 14. If there's anything else I can assist with, like the restaurant search in Guangzhou, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-080c7e1b-9b28-4a2d-93f2-d820d5b394ad-2",
+          "tool_name": "book_sports_ticket",
+          "arguments": {
+            "event_id": "evt_sh_001",
+            "seat_zone": "Stand B",
+            "ticket_count": 5,
+            "buyer_name": "Hu Bin",
+            "phone": "13845678901",
+            "id_number": "610141944096789"
+          },
+          "result": {
+            "success": true,
+            "output": "Sports ticket booking successful!\n\nBooking ID: SP80001\nEvent ID: evt_sh_001\nEvent: CBA: Shanghai Sharks vs Liaoning Steelers\nVenue: Yuanshen Sports Center\nDate: 2026-03-09\nZone: Stand B\nSeats: Stand B Row 10 Seat 20, Stand B Row 11 Seat 20, Stand B Row 12 Seat 20, Stand B Row 13 Seat 20, Stand B Row 14 Seat 20\nQuantity: 5\nBuyer: Hu Bin\nPhone: 13845678901\nID: 610141****6789\nTotal: ¥1900\nStatus: Confirmed (Real-name Required)\n",
+            "raw_output": {
+              "booking_id": "SP80001",
+              "event_id": "evt_sh_001",
+              "event_name": "CBA: Shanghai Sharks vs Liaoning Steelers",
+              "venue": "Yuanshen Sports Center",
+              "date": "2026-03-09",
+              "seat_zone": "Stand B",
+              "ticket_count": 5,
+              "seats": [
+                "Stand B Row 10 Seat 20",
+                "Stand B Row 11 Seat 20",
+                "Stand B Row 12 Seat 20",
+                "Stand B Row 13 Seat 20",
+                "Stand B Row 14 Seat 20"
+              ],
+              "buyer_name": "Hu Bin",
+              "phone": "13845678901",
+              "id_number": "610141944096789",
+              "total_price": 1900,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.270843505859375
+          },
+          "latency_ms": 0.270843505859375
+        }
+      ],
+      "total_latency_ms": 17773.361921310425,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1584480,
+        "event_count": 68,
+        "latency": {
+          "speech_ms": 1467.882080078125,
+          "tool_call_ms": 4527.459228515625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 83400
+      },
+      "assistant_response": "Sure, let's get back to your restaurant search in Guangzhou. I've found three popular Cantonese restaurants in Guangzhou for you. The highest-rated is Bingsheng in Tianhe with 4.7 stars, followed by Panxi in Liwan at 4.6, and Tao Heung in Yuexiu at 4.5. All specialize in Cantonese cuisine. Do any of these interest you, or would you like me to check for a specific type of food?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, let's get back to your restaurant search in Guangzhou.",
+          "tool_calls": [
+            {
+              "id": "call-0295822d-7e19-479e-8e8d-d23d5c46eaab-3",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Guangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found three popular Cantonese restaurants in Guangzhou for you. The highest-rated is Bingsheng in Tianhe with 4.7 stars, followed by Panxi in Liwan at 4.6, and Tao Heung in Yuexiu at 4.5. All specialize in Cantonese cuisine. Do any of these interest you, or would you like me to check for a specific type of food?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-0295822d-7e19-479e-8e8d-d23d5c46eaab-3",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Guangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Guangzhou:\n\n1. Bingsheng Restaurant (ID: rst_gz_001)\n   Cuisine: Cantonese\n   Location: Tianhe\n   Rating: 4.7/5.0\n\n2. Tao Heung (ID: rst_gz_002)\n   Cuisine: Cantonese\n   Location: Yuexiu\n   Rating: 4.5/5.0\n\n3. Panxi Restaurant (ID: rst_gz_003)\n   Cuisine: Cantonese\n   Location: Liwan\n   Rating: 4.6/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_gz_001",
+                "name": "Bingsheng Restaurant",
+                "cuisine": "Cantonese",
+                "location": "Tianhe",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_gz_002",
+                "name": "Tao Heung",
+                "cuisine": "Cantonese",
+                "location": "Yuexiu",
+                "rating": 4.5
+              },
+              {
+                "restaurant_id": "rst_gz_003",
+                "name": "Panxi Restaurant",
+                "cuisine": "Cantonese",
+                "location": "Liwan",
+                "rating": 4.6
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.2529621124267578
+          },
+          "latency_ms": 0.2529621124267578
+        }
+      ],
+      "total_latency_ms": 12967.386245727539,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1335840,
+        "event_count": 65,
+        "latency": {
+          "speech_ms": 1055.387939453125,
+          "tool_call_ms": 1861.5458984375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 35.190670614118154,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Bingsheng Restaurant for 2026-03-15 at 11:30.",
+        "timestamp": 35.190670614118154,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-15",
+            "book_restaurant.time=11:30"
+          ]
+        },
+        "audio_size_bytes": 256800
+      },
+      "assistant_response": "Thanks, I'd be happy to help you book Bingsheng Restaurant. I have the restaurant ID as rst_gz_001, the date as 2026-03-15, and time as 11:30. To complete the booking, could you tell me the party size, your name, and a contact phone number?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'd be happy to help you book Bingsheng Restaurant. I have the restaurant ID as rst_gz_001, the date as 2026-03-15, and time as 11:30. To complete the booking, could you tell me the party size, your name, and a contact phone number?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 11175.786018371582,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1000320,
+        "event_count": 40,
+        "latency": {
+          "speech_ms": 1344.0048828125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 40.377591082756844,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 2. Contact name Emma Taylor.",
+        "timestamp": 40.377591082756844,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Emma Taylor",
+            "book_restaurant.party_size=2"
+          ]
+        },
+        "audio_size_bytes": 121200
+      },
+      "assistant_response": "Thanks, I've noted the party size as two and contact name as Emma Taylor. To finish the reservation, could you please provide a contact phone number? Once I have that, I can book it for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've noted the party size as two and contact name as Emma Taylor. To finish the reservation, could you please provide a contact phone number? Once I have that, I can book it for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7110.077142715454,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 561600,
+        "event_count": 33,
+        "latency": {
+          "speech_ms": 1447.19580078125
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 45.37286098433346,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13830018365 for the restaurant booking.",
+        "timestamp": 45.37286098433346,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.phone=13830018365"
+          ]
+        },
+        "audio_size_bytes": 241800
+      },
+      "assistant_response": "Thanks, I've got the phone number as 13830018365. I'll go ahead and complete the booking for you now.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the phone number as 13830018365. I'll go ahead and complete the booking for you now.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8225.79574584961,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 423360,
+        "event_count": 30,
+        "latency": {
+          "speech_ms": 0.3828125
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 50.634399367033495,
+      "input_chunk": {
+        "role": "user",
+        "content": "Transfer 196.86 to Mason White.",
+        "timestamp": 50.634399367033495,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "transfer_money.amount=196.86",
+            "transfer_money.payee_name=Mason White"
+          ]
+        },
+        "audio_size_bytes": 136200
+      },
+      "assistant_response": "Thanks, I'll help you transfer 196.86 to Mason White. I'm sorry, but the transfer couldn't be completed because the recipient account doesn't exist. If you have the correct account details or recipient information, I can try again. Let me know how else I can assist.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'll help you transfer 196.86 to Mason White.",
+          "tool_calls": [
+            {
+              "id": "call-d69bb50d-3c5d-4071-bfad-9cc53baabffd-3",
+              "name": "transfer_money",
+              "arguments": {
+                "amount": 196.86,
+                "payee_name": "Mason White"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I'm sorry, but the transfer couldn't be completed because the recipient account doesn't exist. If you have the correct account details or recipient information, I can try again. Let me know how else I can assist.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-d69bb50d-3c5d-4071-bfad-9cc53baabffd-3",
+          "tool_name": "transfer_money",
+          "arguments": {
+            "amount": 196.86,
+            "payee_name": "Mason White"
+          },
+          "result": {
+            "success": false,
+            "error": "收款账户不存在",
+            "output": "收款账户不存在",
+            "raw_output": {
+              "success": false,
+              "error": "收款账户不存在",
+              "output": "收款账户不存在"
+            },
+            "latency_ms": 0.2269744873046875
+          },
+          "latency_ms": 0.2269744873046875
+        }
+      ],
+      "total_latency_ms": 9844.18511390686,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 859680,
+        "event_count": 57,
+        "latency": {
+          "speech_ms": 1307.515869140625,
+          "tool_call_ms": 2527.201904296875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 15,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "inserted_tools": [
+      "search_sports_events",
+      "book_sports_ticket"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_sports_events": {
+        "speech_ms": 1428.563720703125,
+        "tool_call_ms": 2157.506591796875
+      },
+      "book_sports_ticket": {
+        "speech_ms": 1467.882080078125,
+        "tool_call_ms": 4527.459228515625
+      },
+      "book_restaurant": {
+        "speech_ms": 0.3828125
+      },
+      "transfer_money": {
+        "speech_ms": 1307.515869140625,
+        "tool_call_ms": 2527.201904296875
+      }
+    },
+    "info_complete_turn": {
+      "search_sports_events": 2,
+      "book_sports_ticket": 5,
+      "search_restaurants": 1,
+      "book_restaurant": 9,
+      "transfer_money": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no re-call (hallucinated)]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_sports_ticket",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "id_number: '610104199404096789' vs '610141944096789'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 1,
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

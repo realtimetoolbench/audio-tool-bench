@@ -1,0 +1,192 @@
+{
+  "task_id": "tint_000051",
+  "description": "Interruption (tool_correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Hangzhou, I meant Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel: Pudong Shangri-La. Check in 2026-03-25.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-25"
+        ]
+      },
+      "timestamp": 8.378649734110432
+    },
+    {
+      "speaker": "user",
+      "text": "Hotel stay: 2 nights. Guest name: Chen Ming.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Chen Ming",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 14.60030591386721
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 19.977956827015
+    },
+    {
+      "speaker": "user",
+      "text": "Book Xiao Nan Guo on 2026-03-23 at 14:00 for 2 people.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-23",
+          "book_restaurant.party_size=2",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 24.779543613639685
+    },
+    {
+      "speaker": "user",
+      "text": "Restaurant booking contact: Chen Ming. Phone 13877949128.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Chen Ming",
+          "book_restaurant.phone=13877949128"
+        ]
+      },
+      "timestamp": 30.85012177764725
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights Beijing to Shanghai. Book CA1456 on 2026-03-04 for Li Na with Air China.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-03-04",
+          "book_flight.passenger_name=Li Na",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 37.02558324721553
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_002",
+        "checkin_date": "2026-03-25",
+        "nights": 2,
+        "guest_name": "Chen Ming"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_003",
+        "date": "2026-03-23",
+        "time": "14:00",
+        "party_size": 2,
+        "contact_name": "Chen Ming",
+        "phone": "13877949128"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_003",
+        "date": "2026-03-04",
+        "passenger_name": "Li Na"
+      }
+    }
+  ],
+  "transcript_hash": "43bd8f231e48",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 4,
+    "search_restaurants": 5,
+    "book_restaurant": 7,
+    "search_flights": 8,
+    "book_flight": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Hangzhou"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Shanghai"
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "task_id": "tint_000016",
+  "description": "Interruption (tool_correction): 5 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel",
+    "transfer_money"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_restaurants.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Chen Mapo Tofu for 2026-03-24 at 14:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-24",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 9.07005431556998
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 10. Contact name Chen Ming. Phone 13830018365.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Chen Ming",
+          "book_restaurant.party_size=10",
+          "book_restaurant.phone=13830018365"
+        ]
+      },
+      "timestamp": 14.895339675118597
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 20.970169529184904
+    },
+    {
+      "speaker": "user",
+      "text": "Book hotel Hilton Hangzhou West Lake. Check in 2026-03-17. Stay 2 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-17",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 25.193238953338174
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name Zhou Jun. Transfer 124.89 to payee Chen Ming.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Zhou Jun",
+          "transfer_money.amount=124.89",
+          "transfer_money.payee_name=Chen Ming"
+        ]
+      },
+      "timestamp": 32.33871518180946
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_001",
+        "date": "2026-03-24",
+        "time": "14:00",
+        "party_size": 10,
+        "contact_name": "Chen Ming",
+        "phone": "13830018365"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_002",
+        "checkin_date": "2026-03-17",
+        "nights": 2,
+        "guest_name": "Zhou Jun"
+      }
+    },
+    {
+      "tool": "transfer_money",
+      "params": {
+        "amount": 124.89,
+        "payee_name": "Chen Ming"
+      }
+    }
+  ],
+  "transcript_hash": "2571f7ab822c",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 4,
+    "search_hotels": 5,
+    "book_hotel": 7,
+    "transfer_money": 7
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "wrong_params": {
+      "search_restaurants.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_restaurants.city": "Chengdu"
+    }
+  }
+}

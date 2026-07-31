@@ -1,0 +1,126 @@
+{
+  "task_id": "tint_000065",
+  "description": "Interruption (tool_cancel): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shanghai. Check in 2026-03-24.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-03-24",
+          "search_flights.destination=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, plan flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 5.410454574277938
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the hotel. Cancel hotel search and any hotel booking steps.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Now do flight search only. Use origin Beijing.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 16.321890193961043
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight CA1456 on 2026-03-24 with Air China.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 21.19617225845397
+    },
+    {
+      "speaker": "user",
+      "text": "Set passenger name Zhou Jun and confirm the booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.passenger_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 26.58829736431227
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_003",
+        "date": "2026-03-24",
+        "passenger_name": "Zhou Jun"
+      }
+    }
+  ],
+  "transcript_hash": "c2147ea2a838",
+  "info_complete_turn": {
+    "search_flights": 2,
+    "book_flight": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ]
+  },
+  "forbidden_tools": [
+    "search_hotels",
+    "book_hotel"
+  ],
+  "cancelled_tools": [
+    "search_hotels",
+    "book_hotel"
+  ]
+}

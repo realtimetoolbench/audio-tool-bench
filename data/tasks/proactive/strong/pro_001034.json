@@ -1,0 +1,197 @@
+{
+  "task_id": "pro_001034",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’ve got that quick hop coming up from Beijing to Shanghai, so I’m trying to keep the whole trip pretty streamlined.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "After that, I’m swinging through Shenzhen too, so I’ve been thinking about where to stay while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Shenzhen"
+        ]
+      },
+      "timestamp": 8.821187187554516
+    },
+    {
+      "speaker": "user",
+      "text": "And I’m planning to be in Guangzhou later on, mostly for food—so I’m already mentally mapping out places to eat.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_restaurants.city=Guangzhou"
+        ]
+      },
+      "timestamp": 16.774606457817455
+    },
+    {
+      "speaker": "user",
+      "text": "For the Beijing–Shanghai leg, I’m on Air China, flight CA1456, on 2026-03-15, and it’s under the passenger name He Xia.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-03-15",
+          "book_flight.passenger_name=He Xia"
+        ]
+      },
+      "timestamp": 25.796120840641652
+    },
+    {
+      "speaker": "user",
+      "text": "In Shenzhen I’m staying at Home Inn Futian CBD—check-in is 2026-04-29, for 3 nights, and it’s under Li Na.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-29",
+          "book_hotel.guest_name=Li Na",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 34.5150041376604
+    },
+    {
+      "speaker": "user",
+      "text": "Guangzhou is the fun part: lunch at Bingsheng Restaurant on 2026-05-27 at 12:00, party of 2.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.date=2026-05-27",
+          "book_restaurant.party_size=2",
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 42.78728574013245
+    },
+    {
+      "speaker": "user",
+      "text": "It’s under Yang Yu, and the contact phone is 13864788741—then right after that I’m probably heading over to…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.contact_name=Yang Yu",
+          "book_restaurant.phone=13864788741"
+        ]
+      },
+      "timestamp": 50.096575777851
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_003",
+        "date": "2026-03-15",
+        "passenger_name": "He Xia"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sz_004",
+        "checkin_date": "2026-04-29",
+        "nights": 3,
+        "guest_name": "Li Na"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_gz_001",
+        "date": "2026-05-27",
+        "time": "12:00",
+        "party_size": 2,
+        "contact_name": "Yang Yu",
+        "phone": "13864788741"
+      }
+    }
+  ],
+  "transcript_hash": "f599cde05d8c",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "business_trip",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_flights": 1,
+    "book_flight": 4,
+    "search_hotels": 2,
+    "book_hotel": 5,
+    "search_restaurants": 3,
+    "book_restaurant": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’ve got that quick hop coming up",
+      "I’m swinging through Shenzhen too",
+      "I’m planning to be in Guangzhou later on",
+      "I’m on Air China, flight CA1456",
+      "I’m staying at Home Inn Futian CBD",
+      "lunch at Bingsheng Restaurant"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed upcoming travel, lodging, and dining details. Search-context locations appear before any booking identifiers, and no execution/authorization phrasing is used."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_flights",
+      "search_hotels",
+      "search_restaurants"
+    ],
+    "write_tools": [
+      "book_flight",
+      "book_hotel",
+      "book_restaurant"
+    ]
+  },
+  "expected_tool_if_act": "search_flights",
+  "expected_params_if_act": {
+    "origin": "Beijing",
+    "destination": "Shanghai"
+  }
+}

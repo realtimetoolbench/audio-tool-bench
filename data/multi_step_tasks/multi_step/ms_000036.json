@@ -1,0 +1,150 @@
+{
+  "task_id": "ms_000036",
+  "scenario_type": "multi_step",
+  "server": "spotify",
+  "template": "playlist_and_queue_6",
+  "description": "Search tracks, get devices, transfer playback, create playlist, add tracks, play playlist",
+  "tools": [
+    "search_tracks",
+    "get_devices",
+    "transfer_playback",
+    "create_playlist",
+    "add_tracks_to_playlist",
+    "play_context"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find me tracks with the word Burning in the title.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_tracks"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me my available devices and switch playback to the first one on the list.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_devices",
+          "transfer_playback"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create a new playlist called Evening Vibes.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_playlist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add the tracks with Burning in the title to my new Evening Vibes playlist.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_tracks_to_playlist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Start playing the Evening Vibes playlist now.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "play_context"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_tracks",
+      "params": {
+        "query": "Burning"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_devices",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "transfer_playback",
+      "params": {
+        "device_id": "device_001"
+      },
+      "param_source": {
+        "device_id": {
+          "from_tool": "get_devices",
+          "field": "device_id"
+        }
+      }
+    },
+    {
+      "tool": "create_playlist",
+      "params": {
+        "name": "Evening Vibes"
+      },
+      "param_source": {
+        "name": "user"
+      }
+    },
+    {
+      "tool": "add_tracks_to_playlist",
+      "params": {
+        "playlist_id": "playlist_1",
+        "track_ids": [
+          "track_003"
+        ]
+      },
+      "param_source": {
+        "playlist_id": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        },
+        "track_ids": {
+          "from_tool": "search_tracks",
+          "field": "song_id"
+        }
+      }
+    },
+    {
+      "tool": "play_context",
+      "params": {
+        "context_uri": "playlist:playlist_1"
+      },
+      "param_source": {
+        "context_uri": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        }
+      }
+    }
+  ],
+  "chain_depth": 6,
+  "info_complete_turn": {
+    "search_tracks": 1,
+    "get_devices": 1,
+    "transfer_playback": 1,
+    "create_playlist": 3,
+    "add_tracks_to_playlist": 3,
+    "play_context": 3
+  }
+}

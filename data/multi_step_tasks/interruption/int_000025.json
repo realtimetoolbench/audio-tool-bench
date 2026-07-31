@@ -1,0 +1,130 @@
+{
+  "task_id": "int_000025",
+  "description": "Interruption (cancellation): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing for dinner, then help me with a movie plan after.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Pick Chuan Ban and book it.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 6.769599331302797
+    },
+    {
+      "speaker": "user",
+      "text": "Book it for 2026-03-27 at 19:00.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-27",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 10.929213701660519
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 6. Also line up the movie next.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.party_size=6"
+        ]
+      },
+      "timestamp": 15.929448639170248
+    },
+    {
+      "speaker": "user",
+      "text": "Never mind the movie. Cancel that.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 4,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "movie",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Chen Ming.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Chen Ming"
+        ]
+      },
+      "timestamp": 25.004797819601553
+    },
+    {
+      "speaker": "user",
+      "text": "Phone number 13812345678.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13812345678"
+        ]
+      },
+      "timestamp": 29.717114400934825
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_005",
+        "date": "2026-03-27",
+        "time": "19:00",
+        "party_size": 6,
+        "contact_name": "Chen Ming",
+        "phone": "13812345678"
+      }
+    }
+  ],
+  "transcript_hash": "cb48a1d52c4f",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "movie",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ]
+}

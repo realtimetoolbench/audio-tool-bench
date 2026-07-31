@@ -1,0 +1,404 @@
+{
+  "task_name": "tint_000056",
+  "start_time": "2026-05-06T22:24:40.769613",
+  "end_time": "2026-05-06T22:26:08.815639",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search cars in Chengdu. Pickup date 2026-03-25. Rental length 6 days.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_car.days=6",
+            "book_car.pickup_date=2026-03-25"
+          ]
+        },
+        "audio_size_bytes": 281400
+      },
+      "assistant_response": "What type of car are you looking for? Economy, comfort, luxury, or business?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "What type of car are you looking for? Economy, comfort, luxury, or business?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8598.945140838623,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 214562,
+        "event_count": 35,
+        "latency": {
+          "speech_ms": 2126.255750656128
+        }
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Chengdu, I meant Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_cars",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_cars.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 99000
+      },
+      "assistant_response": "I found three cars in Shanghai: a Toyota Corolla (economy), a Volkswagen Passat (comfort), and a BMW 5 Series (luxury). Which one would you like to book? I will also need your name to complete the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_14308207195498377577",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three cars in Shanghai: a Toyota Corolla (economy), a Volkswagen Passat (comfort), and a BMW 5 Series (luxury). Which one would you like to book? I will also need your name to complete the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "output": "Found 3 rental cars in Shanghai:\n\n1. Toyota Corolla (ID: car_sh_001)\n   Type: economy | Seats: 5\n   Price: ¥160/day | Insurance: ¥30/day\n   Rating: 4.4/5.0\n\n2. Volkswagen Passat (ID: car_sh_002)\n   Type: comfort | Seats: 5\n   Price: ¥280/day | Insurance: ¥50/day\n   Rating: 4.6/5.0\n\n3. BMW 5 Series (ID: car_sh_003)\n   Type: luxury | Seats: 5\n   Price: ¥600/day | Insurance: ¥100/day\n   Rating: 4.9/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.05817413330078125
+        }
+      ],
+      "total_latency_ms": 15285.442113876343,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 575072,
+        "event_count": 77,
+        "latency": {
+          "speech_ms": 2589.881181716919,
+          "tool_call_ms": 1419.4109439849854
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.937698636702034,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use Shanghai for the car search. Book car Toyota Corolla. Renter name Sun Lei.",
+        "timestamp": 10.937698636702034,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_car.renter_name=Sun Lei"
+          ]
+        },
+        "audio_size_bytes": 230400
+      },
+      "assistant_response": "Your booking for the Toyota Corolla in Shanghai is confirmed! The booking ID is CR30001. Is there anything else I can help with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_6394569955851355512",
+              "name": "book_car",
+              "arguments": {
+                "pickup_date": "2025-03-26",
+                "renter_name": "Sun Lay",
+                "days": 6,
+                "car_id": "car_sh_001"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your booking for the Toyota Corolla in Shanghai is confirmed! The booking ID is CR30001. Is there anything else I can help with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_car",
+          "arguments": {
+            "pickup_date": "2025-03-26",
+            "renter_name": "Sun Lay",
+            "days": 6,
+            "car_id": "car_sh_001"
+          },
+          "output": "Car rental booking successful!\n\nBooking ID: CR30001\nCar ID: car_sh_001\nPickup: 2025-03-26\nDays: 6\nRenter: Sun Lay\nInsurance: Included\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.035762786865234375
+        }
+      ],
+      "total_latency_ms": 12725.116968154907,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 405122,
+        "event_count": 58,
+        "latency": {
+          "speech_ms": 3047.8920936584473,
+          "tool_call_ms": 1977.626085281372
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 17.533562308393186,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Wuhan. Restaurant Yangtze River Restaurant. Dinner date 2026-03-17.",
+        "timestamp": 17.533562308393186,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-03-17",
+            "search_restaurants.city=Wuhan"
+          ]
+        },
+        "audio_size_bytes": 331800
+      },
+      "assistant_response": "I'm sorry, but I couldn't find any restaurants in Wuhan named \"Yangsi River Restaurant.\" Would you like me to search for a different restaurant or cuisine type in Wuhan, or check the spelling? Perhaps you meant \"Yangtze River Cuisine\"?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_5012823795360413236",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Wuhan",
+                "cuisine": "Yangsi River Restaurant"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I'm sorry, but I couldn't find any restaurants in Wuhan named \"Yangsi River Restaurant.\" Would you like me to search for a different restaurant or cuisine type in Wuhan, or check the spelling? Perhaps you meant \"Yangtze River Cuisine\"?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Wuhan",
+            "cuisine": "Yangsi River Restaurant"
+          },
+          "output": "No restaurants found in Wuhan matching criteria.",
+          "error": null,
+          "latency_ms": 0.010967254638671875
+        }
+      ],
+      "total_latency_ms": 16711.036205291748,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 555362,
+        "event_count": 79,
+        "latency": {
+          "speech_ms": 3073.19974899292,
+          "tool_call_ms": 1909.9256992340088
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.395059459445186,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book at 19:00. Party size 7. Contact name Isabella Jackson.",
+        "timestamp": 25.395059459445186,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Isabella Jackson",
+            "book_restaurant.party_size=7",
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 213600
+      },
+      "assistant_response": "I still need to know which restaurant to book in Wuhan before I can make the reservation. Could you please provide me with the correct name, or would you like me to search for restaurants by cuisine type instead? Also, I will need your phone number to finalize the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I still need to know which restaurant to book in Wuhan before I can make the reservation. Could you please provide me with the correct name, or would you like me to search for restaurants by cuisine type instead? Also, I will need your phone number to finalize the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 15658.26416015625,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 599072,
+        "event_count": 79,
+        "latency": {
+          "speech_ms": 1939.378023147583
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.22535531151982,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13833445566 for the restaurant booking.",
+        "timestamp": 31.22535531151982,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.phone=13833445566"
+          ]
+        },
+        "audio_size_bytes": 244800
+      },
+      "assistant_response": "I understand the reservation time is 19:00, the party size is seven, the contact name is Isabella Jackson, and the phone number is 1383445566, but I still need the name of the restaurant in Wuhan to complete the booking. Can you tell me which restaurant you're interested in?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I understand the reservation time is 19:00, the party size is seven, the contact name is Isabella Jackson, and the phone number is 1383445566, but I still need the name of the restaurant in Wuhan to complete the booking. Can you tell me which restaurant you're interested in?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 19059.28325653076,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 743044,
+        "event_count": 94,
+        "latency": {
+          "speech_ms": 1859.807014465332
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 9,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_cars",
+    "wrong_params": {
+      "search_cars.city": "Chengdu"
+    },
+    "corrected_params": {
+      "search_cars.city": "Shanghai"
+    },
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_cars": {
+        "speech_ms": 2589.881181716919,
+        "tool_call_ms": 1419.4109439849854
+      },
+      "book_car": {
+        "speech_ms": 3047.8920936584473,
+        "tool_call_ms": 1977.626085281372
+      },
+      "search_restaurants": {
+        "speech_ms": 3073.19974899292,
+        "tool_call_ms": 1909.9256992340088
+      },
+      "book_restaurant": {
+        "speech_ms": 1859.807014465332
+      }
+    },
+    "info_complete_turn": {
+      "search_cars": 2,
+      "book_car": 3,
+      "search_restaurants": 4,
+      "book_restaurant": 6
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[re-called with correction]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_car",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "pickup_date: '2026-03-25' vs '2025-03-26'; renter_name: 'Sun Lei' vs 'Sun Lay'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1,
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

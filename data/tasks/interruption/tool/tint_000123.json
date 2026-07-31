@@ -1,0 +1,172 @@
+{
+  "task_id": "tint_000123",
+  "description": "Interruption (tool_cancel): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_cars",
+    "book_car",
+    "search_parking",
+    "reserve_parking_spot"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find a soccer game in Shanghai on 2026-04-05, and also help with a rental car in Beijing and parking in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_cars.city=Beijing",
+          "search_parking.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the game. Cancel anything about sports tickets.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_sports_events",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search rental cars in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 14.226085586337714
+    },
+    {
+      "speaker": "user",
+      "text": "Book the car Volkswagen Lavida for Emma Taylor.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_car.renter_name=Emma Taylor"
+        ]
+      },
+      "timestamp": 18.29209657997208
+    },
+    {
+      "speaker": "user",
+      "text": "Set pickup date 2026-03-24 and rental duration 10 days.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_car.days=10",
+          "book_car.pickup_date=2026-03-24"
+        ]
+      },
+      "timestamp": 23.66048425516029
+    },
+    {
+      "speaker": "user",
+      "text": "Search parking in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 29.508450381945273
+    },
+    {
+      "speaker": "user",
+      "text": "Reserve Lujiazui IFC Parking starting 2026-04-05 16:00 for 1 hour.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "reserve_parking_spot.duration_hours=1",
+          "reserve_parking_spot.start_time=2026-04-05 16:00"
+        ]
+      },
+      "timestamp": 33.99524965635539
+    },
+    {
+      "speaker": "user",
+      "text": "Use license plate 苏F89012 and driver phone 13877665544.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13877665544",
+          "reserve_parking_spot.license_plate=苏F89012"
+        ]
+      },
+      "timestamp": 40.77968864067037
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_bj_001",
+        "pickup_date": "2026-03-24",
+        "days": 10,
+        "renter_name": "Emma Taylor"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_sh_001",
+        "start_time": "2026-04-05 16:00",
+        "duration_hours": 1,
+        "license_plate": "苏F89012",
+        "driver_phone": "13877665544"
+      }
+    }
+  ],
+  "transcript_hash": "3f35d5c28edf",
+  "info_complete_turn": {
+    "search_cars": 1,
+    "book_car": 5,
+    "search_parking": 1,
+    "reserve_parking_spot": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "forbidden_tools": [
+      "search_sports_events",
+      "book_sports_ticket"
+    ]
+  },
+  "forbidden_tools": [
+    "search_sports_events",
+    "book_sports_ticket"
+  ],
+  "cancelled_tools": [
+    "search_sports_events",
+    "book_sports_ticket"
+  ]
+}

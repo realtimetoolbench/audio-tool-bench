@@ -1,0 +1,126 @@
+{
+  "task_id": "tint_000070",
+  "description": "Interruption (tool_cancel): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_cars",
+    "book_car"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search parking near Shanghai Hongqiao Railway Station for 2026-03-05, 10:00 to 16:00, and also help me rent a car later.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_car.pickup_date=2026-03-05",
+          "search_cars.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Cancel the parking search and skip any parking reservation.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_parking",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search rental cars in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 15.38950465074313
+    },
+    {
+      "speaker": "user",
+      "text": "Book the car with car ID BMW 5 Series.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 20.227349743652713
+    },
+    {
+      "speaker": "user",
+      "text": "Set pickup date to 2026-03-05 and rent it for 6 days.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_car.days=6"
+        ]
+      },
+      "timestamp": 25.400364613662948
+    },
+    {
+      "speaker": "user",
+      "text": "Use renter name Zhang Wei and confirm the booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_car.renter_name=Zhang Wei"
+        ]
+      },
+      "timestamp": 31.46842383592496
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_sh_003",
+        "pickup_date": "2026-03-05",
+        "days": 6,
+        "renter_name": "Zhang Wei"
+      }
+    }
+  ],
+  "transcript_hash": "0ea5661f1966",
+  "info_complete_turn": {
+    "search_cars": 1,
+    "book_car": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_parking",
+    "forbidden_tools": [
+      "search_parking",
+      "reserve_parking_spot"
+    ]
+  },
+  "forbidden_tools": [
+    "search_parking",
+    "reserve_parking_spot"
+  ],
+  "cancelled_tools": [
+    "search_parking",
+    "reserve_parking_spot"
+  ]
+}

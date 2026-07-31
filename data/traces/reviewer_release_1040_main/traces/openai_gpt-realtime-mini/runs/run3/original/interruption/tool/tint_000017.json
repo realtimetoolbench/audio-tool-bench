@@ -1,0 +1,801 @@
+{
+  "task_name": "tint_000017",
+  "start_time": "2026-07-29T03:28:42.592834",
+  "end_time": "2026-07-29T03:29:44.263908",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_restaurants.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 90000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_oAeBGvblN1NhK2Se",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6032.304048538208,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 23,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—before that, check my ride status for ride ID RIDE789012.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "check_ride_status.ride_id=RIDE789012"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 234000
+      },
+      "assistant_response": "Got it! It seems we couldn’t find the ride with that ID. Could you double-check the ID or provide more details?\n\nMeanwhile, let’s continue with searching the restaurants in Beijing. I'll share that information next. Here’s a list of some great restaurants in Beijing:\n\n1. Shu Xiang Yuan (Sichuan, Downtown, Rating: 4.5/5.0)\n2. Mala Youhuo (Sichuan, Chaoyang, Rating: 4.3/5.0)\n3. Jingwei Zhai (Beijing cuisine, Downtown, Rating: 4.7/5.0)\n4. Quanjude Roast Duck (Beijing cuisine, Qianmen, Rating: 4.6/5.0)\n5. Da Dong Roast Duck (Beijing cuisine, CBD, Rating: 4.8/5.0)\n\nWhich one are you interested in, or do you want more details on any particular one?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_8E2e8xmL9Hrez251",
+              "name": "check_ride_status",
+              "arguments": {
+                "ride_id": "ride78912"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Got it! It seems we couldn’t find the ride with that ID. Could you double-check the ID or provide more details?\n\nMeanwhile, let’s continue with searching the restaurants in Beijing. I'll share that information next.",
+          "tool_calls": [
+            {
+              "id": "call_w3QUVjFvSaTlqBYB",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Here’s a list of some great restaurants in Beijing:\n\n1. Shu Xiang Yuan (Sichuan, Downtown, Rating: 4.5/5.0)\n2. Mala Youhuo (Sichuan, Chaoyang, Rating: 4.3/5.0)\n3. Jingwei Zhai (Beijing cuisine, Downtown, Rating: 4.7/5.0)\n4. Quanjude Roast Duck (Beijing cuisine, Qianmen, Rating: 4.6/5.0)\n5. Da Dong Roast Duck (Beijing cuisine, CBD, Rating: 4.8/5.0)\n\nWhich one are you interested in, or do you want more details on any particular one?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_8E2e8xmL9Hrez251",
+          "tool_name": "check_ride_status",
+          "arguments": {
+            "ride_id": "ride78912"
+          },
+          "result": {
+            "success": false,
+            "error": "Ride not found or invalid ride ID",
+            "output": "Ride not found or invalid ride ID",
+            "raw_output": {
+              "success": false,
+              "error": "Ride not found or invalid ride ID",
+              "output": "Ride not found or invalid ride ID"
+            },
+            "latency_ms": 0.005245208740234375
+          },
+          "latency_ms": 0.005245208740234375
+        },
+        {
+          "tool_call_id": "call_w3QUVjFvSaTlqBYB",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 11 restaurants in Beijing:\n\n1. Shu Xiang Yuan (ID: rst_bj_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.5/5.0\n\n2. Mala Youhuo (ID: rst_bj_002)\n   Cuisine: Sichuan\n   Location: Chaoyang\n   Rating: 4.3/5.0\n\n3. Jingwei Zhai (ID: rst_bj_003)\n   Cuisine: Beijing\n   Location: Downtown\n   Rating: 4.7/5.0\n\n4. Quanjude Roast Duck (ID: rst_bj_004)\n   Cuisine: Beijing\n   Location: Qianmen\n   Rating: 4.6/5.0\n\n5. Chuan Ban (ID: rst_bj_005)\n   Cuisine: Sichuan\n   Location: CBD\n   Rating: 4.4/5.0\n\n6. Da Dong Roast Duck (ID: rst_bj_006)\n   Cuisine: Beijing\n   Location: CBD\n   Rating: 4.8/5.0\n\n7. Beijing Garden (ID: rst_bj_007)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.7/5.0\n\n8. Imperial Kitchen (ID: rst_bj_008)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.6/5.0\n\n9. China Palace (ID: rst_bj_009)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.5/5.0\n\n10. Golden Dragon (ID: rst_bj_010)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.3/5.0\n\n11. Green Lotus (ID: rst_bj_011)\n   Cuisine: Vegetarian\n   Location: Wangfujing\n   Rating: 4.6/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_bj_001",
+                "name": "Shu Xiang Yuan",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.5
+              },
+              {
+                "restaurant_id": "rst_bj_002",
+                "name": "Mala Youhuo",
+                "cuisine": "Sichuan",
+                "location": "Chaoyang",
+                "rating": 4.3
+              },
+              {
+                "restaurant_id": "rst_bj_003",
+                "name": "Jingwei Zhai",
+                "cuisine": "Beijing",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_bj_004",
+                "name": "Quanjude Roast Duck",
+                "cuisine": "Beijing",
+                "location": "Qianmen",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_bj_005",
+                "name": "Chuan Ban",
+                "cuisine": "Sichuan",
+                "location": "CBD",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_bj_006",
+                "name": "Da Dong Roast Duck",
+                "cuisine": "Beijing",
+                "location": "CBD",
+                "rating": 4.8
+              },
+              {
+                "restaurant_id": "rst_bj_007",
+                "name": "Beijing Garden",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_bj_008",
+                "name": "Imperial Kitchen",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_bj_009",
+                "name": "China Palace",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.5
+              },
+              {
+                "restaurant_id": "rst_bj_010",
+                "name": "Golden Dragon",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.3
+              },
+              {
+                "restaurant_id": "rst_bj_011",
+                "name": "Green Lotus",
+                "cuisine": "Vegetarian",
+                "location": "Wangfujing",
+                "rating": 4.6
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.052928924560546875
+          },
+          "latency_ms": 0.052928924560546875
+        }
+      ],
+      "total_latency_ms": 11267.527103424072,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1876800,
+        "event_count": 372,
+        "latency": {
+          "speech_ms": 1100.34521484375,
+          "tool_call_ms": 121.011962890625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the restaurant search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 126000
+      },
+      "assistant_response": "Sure! Let’s find out more details for each location or if you'd like to narrow it down by cuisine, location, or rating. What would you like to do next?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure! Let’s find out more details for each location or if you'd like to narrow it down by cuisine, location, or rating. What would you like to do next?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4842.842102050781,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 403200,
+        "event_count": 72,
+        "latency": {
+          "speech_ms": 410.61181640625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.245955260734863,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the restaurant China Palace.",
+        "timestamp": 16.245955260734863,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 92400
+      },
+      "assistant_response": "Great choice! Let’s get it booked. Could you let me know the date, time, number of people, your name, and your phone number for the reservation?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great choice! Let’s get it booked. Could you let me know the date, time, number of people, your name, and your phone number for the reservation?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3741.384983062744,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 343200,
+        "event_count": 68,
+        "latency": {
+          "speech_ms": 1098.491943359375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.7302764452412,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the reservation date to 2026-03-06 and time to 19:00.",
+        "timestamp": 20.7302764452412,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-06",
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 271200
+      },
+      "assistant_response": "Perfect! How many people will be in the party, and what’s the contact name and phone number for the reservation? That way, I can finalize it.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect! How many people will be in the party, and what’s the contact name and phone number for the reservation? That way, I can finalize it.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5609.151124954224,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 364800,
+        "event_count": 67,
+        "latency": {
+          "speech_ms": 453.53369140625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.78433697916862,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 3; contact name Zhang Wei.",
+        "timestamp": 26.78433697916862,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Zhang Wei",
+            "book_restaurant.party_size=3"
+          ]
+        },
+        "audio_size_bytes": 116400
+      },
+      "assistant_response": "Great! Could you please provide the contact phone number for the reservation? That will help me complete the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! Could you please provide the contact phone number for the reservation? That will help me complete the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4935.651063919067,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 295200,
+        "event_count": 54,
+        "latency": {
+          "speech_ms": 1474.85693359375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.668039016789578,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone number 13898765432. Then search movies in Beijing.",
+        "timestamp": 31.668039016789578,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.phone=13898765432",
+            "search_movies.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 275400
+      },
+      "assistant_response": "Reservation is confirmed at China Palace on 2026-03-06 at 19:00 for 3 people. The contact is Zhang Wei with phone 13898765432.\n\nNow, here are some movies in Beijing:\n\n1. The Wandering Earth 3 (Sci-Fi) – Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50\n\n2. YOLO (Drama) – Showtimes: 11:00, 14:30, 17:00, 20:30\n\n3. Article 20 (Drama) – Showtimes: 10:00, 13:00, 15:30, 18:00, 20:30\n\n4. Kung Fu Panda 4 (Animation) – Showtimes: 09:30, 11:30, 14:00, 16:30, 19:00\n\nWhich movie interests you, or would you like more details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_wxPXqh9JC0kakDiv",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_bj_009",
+                "date": "2026-03-06",
+                "time": "19:00",
+                "party_size": 3,
+                "contact_name": "Zhang Wei",
+                "phone": "13898765432"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Rac4WVh25Xj9EpGJ",
+              "name": "search_movies",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Reservation is confirmed at China Palace on 2026-03-06 at 19:00 for 3 people. The contact is Zhang Wei with phone 13898765432.\n\nNow, here are some movies in Beijing:\n\n1. The Wandering Earth 3 (Sci-Fi) – Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50\n\n2. YOLO (Drama) – Showtimes: 11:00, 14:30, 17:00, 20:30\n\n3. Article 20 (Drama) – Showtimes: 10:00, 13:00, 15:30, 18:00, 20:30\n\n4. Kung Fu Panda 4 (Animation) – Showtimes: 09:30, 11:30, 14:00, 16:30, 19:00\n\nWhich movie interests you, or would you like more details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_wxPXqh9JC0kakDiv",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_bj_009",
+            "date": "2026-03-06",
+            "time": "19:00",
+            "party_size": 3,
+            "contact_name": "Zhang Wei",
+            "phone": "13898765432"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_bj_009\nRestaurant: China Palace\nDate: 2026-03-06\nTime: 19:00\nParty size: 3\nContact: Zhang Wei (13898765432)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_bj_009",
+              "restaurant_name": "China Palace",
+              "date": "2026-03-06",
+              "time": "19:00",
+              "party_size": 3,
+              "contact_name": "Zhang Wei",
+              "phone": "13898765432",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.016927719116210938
+          },
+          "latency_ms": 0.016927719116210938
+        },
+        {
+          "tool_call_id": "call_Rac4WVh25Xj9EpGJ",
+          "tool_name": "search_movies",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 movies in Beijing:\n\n1. The Wandering Earth 3 (ID: mov_bj_001)\n   Genre: Sci-Fi | Duration: 150 min\n   Rating: 8.5/10.0\n   Price: ¥45\n   Cinemas: Wanda Cinema CBD, CGV Xidan, Bona International\n   Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50\n\n2. YOLO (ID: mov_bj_002)\n   Genre: Drama | Duration: 120 min\n   Rating: 7.8/10.0\n   Price: ¥40\n   Cinemas: Wanda Cinema CBD, UME Cinema, Bona International\n   Showtimes: 11:00, 14:30, 17:00, 20:30\n\n3. Article 20 (ID: mov_bj_003)\n   Genre: Drama | Duration: 110 min\n   Rating: 8.2/10.0\n   Price: ¥38\n   Cinemas: CGV Xidan, UME Cinema, Jackie Chan Cinema\n   Showtimes: 10:00, 13:00, 15:30, 18:00, 20:30\n\n4. Kung Fu Panda 4 (ID: mov_bj_004)\n   Genre: Animation | Duration: 95 min\n   Rating: 7.5/10.0\n   Price: ¥35\n   Cinemas: Wanda Cinema CBD, CGV Xidan, Bona International\n   Showtimes: 09:30, 11:30, 14:00, 16:30, 19:00\n\n",
+            "raw_output": [
+              {
+                "movie_id": "mov_bj_001",
+                "name": "The Wandering Earth 3",
+                "genre": "Sci-Fi",
+                "duration": 150,
+                "rating": 8.5,
+                "cinemas": [
+                  "Wanda Cinema CBD",
+                  "CGV Xidan",
+                  "Bona International"
+                ],
+                "showtimes": [
+                  "10:30",
+                  "13:20",
+                  "16:10",
+                  "19:00",
+                  "21:50"
+                ],
+                "price": 45
+              },
+              {
+                "movie_id": "mov_bj_002",
+                "name": "YOLO",
+                "genre": "Drama",
+                "duration": 120,
+                "rating": 7.8,
+                "cinemas": [
+                  "Wanda Cinema CBD",
+                  "UME Cinema",
+                  "Bona International"
+                ],
+                "showtimes": [
+                  "11:00",
+                  "14:30",
+                  "17:00",
+                  "20:30"
+                ],
+                "price": 40
+              },
+              {
+                "movie_id": "mov_bj_003",
+                "name": "Article 20",
+                "genre": "Drama",
+                "duration": 110,
+                "rating": 8.2,
+                "cinemas": [
+                  "CGV Xidan",
+                  "UME Cinema",
+                  "Jackie Chan Cinema"
+                ],
+                "showtimes": [
+                  "10:00",
+                  "13:00",
+                  "15:30",
+                  "18:00",
+                  "20:30"
+                ],
+                "price": 38
+              },
+              {
+                "movie_id": "mov_bj_004",
+                "name": "Kung Fu Panda 4",
+                "genre": "Animation",
+                "duration": 95,
+                "rating": 7.5,
+                "cinemas": [
+                  "Wanda Cinema CBD",
+                  "CGV Xidan",
+                  "Bona International"
+                ],
+                "showtimes": [
+                  "09:30",
+                  "11:30",
+                  "14:00",
+                  "16:30",
+                  "19:00"
+                ],
+                "price": 35
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03886222839355469
+          },
+          "latency_ms": 0.03886222839355469
+        }
+      ],
+      "total_latency_ms": 14664.857864379883,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1821600,
+        "event_count": 412,
+        "latency": {
+          "speech_ms": 2840.90087890625,
+          "tool_call_ms": 914.208740234375
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.99509872305179,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 4 tickets for The Wandering Earth 3 at Bona International, showtime 16:10.",
+        "timestamp": 37.99509872305179,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_movie_ticket.cinema=Bona International",
+            "book_movie_ticket.seat_count=4",
+            "book_movie_ticket.showtime=16:10"
+          ]
+        },
+        "audio_size_bytes": 289200
+      },
+      "assistant_response": "Great! Could you please provide the buyer’s name for the booking? Once I have that, I can complete the reservation.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! Could you please provide the buyer’s name for the booking? Once I have that, I can complete the reservation.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5635.547876358032,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 266400,
+        "event_count": 55,
+        "latency": {
+          "speech_ms": 516.297119140625
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 45.41804124194061,
+      "input_chunk": {
+        "role": "user",
+        "content": "Buyer name Chen Ming.",
+        "timestamp": 45.41804124194061,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_movie_ticket.buyer_name=Chen Ming"
+          ]
+        },
+        "audio_size_bytes": 59400
+      },
+      "assistant_response": "Your movie ticket booking is confirmed! You've got four tickets for \"The Wandering Earth 3\" at Bona International on 2026-03-01 at 16:10. The seats are E5, E6, E7, and E8. \n\nIf you need anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_kTtSRUK8fhFaydop",
+              "name": "book_movie_ticket",
+              "arguments": {
+                "movie_id": "mov_bj_001",
+                "cinema": "Bona International",
+                "showtime": "16:10",
+                "seat_count": 4,
+                "buyer_name": "Chen Ming"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your movie ticket booking is confirmed! You've got four tickets for \"The Wandering Earth 3\" at Bona International on 2026-03-01 at 16:10. The seats are E5, E6, E7, and E8. \n\nIf you need anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_kTtSRUK8fhFaydop",
+          "tool_name": "book_movie_ticket",
+          "arguments": {
+            "movie_id": "mov_bj_001",
+            "cinema": "Bona International",
+            "showtime": "16:10",
+            "seat_count": 4,
+            "buyer_name": "Chen Ming"
+          },
+          "result": {
+            "success": true,
+            "output": "Movie ticket booking successful!\n\nBooking ID: MV60001\nMovie ID: mov_bj_001\nMovie: The Wandering Earth 3\nCinema: Bona International\nDate: 2026-03-01\nShowtime: 16:10\nSeats: E5, E6, E7, E8\nTicket type: adult\nQuantity: 4\nTotal: ¥180\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "MV60001",
+              "movie_id": "mov_bj_001",
+              "movie_name": "The Wandering Earth 3",
+              "cinema": "Bona International",
+              "date": "2026-03-01",
+              "showtime": "16:10",
+              "seat_count": 4,
+              "seats": [
+                "E5",
+                "E6",
+                "E7",
+                "E8"
+              ],
+              "buyer_name": "Chen Ming",
+              "ticket_type": "adult",
+              "total_price": 180,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03719329833984375
+          },
+          "latency_ms": 0.03719329833984375
+        }
+      ],
+      "total_latency_ms": 4929.375886917114,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 657600,
+        "event_count": 178,
+        "latency": {
+          "speech_ms": 1604.878173828125,
+          "tool_call_ms": 736.234375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 15,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "check_ride_status": {
+        "speech_ms": 1100.34521484375,
+        "tool_call_ms": 121.011962890625
+      },
+      "book_restaurant": {
+        "speech_ms": 2840.90087890625,
+        "tool_call_ms": 914.208740234375
+      },
+      "search_movies": {
+        "speech_ms": 2840.90087890625,
+        "tool_call_ms": 914.208740234375
+      },
+      "book_movie_ticket": {
+        "speech_ms": 1604.878173828125,
+        "tool_call_ms": 736.234375
+      }
+    },
+    "info_complete_turn": {
+      "check_ride_status": 2,
+      "search_restaurants": 1,
+      "book_restaurant": 7,
+      "search_movies": 7,
+      "book_movie_ticket": 9
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: check_ride_status.ride_id: 期望'RIDE789012', 实际'ride78912'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 1,
+    "extra_turns_details": "search_restaurants: +1 turns (info@1, call@2)",
+    "behavior_score": 0.8,
+    "behavior_score_details": "check_ride_status: 0(param_mismatch), search_restaurants: 1(correct), book_restaurant: 1(correct), search_movies: 1(correct), book_movie_ticket: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "check_ride_status",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "ride_id: 'RIDE789012' vs 'ride78912'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

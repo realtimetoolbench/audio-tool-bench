@@ -1,0 +1,229 @@
+{
+  "task_id": "tint_000112",
+  "description": "Interruption (priority_early_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "pay_bill",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Shenzhen.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_shows.city=Shenzhen"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search attractions in Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_attractions.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_shows",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book attraction tickets for Du Fu Thatched Cottage on 2026-03-26 in the morning.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-26",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 9.289553975120318
+    },
+    {
+      "speaker": "user",
+      "text": "Set the visitor name to Chen Ming and ticket count to 3.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.visitor_name=Chen Ming"
+        ]
+      },
+      "timestamp": 15.90460015090731
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Suzhou.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_hotels.city=Suzhou"
+        ]
+      },
+      "timestamp": 21.93130904243777
+    },
+    {
+      "speaker": "user",
+      "text": "Book Home Inn Pingjiang. Check in 2026-03-11 for 4 nights.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-11",
+          "book_hotel.nights=4"
+        ]
+      },
+      "timestamp": 26.250418784703648
+    },
+    {
+      "speaker": "user",
+      "text": "Set the hotel guest name to Wang Fang.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_hotel.guest_name=Wang Fang"
+        ]
+      },
+      "timestamp": 32.43746786300882
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 Floor ticket for Mayday Concert. Buyer name Chen Ming.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Chen Ming",
+          "book_show_ticket.seat_zone=Floor",
+          "book_show_ticket.ticket_count=1"
+        ]
+      },
+      "timestamp": 41.743343478468304
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13866778899 for the ticket booking, then pay bill DL20260219001.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.phone=13866778899",
+          "pay_bill.bill_id=DL20260219001"
+        ]
+      },
+      "timestamp": 47.910601764115114
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_003",
+        "date": "2026-03-26",
+        "time_slot": "morning",
+        "visitor_name": "Chen Ming",
+        "ticket_count": 3
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_su_003",
+        "checkin_date": "2026-03-11",
+        "nights": 4,
+        "guest_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_sz_001",
+        "seat_zone": "Floor",
+        "ticket_count": 1,
+        "buyer_name": "Chen Ming",
+        "phone": "13866778899"
+      }
+    },
+    {
+      "tool": "pay_bill",
+      "params": {
+        "bill_id": "DL20260219001"
+      }
+    }
+  ],
+  "transcript_hash": "cbace06fcb84",
+  "info_complete_turn": {
+    "search_attractions": 2,
+    "book_attraction_ticket": 4,
+    "search_hotels": 5,
+    "book_hotel": 7,
+    "search_shows": 1,
+    "book_show_ticket": 10,
+    "pay_bill": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_shows",
+    "inserted_tools": [
+      "search_attractions",
+      "book_attraction_ticket",
+      "search_hotels",
+      "book_hotel"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel"
+  ]
+}

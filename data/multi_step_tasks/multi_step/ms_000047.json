@@ -1,0 +1,180 @@
+{
+  "task_id": "ms_000047",
+  "scenario_type": "multi_step",
+  "server": "uber_eats",
+  "template": "full_order_7",
+  "description": "Search restaurants, get restaurant details, get menu, get profile, get offers, place order, track order",
+  "tools": [
+    "search_restaurants",
+    "get_restaurant",
+    "get_menu",
+    "get_profile",
+    "get_available_offers",
+    "place_order",
+    "track_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find me some Thai restaurants nearby.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_restaurants"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me details for the first restaurant on the list and get their menu as well.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_restaurant",
+          "get_menu"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Check my profile and see if there are any available offers for this restaurant.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_profile",
+          "get_available_offers"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Place an order with the pad thai and the green curry from that restaurant using my default address and payment method, and apply the best offer.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "place_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Track my order, please.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "track_order"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "category": "Thai"
+      },
+      "param_source": {
+        "category": "user"
+      }
+    },
+    {
+      "tool": "get_restaurant",
+      "params": {
+        "restaurant_id": "REST-56780"
+      },
+      "param_source": {
+        "restaurant_id": {
+          "from_tool": "search_restaurants",
+          "field": "restaurant_id"
+        }
+      }
+    },
+    {
+      "tool": "get_menu",
+      "params": {
+        "restaurant_id": "REST-56780"
+      },
+      "param_source": {
+        "restaurant_id": {
+          "from_tool": "search_restaurants",
+          "field": "restaurant_id"
+        }
+      }
+    },
+    {
+      "tool": "get_profile",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "get_available_offers",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "place_order",
+      "params": {
+        "restaurant_id": "REST-56780",
+        "items": [
+          {
+            "item_id": "ITEM-56780",
+            "quantity": 2
+          }
+        ],
+        "delivery_address_id": "addr_1",
+        "payment_method_id": "pm_1",
+        "offer_id": "OFFER-56780"
+      },
+      "param_source": {
+        "restaurant_id": {
+          "from_tool": "search_restaurants",
+          "field": "restaurant_id"
+        },
+        "items": {
+          "from_tool": "get_menu",
+          "field": "item_id",
+          "quantity": "user"
+        },
+        "delivery_address_id": {
+          "from_tool": "get_profile",
+          "field": "address[0].address_id"
+        },
+        "payment_method_id": {
+          "from_tool": "get_profile",
+          "field": "payment_method[0].method_id"
+        },
+        "offer_id": {
+          "from_tool": "get_available_offers",
+          "field": "offer_id"
+        }
+      }
+    },
+    {
+      "tool": "track_order",
+      "params": {
+        "order_id": "order_1"
+      },
+      "param_source": {
+        "order_id": {
+          "from_tool": "place_order",
+          "field": "$"
+        }
+      }
+    }
+  ],
+  "chain_depth": 7,
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "get_restaurant": 1,
+    "get_menu": 1,
+    "get_profile": 1,
+    "get_available_offers": 1,
+    "place_order": 1,
+    "track_order": 1
+  }
+}

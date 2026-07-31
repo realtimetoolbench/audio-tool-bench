@@ -1,0 +1,162 @@
+{
+  "task_id": "int_000085",
+  "description": "Interruption (cancellation): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Guangzhou. Also, later find a restaurant reservation.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book The Ritz-Carlton Guangzhou. Check in 2026-03-15.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-15"
+        ]
+      },
+      "timestamp": 6.413756911719898
+    },
+    {
+      "speaker": "user",
+      "text": "Stay 5 nights. Guest name Hu Bin.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Hu Bin",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 11.57152940821575
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 16.00987863380732
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5890 on China Eastern.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 21.15546842644461
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the restaurant.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 5,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "restaurant",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Flight date 2026-04-02.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-04-02"
+        ]
+      },
+      "timestamp": 30.92893576229543
+    },
+    {
+      "speaker": "user",
+      "text": "Passenger name Ma Liang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.passenger_name=Ma Liang"
+        ]
+      },
+      "timestamp": 35.11671701773597
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_gz_001",
+        "checkin_date": "2026-03-15",
+        "nights": 5,
+        "guest_name": "Hu Bin"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_004",
+        "date": "2026-04-02",
+        "passenger_name": "Ma Liang"
+      }
+    }
+  ],
+  "transcript_hash": "591059453e18",
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 3,
+    "search_flights": 4,
+    "book_flight": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "restaurant",
+    "template": "business_trip",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_restaurants",
+    "book_restaurant"
+  ]
+}

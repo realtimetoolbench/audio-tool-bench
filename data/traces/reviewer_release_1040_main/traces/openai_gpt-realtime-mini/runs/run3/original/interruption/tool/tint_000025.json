@@ -1,0 +1,650 @@
+{
+  "task_name": "tint_000025",
+  "start_time": "2026-07-29T03:30:22.172377",
+  "end_time": "2026-07-29T03:31:07.948461",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Find restaurants in Shanghai for tonight at 7 pm for 2 people, and also handle flights and a hotel for a Shanghai trip.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 375000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_h7AjzKix9uyqyjZi",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9205.013751983643,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 22,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the restaurant part. Cancel restaurant search and any restaurant booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 238800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 0.9050369262695312,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 9
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 16.641220338032362,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 16.641220338032362,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 113400
+      },
+      "assistant_response": "Got it! I'll hold off on the restaurant details",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Got it! I'll hold off on the restaurant details",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1781.4242839813232,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 57600,
+        "event_count": 28,
+        "latency": {
+          "speech_ms": 2.523681640625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 22.078825434337674,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-26 for passenger Li Na.",
+        "timestamp": 22.078825434337674,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-03-26",
+            "book_flight.passenger_name=Li Na"
+          ]
+        },
+        "audio_size_bytes": 259800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_hCnpntO0K2N4iqBE",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_hCnpntO0K2N4iqBE",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.025033950805664062
+          },
+          "latency_ms": 0.025033950805664062
+        }
+      ],
+      "total_latency_ms": 3413.396120071411,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 31,
+        "latency": {
+          "tool_call_ms": 3.249755859375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 28.22780612406259,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use airline China Eastern for that booking.",
+        "timestamp": 28.22780612406259,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 127800
+      },
+      "assistant_response": "Your flight with China Eastern from Beijing to Shanghai on 2026-03-26 has been booked successfully. The booking ID is FL10001. \n\nLet me know if you need any more details or assistance!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_eMI0oTWGSvMkoyqd",
+              "name": "book_flight",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Te90uuKYHhNpASQr",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "passenger_name": "Lina",
+                "date": "2026-03-26"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Your flight with China Eastern from Beijing to Shanghai on 2026-03-26 has been booked successfully. The booking ID is FL10001. \n\nLet me know if you need any more details or assistance!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_eMI0oTWGSvMkoyqd",
+          "tool_name": "book_flight",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: BookFlightTool.execute() missing 1 required positional argument: 'flight_id'",
+            "raw_output": null,
+            "error": "BookFlightTool.execute() missing 1 required positional argument: 'flight_id'",
+            "latency_ms": 0.012874603271484375
+          },
+          "latency_ms": 0.012874603271484375
+        },
+        {
+          "tool_call_id": "call_Te90uuKYHhNpASQr",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "passenger_name": "Lina",
+            "date": "2026-03-26"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Lina\nDate: 2026-03-26\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Lina",
+              "date": "2026-03-26",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0040531158447265625
+          },
+          "latency_ms": 0.0040531158447265625
+        }
+      ],
+      "total_latency_ms": 5793.097972869873,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 537600,
+        "event_count": 183,
+        "latency": {
+          "speech_ms": 1817.25,
+          "tool_call_ms": 6.09716796875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 33.05753287599629,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai.",
+        "timestamp": 33.05753287599629,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 76200
+      },
+      "assistant_response": "Here are some hotel options in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund – 5 stars, ¥1200/night, located on the Bund.\n2. Pudong Shangri-La – 5 stars, ¥1000/night, located in Pudong.\n3. Hyatt on the Bund – 4 stars, ¥750/night, also on the Bund.\n4. Home Inn the Bund – 3 stars, ¥400/night, on the Bund.\n5. Hanting Hotel People's Square – 3 stars, ¥350/night, near People's Square.\n\nWhich one would you like to explore further or book?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_hDPrzlWTCvpAKEdu",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are some hotel options in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund – 5 stars, ¥1200/night, located on the Bund.\n2. Pudong Shangri-La – 5 stars, ¥1000/night, located in Pudong.\n3. Hyatt on the Bund – 4 stars, ¥750/night, also on the Bund.\n4. Home Inn the Bund – 3 stars, ¥400/night, on the Bund.\n5. Hanting Hotel People's Square – 3 stars, ¥350/night, near People's Square.\n\nWhich one would you like to explore further or book?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_hDPrzlWTCvpAKEdu",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 5 hotels in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001)\n   Location: the Bund | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Pudong Shangri-La (ID: hotel_sh_002)\n   Location: Pudong | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Hyatt on the Bund (ID: hotel_sh_003)\n   Location: the Bund | 4 stars\n   Price: ¥750/night | Rating: 4.5/5.0\n\n4. Home Inn the Bund (ID: hotel_sh_004)\n   Location: the Bund | 3 stars\n   Price: ¥400/night | Rating: 4.2/5.0\n\n5. Hanting Hotel People's Square (ID: hotel_sh_005)\n   Location: People's Square | 3 stars\n   Price: ¥350/night | Rating: 4.0/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_sh_001",
+                "name": "Waldorf Astoria Shanghai on the Bund",
+                "location": "the Bund",
+                "stars": 5,
+                "price": 1200,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_sh_002",
+                "name": "Pudong Shangri-La",
+                "location": "Pudong",
+                "stars": 5,
+                "price": 1000,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_sh_003",
+                "name": "Hyatt on the Bund",
+                "location": "the Bund",
+                "stars": 4,
+                "price": 750,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_sh_004",
+                "name": "Home Inn the Bund",
+                "location": "the Bund",
+                "stars": 3,
+                "price": 400,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_sh_005",
+                "name": "Hanting Hotel People's Square",
+                "location": "People's Square",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.02193450927734375
+          },
+          "latency_ms": 0.02193450927734375
+        }
+      ],
+      "total_latency_ms": 11138.9479637146,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1279200,
+        "event_count": 233,
+        "latency": {
+          "speech_ms": 1696.777099609375,
+          "tool_call_ms": 757.380859375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 37.051499045444494,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book hotel Pudong Shangri-La.",
+        "timestamp": 37.051499045444494,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 87000
+      },
+      "assistant_response": "Sure! Could you let me know the check-in date and how many nights you'll be staying? That way, I can complete the booking for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure! Could you let me know the check-in date and how many nights you'll be staying? That way, I can complete the booking for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4222.7373123168945,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 316800,
+        "event_count": 63,
+        "latency": {
+          "speech_ms": 647.53515625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 41.40123922314981,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set check-in 2026-03-26 for 4 nights for guest Li Na.",
+        "timestamp": 41.40123922314981,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-26",
+            "book_hotel.guest_name=Li Na",
+            "book_hotel.nights=4"
+          ]
+        },
+        "audio_size_bytes": 229200
+      },
+      "assistant_response": "Your hotel booking at the Pudong Shangri-La is confirmed! The booking ID is HT20001, with check-in on 2026-03-26 for 4 nights.\n\nIf you need any more details or help, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_3hQxaDvsxcaqy2pz",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_sh_002",
+                "guest_name": "Lina",
+                "checkin_date": "2026-03-26",
+                "nights": 4
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your hotel booking at the Pudong Shangri-La is confirmed! The booking ID is HT20001, with check-in on 2026-03-26 for 4 nights.\n\nIf you need any more details or help, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_3hQxaDvsxcaqy2pz",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_sh_002",
+            "guest_name": "Lina",
+            "checkin_date": "2026-03-26",
+            "nights": 4
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_sh_002\nCheck-in: 2026-03-26\nNights: 4\nGuest: Lina\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_sh_002",
+              "checkin_date": "2026-03-26",
+              "nights": 4,
+              "guest_name": "Lina",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03790855407714844
+          },
+          "latency_ms": 0.03790855407714844
+        }
+      ],
+      "total_latency_ms": 10213.204860687256,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 571200,
+        "event_count": 153,
+        "latency": {
+          "speech_ms": 2159.76806640625,
+          "tool_call_ms": 1094.14404296875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 14,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "forbidden_tools": [
+      "search_restaurants",
+      "book_restaurant"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_flights": {
+        "speech_ms": 2.523681640625
+      },
+      "book_flight": {
+        "tool_call_ms": 3.249755859375
+      },
+      "book_hotel": {
+        "speech_ms": 2159.76806640625,
+        "tool_call_ms": 1094.14404296875
+      }
+    },
+    "info_complete_turn": {
+      "search_flights": 3,
+      "book_flight": 4,
+      "search_hotels": 1,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_flight.passenger_name: 期望'Li Na', 实际'Lina'; book_hotel.guest_name: 期望'Li Na', 实际'Lina'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 7,
+    "extra_turns_details": "search_flights: +1 turns (info@3, call@4); book_flight: +1 turns (info@4, call@5); search_hotels: +5 turns (info@1, call@6)",
+    "behavior_score": 0.5,
+    "behavior_score_details": "search_flights: 1(correct), book_flight: 0(param_mismatch), search_hotels: 1(correct), book_hotel: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_flight",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "passenger_name: 'Li Na' vs 'Lina'"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "guest_name: 'Li Na' vs 'Lina'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

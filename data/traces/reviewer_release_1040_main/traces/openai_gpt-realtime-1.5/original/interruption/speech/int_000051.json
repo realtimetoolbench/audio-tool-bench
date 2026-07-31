@@ -1,0 +1,736 @@
+{
+  "task_name": "int_000051",
+  "start_time": "2026-05-04T22:08:33.533788",
+  "end_time": "2026-05-04T22:10:06.324721",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shenzhen.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 113400
+      },
+      "assistant_response": "I'm sorry, but I couldn't find any trains from Beijing to Shenzhen right now. It could be a temporary issue or there might",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_HH82TAxm132eQUzu",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shenzhen"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "I'm sorry, but I couldn't find any trains from Beijing to Shenzhen right now. It could be a temporary issue or there might",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_HH82TAxm132eQUzu",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shenzhen"
+          },
+          "result": {
+            "success": false,
+            "output": "Sorry, no trains found from Beijing to Shenzhen.",
+            "raw_output": null,
+            "error": "Route not found: Beijing -> Shenzhen",
+            "latency_ms": 0.032901763916015625
+          },
+          "latency_ms": 0.032901763916015625
+        }
+      ],
+      "total_latency_ms": 5986.310005187988,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 76800,
+        "event_count": 71,
+        "interrupted": true,
+        "interrupt_trigger_type": "keyword",
+        "partial_transcript": "I'm sorry, but I couldn't find any trains from Beijing to Shenzhen right now. It could be a temporary issue or there might"
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shenzhen, I meant Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "keyword",
+            "keyword": "Shenzhen",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 94200
+      },
+      "assistant_response": "I found three trains from Beijing to Shanghai:\n\n1. G1 (High-speed) departs at 06:00, arrives at 10:28 with a duration of 4h 28m. Second class costs ¥553 and first class is ¥933.\n\n2. G3 (High-speed) departs at 07:00, arrives at 11:35 with a duration of 4h 35m. Same pricing as G1.\n\n3. D321 (Express) departs at 08:30, arrives at 16:45 with a duration of 8h 15m. Second class costs ¥309 and first class is ¥494.\n\nAll are available. Let me know if you'd like to book one and for which date and seat class.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_L1aDOVqI9yZZ2d66",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three trains from Beijing to Shanghai:\n\n1. G1 (High-speed) departs at 06:00, arrives at 10:28 with a duration of 4h 28m. Second class costs ¥553 and first class is ¥933.\n\n2. G3 (High-speed) departs at 07:00, arrives at 11:35 with a duration of 4h 35m. Same pricing as G1.\n\n3. D321 (Express) departs at 08:30, arrives at 16:45 with a duration of 8h 15m. Second class costs ¥309 and first class is ¥494.\n\nAll are available. Let me know if you'd like to book one and for which date and seat class.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_L1aDOVqI9yZZ2d66",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.034809112548828125
+          },
+          "latency_ms": 0.034809112548828125
+        }
+      ],
+      "total_latency_ms": 26681.787967681885,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1884000,
+        "event_count": 290,
+        "latency": {
+          "speech_ms": 1629.913818359375,
+          "tool_call_ms": 758.136962890625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 9.70036484663828,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train D321 on 2026-04-18.",
+        "timestamp": 9.70036484663828,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-04-18"
+          ]
+        },
+        "audio_size_bytes": 184800
+      },
+      "assistant_response": "Sure, I can help with that. Could you please provide the passenger name and let me know if you'd like a second class or first class seat?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help with that. Could you please provide the passenger name and let me know if you'd like a second class or first class seat?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8038.706064224243,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 297600,
+        "event_count": 59,
+        "latency": {
+          "speech_ms": 2083.81298828125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.650089918690858,
+      "input_chunk": {
+        "role": "user",
+        "content": "Passenger name Wu Qian, Second Class.",
+        "timestamp": 14.650089918690858,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.passenger_name=Wu Qian",
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 108600
+      },
+      "assistant_response": "Your train ticket has been successfully booked! Wu Qian is confirmed on the D321 for April 18, 2026, in second class seat 01F. Safe travels, and let me know if there’s anything else I can do for you!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_6ItgL4WtLhEcNMJj",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_003",
+                "date": "2026-04-18",
+                "passenger_name": "Wu Qian",
+                "seat_class": "second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your train ticket has been successfully booked! Wu Qian is confirmed on the D321 for April 18, 2026, in second class seat 01F. Safe travels, and let me know if there’s anything else I can do for you!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_6ItgL4WtLhEcNMJj",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_003",
+            "date": "2026-04-18",
+            "passenger_name": "Wu Qian",
+            "seat_class": "second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_003\nDate: 2026-04-18\nPassenger: Wu Qian\nSeat: second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_003",
+              "date": "2026-04-18",
+              "passenger_name": "Wu Qian",
+              "seat_class": "second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.011920928955078125
+          },
+          "latency_ms": 0.011920928955078125
+        }
+      ],
+      "total_latency_ms": 9945.372819900513,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 573600,
+        "event_count": 137,
+        "latency": {
+          "speech_ms": 2755.466796875,
+          "tool_call_ms": 1773.030029296875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.34530903526508,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Chongqing.",
+        "timestamp": 19.34530903526508,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_hotels.city=Chongqing"
+          ]
+        },
+        "audio_size_bytes": 76800
+      },
+      "assistant_response": "I found three hotels in Chongqing:\n\n1. JW Marriott Chongqing in Yuzhong, a 5-star hotel at ¥1100 per night, rated 4.8/5.\n\n2. Hilton Chongqing in Yuzhong, also 5 stars, at ¥950 per night, rated 4.7/5.\n\n3. Holiday Inn Jiangbei, a 4-star hotel in Jiangbei, at ¥520 per night, rated 4.4/5.\n\nIf you'd like to book one, just tell me which hotel, your check-in date, number of nights, and the guest name.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_nilHjIz0xVtuk0XL",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Chongqing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three hotels in Chongqing:\n\n1. JW Marriott Chongqing in Yuzhong, a 5-star hotel at ¥1100 per night, rated 4.8/5.\n\n2. Hilton Chongqing in Yuzhong, also 5 stars, at ¥950 per night, rated 4.7/5.\n\n3. Holiday Inn Jiangbei, a 4-star hotel in Jiangbei, at ¥520 per night, rated 4.4/5.\n\nIf you'd like to book one, just tell me which hotel, your check-in date, number of nights, and the guest name.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_nilHjIz0xVtuk0XL",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Chongqing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Chongqing:\n\n1. JW Marriott Chongqing (ID: hotel_cq_001)\n   Location: Yuzhong | 5 stars\n   Price: ¥1100/night | Rating: 4.8/5.0\n\n2. Hilton Chongqing (ID: hotel_cq_002)\n   Location: Yuzhong | 5 stars\n   Price: ¥950/night | Rating: 4.7/5.0\n\n3. Holiday Inn Jiangbei (ID: hotel_cq_003)\n   Location: Jiangbei | 4 stars\n   Price: ¥520/night | Rating: 4.4/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_cq_001",
+                "name": "JW Marriott Chongqing",
+                "location": "Yuzhong",
+                "stars": 5,
+                "price": 1100,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_cq_002",
+                "name": "Hilton Chongqing",
+                "location": "Yuzhong",
+                "stars": 5,
+                "price": 950,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_cq_003",
+                "name": "Holiday Inn Jiangbei",
+                "location": "Jiangbei",
+                "stars": 4,
+                "price": 520,
+                "rating": 4.4
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.018835067749023438
+          },
+          "latency_ms": 0.018835067749023438
+        }
+      ],
+      "total_latency_ms": 11387.820959091187,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1334400,
+        "event_count": 227,
+        "latency": {
+          "speech_ms": 1972.90283203125,
+          "tool_call_ms": 1027.310791015625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 23.286183185701358,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book JW Marriott Chongqing, check in 2026-03-20 for 2 nights.",
+        "timestamp": 23.286183185701358,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-20",
+            "book_hotel.nights=2"
+          ]
+        },
+        "audio_size_bytes": 257400
+      },
+      "assistant_response": "Sure, I can book that for you. Could you please provide the guest's name for the reservation?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can book that for you. Could you please provide the guest's name for the reservation?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5007.170915603638,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 218400,
+        "event_count": 46,
+        "latency": {
+          "speech_ms": 1798.120849609375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 29.232431407408438,
+      "input_chunk": {
+        "role": "user",
+        "content": "Guest name Wu Qian. Search attractions in Chengdu.",
+        "timestamp": 29.232431407408438,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Wu Qian",
+            "search_attractions.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 145800
+      },
+      "assistant_response": "Your hotel booking at the JW Marriott Chongqing is confirmed for Wu Qian, checking in on 2026-03-20 for two nights.\n\nAs for Chengdu attractions, here are some highlights:\n1. Giant Panda Base – a zoo in Chenghua, rated 4.8/5.0, ticket ¥58.\n2. Wuhou Shrine – a historical site in Wuhou, rated 4.5/5.0, ticket ¥50.\n3. Du Fu Thatched Cottage – another historical spot in Qingyang, rated 4.4/5.0, ticket ¥50.\n4. Kuanzhai Alley – a sightseeing area in Qingyang, open 24 hours, free to visit, rated 4.3/5.0.\n\nLet me know if you'd like to book tickets for any of these!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_3eAFJVl23za22F2z",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_cq_001",
+                "checkin_date": "2026-03-20",
+                "nights": 2,
+                "guest_name": "Wu Qian"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_pQii6QDvILsKWTKp",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Your hotel booking at the JW Marriott Chongqing is confirmed for Wu Qian, checking in on 2026-03-20 for two nights.\n\nAs for Chengdu attractions, here are some highlights:\n1. Giant Panda Base – a zoo in Chenghua, rated 4.8/5.0, ticket ¥58.\n2. Wuhou Shrine – a historical site in Wuhou, rated 4.5/5.0, ticket ¥50.\n3. Du Fu Thatched Cottage – another historical spot in Qingyang, rated 4.4/5.0, ticket ¥50.\n4. Kuanzhai Alley – a sightseeing area in Qingyang, open 24 hours, free to visit, rated 4.3/5.0.\n\nLet me know if you'd like to book tickets for any of these!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_3eAFJVl23za22F2z",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_cq_001",
+            "checkin_date": "2026-03-20",
+            "nights": 2,
+            "guest_name": "Wu Qian"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_cq_001\nCheck-in: 2026-03-20\nNights: 2\nGuest: Wu Qian\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_cq_001",
+              "checkin_date": "2026-03-20",
+              "nights": 2,
+              "guest_name": "Wu Qian",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.008106231689453125
+          },
+          "latency_ms": 0.008106231689453125
+        },
+        {
+          "tool_call_id": "call_pQii6QDvILsKWTKp",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Chengdu:\n\n1. Giant Panda Base (ID: attr_cd_001)\n   Type: Zoo\n   Rating: 4.8/5.0\n   Ticket: ¥58\n   Hours: 07:30-18:00\n   Location: Chenghua\n\n2. Wuhou Shrine (ID: attr_cd_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Wuhou\n\n3. Du Fu Thatched Cottage (ID: attr_cd_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Qingyang\n\n4. Kuanzhai Alley (ID: attr_cd_004)\n   Type: Sightseeing\n   Rating: 4.3/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Qingyang\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_cd_001",
+                "name": "Giant Panda Base",
+                "type": "Zoo",
+                "rating": 4.8,
+                "price": 58,
+                "opening_hours": "07:30-18:00",
+                "location": "Chenghua"
+              },
+              {
+                "attraction_id": "attr_cd_002",
+                "name": "Wuhou Shrine",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Wuhou"
+              },
+              {
+                "attraction_id": "attr_cd_003",
+                "name": "Du Fu Thatched Cottage",
+                "type": "Historical",
+                "rating": 4.4,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Qingyang"
+              },
+              {
+                "attraction_id": "attr_cd_004",
+                "name": "Kuanzhai Alley",
+                "type": "Sightseeing",
+                "rating": 4.3,
+                "price": 0,
+                "opening_hours": "24 hours",
+                "location": "Qingyang"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04982948303222656
+          },
+          "latency_ms": 0.04982948303222656
+        }
+      ],
+      "total_latency_ms": 15932.345151901245,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1927200,
+        "event_count": 343,
+        "latency": {
+          "speech_ms": 3351.8671875,
+          "tool_call_ms": 1064.14892578125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 34.33032363286651,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 2 tickets for Du Fu Thatched Cottage on 2026-04-29 in the morning for Emma Taylor.",
+        "timestamp": 34.33032363286651,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-04-29",
+            "book_attraction_ticket.ticket_count=2",
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=Emma Taylor"
+          ]
+        },
+        "audio_size_bytes": 343800
+      },
+      "assistant_response": "Your two tickets for Du Fu Thatched Cottage on April 29, 2026, in the morning are confirmed under Emma Taylor. The booking ID is AT50001. Enjoy your visit, and let me know if you need anything else!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_v3VFnA9FxH2iHnS2",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_cd_003",
+                "date": "2026-04-29",
+                "time_slot": "morning",
+                "visitor_name": "Emma Taylor",
+                "ticket_count": 2
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your two tickets for Du Fu Thatched Cottage on April 29, 2026, in the morning are confirmed under Emma Taylor. The booking ID is AT50001. Enjoy your visit, and let me know if you need anything else!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_v3VFnA9FxH2iHnS2",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_cd_003",
+            "date": "2026-04-29",
+            "time_slot": "morning",
+            "visitor_name": "Emma Taylor",
+            "ticket_count": 2
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_cd_003\nDate: 2026-04-29\nTime slot: morning\nVisitor: Emma Taylor\nTickets: 2\nTicket numbers: AT50001-01, AT50001-02\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_cd_003",
+              "date": "2026-04-29",
+              "time_slot": "morning",
+              "visitor_name": "Emma Taylor",
+              "ticket_count": 2,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.018358230590820312
+          },
+          "latency_ms": 0.018358230590820312
+        }
+      ],
+      "total_latency_ms": 9807.76333808899,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 612000,
+        "event_count": 137,
+        "latency": {
+          "speech_ms": 2907.713134765625,
+          "tool_call_ms": 1981.9921875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 15,
+    "total_tool_calls": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": "travel",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_trains",
+      "param": "destination",
+      "wrong_value": "Shenzhen"
+    },
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "manual",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 1629.913818359375,
+        "tool_call_ms": 758.136962890625
+      },
+      "book_train": {
+        "speech_ms": 2755.466796875,
+        "tool_call_ms": 1773.030029296875
+      },
+      "search_hotels": {
+        "speech_ms": 1972.90283203125,
+        "tool_call_ms": 1027.310791015625
+      },
+      "book_hotel": {
+        "speech_ms": 3351.8671875,
+        "tool_call_ms": 1064.14892578125
+      },
+      "search_attractions": {
+        "speech_ms": 3351.8671875,
+        "tool_call_ms": 1064.14892578125
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 2907.713134765625,
+        "tool_call_ms": 1981.9921875
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 2,
+      "book_train": 4,
+      "search_hotels": 5,
+      "book_hotel": 7,
+      "search_attractions": 7,
+      "book_attraction_ticket": 8
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'search_trains', 'search_hotels', 'book_attraction_ticket', 'search_attractions', 'book_train', 'book_hotel'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 1(correct), search_hotels: 1(correct), book_hotel: 1(correct), search_attractions: 1(correct), book_attraction_ticket: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

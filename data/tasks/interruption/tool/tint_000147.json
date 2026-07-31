@@ -1,0 +1,162 @@
+{
+  "task_id": "tint_000147",
+  "description": "Interruption (tool_correction): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_shows",
+    "book_show_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chengdu.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Chengdu, I meant Suzhou.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_restaurants.city=Suzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Dexing Noodle House for 2026-03-26 at 12:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-26",
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 9.499441208918693
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 5. Contact name He Xia.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=He Xia",
+          "book_restaurant.party_size=5"
+        ]
+      },
+      "timestamp": 15.20084715731457
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13855667788. Then search shows in Chongqing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13855667788",
+          "search_shows.city=Chongqing"
+        ]
+      },
+      "timestamp": 20.183734180739876
+    },
+    {
+      "speaker": "user",
+      "text": "Book G.E.M. Concert. Seat zone Stand B.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Stand B"
+        ]
+      },
+      "timestamp": 26.36589027321613
+    },
+    {
+      "speaker": "user",
+      "text": "2 tickets. Buyer name Cao Yun. Phone 13899887766.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Cao Yun",
+          "book_show_ticket.phone=13899887766",
+          "book_show_ticket.ticket_count=2"
+        ]
+      },
+      "timestamp": 31.728577703420605
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_su_002",
+        "date": "2026-03-26",
+        "time": "12:00",
+        "party_size": 5,
+        "contact_name": "He Xia",
+        "phone": "13855667788"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_cq_001",
+        "seat_zone": "Stand B",
+        "ticket_count": 2,
+        "buyer_name": "Cao Yun",
+        "phone": "13899887766"
+      }
+    }
+  ],
+  "transcript_hash": "40d6d6f6203f",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 5,
+    "search_shows": 5,
+    "book_show_ticket": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "entertainment",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "wrong_params": {
+      "search_restaurants.city": "Chengdu"
+    },
+    "corrected_params": {
+      "search_restaurants.city": "Suzhou"
+    }
+  }
+}

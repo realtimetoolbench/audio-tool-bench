@@ -1,0 +1,125 @@
+{
+  "task_id": "int_000056",
+  "description": "Interruption (cancellation): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_doctors",
+    "book_appointment"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Guangzhou, then help me book one. Also, find a doctor appointment after that.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Tao Heung for 2026-03-13 at 14:00.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-13",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 8.342549920581481
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 6.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.party_size=6"
+        ]
+      },
+      "timestamp": 12.794623898184065
+    },
+    {
+      "speaker": "user",
+      "text": "Never mind the doctor, cancel that.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "doctor",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Sun Lei.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Sun Lei"
+        ]
+      },
+      "timestamp": 21.23095002112141
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13898776655.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13898776655"
+        ]
+      },
+      "timestamp": 25.803662876131618
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_gz_002",
+        "date": "2026-03-13",
+        "time": "14:00",
+        "party_size": 6,
+        "contact_name": "Sun Lei",
+        "phone": "13898776655"
+      }
+    }
+  ],
+  "transcript_hash": "93ece44010d3",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "doctor",
+    "template": null,
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_doctors",
+    "book_appointment"
+  ]
+}

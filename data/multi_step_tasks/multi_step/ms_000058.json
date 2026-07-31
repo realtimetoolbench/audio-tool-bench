@@ -1,0 +1,146 @@
+{
+  "task_id": "ms_000058",
+  "scenario_type": "multi_step",
+  "server": "robinhood",
+  "template": "full_trade_flow_7",
+  "description": "Search stocks, get portfolio, get account, place order, get order, list orders, get portfolio history",
+  "tools": [
+    "search_stocks",
+    "get_portfolio",
+    "get_account",
+    "place_order",
+    "get_order",
+    "list_orders",
+    "get_portfolio_history"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you look up the stock NVDA for me?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_stocks"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me my current portfolio and account details.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_portfolio",
+          "get_account"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Place a market buy order for 3 shares of that NVDA stock.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "place_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Get the details of the order I just placed and list all my recent orders.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_order",
+          "list_orders"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Finally, can you show me the history of my portfolio?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_portfolio_history"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_stocks",
+      "params": {
+        "query": "NVDA"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_portfolio",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "get_account",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "place_order",
+      "params": {
+        "symbol": "NVDA",
+        "side": "buy",
+        "quantity": 3,
+        "order_type": "market"
+      },
+      "param_source": {
+        "symbol": {
+          "from_tool": "search_stocks",
+          "field": "symbol"
+        },
+        "side": "user",
+        "quantity": "user",
+        "order_type": "user"
+      }
+    },
+    {
+      "tool": "get_order",
+      "params": {
+        "order_id": "order_1"
+      },
+      "param_source": {
+        "order_id": {
+          "from_tool": "place_order",
+          "field": "order_id"
+        }
+      }
+    },
+    {
+      "tool": "list_orders",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "get_portfolio_history",
+      "params": {},
+      "param_source": {}
+    }
+  ],
+  "chain_depth": 7,
+  "info_complete_turn": {
+    "search_stocks": 1,
+    "get_portfolio": 1,
+    "get_account": 1,
+    "place_order": 3,
+    "get_order": 3,
+    "list_orders": 3,
+    "get_portfolio_history": 3
+  }
+}

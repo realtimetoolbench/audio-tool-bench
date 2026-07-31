@@ -1,0 +1,171 @@
+{
+  "task_id": "tint_000085",
+  "description": "Interruption (priority_no_return): 4 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants_delivery",
+    "place_food_order",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search delivery restaurants in Chengdu.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Chengdu",
+          "search_restaurants_delivery.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search restaurants in Chengdu for dine-in.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants_delivery",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Chen Mapo Tofu for 2026-03-19 at 14:00.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.date=2026-03-19",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 11.13509277658133
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 3. Contact name Li Na. Phone 13822334455.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.contact_name=Li Na",
+          "book_restaurant.party_size=3",
+          "book_restaurant.phone=13822334455"
+        ]
+      },
+      "timestamp": 15.851084394823815
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Place a delivery order from Luckin Coffee. Items: Coconut Latte and Toast.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.items=Coconut Latte and Toast"
+        ]
+      },
+      "timestamp": 26.324750300942505
+    },
+    {
+      "speaker": "user",
+      "text": "Deliver to Room 203, Building C, West Apartment.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 203, Building C, West Apartment"
+        ]
+      },
+      "timestamp": 33.16383706667196
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13856781234 for the delivery order.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.phone=13856781234"
+        ]
+      },
+      "timestamp": 38.876979842537416
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_001",
+        "date": "2026-03-19",
+        "time": "14:00",
+        "party_size": 3,
+        "contact_name": "Li Na",
+        "phone": "13822334455"
+      }
+    },
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_cd_003",
+        "items": "Coconut Latte and Toast",
+        "delivery_address": "Room 203, Building C, West Apartment",
+        "phone": "13856781234"
+      }
+    }
+  ],
+  "transcript_hash": "04199961ba00",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 4,
+    "search_restaurants_delivery": 1,
+    "place_food_order": 8
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants_delivery",
+    "inserted_tools": [
+      "search_restaurants",
+      "book_restaurant"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "search_restaurants",
+    "book_restaurant"
+  ]
+}

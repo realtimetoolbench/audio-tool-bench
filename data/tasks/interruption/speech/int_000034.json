@@ -1,0 +1,184 @@
+{
+  "task_id": "int_000034",
+  "description": "Interruption (redirection): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "search_restaurants_delivery",
+    "place_food_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search delivery restaurants in Chengdu. Target delivery listing: Bo Bo Chicken.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants_delivery.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Order from Bo Bo Chicken: Dan Dan Noodles and Cold Chicken.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "place_food_order.items=Dan Dan Noodles and Cold Chicken"
+        ]
+      },
+      "timestamp": 6.916087893217467
+    },
+    {
+      "speaker": "user",
+      "text": "Set delivery address: Room 502, Building B, East Apartment.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 502, Building B, East Apartment"
+        ]
+      },
+      "timestamp": 13.326399010665375
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, first search movies in Beijing. Pick movie listing: Article 20.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_movies.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "delivery",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 ticket for Article 20 at UME Cinema, 13:00.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.cinema=UME Cinema",
+          "book_movie_ticket.seat_count=1",
+          "book_movie_ticket.showtime=13:00"
+        ]
+      },
+      "timestamp": 26.654737548954188
+    },
+    {
+      "speaker": "user",
+      "text": "Set buyer name for the movie ticket: Zhou Jun. Then search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Zhou Jun",
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 32.37280774678992
+    },
+    {
+      "speaker": "user",
+      "text": "Book Shanghai Classic for 2026-03-24 at 11:30 for 7 people. Contact Zhou Jun, phone 13845678901.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhou Jun",
+          "book_restaurant.date=2026-03-24",
+          "book_restaurant.party_size=7",
+          "book_restaurant.phone=13845678901",
+          "book_restaurant.time=11:30",
+          "place_food_order.phone=13845678901"
+        ]
+      },
+      "timestamp": 39.622573558186126
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the delivery—continue the food order.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 47.33830115321494
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_bj_003",
+        "cinema": "UME Cinema",
+        "showtime": "13:00",
+        "seat_count": 1,
+        "buyer_name": "Zhou Jun"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-03-24",
+        "time": "11:30",
+        "party_size": 7,
+        "contact_name": "Zhou Jun",
+        "phone": "13845678901"
+      }
+    },
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_cd_002",
+        "items": "Dan Dan Noodles and Cold Chicken",
+        "delivery_address": "Room 502, Building B, East Apartment",
+        "phone": "13845678901"
+      }
+    }
+  ],
+  "transcript_hash": "493a2f8bb272",
+  "info_complete_turn": {
+    "search_movies": 4,
+    "book_movie_ticket": 6,
+    "search_restaurants": 6,
+    "book_restaurant": 7,
+    "search_restaurants_delivery": 1,
+    "place_food_order": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "delivery",
+    "generated": true
+  }
+}

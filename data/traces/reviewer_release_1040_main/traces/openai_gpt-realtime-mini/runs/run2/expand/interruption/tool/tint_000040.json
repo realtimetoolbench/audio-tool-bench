@@ -1,0 +1,422 @@
+{
+  "task_name": "tint_000040",
+  "start_time": "2026-07-29T01:19:02.402385",
+  "end_time": "2026-07-29T01:19:30.681128",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Find attractions in Kyoto for April 10, 2026, for 2 adults. Also plan my Beijing to Shanghai train and a hotel in Hangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_hotels.city=Hangzhou",
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 426000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5259.751796722412,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 8
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the attraction search. Skip attractions and tickets.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_attractions",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 166200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3714.514970779419,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 15.25525225946939,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 15.25525225946939,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 117000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_FGLt7EAuSX0AVI7V",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_FGLt7EAuSX0AVI7V",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.11301040649414062
+          },
+          "latency_ms": 0.11301040649414062
+        }
+      ],
+      "total_latency_ms": 3710.7839584350586,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 32,
+        "latency": {
+          "tool_call_ms": 1760.85693359375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.345207002957963,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 on 2026-04-08.",
+        "timestamp": 20.345207002957963,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-04-08"
+          ]
+        },
+        "audio_size_bytes": 159600
+      },
+      "assistant_response": "Sure! I'm currently searching",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure! I'm currently searching",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3429.949998855591,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 38400,
+        "event_count": 25,
+        "latency": {
+          "speech_ms": 1048.7431640625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.34873623705762,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use passenger name Noah Wilson and First Class.",
+        "timestamp": 24.34873623705762,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.passenger_name=Noah Wilson",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 138000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2065.498113632202,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.488145048409464,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Hangzhou.",
+        "timestamp": 29.488145048409464,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 75600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1576.2381553649902,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 33.289324433968844,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book West Lake State Guesthouse for check-in 2026-03-16 for 2 nights.",
+        "timestamp": 33.289324433968844,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-16",
+            "book_hotel.nights=2"
+          ]
+        },
+        "audio_size_bytes": 280800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3646.9390392303467,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 39.36991181236164,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the hotel guest name to Noah Wilson.",
+        "timestamp": 39.36991181236164,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Noah Wilson"
+          ]
+        },
+        "audio_size_bytes": 118200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4866.528034210205,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 9,
+    "total_tool_calls": 1
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "forbidden_tools": [
+      "search_attractions",
+      "book_attraction_ticket"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool+dangling_not_intercepted",
+    "details": "预期: {'search_hotels', 'search_trains', 'book_train', 'book_hotel'}，实际: {'search_trains'}，缺失: {'search_hotels', 'book_train', 'book_hotel'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "search_trains: +2 turns (info@1, call@3)",
+    "behavior_score": 0.25,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 0(not_called), search_hotels: 0(not_called), book_hotel: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_train",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_hotels",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 3
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 1,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

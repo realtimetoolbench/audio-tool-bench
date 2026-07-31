@@ -1,0 +1,176 @@
+{
+  "task_id": "ms_000053",
+  "scenario_type": "multi_step",
+  "server": "spotify",
+  "template": "artist_deep_dive_7",
+  "description": "Search artist, get top tracks, get artist info, create playlist, add tracks, update playlist details, play",
+  "tools": [
+    "search_artists",
+    "get_artist_top_tracks",
+    "get_artist",
+    "create_playlist",
+    "add_tracks_to_playlist",
+    "update_playlist_details",
+    "play_context"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find the artist Luna Prism for me.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_artists"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me their top tracks and some info about Luna Prism.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_artist_top_tracks",
+          "get_artist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create a playlist called Best Of.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_playlist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add the top tracks from Luna Prism to the Best Of playlist.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_tracks_to_playlist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Update the playlist description to say A collection of the best tracks and start playing it.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "update_playlist_details",
+          "play_context"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_artists",
+      "params": {
+        "query": "Luna Prism"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_artist_top_tracks",
+      "params": {
+        "artist_id": "artist_001"
+      },
+      "param_source": {
+        "artist_id": {
+          "from_tool": "search_artists",
+          "field": "artist_id"
+        }
+      }
+    },
+    {
+      "tool": "get_artist",
+      "params": {
+        "artist_id": "artist_001"
+      },
+      "param_source": {
+        "artist_id": {
+          "from_tool": "search_artists",
+          "field": "artist_id"
+        }
+      }
+    },
+    {
+      "tool": "create_playlist",
+      "params": {
+        "name": "Best Of"
+      },
+      "param_source": {
+        "name": "user"
+      }
+    },
+    {
+      "tool": "add_tracks_to_playlist",
+      "params": {
+        "playlist_id": "playlist_1",
+        "track_ids": [
+          "track_001",
+          "track_024",
+          "track_002"
+        ]
+      },
+      "param_source": {
+        "playlist_id": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        },
+        "track_ids": {
+          "from_tool": "get_artist_top_tracks",
+          "field": "song_id"
+        }
+      }
+    },
+    {
+      "tool": "update_playlist_details",
+      "params": {
+        "playlist_id": "playlist_1",
+        "description": "A collection of the best tracks"
+      },
+      "param_source": {
+        "playlist_id": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        },
+        "description": "user"
+      }
+    },
+    {
+      "tool": "play_context",
+      "params": {
+        "context_uri": "playlist:playlist_1"
+      },
+      "param_source": {
+        "context_uri": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        }
+      }
+    }
+  ],
+  "chain_depth": 7,
+  "info_complete_turn": {
+    "search_artists": 1,
+    "get_artist_top_tracks": 1,
+    "get_artist": 1,
+    "create_playlist": 3,
+    "add_tracks_to_playlist": 3,
+    "update_playlist_details": 5,
+    "play_context": 5
+  }
+}

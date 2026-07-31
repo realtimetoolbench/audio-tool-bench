@@ -1,0 +1,173 @@
+{
+  "task_id": "tint_000059",
+  "description": "Interruption (priority_early_return): 5 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel",
+    "list_bills"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on—list my bills now.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the restaurant search.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the restaurant Shanghai Classic.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 14.484632957250255
+    },
+    {
+      "speaker": "user",
+      "text": "Set the booking date to 2026-03-15 and time to 19:00.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-15",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 19.54027754009914
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 8; contact name Li Na.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Li Na",
+          "book_restaurant.party_size=8"
+        ]
+      },
+      "timestamp": 25.31845933138474
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13892862812. Then search hotels in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.phone=13892862812",
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 29.814257551523287
+    },
+    {
+      "speaker": "user",
+      "text": "Book Pudong Shangri-La: check in 2026-03-25 for 1 night, guest name Wang Fang.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-25",
+          "book_hotel.guest_name=Wang Fang",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 35.639723586994414
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_bills",
+      "params": {}
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-03-15",
+        "time": "19:00",
+        "party_size": 8,
+        "contact_name": "Li Na",
+        "phone": "13892862812"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_002",
+        "checkin_date": "2026-03-25",
+        "nights": 1,
+        "guest_name": "Wang Fang"
+      }
+    }
+  ],
+  "transcript_hash": "a6eb4407b1f9",
+  "info_complete_turn": {
+    "list_bills": 1,
+    "search_restaurants": 1,
+    "book_restaurant": 7,
+    "search_hotels": 7,
+    "book_hotel": 8
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "list_bills"
+  ]
+}

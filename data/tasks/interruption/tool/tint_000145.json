@@ -1,0 +1,216 @@
+{
+  "task_id": "tint_000145",
+  "description": "Interruption (priority_early_return): 6 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "search_doctors",
+    "book_appointment"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Chongqing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_shows.city=Chongqing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search doctors in Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_doctors.city=Shanghai"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_shows",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book an appointment with doctor Liu Yang.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 9.083531634981785
+    },
+    {
+      "speaker": "user",
+      "text": "Set the appointment date to 2026-03-03, morning slot.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.date=2026-03-03",
+          "book_appointment.time_slot=morning"
+        ]
+      },
+      "timestamp": 13.677663822414855
+    },
+    {
+      "speaker": "user",
+      "text": "Patient name is Huang Tao. Confirm the booking.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.patient_name=Huang Tao"
+        ]
+      },
+      "timestamp": 18.889714018009137
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 3 Floor tickets for show G.E.M. Concert.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Floor",
+          "book_show_ticket.ticket_count=3"
+        ]
+      },
+      "timestamp": 28.937754653206078
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Wu Qian. Phone 13855443322. Complete the ticket purchase.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Wu Qian",
+          "book_show_ticket.phone=13855443322"
+        ]
+      },
+      "timestamp": 34.55010386416498
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 40.505085244782705
+    },
+    {
+      "speaker": "user",
+      "text": "Book Shu Xiang Yuan for 2026-03-21 at 18:00, party size 8. Contact Sarah Chen, phone 13888990011.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Sarah Chen",
+          "book_restaurant.date=2026-03-21",
+          "book_restaurant.party_size=8",
+          "book_restaurant.phone=13888990011",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 44.56306060748945
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_sh_002",
+        "date": "2026-03-03",
+        "time_slot": "morning",
+        "patient_name": "Huang Tao"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_cq_001",
+        "seat_zone": "Floor",
+        "ticket_count": 3,
+        "buyer_name": "Wu Qian",
+        "phone": "13855443322"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_001",
+        "date": "2026-03-21",
+        "time": "18:00",
+        "party_size": 8,
+        "contact_name": "Sarah Chen",
+        "phone": "13888990011"
+      }
+    }
+  ],
+  "transcript_hash": "b81efcdd0065",
+  "info_complete_turn": {
+    "search_doctors": 2,
+    "book_appointment": 5,
+    "search_shows": 1,
+    "book_show_ticket": 8,
+    "search_restaurants": 9,
+    "book_restaurant": 10
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_shows",
+    "inserted_tools": [
+      "search_doctors",
+      "book_appointment"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "search_doctors",
+    "book_appointment"
+  ]
+}

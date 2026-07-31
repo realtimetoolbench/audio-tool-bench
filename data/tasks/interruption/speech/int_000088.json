@@ -1,0 +1,118 @@
+{
+  "task_id": "int_000088",
+  "description": "Interruption (correction): 5 tools, 4 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_books",
+    "reserve_book",
+    "search_courses",
+    "enroll_course",
+    "search_home_services"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Reserve the book The Three-Body Problem for reader Xie Peng, and search home services in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "reserve_book.reader_name=Xie Peng"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Shenzhen.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shanghai",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_home_services.city=Shenzhen"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search home services in Shenzhen.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 13.187678399782154
+    },
+    {
+      "speaker": "user",
+      "text": "Enroll Luo Fei in Data Science Fundamentals.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "enroll_course.student_name=Luo Fei"
+        ]
+      },
+      "timestamp": 18.32616919727588
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_books",
+      "params": {}
+    },
+    {
+      "tool": "reserve_book",
+      "params": {
+        "book_id": "ISBN9787115583949",
+        "reader_name": "Xie Peng"
+      }
+    },
+    {
+      "tool": "search_courses",
+      "params": {}
+    },
+    {
+      "tool": "enroll_course",
+      "params": {
+        "course_id": "DS101",
+        "student_name": "Luo Fei"
+      }
+    },
+    {
+      "tool": "search_home_services",
+      "params": {
+        "city": "Shenzhen"
+      }
+    }
+  ],
+  "transcript_hash": "0b12ea7bae9b",
+  "info_complete_turn": {
+    "search_books": 1,
+    "reserve_book": 1,
+    "search_courses": 1,
+    "enroll_course": 4,
+    "search_home_services": 2
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 4,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shanghai",
+    "template": null,
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_home_services",
+      "param": "city",
+      "wrong_value": "Shanghai"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "task_id": "tint_000010",
+  "description": "Interruption (tool_cancel): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_shows",
+    "book_show_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find parking near Sanlitun Taikoo Li in Beijing for today 19:00 to 22:00, and also look up shows in Beijing.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_shows.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Cancel the parking part. Skip parking search and any parking reservation.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_parking",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search shows in Beijing for this weekend.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 15.088023344286182
+    },
+    {
+      "speaker": "user",
+      "text": "Book the show ticket for show_id Erta Thunderstorm.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 19.707092845473788
+    },
+    {
+      "speaker": "user",
+      "text": "Use seat_zone Second Floor and ticket_count 5.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Second Floor",
+          "book_show_ticket.ticket_count=5"
+        ]
+      },
+      "timestamp": 25.72081052070586
+    },
+    {
+      "speaker": "user",
+      "text": "Set buyer_name Wang Fang and phone 13812345678.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Wang Fang",
+          "book_show_ticket.phone=13812345678"
+        ]
+      },
+      "timestamp": 31.363850010356874
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_bj_002",
+        "seat_zone": "Second Floor",
+        "ticket_count": 5,
+        "buyer_name": "Wang Fang",
+        "phone": "13812345678"
+      }
+    }
+  ],
+  "transcript_hash": "9d919622a150",
+  "info_complete_turn": {
+    "search_shows": 1,
+    "book_show_ticket": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_parking",
+    "forbidden_tools": [
+      "search_parking",
+      "reserve_parking_spot"
+    ]
+  },
+  "forbidden_tools": [
+    "search_parking",
+    "reserve_parking_spot"
+  ],
+  "cancelled_tools": [
+    "search_parking",
+    "reserve_parking_spot"
+  ]
+}

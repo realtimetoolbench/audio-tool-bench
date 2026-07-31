@@ -1,0 +1,197 @@
+{
+  "task_id": "pro_001070",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’ve got this Nanjing leg coming up, so I’m kind of thinking through where I’ll crash when I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Nanjing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "And on a totally different part of the trip, I’m planning to wander around Chengdu for a bit and squeeze in a couple of sights.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Chengdu"
+        ]
+      },
+      "timestamp": 8.509494429837963
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I’m doing the classic high-speed route from Beijing to Shanghai, so that travel day is already on my mind.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 17.448336933507374
+    },
+    {
+      "speaker": "user",
+      "text": "For the train, I’m on G1 on 2026-03-14, and it’s under Hu Bin.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-03-14",
+          "book_train.passenger_name=Hu Bin"
+        ]
+      },
+      "timestamp": 26.307843491062332
+    },
+    {
+      "speaker": "user",
+      "text": "I picked First Class for that ride—figured I’d rather be comfortable for once.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 32.29107601024672
+    },
+    {
+      "speaker": "user",
+      "text": "In Chengdu, we’re doing the Giant Panda Base on 2026-03-16 in the morning, and it’s under Deng Hui.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-16",
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Deng Hui"
+        ]
+      },
+      "timestamp": 38.77080010732038
+    },
+    {
+      "speaker": "user",
+      "text": "There are 4 of us for that panda visit, and then later on I’m staying at Hanting Hotel Xuanwu in Nanjing—checking in 2026-05-21 for 1 night, under Sophia Garcia—so after all that I’ll probably just want a quiet evening and then maybe…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=4",
+          "book_hotel.checkin_date=2026-05-21",
+          "book_hotel.guest_name=Sophia Garcia",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 46.4292901199951
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_nj_004",
+        "checkin_date": "2026-05-21",
+        "nights": 1,
+        "guest_name": "Sophia Garcia"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_001",
+        "date": "2026-03-16",
+        "time_slot": "morning",
+        "visitor_name": "Deng Hui",
+        "ticket_count": 4
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_001",
+        "date": "2026-03-14",
+        "passenger_name": "Hu Bin",
+        "seat_class": "First Class"
+      }
+    }
+  ],
+  "transcript_hash": "2bc8abd8bb40",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "travel",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 7,
+    "search_attractions": 2,
+    "book_attraction_ticket": 7,
+    "search_trains": 3,
+    "book_train": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’ve got this ... coming up",
+      "I’m planning to",
+      "I’m doing ... from Beijing to Shanghai",
+      "I’m on G1 on 2026-03-14",
+      "it’s under Hu Bin",
+      "we’re doing the Giant Panda Base on 2026-03-16 in the morning",
+      "checking in 2026-05-21 for 1 night, under Sophia Garcia"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates already-decided travel and booking details in a casual, self-reporting way; search context (cities/origin-destination) appears before the specific booking details."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_attractions",
+      "search_hotels",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_attraction_ticket",
+      "book_hotel",
+      "book_train"
+    ]
+  },
+  "expected_tool_if_act": "search_hotels",
+  "expected_params_if_act": {
+    "city": "Nanjing"
+  }
+}

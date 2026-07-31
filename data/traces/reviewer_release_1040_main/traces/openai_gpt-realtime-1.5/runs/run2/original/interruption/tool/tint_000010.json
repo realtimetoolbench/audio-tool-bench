@@ -1,0 +1,510 @@
+{
+  "task_name": "tint_000010",
+  "start_time": "2026-07-29T02:31:49.933660",
+  "end_time": "2026-07-29T02:33:18.416920",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Find parking near Sanlitun Taikoo Li in Beijing for today 19:00 to 22:00, and also look up shows in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_shows.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 396000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_XsnfOYchO7bc1zd3",
+              "name": "search_parking",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 14108.579158782959,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 19,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Cancel the parking part. Skip parking search and any parking reservation.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_parking",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 211200
+      },
+      "assistant_response": "I've skipped the parking search as you requested. For shows in Beijing, here are some options:\n\n1. Jay Chou Concert at the National Stadium Bird's Nest on March 8, 2026, at 19:30. It’s a concert with tickets priced between ¥480-1980, and seat zones include Floor, Stand A, Stand B, and Stand C.\n\n2. Erta Thunderstorm at Capital Theatre on March 15, 2026, at 19:30. It’s a theater performance with tickets priced between ¥180-680, and seat zones include Orchestra, First Floor, and Second Floor.\n\n3. National Centre Concert at the National Centre for the Performing Arts on March 22, 2026, at 19:30. It’s a concert with tickets priced between ¥280-880, with Orchestra, First Floor, and Second Floor zones available. Let me know if you'd like to book tickets for any of these shows.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_udfpiuzp3nXaPjMr",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've skipped the parking search as you requested. For shows in Beijing, here are some options:\n\n1. Jay Chou Concert at the National Stadium Bird's Nest on March 8, 2026, at 19:30. It’s a concert with tickets priced between ¥480-1980, and seat zones include Floor, Stand A, Stand B, and Stand C.\n\n2. Erta Thunderstorm at Capital Theatre on March 15, 2026, at 19:30. It’s a theater performance with tickets priced between ¥180-680, and seat zones include Orchestra, First Floor, and Second Floor.\n\n3. National Centre Concert at the National Centre for the Performing Arts on March 22, 2026, at 19:30. It’s a concert with tickets priced between ¥280-880, with Orchestra, First Floor, and Second Floor zones available. Let me know if you'd like to book tickets for any of these shows.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_udfpiuzp3nXaPjMr",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 shows in Beijing:\n\n1. Jay Chou Concert (ID: show_bj_001)\n   Type: Concert\n   Venue: National Stadium Bird's Nest\n   Date/Time: 2026-03-08 19:30\n   Duration: 180 min\n   Price: ¥480-1980\n   Available zones: Floor, Stand A, Stand B, Stand C\n   Rating: 9.5/10.0\n\n2. Erta Thunderstorm (ID: show_bj_002)\n   Type: Theater\n   Venue: Capital Theatre\n   Date/Time: 2026-03-15 19:30\n   Duration: 150 min\n   Price: ¥180-680\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 8.8/10.0\n\n3. National Centre Concert (ID: show_bj_003)\n   Type: Concert\n   Venue: National Centre for the Performing Arts\n   Date/Time: 2026-03-22 19:30\n   Duration: 120 min\n   Price: ¥280-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.2/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_bj_001",
+                "name": "Jay Chou Concert",
+                "type": "Concert",
+                "venue": "National Stadium Bird's Nest",
+                "date": "2026-03-08",
+                "time": "19:30",
+                "duration": 180,
+                "price_range": "480-1980",
+                "available_zones": [
+                  "Floor",
+                  "Stand A",
+                  "Stand B",
+                  "Stand C"
+                ],
+                "rating": 9.5
+              },
+              {
+                "show_id": "show_bj_002",
+                "name": "Erta Thunderstorm",
+                "type": "Theater",
+                "venue": "Capital Theatre",
+                "date": "2026-03-15",
+                "time": "19:30",
+                "duration": 150,
+                "price_range": "180-680",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 8.8
+              },
+              {
+                "show_id": "show_bj_003",
+                "name": "National Centre Concert",
+                "type": "Concert",
+                "venue": "National Centre for the Performing Arts",
+                "date": "2026-03-22",
+                "time": "19:30",
+                "duration": 120,
+                "price_range": "280-880",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 9.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.06031990051269531
+          },
+          "latency_ms": 0.06031990051269531
+        }
+      ],
+      "total_latency_ms": 17654.2067527771,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2404800,
+        "event_count": 356,
+        "latency": {
+          "speech_ms": 6905.56591796875,
+          "tool_call_ms": 3020.850830078125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 15.088023344286182,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Beijing for this weekend.",
+        "timestamp": 15.088023344286182,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 123000
+      },
+      "assistant_response": "I found the same three shows happening in Beijing, but none of them are scheduled for this weekend. The closest upcoming date is March 8, 2026, for the Jay Chou Concert. If you'd like me to keep checking or look for other types of events, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_g4IR9Co56PntXOrk",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found the same three shows happening in Beijing, but none of them are scheduled for this weekend. The closest upcoming date is March 8, 2026, for the Jay Chou Concert. If you'd like me to keep checking or look for other types of events, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_g4IR9Co56PntXOrk",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 shows in Beijing:\n\n1. Jay Chou Concert (ID: show_bj_001)\n   Type: Concert\n   Venue: National Stadium Bird's Nest\n   Date/Time: 2026-03-08 19:30\n   Duration: 180 min\n   Price: ¥480-1980\n   Available zones: Floor, Stand A, Stand B, Stand C\n   Rating: 9.5/10.0\n\n2. Erta Thunderstorm (ID: show_bj_002)\n   Type: Theater\n   Venue: Capital Theatre\n   Date/Time: 2026-03-15 19:30\n   Duration: 150 min\n   Price: ¥180-680\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 8.8/10.0\n\n3. National Centre Concert (ID: show_bj_003)\n   Type: Concert\n   Venue: National Centre for the Performing Arts\n   Date/Time: 2026-03-22 19:30\n   Duration: 120 min\n   Price: ¥280-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.2/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_bj_001",
+                "name": "Jay Chou Concert",
+                "type": "Concert",
+                "venue": "National Stadium Bird's Nest",
+                "date": "2026-03-08",
+                "time": "19:30",
+                "duration": 180,
+                "price_range": "480-1980",
+                "available_zones": [
+                  "Floor",
+                  "Stand A",
+                  "Stand B",
+                  "Stand C"
+                ],
+                "rating": 9.5
+              },
+              {
+                "show_id": "show_bj_002",
+                "name": "Erta Thunderstorm",
+                "type": "Theater",
+                "venue": "Capital Theatre",
+                "date": "2026-03-15",
+                "time": "19:30",
+                "duration": 150,
+                "price_range": "180-680",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 8.8
+              },
+              {
+                "show_id": "show_bj_003",
+                "name": "National Centre Concert",
+                "type": "Concert",
+                "venue": "National Centre for the Performing Arts",
+                "date": "2026-03-22",
+                "time": "19:30",
+                "duration": 120,
+                "price_range": "280-880",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 9.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05602836608886719
+          },
+          "latency_ms": 0.05602836608886719
+        }
+      ],
+      "total_latency_ms": 16435.548305511475,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 652800,
+        "event_count": 127,
+        "latency": {
+          "speech_ms": 12322.312744140625,
+          "tool_call_ms": 1255.033935546875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 19.707092845473788,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the show ticket for show_id Erta Thunderstorm.",
+        "timestamp": 19.707092845473788,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 140400
+      },
+      "assistant_response": "Sure, I can help you book tickets for Erta Thunderstorm. I'll need to know which seat zone you'd like, how many tickets you want, and your buyer name and contact phone number to complete the booking. Could you provide those details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help you book tickets for Erta Thunderstorm. I'll need to know which seat zone you'd like, how many tickets you want, and your buyer name and contact phone number to complete the booking. Could you provide those details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7843.7511920928955,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 561600,
+        "event_count": 95,
+        "latency": {
+          "speech_ms": 811.59130859375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.72081052070586,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use seat_zone Second Floor and ticket_count 5.",
+        "timestamp": 25.72081052070586,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.seat_zone=Second Floor",
+            "book_show_ticket.ticket_count=5"
+          ]
+        },
+        "audio_size_bytes": 145800
+      },
+      "assistant_response": "I can book those tickets for you. Please provide the buyer's name and a contact phone number to finalize the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can book those tickets for you. Please provide the buyer's name and a contact phone number to finalize the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7128.925323486328,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 285600,
+        "event_count": 55,
+        "latency": {
+          "speech_ms": 2148.564208984375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.363850010356874,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set buyer_name Wang Fang and phone 13812345678.",
+        "timestamp": 31.363850010356874,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Wang Fang",
+            "book_show_ticket.phone=13812345678"
+          ]
+        },
+        "audio_size_bytes": 236400
+      },
+      "assistant_response": "Your tickets are confirmed! Wang Fang has 5 seats in the Second Floor zone for Erta Thunderstorm at the Capital Theatre on March 15, 2026. The total cost is ¥1900. If you need anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_koMy63rQRRPdL3lL",
+              "name": "book_show_ticket",
+              "arguments": {
+                "show_id": "show_bj_002",
+                "seat_zone": "Second Floor",
+                "ticket_count": 5,
+                "buyer_name": "Wang Fang",
+                "phone": "13812345678"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your tickets are confirmed! Wang Fang has 5 seats in the Second Floor zone for Erta Thunderstorm at the Capital Theatre on March 15, 2026. The total cost is ¥1900. If you need anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_koMy63rQRRPdL3lL",
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "show_id": "show_bj_002",
+            "seat_zone": "Second Floor",
+            "ticket_count": 5,
+            "buyer_name": "Wang Fang",
+            "phone": "13812345678"
+          },
+          "result": {
+            "success": true,
+            "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_bj_002\nShow: Erta Thunderstorm\nVenue: Capital Theatre\nDate: 2026-03-15\nZone: Second Floor\nSeats: Floor Row 1 Seat 10, Floor Row 2 Seat 10, Floor Row 3 Seat 10, Floor Row 4 Seat 10, Floor Row 5 Seat 10\nQuantity: 5\nBuyer: Wang Fang\nPhone: 13812345678\nTotal: ¥1900\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "SH70001",
+              "show_id": "show_bj_002",
+              "show_name": "Erta Thunderstorm",
+              "venue": "Capital Theatre",
+              "date": "2026-03-15",
+              "seat_zone": "Second Floor",
+              "ticket_count": 5,
+              "seats": [
+                "Floor Row 1 Seat 10",
+                "Floor Row 2 Seat 10",
+                "Floor Row 3 Seat 10",
+                "Floor Row 4 Seat 10",
+                "Floor Row 5 Seat 10"
+              ],
+              "buyer_name": "Wang Fang",
+              "phone": "13812345678",
+              "total_price": 1900,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.030040740966796875
+          },
+          "latency_ms": 0.030040740966796875
+        }
+      ],
+      "total_latency_ms": 25304.288148880005,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 652800,
+        "event_count": 157,
+        "latency": {
+          "speech_ms": 5633.65087890625,
+          "tool_call_ms": 3063.177001953125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 10,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_parking",
+    "forbidden_tools": [
+      "search_parking",
+      "reserve_parking_spot"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_show_ticket": {
+        "speech_ms": 5633.65087890625,
+        "tool_call_ms": 3063.177001953125
+      }
+    },
+    "info_complete_turn": {
+      "search_shows": 1,
+      "book_show_ticket": 6
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'search_shows', 'book_show_ticket'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 1,
+    "extra_turns_details": "search_shows: +1 turns (info@1, call@2)",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_shows: 1(correct), book_show_ticket: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

@@ -1,0 +1,681 @@
+{
+  "task_name": "tint_000057",
+  "start_time": "2026-04-30T17:48:11.032290",
+  "end_time": "2026-04-30T17:49:10.326866",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_shows.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 70800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_55f2a5703493455e93a0679c",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6546.111822128296,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 17,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—before that, track my package with tracking number SF1234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "track_package.tracking_number=SF1234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_shows",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 290400
+      },
+      "assistant_response": "I couldn't find any package with the tracking number SF124567890. You might want to double-check the number or contact the carrier directly. Once that's sorted, I can help you search for shows in Beijing.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_1543c4f7d12c4759b9f4017b",
+              "name": "track_package",
+              "arguments": {
+                "tracking_number": "SF124567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I couldn't find any package with the tracking number SF124567890. You might want to double-check the number or contact the carrier directly. Once that's sorted, I can help you search for shows in Beijing.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_1543c4f7d12c4759b9f4017b",
+          "tool_name": "track_package",
+          "arguments": {
+            "tracking_number": "SF124567890"
+          },
+          "result": {
+            "success": false,
+            "output": "Package not found: SF124567890",
+            "raw_output": null,
+            "error": "Not found",
+            "latency_ms": 0.029087066650390625
+          },
+          "latency_ms": 0.029087066650390625
+        }
+      ],
+      "total_latency_ms": 4880.629062652588,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 614400,
+        "event_count": 124,
+        "latency": {
+          "speech_ms": 1870.520263671875,
+          "tool_call_ms": 602.22705078125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the show search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 107400
+      },
+      "assistant_response": "I found three shows happening in Beijing. There's a Jay Chou concert at the National Stadium Bird's Nest on March 8th, a theater performance of Erta Thunderstorm at the Capital Theatre on March 15th, and another concert at the National Centre for the Performing Arts on March 22nd. Let me know if any of these catch your interest and I can help you book tickets.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_d7c293df92314ef0bc4756b5",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three shows happening in Beijing. There's a Jay Chou concert at the National Stadium Bird's Nest on March 8th, a theater performance of Erta Thunderstorm at the Capital Theatre on March 15th, and another concert at the National Centre for the Performing Arts on March 22nd. Let me know if any of these catch your interest and I can help you book tickets.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_d7c293df92314ef0bc4756b5",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 shows in Beijing:\n\n1. Jay Chou Concert (ID: show_bj_001)\n   Type: Concert\n   Venue: National Stadium Bird's Nest\n   Date/Time: 2026-03-08 19:30\n   Duration: 180 min\n   Price: ¥480-1980\n   Available zones: Floor, Stand A, Stand B, Stand C\n   Rating: 9.5/10.0\n\n2. Erta Thunderstorm (ID: show_bj_002)\n   Type: Theater\n   Venue: Capital Theatre\n   Date/Time: 2026-03-15 19:30\n   Duration: 150 min\n   Price: ¥180-680\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 8.8/10.0\n\n3. National Centre Concert (ID: show_bj_003)\n   Type: Concert\n   Venue: National Centre for the Performing Arts\n   Date/Time: 2026-03-22 19:30\n   Duration: 120 min\n   Price: ¥280-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.2/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_bj_001",
+                "name": "Jay Chou Concert",
+                "type": "Concert",
+                "venue": "National Stadium Bird's Nest",
+                "date": "2026-03-08",
+                "time": "19:30",
+                "duration": 180,
+                "price_range": "480-1980",
+                "available_zones": [
+                  "Floor",
+                  "Stand A",
+                  "Stand B",
+                  "Stand C"
+                ],
+                "rating": 9.5
+              },
+              {
+                "show_id": "show_bj_002",
+                "name": "Erta Thunderstorm",
+                "type": "Theater",
+                "venue": "Capital Theatre",
+                "date": "2026-03-15",
+                "time": "19:30",
+                "duration": 150,
+                "price_range": "180-680",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 8.8
+              },
+              {
+                "show_id": "show_bj_003",
+                "name": "National Centre Concert",
+                "type": "Concert",
+                "venue": "National Centre for the Performing Arts",
+                "date": "2026-03-22",
+                "time": "19:30",
+                "duration": 120,
+                "price_range": "280-880",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 9.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.08082389831542969
+          },
+          "latency_ms": 0.08082389831542969
+        }
+      ],
+      "total_latency_ms": 8758.291959762573,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 844800,
+        "event_count": 162,
+        "latency": {
+          "speech_ms": 1570.274169921875,
+          "tool_call_ms": 733.89111328125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.379846881988115,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book a ticket for the show National Centre Concert.",
+        "timestamp": 16.379846881988115,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 149400
+      },
+      "assistant_response": "Sure, I can help with that. To book the ticket for the National Centre Concert, I'll need a few details from you. How many tickets would you like, which seating zone do you prefer, and what name and phone number should I use for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help with that. To book the ticket for the National Centre Concert, I'll need a few details from you. How many tickets would you like, which seating zone do you prefer, and what name and phone number should I use for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6183.160066604614,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 629760,
+        "event_count": 107,
+        "latency": {
+          "speech_ms": 477.947998046875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 22.314090388557364,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use seat zone First Floor and ticket count 5.",
+        "timestamp": 22.314090388557364,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.seat_zone=First Floor",
+            "book_show_ticket.ticket_count=5"
+          ]
+        },
+        "audio_size_bytes": 142800
+      },
+      "assistant_response": "Got it, you'd like five tickets in the First Floor zone for the National Centre Concert. I just need your name and a phone number to complete the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, you'd like five tickets in the First Floor zone for the National Centre Concert. I just need your name and a phone number to complete the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4610.2869510650635,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 341760,
+        "event_count": 70,
+        "latency": {
+          "speech_ms": 342.270751953125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.19313662756535,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set buyer name Wang Fang and phone 13898765432.",
+        "timestamp": 27.19313662756535,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Wang Fang",
+            "book_show_ticket.phone=13898765432"
+          ]
+        },
+        "audio_size_bytes": 237000
+      },
+      "assistant_response": "Great news, your booking is confirmed. You have five tickets for the National Centre Concert on March 22nd in the First Floor zone under the name Wang Fang. Your booking ID is SH70001 and the total cost is ¥2900. Enjoy the show",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ec37160f0c17406eb137b488",
+              "name": "book_show_ticket",
+              "arguments": {
+                "show_id": "show_bj_003",
+                "seat_zone": "First Floor",
+                "ticket_count": 5,
+                "buyer_name": "Wang Fang",
+                "phone": "13898765432"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great news, your booking is confirmed. You have five tickets for the National Centre Concert on March 22nd in the First Floor zone under the name Wang Fang. Your booking ID is SH70001 and the total cost is ¥2900. Enjoy the show",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ec37160f0c17406eb137b488",
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "show_id": "show_bj_003",
+            "seat_zone": "First Floor",
+            "ticket_count": 5,
+            "buyer_name": "Wang Fang",
+            "phone": "13898765432"
+          },
+          "result": {
+            "success": true,
+            "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_bj_003\nShow: National Centre Concert\nVenue: National Centre for the Performing Arts\nDate: 2026-03-22\nZone: First Floor\nSeats: Floor Row 1 Seat 10, Floor Row 2 Seat 10, Floor Row 3 Seat 10, Floor Row 4 Seat 10, Floor Row 5 Seat 10\nQuantity: 5\nBuyer: Wang Fang\nPhone: 13898765432\nTotal: ¥2900\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "SH70001",
+              "show_id": "show_bj_003",
+              "show_name": "National Centre Concert",
+              "venue": "National Centre for the Performing Arts",
+              "date": "2026-03-22",
+              "seat_zone": "First Floor",
+              "ticket_count": 5,
+              "seats": [
+                "Floor Row 1 Seat 10",
+                "Floor Row 2 Seat 10",
+                "Floor Row 3 Seat 10",
+                "Floor Row 4 Seat 10",
+                "Floor Row 5 Seat 10"
+              ],
+              "buyer_name": "Wang Fang",
+              "phone": "13898765432",
+              "total_price": 2900,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.1678466796875
+          },
+          "latency_ms": 0.1678466796875
+        }
+      ],
+      "total_latency_ms": 10878.317832946777,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 698880,
+        "event_count": 162,
+        "latency": {
+          "speech_ms": 2970.1650390625,
+          "tool_call_ms": 1974.76513671875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 32.885429146545896,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Beijing.",
+        "timestamp": 32.885429146545896,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_attractions.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 82800
+      },
+      "assistant_response": "I found four popular attractions in Beijing for you. You can visit the Forbidden City, the Great Wall at Badaling, the Summer Palace, or the Temple of Heaven. Let me know if you'd like to book tickets for any of them.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_e217e47082374f8698078169",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found four popular attractions in Beijing for you. You can visit the Forbidden City, the Great Wall at Badaling, the Summer Palace, or the Temple of Heaven. Let me know if you'd like to book tickets for any of them.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_e217e47082374f8698078169",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Beijing:\n\n1. Forbidden City (ID: attr_bj_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥60\n   Hours: 08:30-17:00\n   Location: Dongcheng\n\n2. Great Wall Badaling (ID: attr_bj_002)\n   Type: Historical\n   Rating: 4.7/5.0\n   Ticket: ¥40\n   Hours: 06:30-19:00\n   Location: Yanqing\n\n3. Summer Palace (ID: attr_bj_003)\n   Type: Garden\n   Rating: 4.6/5.0\n   Ticket: ¥30\n   Hours: 06:30-18:00\n   Location: Haidian\n\n4. Temple of Heaven (ID: attr_bj_004)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥15\n   Hours: 06:00-22:00\n   Location: Dongcheng\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_bj_001",
+                "name": "Forbidden City",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 60,
+                "opening_hours": "08:30-17:00",
+                "location": "Dongcheng"
+              },
+              {
+                "attraction_id": "attr_bj_002",
+                "name": "Great Wall Badaling",
+                "type": "Historical",
+                "rating": 4.7,
+                "price": 40,
+                "opening_hours": "06:30-19:00",
+                "location": "Yanqing"
+              },
+              {
+                "attraction_id": "attr_bj_003",
+                "name": "Summer Palace",
+                "type": "Garden",
+                "rating": 4.6,
+                "price": 30,
+                "opening_hours": "06:30-18:00",
+                "location": "Haidian"
+              },
+              {
+                "attraction_id": "attr_bj_004",
+                "name": "Temple of Heaven",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 15,
+                "opening_hours": "06:00-22:00",
+                "location": "Dongcheng"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.11110305786132812
+          },
+          "latency_ms": 0.11110305786132812
+        }
+      ],
+      "total_latency_ms": 6269.330978393555,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 602880,
+        "event_count": 115,
+        "latency": {
+          "speech_ms": 1885.874267578125,
+          "tool_call_ms": 907.7373046875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.51563282669494,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Forbidden City tickets for 2026-03-10 morning; visitor name Zhou Jun; ticket count 4.",
+        "timestamp": 37.51563282669494,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-10",
+            "book_attraction_ticket.ticket_count=4",
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=Zhou Jun"
+          ]
+        },
+        "audio_size_bytes": 346200
+      },
+      "assistant_response": "Your booking for the Forbidden City is all set. You have four tickets confirmed for the morning slot on March 10th, 2026, under the visitor name Zhou Jun. Your booking ID is AT50001. Have a wonderful visit",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_a0f196638f874fb0b589f6a0",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_bj_001",
+                "date": "2026-03-10",
+                "time_slot": "morning",
+                "visitor_name": "Zhou Jun",
+                "ticket_count": 4
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your booking for the Forbidden City is all set. You have four tickets confirmed for the morning slot on March 10th, 2026, under the visitor name Zhou Jun. Your booking ID is AT50001. Have a wonderful visit",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_a0f196638f874fb0b589f6a0",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_bj_001",
+            "date": "2026-03-10",
+            "time_slot": "morning",
+            "visitor_name": "Zhou Jun",
+            "ticket_count": 4
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_bj_001\nDate: 2026-03-10\nTime slot: morning\nVisitor: Zhou Jun\nTickets: 4\nTicket numbers: AT50001-01, AT50001-02, AT50001-03, AT50001-04\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_bj_001",
+              "date": "2026-03-10",
+              "time_slot": "morning",
+              "visitor_name": "Zhou Jun",
+              "ticket_count": 4,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02",
+                "AT50001-03",
+                "AT50001-04"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.09822845458984375
+          },
+          "latency_ms": 0.09822845458984375
+        }
+      ],
+      "total_latency_ms": 11159.934043884277,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 714240,
+        "event_count": 156,
+        "latency": {
+          "speech_ms": 3657.919677734375,
+          "tool_call_ms": 2759.503662109375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 14,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_shows",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "qwen",
+    "tts_voice": "Ethan",
+    "realtime_model": "qwen3.5-omni-plus-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "track_package": {
+        "speech_ms": 1870.520263671875,
+        "tool_call_ms": 602.22705078125
+      },
+      "book_show_ticket": {
+        "speech_ms": 2970.1650390625,
+        "tool_call_ms": 1974.76513671875
+      },
+      "search_attractions": {
+        "speech_ms": 1885.874267578125,
+        "tool_call_ms": 907.7373046875
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 3657.919677734375,
+        "tool_call_ms": 2759.503662109375
+      }
+    },
+    "info_complete_turn": {
+      "track_package": 2,
+      "search_shows": 1,
+      "book_show_ticket": 6,
+      "search_attractions": 7,
+      "book_attraction_ticket": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no re-call (hallucinated)]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "track_package",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "tracking_number: 'SF1234567890' vs 'SF124567890'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

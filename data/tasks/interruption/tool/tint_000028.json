@@ -1,0 +1,223 @@
+{
+  "task_id": "tint_000028",
+  "description": "Interruption (priority_late_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "check_balance"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, first check my balance for account number 6222021234567890.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_balance.account_number=6222021234567890"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Shu Xiang Yuan for 5 people.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.party_size=5"
+        ]
+      },
+      "timestamp": 14.558342427195615
+    },
+    {
+      "speaker": "user",
+      "text": "Set the restaurant booking date to 2026-03-02 and time to 14:00.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-02",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 20.178597836149745
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Zhang Wei and phone 13856781234 for the restaurant booking.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.phone=13856781234"
+        ]
+      },
+      "timestamp": 26.80494553452572
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 33.6269824806036
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5678 on 2026-03-16 for passenger Zhang Wei.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-03-16",
+          "book_flight.passenger_name=Zhang Wei"
+        ]
+      },
+      "timestamp": 38.901321450973455
+    },
+    {
+      "speaker": "user",
+      "text": "Set the airline to China Eastern for the MU5678 booking, then search hotels in Beijing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 44.72588995716254
+    },
+    {
+      "speaker": "user",
+      "text": "Book Home Inn Dongzhimen, check in 2026-03-05 for 3 nights, guest name Zhang Wei.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-05",
+          "book_hotel.guest_name=Zhang Wei",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 52.094686221105476
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6222021234567890"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_001",
+        "date": "2026-03-02",
+        "time": "14:00",
+        "party_size": 5,
+        "contact_name": "Zhang Wei",
+        "phone": "13856781234"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-16",
+        "passenger_name": "Zhang Wei"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_007",
+        "checkin_date": "2026-03-05",
+        "nights": 3,
+        "guest_name": "Zhang Wei"
+      }
+    }
+  ],
+  "transcript_hash": "4185b30c5622",
+  "info_complete_turn": {
+    "check_balance": 2,
+    "search_restaurants": 1,
+    "book_restaurant": 6,
+    "search_flights": 7,
+    "book_flight": 8,
+    "search_hotels": 9,
+    "book_hotel": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "check_balance"
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "task_id": "tint_000137",
+  "description": "Interruption (tool_correction): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search sports events in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_sports_events",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_sports_events.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book sports tickets for event China Open Tennis, seat zone Court 2.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Court 2"
+        ]
+      },
+      "timestamp": 10.164240577867302
+    },
+    {
+      "speaker": "user",
+      "text": "Set ticket count to 4. Buyer name Mia Anderson.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Mia Anderson",
+          "book_sports_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 16.227525252802806
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13855443322 and ID number 310115198805062345 for the ticket booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.id_number=310115198805062345",
+          "book_sports_ticket.phone=13855443322"
+        ]
+      },
+      "timestamp": 21.287575420756312
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Suzhou.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Suzhou"
+        ]
+      },
+      "timestamp": 27.922428185067403
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Dexing Noodle House on 2026-03-19 at 14:00 for 4 people. Contact name Aiden Miller, phone 13851574217.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Aiden Miller",
+          "book_restaurant.date=2026-03-19",
+          "book_restaurant.party_size=4",
+          "book_restaurant.phone=13851574217",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 32.60368139165297
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_bj_003",
+        "seat_zone": "Court 2",
+        "ticket_count": 4,
+        "buyer_name": "Mia Anderson",
+        "phone": "13855443322",
+        "id_number": "310115198805062345"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_su_002",
+        "date": "2026-03-19",
+        "time": "14:00",
+        "party_size": 4,
+        "contact_name": "Aiden Miller",
+        "phone": "13851574217"
+      }
+    }
+  ],
+  "transcript_hash": "34d4f111c23d",
+  "info_complete_turn": {
+    "search_sports_events": 2,
+    "book_sports_ticket": 5,
+    "search_restaurants": 6,
+    "book_restaurant": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "sports_event",
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "wrong_params": {
+      "search_sports_events.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_sports_events.city": "Beijing"
+    }
+  }
+}

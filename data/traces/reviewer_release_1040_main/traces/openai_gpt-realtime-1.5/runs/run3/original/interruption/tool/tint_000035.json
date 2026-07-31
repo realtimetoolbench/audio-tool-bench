@@ -1,0 +1,682 @@
+{
+  "task_name": "tint_000035",
+  "start_time": "2026-07-29T03:46:29.266752",
+  "end_time": "2026-07-29T03:47:08.710305",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Shanghai Hongqiao to Beijing South for 2026-03-12, and also help me book Great Wall Badaling tickets and a hotel in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-12",
+            "search_hotels.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 502800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_PY9sKLTtYXhMl2De",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Shanghai Hongqiao",
+                "destination": "Beijing South"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10161.563158035278,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 29,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the train search and any train booking. Skip the train part.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 189000
+      },
+      "assistant_response": "I've found several attractions in Beijing, including the Great Wall at Badaling. Could you let me know the date, time slot you'd like to visit, how many tickets you need, and the name for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_7nwYR7449akCTyvm",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found several attractions in Beijing, including the Great Wall at Badaling. Could you let me know the date, time slot you'd like to visit, how many tickets you need, and the name for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_7nwYR7449akCTyvm",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Beijing:\n\n1. Forbidden City (ID: attr_bj_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥60\n   Hours: 08:30-17:00\n   Location: Dongcheng\n\n2. Great Wall Badaling (ID: attr_bj_002)\n   Type: Historical\n   Rating: 4.7/5.0\n   Ticket: ¥40\n   Hours: 06:30-19:00\n   Location: Yanqing\n\n3. Summer Palace (ID: attr_bj_003)\n   Type: Garden\n   Rating: 4.6/5.0\n   Ticket: ¥30\n   Hours: 06:30-18:00\n   Location: Haidian\n\n4. Temple of Heaven (ID: attr_bj_004)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥15\n   Hours: 06:00-22:00\n   Location: Dongcheng\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_bj_001",
+                "name": "Forbidden City",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 60,
+                "opening_hours": "08:30-17:00",
+                "location": "Dongcheng"
+              },
+              {
+                "attraction_id": "attr_bj_002",
+                "name": "Great Wall Badaling",
+                "type": "Historical",
+                "rating": 4.7,
+                "price": 40,
+                "opening_hours": "06:30-19:00",
+                "location": "Yanqing"
+              },
+              {
+                "attraction_id": "attr_bj_003",
+                "name": "Summer Palace",
+                "type": "Garden",
+                "rating": 4.6,
+                "price": 30,
+                "opening_hours": "06:30-18:00",
+                "location": "Haidian"
+              },
+              {
+                "attraction_id": "attr_bj_004",
+                "name": "Temple of Heaven",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 15,
+                "opening_hours": "06:00-22:00",
+                "location": "Dongcheng"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05507469177246094
+          },
+          "latency_ms": 0.05507469177246094
+        }
+      ],
+      "total_latency_ms": 3469.8078632354736,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 487200,
+        "event_count": 102,
+        "latency": {
+          "speech_ms": 1018.762939453125,
+          "tool_call_ms": 211.43310546875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 16.309706305916606,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Beijing.",
+        "timestamp": 16.309706305916606,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_attractions.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 89400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1517.5621509552002,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 21.119136762594433,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book attraction tickets for Great Wall Badaling for 2026-03-12 in the morning.",
+        "timestamp": 21.119136762594433,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 290400
+      },
+      "assistant_response": "Sure, I've already looked up some attractions",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure, I've already looked up some attractions",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3718.1501388549805,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 19200,
+        "event_count": 24,
+        "latency": {
+          "speech_ms": 2.6669921875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 27.525635522272495,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the ticket booking name to Chen Ming and make it 2 tickets.",
+        "timestamp": 27.525635522272495,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.ticket_count=2",
+            "book_attraction_ticket.visitor_name=Chen Ming"
+          ]
+        },
+        "audio_size_bytes": 188400
+      },
+      "assistant_response": "I can book those tickets",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "I can book those tickets",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2631.9169998168945,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 20
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 33.9814547741053,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Beijing.",
+        "timestamp": 33.9814547741053,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 67200
+      },
+      "assistant_response": "Your tickets for the Great Wall Badaling on 2026-03-12 in the morning have been successfully booked under the name Chen Ming, and you have 2 tickets confirmed. As for hotels, I've found several options in Beijing, ranging from 3-star to 5-star hotels. Could you let me know your check-in date, length of stay, and which hotel you'd prefer to book?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_7aeuwuyicGfWAQNt",
+              "name": "book_attraction_ticket",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_np7IUGXxvB9kyuZe",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_SVH4NhmAohUEzWkh",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_bj_002",
+                "date": "2026-03-12",
+                "time_slot": "morning",
+                "visitor_name": "Chen Ming",
+                "ticket_count": 2
+              }
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "finish_reason": "completed",
+          "content": "Your tickets for the Great Wall Badaling on 2026-03-12 in the morning have been successfully booked under the name Chen Ming, and you have 2 tickets confirmed. As for hotels, I've found several options in Beijing, ranging from 3-star to 5-star hotels. Could you let me know your check-in date, length of stay, and which hotel you'd prefer to book?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_7aeuwuyicGfWAQNt",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: BookAttractionTicketTool.execute() missing 5 required positional arguments: 'attraction_id', 'date', 'time_slot', 'visitor_name', and 'ticket_count'",
+            "raw_output": null,
+            "error": "BookAttractionTicketTool.execute() missing 5 required positional arguments: 'attraction_id', 'date', 'time_slot', 'visitor_name', and 'ticket_count'",
+            "latency_ms": 0.011920928955078125
+          },
+          "latency_ms": 0.011920928955078125
+        },
+        {
+          "tool_call_id": "call_np7IUGXxvB9kyuZe",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 7 hotels in Beijing:\n\n1. The Peninsula Beijing (ID: hotel_bj_001)\n   Location: Wangfujing | 5 stars\n   Price: ¥1800/night | Rating: 4.9/5.0\n\n2. Park Hyatt Beijing (ID: hotel_bj_002)\n   Location: CBD | 5 stars\n   Price: ¥1500/night | Rating: 4.8/5.0\n\n3. Holiday Inn Express (ID: hotel_bj_003)\n   Location: Zhongguancun | 3 stars\n   Price: ¥450/night | Rating: 4.2/5.0\n\n4. Beijing Hotel (ID: hotel_bj_004)\n   Location: Downtown | 4 stars\n   Price: ¥600/night | Rating: 4.4/5.0\n\n5. Novotel Beijing Peace (ID: hotel_bj_005)\n   Location: Downtown | 4 stars\n   Price: ¥550/night | Rating: 4.5/5.0\n\n6. Grand Mercure Beijing (ID: hotel_bj_006)\n   Location: Downtown | 4 stars\n   Price: ¥700/night | Rating: 4.6/5.0\n\n7. Home Inn Dongzhimen (ID: hotel_bj_007)\n   Location: Downtown | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_bj_001",
+                "name": "The Peninsula Beijing",
+                "location": "Wangfujing",
+                "stars": 5,
+                "price": 1800,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_bj_002",
+                "name": "Park Hyatt Beijing",
+                "location": "CBD",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_bj_003",
+                "name": "Holiday Inn Express",
+                "location": "Zhongguancun",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_bj_004",
+                "name": "Beijing Hotel",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 600,
+                "rating": 4.4
+              },
+              {
+                "hotel_id": "hotel_bj_005",
+                "name": "Novotel Beijing Peace",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 550,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_bj_006",
+                "name": "Grand Mercure Beijing",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 700,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_bj_007",
+                "name": "Home Inn Dongzhimen",
+                "location": "Downtown",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.1
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.06818771362304688
+          },
+          "latency_ms": 0.06818771362304688
+        },
+        {
+          "tool_call_id": "call_SVH4NhmAohUEzWkh",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_bj_002",
+            "date": "2026-03-12",
+            "time_slot": "morning",
+            "visitor_name": "Chen Ming",
+            "ticket_count": 2
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_bj_002\nDate: 2026-03-12\nTime slot: morning\nVisitor: Chen Ming\nTickets: 2\nTicket numbers: AT50001-01, AT50001-02\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_bj_002",
+              "date": "2026-03-12",
+              "time_slot": "morning",
+              "visitor_name": "Chen Ming",
+              "ticket_count": 2,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.04363059997558594
+          },
+          "latency_ms": 0.04363059997558594
+        }
+      ],
+      "total_latency_ms": 7690.766096115112,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 986400,
+        "event_count": 240,
+        "latency": {
+          "speech_ms": 2231.714111328125,
+          "tool_call_ms": 1.611083984375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 38.42959416909353,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the hotel Grand Mercure Beijing for check-in 2026-03-27 for 5 nights.",
+        "timestamp": 38.42959416909353,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-27",
+            "book_hotel.nights=5"
+          ]
+        },
+        "audio_size_bytes": 303000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3892.2019004821777,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 44.96984468561152,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the hotel guest name to Liu Yang.",
+        "timestamp": 44.96984468561152,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Liu Yang"
+          ]
+        },
+        "audio_size_bytes": 111000
+      },
+      "assistant_response": "Your hotel booking at the Grand Mercure Beijing is confirmed, with check-in on 2026-03-27 for 5 nights under the name Liu Yang. The booking ID is HT20001. Everything is set for your trip!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_9z2E1aMg9CkWMbvX",
+              "name": "book_hotel",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_lHopbsROsX1m9xmO",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_bj_006",
+                "checkin_date": "2026-03-27",
+                "nights": 5,
+                "guest_name": "Liu Yang"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Your hotel booking at the Grand Mercure Beijing is confirmed, with check-in on 2026-03-27 for 5 nights under the name Liu Yang. The booking ID is HT20001. Everything is set for your trip!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_9z2E1aMg9CkWMbvX",
+          "tool_name": "book_hotel",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: BookHotelTool.execute() missing 4 required positional arguments: 'hotel_id', 'checkin_date', 'nights', and 'guest_name'",
+            "raw_output": null,
+            "error": "BookHotelTool.execute() missing 4 required positional arguments: 'hotel_id', 'checkin_date', 'nights', and 'guest_name'",
+            "latency_ms": 0.0152587890625
+          },
+          "latency_ms": 0.0152587890625
+        },
+        {
+          "tool_call_id": "call_lHopbsROsX1m9xmO",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_bj_006",
+            "checkin_date": "2026-03-27",
+            "nights": 5,
+            "guest_name": "Liu Yang"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_bj_006\nCheck-in: 2026-03-27\nNights: 5\nGuest: Liu Yang\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_bj_006",
+              "checkin_date": "2026-03-27",
+              "nights": 5,
+              "guest_name": "Liu Yang",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.015735626220703125
+          },
+          "latency_ms": 0.015735626220703125
+        }
+      ],
+      "total_latency_ms": 6353.67226600647,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 602400,
+        "event_count": 155,
+        "latency": {
+          "speech_ms": 1492.5732421875,
+          "tool_call_ms": 1.739013671875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 15,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_hotel": {
+        "speech_ms": 1492.5732421875,
+        "tool_call_ms": 1.739013671875
+      }
+    },
+    "info_complete_turn": {
+      "search_attractions": 3,
+      "book_attraction_ticket": 5,
+      "search_hotels": 1,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "premature_call",
+    "details": "完全匹配预期工具: {'search_hotels', 'book_attraction_ticket', 'book_hotel', 'search_attractions'}",
+    "call_timing": "search_attractions 在 step 2 调用，但信息要到 turn 3 才收齐",
+    "extra_turns": 6,
+    "extra_turns_details": "book_attraction_ticket: +1 turns (info@5, call@6); search_hotels: +5 turns (info@1, call@6)",
+    "behavior_score": 0.75,
+    "behavior_score_details": "search_attractions: 0(premature_call), book_attraction_ticket: 1(correct), search_hotels: 1(correct), book_hotel: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "search_attractions",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 2 调用，info_complete_turn=3"
+        }
+      ],
+      "error_types": {
+        "premature_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

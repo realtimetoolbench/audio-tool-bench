@@ -1,0 +1,237 @@
+{
+  "task_id": "tint_000134",
+  "description": "Interruption (priority_late_return): 7 tools, 11 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket",
+    "check_balance"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Suzhou.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_hotels.city=Suzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search movies in Wuhan.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_movies.city=Wuhan"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie tickets for The Wandering Earth 3.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 9.523870248527032
+    },
+    {
+      "speaker": "user",
+      "text": "Use Jinyi Cinema Jianghan Road and the 10:30 showtime.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.cinema=Jinyi Cinema Jianghan Road",
+          "book_movie_ticket.showtime=10:30"
+        ]
+      },
+      "timestamp": 15.12953234056602
+    },
+    {
+      "speaker": "user",
+      "text": "Get 4 seats, buyer name Qiu Lan.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Qiu Lan",
+          "book_movie_ticket.seat_count=4"
+        ]
+      },
+      "timestamp": 20.581517343308313
+    },
+    {
+      "speaker": "user",
+      "text": "Check balance for account 6217001234567890.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "check_balance.account_number=6217001234567890"
+        ]
+      },
+      "timestamp": 25.08730630166427
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Home Inn Pingjiang for check-in 2026-05-30.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-30"
+        ]
+      },
+      "timestamp": 35.743240238947834
+    },
+    {
+      "speaker": "user",
+      "text": "Make it 2 nights, guest name Lucas Martinez.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Lucas Martinez",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 41.4963275193149
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shenzhen.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Shenzhen"
+        ]
+      },
+      "timestamp": 46.608104000325056
+    },
+    {
+      "speaker": "user",
+      "text": "Book Din Tai Fung Shenzhen for 2026-05-03 at 12:00, party size 2, contact Liu Yang, phone 13855443322.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Liu Yang",
+          "book_restaurant.date=2026-05-03",
+          "book_restaurant.party_size=2",
+          "book_restaurant.phone=13855443322",
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 51.32904680239538
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_wh_001",
+        "cinema": "Jinyi Cinema Jianghan Road",
+        "showtime": "10:30",
+        "seat_count": 4,
+        "buyer_name": "Qiu Lan"
+      }
+    },
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6217001234567890"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_su_003",
+        "checkin_date": "2026-05-30",
+        "nights": 2,
+        "guest_name": "Lucas Martinez"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sz_002",
+        "date": "2026-05-03",
+        "time": "12:00",
+        "party_size": 2,
+        "contact_name": "Liu Yang",
+        "phone": "13855443322"
+      }
+    }
+  ],
+  "transcript_hash": "c1913df20b46",
+  "info_complete_turn": {
+    "search_movies": 2,
+    "book_movie_ticket": 5,
+    "check_balance": 6,
+    "search_hotels": 1,
+    "book_hotel": 9,
+    "search_restaurants": 10,
+    "book_restaurant": 11
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 11,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "inserted_tools": [
+      "search_movies",
+      "book_movie_ticket",
+      "check_balance"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "check_balance"
+  ]
+}

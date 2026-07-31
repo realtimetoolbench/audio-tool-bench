@@ -1,0 +1,197 @@
+{
+  "task_id": "ms_000066",
+  "scenario_type": "multi_step",
+  "server": "spotify",
+  "template": "discover_and_save_8",
+  "description": "Search artist, get top tracks, get recommendations, save tracks, create playlist, add tracks, get playlist, play",
+  "tools": [
+    "search_artists",
+    "get_artist_top_tracks",
+    "get_recommendations",
+    "save_tracks",
+    "create_playlist",
+    "add_tracks_to_playlist",
+    "get_playlist",
+    "play_context"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find the artist Amara Sinclair for me.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_artists"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me her top tracks.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_artist_top_tracks"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Give me recommendations based on those top tracks and save all of her top tracks to my library.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_recommendations",
+          "save_tracks"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create a new playlist called New Finds and add her top tracks to it.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_playlist",
+          "add_tracks_to_playlist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Get that New Finds playlist and start playing it.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_playlist",
+          "play_context"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_artists",
+      "params": {
+        "query": "Amara Sinclair"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_artist_top_tracks",
+      "params": {
+        "artist_id": "artist_009"
+      },
+      "param_source": {
+        "artist_id": {
+          "from_tool": "search_artists",
+          "field": "artist_id"
+        }
+      }
+    },
+    {
+      "tool": "get_recommendations",
+      "params": {
+        "seed_tracks": [
+          "track_020",
+          "track_019",
+          "track_021"
+        ]
+      },
+      "param_source": {
+        "seed_tracks": {
+          "from_tool": "get_artist_top_tracks",
+          "field": "song_id"
+        }
+      }
+    },
+    {
+      "tool": "save_tracks",
+      "params": {
+        "track_ids": [
+          "track_020",
+          "track_019",
+          "track_021"
+        ]
+      },
+      "param_source": {
+        "track_ids": {
+          "from_tool": "get_artist_top_tracks",
+          "field": "song_id"
+        }
+      }
+    },
+    {
+      "tool": "create_playlist",
+      "params": {
+        "name": "New Finds"
+      },
+      "param_source": {
+        "name": "user"
+      }
+    },
+    {
+      "tool": "add_tracks_to_playlist",
+      "params": {
+        "playlist_id": "playlist_1",
+        "track_ids": [
+          "track_020",
+          "track_019",
+          "track_021"
+        ]
+      },
+      "param_source": {
+        "playlist_id": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        },
+        "track_ids": {
+          "from_tool": "get_artist_top_tracks",
+          "field": "song_id"
+        }
+      }
+    },
+    {
+      "tool": "get_playlist",
+      "params": {
+        "playlist_id": "playlist_1"
+      },
+      "param_source": {
+        "playlist_id": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        }
+      }
+    },
+    {
+      "tool": "play_context",
+      "params": {
+        "context_uri": "playlist:playlist_1"
+      },
+      "param_source": {
+        "context_uri": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        }
+      }
+    }
+  ],
+  "chain_depth": 8,
+  "info_complete_turn": {
+    "search_artists": 1,
+    "get_artist_top_tracks": 1,
+    "get_recommendations": 1,
+    "save_tracks": 1,
+    "create_playlist": 4,
+    "add_tracks_to_playlist": 4,
+    "get_playlist": 4,
+    "play_context": 4
+  }
+}

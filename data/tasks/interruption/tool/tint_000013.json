@@ -1,0 +1,203 @@
+{
+  "task_id": "tint_000013",
+  "description": "Interruption (priority_late_return): 6 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "search_trains",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Chengdu.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_movies.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—first check my ride status for ride ID RIDE789012.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_ride_status.ride_id=RIDE789012"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_movies",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the movie task.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie tickets for movie ID YOLO at Wanda Cinema Jinhua.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_movie_ticket.cinema=Wanda Cinema Jinhua"
+        ]
+      },
+      "timestamp": 14.285717017839954
+    },
+    {
+      "speaker": "user",
+      "text": "Use showtime 11:00 and seat count 4.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_movie_ticket.seat_count=4",
+          "book_movie_ticket.showtime=11:00"
+        ]
+      },
+      "timestamp": 20.15224202530471
+    },
+    {
+      "speaker": "user",
+      "text": "Set buyer name to Wang Fang.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Wang Fang"
+        ]
+      },
+      "timestamp": 24.988338009973745
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 29.653805609734793
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Shanghai Classic on 2026-03-22 at 14:00 for 1 person.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-22",
+          "book_restaurant.party_size=1",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 34.15257540889231
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Wang Fang, phone 13877949128, and search trains from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Wang Fang",
+          "book_restaurant.phone=13877949128",
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 40.55716872654221
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cd_002",
+        "cinema": "Wanda Cinema Jinhua",
+        "showtime": "11:00",
+        "seat_count": 4,
+        "buyer_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-03-22",
+        "time": "14:00",
+        "party_size": 1,
+        "contact_name": "Wang Fang",
+        "phone": "13877949128"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "b05b20a2f41a",
+  "info_complete_turn": {
+    "check_ride_status": 2,
+    "search_movies": 1,
+    "book_movie_ticket": 6,
+    "search_restaurants": 7,
+    "book_restaurant": 9,
+    "search_trains": 9
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 9,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_movies",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "check_ride_status"
+  ]
+}

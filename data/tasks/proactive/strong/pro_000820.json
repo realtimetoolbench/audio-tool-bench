@@ -1,0 +1,150 @@
+{
+  "task_id": "pro_000820",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_cars",
+    "book_car"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m going to be in Shanghai for a bit, and I’ve been thinking through two things at once—where to park at night and what car I’ll be driving around there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_cars.city=Shanghai",
+          "search_parking.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "For the rental side, I’m leaning toward a BMW 5 Series, and I’m planning to pick it up on 2026-03-05.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.pickup_date=2026-03-05"
+        ]
+      },
+      "timestamp": 10.762835687296938
+    },
+    {
+      "speaker": "user",
+      "text": "I’m keeping the car for 9 days, and it’ll be under my name, Li Na.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.days=9",
+          "book_car.renter_name=Li Na"
+        ]
+      },
+      "timestamp": 18.7250543511662
+    },
+    {
+      "speaker": "user",
+      "text": "On the parking side, I’m set on Xujiahui Grand Gateway Parking, starting at 2026-03-14 20:00 for the overnight stretch.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.start_time=2026-03-14 20:00"
+        ]
+      },
+      "timestamp": 25.094548960764172
+    },
+    {
+      "speaker": "user",
+      "text": "It’s basically 8 hours, and I’ll be rolling in with plate 川D78901—if anything comes up, my phone is 13844556677, and then after that I’m probably heading over to…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13844556677",
+          "reserve_parking_spot.duration_hours=8",
+          "reserve_parking_spot.license_plate=川D78901"
+        ]
+      },
+      "timestamp": 34.5264509854695
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_sh_002",
+        "start_time": "2026-03-14 20:00",
+        "duration_hours": 8,
+        "license_plate": "川D78901",
+        "driver_phone": "13844556677"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_sh_003",
+        "pickup_date": "2026-03-05",
+        "days": 9,
+        "renter_name": "Li Na"
+      }
+    }
+  ],
+  "transcript_hash": "3a57d80f5c64",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "driving",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_parking": 1,
+    "reserve_parking_spot": 5,
+    "search_cars": 1,
+    "book_car": 3
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m going to be in Shanghai",
+      "I’m leaning toward a BMW 5 Series",
+      "planning to pick it up on 2026-03-05",
+      "keeping the car for 9 days",
+      "set on Xujiahui Grand Gateway Parking",
+      "starting at 2026-03-14 20:00",
+      "plate 川D78901"
+    ],
+    "ambiguity_notes": "Strong intent: the user narrates confirmed upcoming plans with specific dates, durations, and identifiers; no commands or authorization verbs are used."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_cars",
+      "search_parking"
+    ],
+    "write_tools": [
+      "book_car",
+      "reserve_parking_spot"
+    ]
+  },
+  "expected_tool_if_act": "search_parking",
+  "expected_params_if_act": {
+    "city": "Shanghai"
+  }
+}

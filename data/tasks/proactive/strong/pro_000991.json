@@ -1,0 +1,182 @@
+{
+  "task_id": "pro_000991",
+  "description": "Generated: 7 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "search_books",
+    "reserve_book",
+    "search_parking"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m going to be in Suzhou soon and I kinda want to catch a show while I’m there—something traditional would be amazing.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_shows.city=Suzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, different trip: I’ll be in Shenzhen and I’m thinking an easy lunch spot would be perfect, ideally something like Din Tai Fung vibes.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_restaurants.city=Shenzhen"
+        ]
+      },
+      "timestamp": 8.684783958658358
+    },
+    {
+      "speaker": "user",
+      "text": "And while we’re at it, I’ve been meaning to borrow a novel again—\"To Live\" has been on my list forever, for Feng Jie.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "reserve_book.reader_name=Feng Jie"
+        ]
+      },
+      "timestamp": 19.06933679834353
+    },
+    {
+      "speaker": "user",
+      "text": "Oh—and for later this week in Beijing, I’m probably driving, so parking is going to be a whole thing.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_parking.city=Beijing"
+        ]
+      },
+      "timestamp": 27.709473608004572
+    },
+    {
+      "speaker": "user",
+      "text": "Yeah, let’s lock in that library hold for me—the \"To Live\" one under Feng Jie sounds right.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 35.888175191740004
+    },
+    {
+      "speaker": "user",
+      "text": "That Kunqu Opera \"Peony Pavilion\" option sounds perfect—go ahead and book 3 tickets in the Orchestra section. Put it under Isabella Jackson, phone 13822970109.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Isabella Jackson",
+          "book_show_ticket.phone=13822970109",
+          "book_show_ticket.seat_zone=Orchestra",
+          "book_show_ticket.ticket_count=3"
+        ]
+      },
+      "timestamp": 43.58671647453112
+    },
+    {
+      "speaker": "user",
+      "text": "And yep, let’s do the restaurant too—Din Tai Fung Shenzhen on 2026-03-23 at 14:00 for 2 people. Contact name Li Na, phone 13844556677.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.contact_name=Li Na",
+          "book_restaurant.date=2026-03-23",
+          "book_restaurant.party_size=2",
+          "book_restaurant.phone=13844556677",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 54.84359455415529
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_su_001",
+        "seat_zone": "Orchestra",
+        "ticket_count": 3,
+        "buyer_name": "Isabella Jackson",
+        "phone": "13822970109"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sz_002",
+        "date": "2026-03-23",
+        "time": "14:00",
+        "party_size": 2,
+        "contact_name": "Li Na",
+        "phone": "13844556677"
+      }
+    },
+    {
+      "tool": "search_books",
+      "params": {}
+    },
+    {
+      "tool": "reserve_book",
+      "params": {
+        "book_id": "ISBN9787020008735",
+        "reader_name": "Feng Jie"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Beijing"
+      }
+    }
+  ],
+  "transcript_hash": "c911844c52bb",
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_shows": 1,
+    "book_show_ticket": 6,
+    "search_restaurants": 2,
+    "book_restaurant": 7,
+    "search_books": 1,
+    "reserve_book": 3,
+    "search_parking": 4
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "want to catch a show while I’m there",
+      "thinking an easy lunch spot would be perfect",
+      "been meaning to borrow a novel again",
+      "parking is going to be a whole thing",
+      "let’s lock in",
+      "go ahead and book",
+      "let’s do the restaurant too"
+    ],
+    "ambiguity_notes": "Strong intent overall: the user sets travel context first (cities and activities), then gives explicit booking confirmations. One constraint edge: the restaurant booking details are split across the last turn due to the 3-new-params-per-turn limit, so party size/contact fields are implied but not separately listed here."
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "task_id": "tint_000093",
+  "description": "Interruption (tool_cancel): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Shanghai to Beijing for 2026-04-18, and also help me with a hotel and a restaurant booking.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-18"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the flight search. Skip flights entirely.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_flights",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shenzhen.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_hotels.city=Shenzhen"
+        ]
+      },
+      "timestamp": 14.009159391995341
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel Home Inn Futian CBD.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 18.158519859446436
+    },
+    {
+      "speaker": "user",
+      "text": "Set check-in to 2026-04-18 and stay 5 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 22.409191461467273
+    },
+    {
+      "speaker": "user",
+      "text": "Use guest name Yang Yu for the hotel booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Yang Yu"
+        ]
+      },
+      "timestamp": 27.439396159220742
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Nanjing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Nanjing"
+        ]
+      },
+      "timestamp": 32.85925991498791
+    },
+    {
+      "speaker": "user",
+      "text": "Book Lao Men Dong Restaurant on 2026-05-06 at 18:00 for 5 people. Use contact Li Na, phone 13864788741.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Li Na",
+          "book_restaurant.date=2026-05-06",
+          "book_restaurant.party_size=5",
+          "book_restaurant.phone=13864788741",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 37.57765724169996
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sz_004",
+        "checkin_date": "2026-04-18",
+        "nights": 5,
+        "guest_name": "Yang Yu"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_nj_002",
+        "date": "2026-05-06",
+        "time": "18:00",
+        "party_size": 5,
+        "contact_name": "Li Na",
+        "phone": "13864788741"
+      }
+    }
+  ],
+  "transcript_hash": "164873e613bc",
+  "info_complete_turn": {
+    "search_hotels": 3,
+    "book_hotel": 6,
+    "search_restaurants": 7,
+    "book_restaurant": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "forbidden_tools": [
+      "search_flights",
+      "book_flight"
+    ]
+  },
+  "forbidden_tools": [
+    "search_flights",
+    "book_flight"
+  ],
+  "cancelled_tools": [
+    "search_flights",
+    "book_flight"
+  ]
+}

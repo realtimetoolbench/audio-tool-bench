@@ -1,0 +1,851 @@
+{
+  "task_name": "tint_000064",
+  "start_time": "2026-04-30T17:49:10.773374",
+  "end_time": "2026-04-30T17:50:27.042048",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 84600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_71095bfa3a1842b894ccda4b",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_71095bfa3a1842b894ccda4b",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Shanghai:\n\n1. Chuanfu Laozao (ID: rst_sh_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.6/5.0\n\n2. Shanghai Classic (ID: rst_sh_002)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.4/5.0\n\n3. Xiao Nan Guo (ID: rst_sh_003)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_sh_001",
+                "name": "Chuanfu Laozao",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_sh_002",
+                "name": "Shanghai Classic",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_sh_003",
+                "name": "Xiao Nan Guo",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.013113021850585938
+          },
+          "latency_ms": 0.013113021850585938,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 6643.436670303345,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 17,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—before that, track my package with tracking number SF1234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "track_package.tracking_number=SF1234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 292200
+      },
+      "assistant_response": "It looks like the package with tracking number SF124567890 wasn't found in the system. Would you like to double-check the number or try another one?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_4333d3bae7fb48f887bc0575",
+              "name": "track_package",
+              "arguments": {
+                "tracking_number": "SF124567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "It looks like the package with tracking number SF124567890 wasn't found in the system. Would you like to double-check the number or try another one?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_4333d3bae7fb48f887bc0575",
+          "tool_name": "track_package",
+          "arguments": {
+            "tracking_number": "SF124567890"
+          },
+          "result": {
+            "success": false,
+            "output": "Package not found: SF124567890",
+            "raw_output": null,
+            "error": "Not found",
+            "latency_ms": 0.026941299438476562
+          },
+          "latency_ms": 0.026941299438476562
+        }
+      ],
+      "total_latency_ms": 3495.594263076782,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 483840,
+        "event_count": 105,
+        "latency": {
+          "speech_ms": 1382.017333984375,
+          "tool_call_ms": 634.7158203125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the restaurant search.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 96000
+      },
+      "assistant_response": "I found three restaurants in Shanghai for you. There's Chuanfu Laozao, which serves Sichuan food downtown and has a 4.6 rating. Then there are two places in Pudong: Shanghai Classic, offering Shanghainese cuisine with a 4.4 rating, and Xiao Nan Guo, also Shanghainese, rated at 4.5.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I found three restaurants in Shanghai for you. There's Chuanfu Laozao, which serves Sichuan food downtown and has a 4.6 rating. Then there are two places in Pudong: Shanghai Classic, offering Shanghainese cuisine with a 4.4 rating, and Xiao Nan Guo, also Shanghainese, rated at 4.5.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6540.312051773071,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 975360,
+        "event_count": 153,
+        "latency": {
+          "speech_ms": 450.719970703125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.31970807841356,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the restaurant Shanghai Classic.",
+        "timestamp": 16.31970807841356,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 103800
+      },
+      "assistant_response": "Sure, I can help with that. To book Shanghai Classic, I'll need a few more details. What date and time would you like to go, how many people will be in your party, and could you provide your name and phone number for the reservation?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help with that. To book Shanghai Classic, I'll need a few more details. What date and time would you like to go, how many people will be in your party, and could you provide your name and phone number for the reservation?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5281.6290855407715,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 526080,
+        "event_count": 102,
+        "latency": {
+          "speech_ms": 337.4599609375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.404575942818475,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the booking date to 2026-03-23 and time to 18:00.",
+        "timestamp": 21.404575942818475,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-23",
+            "book_restaurant.time=18:00"
+          ]
+        },
+        "audio_size_bytes": 256800
+      },
+      "assistant_response": "Got it, the date is March 23, 2026, at 6 PM. How many people will be in your party, and what name and phone number should I use for the reservation?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, the date is March 23, 2026, at 6 PM. How many people will be in your party, and what name and phone number should I use for the reservation?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7089.158058166504,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 491520,
+        "event_count": 87,
+        "latency": {
+          "speech_ms": 595.0439453125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.976799128399144,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 4. Contact name Li Na.",
+        "timestamp": 26.976799128399144,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Li Na",
+            "book_restaurant.party_size=4"
+          ]
+        },
+        "audio_size_bytes": 103200
+      },
+      "assistant_response": "Thanks, Lina. I have the party size as four and your name down. What phone number should I use to complete the booking for Shanghai Classic?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, Lina. I have the party size as four and your name down. What phone number should I use to complete the booking for Shanghai Classic?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3868.774175643921,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 326400,
+        "event_count": 67,
+        "latency": {
+          "speech_ms": 722.785888671875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.44885604051389,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13892862812. Then search flights from Beijing to Shanghai.",
+        "timestamp": 31.44885604051389,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.phone=13892862812",
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 298200
+      },
+      "assistant_response": "Great, your reservation at Shanghai Classic is confirmed for March 23rd at 6 PM for four people under the name Lina. Your booking ID is BK1001. I also found four flights from Beijing to Shanghai. There's an Air China flight leaving at 8 AM for ¥800, a China Eastern flight at 10 AM for ¥750, another Air China flight at 2 PM for ¥850, and a China Eastern flight at 6 PM for ¥900. All of them are economy class.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_2cc270143731409dbfe2ff25",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_sh_002",
+                "date": "2026-03-23",
+                "time": "18:00",
+                "party_size": 4,
+                "contact_name": "Lina",
+                "phone": "13892862812"
+              }
+            },
+            {
+              "id": "call_6d5205870a964535956022b9",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your reservation at Shanghai Classic is confirmed for March 23rd at 6 PM for four people under the name Lina. Your booking ID is BK1001. I also found four flights from Beijing to Shanghai. There's an Air China flight leaving at 8 AM for ¥800, a China Eastern flight at 10 AM for ¥750, another Air China flight at 2 PM for ¥850, and a China Eastern flight at 6 PM for ¥900. All of them are economy class.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_2cc270143731409dbfe2ff25",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_sh_002",
+            "date": "2026-03-23",
+            "time": "18:00",
+            "party_size": 4,
+            "contact_name": "Lina",
+            "phone": "13892862812"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_sh_002\nRestaurant: Shanghai Classic\nDate: 2026-03-23\nTime: 18:00\nParty size: 4\nContact: Lina (13892862812)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_sh_002",
+              "restaurant_name": "Shanghai Classic",
+              "date": "2026-03-23",
+              "time": "18:00",
+              "party_size": 4,
+              "contact_name": "Lina",
+              "phone": "13892862812",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.08511543273925781
+          },
+          "latency_ms": 0.08511543273925781
+        },
+        {
+          "tool_call_id": "call_6d5205870a964535956022b9",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.07700920104980469
+          },
+          "latency_ms": 0.07700920104980469
+        }
+      ],
+      "total_latency_ms": 18077.75330543518,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1428480,
+        "event_count": 292,
+        "latency": {
+          "speech_ms": 5540.450927734375,
+          "tool_call_ms": 3782.334716796875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.572199015580416,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-03 for passenger Li Na.",
+        "timestamp": 37.572199015580416,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-03",
+            "book_flight.passenger_name=Li Na"
+          ]
+        },
+        "audio_size_bytes": 254400
+      },
+      "assistant_response": "Your flight is all set. Flight MU5678 from Beijing to Shanghai has been booked for Lina on March 3rd, 2026. Your booking ID is FL10001 and the status is confirmed.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_c65d5d85d08c44d186a98def",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "date": "2026-03-03",
+                "passenger_name": "Lina"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your flight is all set. Flight MU5678 from Beijing to Shanghai has been booked for Lina on March 3rd, 2026. Your booking ID is FL10001 and the status is confirmed.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_c65d5d85d08c44d186a98def",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "date": "2026-03-03",
+            "passenger_name": "Lina"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Lina\nDate: 2026-03-03\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Lina",
+              "date": "2026-03-03",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.036716461181640625
+          },
+          "latency_ms": 0.036716461181640625
+        }
+      ],
+      "total_latency_ms": 9476.252794265747,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 645120,
+        "event_count": 140,
+        "latency": {
+          "speech_ms": 2239.035888671875,
+          "tool_call_ms": 1469.473876953125
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 43.02129439431101,
+      "input_chunk": {
+        "role": "user",
+        "content": "Airline is China Eastern. Then search hotels in Shanghai.",
+        "timestamp": 43.02129439431101,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 169800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2390.0668621063232,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 8
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 48.99183587846487,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book hotel Pudong Shangri-La. Check in 2026-03-17 for 4 nights. Guest name Liu Yang.",
+        "timestamp": 48.99183587846487,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-17",
+            "book_hotel.guest_name=Liu Yang",
+            "book_hotel.nights=4"
+          ]
+        },
+        "audio_size_bytes": 319200
+      },
+      "assistant_response": "Your hotel is booked. The Pudong Shangri-La in Shanghai is confirmed for Liu Yang, checking in on March 17th, 2026, for four nights. Your booking ID is HT20001.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_169557a9925f480da4af7669",
+              "name": "search_hotels",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_b392564d4f54418b8d0f5b2d",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-17"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_9fc7ad5fc3dc4943abe1db18",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_sh_002",
+                "checkin_date": "2026-03-17",
+                "nights": 4,
+                "guest_name": "Liu Yang"
+              }
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "finish_reason": "completed",
+          "content": "Your hotel is booked. The Pudong Shangri-La in Shanghai is confirmed for Liu Yang, checking in on March 17th, 2026, for four nights. Your booking ID is HT20001.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_169557a9925f480da4af7669",
+          "tool_name": "search_hotels",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: HotelSearchTool.execute() missing 1 required positional argument: 'city'",
+            "raw_output": null,
+            "error": "HotelSearchTool.execute() missing 1 required positional argument: 'city'",
+            "latency_ms": 0.050067901611328125
+          },
+          "latency_ms": 0.050067901611328125
+        },
+        {
+          "tool_call_id": "call_b392564d4f54418b8d0f5b2d",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shanghai",
+            "checkin_date": "2026-03-17"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 5 hotels in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001)\n   Location: the Bund | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Pudong Shangri-La (ID: hotel_sh_002)\n   Location: Pudong | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Hyatt on the Bund (ID: hotel_sh_003)\n   Location: the Bund | 4 stars\n   Price: ¥750/night | Rating: 4.5/5.0\n\n4. Home Inn the Bund (ID: hotel_sh_004)\n   Location: the Bund | 3 stars\n   Price: ¥400/night | Rating: 4.2/5.0\n\n5. Hanting Hotel People's Square (ID: hotel_sh_005)\n   Location: People's Square | 3 stars\n   Price: ¥350/night | Rating: 4.0/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_sh_001",
+                "name": "Waldorf Astoria Shanghai on the Bund",
+                "location": "the Bund",
+                "stars": 5,
+                "price": 1200,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_sh_002",
+                "name": "Pudong Shangri-La",
+                "location": "Pudong",
+                "stars": 5,
+                "price": 1000,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_sh_003",
+                "name": "Hyatt on the Bund",
+                "location": "the Bund",
+                "stars": 4,
+                "price": 750,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_sh_004",
+                "name": "Home Inn the Bund",
+                "location": "the Bund",
+                "stars": 3,
+                "price": 400,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_sh_005",
+                "name": "Hanting Hotel People's Square",
+                "location": "People's Square",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.14281272888183594
+          },
+          "latency_ms": 0.14281272888183594
+        },
+        {
+          "tool_call_id": "call_9fc7ad5fc3dc4943abe1db18",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_sh_002",
+            "checkin_date": "2026-03-17",
+            "nights": 4,
+            "guest_name": "Liu Yang"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_sh_002\nCheck-in: 2026-03-17\nNights: 4\nGuest: Liu Yang\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_sh_002",
+              "checkin_date": "2026-03-17",
+              "nights": 4,
+              "guest_name": "Liu Yang",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.12803077697753906
+          },
+          "latency_ms": 0.12803077697753906
+        }
+      ],
+      "total_latency_ms": 13394.458055496216,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 545280,
+        "event_count": 176,
+        "latency": {
+          "speech_ms": 6187.472900390625,
+          "tool_call_ms": 0.242919921875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 17,
+    "total_tool_calls": 8
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "qwen",
+    "tts_voice": "Ethan",
+    "realtime_model": "qwen3.5-omni-plus-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "track_package": {
+        "speech_ms": 1382.017333984375,
+        "tool_call_ms": 634.7158203125
+      },
+      "book_restaurant": {
+        "speech_ms": 5540.450927734375,
+        "tool_call_ms": 3782.334716796875
+      },
+      "search_flights": {
+        "speech_ms": 5540.450927734375,
+        "tool_call_ms": 3782.334716796875
+      },
+      "book_flight": {
+        "speech_ms": 2239.035888671875,
+        "tool_call_ms": 1469.473876953125
+      },
+      "book_hotel": {
+        "speech_ms": 6187.472900390625,
+        "tool_call_ms": 0.242919921875
+      }
+    },
+    "info_complete_turn": {
+      "track_package": 2,
+      "search_restaurants": 1,
+      "book_restaurant": 7,
+      "search_flights": 7,
+      "book_flight": 8,
+      "search_hotels": 9,
+      "book_hotel": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "track_package",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "tracking_number: 'SF1234567890' vs 'SF124567890'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "contact_name: 'Li Na' vs 'Lina'"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "passenger_name: 'Li Na' vs 'Lina'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "entity_mishearing": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

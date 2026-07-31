@@ -1,0 +1,474 @@
+{
+  "task_name": "tint_000005",
+  "start_time": "2026-04-30T23:32:20.632366",
+  "end_time": "2026-04-30T23:36:53.273164",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Hangzhou to Chengdu on 2026-03-16. Also, I want attractions in Chengdu and a hotel in Hangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_attractions.city=Chengdu",
+            "search_hotels.city=Hangzhou"
+          ]
+        },
+        "audio_size_bytes": 411000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "tool_name": "search_trains",
+              "arguments": {
+                "destination": "Chengdu",
+                "origin": "Hangzhou"
+              },
+              "output": "Sorry, no trains found from Hangzhou to Chengdu.",
+              "error": "Route not found: Hangzhou -> Chengdu",
+              "latency_ms": 0.017881393432617188
+            },
+            {
+              "tool_name": "search_attractions",
+              "arguments": {
+                "city": "Chengdu"
+              },
+              "output": "Found 4 attractions in Chengdu:\n\n1. Giant Panda Base (ID: attr_cd_001)\n   Type: Zoo\n   Rating: 4.8/5.0\n   Ticket: ¥58\n   Hours: 07:30-18:00\n   Location: Chenghua\n\n2. Wuhou Shrine (ID: attr_cd_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Wuhou\n\n3. Du Fu Thatched Cottage (ID: attr_cd_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Qingyang\n\n4. Kuanzhai Alley (ID: attr_cd_004)\n   Type: Sightseeing\n   Rating: 4.3/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Qingyang\n\n",
+              "error": null,
+              "latency_ms": 0.06914138793945312
+            },
+            {
+              "tool_name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou"
+              },
+              "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+              "error": null,
+              "latency_ms": 0.05507469177246094
+            }
+          ]
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_trains",
+          "arguments": {
+            "destination": "Chengdu",
+            "origin": "Hangzhou"
+          },
+          "output": "Sorry, no trains found from Hangzhou to Chengdu.",
+          "error": "Route not found: Hangzhou -> Chengdu",
+          "latency_ms": 0.017881393432617188
+        },
+        {
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "output": "Found 4 attractions in Chengdu:\n\n1. Giant Panda Base (ID: attr_cd_001)\n   Type: Zoo\n   Rating: 4.8/5.0\n   Ticket: ¥58\n   Hours: 07:30-18:00\n   Location: Chenghua\n\n2. Wuhou Shrine (ID: attr_cd_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Wuhou\n\n3. Du Fu Thatched Cottage (ID: attr_cd_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Qingyang\n\n4. Kuanzhai Alley (ID: attr_cd_004)\n   Type: Sightseeing\n   Rating: 4.3/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Qingyang\n\n",
+          "error": null,
+          "latency_ms": 0.06914138793945312
+        },
+        {
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Hangzhou"
+          },
+          "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.05507469177246094
+        }
+      ],
+      "total_latency_ms": 25076.353073120117,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 889924,
+        "event_count": 94
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the train. Cancel the train search and any train booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 182400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 66694.66876983643,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 447390,
+        "event_count": 58
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.560107580909238,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Chengdu.",
+        "timestamp": 14.560107580909238,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 85800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 14941.21503829956,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 616352,
+        "event_count": 87
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 19.363218736709037,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book attraction tickets for Giant Panda Base on 2026-03-16.",
+        "timestamp": 19.363218736709037,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-16"
+          ]
+        },
+        "audio_size_bytes": 241800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 16916.473150253296,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 650884,
+        "event_count": 82
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.918866326499632,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the time slot to morning. Visitor name Liu Yang.",
+        "timestamp": 24.918866326499632,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=Liu Yang"
+          ]
+        },
+        "audio_size_bytes": 150000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8681.70714378357,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 299550,
+        "event_count": 41
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 30.3558050132452,
+      "input_chunk": {
+        "role": "user",
+        "content": "Ticket count 2.",
+        "timestamp": 30.3558050132452,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.ticket_count=2"
+          ]
+        },
+        "audio_size_bytes": 48000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 101942.82603263855,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 4
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 33.93760655368337,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Hangzhou.",
+        "timestamp": 33.93760655368337,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 76800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "tool_name": "book_attraction_ticket",
+              "arguments": {
+                "time_slot": "morning",
+                "visitor_name": "Lu Yang",
+                "attraction_id": "attr_cd_001",
+                "date": "2026-03-16",
+                "ticket_count": 2
+              },
+              "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_cd_001\nDate: 2026-03-16\nTime slot: morning\nVisitor: Lu Yang\nTickets: 2\nTicket numbers: AT50001-01, AT50001-02\nStatus: Confirmed\n",
+              "error": null,
+              "latency_ms": 0.080108642578125
+            },
+            {
+              "tool_name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou"
+              },
+              "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+              "error": null,
+              "latency_ms": 0.07700920104980469
+            }
+          ]
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "time_slot": "morning",
+            "visitor_name": "Lu Yang",
+            "attraction_id": "attr_cd_001",
+            "date": "2026-03-16",
+            "ticket_count": 2
+          },
+          "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_cd_001\nDate: 2026-03-16\nTime slot: morning\nVisitor: Lu Yang\nTickets: 2\nTicket numbers: AT50001-01, AT50001-02\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.080108642578125
+        },
+        {
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Hangzhou"
+          },
+          "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.07700920104980469
+        }
+      ],
+      "total_latency_ms": 19511.18302345276,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 769444,
+        "event_count": 86
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 38.03667924806962,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Home Inn West Lake. Check in 2026-03-16 for 1 night. Guest name Zhou Jun.",
+        "timestamp": 38.03667924806962,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-16",
+            "book_hotel.guest_name=Zhou Jun",
+            "book_hotel.nights=1"
+          ]
+        },
+        "audio_size_bytes": 309600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "tool_name": "book_hotel",
+              "arguments": {
+                "nights": 1,
+                "hotel_id": "hotel_hz_003",
+                "checkin_date": "2026-03-16",
+                "guest_name": "Jao Jun"
+              },
+              "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_hz_003\nCheck-in: 2026-03-16\nNights: 1\nGuest: Jao Jun\nStatus: Confirmed\n",
+              "error": null,
+              "latency_ms": 0.051975250244140625
+            }
+          ]
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_hotel",
+          "arguments": {
+            "nights": 1,
+            "hotel_id": "hotel_hz_003",
+            "checkin_date": "2026-03-16",
+            "guest_name": "Jao Jun"
+          },
+          "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_hz_003\nCheck-in: 2026-03-16\nNights: 1\nGuest: Jao Jun\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.051975250244140625
+        }
+      ],
+      "total_latency_ms": 18866.96195602417,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 658592,
+        "event_count": 80
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 8,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ],
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad"
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[respected cancel]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_attraction_ticket",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "visitor_name: 'Liu Yang' vs 'Lu Yang'"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "guest_name: 'Zhou Jun' vs 'Jao Jun'"
+        },
+        {
+          "tool": "search_trains",
+          "error_type": "unexpected_call",
+          "phase": "pre",
+          "detail": "调了不在 expected_tools 中的工具: search_trains"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1,
+        "parameter_reasoning": 1,
+        "unexpected_call": 1
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "unexpected_call": {
+          "pre": 1,
+          "post": 0,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

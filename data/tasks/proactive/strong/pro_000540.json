@@ -1,0 +1,148 @@
+{
+  "task_id": "pro_000540",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m heading down to Shenzhen soon, and I’ve been browsing what shows are on while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_shows.city=Shenzhen"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, the travel part is Beijing to Shanghai—just keeping that route in mind while I sort the rest out.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 7.57638564309221
+    },
+    {
+      "speaker": "user",
+      "text": "For the concert night, I’m set on the Mayday Concert, and I’m aiming for Stand B.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Stand B"
+        ]
+      },
+      "timestamp": 16.182459646563885
+    },
+    {
+      "speaker": "user",
+      "text": "It’s two tickets, under Huang Tao, and I’m using 13822970109 for the contact.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Huang Tao",
+          "book_show_ticket.phone=13822970109",
+          "book_show_ticket.ticket_count=2"
+        ]
+      },
+      "timestamp": 22.776650305901466
+    },
+    {
+      "speaker": "user",
+      "text": "Then for the flight piece, I’m on Air China CA1234 on 2026-04-12, passenger name Mason White, and after that I’m thinking about where to grab dinner near the hotel...",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-04-12",
+          "book_flight.passenger_name=Mason White"
+        ]
+      },
+      "timestamp": 30.085815757991313
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_sz_001",
+        "seat_zone": "Stand B",
+        "ticket_count": 2,
+        "buyer_name": "Huang Tao",
+        "phone": "13822970109"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_001",
+        "date": "2026-04-12",
+        "passenger_name": "Mason White"
+      }
+    }
+  ],
+  "transcript_hash": "f237a999ea6d",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_shows": 1,
+    "book_show_ticket": 4,
+    "search_flights": 2,
+    "book_flight": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m heading down to Shenzhen soon",
+      "Beijing to Shanghai",
+      "I’m set on the Mayday Concert",
+      "It’s two tickets, under Huang Tao",
+      "I’m on Air China CA1234 on 2026-04-12"
+    ],
+    "ambiguity_notes": "Strong intent: the user speaks as if plans are decided and states concrete booking details; no execution/authorization phrasing."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_flights",
+      "search_shows"
+    ],
+    "write_tools": [
+      "book_flight",
+      "book_show_ticket"
+    ]
+  },
+  "expected_tool_if_act": "search_shows",
+  "expected_params_if_act": {
+    "city": "Shenzhen"
+  }
+}

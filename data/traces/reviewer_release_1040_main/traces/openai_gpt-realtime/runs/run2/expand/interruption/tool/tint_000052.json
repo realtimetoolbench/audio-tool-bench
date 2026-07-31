@@ -1,0 +1,658 @@
+{
+  "task_name": "tint_000052",
+  "start_time": "2026-07-29T03:58:39.237060",
+  "end_time": "2026-07-29T03:59:13.784596",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 113400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_dkzHbtBCpC0F7EPb",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5358.091115951538,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 33,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search doctors in Chongqing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_doctors.city=Chongqing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 133200
+      },
+      "assistant_response": "Alright, I’ve got both sets of info ready for you. For the trains from Beijing to Shanghai, we've got three solid options: the G1 departing at 06:00 taking about 4 hours and 28 minutes, the G3 at 07:00, and the D321 if you're looking for a longer, more economical ride. \n\nOn the doctor side in Chongqing, there’s Dr. Peng Hui, a chief physician in gastroenterology at The First Affiliated Hospital of Chongqing Medical University, with availability on May 9th and May 15th.\n\nWhat’s next on your list? Need to book a train or an appointment?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_i3ZrLVeK73ONWjTq",
+              "name": "search_doctors",
+              "arguments": {
+                "city": "Chongqing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_EWBdQz9ymcUinpGv",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Alright, I’ve got both sets of info ready for you. For the trains from Beijing to Shanghai, we've got three solid options: the G1 departing at 06:00 taking about 4 hours and 28 minutes, the G3 at 07:00, and the D321 if you're looking for a longer, more economical ride. \n\nOn the doctor side in Chongqing, there’s Dr. Peng Hui, a chief physician in gastroenterology at The First Affiliated Hospital of Chongqing Medical University, with availability on May 9th and May 15th.\n\nWhat’s next on your list? Need to book a train or an appointment?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_i3ZrLVeK73ONWjTq",
+          "tool_name": "search_doctors",
+          "arguments": {
+            "city": "Chongqing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 doctors in Chongqing:\n\n1. Dr. Peng Hui (ID: doc_cq_001)\n   Hospital: The First Affiliated Hospital of Chongqing Medical University\n   Department: Internal Medicine\n   Specialty: Gastroenterology\n   Title: Chief Physician\n   Rating: 4.7/5.0\n   Experience: 18 years\n   Available: 2026-05-09, 2026-05-15\n\n",
+            "raw_output": [
+              {
+                "doctor_id": "doc_cq_001",
+                "name": "Peng Hui",
+                "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Gastroenterology",
+                "rating": 4.7,
+                "experience_years": 18,
+                "available_dates": [
+                  "2026-05-09",
+                  "2026-05-15"
+                ]
+              }
+            ],
+            "error": null,
+            "count": 1,
+            "doctors": [
+              {
+                "doctor_id": "doc_cq_001",
+                "name": "Peng Hui",
+                "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Gastroenterology",
+                "rating": 4.7,
+                "experience_years": 18,
+                "available_dates": [
+                  "2026-05-09",
+                  "2026-05-15"
+                ]
+              }
+            ],
+            "latency_ms": 0.05316734313964844
+          },
+          "latency_ms": 0.05316734313964844
+        },
+        {
+          "tool_call_id": "call_EWBdQz9ymcUinpGv",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.02288818359375
+          },
+          "latency_ms": 0.02288818359375
+        }
+      ],
+      "total_latency_ms": 9088.05513381958,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1521600,
+        "event_count": 331,
+        "latency": {
+          "speech_ms": 1865.570068359375,
+          "tool_call_ms": 430.679931640625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.330363986513488,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book an appointment with doctor Peng Hui.",
+        "timestamp": 10.330363986513488,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 115800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1844.4321155548096,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.809507164115896,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the appointment for 2026-05-15 in the morning.",
+        "timestamp": 15.809507164115896,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.date=2026-05-15",
+            "book_appointment.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 213600
+      },
+      "assistant_response": "You got it! Let's lock in that",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "You got it! Let's lock in that",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2913.3880138397217,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 48000,
+        "event_count": 28,
+        "latency": {
+          "speech_ms": 1.666748046875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.00609269188492,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use patient name Emma Taylor for the appointment.",
+        "timestamp": 21.00609269188492,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.patient_name=Emma Taylor"
+          ]
+        },
+        "audio_size_bytes": 145800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2152.885675430298,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 93000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1577.3837566375732,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.771874387395176,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 for 2026-04-22 for passenger Song Qi.",
+        "timestamp": 30.771874387395176,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-04-22",
+            "book_train.passenger_name=Song Qi"
+          ]
+        },
+        "audio_size_bytes": 232800
+      },
+      "assistant_response": "Everything’s all set! We've got an appointment for Emma Taylor with Dr. Peng Hui on the morning of May 15, 2026, in Chongqing. And Song Qi’s train ticket for the G3 from Beijing to Shanghai on April 27, 2026, is confirmed too.\n\nAnything else you'd like to handle right now?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_x779omGHtdwJESR4",
+              "name": "book_appointment",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_3IThHUyepNRaAVxV",
+              "name": "book_appointment",
+              "arguments": {
+                "doctor_id": "doc_cq_001",
+                "date": "2026-05-15",
+                "time_slot": "morning",
+                "patient_name": "Emma Taylor"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_OLA8CaxF5fEobNRe",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-04-27",
+                "passenger_name": "Song Qi",
+                "seat_class": "second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "finish_reason": "completed",
+          "content": "Everything’s all set! We've got an appointment for Emma Taylor with Dr. Peng Hui on the morning of May 15, 2026, in Chongqing. And Song Qi’s train ticket for the G3 from Beijing to Shanghai on April 27, 2026, is confirmed too.\n\nAnything else you'd like to handle right now?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_x779omGHtdwJESR4",
+          "tool_name": "book_appointment",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Doctor not found: None. Please search for doctors first.",
+            "raw_output": null,
+            "error": "Invalid doctor_id: None",
+            "latency_ms": 0.020265579223632812
+          },
+          "latency_ms": 0.020265579223632812
+        },
+        {
+          "tool_call_id": "call_3IThHUyepNRaAVxV",
+          "tool_name": "book_appointment",
+          "arguments": {
+            "doctor_id": "doc_cq_001",
+            "date": "2026-05-15",
+            "time_slot": "morning",
+            "patient_name": "Emma Taylor"
+          },
+          "result": {
+            "success": true,
+            "output": "Doctor appointment booked successfully!\n\nAppointment ID: FG9XSD3GB9\nDoctor ID: doc_cq_001\nDoctor: Peng Hui\nHospital: The First Affiliated Hospital of Chongqing Medical University\nDepartment: Internal Medicine\nDate: 2026-05-15\nTime slot: morning\nPatient: Emma Taylor\nQueue number: 12\nStatus: Confirmed\n",
+            "raw_output": {
+              "appointment_id": "FG9XSD3GB9",
+              "doctor_id": "doc_cq_001",
+              "doctor_name": "Peng Hui",
+              "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+              "department": "Internal Medicine",
+              "date": "2026-05-15",
+              "time_slot": "morning",
+              "patient_name": "Emma Taylor",
+              "patient_phone": null,
+              "id_number": null,
+              "symptoms": "Not provided",
+              "status": "Confirmed",
+              "queue_number": 12
+            },
+            "error": null,
+            "latency_ms": 0.07700920104980469,
+            "message": "Appointment booked successfully",
+            "appointment": {
+              "appointment_id": "FG9XSD3GB9",
+              "doctor_id": "doc_cq_001",
+              "doctor_name": "Peng Hui",
+              "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+              "department": "Internal Medicine",
+              "date": "2026-05-15",
+              "time_slot": "morning",
+              "patient_name": "Emma Taylor",
+              "patient_phone": null,
+              "id_number": null,
+              "symptoms": "Not provided",
+              "status": "Confirmed",
+              "queue_number": 12
+            }
+          },
+          "latency_ms": 0.07700920104980469
+        },
+        {
+          "tool_call_id": "call_OLA8CaxF5fEobNRe",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-04-27",
+            "passenger_name": "Song Qi",
+            "seat_class": "second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-04-27\nPassenger: Song Qi\nSeat: second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-04-27",
+              "passenger_name": "Song Qi",
+              "seat_class": "second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.030040740966796875
+          },
+          "latency_ms": 0.030040740966796875
+        }
+      ],
+      "total_latency_ms": 9921.893835067749,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 765600,
+        "event_count": 293,
+        "latency": {
+          "speech_ms": 3158.604736328125,
+          "tool_call_ms": 3.235107421875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.755782829284364,
+      "input_chunk": {
+        "role": "user",
+        "content": "Choose Second Class, then list bills.",
+        "timestamp": 36.755782829284364,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 103800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1683.0878257751465,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 14,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_trains",
+    "inserted_tools": [
+      "search_doctors",
+      "book_appointment"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_doctors": {
+        "speech_ms": 1865.570068359375,
+        "tool_call_ms": 430.679931640625
+      }
+    },
+    "info_complete_turn": {
+      "search_doctors": 2,
+      "book_appointment": 5,
+      "search_trains": 1,
+      "book_train": 8,
+      "list_bills": 1
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool+premature_call",
+    "details": "预期: {'search_trains', 'book_train', 'search_doctors', 'list_bills', 'book_appointment'}，实际: {'search_trains', 'book_train', 'book_appointment', 'search_doctors'}，缺失: {'list_bills'}",
+    "call_timing": "book_train 在 step 7 调用，但信息要到 turn 8 才收齐",
+    "extra_turns": 3,
+    "extra_turns_details": "book_appointment: +2 turns (info@5, call@7); search_trains: +1 turns (info@1, call@2)",
+    "behavior_score": 0.6,
+    "behavior_score_details": "search_doctors: 1(correct), book_appointment: 1(correct), search_trains: 1(correct), book_train: 0(premature_call), list_bills: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_train",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 7 调用，info_complete_turn=8"
+        },
+        {
+          "tool": "list_bills",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "premature_call": 1,
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 1,
+          "post": 0,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

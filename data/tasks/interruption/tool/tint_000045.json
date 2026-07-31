@@ -1,0 +1,130 @@
+{
+  "task_id": "tint_000045",
+  "description": "Interruption (tool_cancel): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shanghai for check-in 2026-03-24 and check-out 2026-03-26; also handle a restaurant plan after that.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-24",
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the hotel search and skip any hotel booking.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai for lunch.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 14.957741384739709
+    },
+    {
+      "speaker": "user",
+      "text": "Book the restaurant Xiao Nan Guo for 2026-03-24.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 20.19287799839619
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation time to 12:00 and party size to 6.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.party_size=6",
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 25.53469361453213
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Zhang Wei and phone 13877949128.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.phone=13877949128"
+        ]
+      },
+      "timestamp": 31.16896358473391
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_003",
+        "date": "2026-03-24",
+        "time": "12:00",
+        "party_size": 6,
+        "contact_name": "Zhang Wei",
+        "phone": "13877949128"
+      }
+    }
+  ],
+  "transcript_hash": "ae4356233506",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ]
+  },
+  "forbidden_tools": [
+    "search_hotels",
+    "book_hotel"
+  ],
+  "cancelled_tools": [
+    "search_hotels",
+    "book_hotel"
+  ]
+}

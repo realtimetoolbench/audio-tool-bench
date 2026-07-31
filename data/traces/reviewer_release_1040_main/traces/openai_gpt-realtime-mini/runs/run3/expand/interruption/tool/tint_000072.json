@@ -1,0 +1,652 @@
+{
+  "task_name": "tint_000072",
+  "start_time": "2026-07-29T03:17:24.840723",
+  "end_time": "2026-07-29T03:18:03.961165",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 116400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_tYIuOpxoyd5sa6w4",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7932.333946228027,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 30,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that—search shows in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_shows.city=Beijing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 112800
+      },
+      "assistant_response": "Great! We’ve got the train options from Beijing to Shanghai ready. Now, let me know which show in Beijing you'd like to explore further: Jay Chou Concert, Erta Thunderstorm, or the National Centre Concert? Then we can narrow down your choices!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_FkJYw5QHfhXpHvQF",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_NFjfd9g69eCVKnhi",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Great! We’ve got the train options from Beijing to Shanghai ready. Now, let me know which show in Beijing you'd like to explore further: Jay Chou Concert, Erta Thunderstorm, or the National Centre Concert? Then we can narrow down your choices!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_FkJYw5QHfhXpHvQF",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 shows in Beijing:\n\n1. Jay Chou Concert (ID: show_bj_001)\n   Type: Concert\n   Venue: National Stadium Bird's Nest\n   Date/Time: 2026-03-08 19:30\n   Duration: 180 min\n   Price: ¥480-1980\n   Available zones: Floor, Stand A, Stand B, Stand C\n   Rating: 9.5/10.0\n\n2. Erta Thunderstorm (ID: show_bj_002)\n   Type: Theater\n   Venue: Capital Theatre\n   Date/Time: 2026-03-15 19:30\n   Duration: 150 min\n   Price: ¥180-680\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 8.8/10.0\n\n3. National Centre Concert (ID: show_bj_003)\n   Type: Concert\n   Venue: National Centre for the Performing Arts\n   Date/Time: 2026-03-22 19:30\n   Duration: 120 min\n   Price: ¥280-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.2/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_bj_001",
+                "name": "Jay Chou Concert",
+                "type": "Concert",
+                "venue": "National Stadium Bird's Nest",
+                "date": "2026-03-08",
+                "time": "19:30",
+                "duration": 180,
+                "price_range": "480-1980",
+                "available_zones": [
+                  "Floor",
+                  "Stand A",
+                  "Stand B",
+                  "Stand C"
+                ],
+                "rating": 9.5
+              },
+              {
+                "show_id": "show_bj_002",
+                "name": "Erta Thunderstorm",
+                "type": "Theater",
+                "venue": "Capital Theatre",
+                "date": "2026-03-15",
+                "time": "19:30",
+                "duration": 150,
+                "price_range": "180-680",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 8.8
+              },
+              {
+                "show_id": "show_bj_003",
+                "name": "National Centre Concert",
+                "type": "Concert",
+                "venue": "National Centre for the Performing Arts",
+                "date": "2026-03-22",
+                "time": "19:30",
+                "duration": 120,
+                "price_range": "280-880",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 9.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04982948303222656
+          },
+          "latency_ms": 0.04982948303222656
+        },
+        {
+          "tool_call_id": "call_NFjfd9g69eCVKnhi",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04076957702636719
+          },
+          "latency_ms": 0.04076957702636719
+        }
+      ],
+      "total_latency_ms": 3092.8502082824707,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 616800,
+        "event_count": 151,
+        "latency": {
+          "speech_ms": 1489.77294921875,
+          "tool_call_ms": 295.760986328125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.326795140056836,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book show tickets for Jay Chou Concert.",
+        "timestamp": 10.326795140056836,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 114600
+      },
+      "assistant_response": "Awesome choice! Now, could you tell me which seat zone you're interested in—Floor, Stand A, Stand B, or Stand C? And how many tickets do you need, along with your name and contact number? That way we can get everything booked!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Awesome choice! Now, could you tell me which seat zone you're interested in—Floor, Stand A, Stand B, or Stand C? And how many tickets do you need, along with your name and contact number? That way we can get everything booked!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3591.1097526550293,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 556800,
+        "event_count": 97,
+        "latency": {
+          "speech_ms": 695.9052734375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.11428389338472,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use Stand A, 5 tickets.",
+        "timestamp": 15.11428389338472,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_show_ticket.seat_zone=Stand A",
+            "book_show_ticket.ticket_count=5"
+          ]
+        },
+        "audio_size_bytes": 73800
+      },
+      "assistant_response": "Perfect! Could you please provide the buyer's name and a contact phone number so I can finalize the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect! Could you please provide the buyer's name and a contact phone number so I can finalize the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2719.9389934539795,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 273600,
+        "event_count": 53,
+        "latency": {
+          "speech_ms": 1111.083984375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.249000671396228,
+      "input_chunk": {
+        "role": "user",
+        "content": "Buyer name Aiden Miller, phone 13855443322.",
+        "timestamp": 19.249000671396228,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Aiden Miller",
+            "book_show_ticket.phone=13855443322"
+          ]
+        },
+        "audio_size_bytes": 224400
+      },
+      "assistant_response": "Your booking is confirmed! You have 5 tickets in the Stand A zone for the Jay Chou Concert. The seats are spread across rows 5 to 9.\n\nThe total cost is ¥4400, and everything is under the name Aiden Miller. If you need any more details or help, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_tUObQJ5poRvQNFZ7",
+              "name": "book_show_ticket",
+              "arguments": {
+                "show_id": "show_bj_001",
+                "seat_zone": "Stand A",
+                "ticket_count": 5,
+                "buyer_name": "Aiden Miller",
+                "phone": "138554322"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your booking is confirmed! You have 5 tickets in the Stand A zone for the Jay Chou Concert. The seats are spread across rows 5 to 9.\n\nThe total cost is ¥4400, and everything is under the name Aiden Miller. If you need any more details or help, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_tUObQJ5poRvQNFZ7",
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "show_id": "show_bj_001",
+            "seat_zone": "Stand A",
+            "ticket_count": 5,
+            "buyer_name": "Aiden Miller",
+            "phone": "138554322"
+          },
+          "result": {
+            "success": true,
+            "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_bj_001\nShow: Jay Chou Concert\nVenue: National Stadium Bird's Nest\nDate: 2026-03-08\nZone: Stand A\nSeats: Stand A Row 5 Seat 15, Stand A Row 6 Seat 15, Stand A Row 7 Seat 15, Stand A Row 8 Seat 15, Stand A Row 9 Seat 15\nQuantity: 5\nBuyer: Aiden Miller\nPhone: 138554322\nTotal: ¥4400\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "SH70001",
+              "show_id": "show_bj_001",
+              "show_name": "Jay Chou Concert",
+              "venue": "National Stadium Bird's Nest",
+              "date": "2026-03-08",
+              "seat_zone": "Stand A",
+              "ticket_count": 5,
+              "seats": [
+                "Stand A Row 5 Seat 15",
+                "Stand A Row 6 Seat 15",
+                "Stand A Row 7 Seat 15",
+                "Stand A Row 8 Seat 15",
+                "Stand A Row 9 Seat 15"
+              ],
+              "buyer_name": "Aiden Miller",
+              "phone": "138554322",
+              "total_price": 4400,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.08797645568847656
+          },
+          "latency_ms": 0.08797645568847656
+        }
+      ],
+      "total_latency_ms": 6251.961946487427,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 681600,
+        "event_count": 179,
+        "latency": {
+          "speech_ms": 1291.077880859375,
+          "tool_call_ms": 601.238037109375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 95400
+      },
+      "assistant_response": "Got it! Let's go back to the train search. Now, do you have a preferred travel date for the Beijing to Shanghai route? That way, I can help narrow down the options for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! Let's go back to the train search. Now, do you have a preferred travel date for the Beijing to Shanghai route? That way, I can help narrow down the options for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3896.56400680542,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 415200,
+        "event_count": 79,
+        "latency": {
+          "speech_ms": 1004.7060546875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 29.52193794237981,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 on 2026-05-12 for Mia Anderson.",
+        "timestamp": 29.52193794237981,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-05-12",
+            "book_train.passenger_name=Mia Anderson"
+          ]
+        },
+        "audio_size_bytes": 215400
+      },
+      "assistant_response": "Sure! Could you also let me know the seat class you'd prefer—second class or first class? That way I can complete the booking for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure! Could you also let me know the seat class you'd prefer—second class or first class? That way I can complete the booking for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4560.858964920044,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 326400,
+        "event_count": 63,
+        "latency": {
+          "speech_ms": 573.58203125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 34.96270883898829,
+      "input_chunk": {
+        "role": "user",
+        "content": "Seat class First Class.",
+        "timestamp": 34.96270883898829,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 66600
+      },
+      "assistant_response": "Your train ticket is all set! Seat 01A in first class for Mia Anderson on the G3 train for 2026-05-12. If you need to make any changes or have more questions, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Xacz3tZl7H5nnfWf",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-05-12",
+                "passenger_name": "Mia Anderson",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your train ticket is all set! Seat 01A in first class for Mia Anderson on the G3 train for 2026-05-12. If you need to make any changes or have more questions, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Xacz3tZl7H5nnfWf",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-05-12",
+            "passenger_name": "Mia Anderson",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-05-12\nPassenger: Mia Anderson\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-05-12",
+              "passenger_name": "Mia Anderson",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.027894973754882812
+          },
+          "latency_ms": 0.027894973754882812
+        }
+      ],
+      "total_latency_ms": 7066.845893859863,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 530400,
+        "event_count": 151,
+        "latency": {
+          "speech_ms": 1600.850830078125,
+          "tool_call_ms": 726.403076171875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_trains",
+    "inserted_tools": [
+      "search_shows",
+      "book_show_ticket"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_shows": {
+        "speech_ms": 1489.77294921875,
+        "tool_call_ms": 295.760986328125
+      },
+      "book_show_ticket": {
+        "speech_ms": 1291.077880859375,
+        "tool_call_ms": 601.238037109375
+      },
+      "book_train": {
+        "speech_ms": 1600.850830078125,
+        "tool_call_ms": 726.403076171875
+      }
+    },
+    "info_complete_turn": {
+      "search_shows": 2,
+      "book_show_ticket": 5,
+      "search_trains": 1,
+      "book_train": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_show_ticket.phone: 期望'13855443322', 实际'138554322'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 1,
+    "extra_turns_details": "search_trains: +1 turns (info@1, call@2)",
+    "behavior_score": 0.75,
+    "behavior_score_details": "search_shows: 1(correct), book_show_ticket: 0(param_mismatch), search_trains: 1(correct), book_train: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_show_ticket",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13855443322' vs '138554322'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

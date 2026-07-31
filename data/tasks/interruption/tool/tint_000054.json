@@ -1,0 +1,176 @@
+{
+  "task_id": "tint_000054",
+  "description": "Interruption (priority_early_return): 5 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_restaurants_delivery",
+    "place_food_order",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search attractions in Xi'an.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—urgent: check ride status for ride_id RIDE123456.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_ride_status.ride_id=RIDE123456"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_attractions",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the attraction search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book a ticket for attraction_id Huaqing Palace.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 15.078532831452268
+    },
+    {
+      "speaker": "user",
+      "text": "Set the booking date to 2026-03-18 and time_slot to morning.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-18",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 20.133240154583163
+    },
+    {
+      "speaker": "user",
+      "text": "Use visitor_name Chen Ming and ticket_count 1.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=1",
+          "book_attraction_ticket.visitor_name=Chen Ming"
+        ]
+      },
+      "timestamp": 25.898902799287427
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants with delivery in Chengdu.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants_delivery.city=Chengdu"
+        ]
+      },
+      "timestamp": 30.79692386535447
+    },
+    {
+      "speaker": "user",
+      "text": "Place a food order: delivery_id Bo Bo Chicken; items Dan Dan Noodles and Cold Chicken; deliver to Room 106, Building B, South Apartment; phone 13845678901.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 106, Building B, South Apartment",
+          "place_food_order.items=Dan Dan Noodles and Cold Chicken",
+          "place_food_order.phone=13845678901"
+        ]
+      },
+      "timestamp": 35.57142834954086
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_xa_003",
+        "date": "2026-03-18",
+        "time_slot": "morning",
+        "visitor_name": "Chen Ming",
+        "ticket_count": 1
+      }
+    },
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_cd_002",
+        "items": "Dan Dan Noodles and Cold Chicken",
+        "delivery_address": "Room 106, Building B, South Apartment",
+        "phone": "13845678901"
+      }
+    }
+  ],
+  "transcript_hash": "d0c73c5d6393",
+  "info_complete_turn": {
+    "check_ride_status": 2,
+    "search_attractions": 1,
+    "book_attraction_ticket": 6,
+    "search_restaurants_delivery": 7,
+    "place_food_order": 8
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "check_ride_status"
+  ]
+}

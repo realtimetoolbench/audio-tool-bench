@@ -1,0 +1,445 @@
+{
+  "task_name": "tint_000030",
+  "start_time": "2026-07-29T03:31:17.849840",
+  "end_time": "2026-07-29T03:31:52.069848",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for 2 adults, check in 2026-03-10 and check out 2026-03-12. Also plan Beijing attractions and a train from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_attractions.city=Beijing",
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 609600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_e8blJpPmxKcJcizx",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-10"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10787.166357040405,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 36,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel search and do not book any hotel.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 142200
+      },
+      "assistant_response": "No problem at all! We’ll hold off on the hotel search. Let’s focus on the attractions in Beijing and the train from Beijing to Shanghai. \n\nLet me start by searching for attractions in Beijing. Here we go! Great! We’ve got four fantastic attractions in Beijing: the Forbidden City, the Great Wall at Badaling, the Summer Palace, and the Temple of Heaven.\n\nNow, let’s figure out which ones you’d like to book. And after that, we can look up the train details from Beijing to Shanghai. What attractions are you interested in, and do you have a date and time in mind?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "No problem at all! We’ll hold off on the hotel search. Let’s focus on the attractions in Beijing and the train from Beijing to Shanghai. \n\nLet me start by searching for attractions in Beijing. Here we go!",
+          "tool_calls": [
+            {
+              "id": "call_hNgQ6q3DWpeLaIux",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great! We’ve got four fantastic attractions in Beijing: the Forbidden City, the Great Wall at Badaling, the Summer Palace, and the Temple of Heaven.\n\nNow, let’s figure out which ones you’d like to book. And after that, we can look up the train details from Beijing to Shanghai. What attractions are you interested in, and do you have a date and time in mind?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_hNgQ6q3DWpeLaIux",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Beijing:\n\n1. Forbidden City (ID: attr_bj_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥60\n   Hours: 08:30-17:00\n   Location: Dongcheng\n\n2. Great Wall Badaling (ID: attr_bj_002)\n   Type: Historical\n   Rating: 4.7/5.0\n   Ticket: ¥40\n   Hours: 06:30-19:00\n   Location: Yanqing\n\n3. Summer Palace (ID: attr_bj_003)\n   Type: Garden\n   Rating: 4.6/5.0\n   Ticket: ¥30\n   Hours: 06:30-18:00\n   Location: Haidian\n\n4. Temple of Heaven (ID: attr_bj_004)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥15\n   Hours: 06:00-22:00\n   Location: Dongcheng\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_bj_001",
+                "name": "Forbidden City",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 60,
+                "opening_hours": "08:30-17:00",
+                "location": "Dongcheng"
+              },
+              {
+                "attraction_id": "attr_bj_002",
+                "name": "Great Wall Badaling",
+                "type": "Historical",
+                "rating": 4.7,
+                "price": 40,
+                "opening_hours": "06:30-19:00",
+                "location": "Yanqing"
+              },
+              {
+                "attraction_id": "attr_bj_003",
+                "name": "Summer Palace",
+                "type": "Garden",
+                "rating": 4.6,
+                "price": 30,
+                "opening_hours": "06:30-18:00",
+                "location": "Haidian"
+              },
+              {
+                "attraction_id": "attr_bj_004",
+                "name": "Temple of Heaven",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 15,
+                "opening_hours": "06:00-22:00",
+                "location": "Dongcheng"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04887580871582031
+          },
+          "latency_ms": 0.04887580871582031
+        }
+      ],
+      "total_latency_ms": 5189.987897872925,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1327200,
+        "event_count": 241,
+        "latency": {
+          "speech_ms": 374.37109375,
+          "tool_call_ms": 2074.204833984375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 16.819514943836733,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Beijing.",
+        "timestamp": 16.819514943836733,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 81600
+      },
+      "assistant_response": "Got it! I’ve already found some top attractions in Beijing: the Forbidden City, the Great Wall Badaling, the Summer Palace, and the Temple of Heaven. \n\nNow, do you have a specific attraction you’d like to explore further or book, and which date and time slot are you aiming for?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! I’ve already found some top attractions in Beijing: the Forbidden City, the Great Wall Badaling, the Summer Palace, and the Temple of Heaven. \n\nNow, do you have a specific attraction you’d like to explore further or book, and which date and time slot are you aiming for?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4437.049865722656,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 645600,
+        "event_count": 112,
+        "latency": {
+          "speech_ms": 1263.587890625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.87491864489838,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book a ticket for Forbidden City.",
+        "timestamp": 20.87491864489838,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 88800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1512.8870010375977,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.069280338236528,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the Forbidden City visit date to 2026-03-17 and the time slot to morning.",
+        "timestamp": 25.069280338236528,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-17",
+            "book_attraction_ticket.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 297000
+      },
+      "assistant_response": "Sure thing! Let’s get started. Could you",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure thing! Let’s get started. Could you",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3753.0503273010254,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 57600,
+        "event_count": 28,
+        "latency": {
+          "speech_ms": 3.14208984375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 32.32872699590821,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use visitor name Zhang Wei and ticket count 1 for the Forbidden City booking.",
+        "timestamp": 32.32872699590821,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.ticket_count=1",
+            "book_attraction_ticket.visitor_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 238200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3142.683982849121,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 39.321578777077384,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 39.321578777077384,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 117600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1820.9998607635498,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 44.02210793955046,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 on 2026-03-11 for passenger Liu Yang in First Class.",
+        "timestamp": 44.02210793955046,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-11",
+            "book_train.passenger_name=Liu Yang",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 274800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3569.335699081421,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 10,
+    "total_tool_calls": 1
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'book_attraction_ticket', 'search_attractions', 'book_train', 'search_trains'}，实际: {'search_attractions'}，缺失: {'book_attraction_ticket', 'book_train', 'search_trains'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 1,
+    "extra_turns_details": "search_attractions: +1 turns (info@1, call@2)",
+    "behavior_score": 0.25,
+    "behavior_score_details": "search_attractions: 1(correct), book_attraction_ticket: 0(not_called), search_trains: 0(not_called), book_train: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_attraction_ticket",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_trains",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 3
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 1,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

@@ -1,0 +1,827 @@
+{
+  "task_name": "tint_000027",
+  "start_time": "2026-07-29T03:30:26.296604",
+  "end_time": "2026-07-29T03:31:19.235405",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_hotels.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 74400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_5x1VBgf0XnTkkBIr",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6447.720050811768,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 23,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—before that, track my package with tracking number SF1234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "track_package.tracking_number=SF1234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 285600
+      },
+      "assistant_response": "Great news! Your package with tracking number SF1234567890 is currently in transit. It left the Shanghai Pudong Station and is out for delivery. \n\nNow, while that’s updating, let me continue searching for hotels in Beijing. Just a moment! Here are some great hotel options in Beijing:\n\n1. The Peninsula Beijing – located in Wangfujing, 5 stars, ¥1800 per night, rating 4.9/5.\n2. Park Hyatt Beijing – in the CBD, 5 stars, ¥1500 per night, rating 4.8/5.\n3. Holiday Inn Express – in Zhongguancun, 3 stars, ¥450 per night, rating 4.2/5.\n\nDo any of these sound good, or would you like more details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_awc88TdqwT6fRicf",
+              "name": "track_package",
+              "arguments": {
+                "tracking_number": "SF1234567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great news! Your package with tracking number SF1234567890 is currently in transit. It left the Shanghai Pudong Station and is out for delivery. \n\nNow, while that’s updating, let me continue searching for hotels in Beijing. Just a moment!",
+          "tool_calls": [
+            {
+              "id": "call_0JR1xVhWKysKwZ6b",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Here are some great hotel options in Beijing:\n\n1. The Peninsula Beijing – located in Wangfujing, 5 stars, ¥1800 per night, rating 4.9/5.\n2. Park Hyatt Beijing – in the CBD, 5 stars, ¥1500 per night, rating 4.8/5.\n3. Holiday Inn Express – in Zhongguancun, 3 stars, ¥450 per night, rating 4.2/5.\n\nDo any of these sound good, or would you like more details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_awc88TdqwT6fRicf",
+          "tool_name": "track_package",
+          "arguments": {
+            "tracking_number": "SF1234567890"
+          },
+          "result": {
+            "success": true,
+            "output": "Package tracking successful!\n\nTracking number: SF1234567890\nCompany: SF Express\nStatus: In Transit\n\nTracking history:\n  2024-02-14 10:00 - Beijing Distribution Center: Shipped\n  2024-02-14 18:00 - Shanghai Distribution Center: Arrived\n  2024-02-15 08:00 - Shanghai Pudong Station: Out for Delivery\n",
+            "raw_output": {
+              "company": "SF Express",
+              "status": "In Transit",
+              "history": [
+                {
+                  "time": "2024-02-14 10:00",
+                  "location": "Beijing Distribution Center",
+                  "status": "Shipped"
+                },
+                {
+                  "time": "2024-02-14 18:00",
+                  "location": "Shanghai Distribution Center",
+                  "status": "Arrived"
+                },
+                {
+                  "time": "2024-02-15 08:00",
+                  "location": "Shanghai Pudong Station",
+                  "status": "Out for Delivery"
+                }
+              ]
+            },
+            "error": null,
+            "latency_ms": 0.012874603271484375
+          },
+          "latency_ms": 0.012874603271484375
+        },
+        {
+          "tool_call_id": "call_0JR1xVhWKysKwZ6b",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 7 hotels in Beijing:\n\n1. The Peninsula Beijing (ID: hotel_bj_001)\n   Location: Wangfujing | 5 stars\n   Price: ¥1800/night | Rating: 4.9/5.0\n\n2. Park Hyatt Beijing (ID: hotel_bj_002)\n   Location: CBD | 5 stars\n   Price: ¥1500/night | Rating: 4.8/5.0\n\n3. Holiday Inn Express (ID: hotel_bj_003)\n   Location: Zhongguancun | 3 stars\n   Price: ¥450/night | Rating: 4.2/5.0\n\n4. Beijing Hotel (ID: hotel_bj_004)\n   Location: Downtown | 4 stars\n   Price: ¥600/night | Rating: 4.4/5.0\n\n5. Novotel Beijing Peace (ID: hotel_bj_005)\n   Location: Downtown | 4 stars\n   Price: ¥550/night | Rating: 4.5/5.0\n\n6. Grand Mercure Beijing (ID: hotel_bj_006)\n   Location: Downtown | 4 stars\n   Price: ¥700/night | Rating: 4.6/5.0\n\n7. Home Inn Dongzhimen (ID: hotel_bj_007)\n   Location: Downtown | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_bj_001",
+                "name": "The Peninsula Beijing",
+                "location": "Wangfujing",
+                "stars": 5,
+                "price": 1800,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_bj_002",
+                "name": "Park Hyatt Beijing",
+                "location": "CBD",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_bj_003",
+                "name": "Holiday Inn Express",
+                "location": "Zhongguancun",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_bj_004",
+                "name": "Beijing Hotel",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 600,
+                "rating": 4.4
+              },
+              {
+                "hotel_id": "hotel_bj_005",
+                "name": "Novotel Beijing Peace",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 550,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_bj_006",
+                "name": "Grand Mercure Beijing",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 700,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_bj_007",
+                "name": "Home Inn Dongzhimen",
+                "location": "Downtown",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.1
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03218650817871094
+          },
+          "latency_ms": 0.03218650817871094
+        }
+      ],
+      "total_latency_ms": 7441.995620727539,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1792800,
+        "event_count": 330,
+        "latency": {
+          "speech_ms": 1136.197021484375,
+          "tool_call_ms": 363.377685546875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the hotel search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 111000
+      },
+      "assistant_response": "Absolutely! To move forward, could you let me know your check-in date and how many nights you're planning to stay? That way, I can find the best fit for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Absolutely! To move forward, could you let me know your check-in date and how many nights you're planning to stay? That way, I can find the best fit for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4554.044008255005,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 343200,
+        "event_count": 70,
+        "latency": {
+          "speech_ms": 783.741943359375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.889847556220065,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the hotel Grand Mercure Beijing.",
+        "timestamp": 15.889847556220065,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 109200
+      },
+      "assistant_response": "Great choice! Could you share the check-in date and the number of nights you'd like to stay? That way, I can complete the booking for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great choice! Could you share the check-in date and the number of nights you'd like to stay? That way, I can complete the booking for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5771.01993560791,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 328800,
+        "event_count": 65,
+        "latency": {
+          "speech_ms": 1302.675048828125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.9360880207127,
+      "input_chunk": {
+        "role": "user",
+        "content": "Check in on 2026-03-13 for 1 night.",
+        "timestamp": 20.9360880207127,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-13",
+            "book_hotel.nights=1"
+          ]
+        },
+        "audio_size_bytes": 182400
+      },
+      "assistant_response": "Perfect! Could you please provide the guest name for the booking? That way I can proceed with booking the hotel.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect! Could you please provide the guest name for the booking? That way I can proceed with booking the hotel.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3561.927080154419,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 271200,
+        "event_count": 54,
+        "latency": {
+          "speech_ms": 519.614990234375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 25.243021623509932,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use guest name Chen Ming for the hotel booking.",
+        "timestamp": 25.243021623509932,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.guest_name=Chen Ming"
+          ]
+        },
+        "audio_size_bytes": 142200
+      },
+      "assistant_response": "Your booking at the Grand Mercure Beijing is confirmed!\n\nHere are the details:\n\nGuest: Chen Ming\nCheck-in date: 2026-03-13\nNumber of nights: 1\n\nYour booking ID is HT20001. \n\nIf you need to make any changes or have further questions, let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_l7ZXKNGMMnRsxrZH",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_bj_006",
+                "guest_name": "Chen Ming",
+                "checkin_date": "2026-03-13",
+                "nights": 1
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your booking at the Grand Mercure Beijing is confirmed!\n\nHere are the details:\n\nGuest: Chen Ming\nCheck-in date: 2026-03-13\nNumber of nights: 1\n\nYour booking ID is HT20001. \n\nIf you need to make any changes or have further questions, let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_l7ZXKNGMMnRsxrZH",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_bj_006",
+            "guest_name": "Chen Ming",
+            "checkin_date": "2026-03-13",
+            "nights": 1
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_bj_006\nCheck-in: 2026-03-13\nNights: 1\nGuest: Chen Ming\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_bj_006",
+              "checkin_date": "2026-03-13",
+              "nights": 1,
+              "guest_name": "Chen Ming",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.010967254638671875
+          },
+          "latency_ms": 0.010967254638671875
+        }
+      ],
+      "total_latency_ms": 5186.12813949585,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 768000,
+        "event_count": 179,
+        "latency": {
+          "speech_ms": 1215.18798828125,
+          "tool_call_ms": 569.45703125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.113551366764913,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 30.113551366764913,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 112200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1796.5240478515625,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.53539251871629,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight CA1456 on 2026-03-04 for passenger Chen Ming with airline Air China.",
+        "timestamp": 35.53539251871629,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-04",
+            "book_flight.passenger_name=Chen Ming"
+          ]
+        },
+        "audio_size_bytes": 348600
+      },
+      "assistant_response": "Your flight CA456 for passenger Chen Ming on 2026-03-04 is confirmed! If you need anything else, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_7i0bP4VOTtdtLydY",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_pOGiobwVrGZfEodS",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "CA456",
+                "passenger_name": "Chen Ming",
+                "date": "2026-03-04"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Your flight CA456 for passenger Chen Ming on 2026-03-04 is confirmed! If you need anything else, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_7i0bP4VOTtdtLydY",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.030994415283203125
+          },
+          "latency_ms": 0.030994415283203125
+        },
+        {
+          "tool_call_id": "call_pOGiobwVrGZfEodS",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "CA456",
+            "passenger_name": "Chen Ming",
+            "date": "2026-03-04"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: CA456\nPassenger: Chen Ming\nDate: 2026-03-04\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "CA456",
+              "passenger_name": "Chen Ming",
+              "date": "2026-03-04",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0152587890625
+          },
+          "latency_ms": 0.0152587890625
+        }
+      ],
+      "total_latency_ms": 7520.292282104492,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 412800,
+        "event_count": 143,
+        "latency": {
+          "speech_ms": 2391.76806640625,
+          "tool_call_ms": 2.706787109375
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 42.970562582918355,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Chengdu.",
+        "timestamp": 42.970562582918355,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 87600
+      },
+      "assistant_response": "Here are two great options in Chengdu:\n\n1. Chen Mapo Tofu – a Sichuan restaurant in the downtown area with a 4.7/5 rating.\n2. Lao Ma Tou Hotpot – a hotpot restaurant located in Jinjiang with a 4.8/5 rating.\n\nWould you like to book a reservation at one of these?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_AzQQUA4YjwDIxGTi",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are two great options in Chengdu:\n\n1. Chen Mapo Tofu – a Sichuan restaurant in the downtown area with a 4.7/5 rating.\n2. Lao Ma Tou Hotpot – a hotpot restaurant located in Jinjiang with a 4.8/5 rating.\n\nWould you like to book a reservation at one of these?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_AzQQUA4YjwDIxGTi",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.030755996704101562
+          },
+          "latency_ms": 0.030755996704101562
+        }
+      ],
+      "total_latency_ms": 4600.5539894104,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 753600,
+        "event_count": 153,
+        "latency": {
+          "speech_ms": 1407.306884765625,
+          "tool_call_ms": 428.36572265625
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 47.02098698636839,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Lao Ma Tou Hotpot on 2026-03-16 at 11:30 for 4 people; contact Zhang Wei, phone 13877949128.",
+        "timestamp": 47.02098698636839,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Zhang Wei",
+            "book_restaurant.date=2026-03-16",
+            "book_restaurant.party_size=4",
+            "book_restaurant.phone=13877949128",
+            "book_restaurant.time=11:30"
+          ]
+        },
+        "audio_size_bytes": 499800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6052.120208740234,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 17,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "track_package": {
+        "speech_ms": 1136.197021484375,
+        "tool_call_ms": 363.377685546875
+      },
+      "book_hotel": {
+        "speech_ms": 1215.18798828125,
+        "tool_call_ms": 569.45703125
+      },
+      "book_flight": {
+        "speech_ms": 2391.76806640625,
+        "tool_call_ms": 2.706787109375
+      },
+      "search_restaurants": {
+        "speech_ms": 1407.306884765625,
+        "tool_call_ms": 428.36572265625
+      }
+    },
+    "info_complete_turn": {
+      "track_package": 2,
+      "search_hotels": 1,
+      "book_hotel": 6,
+      "search_flights": 7,
+      "book_flight": 8,
+      "search_restaurants": 9,
+      "book_restaurant": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_restaurants', 'book_restaurant', 'search_hotels', 'track_package', 'book_hotel', 'book_flight', 'search_flights'}，实际: {'search_restaurants', 'search_hotels', 'track_package', 'book_hotel', 'book_flight', 'search_flights'}，缺失: {'book_restaurant'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "search_hotels: +1 turns (info@1, call@2); search_flights: +1 turns (info@7, call@8)",
+    "behavior_score": 0.7142857142857143,
+    "behavior_score_details": "track_package: 1(correct), search_hotels: 1(correct), book_hotel: 1(correct), search_flights: 1(correct), book_flight: 0(param_mismatch), search_restaurants: 1(correct), book_restaurant: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_flight",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "flight_id: 'flt_bj_sh_003' vs 'CA456'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 1,
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

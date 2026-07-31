@@ -1,0 +1,607 @@
+{
+  "task_name": "tint_000075",
+  "start_time": "2026-05-06T20:37:23.214173",
+  "end_time": "2026-05-06T20:38:54.893542",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for 2 adults, check in 2026-03-18 and check out 2026-03-20, and also help me with a train booking and an attraction ticket later.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 610800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ctrQSG53ZVBd1LTZ",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-18"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 13262.81213760376,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 29,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel part. Cancel any hotel search or booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 164400
+      },
+      "assistant_response": "Got it, we'll drop the hotel search and booking. Let's focus on the train booking and attraction ticket. Could you tell me which cities you'll be traveling between on the train, and which attraction you're interested in, along with the date and time slot you'd like to visit?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, we'll drop the hotel search and booking. Let's focus on the train booking and attraction ticket. Could you tell me which cities you'll be traveling between on the train, and which attraction you're interested in, along with the date and time slot you'd like to visit?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4350.8570194244385,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 672000,
+        "event_count": 106,
+        "latency": {
+          "speech_ms": 666.48291015625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 16.69994104093205,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 16.69994104093205,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 112800
+      },
+      "assistant_response": "I found three available trains from Beijing to Shanghai: \n\n1. G1 High-speed: Departs 06:00 and arrives 10:28, second class ¥553, first class ¥933. \n2. G3 High-speed: Departs 07:00 and arrives 11:35, same pricing as G1. \n3. D321 Express: Departs 08:30 and arrives 16:45, second class ¥309, first class ¥494.\n\nLet me know which train you'd like to book, the date of travel, your seat class preference, and the passenger name.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_SwV1NrCK0f8pNdu6",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three available trains from Beijing to Shanghai: \n\n1. G1 High-speed: Departs 06:00 and arrives 10:28, second class ¥553, first class ¥933. \n2. G3 High-speed: Departs 07:00 and arrives 11:35, same pricing as G1. \n3. D321 Express: Departs 08:30 and arrives 16:45, second class ¥309, first class ¥494.\n\nLet me know which train you'd like to book, the date of travel, your seat class preference, and the passenger name.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_SwV1NrCK0f8pNdu6",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.025987625122070312
+          },
+          "latency_ms": 0.025987625122070312
+        }
+      ],
+      "total_latency_ms": 14877.764225006104,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1528800,
+        "event_count": 238,
+        "latency": {
+          "speech_ms": 5270.258056640625,
+          "tool_call_ms": 4006.587890625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 21.701710356260904,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3.",
+        "timestamp": 21.701710356260904,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 48000
+      },
+      "assistant_response": "Sure thing. I’ll need the travel date, seat class (second or first class), and the passenger name to complete the booking. Could you provide those details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing. I’ll need the travel date, seat class (second or first class), and the passenger name to complete the booking. Could you provide those details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5072.04794883728,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 343200,
+        "event_count": 66,
+        "latency": {
+          "speech_ms": 1793.39306640625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.82538922821436,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the train date to 2026-03-19 and passenger name to Wu Qian.",
+        "timestamp": 25.82538922821436,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-19",
+            "book_train.passenger_name=Wu Qian"
+          ]
+        },
+        "audio_size_bytes": 250800
+      },
+      "assistant_response": "Great! And which seat class would you like for Wu Qian, second class or first class?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! And which seat class would you like for Wu Qian, second class or first class?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5696.887016296387,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 201600,
+        "event_count": 46,
+        "latency": {
+          "speech_ms": 1690.44775390625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.941629760126926,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use First Class for the train seat.",
+        "timestamp": 31.941629760126926,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 99000
+      },
+      "assistant_response": "Your train ticket is all set! Wu Qian's first-class seat on the G3 train from Beijing to Shanghai on 2026-03-19 is confirmed. The booking ID is TR40001. \n\nNow, would you like to move on to booking the attraction ticket? If so, let me know the attraction in Shanghai you're interested in, and the preferred date and time slot for your visit.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_VmN179wkT7zjpB0I",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-03-19",
+                "passenger_name": "Wu Qian",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your train ticket is all set! Wu Qian's first-class seat on the G3 train from Beijing to Shanghai on 2026-03-19 is confirmed. The booking ID is TR40001. \n\nNow, would you like to move on to booking the attraction ticket? If so, let me know the attraction in Shanghai you're interested in, and the preferred date and time slot for your visit.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_VmN179wkT7zjpB0I",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-03-19",
+            "passenger_name": "Wu Qian",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-03-19\nPassenger: Wu Qian\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-03-19",
+              "passenger_name": "Wu Qian",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.017881393432617188
+          },
+          "latency_ms": 0.017881393432617188
+        }
+      ],
+      "total_latency_ms": 12146.197080612183,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 972000,
+        "event_count": 190,
+        "latency": {
+          "speech_ms": 2769.281005859375,
+          "tool_call_ms": 1243.18798828125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 36.88793209909484,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Chengdu.",
+        "timestamp": 36.88793209909484,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_attractions.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 90000
+      },
+      "assistant_response": "Here are some attractions in Chengdu:\n\n1. Giant Panda Base – a zoo with a 4.8/5 rating, tickets are ¥58, open 07:30-18:00 in Chenghua.\n2. Wuhou Shrine – a historical site with a 4.5/5 rating, tickets are ¥50, open 08:00-18:00 in Wuhou.\n3. Du Fu Thatched Cottage – historical site, 4.4/5 rating, tickets ¥50, open 08:00-18:00 in Qingyang.\n4. Kuanzhai Alley – sightseeing area with a 4.3/5 rating, free entry, open 24 hours in Qingyang.\n\nLet me know if you'd like to book tickets for any of these attractions, and we can arrange the date, time slot, and number of tickets.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_iaC1Y3vg8DXtSON4",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are some attractions in Chengdu:\n\n1. Giant Panda Base – a zoo with a 4.8/5 rating, tickets are ¥58, open 07:30-18:00 in Chenghua.\n2. Wuhou Shrine – a historical site with a 4.5/5 rating, tickets are ¥50, open 08:00-18:00 in Wuhou.\n3. Du Fu Thatched Cottage – historical site, 4.4/5 rating, tickets ¥50, open 08:00-18:00 in Qingyang.\n4. Kuanzhai Alley – sightseeing area with a 4.3/5 rating, free entry, open 24 hours in Qingyang.\n\nLet me know if you'd like to book tickets for any of these attractions, and we can arrange the date, time slot, and number of tickets.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_iaC1Y3vg8DXtSON4",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Chengdu:\n\n1. Giant Panda Base (ID: attr_cd_001)\n   Type: Zoo\n   Rating: 4.8/5.0\n   Ticket: ¥58\n   Hours: 07:30-18:00\n   Location: Chenghua\n\n2. Wuhou Shrine (ID: attr_cd_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Wuhou\n\n3. Du Fu Thatched Cottage (ID: attr_cd_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Qingyang\n\n4. Kuanzhai Alley (ID: attr_cd_004)\n   Type: Sightseeing\n   Rating: 4.3/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Qingyang\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_cd_001",
+                "name": "Giant Panda Base",
+                "type": "Zoo",
+                "rating": 4.8,
+                "price": 58,
+                "opening_hours": "07:30-18:00",
+                "location": "Chenghua"
+              },
+              {
+                "attraction_id": "attr_cd_002",
+                "name": "Wuhou Shrine",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Wuhou"
+              },
+              {
+                "attraction_id": "attr_cd_003",
+                "name": "Du Fu Thatched Cottage",
+                "type": "Historical",
+                "rating": 4.4,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Qingyang"
+              },
+              {
+                "attraction_id": "attr_cd_004",
+                "name": "Kuanzhai Alley",
+                "type": "Sightseeing",
+                "rating": 4.3,
+                "price": 0,
+                "opening_hours": "24 hours",
+                "location": "Qingyang"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04696846008300781
+          },
+          "latency_ms": 0.04696846008300781
+        }
+      ],
+      "total_latency_ms": 25387.879133224487,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2042400,
+        "event_count": 319,
+        "latency": {
+          "speech_ms": 3011.34716796875,
+          "tool_call_ms": 1827.096923828125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 41.63239450251253,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 3 tickets for Giant Panda Base on 2026-03-17 in the morning for visitor Olivia Brown.",
+        "timestamp": 41.63239450251253,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-17",
+            "book_attraction_ticket.ticket_count=3",
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=Olivia Brown"
+          ]
+        },
+        "audio_size_bytes": 351000
+      },
+      "assistant_response": "Your tickets are confirmed! Olivia Brown has 3 morning tickets for the Giant Panda Base in Chengdu on 2026-03-17, and the booking ID is AT50001. The ticket numbers are AT50001-01, AT50001-02, and AT50001-03. Let me know if you need anything else!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_2jykuFMSkhA8m7sU",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_cd_001",
+                "date": "2026-03-17",
+                "time_slot": "morning",
+                "visitor_name": "Olivia Brown",
+                "ticket_count": 3
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your tickets are confirmed! Olivia Brown has 3 morning tickets for the Giant Panda Base in Chengdu on 2026-03-17, and the booking ID is AT50001. The ticket numbers are AT50001-01, AT50001-02, and AT50001-03. Let me know if you need anything else!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_2jykuFMSkhA8m7sU",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_cd_001",
+            "date": "2026-03-17",
+            "time_slot": "morning",
+            "visitor_name": "Olivia Brown",
+            "ticket_count": 3
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_cd_001\nDate: 2026-03-17\nTime slot: morning\nVisitor: Olivia Brown\nTickets: 3\nTicket numbers: AT50001-01, AT50001-02, AT50001-03\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_cd_001",
+              "date": "2026-03-17",
+              "time_slot": "morning",
+              "visitor_name": "Olivia Brown",
+              "ticket_count": 3,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02",
+                "AT50001-03"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.026226043701171875
+          },
+          "latency_ms": 0.026226043701171875
+        }
+      ],
+      "total_latency_ms": 10875.424146652222,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1029600,
+        "event_count": 184,
+        "latency": {
+          "speech_ms": 2206.181884765625,
+          "tool_call_ms": 1182.671875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 5270.258056640625,
+        "tool_call_ms": 4006.587890625
+      },
+      "book_train": {
+        "speech_ms": 2769.281005859375,
+        "tool_call_ms": 1243.18798828125
+      },
+      "search_attractions": {
+        "speech_ms": 3011.34716796875,
+        "tool_call_ms": 1827.096923828125
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 2206.181884765625,
+        "tool_call_ms": 1182.671875
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 3,
+      "book_train": 6,
+      "search_attractions": 7,
+      "book_attraction_ticket": 8
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'book_attraction_ticket', 'book_train', 'search_attractions', 'search_trains'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 1(correct), search_attractions: 1(correct), book_attraction_ticket: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

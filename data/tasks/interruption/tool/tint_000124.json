@@ -1,0 +1,160 @@
+{
+  "task_id": "tint_000124",
+  "description": "Interruption (tool_correction): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_shows",
+    "book_show_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Guangzhou.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Guangzhou, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 9.675701943275337
+    },
+    {
+      "speaker": "user",
+      "text": "Book a table at Quanjude Roast Duck for 6 people.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.party_size=6"
+        ]
+      },
+      "timestamp": 14.390413122599544
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation for 2026-03-24 at 18:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-24",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 20.158465037213887
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact Mason White, phone 13844556677. Then search shows in Shenzhen.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Mason White",
+          "book_restaurant.phone=13844556677",
+          "search_shows.city=Shenzhen"
+        ]
+      },
+      "timestamp": 24.88798044784394
+    },
+    {
+      "speaker": "user",
+      "text": "Book 4 Floor tickets for Mayday Concert; buyer Xu Jing, phone 13811223344.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Xu Jing",
+          "book_show_ticket.phone=13811223344",
+          "book_show_ticket.seat_zone=Floor",
+          "book_show_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 31.312680782907343
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_004",
+        "date": "2026-03-24",
+        "time": "18:00",
+        "party_size": 6,
+        "contact_name": "Mason White",
+        "phone": "13844556677"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_sz_001",
+        "seat_zone": "Floor",
+        "ticket_count": 4,
+        "buyer_name": "Xu Jing",
+        "phone": "13811223344"
+      }
+    }
+  ],
+  "transcript_hash": "7c9d951682e7",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 6,
+    "search_shows": 6,
+    "book_show_ticket": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "wrong_params": {
+      "search_restaurants.city": "Guangzhou"
+    },
+    "corrected_params": {
+      "search_restaurants.city": "Beijing"
+    }
+  }
+}

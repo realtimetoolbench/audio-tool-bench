@@ -1,0 +1,241 @@
+{
+  "task_id": "tint_000117",
+  "description": "Interruption (priority_early_return): 7 tools, 11 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "transfer_money",
+    "search_shows",
+    "book_show_ticket",
+    "search_flights",
+    "book_flight",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Nanjing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_shows.city=Nanjing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_shows",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5890 on 2026-03-13 for Mia Anderson.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_flight.date=2026-03-13",
+          "book_flight.passenger_name=Mia Anderson"
+        ]
+      },
+      "timestamp": 10.116078055416807
+    },
+    {
+      "speaker": "user",
+      "text": "Use China Eastern as the airline for that booking.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 15.390063141262676
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Suzhou.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_restaurants.city=Suzhou"
+        ]
+      },
+      "timestamp": 21.04367542939992
+    },
+    {
+      "speaker": "user",
+      "text": "Book Dexing Noodle House on 2026-04-25 at 19:00.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.date=2026-04-25",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 25.59187613461825
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 2. Contact Olivia Brown, phone 13811223344.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.contact_name=Olivia Brown",
+          "book_restaurant.party_size=2",
+          "book_restaurant.phone=13811223344"
+        ]
+      },
+      "timestamp": 31.379771382556243
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Transfer 948.18 to Liu Yang.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "transfer_money.amount=948.18",
+          "transfer_money.payee_name=Liu Yang"
+        ]
+      },
+      "timestamp": 41.465356386741014
+    },
+    {
+      "speaker": "user",
+      "text": "Book the show Peking Opera Collection, Second Floor, 2 tickets.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Second Floor",
+          "book_show_ticket.ticket_count=2"
+        ]
+      },
+      "timestamp": 46.08041779482903
+    },
+    {
+      "speaker": "user",
+      "text": "Set buyer name Feng Jie and phone 13845678901.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Feng Jie",
+          "book_show_ticket.phone=13845678901"
+        ]
+      },
+      "timestamp": 52.63853904971612
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_004",
+        "date": "2026-03-13",
+        "passenger_name": "Mia Anderson"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_su_002",
+        "date": "2026-04-25",
+        "time": "19:00",
+        "party_size": 2,
+        "contact_name": "Olivia Brown",
+        "phone": "13811223344"
+      }
+    },
+    {
+      "tool": "transfer_money",
+      "params": {
+        "amount": 948.18,
+        "payee_name": "Liu Yang"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_nj_002",
+        "seat_zone": "Second Floor",
+        "ticket_count": 2,
+        "buyer_name": "Feng Jie",
+        "phone": "13845678901"
+      }
+    }
+  ],
+  "transcript_hash": "db224d78634f",
+  "info_complete_turn": {
+    "search_flights": 2,
+    "book_flight": 3,
+    "search_restaurants": 5,
+    "book_restaurant": 7,
+    "transfer_money": 9,
+    "search_shows": 1,
+    "book_show_ticket": 11
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 11,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_shows",
+    "inserted_tools": [
+      "search_flights",
+      "book_flight",
+      "search_restaurants",
+      "book_restaurant"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "search_flights",
+    "book_flight",
+    "search_restaurants",
+    "book_restaurant"
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "task_id": "tint_000003",
+  "description": "Interruption (priority_late_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight",
+    "check_balance"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chengdu.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on—first check my balance for account number 6217001234567890.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_balance.account_number=6217001234567890"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the restaurant search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book a restaurant: Lao Ma Tou Hotpot. Date 2026-03-20.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-20"
+        ]
+      },
+      "timestamp": 15.451978860097508
+    },
+    {
+      "speaker": "user",
+      "text": "Set the booking time to 19:00 and party size to 5.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.party_size=5",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 20.922386181344155
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Zhang Wei and phone 13845678901.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.phone=13845678901"
+        ]
+      },
+      "timestamp": 26.306058458594862
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 31.623918573913983
+    },
+    {
+      "speaker": "user",
+      "text": "Book hotel Waldorf Astoria Shanghai on the Bund. Check in 2026-03-14 and stay 1 night.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-14",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 35.775971012492654
+    },
+    {
+      "speaker": "user",
+      "text": "Set the hotel guest name to Chen Ming. Then search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Chen Ming",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 42.94234203388208
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight CA1234 on 2026-03-03 for passenger Zhou Jun with airline Air China.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-03-03",
+          "book_flight.passenger_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 49.97580669887551
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6217001234567890"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_002",
+        "date": "2026-03-20",
+        "time": "19:00",
+        "party_size": 5,
+        "contact_name": "Zhang Wei",
+        "phone": "13845678901"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_001",
+        "checkin_date": "2026-03-14",
+        "nights": 1,
+        "guest_name": "Chen Ming"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_001",
+        "date": "2026-03-03",
+        "passenger_name": "Zhou Jun"
+      }
+    }
+  ],
+  "transcript_hash": "49e6760ae976",
+  "info_complete_turn": {
+    "check_balance": 2,
+    "search_restaurants": 1,
+    "book_restaurant": 6,
+    "search_hotels": 7,
+    "book_hotel": 9,
+    "search_flights": 9,
+    "book_flight": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "check_balance"
+  ]
+}

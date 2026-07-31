@@ -1,0 +1,487 @@
+{
+  "task_name": "tint_000070",
+  "start_time": "2026-05-06T23:00:03.617096",
+  "end_time": "2026-05-06T23:02:03.637634",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search movies in Shenzhen for 2026-05-12 at 19:30, and also plan lunch in Shenzhen plus flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-05-12",
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing",
+            "search_restaurants.city=Shenzhen"
+          ]
+        },
+        "audio_size_bytes": 471600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_12648811197062951196",
+              "name": "search_movies",
+              "arguments": {
+                "city": "Shenzhen"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_movies",
+          "arguments": {
+            "city": "Shenzhen"
+          },
+          "output": null,
+          "error": null,
+          "latency_ms": null,
+          "dangling": true,
+          "dangling_return": "never"
+        }
+      ],
+      "total_latency_ms": 8129.853010177612,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5,
+        "latency": {
+          "tool_call_ms": 4139.9781703948975
+        },
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the movie. Cancel the movie search and do not book any movie tickets.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_movies",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 216600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_12648811197062951017",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shenzhen",
+                "cuisine": "lunch"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_12648811197062954934",
+              "name": "search_flights",
+              "arguments": {
+                "destination": "Shanghai",
+                "origin": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shenzhen",
+            "cuisine": "lunch"
+          },
+          "output": "No restaurants found in Shenzhen matching criteria.",
+          "error": null,
+          "latency_ms": 0.03695487976074219
+        },
+        {
+          "tool_name": "search_flights",
+          "arguments": {
+            "destination": "Shanghai",
+            "origin": "Beijing"
+          },
+          "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+          "error": null,
+          "latency_ms": 0.034809112548828125
+        }
+      ],
+      "total_latency_ms": 0.9808540344238281,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7,
+        "latency": {
+          "tool_call_ms": 0.21505355834960938
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 16.073292852336124,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shenzhen.",
+        "timestamp": 16.073292852336124,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 90000
+      },
+      "assistant_response": "I've found some flight options from Beijing to Shanghai, and some restaurant recommendations in Shenzhen.\n\nHere are the flight options:\n1. **Air China CA1234** (ID: flt_bj_sh_001) - 08:00 to 10:30, Economy, ¥800\n2. **China Eastern MU5678** (ID: flt_bj_sh_002) - 10:00 to 12:30, Economy, ¥750\n3. **Air China CA1456** (ID: flt_bj_sh_003) - 14:00 to 16:30, Economy, ¥850\n4. **China Eastern MU5890** (ID: flt_bj_sh_004) - 18:00 to 20:30, Economy, ¥900\n\nFor your lunch in Shenzhen, here are a few options:\n1. **Lao Sichuan** (ID: rst_sz_001) - Sichuan cuisine, Futian, Rating: 4.5/5.0\n2. **Din Tai Fung Shenzhen** (ID: rst_sz_002) - Taiwanese cuisine, Nanshan, Rating: 4.6/5.0\n3. **Jiang Hotpot Shenzhen** (ID: rst_sz_003) - Hotpot, Luohu, Rating: 4.4/5.0\n\nPlease let me know which flight and restaurant you'd like to book, and provide the following details:\n- For the flight: **Flight ID**, **date**, and **passenger name**.\n- For the restaurant: **Restaurant ID**, **date**, **time**, **party size**, **contact name**, and **phone number**.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_1101850654886954918",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shenzhen"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_1101850654886953933",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "I've found some flight options from Beijing to Shanghai, and some restaurant recommendations in Shenzhen.\n\nHere are the flight options:\n1. **Air China CA1234** (ID: flt_bj_sh_001) - 08:00 to 10:30, Economy, ¥800\n2. **China Eastern MU5678** (ID: flt_bj_sh_002) - 10:00 to 12:30, Economy, ¥750\n3. **Air China CA1456** (ID: flt_bj_sh_003) - 14:00 to 16:30, Economy, ¥850\n4. **China Eastern MU5890** (ID: flt_bj_sh_004) - 18:00 to 20:30, Economy, ¥900\n\nFor your lunch in Shenzhen, here are a few options:\n1. **Lao Sichuan** (ID: rst_sz_001) - Sichuan cuisine, Futian, Rating: 4.5/5.0\n2. **Din Tai Fung Shenzhen** (ID: rst_sz_002) - Taiwanese cuisine, Nanshan, Rating: 4.6/5.0\n3. **Jiang Hotpot Shenzhen** (ID: rst_sz_003) - Hotpot, Luohu, Rating: 4.4/5.0\n\nPlease let me know which flight and restaurant you'd like to book, and provide the following details:\n- For the flight: **Flight ID**, **date**, and **passenger name**.\n- For the restaurant: **Restaurant ID**, **date**, **time**, **party size**, **contact name**, and **phone number**.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shenzhen"
+          },
+          "output": "Found 3 restaurants in Shenzhen:\n\n1. Lao Sichuan (ID: rst_sz_001)\n   Cuisine: Sichuan\n   Location: Futian\n   Rating: 4.5/5.0\n\n2. Din Tai Fung Shenzhen (ID: rst_sz_002)\n   Cuisine: Taiwanese\n   Location: Nanshan\n   Rating: 4.6/5.0\n\n3. Jiang Hotpot Shenzhen (ID: rst_sz_003)\n   Cuisine: Hotpot\n   Location: Luohu\n   Rating: 4.4/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.029087066650390625
+        },
+        {
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+          "error": null,
+          "latency_ms": 0.012874603271484375
+        }
+      ],
+      "total_latency_ms": 17038.06185722351,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 446882,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 6757.206678390503,
+          "tool_call_ms": 5477.41174697876
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.453736755273113,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Jiang Hotpot Shenzhen for 2026-05-12 at 12:00.",
+        "timestamp": 20.453736755273113,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.time=12:00"
+          ]
+        },
+        "audio_size_bytes": 257400
+      },
+      "assistant_response": "I can book that for you! To complete the reservation, I need the following information: The number of people in your party, a contact name, and a phone number. Also, could you confirm that the time is 12:00 PM (noon)?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can book that for you! To complete the reservation, I need the following information: The number of people in your party, a contact name, and a phone number. Also, could you confirm that the time is 12:00 PM (noon)?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 16952.08215713501,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 596192,
+        "event_count": 78,
+        "latency": {
+          "speech_ms": 3162.60027885437
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 26.350879248300615,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 4. Contact name Mia Anderson.",
+        "timestamp": 26.350879248300615,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Mia Anderson",
+            "book_restaurant.party_size=4"
+          ]
+        },
+        "audio_size_bytes": 109800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 77887.531042099,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.131550419079126,
+      "input_chunk": {
+        "role": "user",
+        "content": "Phone 13899887766. Confirm the restaurant booking.",
+        "timestamp": 31.131550419079126,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.phone=13899887766"
+          ]
+        },
+        "audio_size_bytes": 237600
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 37.03393364103246,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 37.03393364103246,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 119400
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 41.94954379918542,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5890 on 2026-03-03 for passenger Feng Jie.",
+        "timestamp": 41.94954379918542,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-03-03",
+            "book_flight.passenger_name=Feng Jie"
+          ]
+        },
+        "audio_size_bytes": 276000
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 47.76047258186286,
+      "input_chunk": {
+        "role": "user",
+        "content": "Airline China Eastern. Confirm the flight booking.",
+        "timestamp": 47.76047258186286,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 147600
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 10,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 9,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_movies",
+    "forbidden_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ],
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_restaurants": {
+        "tool_call_ms": 4139.9781703948975
+      },
+      "search_flights": {
+        "tool_call_ms": 4139.9781703948975
+      }
+    },
+    "info_complete_turn": {
+      "search_restaurants": 1,
+      "book_restaurant": 6,
+      "search_flights": 1,
+      "book_flight": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[respected cancel]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

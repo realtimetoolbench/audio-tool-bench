@@ -1,0 +1,190 @@
+{
+  "task_id": "int_000040",
+  "description": "Interruption (redirection): 7 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_movies",
+    "book_movie_ticket",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_movies.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 2 tickets for movie YOLO at Shanghai Film Center.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_movie_ticket.cinema=Shanghai Film Center",
+          "book_movie_ticket.seat_count=2"
+        ]
+      },
+      "timestamp": 4.429275931472119
+    },
+    {
+      "speaker": "user",
+      "text": "Set the showtime to 17:00 and the buyer name to Li Na.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_attraction_ticket.time_slot=afternoon",
+          "book_movie_ticket.buyer_name=Li Na",
+          "book_movie_ticket.showtime=17:00"
+        ]
+      },
+      "timestamp": 10.107333064922171
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search hotels in Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "movie",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Home Inn Dongzhimen for Li Na; check in 2026-03-12 for 2 nights.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.visitor_name=Li Na",
+          "book_hotel.checkin_date=2026-03-12",
+          "book_hotel.guest_name=Li Na",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 21.254747249427407
+    },
+    {
+      "speaker": "user",
+      "text": "Set the stay length to 2 nights; then search attractions in Xi'an.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 27.752562746903074
+    },
+    {
+      "speaker": "user",
+      "text": "Book 4 tickets for Huaqing Palace for Li Na on 2026-03-14, afternoon slot.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-14",
+          "book_attraction_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 34.256824065374296
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the movie—continue.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 40.95484804398286
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_007",
+        "checkin_date": "2026-03-12",
+        "nights": 2,
+        "guest_name": "Li Na"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_xa_003",
+        "date": "2026-03-14",
+        "time_slot": "afternoon",
+        "visitor_name": "Li Na",
+        "ticket_count": 4
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_sh_002",
+        "cinema": "Shanghai Film Center",
+        "showtime": "17:00",
+        "seat_count": 2,
+        "buyer_name": "Li Na"
+      }
+    },
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    }
+  ],
+  "transcript_hash": "9457731cbfab",
+  "info_complete_turn": {
+    "search_hotels": 4,
+    "book_hotel": 5,
+    "search_attractions": 6,
+    "book_attraction_ticket": 7,
+    "search_movies": 1,
+    "book_movie_ticket": 3,
+    "check_ride_status": 1
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 8,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "movie",
+    "generated": true
+  }
+}

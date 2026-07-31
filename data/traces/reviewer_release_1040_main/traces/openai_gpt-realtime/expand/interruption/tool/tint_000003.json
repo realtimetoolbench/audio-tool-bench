@@ -1,0 +1,737 @@
+{
+  "task_name": "tint_000003",
+  "start_time": "2026-05-06T11:59:02.181218",
+  "end_time": "2026-05-06T11:59:57.316778",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Suzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_shows.city=Suzhou"
+          ]
+        },
+        "audio_size_bytes": 62400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Rm288vczq8uotegP",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Suzhou"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Rm288vczq8uotegP",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 shows in Suzhou:\n\n1. Kunqu Opera Peony Pavilion (ID: show_su_001)\n   Type: Theater\n   Venue: Suzhou Grand Theatre\n   Date/Time: 2026-04-29 19:30\n   Duration: 160 min\n   Price: ¥180-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.0/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_su_001",
+                "name": "Kunqu Opera Peony Pavilion",
+                "type": "Theater",
+                "venue": "Suzhou Grand Theatre",
+                "date": "2026-04-29",
+                "time": "19:30",
+                "duration": 160,
+                "price_range": "180-880",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 9.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.08392333984375
+          },
+          "latency_ms": 0.08392333984375,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 5373.954057693481,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 23,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_shows",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 166800
+      },
+      "assistant_response": "Alright, here are some flights from Beijing to Shanghai.\n\n1. Air China (CA1234): Departs at 08:00, arrives at 10:30, price ¥800.\n\n2. China Eastern (MU5678): Departs at 10:00, arrives at 12:30, price ¥750.\n\n3. Air China (CA1456): Departs at 14:00, arrives at 16:30, price ¥850.\n\n4. China Eastern (MU5890): Departs at 18:00, arrives at 20:30, price ¥900.\n\nLet me know if you’d like to book one of these, or if you want more details!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_1nqRrVmv9Z8IlhAH",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Alright, here are some flights from Beijing to Shanghai.\n\n1. Air China (CA1234): Departs at 08:00, arrives at 10:30, price ¥800.\n\n2. China Eastern (MU5678): Departs at 10:00, arrives at 12:30, price ¥750.\n\n3. Air China (CA1456): Departs at 14:00, arrives at 16:30, price ¥850.\n\n4. China Eastern (MU5890): Departs at 18:00, arrives at 20:30, price ¥900.\n\nLet me know if you’d like to book one of these, or if you want more details!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_1nqRrVmv9Z8IlhAH",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.08988380432128906
+          },
+          "latency_ms": 0.08988380432128906
+        }
+      ],
+      "total_latency_ms": 7680.312871932983,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1622400,
+        "event_count": 326,
+        "latency": {
+          "speech_ms": 1180.276123046875,
+          "tool_call_ms": 582.869873046875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.176720210445895,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-05-21.",
+        "timestamp": 10.176720210445895,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_flight.date=2026-05-21"
+          ]
+        },
+        "audio_size_bytes": 205800
+      },
+      "assistant_response": "Sure thing! I just need a name for the passenger, and we’ll get that flight booked for May 21, 2026. Who’s flying?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing! I just need a name for the passenger, and we’ll get that flight booked for May 21, 2026. Who’s flying?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4570.828914642334,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 307200,
+        "event_count": 72,
+        "latency": {
+          "speech_ms": 579.013916015625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.726299506062423,
+      "input_chunk": {
+        "role": "user",
+        "content": "Passenger name is Deng Hui; airline is China Eastern.",
+        "timestamp": 14.726299506062423,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_flight.passenger_name=Deng Hui"
+          ]
+        },
+        "audio_size_bytes": 154800
+      },
+      "assistant_response": "Awesome! The flight for Deng Hui on China Eastern (MU5678) from Beijing to Shanghai on May 21, 2026 is confirmed. If you need any more help or details, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_rRECILgNQOzoH9Uf",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "passenger_name": "Deng Hui",
+                "date": "2026-05-21"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Awesome! The flight for Deng Hui on China Eastern (MU5678) from Beijing to Shanghai on May 21, 2026 is confirmed. If you need any more help or details, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_rRECILgNQOzoH9Uf",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "passenger_name": "Deng Hui",
+            "date": "2026-05-21"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Deng Hui\nDate: 2026-05-21\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Deng Hui",
+              "date": "2026-05-21",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03981590270996094
+          },
+          "latency_ms": 0.03981590270996094
+        }
+      ],
+      "total_latency_ms": 6487.163066864014,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 573600,
+        "event_count": 155,
+        "latency": {
+          "speech_ms": 1862.879150390625,
+          "tool_call_ms": 841.63525390625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.6711256239999,
+      "input_chunk": {
+        "role": "user",
+        "content": "Check ride status for ride RIDE123456.",
+        "timestamp": 20.6711256239999,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "check_ride_status.ride_id=RIDE123456"
+          ]
+        },
+        "audio_size_bytes": 167400
+      },
+      "assistant_response": "Hmm, it looks like that ride ID “ride_123456” isn’t showing up. Maybe we should double-check the ride ID or see if there’s another way to find that ride. Let me know how you'd like to proceed!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_vZ6V6TEY3MmR0en6",
+              "name": "check_ride_status",
+              "arguments": {
+                "ride_id": "ride_123456"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Hmm, it looks like that ride ID “ride_123456” isn’t showing up. Maybe we should double-check the ride ID or see if there’s another way to find that ride. Let me know how you'd like to proceed!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_vZ6V6TEY3MmR0en6",
+          "tool_name": "check_ride_status",
+          "arguments": {
+            "ride_id": "ride_123456"
+          },
+          "result": {
+            "success": false,
+            "error": "Ride not found or invalid ride ID",
+            "output": "Ride not found or invalid ride ID",
+            "raw_output": {
+              "success": false,
+              "error": "Ride not found or invalid ride ID",
+              "output": "Ride not found or invalid ride ID"
+            },
+            "latency_ms": 0.3790855407714844
+          },
+          "latency_ms": 0.3790855407714844
+        }
+      ],
+      "total_latency_ms": 5844.342947006226,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 535200,
+        "event_count": 129,
+        "latency": {
+          "speech_ms": 1275.969970703125,
+          "tool_call_ms": 681.362060546875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 94200
+      },
+      "assistant_response": "Here’s what we’ve got: there’s a Kunqu Opera called “Peony Pavilion” at the Suzhou Grand Theatre. It’s happening on April 29, 2026, at 7:30 PM, and it’s a 160-minute show. The price range is from ¥180 to ¥880, and you’ve got seating in the Orchestra, First Floor, and Second Floor.\n\nWould you like to book tickets for this show, or do you need more details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_HiKsokDBKCgYLItH",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Suzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here’s what we’ve got: there’s a Kunqu Opera called “Peony Pavilion” at the Suzhou Grand Theatre. It’s happening on April 29, 2026, at 7:30 PM, and it’s a 160-minute show. The price range is from ¥180 to ¥880, and you’ve got seating in the Orchestra, First Floor, and Second Floor.\n\nWould you like to book tickets for this show, or do you need more details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_HiKsokDBKCgYLItH",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 shows in Suzhou:\n\n1. Kunqu Opera Peony Pavilion (ID: show_su_001)\n   Type: Theater\n   Venue: Suzhou Grand Theatre\n   Date/Time: 2026-04-29 19:30\n   Duration: 160 min\n   Price: ¥180-880\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 9.0/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_su_001",
+                "name": "Kunqu Opera Peony Pavilion",
+                "type": "Theater",
+                "venue": "Suzhou Grand Theatre",
+                "date": "2026-04-29",
+                "time": "19:30",
+                "duration": 160,
+                "price_range": "180-880",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 9.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.2028942108154297
+          },
+          "latency_ms": 0.2028942108154297
+        }
+      ],
+      "total_latency_ms": 7905.766010284424,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1087200,
+        "event_count": 220,
+        "latency": {
+          "speech_ms": 1412.1728515625,
+          "tool_call_ms": 665.502197265625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.35814525381928,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the show ticket for Kunqu Opera Peony Pavilion, Orchestra seats.",
+        "timestamp": 30.35814525381928,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.seat_zone=Orchestra"
+          ]
+        },
+        "audio_size_bytes": 205800
+      },
+      "assistant_response": "How many tickets would you like to book, and what name and phone number should we use for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "How many tickets would you like to book, and what name and phone number should we use for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4809.573173522949,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 218400,
+        "event_count": 55,
+        "latency": {
+          "speech_ms": 966.494873046875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.662962838061596,
+      "input_chunk": {
+        "role": "user",
+        "content": "Ticket count 2; buyer name John Smith.",
+        "timestamp": 36.662962838061596,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.buyer_name=John Smith",
+            "book_show_ticket.ticket_count=2"
+          ]
+        },
+        "audio_size_bytes": 116400
+      },
+      "assistant_response": "Got it. And could you share a contact phone number for the booking? Once I have that, we’ll lock in those Orchestra seats for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it. And could you share a contact phone number for the booking? Once I have that, we’ll lock in those Orchestra seats for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3999.284029006958,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 321600,
+        "event_count": 71,
+        "latency": {
+          "speech_ms": 893.2978515625
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 41.413290982456466,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone number 13800112233.",
+        "timestamp": 41.413290982456466,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.phone=13800112233"
+          ]
+        },
+        "audio_size_bytes": 184200
+      },
+      "assistant_response": "You're all set! Two Orchestra seats for the Kunqu Opera “Peony Pavilion” at Suzhou Grand Theatre on April 29, 2026, are confirmed for John Smith. The total is ¥1360.\n\nIf you need anything else, feel free to ask!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_VtGoW5NKWGsIiWE7",
+              "name": "book_show_ticket",
+              "arguments": {
+                "show_id": "show_su_001",
+                "seat_zone": "Orchestra",
+                "ticket_count": 2,
+                "buyer_name": "John Smith",
+                "phone": "1380112233"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "You're all set! Two Orchestra seats for the Kunqu Opera “Peony Pavilion” at Suzhou Grand Theatre on April 29, 2026, are confirmed for John Smith. The total is ¥1360.\n\nIf you need anything else, feel free to ask!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_VtGoW5NKWGsIiWE7",
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "show_id": "show_su_001",
+            "seat_zone": "Orchestra",
+            "ticket_count": 2,
+            "buyer_name": "John Smith",
+            "phone": "1380112233"
+          },
+          "result": {
+            "success": true,
+            "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_su_001\nShow: Kunqu Opera Peony Pavilion\nVenue: Suzhou Grand Theatre\nDate: 2026-04-29\nZone: Orchestra\nSeats: Orchestra Row 8 Seat 12, Orchestra Row 9 Seat 12\nQuantity: 2\nBuyer: John Smith\nPhone: 1380112233\nTotal: ¥1360\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "SH70001",
+              "show_id": "show_su_001",
+              "show_name": "Kunqu Opera Peony Pavilion",
+              "venue": "Suzhou Grand Theatre",
+              "date": "2026-04-29",
+              "seat_zone": "Orchestra",
+              "ticket_count": 2,
+              "seats": [
+                "Orchestra Row 8 Seat 12",
+                "Orchestra Row 9 Seat 12"
+              ],
+              "buyer_name": "John Smith",
+              "phone": "1380112233",
+              "total_price": 1360,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.1361370086669922
+          },
+          "latency_ms": 0.1361370086669922
+        }
+      ],
+      "total_latency_ms": 8454.200983047485,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 734400,
+        "event_count": 195,
+        "latency": {
+          "speech_ms": 2607.23388671875,
+          "tool_call_ms": 1027.226806640625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 15,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_shows",
+    "inserted_tools": [
+      "search_flights",
+      "book_flight",
+      "check_ride_status"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_flights": {
+        "speech_ms": 1180.276123046875,
+        "tool_call_ms": 582.869873046875
+      },
+      "book_flight": {
+        "speech_ms": 1862.879150390625,
+        "tool_call_ms": 841.63525390625
+      },
+      "check_ride_status": {
+        "speech_ms": 1275.969970703125,
+        "tool_call_ms": 681.362060546875
+      },
+      "book_show_ticket": {
+        "speech_ms": 2607.23388671875,
+        "tool_call_ms": 1027.226806640625
+      }
+    },
+    "info_complete_turn": {
+      "search_flights": 2,
+      "book_flight": 4,
+      "check_ride_status": 5,
+      "search_shows": 1,
+      "book_show_ticket": 9
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: check_ride_status.ride_id: 期望'RIDE123456', 实际'ride_123456'; book_show_ticket.phone: 期望'13800112233', 实际'1380112233'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.6,
+    "behavior_score_details": "search_flights: 1(correct), book_flight: 1(correct), check_ride_status: 0(param_mismatch), search_shows: 1(correct), book_show_ticket: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "check_ride_status",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "ride_id: 'RIDE123456' vs 'ride_123456'"
+        },
+        {
+          "tool": "book_show_ticket",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13800112233' vs '1380112233'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1,
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

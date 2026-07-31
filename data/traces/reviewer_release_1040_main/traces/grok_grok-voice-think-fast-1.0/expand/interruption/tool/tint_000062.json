@@ -1,0 +1,761 @@
+{
+  "task_name": "tint_000062",
+  "start_time": "2026-05-06T20:35:17.449773",
+  "end_time": "2026-05-06T20:38:22.977002",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Guangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_shows.city=Guangzhou"
+          ]
+        },
+        "audio_size_bytes": 76800
+      },
+      "assistant_response": "I'll help you find some shows in Guangzhou.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'll help you find some shows in Guangzhou.",
+          "tool_calls": [
+            {
+              "id": "call-cf06c019-9a50-4b9b-8122-a25077f8289c-0",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Guangzhou"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "I'll help you find some shows in Guangzhou.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 19606.07099533081,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 111840,
+        "event_count": 26,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "I'll help you find some shows in Guangzhou."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—before that, search attractions in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_attractions.city=Shanghai"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_shows",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 142800
+      },
+      "assistant_response": "Sure, I'll search for attractions in Shanghai first. I've got the search results for attractions in Shanghai. The top ones are the Oriental Pearl Tower, Shanghai Disneyland, The Bund, and Yu Garden. Would you like more details on any of these, or should I go ahead and search for shows in Guangzhou now?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'll search for attractions in Shanghai first.",
+          "tool_calls": [
+            {
+              "id": "call-edc32cb9-9786-4e78-ac6d-b4a76267a4a9-1",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've got the search results for attractions in Shanghai. The top ones are the Oriental Pearl Tower, Shanghai Disneyland, The Bund, and Yu Garden. Would you like more details on any of these, or should I go ahead and search for shows in Guangzhou now?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-edc32cb9-9786-4e78-ac6d-b4a76267a4a9-1",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Shanghai:\n\n1. Oriental Pearl Tower (ID: attr_sh_001)\n   Type: Modern\n   Rating: 4.5/5.0\n   Ticket: ¥180\n   Hours: 08:00-22:00\n   Location: Pudong\n\n2. Shanghai Disneyland (ID: attr_sh_002)\n   Type: Theme Park\n   Rating: 4.7/5.0\n   Ticket: ¥399\n   Hours: 09:00-21:00\n   Location: Pudong\n\n3. The Bund (ID: attr_sh_003)\n   Type: Sightseeing\n   Rating: 4.6/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Huangpu\n\n4. Yu Garden (ID: attr_sh_004)\n   Type: Garden\n   Rating: 4.4/5.0\n   Ticket: ¥40\n   Hours: 08:30-17:00\n   Location: Huangpu\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_sh_001",
+                "name": "Oriental Pearl Tower",
+                "type": "Modern",
+                "rating": 4.5,
+                "price": 180,
+                "opening_hours": "08:00-22:00",
+                "location": "Pudong"
+              },
+              {
+                "attraction_id": "attr_sh_002",
+                "name": "Shanghai Disneyland",
+                "type": "Theme Park",
+                "rating": 4.7,
+                "price": 399,
+                "opening_hours": "09:00-21:00",
+                "location": "Pudong"
+              },
+              {
+                "attraction_id": "attr_sh_003",
+                "name": "The Bund",
+                "type": "Sightseeing",
+                "rating": 4.6,
+                "price": 0,
+                "opening_hours": "24 hours",
+                "location": "Huangpu"
+              },
+              {
+                "attraction_id": "attr_sh_004",
+                "name": "Yu Garden",
+                "type": "Garden",
+                "rating": 4.4,
+                "price": 40,
+                "opening_hours": "08:30-17:00",
+                "location": "Huangpu"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.031948089599609375
+          },
+          "latency_ms": 0.031948089599609375
+        }
+      ],
+      "total_latency_ms": 16307.879209518433,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 818400,
+        "event_count": 58,
+        "latency": {
+          "speech_ms": 3365.340087890625,
+          "tool_call_ms": 5942.175048828125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.259090752055974,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book tickets for Shanghai Disneyland for 2026-03-26.",
+        "timestamp": 10.259090752055974,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-26"
+          ]
+        },
+        "audio_size_bytes": 227400
+      },
+      "assistant_response": "Thanks, I'd be happy to help you book tickets for Shanghai Disneyland. For the date of March 26th, 2026, what time slot would you prefer—morning, afternoon, or a specific window? Also, could you tell me the visitor's name and how many tickets you'd like?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'd be happy to help you book tickets for Shanghai Disneyland. For the date of March 26th, 2026, what time slot would you prefer—morning, afternoon, or a specific window? Also, could you tell me the visitor's name and how many tickets you'd like?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 21587.80813217163,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 769920,
+        "event_count": 37,
+        "latency": {
+          "speech_ms": 5120.031982421875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.311995184527746,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the time slot to morning and use visitor name Emma Taylor.",
+        "timestamp": 16.311995184527746,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=Emma Taylor"
+          ]
+        },
+        "audio_size_bytes": 184800
+      },
+      "assistant_response": "Thanks, I've got the visitor name as Emma Taylor and the time slot as morning. How many tickets would you like to book? Once I have that, I can proceed with the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the visitor name as Emma Taylor and the time slot as morning. How many tickets would you like to book? Once I have that, I can proceed with the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 19380.0151348114,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 481920,
+        "event_count": 34,
+        "latency": {
+          "speech_ms": 13121.150146484375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 22.664719086423723,
+      "input_chunk": {
+        "role": "user",
+        "content": "Make it 5 attraction tickets.",
+        "timestamp": 22.664719086423723,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_attraction_ticket.ticket_count=5"
+          ]
+        },
+        "audio_size_bytes": 93000
+      },
+      "assistant_response": "Got it, I'll book five tickets for Emma Taylor. Your booking for five tickets to Shanghai Disneyland on March 26th, 2026, in the morning slot for Emma Taylor has been successful. The booking ID is AT50001, with individual ticket numbers AT50001-01 through AT50001-05. If you'd like to book anything else, such as shows in Guangzhou or train tickets, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, I'll book five tickets for Emma Taylor.",
+          "tool_calls": [
+            {
+              "id": "call-c54c7fc3-bf27-4d7a-8be3-9d78dfcf2e7b-2",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_sh_002",
+                "date": "2026-03-26",
+                "time_slot": "morning",
+                "visitor_name": "Emma Taylor",
+                "ticket_count": 5
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your booking for five tickets to Shanghai Disneyland on March 26th, 2026, in the morning slot for Emma Taylor has been successful. The booking ID is AT50001, with individual ticket numbers AT50001-01 through AT50001-05. If you'd like to book anything else, such as shows in Guangzhou or train tickets, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-c54c7fc3-bf27-4d7a-8be3-9d78dfcf2e7b-2",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_sh_002",
+            "date": "2026-03-26",
+            "time_slot": "morning",
+            "visitor_name": "Emma Taylor",
+            "ticket_count": 5
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_sh_002\nDate: 2026-03-26\nTime slot: morning\nVisitor: Emma Taylor\nTickets: 5\nTicket numbers: AT50001-01, AT50001-02, AT50001-03, AT50001-04, AT50001-05\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_sh_002",
+              "date": "2026-03-26",
+              "time_slot": "morning",
+              "visitor_name": "Emma Taylor",
+              "ticket_count": 5,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02",
+                "AT50001-03",
+                "AT50001-04",
+                "AT50001-05"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.026941299438476562
+          },
+          "latency_ms": 0.026941299438476562
+        }
+      ],
+      "total_latency_ms": 14178.88593673706,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1454880,
+        "event_count": 65,
+        "latency": {
+          "speech_ms": 1518.952880859375,
+          "tool_call_ms": 2185.60009765625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.334732197345698,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 27.334732197345698,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 105600
+      },
+      "assistant_response": "Sure, I'll search for trains from Beijing to Shanghai. I've found three trains from Beijing to Shanghai. The fastest options are the G1 departing at 6 AM arriving at 10:28 AM, and the G3 at 7 AM arriving at 11:35 AM, both high-speed with second class at ¥553. There's also a slower but cheaper express train, D321, leaving at 8:30 AM and arriving at 4:45 PM for ¥309 in second class. Which one interests you, or would you like me to book a specific train?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'll search for trains from Beijing to Shanghai.",
+          "tool_calls": [
+            {
+              "id": "call-aece877a-187c-410d-9fef-272ea616316e-3",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found three trains from Beijing to Shanghai. The fastest options are the G1 departing at 6 AM arriving at 10:28 AM, and the G3 at 7 AM arriving at 11:35 AM, both high-speed with second class at ¥553. There's also a slower but cheaper express train, D321, leaving at 8:30 AM and arriving at 4:45 PM for ¥309 in second class. Which one interests you, or would you like me to book a specific train?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-aece877a-187c-410d-9fef-272ea616316e-3",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04482269287109375
+          },
+          "latency_ms": 0.04482269287109375
+        }
+      ],
+      "total_latency_ms": 40020.93315124512,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1774560,
+        "event_count": 71,
+        "latency": {
+          "speech_ms": 266.626953125,
+          "tool_call_ms": 2187.260009765625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 32.37894999761925,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 for 2026-04-12; passenger Mia Anderson; First Class.",
+        "timestamp": 32.37894999761925,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_train.date=2026-04-12",
+            "book_train.passenger_name=Mia Anderson",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 271800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10388.648986816406,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 11
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 39.1102056419445,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the seat class to First Class.",
+        "timestamp": 39.1102056419445,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 100800
+      },
+      "assistant_response": "Thanks, I'll book the G3 train for Mia Anderson in first class on April 12th, 2026. Thanks, I've noted that—I'll go ahead and book first class for Mia Anderson on the G3 train.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'll book the G3 train for Mia Anderson in first class on April 12th, 2026.",
+          "tool_calls": [
+            {
+              "id": "call-da0ccf30-541e-48ca-8a90-40b33a599220-4",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-04-12",
+                "passenger_name": "Mia Anderson",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "Thanks, I've noted that—I'll go ahead and book first class for Mia Anderson on the G3 train.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-da0ccf30-541e-48ca-8a90-40b33a599220-4",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-04-12",
+            "passenger_name": "Mia Anderson",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-04-12\nPassenger: Mia Anderson\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-04-12",
+              "passenger_name": "Mia Anderson",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.025272369384765625
+          },
+          "latency_ms": 0.025272369384765625
+        }
+      ],
+      "total_latency_ms": 12845.424890518188,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 506400,
+        "event_count": 49,
+        "latency": {
+          "speech_ms": 2250.61181640625,
+          "tool_call_ms": 6828.42578125
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 92400
+      },
+      "assistant_response": "and book the ticket for you now. Your booking is confirmed with ID TR40001, and Mia Anderson has seat 01A in first class on the G3",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "and book the ticket for you now. Your booking is confirmed with ID TR40001, and Mia Anderson has seat 01A in first class on the G3",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2562.1187686920166,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 215520,
+        "event_count": 17,
+        "latency": {
+          "speech_ms": 0.119140625
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 48.63290714315571,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Cantonese Opera Classics: Orchestra seats, 4 tickets, buyer John Smith, phone 13830018365.",
+        "timestamp": 48.63290714315571,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.buyer_name=John Smith",
+            "book_show_ticket.phone=13830018365",
+            "book_show_ticket.seat_zone=Orchestra",
+            "book_show_ticket.ticket_count=4"
+          ]
+        },
+        "audio_size_bytes": 373800
+      },
+      "assistant_response": "Sure, I'll go ahead and search for shows in Guangzhou now. Thanks, I'd be happy to help you book those Cantonese opera tickets.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'll go ahead and search for shows in Guangzhou now.",
+          "tool_calls": [
+            {
+              "id": "call-af5592da-4304-4269-bc46-c6e5425a79ec-5",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Guangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "Thanks, I'd be happy to help you book those Cantonese opera tickets.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-af5592da-4304-4269-bc46-c6e5425a79ec-5",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Guangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 shows in Guangzhou:\n\n1. Joker Xue Concert (ID: show_gz_001)\n   Type: Concert\n   Venue: Guangzhou Tianhe Stadium\n   Date/Time: 2026-04-05 19:30\n   Duration: 180 min\n   Price: ¥380-1580\n   Available zones: Floor, Stand A, Stand B\n   Rating: 9.1/10.0\n\n2. Cantonese Opera Classics (ID: show_gz_002)\n   Type: Theater\n   Venue: Guangzhou Opera House\n   Date/Time: 2026-04-12 19:30\n   Duration: 150 min\n   Price: ¥180-680\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 8.9/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_gz_001",
+                "name": "Joker Xue Concert",
+                "type": "Concert",
+                "venue": "Guangzhou Tianhe Stadium",
+                "date": "2026-04-05",
+                "time": "19:30",
+                "duration": 180,
+                "price_range": "380-1580",
+                "available_zones": [
+                  "Floor",
+                  "Stand A",
+                  "Stand B"
+                ],
+                "rating": 9.1
+              },
+              {
+                "show_id": "show_gz_002",
+                "name": "Cantonese Opera Classics",
+                "type": "Theater",
+                "venue": "Guangzhou Opera House",
+                "date": "2026-04-12",
+                "time": "19:30",
+                "duration": 150,
+                "price_range": "180-680",
+                "available_zones": [
+                  "Orchestra",
+                  "First Floor",
+                  "Second Floor"
+                ],
+                "rating": 8.9
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03814697265625
+          },
+          "latency_ms": 0.03814697265625
+        }
+      ],
+      "total_latency_ms": 28638.279914855957,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 345600,
+        "event_count": 48,
+        "latency": {
+          "speech_ms": 0.173095703125,
+          "tool_call_ms": 1.076904296875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 16,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_shows",
+    "inserted_tools": [
+      "search_attractions",
+      "book_attraction_ticket",
+      "search_trains",
+      "book_train"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_attractions": {
+        "speech_ms": 3365.340087890625,
+        "tool_call_ms": 5942.175048828125
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 1518.952880859375,
+        "tool_call_ms": 2185.60009765625
+      },
+      "search_trains": {
+        "speech_ms": 266.626953125,
+        "tool_call_ms": 2187.260009765625
+      },
+      "book_show_ticket": {
+        "speech_ms": 0.173095703125,
+        "tool_call_ms": 1.076904296875
+      }
+    },
+    "info_complete_turn": {
+      "search_attractions": 2,
+      "book_attraction_ticket": 5,
+      "search_trains": 6,
+      "book_train": 7,
+      "search_shows": 1,
+      "book_show_ticket": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[re-called dangling]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_show_ticket",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

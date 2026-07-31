@@ -1,0 +1,608 @@
+{
+  "task_name": "tint_000048",
+  "start_time": "2026-05-06T21:53:01.224237",
+  "end_time": "2026-05-06T21:58:21.100458",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 118200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_8807277164549740554",
+              "name": "search_trains",
+              "arguments": {
+                "destination": "Shanghai",
+                "origin": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_trains",
+          "arguments": {
+            "destination": "Shanghai",
+            "origin": "Beijing"
+          },
+          "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+          "error": null,
+          "latency_ms": 0.04506111145019531,
+          "dangling": false,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 3624.023675918579,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5,
+        "latency": {
+          "tool_call_ms": 1383.8889598846436
+        },
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search restaurants for delivery in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_restaurants_delivery.city=Beijing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 177600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 0.6530284881591797,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.74592784726531,
+      "input_chunk": {
+        "role": "user",
+        "content": "Place a food order for delivery_id Starbucks CBD.",
+        "timestamp": 10.74592784726531,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 147600
+      },
+      "assistant_response": "To place your order, I need to know the items you'd like and your delivery address and phone number. What would you like to order from Starbucks CBD?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_16760166500876864272",
+              "name": "search_restaurants_delivery",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "To place your order, I need to know the items you'd like and your delivery address and phone number. What would you like to order from Starbucks CBD?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_restaurants_delivery",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "output": "Found 4 delivery restaurants in Beijing:\n\n1. McDonald's CBD (ID: dlv_bj_001)\n   Cuisine: Fast Food | Rating: 4.5/5.0\n   Delivery time: 30 min | Delivery fee: ¥5\n   Min order: ¥0\n\n2. Haidilao Hotpot (ID: dlv_bj_002)\n   Cuisine: Hotpot | Rating: 4.8/5.0\n   Delivery time: 45 min | Delivery fee: ¥8\n   Min order: ¥50\n\n3. Hunan Restaurant (ID: dlv_bj_003)\n   Cuisine: Hunan | Rating: 4.3/5.0\n   Delivery time: 25 min | Delivery fee: ¥3\n   Min order: ¥20\n\n4. Starbucks CBD (ID: dlv_bj_004)\n   Cuisine: Coffee | Rating: 4.6/5.0\n   Delivery time: 20 min | Delivery fee: ¥6\n   Min order: ¥0\n\n",
+          "error": null,
+          "latency_ms": 0.04982948303222656
+        }
+      ],
+      "total_latency_ms": 62075.75607299805,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 334564,
+        "event_count": 55,
+        "latency": {
+          "speech_ms": 54277.46915817261,
+          "tool_call_ms": 53142.765045166016
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.565755579432228,
+      "input_chunk": {
+        "role": "user",
+        "content": "Add items: Matcha Latte and Muffin.",
+        "timestamp": 16.565755579432228,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "place_food_order.items=Matcha Latte and Muffin"
+          ]
+        },
+        "audio_size_bytes": 99600
+      },
+      "assistant_response": "I still need your delivery address and phone number to proceed with the order. Could you please provide those?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I still need your delivery address and phone number to proceed with the order. Could you please provide those?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6959.014892578125,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 239042,
+        "event_count": 39,
+        "latency": {
+          "speech_ms": 1278.7561416625977
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.900057676387355,
+      "input_chunk": {
+        "role": "user",
+        "content": "Deliver to Room 306, Block H, Green Valley Apartment. Phone 13898765432.",
+        "timestamp": 20.900057676387355,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "place_food_order.delivery_address=Room 306, Block H, Green Valley Apartment",
+            "place_food_order.phone=13898765432"
+          ]
+        },
+        "audio_size_bytes": 328800
+      },
+      "assistant_response": "Your order for a matcha latte and a muffin from Starbucks CBD has been placed! It will be delivered to Room 306, Block H, Green Valley Apartment, and the total is ¥55. The estimated delivery time is 35 minutes. Now, would you like to proceed with booking that train ticket?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_40567726925215429",
+              "name": "place_food_order",
+              "arguments": {
+                "delivery_id": "dlv_bj_004",
+                "phone": "1389876432",
+                "items": "matcha latte, muffin",
+                "delivery_address": "Room 306, Block H, Green Valley Apartment"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your order for a matcha latte and a muffin from Starbucks CBD has been placed! It will be delivered to Room 306, Block H, Green Valley Apartment, and the total is ¥55. The estimated delivery time is 35 minutes. Now, would you like to proceed with booking that train ticket?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "place_food_order",
+          "arguments": {
+            "delivery_id": "dlv_bj_004",
+            "phone": "1389876432",
+            "items": "matcha latte, muffin",
+            "delivery_address": "Room 306, Block H, Green Valley Apartment"
+          },
+          "output": "Food order placed!\n\nOrder ID: FD90001\nRestaurant ID: dlv_bj_004\nItems: matcha latte, muffin\nDelivery address: Room 306, Block H, Green Valley Apartment\nPhone: 1389876432\nTotal: ¥55\nEstimated delivery: 35 min\nStatus: Placed\n",
+          "error": null,
+          "latency_ms": 0.032901763916015625
+        }
+      ],
+      "total_latency_ms": 122872.00284004211,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 741152,
+        "event_count": 88,
+        "latency": {
+          "speech_ms": 105697.68691062927,
+          "tool_call_ms": 104818.00580024719
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 94800
+      },
+      "assistant_response": "Understood. Before we finalize the booking, could you please provide the date you wish to travel, your full name, and which seat class you'd prefer (e.g., second class or first class)? Also, which specific train from the list would you like to book?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Understood. Before we finalize the booking, could you please provide the date you wish to travel, your full name, and which seat class you'd prefer (e.g., second class or first class)? Also, which specific train from the list would you like to book?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 14045.819759368896,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 585630,
+        "event_count": 77,
+        "latency": {
+          "speech_ms": 1204.5676708221436
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.768126964705765,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G1 on 2026-03-27.",
+        "timestamp": 31.768126964705765,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-03-27"
+          ]
+        },
+        "audio_size_bytes": 150600
+      },
+      "assistant_response": "Thanks! Can you also provide your full name for the ticket, and whether you prefer first or second class?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks! Can you also provide your full name for the ticket, and whether you prefer first or second class?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8859.237909317017,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 282270,
+        "event_count": 43,
+        "latency": {
+          "speech_ms": 1729.3577194213867
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.29212491549424,
+      "input_chunk": {
+        "role": "user",
+        "content": "Passenger name Hu Bin. Seat class First Class.",
+        "timestamp": 36.29212491549424,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.passenger_name=Hu Bin",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 135000
+      },
+      "assistant_response": "Your train ticket for Hu Been on train G1 from Beijing to Shanghai, departing on March 27, 2026, in first class is confirmed! Your booking ID is TR40001. Anything else I can help with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_4112489476212888395",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_001",
+                "passenger_name": "Hu Been",
+                "date": "2026-03-27",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your train ticket for Hu Been on train G1 from Beijing to Shanghai, departing on March 27, 2026, in first class is confirmed! Your booking ID is TR40001. Anything else I can help with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_001",
+            "passenger_name": "Hu Been",
+            "date": "2026-03-27",
+            "seat_class": "first class"
+          },
+          "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_001\nDate: 2026-03-27\nPassenger: Hu Been\nSeat: first class 01A\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.030994415283203125
+        }
+      ],
+      "total_latency_ms": 15147.863149642944,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 546242,
+        "event_count": 70,
+        "latency": {
+          "speech_ms": 2942.394971847534,
+          "tool_call_ms": 1385.378122329712
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 41.2544488417313,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Nanjing.",
+        "timestamp": 41.2544488417313,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Nanjing"
+          ]
+        },
+        "audio_size_bytes": 73800
+      },
+      "assistant_response": "I've found four hotels in Nanjing. To book one, I'll need the hotel's ID, your check in date, the number of nights you'll be staying, and the guest's name. Which hotel would you like to book?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_5647704101833464440",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Nanjing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found four hotels in Nanjing. To book one, I'll need the hotel's ID, your check in date, the number of nights you'll be staying, and the guest's name. Which hotel would you like to book?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Nanjing"
+          },
+          "output": "Found 4 hotels in Nanjing:\n\n1. InterContinental Nanjing (ID: hotel_nj_001)\n   Location: Xinjiekou | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Sofitel Nanjing Galaxy (ID: hotel_nj_002)\n   Location: Gulou | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Jinling Hotel Nanjing (ID: hotel_nj_003)\n   Location: Xinjiekou | 4 stars\n   Price: ¥650/night | Rating: 4.5/5.0\n\n4. Hanting Hotel Xuanwu (ID: hotel_nj_004)\n   Location: Xuanwu | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.0629425048828125
+        }
+      ],
+      "total_latency_ms": 63228.42979431152,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 429604,
+        "event_count": 66,
+        "latency": {
+          "speech_ms": 53728.4517288208,
+          "tool_call_ms": 52493.86501312256
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 45.02045888147438,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book hotel Hanting Hotel Xuanwu. Check in 2026-03-11 for 3 nights. Guest name Mike Davis.",
+        "timestamp": 45.02045888147438,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-11",
+            "book_hotel.guest_name=Mike Davis",
+            "book_hotel.nights=3"
+          ]
+        },
+        "audio_size_bytes": 342000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 23057.13701248169,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 2
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 15,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_trains",
+    "inserted_tools": [
+      "search_restaurants_delivery",
+      "place_food_order"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "tool_call_ms": 1383.8889598846436
+      },
+      "place_food_order": {
+        "speech_ms": 105697.68691062927,
+        "tool_call_ms": 104818.00580024719
+      },
+      "book_train": {
+        "speech_ms": 2942.394971847534,
+        "tool_call_ms": 1385.378122329712
+      },
+      "search_hotels": {
+        "speech_ms": 53728.4517288208,
+        "tool_call_ms": 52493.86501312256
+      }
+    },
+    "info_complete_turn": {
+      "search_restaurants_delivery": 2,
+      "place_food_order": 5,
+      "search_trains": 1,
+      "book_train": 8,
+      "search_hotels": 9,
+      "book_hotel": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "place_food_order",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13898765432' vs '1389876432'"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "passenger_name: 'Hu Bin' vs 'Hu Been'"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "entity_mishearing": 1,
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

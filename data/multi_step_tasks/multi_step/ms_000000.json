@@ -1,0 +1,127 @@
+{
+  "task_id": "ms_000000",
+  "scenario_type": "multi_step",
+  "server": "booking",
+  "template": "search_and_book_4",
+  "description": "Search properties, get room types, create booking, get booking",
+  "tools": [
+    "search_properties",
+    "get_room_types",
+    "create_booking",
+    "get_booking"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I'm looking for properties in Paris from June 3rd to August 27th, 2026.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_properties"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me the room types available for those dates at the first property you found.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_room_types"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Book a room for two guests in the first room type you showed me, from June 3rd to August 27th, 2026.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_booking"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you get the details of that booking for me?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_booking"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_properties",
+      "params": {
+        "city": "Paris",
+        "check_in_date": "2026-06-03",
+        "check_out_date": "2026-08-27"
+      },
+      "param_source": {
+        "city": "user",
+        "check_in_date": "user",
+        "check_out_date": "user"
+      }
+    },
+    {
+      "tool": "get_room_types",
+      "params": {
+        "property_id": "PROP-80010",
+        "check_in_date": "2026-06-03",
+        "check_out_date": "2026-08-27"
+      },
+      "param_source": {
+        "property_id": {
+          "from_tool": "search_properties",
+          "field": "property_id"
+        },
+        "check_in_date": "user",
+        "check_out_date": "user"
+      }
+    },
+    {
+      "tool": "create_booking",
+      "params": {
+        "room_type_id": "RT-80010",
+        "check_in_date": "2026-06-03",
+        "check_out_date": "2026-08-27",
+        "num_guests": 2
+      },
+      "param_source": {
+        "room_type_id": {
+          "from_tool": "get_room_types",
+          "field": "room_type_id"
+        },
+        "check_in_date": "user",
+        "check_out_date": "user",
+        "num_guests": "user"
+      }
+    },
+    {
+      "tool": "get_booking",
+      "params": {
+        "booking_id": "booking_1"
+      },
+      "param_source": {
+        "booking_id": {
+          "from_tool": "create_booking",
+          "field": "booking_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 4,
+  "info_complete_turn": {
+    "search_properties": 1,
+    "get_room_types": 2,
+    "create_booking": 3,
+    "get_booking": 3
+  }
+}

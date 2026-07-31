@@ -1,0 +1,180 @@
+{
+  "task_id": "int_000053",
+  "description": "Interruption (cancellation): 6 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find restaurants in Suzhou. Also book a train later.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Suzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Songhelou Restaurant for 2026-05-21.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-05-21"
+        ]
+      },
+      "timestamp": 5.479927300637337
+    },
+    {
+      "speaker": "user",
+      "text": "Set the time to 20:00 and party size 9.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.party_size=9",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 10.388906681121966
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Yang Yu and phone 13892862812.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Yang Yu",
+          "book_restaurant.phone=13892862812"
+        ]
+      },
+      "timestamp": 15.182862403600938
+    },
+    {
+      "speaker": "user",
+      "text": "Search movies in Chongqing.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_movies.city=Chongqing"
+        ]
+      },
+      "timestamp": 20.29738327082295
+    },
+    {
+      "speaker": "user",
+      "text": "Book Kung Fu Panda 4 at Wanda Cinema Jiefangbei.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_movie_ticket.cinema=Wanda Cinema Jiefangbei"
+        ]
+      },
+      "timestamp": 24.19083371374605
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the train.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 6,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "train",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Set showtime 11:30 and seat count 4.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.seat_count=4",
+          "book_movie_ticket.showtime=11:30"
+        ]
+      },
+      "timestamp": 33.4750847562711
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Zhao Min.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Zhao Min"
+        ]
+      },
+      "timestamp": 38.69738012829926
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_su_001",
+        "date": "2026-05-21",
+        "time": "20:00",
+        "party_size": 9,
+        "contact_name": "Yang Yu",
+        "phone": "13892862812"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cq_002",
+        "cinema": "Wanda Cinema Jiefangbei",
+        "showtime": "11:30",
+        "seat_count": 4,
+        "buyer_name": "Zhao Min"
+      }
+    }
+  ],
+  "transcript_hash": "24a5346e8d42",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 4,
+    "search_movies": 5,
+    "book_movie_ticket": 9
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 9,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "train",
+    "template": null,
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_trains",
+    "book_train"
+  ]
+}

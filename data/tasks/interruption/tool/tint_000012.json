@@ -1,0 +1,190 @@
+{
+  "task_id": "tint_000012",
+  "description": "Interruption (priority_no_return): 5 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_shows.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—check my ride status first. Use ride ID RIDE123456.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_ride_status.ride_id=RIDE123456"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_shows",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the show search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book tickets for the show National Centre Concert.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 14.64882197870007
+    },
+    {
+      "speaker": "user",
+      "text": "Seat zone: Second Floor. Ticket count: 4.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Second Floor",
+          "book_show_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 19.994554580976036
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name: Li Na. Phone: 13856781234.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Li Na",
+          "book_show_ticket.phone=13856781234"
+        ]
+      },
+      "timestamp": 24.77784252416144
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chengdu.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Chengdu"
+        ]
+      },
+      "timestamp": 29.33344078781895
+    },
+    {
+      "speaker": "user",
+      "text": "Book Lao Ma Tou Hotpot for 2026-03-26 at 11:30. Party size 10.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-26",
+          "book_restaurant.party_size=10",
+          "book_restaurant.time=11:30"
+        ]
+      },
+      "timestamp": 33.696879317992526
+    },
+    {
+      "speaker": "user",
+      "text": "Contact name Li Na. Phone 13892862812.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Li Na",
+          "book_restaurant.phone=13892862812"
+        ]
+      },
+      "timestamp": 39.962387158158975
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_bj_003",
+        "seat_zone": "Second Floor",
+        "ticket_count": 4,
+        "buyer_name": "Li Na",
+        "phone": "13856781234"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_002",
+        "date": "2026-03-26",
+        "time": "11:30",
+        "party_size": 10,
+        "contact_name": "Li Na",
+        "phone": "13892862812"
+      }
+    }
+  ],
+  "transcript_hash": "05625a71fdc5",
+  "info_complete_turn": {
+    "check_ride_status": 2,
+    "search_shows": 1,
+    "book_show_ticket": 6,
+    "search_restaurants": 7,
+    "book_restaurant": 9
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_shows",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "check_ride_status"
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "task_id": "pro_001045",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m gonna be in Chengdu later this month, and I’m already thinking about where I’ll leave the car while I’m around town.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_parking.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Before that, I’m heading from Beijing to Shanghai for a quick work thing, so I’ll be bouncing between the two cities a bit.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 9.111995761599594
+    },
+    {
+      "speaker": "user",
+      "text": "For the Shanghai leg, it’s that Air China flight CA1234 on 2026-03-15, and it’s all under Olivia Brown.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-03-15",
+          "book_flight.passenger_name=Olivia Brown"
+        ]
+      },
+      "timestamp": 17.80644285299742
+    },
+    {
+      "speaker": "user",
+      "text": "And yeah, the date on that ticket is 2026-03-15 — I keep repeating it so I don’t mess up my calendar again.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 26.3273306193634
+    },
+    {
+      "speaker": "user",
+      "text": "In Chengdu I’m planning to park at Chunxi Road IFS Parking starting 2026-03-25 15:00 for 24 hours, plate 川D78901, and my phone is 13892862812, then after that I’ll probably just head over to—",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13892862812",
+          "reserve_parking_spot.duration_hours=24",
+          "reserve_parking_spot.license_plate=川D78901",
+          "reserve_parking_spot.start_time=2026-03-25 15:00"
+        ]
+      },
+      "timestamp": 34.727525665355984
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_cd_001",
+        "start_time": "2026-03-25 15:00",
+        "duration_hours": 24,
+        "license_plate": "川D78901",
+        "driver_phone": "13892862812"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_001",
+        "date": "2026-03-15",
+        "passenger_name": "Olivia Brown"
+      }
+    }
+  ],
+  "transcript_hash": "ab7d887445a6",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_parking": 1,
+    "reserve_parking_spot": 5,
+    "search_flights": 2,
+    "book_flight": 3
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m gonna be in Chengdu",
+      "heading from Beijing to Shanghai",
+      "it’s that Air China flight CA1234 on 2026-03-15",
+      "all under Olivia Brown",
+      "planning to park at Chunxi Road IFS Parking starting 2026-03-25 15:00 for 24 hours"
+    ],
+    "ambiguity_notes": "Strong intent: the user narrates confirmed upcoming travel and parking details in a matter-of-fact way, with search context given before booking specifics. No requests or authorization/command phrasing."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_flights",
+      "search_parking"
+    ],
+    "write_tools": [
+      "book_flight",
+      "reserve_parking_spot"
+    ]
+  },
+  "expected_tool_if_act": "search_parking",
+  "expected_params_if_act": {
+    "city": "Chengdu"
+  }
+}

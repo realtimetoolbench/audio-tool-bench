@@ -1,0 +1,617 @@
+{
+  "task_name": "tint_000021",
+  "start_time": "2026-07-29T03:47:34.160462",
+  "end_time": "2026-07-29T03:48:13.456488",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt"
+        },
+        "audio_size_bytes": 72000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_MmEV5jOh63mmpaVe",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4544.743299484253,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 25,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Beijing, I meant Hangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_hotels.city=Hangzhou"
+          ]
+        },
+        "audio_size_bytes": 102000
+      },
+      "assistant_response": "Here are a few great hotel options in Hangzhou:\n\n1. The luxurious West Lake State Guesthouse, a 5-star stay at ¥1500 per night, rated 4.9 out of 5. It's right by West Lake.\n\n2. The Hilton Hangzhou West Lake, a lovely 4-star hotel at ¥800 per night, rated 4.6.\n\n3. A more budget-friendly option: Home Inn West Lake, 3 stars, at ¥450 per night, rated 4.3.\n\nLet me know which one catches your eye or if you’d like more details!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_jNKYRj6ni6oTlq8p",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are a few great hotel options in Hangzhou:\n\n1. The luxurious West Lake State Guesthouse, a 5-star stay at ¥1500 per night, rated 4.9 out of 5. It's right by West Lake.\n\n2. The Hilton Hangzhou West Lake, a lovely 4-star hotel at ¥800 per night, rated 4.6.\n\n3. A more budget-friendly option: Home Inn West Lake, 3 stars, at ¥450 per night, rated 4.3.\n\nLet me know which one catches your eye or if you’d like more details!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_jNKYRj6ni6oTlq8p",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Hangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_hz_001",
+                "name": "West Lake State Guesthouse",
+                "location": "West Lake",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_hz_002",
+                "name": "Hilton Hangzhou West Lake",
+                "location": "West Lake",
+                "stars": 4,
+                "price": 800,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_hz_003",
+                "name": "Home Inn West Lake",
+                "location": "West Lake",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.3
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.029087066650390625
+          },
+          "latency_ms": 0.029087066650390625
+        }
+      ],
+      "total_latency_ms": 7316.825151443481,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1377600,
+        "event_count": 277,
+        "latency": {
+          "speech_ms": 1186.680908203125,
+          "tool_call_ms": 474.069580078125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 8.973511897564702,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use city Hangzhou. Then book hotel Home Inn West Lake for guest Chen Ming.",
+        "timestamp": 8.973511897564702,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Chen Ming"
+          ]
+        },
+        "audio_size_bytes": 218400
+      },
+      "assistant_response": "Got it! We’re booking the Home Inn West Lake in Hangzhou for the guest Chen Ming. I just need to know the check-in date and how many nights you’d like to stay. Could you share that info with me?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! We’re booking the Home Inn West Lake in Hangzhou for the guest Chen Ming. I just need to know the check-in date and how many nights you’d like to stay. Could you share that info with me?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5598.457098007202,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 484800,
+        "event_count": 103,
+        "latency": {
+          "speech_ms": 379.47900390625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.575375664774734,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set hotel check-in date 2026-03-19 and nights 3.",
+        "timestamp": 15.575375664774734,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-19",
+            "book_hotel.nights=3"
+          ]
+        },
+        "audio_size_bytes": 220800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2952.5671005249023,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.798051190619226,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Beijing. Book Green Lotus for Zhang Wei.",
+        "timestamp": 20.798051190619226,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Zhang Wei",
+            "search_restaurants.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 181800
+      },
+      "assistant_response": "I found the Green Lotus restaurant in Beijing—it’s a vegetarian spot in Wangfujing, rated 4.6 out of 5. We’re ready to book it for Zhang Wei. Now I just need the reservation date, time, number of people, and a contact phone number. Then we can lock it in!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_DywUV4hJELU8nZ0H",
+              "name": "book_hotel",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_76dm1YbiVukhojCO",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "I found the Green Lotus restaurant in Beijing—it’s a vegetarian spot in Wangfujing, rated 4.6 out of 5. We’re ready to book it for Zhang Wei. Now I just need the reservation date, time, number of people, and a contact phone number. Then we can lock it in!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_DywUV4hJELU8nZ0H",
+          "tool_name": "book_hotel",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: BookHotelTool.execute() missing 4 required positional arguments: 'hotel_id', 'checkin_date', 'nights', and 'guest_name'",
+            "raw_output": null,
+            "error": "BookHotelTool.execute() missing 4 required positional arguments: 'hotel_id', 'checkin_date', 'nights', and 'guest_name'",
+            "latency_ms": 0.010967254638671875
+          },
+          "latency_ms": 0.010967254638671875
+        },
+        {
+          "tool_call_id": "call_76dm1YbiVukhojCO",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 11 restaurants in Beijing:\n\n1. Shu Xiang Yuan (ID: rst_bj_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.5/5.0\n\n2. Mala Youhuo (ID: rst_bj_002)\n   Cuisine: Sichuan\n   Location: Chaoyang\n   Rating: 4.3/5.0\n\n3. Jingwei Zhai (ID: rst_bj_003)\n   Cuisine: Beijing\n   Location: Downtown\n   Rating: 4.7/5.0\n\n4. Quanjude Roast Duck (ID: rst_bj_004)\n   Cuisine: Beijing\n   Location: Qianmen\n   Rating: 4.6/5.0\n\n5. Chuan Ban (ID: rst_bj_005)\n   Cuisine: Sichuan\n   Location: CBD\n   Rating: 4.4/5.0\n\n6. Da Dong Roast Duck (ID: rst_bj_006)\n   Cuisine: Beijing\n   Location: CBD\n   Rating: 4.8/5.0\n\n7. Beijing Garden (ID: rst_bj_007)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.7/5.0\n\n8. Imperial Kitchen (ID: rst_bj_008)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.6/5.0\n\n9. China Palace (ID: rst_bj_009)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.5/5.0\n\n10. Golden Dragon (ID: rst_bj_010)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.3/5.0\n\n11. Green Lotus (ID: rst_bj_011)\n   Cuisine: Vegetarian\n   Location: Wangfujing\n   Rating: 4.6/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_bj_001",
+                "name": "Shu Xiang Yuan",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.5
+              },
+              {
+                "restaurant_id": "rst_bj_002",
+                "name": "Mala Youhuo",
+                "cuisine": "Sichuan",
+                "location": "Chaoyang",
+                "rating": 4.3
+              },
+              {
+                "restaurant_id": "rst_bj_003",
+                "name": "Jingwei Zhai",
+                "cuisine": "Beijing",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_bj_004",
+                "name": "Quanjude Roast Duck",
+                "cuisine": "Beijing",
+                "location": "Qianmen",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_bj_005",
+                "name": "Chuan Ban",
+                "cuisine": "Sichuan",
+                "location": "CBD",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_bj_006",
+                "name": "Da Dong Roast Duck",
+                "cuisine": "Beijing",
+                "location": "CBD",
+                "rating": 4.8
+              },
+              {
+                "restaurant_id": "rst_bj_007",
+                "name": "Beijing Garden",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_bj_008",
+                "name": "Imperial Kitchen",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_bj_009",
+                "name": "China Palace",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.5
+              },
+              {
+                "restaurant_id": "rst_bj_010",
+                "name": "Golden Dragon",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.3
+              },
+              {
+                "restaurant_id": "rst_bj_011",
+                "name": "Green Lotus",
+                "cuisine": "Vegetarian",
+                "location": "Wangfujing",
+                "rating": 4.6
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.048160552978515625
+          },
+          "latency_ms": 0.048160552978515625
+        }
+      ],
+      "total_latency_ms": 7101.855278015137,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 686400,
+        "event_count": 176,
+        "latency": {
+          "speech_ms": 1190.201904296875,
+          "tool_call_ms": 2.105712890625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.96923734094214,
+      "input_chunk": {
+        "role": "user",
+        "content": "Restaurant booking: date 2026-03-12, time 19:00, party size 1.",
+        "timestamp": 26.96923734094214,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-03-12",
+            "book_restaurant.party_size=1",
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 291000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3756.3247680664062,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 33.17655868013806,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13812345678. Search flights from Beijing to Shanghai.",
+        "timestamp": 33.17655868013806,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.phone=13812345678",
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 284400
+      },
+      "assistant_response": "Perfect!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Perfect!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3672.9989051818848,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 4800,
+        "event_count": 18,
+        "latency": {
+          "speech_ms": 1.40478515625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 39.34342093456478,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-13 for passenger Zhou Jun with airline China Eastern.",
+        "timestamp": 39.34342093456478,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-03-13",
+            "book_flight.passenger_name=Zhou Jun"
+          ]
+        },
+        "audio_size_bytes": 350400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4347.707033157349,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 12,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Beijing"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Hangzhou"
+    },
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_hotels": {
+        "speech_ms": 1186.680908203125,
+        "tool_call_ms": 474.069580078125
+      },
+      "search_restaurants": {
+        "speech_ms": 1190.201904296875,
+        "tool_call_ms": 2.105712890625
+      },
+      "book_restaurant": {
+        "speech_ms": 1.40478515625
+      },
+      "search_flights": {
+        "speech_ms": 1.40478515625
+      }
+    },
+    "info_complete_turn": {
+      "search_hotels": 2,
+      "book_hotel": 4,
+      "search_restaurants": 5,
+      "book_restaurant": 7,
+      "search_flights": 7,
+      "book_flight": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_hotels', 'book_hotel', 'book_restaurant', 'search_flights', 'search_restaurants', 'book_flight'}，实际: {'search_restaurants', 'search_hotels', 'book_hotel'}，缺失: {'book_restaurant', 'book_flight', 'search_flights'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 1,
+    "extra_turns_details": "book_hotel: +1 turns (info@4, call@5)",
+    "behavior_score": 0.3333333333333333,
+    "behavior_score_details": "search_hotels: 1(correct), book_hotel: 0(param_mismatch), search_restaurants: 1(correct), book_restaurant: 0(not_called), search_flights: 0(not_called), book_flight: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "hotel_id: 'hotel_hz_003' vs 'None'; checkin_date: '2026-03-19' vs 'None'; nights: '3' vs 'None'; guest_name: 'Chen Ming' vs 'None'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_flights",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 1,
+        "missing_call": 3
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 3,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

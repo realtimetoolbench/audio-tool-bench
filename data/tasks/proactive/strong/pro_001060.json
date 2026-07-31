@@ -1,0 +1,172 @@
+{
+  "task_id": "pro_001060",
+  "description": "Generated: 5 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_medicine"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m going to be bouncing between Shenzhen and Shanghai soon, so I’ve been keeping an eye on places in Shenzhen for dinner and what’s happening in Shanghai sports-wise.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_restaurants.city=Shenzhen",
+          "search_sports_events.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "For that Shenzhen night out, I’m set on Din Tai Fung Shenzhen — it just feels like the safest crowd-pleaser for everyone.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 11.53374781860663
+    },
+    {
+      "speaker": "user",
+      "text": "It’s happening on 2026-05-03, and we’re aiming for 20:00 so nobody has to rush after work.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.date=2026-05-03",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 20.38853934068839
+    },
+    {
+      "speaker": "user",
+      "text": "There’ll be 6 of us, and it’s under Tang Xue — her number is 13822334455 in case the restaurant needs to reach someone.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.contact_name=Tang Xue",
+          "book_restaurant.party_size=6",
+          "book_restaurant.phone=13822334455"
+        ]
+      },
+      "timestamp": 27.72603089279379
+    },
+    {
+      "speaker": "user",
+      "text": "Then in Shanghai I’m planning to catch that CSL match, Shanghai Port vs Shandong Taishan — and we’re sitting in the Away Stand.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Away Stand"
+        ]
+      },
+      "timestamp": 37.06828373214268
+    },
+    {
+      "speaker": "user",
+      "text": "I’m grabbing 4 tickets, under Mason White — phone 13888990011 — and the ID number on file is 330102199708085678, and honestly I also need to swing by a pharmacy because I’ve been feeling a bit off lately, like maybe I should check what medicine to take…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Mason White",
+          "book_sports_ticket.id_number=330102199708085678",
+          "book_sports_ticket.phone=13888990011",
+          "book_sports_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 46.139044637926474
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sz_002",
+        "date": "2026-05-03",
+        "time": "20:00",
+        "party_size": 6,
+        "contact_name": "Tang Xue",
+        "phone": "13822334455"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_sh_002",
+        "seat_zone": "Away Stand",
+        "ticket_count": 4,
+        "buyer_name": "Mason White",
+        "phone": "13888990011",
+        "id_number": "330102199708085678"
+      }
+    },
+    {
+      "tool": "search_medicine",
+      "params": {}
+    }
+  ],
+  "transcript_hash": "1a190de4fc2e",
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 6,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "sports_event",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 4,
+    "search_sports_events": 1,
+    "book_sports_ticket": 6,
+    "search_medicine": 1
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m going to be bouncing between Shenzhen and Shanghai",
+      "I’m set on Din Tai Fung Shenzhen",
+      "It’s happening on 2026-05-03",
+      "we’re aiming for 20:00",
+      "There’ll be 6 of us",
+      "planning to catch that CSL match",
+      "I’m grabbing 4 tickets",
+      "need to swing by a pharmacy"
+    ],
+    "ambiguity_notes": "Strong intent: the user narrates confirmed plans with specific restaurant and ticket details, then naturally transitions toward a medicine-related concern."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_medicine",
+      "search_restaurants",
+      "search_sports_events"
+    ],
+    "write_tools": [
+      "book_restaurant",
+      "book_sports_ticket"
+    ]
+  },
+  "expected_tool_if_act": "search_restaurants",
+  "expected_params_if_act": {
+    "city": "Shenzhen"
+  }
+}

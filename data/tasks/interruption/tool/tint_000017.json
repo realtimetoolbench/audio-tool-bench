@@ -1,0 +1,190 @@
+{
+  "task_id": "tint_000017",
+  "description": "Interruption (priority_no_return): 5 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—before that, check my ride status for ride ID RIDE789012.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_ride_status.ride_id=RIDE789012"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the restaurant search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the restaurant China Palace.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 16.245955260734863
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation date to 2026-03-06 and time to 19:00.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-06",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 20.7302764452412
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 3; contact name Zhang Wei.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.party_size=3"
+        ]
+      },
+      "timestamp": 26.78433697916862
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone number 13898765432. Then search movies in Beijing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.phone=13898765432",
+          "search_movies.city=Beijing"
+        ]
+      },
+      "timestamp": 31.668039016789578
+    },
+    {
+      "speaker": "user",
+      "text": "Book 4 tickets for The Wandering Earth 3 at Bona International, showtime 16:10.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_movie_ticket.cinema=Bona International",
+          "book_movie_ticket.seat_count=4",
+          "book_movie_ticket.showtime=16:10"
+        ]
+      },
+      "timestamp": 37.99509872305179
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Chen Ming.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Chen Ming"
+        ]
+      },
+      "timestamp": 45.41804124194061
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_009",
+        "date": "2026-03-06",
+        "time": "19:00",
+        "party_size": 3,
+        "contact_name": "Zhang Wei",
+        "phone": "13898765432"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_bj_001",
+        "cinema": "Bona International",
+        "showtime": "16:10",
+        "seat_count": 4,
+        "buyer_name": "Chen Ming"
+      }
+    }
+  ],
+  "transcript_hash": "518a8caa5db9",
+  "info_complete_turn": {
+    "check_ride_status": 2,
+    "search_restaurants": 1,
+    "book_restaurant": 7,
+    "search_movies": 7,
+    "book_movie_ticket": 9
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "check_ride_status"
+  ]
+}

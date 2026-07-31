@@ -1,0 +1,229 @@
+{
+  "task_id": "int_000037",
+  "description": "Interruption (redirection): 8 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_shows",
+    "book_show_ticket",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_restaurants_delivery",
+    "place_food_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search attractions in Beijing. Then prepare to book Great Wall Badaling tickets.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book it for 2026-03-27, morning time slot.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-27",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 7.379876771532088
+    },
+    {
+      "speaker": "user",
+      "text": "Set visitor name Wang Fang and ticket count 2.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_attraction_ticket.visitor_name=Wang Fang"
+        ]
+      },
+      "timestamp": 12.723358217856525
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search sports events in Shanghai and book CSL: Shanghai Port vs Shandong Taishan, Away Stand.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Away Stand",
+          "search_sports_events.city=Shanghai"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "attraction",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "For that match, book 3 tickets under buyer name Li Na.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Li Na",
+          "book_sports_ticket.ticket_count=3"
+        ]
+      },
+      "timestamp": 26.80561501630286
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13851574217 and ID number 440106199512044567 for the sports tickets.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.id_number=440106199512044567",
+          "book_sports_ticket.phone=13851574217"
+        ]
+      },
+      "timestamp": 32.21388893672254
+    },
+    {
+      "speaker": "user",
+      "text": "Now search shows in Shanghai, then book Eason Chan Concert in Stand A.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Stand A",
+          "search_shows.city=Shanghai"
+        ]
+      },
+      "timestamp": 39.34138877608306
+    },
+    {
+      "speaker": "user",
+      "text": "For Eason Chan Concert, book 2 tickets. Buyer name Liu Yang. Phone 13830018365.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=2",
+          "book_show_ticket.buyer_name=Liu Yang",
+          "book_show_ticket.phone=13830018365",
+          "book_show_ticket.ticket_count=2"
+        ]
+      },
+      "timestamp": 45.78015675312738
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the attraction.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 53.16962215017675
+    },
+    {
+      "speaker": "user",
+      "text": "Now handle food delivery in Chengdu: search restaurants delivery, then place an order from Bo Bo Chicken for Spicy Bo Bo Chicken Skewers to Room 106, Building B, South Apartment; phone 13812345678.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 106, Building B, South Apartment",
+          "place_food_order.items=Spicy Bo Bo Chicken Skewers",
+          "place_food_order.phone=13812345678",
+          "search_restaurants_delivery.city=Chengdu"
+        ]
+      },
+      "timestamp": 57.95893769974971
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_sh_002",
+        "seat_zone": "Away Stand",
+        "ticket_count": 3,
+        "buyer_name": "Li Na",
+        "phone": "13851574217",
+        "id_number": "440106199512044567"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_sh_005",
+        "seat_zone": "Stand A",
+        "ticket_count": 2,
+        "buyer_name": "Liu Yang",
+        "phone": "13830018365"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_002",
+        "date": "2026-03-27",
+        "time_slot": "morning",
+        "visitor_name": "Wang Fang",
+        "ticket_count": 2
+      }
+    },
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_cd_002",
+        "items": "Spicy Bo Bo Chicken Skewers",
+        "delivery_address": "Room 106, Building B, South Apartment",
+        "phone": "13812345678"
+      }
+    }
+  ],
+  "transcript_hash": "c8a9c8ce9a1b",
+  "info_complete_turn": {
+    "search_sports_events": 4,
+    "book_sports_ticket": 6,
+    "search_shows": 7,
+    "book_show_ticket": 8,
+    "search_attractions": 1,
+    "book_attraction_ticket": 8,
+    "search_restaurants_delivery": 10,
+    "place_food_order": 10
+  },
+  "metadata": {
+    "tool_count": 8,
+    "turn_count": 10,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "attraction",
+    "generated": true
+  }
+}

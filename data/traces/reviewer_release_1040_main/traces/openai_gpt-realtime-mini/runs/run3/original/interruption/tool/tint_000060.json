@@ -1,0 +1,510 @@
+{
+  "task_name": "tint_000060",
+  "start_time": "2026-07-29T03:35:16.890111",
+  "end_time": "2026-07-29T03:35:50.151419",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Shanghai Hongqiao to Hangzhou East on 2026-03-12. Also plan a hotel in Hangzhou and attractions in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-12",
+            "search_attractions.city=Shanghai",
+            "search_hotels.city=Hangzhou"
+          ]
+        },
+        "audio_size_bytes": 451200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_S5LM3x41Doo18Q2A",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Shanghai Hongqiao",
+                "destination": "Hangzhou East"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9794.704914093018,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 34,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Cancel the train plan. Skip searching trains and do not book any train.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 211800
+      },
+      "assistant_response": "No problem at all! We’ll skip the train details. Let’s move on to planning a hotel in Hangzhou and attractions in Shanghai. Could you tell me the check-in date for the hotel and any specific attractions you're interested in seeing?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "No problem at all! We’ll skip the train details. Let’s move on to planning a hotel in Hangzhou and attractions in Shanghai. Could you tell me the check-in date for the hotel and any specific attractions you're interested in seeing?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1742.7170276641846,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 542400,
+        "event_count": 93,
+        "latency": {
+          "speech_ms": 504.358154296875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 15.676612150223598,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Hangzhou.",
+        "timestamp": 15.676612150223598,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 76800
+      },
+      "assistant_response": "Here are a few great hotel options in Hangzhou:\n\n1. West Lake State Guesthouse – 5 stars, ¥1500 per night, located right by West Lake, excellent rating of 4.9/5.\n\n2. Hilton Hangzhou West Lake – 4 stars, ¥800 per night, also near West Lake, with a solid rating of 4.6/5.\n\n3. Home Inn West Lake – 3 stars, ¥450 per night, good for budget travelers, rated 4.3/5.\n\nWhich one would you like to book, and what’s the check-in date?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_aRoHJrBnRk2225dy",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are a few great hotel options in Hangzhou:\n\n1. West Lake State Guesthouse – 5 stars, ¥1500 per night, located right by West Lake, excellent rating of 4.9/5.\n\n2. Hilton Hangzhou West Lake – 4 stars, ¥800 per night, also near West Lake, with a solid rating of 4.6/5.\n\n3. Home Inn West Lake – 3 stars, ¥450 per night, good for budget travelers, rated 4.3/5.\n\nWhich one would you like to book, and what’s the check-in date?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_aRoHJrBnRk2225dy",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Hangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_hz_001",
+                "name": "West Lake State Guesthouse",
+                "location": "West Lake",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_hz_002",
+                "name": "Hilton Hangzhou West Lake",
+                "location": "West Lake",
+                "stars": 4,
+                "price": 800,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_hz_003",
+                "name": "Home Inn West Lake",
+                "location": "West Lake",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.3
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.028133392333984375
+          },
+          "latency_ms": 0.028133392333984375
+        }
+      ],
+      "total_latency_ms": 5753.908157348633,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1252800,
+        "event_count": 228,
+        "latency": {
+          "speech_ms": 1054.8642578125,
+          "tool_call_ms": 375.098388671875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 19.547081671756587,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the hotel Hilton Hangzhou West Lake.",
+        "timestamp": 19.547081671756587,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 121200
+      },
+      "assistant_response": "Great choice! Could you tell me the check-in date and the guest name so I can go ahead and book it for you?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great choice! Could you tell me the check-in date and the guest name so I can go ahead and book it for you?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3314.2008781433105,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 254400,
+        "event_count": 56,
+        "latency": {
+          "speech_ms": 588.095947265625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.800007000688375,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set check-in date to 2026-03-12 and stay 4 nights.",
+        "timestamp": 24.800007000688375,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.nights=4"
+          ]
+        },
+        "audio_size_bytes": 223800
+      },
+      "assistant_response": "Perfect! I'll just need the guest name to complete the booking. Who will be staying at the hotel?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect! I'll just need the guest name to complete the booking. Who will be staying at the hotel?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4600.929975509644,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 247200,
+        "event_count": 50,
+        "latency": {
+          "speech_ms": 1087.19384765625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 30.232555717938872,
+      "input_chunk": {
+        "role": "user",
+        "content": "Guest name is Liu Yang. Confirm the hotel booking.",
+        "timestamp": 30.232555717938872,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Liu Yang"
+          ]
+        },
+        "audio_size_bytes": 141600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2111.9048595428467,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 35.30366176105803,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Shanghai.",
+        "timestamp": 35.30366176105803,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 93000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1576.2150287628174,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 39.56982747766614,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 2 tickets for The Bund on 2026-03-18 in the morning time slot for visitor Zhou Jun.",
+        "timestamp": 39.56982747766614,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-18",
+            "book_attraction_ticket.ticket_count=2",
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=Zhou Jun"
+          ]
+        },
+        "audio_size_bytes": 348000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_gZFGNzWsrr4L64mI",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_gZFGNzWsrr4L64mI",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Shanghai:\n\n1. Oriental Pearl Tower (ID: attr_sh_001)\n   Type: Modern\n   Rating: 4.5/5.0\n   Ticket: ¥180\n   Hours: 08:00-22:00\n   Location: Pudong\n\n2. Shanghai Disneyland (ID: attr_sh_002)\n   Type: Theme Park\n   Rating: 4.7/5.0\n   Ticket: ¥399\n   Hours: 09:00-21:00\n   Location: Pudong\n\n3. The Bund (ID: attr_sh_003)\n   Type: Sightseeing\n   Rating: 4.6/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Huangpu\n\n4. Yu Garden (ID: attr_sh_004)\n   Type: Garden\n   Rating: 4.4/5.0\n   Ticket: ¥40\n   Hours: 08:30-17:00\n   Location: Huangpu\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_sh_001",
+                "name": "Oriental Pearl Tower",
+                "type": "Modern",
+                "rating": 4.5,
+                "price": 180,
+                "opening_hours": "08:00-22:00",
+                "location": "Pudong"
+              },
+              {
+                "attraction_id": "attr_sh_002",
+                "name": "Shanghai Disneyland",
+                "type": "Theme Park",
+                "rating": 4.7,
+                "price": 399,
+                "opening_hours": "09:00-21:00",
+                "location": "Pudong"
+              },
+              {
+                "attraction_id": "attr_sh_003",
+                "name": "The Bund",
+                "type": "Sightseeing",
+                "rating": 4.6,
+                "price": 0,
+                "opening_hours": "24 hours",
+                "location": "Huangpu"
+              },
+              {
+                "attraction_id": "attr_sh_004",
+                "name": "Yu Garden",
+                "type": "Garden",
+                "rating": 4.4,
+                "price": 40,
+                "opening_hours": "08:30-17:00",
+                "location": "Huangpu"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.02574920654296875
+          },
+          "latency_ms": 0.02574920654296875
+        }
+      ],
+      "total_latency_ms": 4359.339952468872,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 24,
+        "latency": {
+          "tool_call_ms": 2.36376953125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 11,
+    "total_tool_calls": 2
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_attraction_ticket": {
+        "tool_call_ms": 2.36376953125
+      }
+    },
+    "info_complete_turn": {
+      "search_hotels": 1,
+      "book_hotel": 6,
+      "search_attractions": 1,
+      "book_attraction_ticket": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_hotels', 'book_attraction_ticket', 'book_hotel', 'search_attractions'}，实际: {'search_hotels', 'search_attractions'}，缺失: {'book_attraction_ticket', 'book_hotel'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 9,
+    "extra_turns_details": "search_hotels: +2 turns (info@1, call@3); search_attractions: +7 turns (info@1, call@8)",
+    "behavior_score": 0.5,
+    "behavior_score_details": "search_hotels: 1(correct), book_hotel: 0(not_called), search_attractions: 1(correct), book_attraction_ticket: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_attraction_ticket",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "task_id": "ms_000002",
+  "scenario_type": "multi_step",
+  "server": "spotify",
+  "template": "search_and_play_4",
+  "description": "Search tracks, get devices, transfer playback, play track",
+  "tools": [
+    "search_tracks",
+    "get_devices",
+    "transfer_playback",
+    "play_track"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you find some tracks with the word Burning in them?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_tracks"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me my available devices.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_devices"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Transfer playback to the first device on the list.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "transfer_playback"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Play the first track from the search results.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "play_track"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_tracks",
+      "params": {
+        "query": "Burning"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_devices",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "transfer_playback",
+      "params": {
+        "device_id": "device_001"
+      },
+      "param_source": {
+        "device_id": {
+          "from_tool": "get_devices",
+          "field": "device_id"
+        }
+      }
+    },
+    {
+      "tool": "play_track",
+      "params": {
+        "track_id": "track_003"
+      },
+      "param_source": {
+        "track_id": {
+          "from_tool": "search_tracks",
+          "field": "song_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 4,
+  "info_complete_turn": {
+    "search_tracks": 1,
+    "get_devices": 1,
+    "transfer_playback": 1,
+    "play_track": 1
+  }
+}

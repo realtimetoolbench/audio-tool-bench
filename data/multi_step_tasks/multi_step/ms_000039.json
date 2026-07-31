@@ -1,0 +1,159 @@
+{
+  "task_id": "ms_000039",
+  "scenario_type": "multi_step",
+  "server": "google_calendar",
+  "template": "full_event_management_6",
+  "description": "List calendars, create event, add attendee, set reminder, update event, get event",
+  "tools": [
+    "list_calendars",
+    "create_event",
+    "add_attendee",
+    "set_event_reminder",
+    "update_event",
+    "get_event"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you show me a list of my calendars?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_calendars"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create a new event called Sprint planning starting July 2nd at 3 PM and ending July 17th at 1 PM on my primary calendar.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_event"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add Bob from my company as an attendee with the email bob@company.com to that Sprint planning event.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_attendee"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Set a reminder for the Sprint planning event.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "set_event_reminder"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Update the Sprint planning event to be held at Zoom Meeting, and then get the details of that event.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "update_event",
+          "get_event"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_calendars",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "create_event",
+      "params": {
+        "calendar_id": "cal_001",
+        "title": "Sprint planning",
+        "start_time": "2026-07-02T15:00:00",
+        "end_time": "2026-07-17T13:00:00"
+      },
+      "param_source": {
+        "calendar_id": {
+          "from_tool": "list_calendars",
+          "field": "calendar_id"
+        },
+        "title": "user",
+        "start_time": "user",
+        "end_time": "user"
+      }
+    },
+    {
+      "tool": "add_attendee",
+      "params": {
+        "event_id": "event_1",
+        "email": "bob@company.com"
+      },
+      "param_source": {
+        "event_id": {
+          "from_tool": "create_event",
+          "field": "event_id"
+        },
+        "email": "user"
+      }
+    },
+    {
+      "tool": "set_event_reminder",
+      "params": {
+        "event_id": "event_1"
+      },
+      "param_source": {
+        "event_id": {
+          "from_tool": "create_event",
+          "field": "event_id"
+        }
+      }
+    },
+    {
+      "tool": "update_event",
+      "params": {
+        "event_id": "event_1",
+        "location": "Zoom Meeting"
+      },
+      "param_source": {
+        "event_id": {
+          "from_tool": "create_event",
+          "field": "event_id"
+        },
+        "location": "user"
+      }
+    },
+    {
+      "tool": "get_event",
+      "params": {
+        "event_id": "event_1"
+      },
+      "param_source": {
+        "event_id": {
+          "from_tool": "create_event",
+          "field": "event_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 6,
+  "info_complete_turn": {
+    "list_calendars": 1,
+    "create_event": 2,
+    "add_attendee": 3,
+    "set_event_reminder": 3,
+    "update_event": 5,
+    "get_event": 5
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "task_id": "pro_000524",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_doctors",
+    "book_appointment"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Been thinking about catching a movie while I’m in Wuhan this week, just to kill some time if my schedule doesn’t blow up.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_movies.city=Wuhan"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "If I actually go, it’d probably be that movie YOLO—I’ve been hearing people talk about it nonstop.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 8.833424180089848
+    },
+    {
+      "speaker": "user",
+      "text": "And I guess the most convenient spot would be Jinyi Cinema Jianghan Road, maybe aiming for the 14:30 showtime if it lines up.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_movie_ticket.cinema=Jinyi Cinema Jianghan Road",
+          "book_movie_ticket.showtime=14:30"
+        ]
+      },
+      "timestamp": 16.991741620364955
+    },
+    {
+      "speaker": "user",
+      "text": "I might even make it a little group thing—like 3 seats—and it’d be under the name Wang Fang if that matters.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Wang Fang",
+          "book_movie_ticket.seat_count=3"
+        ]
+      },
+      "timestamp": 26.505757527687763
+    },
+    {
+      "speaker": "user",
+      "text": "Also kind of considering lining up a doctor visit in Guangzhou—maybe with Lin Hua on 2026-04-10 in the afternoon for Tang Xue… not sure if I’ll actually do this.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_appointment.date=2026-04-10",
+          "book_appointment.patient_name=Tang Xue",
+          "book_appointment.time_slot=afternoon",
+          "search_doctors.city=Guangzhou"
+        ]
+      },
+      "timestamp": 34.78841099023439
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_wh_002",
+        "cinema": "Jinyi Cinema Jianghan Road",
+        "showtime": "14:30",
+        "seat_count": 3,
+        "buyer_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_gz_001",
+        "date": "2026-04-10",
+        "time_slot": "afternoon",
+        "patient_name": "Tang Xue"
+      }
+    }
+  ],
+  "transcript_hash": "6be7f48c55e2",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_medium",
+    "sample_type": "dag",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_movies": 1,
+    "book_movie_ticket": 4,
+    "search_doctors": 5,
+    "book_appointment": 5
+  },
+  "intent": {
+    "strength": "medium",
+    "signals": [
+      "Been thinking about",
+      "If I actually go",
+      "probably",
+      "maybe aiming",
+      "I guess",
+      "might",
+      "kind of considering",
+      "not sure if I’ll actually do this"
+    ],
+    "ambiguity_notes": "Ambiguous intent: the user is thinking out loud with hedges and uncertainty, surfacing details as tentative plans rather than giving explicit authorization."
+  },
+  "strength": "medium",
+  "tool_universe": {
+    "read_tools": [
+      "search_doctors",
+      "search_movies"
+    ],
+    "write_tools": [
+      "book_appointment",
+      "book_movie_ticket"
+    ]
+  },
+  "acceptable_decisions": [
+    "offer",
+    "ask"
+  ]
+}

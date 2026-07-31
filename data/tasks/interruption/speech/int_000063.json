@@ -1,0 +1,119 @@
+{
+  "task_id": "int_000063",
+  "description": "Interruption (cancellation): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Suzhou, and also help me with a flight.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Suzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Pick Shangri-La Suzhou for the hotel booking.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 5.836201023604085
+    },
+    {
+      "speaker": "user",
+      "text": "Check in on 2026-03-14.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-14"
+        ]
+      },
+      "timestamp": 10.930963192250077
+    },
+    {
+      "speaker": "user",
+      "text": "Never mind the flight, I don't need it.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "flight",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book it for 4 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.nights=4"
+        ]
+      },
+      "timestamp": 19.94093559648837
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name: Xie Peng.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Xie Peng"
+        ]
+      },
+      "timestamp": 24.19317050877871
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_su_001",
+        "checkin_date": "2026-03-14",
+        "nights": 4,
+        "guest_name": "Xie Peng"
+      }
+    }
+  ],
+  "transcript_hash": "eb860ed77754",
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "flight",
+    "template": "business_trip",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_flights",
+    "book_flight"
+  ]
+}

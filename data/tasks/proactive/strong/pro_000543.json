@@ -1,0 +1,195 @@
+{
+  "task_id": "pro_000543",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’ve got this Guangzhou trip coming up, and I’m trying to get my head around where I’ll stay once I’m in the city.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, before all that, I’m doing Beijing to Shanghai as the first leg, so I’ve been thinking through that whole route.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 8.544557430897799
+    },
+    {
+      "speaker": "user",
+      "text": "And since I’ll be in Guangzhou, I keep thinking about food plans there too—like what restaurants are worth lining up in advance.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_restaurants.city=Guangzhou"
+        ]
+      },
+      "timestamp": 17.416151997521844
+    },
+    {
+      "speaker": "user",
+      "text": "For the Beijing–Shanghai hop, it’s on China Eastern, flight MU5678, dated 2026-03-03, and it’s under Chen Ming.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-03-03",
+          "book_flight.passenger_name=Chen Ming"
+        ]
+      },
+      "timestamp": 26.72294415885026
+    },
+    {
+      "speaker": "user",
+      "text": "In Guangzhou, I’m set on the Four Seasons Guangzhou—check-in is 2026-03-14, staying 4 nights, and the guest name is Yang Yu.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-14",
+          "book_hotel.guest_name=Yang Yu",
+          "book_hotel.nights=4"
+        ]
+      },
+      "timestamp": 35.29612552108451
+    },
+    {
+      "speaker": "user",
+      "text": "Then later on there’s that big dinner at Panxi Restaurant on 2026-05-03 at 19:00, for 8 people.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.date=2026-05-03",
+          "book_restaurant.party_size=8",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 44.80124493252926
+    },
+    {
+      "speaker": "user",
+      "text": "It’s under Hu Bin, and the contact number on it is 13811223344—honestly I’m already thinking about what to order when we get there, like maybe start with…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.contact_name=Hu Bin",
+          "book_restaurant.phone=13811223344"
+        ]
+      },
+      "timestamp": 52.14063270374367
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_gz_002",
+        "checkin_date": "2026-03-14",
+        "nights": 4,
+        "guest_name": "Yang Yu"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-03",
+        "passenger_name": "Chen Ming"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_gz_003",
+        "date": "2026-05-03",
+        "time": "19:00",
+        "party_size": 8,
+        "contact_name": "Hu Bin",
+        "phone": "13811223344"
+      }
+    }
+  ],
+  "transcript_hash": "2b3307bf643d",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "business_trip",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 5,
+    "search_flights": 2,
+    "book_flight": 4,
+    "search_restaurants": 3,
+    "book_restaurant": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’ve got this Guangzhou trip coming up",
+      "I’m doing Beijing to Shanghai as the first leg",
+      "I’m set on the Four Seasons Guangzhou",
+      "it’s on China Eastern, flight MU5678",
+      "big dinner at Panxi Restaurant"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed travel, hotel stay, and dinner plans with specific dates, names, and identifiers; no requests or authorization phrasing."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_flights",
+      "search_hotels",
+      "search_restaurants"
+    ],
+    "write_tools": [
+      "book_flight",
+      "book_hotel",
+      "book_restaurant"
+    ]
+  },
+  "expected_tool_if_act": "search_hotels",
+  "expected_params_if_act": {
+    "city": "Guangzhou"
+  }
+}

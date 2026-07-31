@@ -1,0 +1,129 @@
+{
+  "task_id": "tint_000098",
+  "description": "Interruption (tool_cancel): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Xi'an on 2026-05-15, and also plan Xi'an attractions for that day.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-05-15",
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the train part. Cancel anything about trains.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_trains",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Xi'an.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 13.086915606625443
+    },
+    {
+      "speaker": "user",
+      "text": "Book Bell Tower tickets for 2026-05-15.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 17.42212335901873
+    },
+    {
+      "speaker": "user",
+      "text": "Set the time slot to afternoon and the visitor name to Zhou Jun.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.time_slot=afternoon",
+          "book_attraction_ticket.visitor_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 22.49685831998242
+    },
+    {
+      "speaker": "user",
+      "text": "Buy 3 tickets total.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=3"
+        ]
+      },
+      "timestamp": 29.017964294209396
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_xa_004",
+        "date": "2026-05-15",
+        "time_slot": "afternoon",
+        "visitor_name": "Zhou Jun",
+        "ticket_count": 3
+      }
+    }
+  ],
+  "transcript_hash": "d8a23c7ccf79",
+  "info_complete_turn": {
+    "search_attractions": 1,
+    "book_attraction_ticket": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ]
+  },
+  "forbidden_tools": [
+    "search_trains",
+    "book_train"
+  ],
+  "cancelled_tools": [
+    "search_trains",
+    "book_train"
+  ]
+}

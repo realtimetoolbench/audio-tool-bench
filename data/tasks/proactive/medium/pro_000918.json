@@ -1,0 +1,147 @@
+{
+  "task_id": "pro_000918",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Been thinking about a little trip, and Beijing keeps coming up as the place I’d base myself for a bit.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "And if I do that, I might hop over from Beijing to Shanghai at some point, just to break things up.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 7.9313968090302565
+    },
+    {
+      "speaker": "user",
+      "text": "For the Beijing stay, I was eyeing Novotel Beijing Peace, maybe checking in on 2026-05-27 and staying like 5 nights.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-27",
+          "book_hotel.nights=5",
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 15.835958447925478
+    },
+    {
+      "speaker": "user",
+      "text": "If I actually follow through, I guess I’d put the hotel under the name Li Na.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.guest_name=Li Na"
+        ]
+      },
+      "timestamp": 24.52111281997874
+    },
+    {
+      "speaker": "user",
+      "text": "Also been toying with taking China Eastern flight MU5678 on 2026-03-22, and the passenger name would be Cao Yun… not sure if I’ll actually do this.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-03-22",
+          "book_flight.passenger_name=Cao Yun"
+        ]
+      },
+      "timestamp": 31.39274365700383
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_005",
+        "checkin_date": "2026-05-27",
+        "nights": 5,
+        "guest_name": "Li Na"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-22",
+        "passenger_name": "Cao Yun"
+      }
+    }
+  ],
+  "transcript_hash": "92581be72bd3",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_medium",
+    "sample_type": "dag",
+    "template": "business_trip",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_hotels": 3,
+    "book_hotel": 4,
+    "search_flights": 2,
+    "book_flight": 5
+  },
+  "intent": {
+    "strength": "medium",
+    "signals": [
+      "Been thinking about",
+      "might",
+      "at some point",
+      "was eyeing",
+      "maybe",
+      "I guess",
+      "been toying with",
+      "not sure if I’ll actually do this"
+    ],
+    "ambiguity_notes": "User is thinking out loud and considering options; details emerge gradually with consistent hedging and no authorization/command language."
+  },
+  "strength": "medium",
+  "tool_universe": {
+    "read_tools": [
+      "search_flights",
+      "search_hotels"
+    ],
+    "write_tools": [
+      "book_flight",
+      "book_hotel"
+    ]
+  },
+  "acceptable_decisions": [
+    "offer",
+    "ask"
+  ]
+}

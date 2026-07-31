@@ -1,0 +1,175 @@
+{
+  "task_id": "int_000089",
+  "description": "Interruption (redirection): 8 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "list_bills",
+    "search_courses",
+    "enroll_course",
+    "search_restaurants_delivery"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "List bills now.",
+      "metadata": {
+        "phase": "original"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search delivery restaurants in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants_delivery.city=Shanghai"
+        ]
+      },
+      "timestamp": 4.23928398485857
+    },
+    {
+      "speaker": "user",
+      "text": "Search courses, then enroll Lin Bo in Python Programming Basics.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "enroll_course.student_name=Lin Bo"
+        ]
+      },
+      "timestamp": 8.878534672436498
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, first search flights from Beijing to Shanghai, then book China Eastern MU5678 for Yang Yu on 2026-03-18.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "book_flight.date=2026-03-18",
+          "book_flight.passenger_name=Yang Yu",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "list_bills",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Finish that flight booking: passenger Yang Yu, airline China Eastern, date 2026-03-18.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 23.72582207623678
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Wuhan, then book Home Inn Guanggu for John Smith, check in 2026-04-20 for 5 nights.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-20",
+          "book_hotel.guest_name=John Smith",
+          "book_hotel.nights=5",
+          "search_hotels.city=Wuhan"
+        ]
+      },
+      "timestamp": 31.043036753955768
+    },
+    {
+      "speaker": "user",
+      "text": "Now back to the list_bills.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 38.74068675644288
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-18",
+        "passenger_name": "Yang Yu"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_wh_003",
+        "checkin_date": "2026-04-20",
+        "nights": 5,
+        "guest_name": "John Smith"
+      }
+    },
+    {
+      "tool": "list_bills",
+      "params": {}
+    },
+    {
+      "tool": "search_courses",
+      "params": {}
+    },
+    {
+      "tool": "enroll_course",
+      "params": {
+        "course_id": "CS101",
+        "student_name": "Lin Bo"
+      }
+    },
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "3c11faa7c09e",
+  "info_complete_turn": {
+    "search_flights": 4,
+    "book_flight": 4,
+    "search_hotels": 6,
+    "book_hotel": 6,
+    "list_bills": 1,
+    "search_courses": 1,
+    "enroll_course": 3,
+    "search_restaurants_delivery": 2
+  },
+  "metadata": {
+    "tool_count": 8,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "list_bills",
+    "template": null,
+    "generated": true
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "task_id": "tint_000005",
+  "description": "Interruption (tool_cancel): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search trains from Hangzhou to Chengdu on 2026-03-16. Also, I want attractions in Chengdu and a hotel in Hangzhou.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_attractions.city=Chengdu",
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the train. Cancel the train search and any train booking.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_trains",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 14.560107580909238
+    },
+    {
+      "speaker": "user",
+      "text": "Book attraction tickets for Giant Panda Base on 2026-03-16.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-16"
+        ]
+      },
+      "timestamp": 19.363218736709037
+    },
+    {
+      "speaker": "user",
+      "text": "Set the time slot to morning. Visitor name Liu Yang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Liu Yang"
+        ]
+      },
+      "timestamp": 24.918866326499632
+    },
+    {
+      "speaker": "user",
+      "text": "Ticket count 2.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=2"
+        ]
+      },
+      "timestamp": 30.3558050132452
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 33.93760655368337
+    },
+    {
+      "speaker": "user",
+      "text": "Book Home Inn West Lake. Check in 2026-03-16 for 1 night. Guest name Zhou Jun.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-16",
+          "book_hotel.guest_name=Zhou Jun",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 38.03667924806962
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_001",
+        "date": "2026-03-16",
+        "time_slot": "morning",
+        "visitor_name": "Liu Yang",
+        "ticket_count": 2
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_003",
+        "checkin_date": "2026-03-16",
+        "nights": 1,
+        "guest_name": "Zhou Jun"
+      }
+    }
+  ],
+  "transcript_hash": "f096d3441b2c",
+  "info_complete_turn": {
+    "search_attractions": 1,
+    "book_attraction_ticket": 6,
+    "search_hotels": 1,
+    "book_hotel": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ]
+  },
+  "forbidden_tools": [
+    "search_trains",
+    "book_train"
+  ],
+  "cancelled_tools": [
+    "search_trains",
+    "book_train"
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "task_id": "tint_000083",
+  "description": "Interruption (tool_cancel): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Beijing for 2026-04-20 around 19:00, and also find restaurants in Beijing.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-04-20",
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Cancel the movie part. Skip searching movies and do not book any movie tickets.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_movies",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 15.060492833387872
+    },
+    {
+      "speaker": "user",
+      "text": "Book a restaurant table at Imperial Kitchen.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 19.467828301642463
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation date to 2026-04-20 and the time to 20:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 25.117515223683345
+    },
+    {
+      "speaker": "user",
+      "text": "Make it for 10 people. Use the contact name David Liu.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=David Liu",
+          "book_restaurant.party_size=10"
+        ]
+      },
+      "timestamp": 31.519722114456535
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone number 13811223344 for the reservation.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13811223344"
+        ]
+      },
+      "timestamp": 36.77820011133746
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_008",
+        "date": "2026-04-20",
+        "time": "20:00",
+        "party_size": 10,
+        "contact_name": "David Liu",
+        "phone": "13811223344"
+      }
+    }
+  ],
+  "transcript_hash": "dc389b579657",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "date",
+    "generated": true,
+    "dangling_call": "search_movies",
+    "forbidden_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ]
+  },
+  "forbidden_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "cancelled_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ]
+}

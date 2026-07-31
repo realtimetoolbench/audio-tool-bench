@@ -1,0 +1,632 @@
+{
+  "task_name": "tint_000049",
+  "start_time": "2026-07-29T02:56:47.320762",
+  "end_time": "2026-07-29T02:58:43.790125",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 115800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_3xYAA1wCTZXAxAN4",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_3xYAA1wCTZXAxAN4",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03814697265625
+          },
+          "latency_ms": 0.03814697265625,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 7618.750095367432,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 33,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Hold on—before that, track my package with tracking number YT9876543210.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "track_package.tracking_number=YT9876543210"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 300600
+      },
+      "assistant_response": "Hmm, looks like that tracking number didn’t pull up any results. Maybe double-check the number or see if there’s been a delay in the system updates. But no worries—we can get back to the Beijing to Shanghai train options whenever you're ready. Just let me know what you'd like to do next!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_z2W7o6eSYyPIcVrx",
+              "name": "track_package",
+              "arguments": {
+                "tracking_number": "YT986543210"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Hmm, looks like that tracking number didn’t pull up any results. Maybe double-check the number or see if there’s been a delay in the system updates. But no worries—we can get back to the Beijing to Shanghai train options whenever you're ready. Just let me know what you'd like to do next!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_z2W7o6eSYyPIcVrx",
+          "tool_name": "track_package",
+          "arguments": {
+            "tracking_number": "YT986543210"
+          },
+          "result": {
+            "success": false,
+            "output": "Package not found: YT986543210",
+            "raw_output": null,
+            "error": "Not found",
+            "latency_ms": 0.023603439331054688
+          },
+          "latency_ms": 0.023603439331054688
+        }
+      ],
+      "total_latency_ms": 11110.274076461792,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 693600,
+        "event_count": 162,
+        "latency": {
+          "speech_ms": 1500.935791015625,
+          "tool_call_ms": 485.22900390625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the train search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 108000
+      },
+      "assistant_response": "Sure thing! We’ve got three solid options from Beijing to Shanghai.\n\n1. The G1 high-speed train leaves at 06:00 and takes about 4 hours 28 minutes.\n\n2. The G3 high-speed train leaves at 07:00, just a bit later, and the ride is about 4 hours 35 minutes.\n\n3. The D321 express train leaves at 08:30, taking a bit longer—around 8 hours 15 minutes—but it's more affordable.\n\nWhat time and class are you leaning toward?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing! We’ve got three solid options from Beijing to Shanghai.\n\n1. The G1 high-speed train leaves at 06:00 and takes about 4 hours 28 minutes.\n\n2. The G3 high-speed train leaves at 07:00, just a bit later, and the ride is about 4 hours 35 minutes.\n\n3. The D321 express train leaves at 08:30, taking a bit longer—around 8 hours 15 minutes—but it's more affordable.\n\nWhat time and class are you leaning toward?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 26456.12072944641,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1334400,
+        "event_count": 238,
+        "latency": {
+          "speech_ms": 811.37890625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.847411589654744,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G1 for Chen Ming.",
+        "timestamp": 16.847411589654744,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.passenger_name=Chen Ming"
+          ]
+        },
+        "audio_size_bytes": 91200
+      },
+      "assistant_response": "Got it! What date should I book the G1 train for Chen Ming?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! What date should I book the G1 train for Chen Ming?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4494.121074676514,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 170400,
+        "event_count": 46,
+        "latency": {
+          "speech_ms": 524.252685546875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.991811024077883,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the train date to 2026-03-12 and seat class to First Class.",
+        "timestamp": 20.991811024077883,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-03-12",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 252600
+      },
+      "assistant_response": "All set! Chen Ming’s first class ticket on the G1 train from Beijing to Shanghai for 2026-03-12 is confirmed. Seat 01A is reserved. If you need anything else, just shout!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_lqfPIScyQdX4vYLh",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_001",
+                "date": "2026-03-12",
+                "passenger_name": "Chen Ming",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "All set! Chen Ming’s first class ticket on the G1 train from Beijing to Shanghai for 2026-03-12 is confirmed. Seat 01A is reserved. If you need anything else, just shout!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_lqfPIScyQdX4vYLh",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_001",
+            "date": "2026-03-12",
+            "passenger_name": "Chen Ming",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_001\nDate: 2026-03-12\nPassenger: Chen Ming\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_001",
+              "date": "2026-03-12",
+              "passenger_name": "Chen Ming",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.02288818359375
+          },
+          "latency_ms": 0.02288818359375
+        }
+      ],
+      "total_latency_ms": 21024.795055389404,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 571200,
+        "event_count": 171,
+        "latency": {
+          "speech_ms": 7542.09619140625,
+          "tool_call_ms": 4033.44580078125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.178750856557517,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search rental cars in Chengdu.",
+        "timestamp": 27.178750856557517,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_cars.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 85800
+      },
+      "assistant_response": "Here are two great options for rental cars in Chengdu: \n\n1. The Nissan Sylphy, an economy option at ¥140 per day. \n\n2. The Toyota Camry, a comfort option at ¥260 per day.\n\nWhich one fits your needs?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_7oMySbaSjhvKBuEG",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are two great options for rental cars in Chengdu: \n\n1. The Nissan Sylphy, an economy option at ¥140 per day. \n\n2. The Toyota Camry, a comfort option at ¥260 per day.\n\nWhich one fits your needs?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_7oMySbaSjhvKBuEG",
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 rental cars in Chengdu:\n\n1. Nissan Sylphy (ID: car_cd_001)\n   Type: economy | Seats: 5\n   Price: ¥140/day | Insurance: ¥25/day\n   Rating: 4.3/5.0\n\n2. Toyota Camry (ID: car_cd_002)\n   Type: comfort | Seats: 5\n   Price: ¥260/day | Insurance: ¥45/day\n   Rating: 4.7/5.0\n\n",
+            "raw_output": [
+              {
+                "car_id": "car_cd_001",
+                "model": "Nissan Sylphy",
+                "type": "economy",
+                "seats": 5,
+                "price_per_day": 140,
+                "insurance": 25,
+                "rating": 4.3
+              },
+              {
+                "car_id": "car_cd_002",
+                "model": "Toyota Camry",
+                "type": "comfort",
+                "seats": 5,
+                "price_per_day": 260,
+                "insurance": 45,
+                "rating": 4.7
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03409385681152344
+          },
+          "latency_ms": 0.03409385681152344
+        }
+      ],
+      "total_latency_ms": 20720.553874969482,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 580800,
+        "event_count": 139,
+        "latency": {
+          "speech_ms": 2545.036865234375,
+          "tool_call_ms": 1292.208984375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.359931118010604,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the Nissan Sylphy for Zhang Wei.",
+        "timestamp": 31.359931118010604,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_car.renter_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 110400
+      },
+      "assistant_response": "You got it! What’s the pickup date, and how many days will Zhang Wei need the car for?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "You got it! What’s the pickup date, and how many days will Zhang Wei need the car for?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 12217.89002418518,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 216000,
+        "event_count": 56,
+        "latency": {
+          "speech_ms": 3612.786865234375
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.26774117013564,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set pickup date to 2026-03-02 for 4 days.",
+        "timestamp": 36.26774117013564,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_car.days=4",
+            "book_car.pickup_date=2026-03-02"
+          ]
+        },
+        "audio_size_bytes": 201000
+      },
+      "assistant_response": "Fantastic! The Nissan Sylphy is booked for Zhang Wei from 2026-03-02 for 4 days. Insurance is included, and everything’s confirmed. If you need any more help or changes, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_U1lgKClDNG3lGEO4",
+              "name": "book_car",
+              "arguments": {
+                "car_id": "car_cd_001",
+                "renter_name": "Zhang Wei",
+                "pickup_date": "2026-03-02",
+                "days": 4
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Fantastic! The Nissan Sylphy is booked for Zhang Wei from 2026-03-02 for 4 days. Insurance is included, and everything’s confirmed. If you need any more help or changes, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_U1lgKClDNG3lGEO4",
+          "tool_name": "book_car",
+          "arguments": {
+            "car_id": "car_cd_001",
+            "renter_name": "Zhang Wei",
+            "pickup_date": "2026-03-02",
+            "days": 4
+          },
+          "result": {
+            "success": true,
+            "output": "Car rental booking successful!\n\nBooking ID: CR30001\nCar ID: car_cd_001\nPickup: 2026-03-02\nDays: 4\nRenter: Zhang Wei\nInsurance: Included\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "CR30001",
+              "car_id": "car_cd_001",
+              "pickup_date": "2026-03-02",
+              "days": 4,
+              "renter_name": "Zhang Wei",
+              "with_insurance": true,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03695487976074219
+          },
+          "latency_ms": 0.03695487976074219
+        }
+      ],
+      "total_latency_ms": 12819.401979446411,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 525600,
+        "event_count": 165,
+        "latency": {
+          "speech_ms": 1900.391845703125,
+          "tool_call_ms": 1092.031982421875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "track_package": {
+        "speech_ms": 1500.935791015625,
+        "tool_call_ms": 485.22900390625
+      },
+      "book_train": {
+        "speech_ms": 7542.09619140625,
+        "tool_call_ms": 4033.44580078125
+      },
+      "search_cars": {
+        "speech_ms": 2545.036865234375,
+        "tool_call_ms": 1292.208984375
+      },
+      "book_car": {
+        "speech_ms": 1900.391845703125,
+        "tool_call_ms": 1092.031982421875
+      }
+    },
+    "info_complete_turn": {
+      "track_package": 2,
+      "search_trains": 1,
+      "book_train": 5,
+      "search_cars": 6,
+      "book_car": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: track_package.tracking_number: 期望'YT9876543210', 实际'YT986543210'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.8,
+    "behavior_score_details": "track_package: 0(param_mismatch), search_trains: 1(correct), book_train: 1(correct), search_cars: 1(correct), book_car: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "track_package",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "tracking_number: 'YT9876543210' vs 'YT986543210'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

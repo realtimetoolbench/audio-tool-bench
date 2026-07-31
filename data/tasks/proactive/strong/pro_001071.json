@@ -1,0 +1,196 @@
+{
+  "task_id": "pro_001071",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m putting together a Shanghai couple of days and I keep thinking about what attractions I should hit while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I’m taking the train down from Beijing to Shanghai, so I’ve been mapping out that whole ride in my head.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 9.205233568946927
+    },
+    {
+      "speaker": "user",
+      "text": "Right after that, there’s this separate stop in Wuhan on my calendar, and I’m trying to keep the hotel situation straight.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Wuhan"
+        ]
+      },
+      "timestamp": 17.791304546662797
+    },
+    {
+      "speaker": "user",
+      "text": "For Shanghai, I’ve got The Bund on the plan for 2026-03-12, and I’m aiming for the morning time slot.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-12",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 26.53967844443525
+    },
+    {
+      "speaker": "user",
+      "text": "That Bund visit is under Mia Anderson, and it’s for 3 tickets since I’m not going solo.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.visitor_name=Mia Anderson"
+        ]
+      },
+      "timestamp": 34.37548704138667
+    },
+    {
+      "speaker": "user",
+      "text": "Then for the rail part, I’m on train G3 on 2026-03-15, and I’m sitting in First Class.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-03-15",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 41.657675320826215
+    },
+    {
+      "speaker": "user",
+      "text": "That train’s under Mia Anderson too, and in Wuhan I’m staying at Shangri-La Wuhan—check-in is 2026-03-03 for 4 nights, and the hotel is under Noah Wilson, which is kind of a whole separate thread I’m juggling, and then after that I’m probably just going to…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-03",
+          "book_hotel.guest_name=Noah Wilson",
+          "book_hotel.nights=4",
+          "book_train.passenger_name=Mia Anderson"
+        ]
+      },
+      "timestamp": 49.21786317979966
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_sh_003",
+        "date": "2026-03-12",
+        "time_slot": "morning",
+        "visitor_name": "Mia Anderson",
+        "ticket_count": 3
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-15",
+        "passenger_name": "Mia Anderson",
+        "seat_class": "First Class"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_wh_001",
+        "checkin_date": "2026-03-03",
+        "nights": 4,
+        "guest_name": "Noah Wilson"
+      }
+    }
+  ],
+  "transcript_hash": "a01ac5cbef1f",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "travel",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_attractions": 1,
+    "book_attraction_ticket": 5,
+    "search_trains": 2,
+    "book_train": 7,
+    "search_hotels": 3,
+    "book_hotel": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m putting together a Shanghai couple of days",
+      "I’m taking the train down from Beijing to Shanghai",
+      "there’s this separate stop in Wuhan on my calendar",
+      "I’ve got The Bund on the plan",
+      "I’m on train G3",
+      "I’m staying at Shangri-La Wuhan"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed upcoming plans with specific dates, names, and booking details; no requests or authorization verbs."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_attractions",
+      "search_hotels",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_attraction_ticket",
+      "book_hotel",
+      "book_train"
+    ]
+  },
+  "expected_tool_if_act": "search_attractions",
+  "expected_params_if_act": {
+    "city": "Shanghai"
+  }
+}

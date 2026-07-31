@@ -1,0 +1,598 @@
+{
+  "task_name": "tint_000030",
+  "start_time": "2026-07-29T02:36:16.730328",
+  "end_time": "2026-07-29T02:38:17.363999",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for 2 adults, check in 2026-03-10 and check out 2026-03-12. Also plan Beijing attractions and a train from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_attractions.city=Beijing",
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 609600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Yekj69TYXjlLBHLh",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-10"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 16971.606016159058,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 39,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel search and do not book any hotel.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 142200
+      },
+      "assistant_response": "Got it! I’ll skip the hotel search. We'll focus on the Beijing attractions and the train from Beijing to Shanghai. Let’s dive into that!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! I’ll skip the hotel search. We'll focus on the Beijing attractions and the train from Beijing to Shanghai. Let’s dive into that!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2771.474838256836,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 319200,
+        "event_count": 72,
+        "latency": {
+          "speech_ms": 159.587158203125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 16.819514943836733,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Beijing.",
+        "timestamp": 16.819514943836733,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 81600
+      },
+      "assistant_response": "Here we go! I’ve found some top attractions in Beijing.\n\n1. The Forbidden City – a stunning historical site, rated 4.8 out of 5.\n2. The Great Wall at Badaling – iconic and majestic, rated 4.7.\n3. Summer Palace – beautiful gardens and lakes, rated 4.6.\n4. Temple of Heaven – a historic landmark, rated 4.5.\n\nWhich one are you leaning towards? Or do you want more details on any specific one?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_4Dov0A9NMW7X2Zrd",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here we go! I’ve found some top attractions in Beijing.\n\n1. The Forbidden City – a stunning historical site, rated 4.8 out of 5.\n2. The Great Wall at Badaling – iconic and majestic, rated 4.7.\n3. Summer Palace – beautiful gardens and lakes, rated 4.6.\n4. Temple of Heaven – a historic landmark, rated 4.5.\n\nWhich one are you leaning towards? Or do you want more details on any specific one?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_4Dov0A9NMW7X2Zrd",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Beijing:\n\n1. Forbidden City (ID: attr_bj_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥60\n   Hours: 08:30-17:00\n   Location: Dongcheng\n\n2. Great Wall Badaling (ID: attr_bj_002)\n   Type: Historical\n   Rating: 4.7/5.0\n   Ticket: ¥40\n   Hours: 06:30-19:00\n   Location: Yanqing\n\n3. Summer Palace (ID: attr_bj_003)\n   Type: Garden\n   Rating: 4.6/5.0\n   Ticket: ¥30\n   Hours: 06:30-18:00\n   Location: Haidian\n\n4. Temple of Heaven (ID: attr_bj_004)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥15\n   Hours: 06:00-22:00\n   Location: Dongcheng\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_bj_001",
+                "name": "Forbidden City",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 60,
+                "opening_hours": "08:30-17:00",
+                "location": "Dongcheng"
+              },
+              {
+                "attraction_id": "attr_bj_002",
+                "name": "Great Wall Badaling",
+                "type": "Historical",
+                "rating": 4.7,
+                "price": 40,
+                "opening_hours": "06:30-19:00",
+                "location": "Yanqing"
+              },
+              {
+                "attraction_id": "attr_bj_003",
+                "name": "Summer Palace",
+                "type": "Garden",
+                "rating": 4.6,
+                "price": 30,
+                "opening_hours": "06:30-18:00",
+                "location": "Haidian"
+              },
+              {
+                "attraction_id": "attr_bj_004",
+                "name": "Temple of Heaven",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 15,
+                "opening_hours": "06:00-22:00",
+                "location": "Dongcheng"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03886222839355469
+          },
+          "latency_ms": 0.03886222839355469
+        }
+      ],
+      "total_latency_ms": 12826.366901397705,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1358400,
+        "event_count": 256,
+        "latency": {
+          "speech_ms": 1709.60009765625,
+          "tool_call_ms": 535.591064453125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.87491864489838,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book a ticket for Forbidden City.",
+        "timestamp": 20.87491864489838,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 88800
+      },
+      "assistant_response": "Sure thing! When would you like to visit the Forbidden City, and how many tickets do you need? Also, let me know the name for the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing! When would you like to visit the Forbidden City, and how many tickets do you need? Also, let me know the name for the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9127.686977386475,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 362400,
+        "event_count": 78,
+        "latency": {
+          "speech_ms": 3391.13232421875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.069280338236528,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the Forbidden City visit date to 2026-03-17 and the time slot to morning.",
+        "timestamp": 25.069280338236528,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-17",
+            "book_attraction_ticket.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 297000
+      },
+      "assistant_response": "Great! How many tickets would you like to book for the Forbidden City, and what name should I put down for the reservation?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! How many tickets would you like to book for the Forbidden City, and what name should I put down for the reservation?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10938.899993896484,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 276000,
+        "event_count": 65,
+        "latency": {
+          "speech_ms": 3256.15185546875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 32.32872699590821,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use visitor name Zhang Wei and ticket count 1 for the Forbidden City booking.",
+        "timestamp": 32.32872699590821,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.ticket_count=1",
+            "book_attraction_ticket.visitor_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 238200
+      },
+      "assistant_response": "Awesome! The ticket for the Forbidden City is booked for Zhang Wei on the morning of 2026-03-17. One ticket is confirmed. \n\nNow, let’s find that train from Beijing to Shanghai. Ready to roll?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_xTuQ8kTB5hBTfXYp",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_bj_001",
+                "date": "2026-03-17",
+                "time_slot": "morning",
+                "visitor_name": "Zhang Wei",
+                "ticket_count": 1
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Awesome! The ticket for the Forbidden City is booked for Zhang Wei on the morning of 2026-03-17. One ticket is confirmed. \n\nNow, let’s find that train from Beijing to Shanghai. Ready to roll?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_xTuQ8kTB5hBTfXYp",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_bj_001",
+            "date": "2026-03-17",
+            "time_slot": "morning",
+            "visitor_name": "Zhang Wei",
+            "ticket_count": 1
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_bj_001\nDate: 2026-03-17\nTime slot: morning\nVisitor: Zhang Wei\nTickets: 1\nTicket numbers: AT50001-01\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_bj_001",
+              "date": "2026-03-17",
+              "time_slot": "morning",
+              "visitor_name": "Zhang Wei",
+              "ticket_count": 1,
+              "ticket_numbers": [
+                "AT50001-01"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0438690185546875
+          },
+          "latency_ms": 0.0438690185546875
+        }
+      ],
+      "total_latency_ms": 9568.611145019531,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 564000,
+        "event_count": 180,
+        "latency": {
+          "speech_ms": 2461.26708984375,
+          "tool_call_ms": 1621.020263671875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 39.321578777077384,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 39.321578777077384,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 117600
+      },
+      "assistant_response": "Here are the train options from Beijing to Shanghai:\n\n1. Train G1 – High-speed, departs at 06:00, arrives at 10:28, about 4 hours 28 minutes. Second class ¥553, First class ¥933.\n\n2. Train G3 – High-speed, departs at 07:00, arrives at 11:35, about 4 hours 35 minutes. Same fare classes as G1.\n\n3. Train D321 – Express, departs at 08:30, arrives at 16:45, around 8 hours 15 minutes. Second class ¥309, First class ¥494.\n\nLet me know which train fits your schedule and what seat class you'd like, and we can book it!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_RSRmO82LmGUMyN1e",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are the train options from Beijing to Shanghai:\n\n1. Train G1 – High-speed, departs at 06:00, arrives at 10:28, about 4 hours 28 minutes. Second class ¥553, First class ¥933.\n\n2. Train G3 – High-speed, departs at 07:00, arrives at 11:35, about 4 hours 35 minutes. Same fare classes as G1.\n\n3. Train D321 – Express, departs at 08:30, arrives at 16:45, around 8 hours 15 minutes. Second class ¥309, First class ¥494.\n\nLet me know which train fits your schedule and what seat class you'd like, and we can book it!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_RSRmO82LmGUMyN1e",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.030279159545898438
+          },
+          "latency_ms": 0.030279159545898438
+        }
+      ],
+      "total_latency_ms": 14470.588207244873,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1965600,
+        "event_count": 365,
+        "latency": {
+          "speech_ms": 1345.302978515625,
+          "tool_call_ms": 637.369140625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 44.02210793955046,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 on 2026-03-11 for passenger Liu Yang in First Class.",
+        "timestamp": 44.02210793955046,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-11",
+            "book_train.passenger_name=Liu Yang",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 274800
+      },
+      "assistant_response": "Fantastic! The train ticket for Liu Yang is confirmed on Train G3, first class, for 2026-03-11. Seat 01A is all set.\n\nYou've got a smooth plan: Forbidden City on 2026-03-17 and a comfy ride from Beijing to Shanghai on 2026-03-11. \n\nIf you need anything else, just shout!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_s8PTVLAQXQY3KZUV",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-03-11",
+                "passenger_name": "Liu Yang",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Fantastic! The train ticket for Liu Yang is confirmed on Train G3, first class, for 2026-03-11. Seat 01A is all set.\n\nYou've got a smooth plan: Forbidden City on 2026-03-17 and a comfy ride from Beijing to Shanghai on 2026-03-11. \n\nIf you need anything else, just shout!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_s8PTVLAQXQY3KZUV",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-03-11",
+            "passenger_name": "Liu Yang",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-03-11\nPassenger: Liu Yang\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-03-11",
+              "passenger_name": "Liu Yang",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.015735626220703125
+          },
+          "latency_ms": 0.015735626220703125
+        }
+      ],
+      "total_latency_ms": 43948.14610481262,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1039200,
+        "event_count": 243,
+        "latency": {
+          "speech_ms": 11862.288330078125,
+          "tool_call_ms": 9505.250244140625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_attraction_ticket": {
+        "speech_ms": 2461.26708984375,
+        "tool_call_ms": 1621.020263671875
+      },
+      "book_train": {
+        "speech_ms": 11862.288330078125,
+        "tool_call_ms": 9505.250244140625
+      }
+    },
+    "info_complete_turn": {
+      "search_attractions": 1,
+      "book_attraction_ticket": 6,
+      "search_trains": 1,
+      "book_train": 8
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'book_train', 'book_attraction_ticket', 'search_attractions', 'search_trains'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 8,
+    "extra_turns_details": "search_attractions: +2 turns (info@1, call@3); search_trains: +6 turns (info@1, call@7)",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_attractions: 1(correct), book_attraction_ticket: 1(correct), search_trains: 1(correct), book_train: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

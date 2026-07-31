@@ -1,0 +1,197 @@
+{
+  "task_id": "tint_000004",
+  "description": "Interruption (priority_early_return): 6 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_shows",
+    "book_show_ticket",
+    "search_restaurants",
+    "check_balance"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search attractions in Xi'an.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, first check my balance for account number 6228480012345678.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_balance.account_number=6228480012345678"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_attractions",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the attraction search.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book an attraction ticket for attraction ID Bell Tower.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 15.43964910093963
+    },
+    {
+      "speaker": "user",
+      "text": "Set the visit date to 2026-03-10 and the time slot to morning.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-10",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 21.500063994489857
+    },
+    {
+      "speaker": "user",
+      "text": "Use visitor name Li Na and ticket count 3.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.visitor_name=Li Na"
+        ]
+      },
+      "timestamp": 27.883117574373475
+    },
+    {
+      "speaker": "user",
+      "text": "Search shows in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_shows.city=Shanghai"
+        ]
+      },
+      "timestamp": 33.24102705858553
+    },
+    {
+      "speaker": "user",
+      "text": "Book a show ticket for show ID Jay Chou Concert, seat zone Floor, ticket count 1.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Floor",
+          "book_show_ticket.ticket_count=1"
+        ]
+      },
+      "timestamp": 37.04960382127683
+    },
+    {
+      "speaker": "user",
+      "text": "Set buyer name Wang Fang, phone 13812345678, then search restaurants in Beijing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Wang Fang",
+          "book_show_ticket.phone=13812345678",
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 43.925287499470734
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6228480012345678"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_xa_004",
+        "date": "2026-03-10",
+        "time_slot": "morning",
+        "visitor_name": "Li Na",
+        "ticket_count": 3
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_sh_001",
+        "seat_zone": "Floor",
+        "ticket_count": 1,
+        "buyer_name": "Wang Fang",
+        "phone": "13812345678"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    }
+  ],
+  "transcript_hash": "500ed7e6d2b0",
+  "info_complete_turn": {
+    "check_balance": 2,
+    "search_attractions": 1,
+    "book_attraction_ticket": 6,
+    "search_shows": 7,
+    "book_show_ticket": 9,
+    "search_restaurants": 9
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 9,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "check_balance"
+  ]
+}

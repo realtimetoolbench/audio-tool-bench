@@ -1,0 +1,191 @@
+{
+  "task_id": "pro_000986",
+  "description": "Generated: 8 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants_delivery",
+    "place_food_order",
+    "search_doctors",
+    "book_appointment",
+    "search_medicine",
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m in Shanghai this week and I’m already thinking about dinner… delivery would honestly save me tonight.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_restaurants_delivery.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "If anything decent pops up, I’d probably just go with Yang’s Dumplings — that place sounds like exactly my kind of comfort food.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 8.230160220887244
+    },
+    {
+      "speaker": "user",
+      "text": "Yeah, let’s do it — Pan-fried Pork Dumplings and Wonton Soup, delivered to Room 405, Tower 2, Riverside Garden. Use 13855667788.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 405, Tower 2, Riverside Garden",
+          "place_food_order.items=Pan-fried Pork Dumplings and Wonton Soup",
+          "place_food_order.phone=13855667788"
+        ]
+      },
+      "timestamp": 17.828385354170244
+    },
+    {
+      "speaker": "user",
+      "text": "Switching gears—my dad’s in Chongqing and we’re trying to line up a doctor visit there soon.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_doctors.city=Chongqing"
+        ]
+      },
+      "timestamp": 27.594275705177925
+    },
+    {
+      "speaker": "user",
+      "text": "If Dr. Peng Hui has anything open on 2026-05-15 in the morning for Zhou Jun, that would be perfect.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "book_appointment.date=2026-05-15",
+          "book_appointment.patient_name=Zhou Jun",
+          "book_appointment.time_slot=morning"
+        ]
+      },
+      "timestamp": 34.81927516627857
+    },
+    {
+      "speaker": "user",
+      "text": "Yep, go ahead and lock that appointment in under the patient name Zhou Jun.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 43.23430391543581
+    },
+    {
+      "speaker": "user",
+      "text": "Oh—and I’m also juggling a trip: I’ll be in Guangzhou on 2026-04-12 and was thinking Panxi Restaurant at 18:00 for 9 people; if that sounds workable, just reserve it under Li Na, 13864788741. After that I’ll be heading to Beijing, so I’ll need a hotel there too.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.contact_name=Li Na",
+          "book_restaurant.date=2026-04-12",
+          "book_restaurant.party_size=9",
+          "book_restaurant.phone=13864788741",
+          "book_restaurant.time=18:00",
+          "search_hotels.city=Beijing",
+          "search_restaurants.city=Guangzhou"
+        ]
+      },
+      "timestamp": 50.42969435654866
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_sh_002",
+        "items": "Pan-fried Pork Dumplings and Wonton Soup",
+        "delivery_address": "Room 405, Tower 2, Riverside Garden",
+        "phone": "13855667788"
+      }
+    },
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_cq_001",
+        "date": "2026-05-15",
+        "time_slot": "morning",
+        "patient_name": "Zhou Jun"
+      }
+    },
+    {
+      "tool": "search_medicine",
+      "params": {}
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_gz_003",
+        "date": "2026-04-12",
+        "time": "18:00",
+        "party_size": 9,
+        "contact_name": "Li Na",
+        "phone": "13864788741"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    }
+  ],
+  "transcript_hash": "b911e58f6efe",
+  "metadata": {
+    "tool_count": 8,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_restaurants_delivery": 1,
+    "place_food_order": 3,
+    "search_doctors": 4,
+    "book_appointment": 5,
+    "search_medicine": 1,
+    "search_restaurants": 7,
+    "book_restaurant": 7,
+    "search_hotels": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "delivery would save me tonight",
+      "just go with Yang’s Dumplings",
+      "Yeah, let’s do it",
+      "line up a doctor visit",
+      "go ahead and lock that appointment in",
+      "reserve it under Li Na",
+      "need a hotel there too"
+    ],
+    "ambiguity_notes": "Strong intent overall, but the final turn bundles restaurant booking details without separately surfacing all remaining required booking parameters across earlier turns, which could be interpreted as the user confirming immediately."
+  }
+}

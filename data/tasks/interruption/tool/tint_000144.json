@@ -1,0 +1,183 @@
+{
+  "task_id": "tint_000144",
+  "description": "Interruption (priority_late_return): 4 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search sports events in Chengdu.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_sports_events.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search restaurants in Nanjing.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants.city=Nanjing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_sports_events",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the restaurant Nanjing Impressions.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 10.465648261646123
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation for 2026-05-15 at 12:00.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.date=2026-05-15",
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 15.17783945043659
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 6. Contact Yang Yu, phone 13892862812.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.contact_name=Yang Yu",
+          "book_restaurant.party_size=6",
+          "book_restaurant.phone=13892862812"
+        ]
+      },
+      "timestamp": 20.33363883172011
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book tickets for event CSL: Chengdu Rongcheng vs Beijing Guoan.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 30.278324862071372
+    },
+    {
+      "speaker": "user",
+      "text": "Seat zone Neutral Stand. Ticket count 5.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Neutral Stand",
+          "book_sports_ticket.ticket_count=5"
+        ]
+      },
+      "timestamp": 36.064405462843055
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer John Smith, phone 13811223344, ID 510107199203153456.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=John Smith",
+          "book_sports_ticket.id_number=510107199203153456",
+          "book_sports_ticket.phone=13811223344"
+        ]
+      },
+      "timestamp": 41.382277522961644
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_nj_001",
+        "date": "2026-05-15",
+        "time": "12:00",
+        "party_size": 6,
+        "contact_name": "Yang Yu",
+        "phone": "13892862812"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_cd_001",
+        "seat_zone": "Neutral Stand",
+        "ticket_count": 5,
+        "buyer_name": "John Smith",
+        "phone": "13811223344",
+        "id_number": "510107199203153456"
+      }
+    }
+  ],
+  "transcript_hash": "3673035726ac",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 5,
+    "search_sports_events": 1,
+    "book_sports_ticket": 9
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 9,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "inserted_tools": [
+      "search_restaurants",
+      "book_restaurant"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "search_restaurants",
+    "book_restaurant"
+  ]
+}

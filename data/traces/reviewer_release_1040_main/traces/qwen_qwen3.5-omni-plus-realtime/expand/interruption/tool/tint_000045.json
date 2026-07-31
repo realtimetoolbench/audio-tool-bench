@@ -1,0 +1,595 @@
+{
+  "task_name": "tint_000045",
+  "start_time": "2026-05-06T14:58:09.474958",
+  "end_time": "2026-05-06T14:59:08.773061",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Find a soccer game in Shanghai on 2026-04-05, and also help with a rental car in Beijing and parking in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_cars.city=Beijing",
+            "search_parking.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 392400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_46c21d2500f1437ab8814c69",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9502.075910568237,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 37,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the game. Cancel anything about sports tickets.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_sports_events",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 154800
+      },
+      "assistant_response": "No problem, I've dropped the search for the soccer game. I can still help you find a rental car in Beijing and parking spots in Shanghai. Just let me know what kind of car you're looking for or any specific area in Shanghai you need parking in.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "No problem, I've dropped the search for the soccer game. I can still help you find a rental car in Beijing and parking spots in Shanghai. Just let me know what kind of car you're looking for or any specific area in Shanghai you need parking in.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3150.481939315796,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 602880,
+        "event_count": 107,
+        "latency": {
+          "speech_ms": 340.183837890625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.226085586337714,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search rental cars in Beijing.",
+        "timestamp": 14.226085586337714,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 88800
+      },
+      "assistant_response": "I found four rental cars available in Beijing. There's an economy Volkswagen Lavida for 150 yuan a day, a comfort Honda Accord for 250, a luxury Audi A6 for 500, and a business Buick GL8 with seven seats for 400. Let me know if any of these catch your eye and I can help you book it.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_1f510a86e5df42859728af31",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found four rental cars available in Beijing. There's an economy Volkswagen Lavida for 150 yuan a day, a comfort Honda Accord for 250, a luxury Audi A6 for 500, and a business Buick GL8 with seven seats for 400. Let me know if any of these catch your eye and I can help you book it.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_1f510a86e5df42859728af31",
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 rental cars in Beijing:\n\n1. Volkswagen Lavida (ID: car_bj_001)\n   Type: economy | Seats: 5\n   Price: ¥150/day | Insurance: ¥30/day\n   Rating: 4.5/5.0\n\n2. Honda Accord (ID: car_bj_002)\n   Type: comfort | Seats: 5\n   Price: ¥250/day | Insurance: ¥50/day\n   Rating: 4.7/5.0\n\n3. Audi A6 (ID: car_bj_003)\n   Type: luxury | Seats: 5\n   Price: ¥500/day | Insurance: ¥80/day\n   Rating: 4.8/5.0\n\n4. Buick GL8 (ID: car_bj_004)\n   Type: business | Seats: 7\n   Price: ¥400/day | Insurance: ¥60/day\n   Rating: 4.6/5.0\n\n",
+            "raw_output": [
+              {
+                "car_id": "car_bj_001",
+                "model": "Volkswagen Lavida",
+                "type": "economy",
+                "seats": 5,
+                "price_per_day": 150,
+                "insurance": 30,
+                "rating": 4.5
+              },
+              {
+                "car_id": "car_bj_002",
+                "model": "Honda Accord",
+                "type": "comfort",
+                "seats": 5,
+                "price_per_day": 250,
+                "insurance": 50,
+                "rating": 4.7
+              },
+              {
+                "car_id": "car_bj_003",
+                "model": "Audi A6",
+                "type": "luxury",
+                "seats": 5,
+                "price_per_day": 500,
+                "insurance": 80,
+                "rating": 4.8
+              },
+              {
+                "car_id": "car_bj_004",
+                "model": "Buick GL8",
+                "type": "business",
+                "seats": 7,
+                "price_per_day": 400,
+                "insurance": 60,
+                "rating": 4.6
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05507469177246094
+          },
+          "latency_ms": 0.05507469177246094
+        }
+      ],
+      "total_latency_ms": 7072.497844696045,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 917760,
+        "event_count": 163,
+        "latency": {
+          "speech_ms": 1165.490234375,
+          "tool_call_ms": 488.19921875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 18.29209657997208,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the car Volkswagen Lavida for Emma Taylor.",
+        "timestamp": 18.29209657997208,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_car.renter_name=Emma Taylor"
+          ]
+        },
+        "audio_size_bytes": 138000
+      },
+      "assistant_response": "I can help with that. To book the Volkswagen Lavida for Emma Taylor, I just need to know the pickup date and how many days she'll need it for.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can help with that. To book the Volkswagen Lavida for Emma Taylor, I just need to know the pickup date and how many days she'll need it for.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3856.943130493164,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 341760,
+        "event_count": 71,
+        "latency": {
+          "speech_ms": 299.86083984375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 23.66048425516029,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set pickup date 2026-03-24 and rental duration 10 days.",
+        "timestamp": 23.66048425516029,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_car.days=10",
+            "book_car.pickup_date=2026-03-24"
+          ]
+        },
+        "audio_size_bytes": 254400
+      },
+      "assistant_response": "Great news! The Volkswagen Lavida has been successfully booked for Emma Taylor. The pickup is set for March 24, 2026, for a duration of ten days, and the booking is confirmed under ID CR30001 with insurance included. Is there anything else you need help with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_5349225772ff4ea590990cc6",
+              "name": "book_car",
+              "arguments": {
+                "car_id": "car_bj_001",
+                "pickup_date": "2026-03-24",
+                "days": 10,
+                "renter_name": "Emma Taylor"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great news! The Volkswagen Lavida has been successfully booked for Emma Taylor. The pickup is set for March 24, 2026, for a duration of ten days, and the booking is confirmed under ID CR30001 with insurance included. Is there anything else you need help with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_5349225772ff4ea590990cc6",
+          "tool_name": "book_car",
+          "arguments": {
+            "car_id": "car_bj_001",
+            "pickup_date": "2026-03-24",
+            "days": 10,
+            "renter_name": "Emma Taylor"
+          },
+          "result": {
+            "success": true,
+            "output": "Car rental booking successful!\n\nBooking ID: CR30001\nCar ID: car_bj_001\nPickup: 2026-03-24\nDays: 10\nRenter: Emma Taylor\nInsurance: Included\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "CR30001",
+              "car_id": "car_bj_001",
+              "pickup_date": "2026-03-24",
+              "days": 10,
+              "renter_name": "Emma Taylor",
+              "with_insurance": true,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03981590270996094
+          },
+          "latency_ms": 0.03981590270996094
+        }
+      ],
+      "total_latency_ms": 9166.311979293823,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 810240,
+        "event_count": 168,
+        "latency": {
+          "speech_ms": 2234.072998046875,
+          "tool_call_ms": 1526.799072265625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.508450381945273,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search parking in Shanghai.",
+        "timestamp": 29.508450381945273,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 76200
+      },
+      "assistant_response": "I found two parking options in Shanghai. There's the Lujiazui IFC Parking on Century Avenue in Pudong, which costs 15 yuan an hour and has 80 spots available. The other one is the Xujiahui Grand Gateway Parking on Hongqiao Road in the Xuhui District. It's a bit cheaper at 10 yuan an hour and has 150 spots open. Let me know if you'd like to proceed with either of them.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_2e867f99e6a24d9396a60fd7",
+              "name": "search_parking",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found two parking options in Shanghai. There's the Lujiazui IFC Parking on Century Avenue in Pudong, which costs 15 yuan an hour and has 80 spots available. The other one is the Xujiahui Grand Gateway Parking on Hongqiao Road in the Xuhui District. It's a bit cheaper at 10 yuan an hour and has 150 spots open. Let me know if you'd like to proceed with either of them.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_2e867f99e6a24d9396a60fd7",
+          "tool_name": "search_parking",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "count": 2,
+            "output": "Found 2 parking lots:\n\n1. Lujiazui IFC Parking (ID: park_sh_001)\n   Address: 100 Century Avenue, Pudong, Shanghai\n   Price: ¥15/hour | Available: 80 spots\n\n2. Xujiahui Grand Gateway Parking (ID: park_sh_002)\n   Address: 1 Hongqiao Road, Xuhui District, Shanghai\n   Price: ¥10/hour | Available: 150 spots\n\n",
+            "parking_lots": [
+              {
+                "parking_id": "park_sh_001",
+                "name": "Lujiazui IFC Parking",
+                "address": "100 Century Avenue, Pudong, Shanghai",
+                "total_spots": 600,
+                "available_spots": 80,
+                "price_per_hour": 15,
+                "daily_max": 120,
+                "spot_types": [
+                  "Regular",
+                  "EV Charging",
+                  "VIP"
+                ],
+                "operating_hours": "24 hours",
+                "distance": 0.8,
+                "rating": 4.7
+              },
+              {
+                "parking_id": "park_sh_002",
+                "name": "Xujiahui Grand Gateway Parking",
+                "address": "1 Hongqiao Road, Xuhui District, Shanghai",
+                "total_spots": 350,
+                "available_spots": 150,
+                "price_per_hour": 10,
+                "daily_max": 80,
+                "spot_types": [
+                  "Regular",
+                  "EV Charging"
+                ],
+                "operating_hours": "24 hours",
+                "distance": 0.4,
+                "rating": 4.4
+              }
+            ],
+            "raw_output": {
+              "success": true,
+              "count": 2,
+              "output": "Found 2 parking lots:\n\n1. Lujiazui IFC Parking (ID: park_sh_001)\n   Address: 100 Century Avenue, Pudong, Shanghai\n   Price: ¥15/hour | Available: 80 spots\n\n2. Xujiahui Grand Gateway Parking (ID: park_sh_002)\n   Address: 1 Hongqiao Road, Xuhui District, Shanghai\n   Price: ¥10/hour | Available: 150 spots\n\n",
+              "parking_lots": [
+                {
+                  "parking_id": "park_sh_001",
+                  "name": "Lujiazui IFC Parking",
+                  "address": "100 Century Avenue, Pudong, Shanghai",
+                  "total_spots": 600,
+                  "available_spots": 80,
+                  "price_per_hour": 15,
+                  "daily_max": 120,
+                  "spot_types": [
+                    "Regular",
+                    "EV Charging",
+                    "VIP"
+                  ],
+                  "operating_hours": "24 hours",
+                  "distance": 0.8,
+                  "rating": 4.7
+                },
+                {
+                  "parking_id": "park_sh_002",
+                  "name": "Xujiahui Grand Gateway Parking",
+                  "address": "1 Hongqiao Road, Xuhui District, Shanghai",
+                  "total_spots": 350,
+                  "available_spots": 150,
+                  "price_per_hour": 10,
+                  "daily_max": 80,
+                  "spot_types": [
+                    "Regular",
+                    "EV Charging"
+                  ],
+                  "operating_hours": "24 hours",
+                  "distance": 0.4,
+                  "rating": 4.4
+                }
+              ]
+            },
+            "error": null,
+            "latency_ms": 0.05078315734863281
+          },
+          "latency_ms": 0.05078315734863281
+        }
+      ],
+      "total_latency_ms": 8464.356184005737,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1140480,
+        "event_count": 198,
+        "latency": {
+          "speech_ms": 1224.408203125,
+          "tool_call_ms": 527.576171875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 33.99524965635539,
+      "input_chunk": {
+        "role": "user",
+        "content": "Reserve Lujiazui IFC Parking starting 2026-04-05 16:00 for 1 hour.",
+        "timestamp": 33.99524965635539,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "reserve_parking_spot.duration_hours=1",
+            "reserve_parking_spot.start_time=2026-04-05 16:00"
+          ]
+        },
+        "audio_size_bytes": 313800
+      },
+      "assistant_response": "I'm unable to reserve a parking spot for you as I don't have a function to book parking. I can only search for available lots. You'll need to contact the Lujiazui IFC Parking directly to make a reservation.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'm unable to reserve a parking spot for you as I don't have a function to book parking. I can only search for available lots. You'll need to contact the Lujiazui IFC Parking directly to make a reservation.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7324.824094772339,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 583680,
+        "event_count": 100,
+        "latency": {
+          "speech_ms": 517.80810546875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 40.77968864067037,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use license plate 苏F89012 and driver phone 13877665544.",
+        "timestamp": 40.77968864067037,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "reserve_parking_spot.driver_phone=13877665544",
+            "reserve_parking_spot.license_plate=苏F89012"
+          ]
+        },
+        "audio_size_bytes": 314400
+      },
+      "assistant_response": "I understand you'd like to use the license plate Su F89012 and the driver's phone number 138766544, but unfortunately I don't have a tool to actually book or reserve parking spots. My capabilities are limited to searching for available parking lots. You will need to contact Lujiazui IFC Parking directly to make the reservation with those details.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I understand you'd like to use the license plate Su F89012 and the driver's phone number 138766544, but unfortunately I don't have a tool to actually book or reserve parking spots. My capabilities are limited to searching for available parking lots. You will need to contact Lujiazui IFC Parking directly to make the reservation with those details.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10753.402948379517,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1194240,
+        "event_count": 172,
+        "latency": {
+          "speech_ms": 535.81298828125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 12,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "forbidden_tools": [
+      "search_sports_events",
+      "book_sports_ticket"
+    ],
+    "mode": "audio_crawl",
+    "provider": "qwen",
+    "tts_voice": "Ethan",
+    "realtime_model": "qwen3.5-omni-plus-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "book_car": {
+        "speech_ms": 2234.072998046875,
+        "tool_call_ms": 1526.799072265625
+      },
+      "reserve_parking_spot": {
+        "speech_ms": 535.81298828125
+      }
+    },
+    "info_complete_turn": {
+      "search_cars": 1,
+      "book_car": 5,
+      "search_parking": 1,
+      "reserve_parking_spot": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[respected cancel]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "reserve_parking_spot",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

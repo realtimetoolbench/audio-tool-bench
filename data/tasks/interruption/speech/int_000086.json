@@ -1,0 +1,172 @@
+{
+  "task_id": "int_000086",
+  "description": "Interruption (correction): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "multi",
+  "tools": [
+    "transfer_money",
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_books",
+    "reserve_book",
+    "search_flights"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Transfer 440.17 to Sophia Garcia.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "transfer_money.amount=440.17",
+          "transfer_money.payee_name=Sophia Garcia"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search sports events in Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_flights.destination=Shanghai"
+        ]
+      },
+      "timestamp": 5.122541510410326
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shanghai",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search sports events in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_sports_events.city=Beijing"
+        ]
+      },
+      "timestamp": 14.85947742626103
+    },
+    {
+      "speaker": "user",
+      "text": "Book 3 tickets for CSL: Beijing Guoan vs Shanghai Shenhua in the Neutral Stand.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Neutral Stand",
+          "book_sports_ticket.ticket_count=3"
+        ]
+      },
+      "timestamp": 19.222285227009564
+    },
+    {
+      "speaker": "user",
+      "text": "Use buyer name John Smith and phone 13813897597 for the ticket order.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=John Smith",
+          "book_sports_ticket.phone=13813897597"
+        ]
+      },
+      "timestamp": 25.954930928377795
+    },
+    {
+      "speaker": "user",
+      "text": "Use ID number 610104199404096789 for the ticket order; reserve the book To Live for reader Isabella Jackson; search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.id_number=610104199404096789",
+          "reserve_book.reader_name=Isabella Jackson",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 32.003715390636195
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "transfer_money",
+      "params": {
+        "amount": 440.17,
+        "payee_name": "Sophia Garcia"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_bj_002",
+        "seat_zone": "Neutral Stand",
+        "ticket_count": 3,
+        "buyer_name": "John Smith",
+        "phone": "13813897597",
+        "id_number": "610104199404096789"
+      }
+    },
+    {
+      "tool": "search_books",
+      "params": {}
+    },
+    {
+      "tool": "reserve_book",
+      "params": {
+        "book_id": "ISBN9787115583949",
+        "reader_name": "Isabella Jackson"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "ec2b26da03bc",
+  "info_complete_turn": {
+    "transfer_money": 1,
+    "search_sports_events": 4,
+    "book_sports_ticket": 7,
+    "search_books": 1,
+    "reserve_book": 7,
+    "search_flights": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shanghai",
+    "template": null,
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_sports_events",
+      "param": "city",
+      "wrong_value": "Shanghai"
+    }
+  }
+}

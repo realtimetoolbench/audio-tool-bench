@@ -1,0 +1,204 @@
+{
+  "task_id": "int_000075",
+  "description": "Interruption (redirection): 7 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_restaurants_delivery",
+    "search_cars",
+    "book_car",
+    "search_parking",
+    "reserve_parking_spot"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search cars in Shanghai. Then book a BMW 5 Series for 2026-04-18 for 1 day.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_car.days=1",
+          "book_car.pickup_date=2026-04-18",
+          "search_cars.city=Shanghai",
+          "search_parking.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Set the renter name to Gao Yan.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_car.renter_name=Gao Yan"
+        ]
+      },
+      "timestamp": 6.443127798806056
+    },
+    {
+      "speaker": "user",
+      "text": "Also search parking in Shanghai.",
+      "metadata": {
+        "phase": "original"
+      },
+      "timestamp": 10.830682280352924
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search sports events in Shanghai, then book CSL: Shanghai Port vs Shandong Taishan, Neutral Stand, 4 tickets.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Neutral Stand",
+          "book_sports_ticket.ticket_count=4",
+          "search_sports_events.city=Shanghai"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "car",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use buyer name Qiu Lan and phone 13898765432 for the sports tickets.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Qiu Lan",
+          "book_sports_ticket.phone=13898765432"
+        ]
+      },
+      "timestamp": 24.474116798621072
+    },
+    {
+      "speaker": "user",
+      "text": "Use ID number 610104199404096789 for the sports tickets.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.id_number=610104199404096789"
+        ]
+      },
+      "timestamp": 30.90085544854194
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants delivery in Chengdu.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_restaurants_delivery.city=Chengdu"
+        ]
+      },
+      "timestamp": 37.18227065510007
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the car.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 42.523988026149496
+    },
+    {
+      "speaker": "user",
+      "text": "Reserve a parking spot at Xujiahui Grand Gateway Parking starting 2026-03-15 20:00 for 6 hours. Use license plate 沪B67890 and driver phone 13864788741.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13864788741",
+          "reserve_parking_spot.duration_hours=6",
+          "reserve_parking_spot.license_plate=沪B67890",
+          "reserve_parking_spot.start_time=2026-03-15 20:00"
+        ]
+      },
+      "timestamp": 46.09307207287908
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_sh_002",
+        "seat_zone": "Neutral Stand",
+        "ticket_count": 4,
+        "buyer_name": "Qiu Lan",
+        "phone": "13898765432",
+        "id_number": "610104199404096789"
+      }
+    },
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_sh_003",
+        "pickup_date": "2026-04-18",
+        "days": 1,
+        "renter_name": "Gao Yan"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_sh_002",
+        "start_time": "2026-03-15 20:00",
+        "duration_hours": 6,
+        "license_plate": "沪B67890",
+        "driver_phone": "13864788741"
+      }
+    }
+  ],
+  "transcript_hash": "b45d0892600c",
+  "info_complete_turn": {
+    "search_sports_events": 4,
+    "book_sports_ticket": 6,
+    "search_restaurants_delivery": 7,
+    "search_cars": 1,
+    "book_car": 2,
+    "search_parking": 1,
+    "reserve_parking_spot": 9
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 9,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "car",
+    "template": null,
+    "generated": true
+  }
+}

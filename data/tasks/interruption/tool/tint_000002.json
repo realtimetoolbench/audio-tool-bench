@@ -1,0 +1,221 @@
+{
+  "task_id": "tint_000002",
+  "description": "Interruption (priority_no_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight",
+    "check_balance"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on, first check my balance for account number 6222021234567890.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_balance.account_number=6222021234567890"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the hotel search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel West Lake State Guesthouse.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 16.091639703198727
+    },
+    {
+      "speaker": "user",
+      "text": "Set check-in date to 2026-03-02 and nights to 1.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-02",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 21.159025583839846
+    },
+    {
+      "speaker": "user",
+      "text": "Use guest name Wang Fang for the hotel booking.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Wang Fang"
+        ]
+      },
+      "timestamp": 26.75492527269775
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 31.694033021917882
+    },
+    {
+      "speaker": "user",
+      "text": "Book Xiao Nan Guo on 2026-03-26 at 12:00 for 6 people.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-26",
+          "book_restaurant.party_size=6",
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 35.94327229376914
+    },
+    {
+      "speaker": "user",
+      "text": "Set contact name Zhou Jun and phone 13864788741 for the restaurant booking.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhou Jun",
+          "book_restaurant.phone=13864788741"
+        ]
+      },
+      "timestamp": 41.2439067548126
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai, then book flight MU5678 on 2026-03-25 for passenger Wang Fang with airline China Eastern.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-03-25",
+          "book_flight.passenger_name=Wang Fang",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 47.64619423939192
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6222021234567890"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_001",
+        "checkin_date": "2026-03-02",
+        "nights": 1,
+        "guest_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_003",
+        "date": "2026-03-26",
+        "time": "12:00",
+        "party_size": 6,
+        "contact_name": "Zhou Jun",
+        "phone": "13864788741"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-25",
+        "passenger_name": "Wang Fang"
+      }
+    }
+  ],
+  "transcript_hash": "4dcb8c259daa",
+  "info_complete_turn": {
+    "check_balance": 2,
+    "search_hotels": 1,
+    "book_hotel": 6,
+    "search_restaurants": 7,
+    "book_restaurant": 9,
+    "search_flights": 10,
+    "book_flight": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "check_balance"
+  ]
+}

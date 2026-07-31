@@ -1,0 +1,225 @@
+{
+  "task_id": "tint_000102",
+  "description": "Interruption (priority_early_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "search_movies",
+    "book_movie_ticket",
+    "cancel_ride"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that—search movies in Guangzhou.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_movies.city=Guangzhou"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_flights",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 2 tickets for Dune 2.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.seat_count=2"
+        ]
+      },
+      "timestamp": 9.949209136671978
+    },
+    {
+      "speaker": "user",
+      "text": "Use UA Taikoo Hui cinema and the 17:00 showtime.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.cinema=UA Taikoo Hui",
+          "book_movie_ticket.showtime=17:00"
+        ]
+      },
+      "timestamp": 14.58724300796595
+    },
+    {
+      "speaker": "user",
+      "text": "Set the buyer name to Xie Peng.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Xie Peng"
+        ]
+      },
+      "timestamp": 20.445145673157754
+    },
+    {
+      "speaker": "user",
+      "text": "Cancel ride RIDE123456.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "cancel_ride.ride_id=RIDE123456"
+        ]
+      },
+      "timestamp": 24.772097172416466
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5678 on 2026-04-18.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-04-18"
+        ]
+      },
+      "timestamp": 33.31841818233301
+    },
+    {
+      "speaker": "user",
+      "text": "Passenger name Song Qi; airline China Eastern.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.passenger_name=Song Qi"
+        ]
+      },
+      "timestamp": 37.985396744967055
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Chongqing, then book JW Marriott Chongqing with check-in 2026-04-29 for 4 nights under Gao Yan.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-29",
+          "book_hotel.guest_name=Gao Yan",
+          "book_hotel.nights=4",
+          "search_hotels.city=Chongqing"
+        ]
+      },
+      "timestamp": 43.558042169232145
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_gz_002",
+        "cinema": "UA Taikoo Hui",
+        "showtime": "17:00",
+        "seat_count": 2,
+        "buyer_name": "Xie Peng"
+      }
+    },
+    {
+      "tool": "cancel_ride",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-04-18",
+        "passenger_name": "Song Qi"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_cq_001",
+        "checkin_date": "2026-04-29",
+        "nights": 4,
+        "guest_name": "Gao Yan"
+      }
+    }
+  ],
+  "transcript_hash": "23924885eea6",
+  "info_complete_turn": {
+    "search_movies": 2,
+    "book_movie_ticket": 5,
+    "cancel_ride": 6,
+    "search_flights": 1,
+    "book_flight": 9,
+    "search_hotels": 10,
+    "book_hotel": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_flights",
+    "inserted_tools": [
+      "search_movies",
+      "book_movie_ticket",
+      "cancel_ride"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "cancel_ride"
+  ]
+}

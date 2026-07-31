@@ -1,0 +1,828 @@
+{
+  "task_name": "tint_000029",
+  "start_time": "2026-05-06T14:40:12.176096",
+  "end_time": "2026-05-06T14:41:28.756916",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search sports events in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_cars.city=Beijing",
+            "search_sports_events.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 94800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_d1d48269a83b4385b4c9c219",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_d1d48269a83b4385b4c9c219",
+          "tool_name": "search_sports_events",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 sports events in Beijing:\n\n1. CBA Playoffs: Beijing Shougang vs Guangdong Tigers (ID: evt_bj_001)\n   Sport: Basketball\n   Venue: Cadillac Arena\n   Date/Time: 2026-03-06 19:35\n   Match: Beijing Shougang vs Guangdong Tigers\n   Price: ¥180-1280\n   Available zones: VIP, Stand A, Stand B, Stand C\n   Rating: 8.8/10.0\n\n2. CSL: Beijing Guoan vs Shanghai Shenhua (ID: evt_bj_002)\n   Sport: Football\n   Venue: Workers' Stadium\n   Date/Time: 2026-03-01 19:30\n   Match: Beijing Guoan vs Shanghai Shenhua\n   Price: ¥120-680\n   Available zones: Home Stand, Away Stand, Neutral Stand, Regular Stand\n   Rating: 8.5/10.0\n\n3. China Open Tennis (ID: evt_bj_003)\n   Sport: Tennis\n   Venue: National Tennis Center\n   Date/Time: 2026-03-21 14:00\n   Price: ¥280-2880\n   Available zones: Center Court, Court 1, Court 2\n   Rating: 9.2/10.0\n\n",
+            "raw_output": [
+              {
+                "event_id": "evt_bj_001",
+                "name": "CBA Playoffs: Beijing Shougang vs Guangdong Tigers",
+                "sport_type": "Basketball",
+                "venue": "Cadillac Arena",
+                "date": "2026-03-06",
+                "time": "19:35",
+                "home_team": "Beijing Shougang",
+                "away_team": "Guangdong Tigers",
+                "price_range": "180-1280",
+                "available_zones": [
+                  "VIP",
+                  "Stand A",
+                  "Stand B",
+                  "Stand C"
+                ],
+                "rating": 8.8
+              },
+              {
+                "event_id": "evt_bj_002",
+                "name": "CSL: Beijing Guoan vs Shanghai Shenhua",
+                "sport_type": "Football",
+                "venue": "Workers' Stadium",
+                "date": "2026-03-01",
+                "time": "19:30",
+                "home_team": "Beijing Guoan",
+                "away_team": "Shanghai Shenhua",
+                "price_range": "120-680",
+                "available_zones": [
+                  "Home Stand",
+                  "Away Stand",
+                  "Neutral Stand",
+                  "Regular Stand"
+                ],
+                "rating": 8.5
+              },
+              {
+                "event_id": "evt_bj_003",
+                "name": "China Open Tennis",
+                "sport_type": "Tennis",
+                "venue": "National Tennis Center",
+                "date": "2026-03-21",
+                "time": "14:00",
+                "home_team": null,
+                "away_team": null,
+                "price_range": "280-2880",
+                "available_zones": [
+                  "Center Court",
+                  "Court 1",
+                  "Court 2"
+                ],
+                "rating": 9.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.028848648071289062
+          },
+          "latency_ms": 0.028848648071289062,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 5936.923980712891,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 17,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that—cancel my ride with ride ID RIDE123456.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "cancel_ride.ride_id=RIDE123456"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_sports_events",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 217200
+      },
+      "assistant_response": "Your ride with ID ride_123456 has been successfully cancelled. There was no cancellation fee, and the status is now confirmed as cancelled.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_37d237b01e7f40478857ab7a",
+              "name": "cancel_ride",
+              "arguments": {
+                "ride_id": "ride_123456"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your ride with ID ride_123456 has been successfully cancelled. There was no cancellation fee, and the status is now confirmed as cancelled.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_37d237b01e7f40478857ab7a",
+          "tool_name": "cancel_ride",
+          "arguments": {
+            "ride_id": "ride_123456"
+          },
+          "result": {
+            "success": true,
+            "message": "Ride cancelled",
+            "cancellation": {
+              "ride_id": "ride_123456",
+              "reason": "Not provided",
+              "cancel_time": "2026-05-06 14:40:18",
+              "status": "Cancelled",
+              "cancellation_fee": 0
+            },
+            "output": "{\n  \"success\": true,\n  \"message\": \"Ride cancelled\",\n  \"cancellation\": {\n    \"ride_id\": \"ride_123456\",\n    \"reason\": \"Not provided\",\n    \"cancel_time\": \"2026-05-06 14:40:18\",\n    \"status\": \"Cancelled\",\n    \"cancellation_fee\": 0\n  }\n}",
+            "raw_output": {
+              "success": true,
+              "message": "Ride cancelled",
+              "cancellation": {
+                "ride_id": "ride_123456",
+                "reason": "Not provided",
+                "cancel_time": "2026-05-06 14:40:18",
+                "status": "Cancelled",
+                "cancellation_fee": 0
+              },
+              "output": "{\n  \"success\": true,\n  \"message\": \"Ride cancelled\",\n  \"cancellation\": {\n    \"ride_id\": \"ride_123456\",\n    \"reason\": \"Not provided\",\n    \"cancel_time\": \"2026-05-06 14:40:18\",\n    \"status\": \"Cancelled\",\n    \"cancellation_fee\": 0\n  }\n}"
+            },
+            "error": null,
+            "latency_ms": 0.06604194641113281
+          },
+          "latency_ms": 0.06604194641113281
+        }
+      ],
+      "total_latency_ms": 3036.012887954712,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 433920,
+        "event_count": 94,
+        "latency": {
+          "speech_ms": 1382.8740234375,
+          "tool_call_ms": 569.802001953125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.903660546031814,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Wuhan.",
+        "timestamp": 10.903660546031814,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "search_restaurants.city=Wuhan"
+          ]
+        },
+        "audio_size_bytes": 81000
+      },
+      "assistant_response": "I found two restaurants in Wuhan for you. There's Cai Lin Ji Hot Noodles in Hankou, which serves Hubei cuisine and has a 4.6 rating. The other option is the Yangtze River Restaurant in Wuchang, also serving Hubei food with a 4.4 rating.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ae3da3be76c54c04883cf102",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Wuhan"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found two restaurants in Wuhan for you. There's Cai Lin Ji Hot Noodles in Hankou, which serves Hubei cuisine and has a 4.6 rating. The other option is the Yangtze River Restaurant in Wuchang, also serving Hubei food with a 4.4 rating.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ae3da3be76c54c04883cf102",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Wuhan"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Wuhan:\n\n1. Cai Lin Ji Hot Noodles (ID: rst_wh_001)\n   Cuisine: Hubei\n   Location: Hankou\n   Rating: 4.6/5.0\n\n2. Yangtze River Restaurant (ID: rst_wh_002)\n   Cuisine: Hubei\n   Location: Wuchang\n   Rating: 4.4/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_wh_001",
+                "name": "Cai Lin Ji Hot Noodles",
+                "cuisine": "Hubei",
+                "location": "Hankou",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_wh_002",
+                "name": "Yangtze River Restaurant",
+                "cuisine": "Hubei",
+                "location": "Wuchang",
+                "rating": 4.4
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04887580871582031
+          },
+          "latency_ms": 0.04887580871582031
+        }
+      ],
+      "total_latency_ms": 7960.143804550171,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 814080,
+        "event_count": 144,
+        "latency": {
+          "speech_ms": 1372.93994140625,
+          "tool_call_ms": 583.22216796875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.910663250644514,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Yangtze River Restaurant for 2026-03-14 at 14:00.",
+        "timestamp": 14.910663250644514,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_restaurant.date=2026-03-14",
+            "book_restaurant.time=14:00"
+          ]
+        },
+        "audio_size_bytes": 268200
+      },
+      "assistant_response": "I can help you with that reservation. To book the table at Yangtze River Restaurant, I'll need to know how many people will be in your party, along with your contact name and phone number.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can help you with that reservation. To book the table at Yangtze River Restaurant, I'll need to know how many people will be in your party, along with your contact name and phone number.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7731.557130813599,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 468480,
+        "event_count": 86,
+        "latency": {
+          "speech_ms": 109.39892578125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.24835229275456,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 5, contact name Noah Wilson.",
+        "timestamp": 20.24835229275456,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_restaurant.contact_name=Noah Wilson",
+            "book_restaurant.party_size=5"
+          ]
+        },
+        "audio_size_bytes": 121800
+      },
+      "assistant_response": "Thanks, Noah. I just need your phone number to complete the booking for five people at Yangtze River Restaurant on March 14th at 2 PM.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, Noah. I just need your phone number to complete the booking for five people at Yangtze River Restaurant on March 14th at 2 PM.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4510.2598667144775,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 334080,
+        "event_count": 67,
+        "latency": {
+          "speech_ms": 716.68310546875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 25.012261532360345,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13877665544 for the restaurant booking.",
+        "timestamp": 25.012261532360345,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_restaurant.phone=13877665544"
+          ]
+        },
+        "audio_size_bytes": 246600
+      },
+      "assistant_response": "Your reservation at Yangtze River Restaurant is confirmed for March 14th at 2 PM for a party of five. The booking ID is BK1001 under the name Noah Wilson.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_a213aa23f00a47e8bc5cf4a1",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_wh_002",
+                "date": "2026-03-14",
+                "time": "14:00",
+                "party_size": 5,
+                "contact_name": "Noah Wilson",
+                "phone": "138776544"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your reservation at Yangtze River Restaurant is confirmed for March 14th at 2 PM for a party of five. The booking ID is BK1001 under the name Noah Wilson.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_a213aa23f00a47e8bc5cf4a1",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_wh_002",
+            "date": "2026-03-14",
+            "time": "14:00",
+            "party_size": 5,
+            "contact_name": "Noah Wilson",
+            "phone": "138776544"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_wh_002\nRestaurant: Yangtze River Restaurant\nDate: 2026-03-14\nTime: 14:00\nParty size: 5\nContact: Noah Wilson (138776544)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_wh_002",
+              "restaurant_name": "Yangtze River Restaurant",
+              "date": "2026-03-14",
+              "time": "14:00",
+              "party_size": 5,
+              "contact_name": "Noah Wilson",
+              "phone": "138776544",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.09131431579589844
+          },
+          "latency_ms": 0.09131431579589844
+        }
+      ],
+      "total_latency_ms": 9095.122814178467,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 445440,
+        "event_count": 140,
+        "latency": {
+          "speech_ms": 3703.9619140625,
+          "tool_call_ms": 2870.86669921875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.53367751147059,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search cars in Beijing.",
+        "timestamp": 30.53367751147059,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 69000
+      },
+      "assistant_response": "I found four rental cars available in Beijing. There's an economy Volkswagen Lavida for 150 yuan a day, a comfort Honda Accord for 250 yuan, a luxury Audi A6 for 500 yuan, and a business-class Buick GL8 with seven seats for 400 yuan a day. All prices are per day, and insurance is available as an extra cost.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_c75e559182e14cf683efd627",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found four rental cars available in Beijing. There's an economy Volkswagen Lavida for 150 yuan a day, a comfort Honda Accord for 250 yuan, a luxury Audi A6 for 500 yuan, and a business-class Buick GL8 with seven seats for 400 yuan a day. All prices are per day, and insurance is available as an extra cost.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_c75e559182e14cf683efd627",
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 rental cars in Beijing:\n\n1. Volkswagen Lavida (ID: car_bj_001)\n   Type: economy | Seats: 5\n   Price: ¥150/day | Insurance: ¥30/day\n   Rating: 4.5/5.0\n\n2. Honda Accord (ID: car_bj_002)\n   Type: comfort | Seats: 5\n   Price: ¥250/day | Insurance: ¥50/day\n   Rating: 4.7/5.0\n\n3. Audi A6 (ID: car_bj_003)\n   Type: luxury | Seats: 5\n   Price: ¥500/day | Insurance: ¥80/day\n   Rating: 4.8/5.0\n\n4. Buick GL8 (ID: car_bj_004)\n   Type: business | Seats: 7\n   Price: ¥400/day | Insurance: ¥60/day\n   Rating: 4.6/5.0\n\n",
+            "raw_output": [
+              {
+                "car_id": "car_bj_001",
+                "model": "Volkswagen Lavida",
+                "type": "economy",
+                "seats": 5,
+                "price_per_day": 150,
+                "insurance": 30,
+                "rating": 4.5
+              },
+              {
+                "car_id": "car_bj_002",
+                "model": "Honda Accord",
+                "type": "comfort",
+                "seats": 5,
+                "price_per_day": 250,
+                "insurance": 50,
+                "rating": 4.7
+              },
+              {
+                "car_id": "car_bj_003",
+                "model": "Audi A6",
+                "type": "luxury",
+                "seats": 5,
+                "price_per_day": 500,
+                "insurance": 80,
+                "rating": 4.8
+              },
+              {
+                "car_id": "car_bj_004",
+                "model": "Buick GL8",
+                "type": "business",
+                "seats": 7,
+                "price_per_day": 400,
+                "insurance": 60,
+                "rating": 4.6
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.23508071899414062
+          },
+          "latency_ms": 0.23508071899414062
+        }
+      ],
+      "total_latency_ms": 9254.679918289185,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 990720,
+        "event_count": 164,
+        "latency": {
+          "speech_ms": 2245.1279296875,
+          "tool_call_ms": 1392.675048828125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 94800
+      },
+      "assistant_response": "I've already found the available rental cars in Beijing for you. There's an economy Volkswagen Lavida, a comfort Honda Accord, a luxury Audi A6, and a business-class Buick GL8 with seven seats. Would you like to know more details about any of these options?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I've already found the available rental cars in Beijing for you. There's an economy Volkswagen Lavida, a comfort Honda Accord, a luxury Audi A6, and a business-class Buick GL8 with seven seats. Would you like to know more details about any of these options?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6795.944929122925,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 783360,
+        "event_count": 120,
+        "latency": {
+          "speech_ms": 529.831787109375
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 39.38355208940214,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book tickets for event China Open Tennis, seat zone Center Court, ticket count 3.",
+        "timestamp": 39.38355208940214,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_sports_ticket.seat_zone=Center Court",
+            "book_sports_ticket.ticket_count=3"
+          ]
+        },
+        "audio_size_bytes": 244200
+      },
+      "assistant_response": "I can help you book three tickets for the China Open Tennis event in the Center Court zone. To complete the booking, I'll need your full name, phone number, and ID number.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can help you book three tickets for the China Open Tennis event in the Center Court zone. To complete the booking, I'll need your full name, phone number, and ID number.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6258.234977722168,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 426240,
+        "event_count": 74,
+        "latency": {
+          "speech_ms": 345.400146484375
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 45.99288445507022,
+      "input_chunk": {
+        "role": "user",
+        "content": "Buyer name Isabella Jackson, phone 13855667788, ID number 440106199512044567.",
+        "timestamp": 45.99288445507022,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_sports_ticket.buyer_name=Isabella Jackson",
+            "book_sports_ticket.id_number=440106199512044567",
+            "book_sports_ticket.phone=13855667788"
+          ]
+        },
+        "audio_size_bytes": 479400
+      },
+      "assistant_response": "Your booking is confirmed. You have three tickets for the China Open Tennis at the National Tennis Center on March 21st in the Center Court zone. The seats are in rows 15, 16, and 17, all seat number 25. The total cost is 8640 yuan under the name Isabella Jackson. Please remember that real-name identification is required for entry.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_317f19e8b29743e48c59ca41",
+              "name": "book_sports_ticket",
+              "arguments": {
+                "event_id": "evt_bj_003",
+                "seat_zone": "Center Court",
+                "ticket_count": 3,
+                "buyer_name": "Isabella Jackson",
+                "phone": "13855667788",
+                "id_number": "440106199501044567"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your booking is confirmed. You have three tickets for the China Open Tennis at the National Tennis Center on March 21st in the Center Court zone. The seats are in rows 15, 16, and 17, all seat number 25. The total cost is 8640 yuan under the name Isabella Jackson. Please remember that real-name identification is required for entry.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_317f19e8b29743e48c59ca41",
+          "tool_name": "book_sports_ticket",
+          "arguments": {
+            "event_id": "evt_bj_003",
+            "seat_zone": "Center Court",
+            "ticket_count": 3,
+            "buyer_name": "Isabella Jackson",
+            "phone": "13855667788",
+            "id_number": "440106199501044567"
+          },
+          "result": {
+            "success": true,
+            "output": "Sports ticket booking successful!\n\nBooking ID: SP80001\nEvent ID: evt_bj_003\nEvent: China Open Tennis\nVenue: National Tennis Center\nDate: 2026-03-21\nZone: Center Court\nSeats: Center Court Row 15 Seat 25, Center Court Row 16 Seat 25, Center Court Row 17 Seat 25\nQuantity: 3\nBuyer: Isabella Jackson\nPhone: 13855667788\nID: 440106****4567\nTotal: ¥8640\nStatus: Confirmed (Real-name Required)\n",
+            "raw_output": {
+              "booking_id": "SP80001",
+              "event_id": "evt_bj_003",
+              "event_name": "China Open Tennis",
+              "venue": "National Tennis Center",
+              "date": "2026-03-21",
+              "seat_zone": "Center Court",
+              "ticket_count": 3,
+              "seats": [
+                "Center Court Row 15 Seat 25",
+                "Center Court Row 16 Seat 25",
+                "Center Court Row 17 Seat 25"
+              ],
+              "buyer_name": "Isabella Jackson",
+              "phone": "13855667788",
+              "id_number": "440106199501044567",
+              "total_price": 8640,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.16808509826660156
+          },
+          "latency_ms": 0.16808509826660156
+        }
+      ],
+      "total_latency_ms": 15989.088773727417,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1052160,
+        "event_count": 210,
+        "latency": {
+          "speech_ms": 4093.726806640625,
+          "tool_call_ms": 3180.4677734375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 16,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "inserted_tools": [
+      "cancel_ride",
+      "search_restaurants",
+      "book_restaurant",
+      "search_cars"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "qwen",
+    "tts_voice": "Ethan",
+    "realtime_model": "qwen3.5-omni-plus-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "cancel_ride": {
+        "speech_ms": 1382.8740234375,
+        "tool_call_ms": 569.802001953125
+      },
+      "search_restaurants": {
+        "speech_ms": 1372.93994140625,
+        "tool_call_ms": 583.22216796875
+      },
+      "book_restaurant": {
+        "speech_ms": 3703.9619140625,
+        "tool_call_ms": 2870.86669921875
+      },
+      "book_sports_ticket": {
+        "speech_ms": 4093.726806640625,
+        "tool_call_ms": 3180.4677734375
+      }
+    },
+    "info_complete_turn": {
+      "cancel_ride": 2,
+      "search_restaurants": 3,
+      "book_restaurant": 6,
+      "search_cars": 1,
+      "search_sports_events": 1,
+      "book_sports_ticket": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "cancel_ride",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "ride_id: 'RIDE123456' vs 'ride_123456'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13877665544' vs '138776544'"
+        },
+        {
+          "tool": "book_sports_ticket",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "id_number: '440106199512044567' vs '440106199501044567'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1,
+        "numerical_id_error": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

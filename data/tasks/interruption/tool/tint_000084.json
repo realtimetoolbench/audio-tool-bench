@@ -1,0 +1,146 @@
+{
+  "task_id": "tint_000084",
+  "description": "Interruption (tool_correction): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search attractions in Chengdu. Use city Chengdu.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Chengdu, I meant Xi'an.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_attractions",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Xi'an. Use city Xi'an.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 10.014079109550078
+    },
+    {
+      "speaker": "user",
+      "text": "Book attraction ticket. Use attraction_id Terracotta Warriors, date 2026-03-15, time_slot afternoon.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-15",
+          "book_attraction_ticket.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 15.221570226748469
+    },
+    {
+      "speaker": "user",
+      "text": "Set the attraction ticket booking details. visitor_name Olivia Brown. ticket_count 5. Search hotels in Hangzhou.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=5",
+          "book_attraction_ticket.visitor_name=Olivia Brown",
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 22.94343958058996
+    },
+    {
+      "speaker": "user",
+      "text": "Book hotel. Use hotel_id Hilton Hangzhou West Lake, checkin_date 2026-04-10, nights 1, guest_name Mia Anderson.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-10",
+          "book_hotel.guest_name=Mia Anderson",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 31.315727133976075
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_xa_001",
+        "date": "2026-03-15",
+        "time_slot": "afternoon",
+        "visitor_name": "Olivia Brown",
+        "ticket_count": 5
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_002",
+        "checkin_date": "2026-04-10",
+        "nights": 1,
+        "guest_name": "Mia Anderson"
+      }
+    }
+  ],
+  "transcript_hash": "ef8da3d44181",
+  "info_complete_turn": {
+    "search_attractions": 2,
+    "book_attraction_ticket": 5,
+    "search_hotels": 5,
+    "book_hotel": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "wrong_params": {
+      "search_attractions.city": "Chengdu"
+    },
+    "corrected_params": {
+      "search_attractions.city": "Xi'an"
+    }
+  }
+}

@@ -1,0 +1,543 @@
+{
+  "task_name": "tint_000066",
+  "start_time": "2026-05-06T20:54:01.205769",
+  "end_time": "2026-05-06T20:55:03.972372",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Chengdu to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 118200
+      },
+      "assistant_response": "I'll help you find some flights from Chengdu to Shanghai.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'll help you find some flights from Chengdu to Shanghai.",
+          "tool_calls": [
+            {
+              "id": "call-c3e7d180-ffe2-4947-9e00-e03c84d3e5a7-0",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Chengdu",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "I'll help you find some flights from Chengdu to Shanghai.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7603.0778884887695,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 130080,
+        "event_count": 26,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "I'll help you find some flights from Chengdu to Shanghai."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Chengdu, I meant Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 90000
+      },
+      "assistant_response": "No problem, I'll update that for you. I've got four flights from Beijing to Shanghai for you. The cheapest is the China Eastern one departing at 10:00 for 750 yuan. Do any of these work for you, or would you like me to check a specific date or cabin class?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "No problem, I'll update that for you.",
+          "tool_calls": [
+            {
+              "id": "call-07d23bd1-e0b5-4481-adac-dcdf8be923b8-1",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've got four flights from Beijing to Shanghai for you. The cheapest is the China Eastern one departing at 10:00 for 750 yuan. Do any of these work for you, or would you like me to check a specific date or cabin class?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-07d23bd1-e0b5-4481-adac-dcdf8be923b8-1",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.08392333984375
+          },
+          "latency_ms": 0.08392333984375
+        }
+      ],
+      "total_latency_ms": 6236.381769180298,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 795360,
+        "event_count": 56,
+        "latency": {
+          "speech_ms": 0.162109375,
+          "tool_call_ms": 698.541015625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.121798551223808,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use origin Beijing and destination Shanghai for the flight search.",
+        "timestamp": 10.121798551223808,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 196200
+      },
+      "assistant_response": "Thanks, I've already searched using Beijing as the origin and Shanghai as the destination. Would you like to book one of these, or do you need more details like different dates or cabin classes?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've already searched using Beijing as the origin and Shanghai as the destination. Would you like to book one of these, or do you need more details like different dates or cabin classes?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6522.6030349731445,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 547200,
+        "event_count": 33,
+        "latency": {
+          "speech_ms": 24.247802734375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.791375561354915,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-05-12 for passenger Xie Peng.",
+        "timestamp": 16.791375561354915,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-05-12",
+            "book_flight.passenger_name=Xie Peng"
+          ]
+        },
+        "audio_size_bytes": 274200
+      },
+      "assistant_response": "Thanks, let me get that booked for you. Great, your flight is booked successfully. The booking ID is FL10001 for Xie Peng on May 12th, 2026. If you need a copy of the confirmation or have any other plans to book, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, let me get that booked for you.",
+          "tool_calls": [
+            {
+              "id": "call-90870f5d-0cc7-4a07-96d4-5874c6e48179-2",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_002",
+                "passenger_name": "Xie Peng",
+                "date": "2026-05-12"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your flight is booked successfully. The booking ID is FL10001 for Xie Peng on May 12th, 2026. If you need a copy of the confirmation or have any other plans to book, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-90870f5d-0cc7-4a07-96d4-5874c6e48179-2",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_002",
+            "passenger_name": "Xie Peng",
+            "date": "2026-05-12"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_002\nPassenger: Xie Peng\nDate: 2026-05-12\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_002",
+              "passenger_name": "Xie Peng",
+              "date": "2026-05-12",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.047206878662109375
+          },
+          "latency_ms": 0.047206878662109375
+        }
+      ],
+      "total_latency_ms": 10660.270929336548,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 866400,
+        "event_count": 58,
+        "latency": {
+          "speech_ms": 320.364990234375,
+          "tool_call_ms": 1076.81201171875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 22.108880590465514,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set airline China Eastern for that flight booking. Then search restaurants in Chengdu.",
+        "timestamp": 22.108880590465514,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 243600
+      },
+      "assistant_response": "I'm sorry, but I don't have a tool to update the airline on an existing booking. I've searched for restaurants in Chengdu as you asked. The top one is Lao Ma Tou Hotpot with a 4.8 rating. Would you like to book one of these or add any cuisine preferences?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'm sorry, but I don't have a tool to update the airline on an existing booking.",
+          "tool_calls": [
+            {
+              "id": "call-4d19f4ab-8f19-4539-bb23-8fc7512861b5-3",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've searched for restaurants in Chengdu as you asked. The top one is Lao Ma Tou Hotpot with a 4.8 rating. Would you like to book one of these or add any cuisine preferences?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-4d19f4ab-8f19-4539-bb23-8fc7512861b5-3",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.052928924560546875
+          },
+          "latency_ms": 0.052928924560546875
+        }
+      ],
+      "total_latency_ms": 11916.543006896973,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 765600,
+        "event_count": 56,
+        "latency": {
+          "speech_ms": 500.68115234375,
+          "tool_call_ms": 2702.1279296875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.71390894549979,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book restaurant Lao Ma Tou Hotpot on 2026-04-20 at 19:00 for 4 people.",
+        "timestamp": 29.71390894549979,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-04-20",
+            "book_restaurant.party_size=4",
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 324600
+      },
+      "assistant_response": "Thanks, I'll book that for you. Could you please provide the contact person's name and phone number? Once I have those, I can complete the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'll book that for you. Could you please provide the contact person's name and phone number? Once I have those, I can complete the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7911.672830581665,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 407040,
+        "event_count": 29,
+        "latency": {
+          "speech_ms": 18.9033203125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 36.40156069683022,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use party size 4. Contact name Isabella Jackson, phone 13877949128.",
+        "timestamp": 36.40156069683022,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Isabella Jackson",
+            "book_restaurant.phone=13877949128"
+          ]
+        },
+        "audio_size_bytes": 302400
+      },
+      "assistant_response": "Thank you, I'll use those details to book the restaurant. Great, your reservation at Lao Ma Tou Hotpot is confirmed. The booking ID is BK1001 for April 20th at 7 PM for four people. If you need to make any changes or have other plans, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I'll use those details to book the restaurant.",
+          "tool_calls": [
+            {
+              "id": "call-4f1faced-56a0-43f3-bf37-64072c510ebe-4",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_cd_002",
+                "date": "2026-04-20",
+                "time": "19:00",
+                "party_size": 4,
+                "contact_name": "Isabella Jackson",
+                "phone": "13877949128"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your reservation at Lao Ma Tou Hotpot is confirmed. The booking ID is BK1001 for April 20th at 7 PM for four people. If you need to make any changes or have other plans, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-4f1faced-56a0-43f3-bf37-64072c510ebe-4",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_cd_002",
+            "date": "2026-04-20",
+            "time": "19:00",
+            "party_size": 4,
+            "contact_name": "Isabella Jackson",
+            "phone": "13877949128"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_cd_002\nRestaurant: Lao Ma Tou Hotpot\nDate: 2026-04-20\nTime: 19:00\nParty size: 4\nContact: Isabella Jackson (13877949128)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_cd_002",
+              "restaurant_name": "Lao Ma Tou Hotpot",
+              "date": "2026-04-20",
+              "time": "19:00",
+              "party_size": 4,
+              "contact_name": "Isabella Jackson",
+              "phone": "13877949128",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 1.0831356048583984
+          },
+          "latency_ms": 1.0831356048583984
+        }
+      ],
+      "total_latency_ms": 11905.816793441772,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 922080,
+        "event_count": 59,
+        "latency": {
+          "speech_ms": 190.614501953125,
+          "tool_call_ms": 2031.121826171875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 7,
+    "total_llm_calls": 12,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "wrong_params": {
+      "search_flights.origin": "Chengdu"
+    },
+    "corrected_params": {
+      "search_flights.origin": "Beijing"
+    },
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_flights": {
+        "speech_ms": 0.162109375,
+        "tool_call_ms": 698.541015625
+      },
+      "book_flight": {
+        "speech_ms": 320.364990234375,
+        "tool_call_ms": 1076.81201171875
+      },
+      "book_restaurant": {
+        "speech_ms": 190.614501953125,
+        "tool_call_ms": 2031.121826171875
+      }
+    },
+    "info_complete_turn": {
+      "search_flights": 2,
+      "book_flight": 4,
+      "search_restaurants": 1,
+      "book_restaurant": 7
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": "base[tool+timing OK] + priority[re-called with correction]",
+    "attribution": {
+      "errors": [],
+      "error_types": {}
+    }
+  }
+}

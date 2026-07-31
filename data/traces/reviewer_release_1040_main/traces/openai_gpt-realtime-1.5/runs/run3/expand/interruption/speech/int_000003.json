@@ -1,0 +1,830 @@
+{
+  "task_name": "int_000003",
+  "start_time": "2026-07-29T03:08:13.983250",
+  "end_time": "2026-07-29T03:10:06.677616",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shenzhen.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 108600
+      },
+      "assistant_response": "I'm sorry, but it looks like there are no train options available between Beijing and Shenzhen at the moment. Is there another",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_rdXOwQmLCyOxCenP",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shenzhen"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "I'm sorry, but it looks like there are no train options available between Beijing and Shenzhen at the moment. Is there another",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_rdXOwQmLCyOxCenP",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shenzhen"
+          },
+          "result": {
+            "success": false,
+            "output": "Sorry, no trains found from Beijing to Shenzhen.",
+            "raw_output": null,
+            "error": "Route not found: Beijing -> Shenzhen",
+            "latency_ms": 0.0057220458984375
+          },
+          "latency_ms": 0.0057220458984375
+        }
+      ],
+      "total_latency_ms": 5781.253814697266,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 96000,
+        "event_count": 71,
+        "interrupted": true,
+        "interrupt_trigger_type": "forced",
+        "partial_transcript": "I'm sorry, but it looks like there are no train options available between Beijing and Shenzhen at the moment. Is there another"
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shenzhen, I meant Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "keyword",
+            "keyword": "Shenzhen",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 103200
+      },
+      "assistant_response": "I found three trains from Beijing to Shanghai: \n\n1. Train G1, a high-speed option leaving at 06:00 and arriving at 10:28, with second class at ¥553 and first class at ¥933.\n\n2. Train G3, another high-speed option leaving at 07:00 and arriving at 11:35, with the same prices as G1.\n\n3. Train D321, an express train leaving at 08:30 and arriving at 16:45, with second class at ¥309 and first class at ¥494. \n\nAll of them currently have seats available. Let me know if you'd like to book one and for what date and passenger name.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_PDxw9FuCMWOR5ggo",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three trains from Beijing to Shanghai: \n\n1. Train G1, a high-speed option leaving at 06:00 and arriving at 10:28, with second class at ¥553 and first class at ¥933.\n\n2. Train G3, another high-speed option leaving at 07:00 and arriving at 11:35, with the same prices as G1.\n\n3. Train D321, an express train leaving at 08:30 and arriving at 16:45, with second class at ¥309 and first class at ¥494. \n\nAll of them currently have seats available. Let me know if you'd like to book one and for what date and passenger name.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_PDxw9FuCMWOR5ggo",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03814697265625
+          },
+          "latency_ms": 0.03814697265625
+        }
+      ],
+      "total_latency_ms": 24589.679718017578,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1869600,
+        "event_count": 274,
+        "latency": {
+          "speech_ms": 2936.354248046875,
+          "tool_call_ms": 1400.271240234375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 9.47129055604456,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 on 2026-03-22 for Qiu Lan.",
+        "timestamp": 9.47129055604456,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-22",
+            "book_train.passenger_name=Qiu Lan"
+          ]
+        },
+        "audio_size_bytes": 197400
+      },
+      "assistant_response": "Your train ticket is confirmed! Qiu Lan is booked on train G3, second class, departing on 2026-03-22, with seat 01F. The booking ID is TR40001. If you need any more help with your trip, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_drlo0s3aunzMujYy",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-03-22",
+                "passenger_name": "Qiu Lan",
+                "seat_class": "second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your train ticket is confirmed! Qiu Lan is booked on train G3, second class, departing on 2026-03-22, with seat 01F. The booking ID is TR40001. If you need any more help with your trip, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_drlo0s3aunzMujYy",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-03-22",
+            "passenger_name": "Qiu Lan",
+            "seat_class": "second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-03-22\nPassenger: Qiu Lan\nSeat: second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-03-22",
+              "passenger_name": "Qiu Lan",
+              "seat_class": "second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.010013580322265625
+          },
+          "latency_ms": 0.010013580322265625
+        }
+      ],
+      "total_latency_ms": 15465.794086456299,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 717600,
+        "event_count": 162,
+        "latency": {
+          "speech_ms": 2197.4130859375,
+          "tool_call_ms": 1248.67626953125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.795690303572675,
+      "input_chunk": {
+        "role": "user",
+        "content": "First Class seat.",
+        "timestamp": 14.795690303572675,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 47400
+      },
+      "assistant_response": "I've booked a first class seat for Qiu Lan on train G3 for 2026-03-22 as well. The seat is 02A and the booking ID is TR40002. Now you have both second and first class reservations. Would you like to keep both or cancel one?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_rwt6vIl3Rywqi7uc",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-03-22",
+                "passenger_name": "Qiu Lan",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've booked a first class seat for Qiu Lan on train G3 for 2026-03-22 as well. The seat is 02A and the booking ID is TR40002. Now you have both second and first class reservations. Would you like to keep both or cancel one?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_rwt6vIl3Rywqi7uc",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-03-22",
+            "passenger_name": "Qiu Lan",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40002\nTrain ID: trn_bj_sh_002\nDate: 2026-03-22\nPassenger: Qiu Lan\nSeat: first class 02A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40002",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-03-22",
+              "passenger_name": "Qiu Lan",
+              "seat_class": "first class",
+              "seat_no": "02A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.012874603271484375
+          },
+          "latency_ms": 0.012874603271484375
+        }
+      ],
+      "total_latency_ms": 10576.299905776978,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 746400,
+        "event_count": 158,
+        "latency": {
+          "speech_ms": 5184.238037109375,
+          "tool_call_ms": 3915.403076171875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 18.53878051917757,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Guangzhou.",
+        "timestamp": 18.53878051917757,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_hotels.city=Guangzhou"
+          ]
+        },
+        "audio_size_bytes": 76800
+      },
+      "assistant_response": "Here are some hotel options in Guangzhou:\n\n1. The Ritz-Carlton Guangzhou in Zhujiang New Town, 5-star, ¥1600 per night, rated 4.8/5.0.\n2. Four Seasons Guangzhou in Zhujiang New Town, 5-star, ¥1700 per night, rated 4.9/5.0.\n3. White Swan Hotel on Shamian Island, 5-star, ¥1100 per night, rated 4.7/5.0.\n4. Hanting Hotel Tianhe in Tianhe, 3-star, ¥380 per night, rated 4.2/5.0.\n\nLet me know if you'd like to book one and for how many nights.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_2Hs58WAmkGqqFdTm",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Guangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are some hotel options in Guangzhou:\n\n1. The Ritz-Carlton Guangzhou in Zhujiang New Town, 5-star, ¥1600 per night, rated 4.8/5.0.\n2. Four Seasons Guangzhou in Zhujiang New Town, 5-star, ¥1700 per night, rated 4.9/5.0.\n3. White Swan Hotel on Shamian Island, 5-star, ¥1100 per night, rated 4.7/5.0.\n4. Hanting Hotel Tianhe in Tianhe, 3-star, ¥380 per night, rated 4.2/5.0.\n\nLet me know if you'd like to book one and for how many nights.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_2Hs58WAmkGqqFdTm",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Guangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 hotels in Guangzhou:\n\n1. The Ritz-Carlton Guangzhou (ID: hotel_gz_001)\n   Location: Zhujiang New Town | 5 stars\n   Price: ¥1600/night | Rating: 4.8/5.0\n\n2. Four Seasons Guangzhou (ID: hotel_gz_002)\n   Location: Zhujiang New Town | 5 stars\n   Price: ¥1700/night | Rating: 4.9/5.0\n\n3. White Swan Hotel (ID: hotel_gz_003)\n   Location: Shamian Island | 5 stars\n   Price: ¥1100/night | Rating: 4.7/5.0\n\n4. Hanting Hotel Tianhe (ID: hotel_gz_004)\n   Location: Tianhe | 3 stars\n   Price: ¥380/night | Rating: 4.2/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_gz_001",
+                "name": "The Ritz-Carlton Guangzhou",
+                "location": "Zhujiang New Town",
+                "stars": 5,
+                "price": 1600,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_gz_002",
+                "name": "Four Seasons Guangzhou",
+                "location": "Zhujiang New Town",
+                "stars": 5,
+                "price": 1700,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_gz_003",
+                "name": "White Swan Hotel",
+                "location": "Shamian Island",
+                "stars": 5,
+                "price": 1100,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_gz_004",
+                "name": "Hanting Hotel Tianhe",
+                "location": "Tianhe",
+                "stars": 3,
+                "price": 380,
+                "rating": 4.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04100799560546875
+          },
+          "latency_ms": 0.04100799560546875
+        }
+      ],
+      "total_latency_ms": 24154.237985610962,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1684800,
+        "event_count": 271,
+        "latency": {
+          "speech_ms": 2499.397216796875,
+          "tool_call_ms": 1235.06494140625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 23.33439105402291,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Four Seasons Guangzhou, check in 2026-04-12 for 2 nights.",
+        "timestamp": 23.33439105402291,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-04-12",
+            "book_hotel.nights=2"
+          ]
+        },
+        "audio_size_bytes": 264600
+      },
+      "assistant_response": "Your hotel booking at the Four Seasons Guangzhou is confirmed for Qiu Lan, check-in on 2026-04-12 for 2 nights. The booking ID is HT20001. If there's anything else you need, let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ZXBqkLxIkAMHc7a3",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_gz_002",
+                "checkin_date": "2026-04-12",
+                "nights": 2,
+                "guest_name": "Qiu Lan"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your hotel booking at the Four Seasons Guangzhou is confirmed for Qiu Lan, check-in on 2026-04-12 for 2 nights. The booking ID is HT20001. If there's anything else you need, let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ZXBqkLxIkAMHc7a3",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_gz_002",
+            "checkin_date": "2026-04-12",
+            "nights": 2,
+            "guest_name": "Qiu Lan"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_gz_002\nCheck-in: 2026-04-12\nNights: 2\nGuest: Qiu Lan\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_gz_002",
+              "checkin_date": "2026-04-12",
+              "nights": 2,
+              "guest_name": "Qiu Lan",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.017881393432617188
+          },
+          "latency_ms": 0.017881393432617188
+        }
+      ],
+      "total_latency_ms": 9135.451316833496,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 578400,
+        "event_count": 137,
+        "latency": {
+          "speech_ms": 2402.089111328125,
+          "tool_call_ms": 1234.94140625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 29.595170475209592,
+      "input_chunk": {
+        "role": "user",
+        "content": "Guest name Wang Fang.",
+        "timestamp": 29.595170475209592,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Wang Fang"
+          ]
+        },
+        "audio_size_bytes": 60000
+      },
+      "assistant_response": "Got it. Currently, the booking is under Qiu Lan. If you need the reservation changed to Wang Fang, you'll need to contact the hotel or the booking service directly to update the guest name. I can help with information, but I don’t have the ability to modify an existing booking. Would you like any assistance with contacting them or any other arrangements?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it. Currently, the booking is under Qiu Lan. If you need the reservation changed to Wang Fang, you'll need to contact the hotel or the booking service directly to update the guest name. I can help with information, but I don’t have the ability to modify an existing booking. Would you like any assistance with contacting them or any other arrangements?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6752.902030944824,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 921600,
+        "event_count": 134,
+        "latency": {
+          "speech_ms": 1104.67236328125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 33.652601028191945,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Chengdu, then book 1 ticket for Giant Panda Base on 2026-04-08 in the afternoon for Deng Hui.",
+        "timestamp": 33.652601028191945,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-04-08",
+            "book_attraction_ticket.ticket_count=1",
+            "book_attraction_ticket.time_slot=afternoon",
+            "book_attraction_ticket.visitor_name=Deng Hui",
+            "search_attractions.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 427800
+      },
+      "assistant_response": "Your ticket for the Giant Panda Base in Chengdu is confirmed for Deng Hui on 2026-04-08 in the afternoon. The booking ID is AT50001. If you need anything else, feel free to ask!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_P4Wze5Pnl0mq7e1o",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_aoKE2uBdZSCNTnmG",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_cd_001",
+                "date": "2026-04-08",
+                "time_slot": "afternoon",
+                "visitor_name": "Deng Hui",
+                "ticket_count": 1
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Your ticket for the Giant Panda Base in Chengdu is confirmed for Deng Hui on 2026-04-08 in the afternoon. The booking ID is AT50001. If you need anything else, feel free to ask!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_P4Wze5Pnl0mq7e1o",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Chengdu:\n\n1. Giant Panda Base (ID: attr_cd_001)\n   Type: Zoo\n   Rating: 4.8/5.0\n   Ticket: ¥58\n   Hours: 07:30-18:00\n   Location: Chenghua\n\n2. Wuhou Shrine (ID: attr_cd_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Wuhou\n\n3. Du Fu Thatched Cottage (ID: attr_cd_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Qingyang\n\n4. Kuanzhai Alley (ID: attr_cd_004)\n   Type: Sightseeing\n   Rating: 4.3/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Qingyang\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_cd_001",
+                "name": "Giant Panda Base",
+                "type": "Zoo",
+                "rating": 4.8,
+                "price": 58,
+                "opening_hours": "07:30-18:00",
+                "location": "Chenghua"
+              },
+              {
+                "attraction_id": "attr_cd_002",
+                "name": "Wuhou Shrine",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Wuhou"
+              },
+              {
+                "attraction_id": "attr_cd_003",
+                "name": "Du Fu Thatched Cottage",
+                "type": "Historical",
+                "rating": 4.4,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Qingyang"
+              },
+              {
+                "attraction_id": "attr_cd_004",
+                "name": "Kuanzhai Alley",
+                "type": "Sightseeing",
+                "rating": 4.3,
+                "price": 0,
+                "opening_hours": "24 hours",
+                "location": "Qingyang"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.07200241088867188
+          },
+          "latency_ms": 0.07200241088867188
+        },
+        {
+          "tool_call_id": "call_aoKE2uBdZSCNTnmG",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_cd_001",
+            "date": "2026-04-08",
+            "time_slot": "afternoon",
+            "visitor_name": "Deng Hui",
+            "ticket_count": 1
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_cd_001\nDate: 2026-04-08\nTime slot: afternoon\nVisitor: Deng Hui\nTickets: 1\nTicket numbers: AT50001-01\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_cd_001",
+              "date": "2026-04-08",
+              "time_slot": "afternoon",
+              "visitor_name": "Deng Hui",
+              "ticket_count": 1,
+              "ticket_numbers": [
+                "AT50001-01"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0209808349609375
+          },
+          "latency_ms": 0.0209808349609375
+        }
+      ],
+      "total_latency_ms": 16229.166746139526,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 556800,
+        "event_count": 153,
+        "latency": {
+          "speech_ms": 6211.660888671875,
+          "tool_call_ms": 969.782958984375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 16,
+    "total_tool_calls": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": "travel",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_trains",
+      "param": "destination",
+      "wrong_value": "Shenzhen"
+    },
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "manual",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_trains": {
+        "speech_ms": 2936.354248046875,
+        "tool_call_ms": 1400.271240234375
+      },
+      "book_train": {
+        "speech_ms": 5184.238037109375,
+        "tool_call_ms": 3915.403076171875
+      },
+      "search_hotels": {
+        "speech_ms": 2499.397216796875,
+        "tool_call_ms": 1235.06494140625
+      },
+      "book_hotel": {
+        "speech_ms": 1104.67236328125
+      },
+      "search_attractions": {
+        "speech_ms": 6211.660888671875,
+        "tool_call_ms": 969.782958984375
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 6211.660888671875,
+        "tool_call_ms": 969.782958984375
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 2,
+      "book_train": 4,
+      "search_hotels": 5,
+      "book_hotel": 7,
+      "search_attractions": 8,
+      "book_attraction_ticket": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch+premature_call",
+    "details": "参数不匹配: book_hotel.guest_name: 期望'Wang Fang', 实际'Qiu Lan'",
+    "call_timing": "book_train 在 step 3 调用，但信息要到 turn 4 才收齐; book_hotel 在 step 6 调用，但信息要到 turn 7 才收齐",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.8333333333333334,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 1(correct), search_hotels: 1(correct), book_hotel: 0(premature_call), search_attractions: 1(correct), book_attraction_ticket: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "search_trains",
+          "error_type": "premature_call",
+          "phase": "pre",
+          "detail": "在 step 1 调用，info_complete_turn=2"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 3 调用，info_complete_turn=4"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 6 调用，info_complete_turn=7"
+        }
+      ],
+      "error_types": {
+        "premature_call": 3
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 1,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "task_id": "pro_000017",
+  "description": "Generated: 8 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "cancel_ride",
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Ugh, quick change of plans — I’m not taking that ride anymore. It’s the one labeled RIDE789012.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "cancel_ride.ride_id=RIDE789012"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Since I’ll be in Chengdu anyway, I kinda want to catch a game while I’m there—what sports events are coming up in Chengdu?",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_sports_events.city=Chengdu"
+        ]
+      },
+      "timestamp": 8.199997997472877
+    },
+    {
+      "speaker": "user",
+      "text": "That Chengdu Rongcheng vs Beijing Guoan match sounds perfect. Go ahead and grab 2 tickets in the Away Stand.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Away Stand",
+          "book_sports_ticket.ticket_count=2"
+        ]
+      },
+      "timestamp": 16.876987583886763
+    },
+    {
+      "speaker": "user",
+      "text": "Book them under Zhou Jun—phone number 13851574217.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Zhou Jun",
+          "book_sports_ticket.phone=13851574217"
+        ]
+      },
+      "timestamp": 24.89489055653278
+    },
+    {
+      "speaker": "user",
+      "text": "For the ticket info, the ID number is 649486576970138240.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_sports_ticket.id_number=649486576970138240"
+        ]
+      },
+      "timestamp": 29.933934625970675
+    },
+    {
+      "speaker": "user",
+      "text": "After that I’ve got a quick stop in Hangzhou—what hotels are looking good around there?",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 35.60906591433456
+    },
+    {
+      "speaker": "user",
+      "text": "If Hilton Hangzhou West Lake is available, yeah, lock it in for Liu Yang—check-in 2026-03-14 for 1 night.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-14",
+          "book_hotel.guest_name=Liu Yang",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 43.007957789347
+    },
+    {
+      "speaker": "user",
+      "text": "Also I’ll be meeting friends in Shanghai—any good restaurant options there? If Xiao Nan Guo works, let’s reserve it for 2026-03-26 at 12:00 for 4 people; put it under Chen Ming, phone 13864788741.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.contact_name=Chen Ming",
+          "book_restaurant.date=2026-03-26",
+          "book_restaurant.party_size=4",
+          "book_restaurant.phone=13864788741",
+          "book_restaurant.time=12:00",
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 51.08001805486171
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "cancel_ride",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_cd_001",
+        "seat_zone": "Away Stand",
+        "ticket_count": 2,
+        "buyer_name": "Zhou Jun",
+        "phone": "13851574217",
+        "id_number": "649486576970138240"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_002",
+        "checkin_date": "2026-03-14",
+        "nights": 1,
+        "guest_name": "Liu Yang"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_003",
+        "date": "2026-03-26",
+        "time": "12:00",
+        "party_size": 4,
+        "contact_name": "Chen Ming",
+        "phone": "13864788741"
+      }
+    }
+  ],
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 8,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "cancel_ride": 1,
+    "search_sports_events": 2,
+    "book_sports_ticket": 5,
+    "search_hotels": 6,
+    "book_hotel": 7,
+    "search_restaurants": 8,
+    "book_restaurant": 8
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "not taking that ride anymore",
+      "want to catch a game while I’m there",
+      "go ahead and grab 2 tickets",
+      "Book them under",
+      "lock it in",
+      "let’s reserve it"
+    ],
+    "ambiguity_notes": "Strong intent overall, but the last turn mixes restaurant search and booking details (and omits search_cars.city=Chengdu plus some restaurant booking fields), so it would need a follow-up turn to separate search from booking and capture all required booking parameters."
+  },
+  "transcript_hash": "512554ad8835"
+}

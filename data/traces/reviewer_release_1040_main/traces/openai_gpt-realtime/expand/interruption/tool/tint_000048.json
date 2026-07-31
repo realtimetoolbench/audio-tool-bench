@@ -1,0 +1,821 @@
+{
+  "task_name": "tint_000048",
+  "start_time": "2026-05-06T16:23:11.787436",
+  "end_time": "2026-05-06T16:25:01.265968",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 118200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_yYV0nAWcb9Cqf1hD",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_yYV0nAWcb9Cqf1hD",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.1621246337890625
+          },
+          "latency_ms": 0.1621246337890625,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 7275.480270385742,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 31,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search restaurants for delivery in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_restaurants_delivery.city=Beijing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 177600
+      },
+      "assistant_response": "好了，北京的外卖餐厅有这几个：\n\n1. 麦当劳 CBD 店，快餐，评分 4.5，大约 30 分钟送达，配送费 ¥5，没有最低消费。\n\n2. 海底捞火锅，评分 4.8，大约 45 分钟送达，配送费 ¥8，最低消费 ¥50。\n\n3. 湖南菜餐厅，评分 4.3，大约 25 分钟送达，配送费 ¥3，最低消费 ¥20。\n\n4. 星巴克 CBD 店，咖啡，评分 4.6，大约 20 分钟送达，配送费 ¥6，没有最低消费。\n\n你有中意的餐厅吗？还是想先订票？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_sZJ0l3SuSAP5D5Qc",
+              "name": "search_restaurants_delivery",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "好了，北京的外卖餐厅有这几个：\n\n1. 麦当劳 CBD 店，快餐，评分 4.5，大约 30 分钟送达，配送费 ¥5，没有最低消费。\n\n2. 海底捞火锅，评分 4.8，大约 45 分钟送达，配送费 ¥8，最低消费 ¥50。\n\n3. 湖南菜餐厅，评分 4.3，大约 25 分钟送达，配送费 ¥3，最低消费 ¥20。\n\n4. 星巴克 CBD 店，咖啡，评分 4.6，大约 20 分钟送达，配送费 ¥6，没有最低消费。\n\n你有中意的餐厅吗？还是想先订票？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_sZJ0l3SuSAP5D5Qc",
+          "tool_name": "search_restaurants_delivery",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 delivery restaurants in Beijing:\n\n1. McDonald's CBD (ID: dlv_bj_001)\n   Cuisine: Fast Food | Rating: 4.5/5.0\n   Delivery time: 30 min | Delivery fee: ¥5\n   Min order: ¥0\n\n2. Haidilao Hotpot (ID: dlv_bj_002)\n   Cuisine: Hotpot | Rating: 4.8/5.0\n   Delivery time: 45 min | Delivery fee: ¥8\n   Min order: ¥50\n\n3. Hunan Restaurant (ID: dlv_bj_003)\n   Cuisine: Hunan | Rating: 4.3/5.0\n   Delivery time: 25 min | Delivery fee: ¥3\n   Min order: ¥20\n\n4. Starbucks CBD (ID: dlv_bj_004)\n   Cuisine: Coffee | Rating: 4.6/5.0\n   Delivery time: 20 min | Delivery fee: ¥6\n   Min order: ¥0\n\n",
+            "raw_output": [
+              {
+                "delivery_id": "dlv_bj_001",
+                "name": "McDonald's CBD",
+                "cuisine": "Fast Food",
+                "rating": 4.5,
+                "delivery_time": 30,
+                "min_order": 0,
+                "delivery_fee": 5,
+                "menu": [
+                  "Big Mac Meal and Fries",
+                  "Chicken McNuggets and Cola",
+                  "Quarter Pounder and Apple Pie"
+                ]
+              },
+              {
+                "delivery_id": "dlv_bj_002",
+                "name": "Haidilao Hotpot",
+                "cuisine": "Hotpot",
+                "rating": 4.8,
+                "delivery_time": 45,
+                "min_order": 50,
+                "delivery_fee": 8,
+                "menu": [
+                  "Hotpot Base and Sliced Beef",
+                  "Hotpot with Lamb and Vegetables",
+                  "Spicy Hotpot Combo"
+                ]
+              },
+              {
+                "delivery_id": "dlv_bj_003",
+                "name": "Hunan Restaurant",
+                "cuisine": "Hunan",
+                "rating": 4.3,
+                "delivery_time": 25,
+                "min_order": 20,
+                "delivery_fee": 3,
+                "menu": [
+                  "Spicy Stir-fried Pork and Rice",
+                  "Steamed Fish Head with Chili",
+                  "Dong'an Chicken and Rice"
+                ]
+              },
+              {
+                "delivery_id": "dlv_bj_004",
+                "name": "Starbucks CBD",
+                "cuisine": "Coffee",
+                "rating": 4.6,
+                "delivery_time": 20,
+                "min_order": 0,
+                "delivery_fee": 6,
+                "menu": [
+                  "Caffe Latte and Croissant",
+                  "Americano and Sandwich",
+                  "Matcha Latte and Muffin"
+                ]
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.18596649169921875
+          },
+          "latency_ms": 0.18596649169921875
+        }
+      ],
+      "total_latency_ms": 11212.37301826477,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1917600,
+        "event_count": 362,
+        "latency": {
+          "speech_ms": 1779.58544921875,
+          "tool_call_ms": 4.57275390625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.74592784726531,
+      "input_chunk": {
+        "role": "user",
+        "content": "Place a food order for delivery_id Starbucks CBD.",
+        "timestamp": 10.74592784726531,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 147600
+      },
+      "assistant_response": "好的，我们来给星巴克 CBD 店下单。请告诉我您想点哪些饮品或者食品？然后还需要一个送餐地址和联系电话。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，我们来给星巴克 CBD 店下单。请告诉我您想点哪些饮品或者食品？然后还需要一个送餐地址和联系电话。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8574.223041534424,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 480000,
+        "event_count": 90,
+        "latency": {
+          "speech_ms": 3945.544921875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.565755579432228,
+      "input_chunk": {
+        "role": "user",
+        "content": "Add items: Matcha Latte and Muffin.",
+        "timestamp": 16.565755579432228,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "place_food_order.items=Matcha Latte and Muffin"
+          ]
+        },
+        "audio_size_bytes": 99600
+      },
+      "assistant_response": "好的，您要一杯抹茶拿铁和一个松饼。接下来，请告诉我送餐的详细地址和联系电话，我马上帮您下单！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，您要一杯抹茶拿铁和一个松饼。接下来，请告诉我送餐的详细地址和联系电话，我马上帮您下单！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4701.008081436157,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 424800,
+        "event_count": 87,
+        "latency": {
+          "speech_ms": 871.820068359375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.900057676387355,
+      "input_chunk": {
+        "role": "user",
+        "content": "Deliver to Room 306, Block H, Green Valley Apartment. Phone 13898765432.",
+        "timestamp": 20.900057676387355,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "place_food_order.delivery_address=Room 306, Block H, Green Valley Apartment",
+            "place_food_order.phone=13898765432"
+          ]
+        },
+        "audio_size_bytes": 328800
+      },
+      "assistant_response": "订单已经下好了！您订的抹茶拿铁和松饼会在大约 35 分钟内送到绿谷公寓 H 座 306 房间。总价 ¥55。如果有任何需要，随时告诉我哦！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_esGySgrN3CmKdrqR",
+              "name": "place_food_order",
+              "arguments": {
+                "delivery_id": "dlv_bj_004",
+                "items": "matcha latte, muffin",
+                "delivery_address": "Room 306, Block H, Green Valley Apartment",
+                "phone": "1389876432"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "订单已经下好了！您订的抹茶拿铁和松饼会在大约 35 分钟内送到绿谷公寓 H 座 306 房间。总价 ¥55。如果有任何需要，随时告诉我哦！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_esGySgrN3CmKdrqR",
+          "tool_name": "place_food_order",
+          "arguments": {
+            "delivery_id": "dlv_bj_004",
+            "items": "matcha latte, muffin",
+            "delivery_address": "Room 306, Block H, Green Valley Apartment",
+            "phone": "1389876432"
+          },
+          "result": {
+            "success": true,
+            "output": "Food order placed!\n\nOrder ID: FD90001\nRestaurant ID: dlv_bj_004\nItems: matcha latte, muffin\nDelivery address: Room 306, Block H, Green Valley Apartment\nPhone: 1389876432\nTotal: ¥55\nEstimated delivery: 35 min\nStatus: Placed\n",
+            "raw_output": {
+              "order_id": "FD90001",
+              "delivery_id": "dlv_bj_004",
+              "items": [
+                "matcha latte",
+                "muffin"
+              ],
+              "delivery_address": "Room 306, Block H, Green Valley Apartment",
+              "phone": "1389876432",
+              "note": "",
+              "total_price": 55,
+              "status": "Placed",
+              "estimated_time": 35
+            },
+            "error": null,
+            "latency_ms": 0.17380714416503906
+          },
+          "latency_ms": 0.17380714416503906
+        }
+      ],
+      "total_latency_ms": 19783.318042755127,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 643200,
+        "event_count": 186,
+        "latency": {
+          "speech_ms": 9151.178955078125,
+          "tool_call_ms": 8117.048583984375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 94800
+      },
+      "assistant_response": "好的，咱们接着回到火车票的查询。刚才找到了从北京到上海的三趟列车：\n\n1. G1 高铁，早上 6:00 出发，10:28 到，二等 ¥553，一等 ¥933。\n\n2. G3 高铁，早上 7:00 出发，11:35 到，票价一样。\n\n3. D321 普通快车，早上 8:30 出发，16:45 到，二等 ¥309，一等 ¥494。\n\n您有想好的出行日期和想选的车次吗？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，咱们接着回到火车票的查询。刚才找到了从北京到上海的三趟列车：\n\n1. G1 高铁，早上 6:00 出发，10:28 到，二等 ¥553，一等 ¥933。\n\n2. G3 高铁，早上 7:00 出发，11:35 到，票价一样。\n\n3. D321 普通快车，早上 8:30 出发，16:45 到，二等 ¥309，一等 ¥494。\n\n您有想好的出行日期和想选的车次吗？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 11907.572031021118,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1675200,
+        "event_count": 289,
+        "latency": {
+          "speech_ms": 2787.534912109375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.768126964705765,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G1 on 2026-03-27.",
+        "timestamp": 31.768126964705765,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-03-27"
+          ]
+        },
+        "audio_size_bytes": 150600
+      },
+      "assistant_response": "好的，那请告诉我乘车人的姓名，我这就为您预订 G1 次列车，2026 年 3 月 27 日的车票。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，那请告诉我乘车人的姓名，我这就为您预订 G1 次列车，2026 年 3 月 27 日的车票。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9619.462013244629,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 463200,
+        "event_count": 90,
+        "latency": {
+          "speech_ms": 5344.615966796875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.29212491549424,
+      "input_chunk": {
+        "role": "user",
+        "content": "Passenger name Hu Bin. Seat class First Class.",
+        "timestamp": 36.29212491549424,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.passenger_name=Hu Bin",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 135000
+      },
+      "assistant_response": "票订好了！胡宾的 G1 次列车，一等座 01A，2026 年 3 月 27 日出发，一切确认无误。有什么其他需要帮忙的，尽管说！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_FYyf3IQbxKDLhiiO",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_001",
+                "date": "2026-03-27",
+                "passenger_name": "Hu Bin",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "票订好了！胡宾的 G1 次列车，一等座 01A，2026 年 3 月 27 日出发，一切确认无误。有什么其他需要帮忙的，尽管说！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_FYyf3IQbxKDLhiiO",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_001",
+            "date": "2026-03-27",
+            "passenger_name": "Hu Bin",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_001\nDate: 2026-03-27\nPassenger: Hu Bin\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_001",
+              "date": "2026-03-27",
+              "passenger_name": "Hu Bin",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.10585784912109375
+          },
+          "latency_ms": 0.10585784912109375
+        }
+      ],
+      "total_latency_ms": 9903.879880905151,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 592800,
+        "event_count": 168,
+        "latency": {
+          "speech_ms": 4452.31103515625,
+          "tool_call_ms": 2727.823974609375
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 41.2544488417313,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Nanjing.",
+        "timestamp": 41.2544488417313,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Nanjing"
+          ]
+        },
+        "audio_size_bytes": 73800
+      },
+      "assistant_response": "找到了南京的四家酒店：\n\n1. 南京洲际酒店，新街口，5 星，¥1200/晚，评分 4.8。\n\n2. 南京索菲特银河酒店，鼓楼区，5 星，¥1000/晚，评分 4.7。\n\n3. 南京金陵饭店，新街口，4 星，¥650/晚，评分 4.5。\n\n4. 汉庭酒店玄武店，玄武区，3 星，¥350/晚，评分 4.1。\n\n您对哪家感兴趣？还是有具体的入住日期？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_fhnVdTpHCJAxuNl1",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Nanjing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "找到了南京的四家酒店：\n\n1. 南京洲际酒店，新街口，5 星，¥1200/晚，评分 4.8。\n\n2. 南京索菲特银河酒店，鼓楼区，5 星，¥1000/晚，评分 4.7。\n\n3. 南京金陵饭店，新街口，4 星，¥650/晚，评分 4.5。\n\n4. 汉庭酒店玄武店，玄武区，3 星，¥350/晚，评分 4.1。\n\n您对哪家感兴趣？还是有具体的入住日期？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_fhnVdTpHCJAxuNl1",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Nanjing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 hotels in Nanjing:\n\n1. InterContinental Nanjing (ID: hotel_nj_001)\n   Location: Xinjiekou | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Sofitel Nanjing Galaxy (ID: hotel_nj_002)\n   Location: Gulou | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Jinling Hotel Nanjing (ID: hotel_nj_003)\n   Location: Xinjiekou | 4 stars\n   Price: ¥650/night | Rating: 4.5/5.0\n\n4. Hanting Hotel Xuanwu (ID: hotel_nj_004)\n   Location: Xuanwu | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_nj_001",
+                "name": "InterContinental Nanjing",
+                "location": "Xinjiekou",
+                "stars": 5,
+                "price": 1200,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_nj_002",
+                "name": "Sofitel Nanjing Galaxy",
+                "location": "Gulou",
+                "stars": 5,
+                "price": 1000,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_nj_003",
+                "name": "Jinling Hotel Nanjing",
+                "location": "Xinjiekou",
+                "stars": 4,
+                "price": 650,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_nj_004",
+                "name": "Hanting Hotel Xuanwu",
+                "location": "Xuanwu",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.1
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.18405914306640625
+          },
+          "latency_ms": 0.18405914306640625
+        }
+      ],
+      "total_latency_ms": 13219.746112823486,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1792800,
+        "event_count": 315,
+        "latency": {
+          "speech_ms": 3457.636962890625,
+          "tool_call_ms": 2526.60888671875
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 45.02045888147438,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book hotel Hanting Hotel Xuanwu. Check in 2026-03-11 for 3 nights. Guest name Mike Davis.",
+        "timestamp": 45.02045888147438,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-11",
+            "book_hotel.guest_name=Mike Davis",
+            "book_hotel.nights=3"
+          ]
+        },
+        "audio_size_bytes": 342000
+      },
+      "assistant_response": "酒店预订成功！Mike Davis 已经预订了南京汉庭酒店玄武店，2026 年 3 月 11 日入住，连住 3 晚。祝他旅途愉快！如果还有其他安排需要帮忙，尽管告诉我。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_wknHgERNFT1JIarj",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_nj_004",
+                "checkin_date": "2026-03-11",
+                "nights": 3,
+                "guest_name": "Mike Davis"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "酒店预订成功！Mike Davis 已经预订了南京汉庭酒店玄武店，2026 年 3 月 11 日入住，连住 3 晚。祝他旅途愉快！如果还有其他安排需要帮忙，尽管告诉我。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_wknHgERNFT1JIarj",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_nj_004",
+            "checkin_date": "2026-03-11",
+            "nights": 3,
+            "guest_name": "Mike Davis"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_nj_004\nCheck-in: 2026-03-11\nNights: 3\nGuest: Mike Davis\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_nj_004",
+              "checkin_date": "2026-03-11",
+              "nights": 3,
+              "guest_name": "Mike Davis",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.04315376281738281
+          },
+          "latency_ms": 0.04315376281738281
+        }
+      ],
+      "total_latency_ms": 13251.862049102783,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 705600,
+        "event_count": 190,
+        "latency": {
+          "speech_ms": 5784.89208984375,
+          "tool_call_ms": 4357.72509765625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 16,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_trains",
+    "inserted_tools": [
+      "search_restaurants_delivery",
+      "place_food_order"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_restaurants_delivery": {
+        "speech_ms": 1779.58544921875,
+        "tool_call_ms": 4.57275390625
+      },
+      "place_food_order": {
+        "speech_ms": 9151.178955078125,
+        "tool_call_ms": 8117.048583984375
+      },
+      "book_train": {
+        "speech_ms": 4452.31103515625,
+        "tool_call_ms": 2727.823974609375
+      },
+      "search_hotels": {
+        "speech_ms": 3457.636962890625,
+        "tool_call_ms": 2526.60888671875
+      },
+      "book_hotel": {
+        "speech_ms": 5784.89208984375,
+        "tool_call_ms": 4357.72509765625
+      }
+    },
+    "info_complete_turn": {
+      "search_restaurants_delivery": 2,
+      "place_food_order": 5,
+      "search_trains": 1,
+      "book_train": 8,
+      "search_hotels": 9,
+      "book_hotel": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: place_food_order.phone: 期望'13898765432', 实际'1389876432'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.8333333333333334,
+    "behavior_score_details": "search_restaurants_delivery: 1(correct), place_food_order: 0(param_mismatch), search_trains: 1(correct), book_train: 1(correct), search_hotels: 1(correct), book_hotel: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "place_food_order",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13898765432' vs '1389876432'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

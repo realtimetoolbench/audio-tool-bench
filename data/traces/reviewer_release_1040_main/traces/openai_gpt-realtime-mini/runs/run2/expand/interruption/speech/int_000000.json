@@ -1,0 +1,833 @@
+{
+  "task_name": "int_000000",
+  "start_time": "2026-07-28T23:51:28.277337",
+  "end_time": "2026-07-28T23:52:53.554357",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shenzhen.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 111000
+      },
+      "assistant_response": "It looks like there are no direct trains available from Beijing to Shenzhen at the moment. Would you like to consider other travel options, like flights, or perhaps look for trains via another route?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_5shkiA9yhlHoLusl",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shenzhen"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "It looks like there are no direct trains available from Beijing to Shenzhen at the moment. Would you like to consider other travel options, like flights, or perhaps look for trains via another route?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_5shkiA9yhlHoLusl",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shenzhen"
+          },
+          "result": {
+            "success": false,
+            "output": "Sorry, no trains found from Beijing to Shenzhen.",
+            "raw_output": null,
+            "error": "Route not found: Beijing -> Shenzhen",
+            "latency_ms": 0.009059906005859375
+          },
+          "latency_ms": 0.009059906005859375
+        }
+      ],
+      "total_latency_ms": 6747.06506729126,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 76800,
+        "event_count": 105,
+        "interrupted": true,
+        "interrupt_trigger_type": "keyword",
+        "partial_transcript": "It looks like there are no direct trains available from Beijing to Shenzhen at the moment. Would you like to consider other travel options, like flights, or perhaps look for trains via another route?"
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shenzhen, I meant Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "keyword",
+            "keyword": "Shenzhen",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 99600
+      },
+      "assistant_response": "Great! Here are the available trains from Beijing to Shanghai:\n\n1. G1 (High-speed): Departs at 06:00 and arrives at 10:28. Second class: ¥553, First class: ¥933.\n\n2. G3 (High-speed): Departs at 07:00 and arrives at 11:35. Second class: ¥553, First class: ¥933.\n\n3. D321 (Express): Departs at 08:30 and arrives at 16:45. Second class: ¥309, First class: ¥494.\n\nWhich one would you like to book, and for what date?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_EJmbALlIEZZEJBz5",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great! Here are the available trains from Beijing to Shanghai:\n\n1. G1 (High-speed): Departs at 06:00 and arrives at 10:28. Second class: ¥553, First class: ¥933.\n\n2. G3 (High-speed): Departs at 07:00 and arrives at 11:35. Second class: ¥553, First class: ¥933.\n\n3. D321 (Express): Departs at 08:30 and arrives at 16:45. Second class: ¥309, First class: ¥494.\n\nWhich one would you like to book, and for what date?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_EJmbALlIEZZEJBz5",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.027179718017578125
+          },
+          "latency_ms": 0.027179718017578125
+        }
+      ],
+      "total_latency_ms": 10207.76391029358,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1291200,
+        "event_count": 240,
+        "latency": {
+          "speech_ms": 4529.89013671875,
+          "tool_call_ms": 3496.4521484375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 9.947491029023597,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train D321 on 2026-04-12 for Sarah Chen in First Class.",
+        "timestamp": 9.947491029023597,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-04-12",
+            "book_train.passenger_name=Sarah Chen",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 277200
+      },
+      "assistant_response": "Your booking is confirmed! Here are the details:\n\nTrain: D321 (Express)  \nDate: 2026-04-12  \nPassenger: Sarah Chen  \nSeat: first class 01A  \nBooking ID: TR40001\n\nIf you need to make any changes or have questions, let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_oEnnR0Hw3z4pLCwR",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_003",
+                "date": "2026-04-12",
+                "passenger_name": "Sarah Chen",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your booking is confirmed! Here are the details:\n\nTrain: D321 (Express)  \nDate: 2026-04-12  \nPassenger: Sarah Chen  \nSeat: first class 01A  \nBooking ID: TR40001\n\nIf you need to make any changes or have questions, let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_oEnnR0Hw3z4pLCwR",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_003",
+            "date": "2026-04-12",
+            "passenger_name": "Sarah Chen",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_003\nDate: 2026-04-12\nPassenger: Sarah Chen\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_003",
+              "date": "2026-04-12",
+              "passenger_name": "Sarah Chen",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.012159347534179688
+          },
+          "latency_ms": 0.012159347534179688
+        }
+      ],
+      "total_latency_ms": 8024.82008934021,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 712800,
+        "event_count": 174,
+        "latency": {
+          "speech_ms": 1820.944091796875,
+          "tool_call_ms": 1020.1650390625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.206298396153365,
+      "input_chunk": {
+        "role": "user",
+        "content": "Seat class First Class.",
+        "timestamp": 16.206298396153365,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 66000
+      },
+      "assistant_response": "Got it! Your seat is confirmed in first class as 01A. If you need any other details or assistance, feel free to ask!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! Your seat is confirmed in first class as 01A. If you need any other details or assistance, feel free to ask!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4906.599998474121,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 345600,
+        "event_count": 61,
+        "latency": {
+          "speech_ms": 1434.696044921875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.015957712530255,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Beijing.",
+        "timestamp": 20.015957712530255,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_attractions.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 85800
+      },
+      "assistant_response": "Here are some attractions you might enjoy in Beijing:\n\n1. Forbidden City – A historical gem with a 4.8 rating. Tickets are ¥60.\n2. Great Wall Badaling – Another historical site, rated 4.7, tickets ¥40.\n3. Summer Palace – A beautiful garden area with a 4.6 rating, tickets ¥30.\n4. Temple of Heaven – Another historical landmark with a 4.5 rating, tickets just ¥15.\n\nAnything specific you'd like to know more about?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_oVlzWwCtIErs2Qfl",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are some attractions you might enjoy in Beijing:\n\n1. Forbidden City – A historical gem with a 4.8 rating. Tickets are ¥60.\n2. Great Wall Badaling – Another historical site, rated 4.7, tickets ¥40.\n3. Summer Palace – A beautiful garden area with a 4.6 rating, tickets ¥30.\n4. Temple of Heaven – Another historical landmark with a 4.5 rating, tickets just ¥15.\n\nAnything specific you'd like to know more about?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_oVlzWwCtIErs2Qfl",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Beijing:\n\n1. Forbidden City (ID: attr_bj_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥60\n   Hours: 08:30-17:00\n   Location: Dongcheng\n\n2. Great Wall Badaling (ID: attr_bj_002)\n   Type: Historical\n   Rating: 4.7/5.0\n   Ticket: ¥40\n   Hours: 06:30-19:00\n   Location: Yanqing\n\n3. Summer Palace (ID: attr_bj_003)\n   Type: Garden\n   Rating: 4.6/5.0\n   Ticket: ¥30\n   Hours: 06:30-18:00\n   Location: Haidian\n\n4. Temple of Heaven (ID: attr_bj_004)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥15\n   Hours: 06:00-22:00\n   Location: Dongcheng\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_bj_001",
+                "name": "Forbidden City",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 60,
+                "opening_hours": "08:30-17:00",
+                "location": "Dongcheng"
+              },
+              {
+                "attraction_id": "attr_bj_002",
+                "name": "Great Wall Badaling",
+                "type": "Historical",
+                "rating": 4.7,
+                "price": 40,
+                "opening_hours": "06:30-19:00",
+                "location": "Yanqing"
+              },
+              {
+                "attraction_id": "attr_bj_003",
+                "name": "Summer Palace",
+                "type": "Garden",
+                "rating": 4.6,
+                "price": 30,
+                "opening_hours": "06:30-18:00",
+                "location": "Haidian"
+              },
+              {
+                "attraction_id": "attr_bj_004",
+                "name": "Temple of Heaven",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 15,
+                "opening_hours": "06:00-22:00",
+                "location": "Dongcheng"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03695487976074219
+          },
+          "latency_ms": 0.03695487976074219
+        }
+      ],
+      "total_latency_ms": 8931.40196800232,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1221600,
+        "event_count": 205,
+        "latency": {
+          "speech_ms": 1938.325927734375,
+          "tool_call_ms": 841.57373046875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 24.438572110683758,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Great Wall Badaling tickets on 2026-03-19 in the morning for He Xia.",
+        "timestamp": 24.438572110683758,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-19",
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=He Xia"
+          ]
+        },
+        "audio_size_bytes": 279000
+      },
+      "assistant_response": "Your ticket for the Great Wall Badaling on 2026-03-19 in the morning is confirmed! \n\nBooking ID: AT50001  \nVisitor: He Xia  \nOne ticket booked.\n\nIf you need to adjust anything, let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_BNz3CGp2saevGtVn",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_bj_002",
+                "visitor_name": "He Xia",
+                "date": "2026-03-19",
+                "time_slot": "morning",
+                "ticket_count": 1
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your ticket for the Great Wall Badaling on 2026-03-19 in the morning is confirmed! \n\nBooking ID: AT50001  \nVisitor: He Xia  \nOne ticket booked.\n\nIf you need to adjust anything, let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_BNz3CGp2saevGtVn",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_bj_002",
+            "visitor_name": "He Xia",
+            "date": "2026-03-19",
+            "time_slot": "morning",
+            "ticket_count": 1
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_bj_002\nDate: 2026-03-19\nTime slot: morning\nVisitor: He Xia\nTickets: 1\nTicket numbers: AT50001-01\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_bj_002",
+              "date": "2026-03-19",
+              "time_slot": "morning",
+              "visitor_name": "He Xia",
+              "ticket_count": 1,
+              "ticket_numbers": [
+                "AT50001-01"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.029802322387695312
+          },
+          "latency_ms": 0.029802322387695312
+        }
+      ],
+      "total_latency_ms": 14420.210838317871,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 559200,
+        "event_count": 159,
+        "latency": {
+          "speech_ms": 4952.60986328125,
+          "tool_call_ms": 4037.931884765625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.866443452355398,
+      "input_chunk": {
+        "role": "user",
+        "content": "Two tickets, visitor name He Xia.",
+        "timestamp": 30.866443452355398,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.ticket_count=2"
+          ]
+        },
+        "audio_size_bytes": 95400
+      },
+      "assistant_response": "Perfect! The booking is confirmed for two tickets to the Great Wall Badaling on 2026-03-19 in the morning for He Xia. \n\nBooking ID: AT50002\n\nIf you need to make any changes, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_3a3Qzui6YT4DQvlc",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_bj_002",
+                "visitor_name": "He Xia",
+                "date": "2026-03-19",
+                "time_slot": "morning",
+                "ticket_count": 2
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Perfect! The booking is confirmed for two tickets to the Great Wall Badaling on 2026-03-19 in the morning for He Xia. \n\nBooking ID: AT50002\n\nIf you need to make any changes, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_3a3Qzui6YT4DQvlc",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_bj_002",
+            "visitor_name": "He Xia",
+            "date": "2026-03-19",
+            "time_slot": "morning",
+            "ticket_count": 2
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50002\nAttraction ID: attr_bj_002\nDate: 2026-03-19\nTime slot: morning\nVisitor: He Xia\nTickets: 2\nTicket numbers: AT50002-01, AT50002-02\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50002",
+              "attraction_id": "attr_bj_002",
+              "date": "2026-03-19",
+              "time_slot": "morning",
+              "visitor_name": "He Xia",
+              "ticket_count": 2,
+              "ticket_numbers": [
+                "AT50002-01",
+                "AT50002-02"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.024080276489257812
+          },
+          "latency_ms": 0.024080276489257812
+        }
+      ],
+      "total_latency_ms": 16250.329732894897,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 619200,
+        "event_count": 162,
+        "latency": {
+          "speech_ms": 6466.561279296875,
+          "tool_call_ms": 4984.96826171875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.23175721446299,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Suzhou, then book Pan Pacific Suzhou check-in 2026-03-19 for 4 nights under Tang Xue.",
+        "timestamp": 35.23175721446299,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-19",
+            "book_hotel.guest_name=Tang Xue",
+            "book_hotel.nights=4",
+            "search_hotels.city=Suzhou"
+          ]
+        },
+        "audio_size_bytes": 387000
+      },
+      "assistant_response": "Your booking at the Pan Pacific Suzhou is confirmed! \n\nBooking ID: HT20001  \nCheck-in Date: 2026-03-19  \nNights: 4  \nGuest: Tang Shui\n\nIf you need anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_dET1Nu0Uzo9z8TkF",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Suzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_S55z58ibhfFuneNr",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_su_002",
+                "guest_name": "Tang Shui",
+                "checkin_date": "2026-03-19",
+                "nights": 4
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Your booking at the Pan Pacific Suzhou is confirmed! \n\nBooking ID: HT20001  \nCheck-in Date: 2026-03-19  \nNights: 4  \nGuest: Tang Shui\n\nIf you need anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_dET1Nu0Uzo9z8TkF",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Suzhou:\n\n1. Shangri-La Suzhou (ID: hotel_su_001)\n   Location: Suzhou Industrial Park | 5 stars\n   Price: ¥1050/night | Rating: 4.8/5.0\n\n2. Pan Pacific Suzhou (ID: hotel_su_002)\n   Location: Gusu | 5 stars\n   Price: ¥900/night | Rating: 4.7/5.0\n\n3. Home Inn Pingjiang (ID: hotel_su_003)\n   Location: Pingjiang | 3 stars\n   Price: ¥330/night | Rating: 4.2/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_su_001",
+                "name": "Shangri-La Suzhou",
+                "location": "Suzhou Industrial Park",
+                "stars": 5,
+                "price": 1050,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_su_002",
+                "name": "Pan Pacific Suzhou",
+                "location": "Gusu",
+                "stars": 5,
+                "price": 900,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_su_003",
+                "name": "Home Inn Pingjiang",
+                "location": "Pingjiang",
+                "stars": 3,
+                "price": 330,
+                "rating": 4.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03409385681152344
+          },
+          "latency_ms": 0.03409385681152344
+        },
+        {
+          "tool_call_id": "call_S55z58ibhfFuneNr",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_su_002",
+            "guest_name": "Tang Shui",
+            "checkin_date": "2026-03-19",
+            "nights": 4
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_su_002\nCheck-in: 2026-03-19\nNights: 4\nGuest: Tang Shui\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_su_002",
+              "checkin_date": "2026-03-19",
+              "nights": 4,
+              "guest_name": "Tang Shui",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.008106231689453125
+          },
+          "latency_ms": 0.008106231689453125
+        }
+      ],
+      "total_latency_ms": 15781.636238098145,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 578400,
+        "event_count": 175,
+        "latency": {
+          "speech_ms": 4511.544921875,
+          "tool_call_ms": 2121.0849609375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 16,
+    "total_tool_calls": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": "travel",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_trains",
+      "param": "destination",
+      "wrong_value": "Shenzhen"
+    },
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "manual",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_trains": {
+        "speech_ms": 4529.89013671875,
+        "tool_call_ms": 3496.4521484375
+      },
+      "book_train": {
+        "speech_ms": 1820.944091796875,
+        "tool_call_ms": 1020.1650390625
+      },
+      "search_attractions": {
+        "speech_ms": 1938.325927734375,
+        "tool_call_ms": 841.57373046875
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 6466.561279296875,
+        "tool_call_ms": 4984.96826171875
+      },
+      "search_hotels": {
+        "speech_ms": 4511.544921875,
+        "tool_call_ms": 2121.0849609375
+      },
+      "book_hotel": {
+        "speech_ms": 4511.544921875,
+        "tool_call_ms": 2121.0849609375
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 2,
+      "book_train": 3,
+      "search_attractions": 5,
+      "book_attraction_ticket": 7,
+      "search_hotels": 8,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch+premature_call",
+    "details": "参数不匹配: book_hotel.guest_name: 期望'Tang Xue', 实际'Tang Shui'",
+    "call_timing": "book_attraction_ticket 在 step 6 调用，但信息要到 turn 7 才收齐",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.8333333333333334,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 1(correct), search_attractions: 1(correct), book_attraction_ticket: 1(correct), search_hotels: 1(correct), book_hotel: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "search_trains",
+          "error_type": "premature_call",
+          "phase": "pre",
+          "detail": "在 step 1 调用，info_complete_turn=2"
+        },
+        {
+          "tool": "book_attraction_ticket",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 6 调用，info_complete_turn=7"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "guest_name: 'Tang Xue' vs 'Tang Shui'"
+        }
+      ],
+      "error_types": {
+        "premature_call": 2,
+        "parameter_reasoning": 1
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 1,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

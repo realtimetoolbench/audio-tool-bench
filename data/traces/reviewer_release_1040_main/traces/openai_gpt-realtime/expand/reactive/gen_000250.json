@@ -1,0 +1,754 @@
+{
+  "task_name": "gen_000250",
+  "start_time": "2026-05-06T14:27:26.470928",
+  "end_time": "2026-05-06T14:29:11.928797",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search for flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "search",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 132000
+      },
+      "assistant_response": "我找到了几个从北京到上海的航班：\n\n1. 国航 CA1234，08:00出发，10:30到达，经济舱 ¥800\n\n2. 东航 MU5678，10:00出发，12:30到达，经济舱 ¥750\n\n3. 国航 CA1456，14:00出发，16:30到达，经济舱 ¥850\n\n4. 东航 MU5890，18:00出发，20:30到达，经济舱 ¥900\n\n你比较倾向哪一个时间段的航班呢？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_sqlRB5RI3jhtnsyY",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "我找到了几个从北京到上海的航班：\n\n1. 国航 CA1234，08:00出发，10:30到达，经济舱 ¥800\n\n2. 东航 MU5678，10:00出发，12:30到达，经济舱 ¥750\n\n3. 国航 CA1456，14:00出发，16:30到达，经济舱 ¥850\n\n4. 东航 MU5890，18:00出发，20:30到达，经济舱 ¥900\n\n你比较倾向哪一个时间段的航班呢？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_sqlRB5RI3jhtnsyY",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.06008148193359375
+          },
+          "latency_ms": 0.06008148193359375
+        }
+      ],
+      "total_latency_ms": 10940.307140350342,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1788000,
+        "event_count": 317,
+        "latency": {
+          "speech_ms": 1908.553955078125,
+          "tool_call_ms": 1170.619873046875
+        }
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 5.1669907089905704,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the China Eastern flight MU5890 for March 5th, 2026, under the name Li Na.",
+        "timestamp": 5.1669907089905704,
+        "metadata": {
+          "phase": "book",
+          "contains_params": [
+            "book_flight.date=2026-03-05",
+            "book_flight.passenger_name=Li Na"
+          ]
+        },
+        "audio_size_bytes": 311400
+      },
+      "assistant_response": "太棒了！航班已经预订成功：中国东方航空 MU5890，乘客姓名：Lina，日期：2026年3月5日。祝你旅途愉快！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_kvnr5rWNsJJcJPhN",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_004",
+                "passenger_name": "Lina",
+                "date": "2026-03-05"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "太棒了！航班已经预订成功：中国东方航空 MU5890，乘客姓名：Lina，日期：2026年3月5日。祝你旅途愉快！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_kvnr5rWNsJJcJPhN",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_004",
+            "passenger_name": "Lina",
+            "date": "2026-03-05"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_004\nPassenger: Lina\nDate: 2026-03-05\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_004",
+              "passenger_name": "Lina",
+              "date": "2026-03-05",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.051975250244140625
+          },
+          "latency_ms": 0.051975250244140625
+        }
+      ],
+      "total_latency_ms": 8804.845094680786,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 578400,
+        "event_count": 152,
+        "latency": {
+          "speech_ms": 2134.1474609375,
+          "tool_call_ms": 1364.892578125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 12.489725658179665,
+      "input_chunk": {
+        "role": "user",
+        "content": "Find hotels in Hangzhou.",
+        "timestamp": 12.489725658179665,
+        "metadata": {
+          "phase": "search",
+          "contains_params": [
+            "search_hotels.city=Hangzhou"
+          ]
+        },
+        "audio_size_bytes": 70200
+      },
+      "assistant_response": "我找到了杭州的几家酒店：\n\n1. 西湖国宾馆（West Lake State Guesthouse），5星，价格 ¥1500/晚，评分 4.9 分。\n\n2. 杭州西湖希尔顿酒店（Hilton Hangzhou West Lake），4星，价格 ¥800/晚，评分 4.6 分。\n\n3. 如家西湖店（Home Inn West Lake），3星，价格 ¥450/晚，评分 4.3 分。\n\n你对哪一家感兴趣呢？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_AFQp4apkruHwFPdr",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "我找到了杭州的几家酒店：\n\n1. 西湖国宾馆（West Lake State Guesthouse），5星，价格 ¥1500/晚，评分 4.9 分。\n\n2. 杭州西湖希尔顿酒店（Hilton Hangzhou West Lake），4星，价格 ¥800/晚，评分 4.6 分。\n\n3. 如家西湖店（Home Inn West Lake），3星，价格 ¥450/晚，评分 4.3 分。\n\n你对哪一家感兴趣呢？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_AFQp4apkruHwFPdr",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Hangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_hz_001",
+                "name": "West Lake State Guesthouse",
+                "location": "West Lake",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_hz_002",
+                "name": "Hilton Hangzhou West Lake",
+                "location": "West Lake",
+                "stars": 4,
+                "price": 800,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_hz_003",
+                "name": "Home Inn West Lake",
+                "location": "West Lake",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.3
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.07390975952148438
+          },
+          "latency_ms": 0.07390975952148438
+        }
+      ],
+      "total_latency_ms": 8804.05879020691,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1284000,
+        "event_count": 253,
+        "latency": {
+          "speech_ms": 2130.30615234375,
+          "tool_call_ms": 1100.31103515625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.253541503310824,
+      "input_chunk": {
+        "role": "user",
+        "content": "Reserve West Lake State Guesthouse, checking in on March 3rd, 2026, for 1 night, for Wu Qian.",
+        "timestamp": 16.253541503310824,
+        "metadata": {
+          "phase": "book",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-03",
+            "book_hotel.guest_name=Wu Qian",
+            "book_hotel.nights=1"
+          ]
+        },
+        "audio_size_bytes": 290400
+      },
+      "assistant_response": "预订成功啦！西湖国宾馆（West Lake State Guesthouse）已经为吴晨（Wu Chen）预订好了，入住日期是2026年3月3日，住一晚。祝他们在杭州住得舒适愉快！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_cBvwEkyhld19wOkc",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_hz_001",
+                "guest_name": "Wu Chen",
+                "checkin_date": "2026-03-03",
+                "nights": 1
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "预订成功啦！西湖国宾馆（West Lake State Guesthouse）已经为吴晨（Wu Chen）预订好了，入住日期是2026年3月3日，住一晚。祝他们在杭州住得舒适愉快！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_cBvwEkyhld19wOkc",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_hz_001",
+            "guest_name": "Wu Chen",
+            "checkin_date": "2026-03-03",
+            "nights": 1
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_hz_001\nCheck-in: 2026-03-03\nNights: 1\nGuest: Wu Chen\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_hz_001",
+              "checkin_date": "2026-03-03",
+              "nights": 1,
+              "guest_name": "Wu Chen",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.06818771362304688
+          },
+          "latency_ms": 0.06818771362304688
+        }
+      ],
+      "total_latency_ms": 8821.818113327026,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 693600,
+        "event_count": 182,
+        "latency": {
+          "speech_ms": 2507.898681640625,
+          "tool_call_ms": 1389.804931640625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 23.45016803302305,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search for attractions in Xi'an.",
+        "timestamp": 23.45016803302305,
+        "metadata": {
+          "phase": "search",
+          "contains_params": [
+            "search_attractions.city=Xi'an"
+          ]
+        },
+        "audio_size_bytes": 94800
+      },
+      "assistant_response": "西安的景点很丰富，我给你列出几个：\n\n1. 秦始皇兵马俑（Terracotta Warriors），位于临潼，门票 ¥120，开放时间 08:30-17:00，评分 4.8。\n\n2. 大雁塔（Giant Wild Goose Pagoda），位于雁塔区，门票 ¥50，开放时间 08:00-18:00，评分 4.5。\n\n3. 华清宫（Huaqing Palace），同样在临潼，门票 ¥120，开放时间 07:30-19:00，评分 4.4。\n\n4. 钟楼（Bell Tower），位于碑林区，门票 ¥35，开放时间 08:00-22:00，评分 4.3。\n\n你有没有想去的地方？还是需要更多信息？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_nN1bLP74DxXXVQnR",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Xi'an"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "西安的景点很丰富，我给你列出几个：\n\n1. 秦始皇兵马俑（Terracotta Warriors），位于临潼，门票 ¥120，开放时间 08:30-17:00，评分 4.8。\n\n2. 大雁塔（Giant Wild Goose Pagoda），位于雁塔区，门票 ¥50，开放时间 08:00-18:00，评分 4.5。\n\n3. 华清宫（Huaqing Palace），同样在临潼，门票 ¥120，开放时间 07:30-19:00，评分 4.4。\n\n4. 钟楼（Bell Tower），位于碑林区，门票 ¥35，开放时间 08:00-22:00，评分 4.3。\n\n你有没有想去的地方？还是需要更多信息？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_nN1bLP74DxXXVQnR",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Xi'an"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Xi'an:\n\n1. Terracotta Warriors (ID: attr_xa_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥120\n   Hours: 08:30-17:00\n   Location: Lintong\n\n2. Giant Wild Goose Pagoda (ID: attr_xa_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Yanta\n\n3. Huaqing Palace (ID: attr_xa_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥120\n   Hours: 07:30-19:00\n   Location: Lintong\n\n4. Bell Tower (ID: attr_xa_004)\n   Type: Historical\n   Rating: 4.3/5.0\n   Ticket: ¥35\n   Hours: 08:00-22:00\n   Location: Beilin\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_xa_001",
+                "name": "Terracotta Warriors",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 120,
+                "opening_hours": "08:30-17:00",
+                "location": "Lintong"
+              },
+              {
+                "attraction_id": "attr_xa_002",
+                "name": "Giant Wild Goose Pagoda",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Yanta"
+              },
+              {
+                "attraction_id": "attr_xa_003",
+                "name": "Huaqing Palace",
+                "type": "Historical",
+                "rating": 4.4,
+                "price": 120,
+                "opening_hours": "07:30-19:00",
+                "location": "Lintong"
+              },
+              {
+                "attraction_id": "attr_xa_004",
+                "name": "Bell Tower",
+                "type": "Historical",
+                "rating": 4.3,
+                "price": 35,
+                "opening_hours": "08:00-22:00",
+                "location": "Beilin"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.14019012451171875
+          },
+          "latency_ms": 0.14019012451171875
+        }
+      ],
+      "total_latency_ms": 14049.049854278564,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2344800,
+        "event_count": 415,
+        "latency": {
+          "speech_ms": 2750.53271484375,
+          "tool_call_ms": 1302.9248046875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.632237935954155,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 5 tickets to Huaqing Palace for March 3rd, 2026 in the afternoon, under the name Luo Fei.",
+        "timestamp": 27.632237935954155,
+        "metadata": {
+          "phase": "book",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-03",
+            "book_attraction_ticket.ticket_count=5",
+            "book_attraction_ticket.time_slot=afternoon",
+            "book_attraction_ticket.visitor_name=Luo Fei"
+          ]
+        },
+        "audio_size_bytes": 333000
+      },
+      "assistant_response": "华清宫的门票已经预订成功！5张下午时段的门票，游客姓名是罗飞，日期是2026年3月3日。祝他们玩得开心！如果还有其他需要，尽管告诉我。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_5MihDSABIjY3Ihjc",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_xa_003",
+                "visitor_name": "Luo Fei",
+                "date": "2026-03-03",
+                "time_slot": "afternoon",
+                "ticket_count": 5
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "华清宫的门票已经预订成功！5张下午时段的门票，游客姓名是罗飞，日期是2026年3月3日。祝他们玩得开心！如果还有其他需要，尽管告诉我。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_5MihDSABIjY3Ihjc",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_xa_003",
+            "visitor_name": "Luo Fei",
+            "date": "2026-03-03",
+            "time_slot": "afternoon",
+            "ticket_count": 5
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_xa_003\nDate: 2026-03-03\nTime slot: afternoon\nVisitor: Luo Fei\nTickets: 5\nTicket numbers: AT50001-01, AT50001-02, AT50001-03, AT50001-04, AT50001-05\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_xa_003",
+              "date": "2026-03-03",
+              "time_slot": "afternoon",
+              "visitor_name": "Luo Fei",
+              "ticket_count": 5,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02",
+                "AT50001-03",
+                "AT50001-04",
+                "AT50001-05"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0629425048828125
+          },
+          "latency_ms": 0.0629425048828125
+        }
+      ],
+      "total_latency_ms": 23025.17294883728,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 686400,
+        "event_count": 191,
+        "latency": {
+          "speech_ms": 2903.156982421875,
+          "tool_call_ms": 1954.05810546875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 34.98570467602659,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search for restaurants in Chongqing.",
+        "timestamp": 34.98570467602659,
+        "metadata": {
+          "phase": "search",
+          "contains_params": [
+            "search_restaurants.city=Chongqing"
+          ]
+        },
+        "audio_size_bytes": 105600
+      },
+      "assistant_response": "在重庆，我找到了两家非常有名的餐厅：\n\n1. 刘一手火锅（Liuyishou Hotpot），位于渝中区，评分 4.8，主打火锅。\n\n2. 小天鹅火锅（Xiao Tian E Hotpot），位于江北区，评分 4.7，同样是非常有名的火锅店。\n\n重庆的火锅可是一绝，你想了解哪家更多一些，或者有什么特别想尝试的吗？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_3GK97Jx99f4w48j7",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chongqing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "在重庆，我找到了两家非常有名的餐厅：\n\n1. 刘一手火锅（Liuyishou Hotpot），位于渝中区，评分 4.8，主打火锅。\n\n2. 小天鹅火锅（Xiao Tian E Hotpot），位于江北区，评分 4.7，同样是非常有名的火锅店。\n\n重庆的火锅可是一绝，你想了解哪家更多一些，或者有什么特别想尝试的吗？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_3GK97Jx99f4w48j7",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chongqing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chongqing:\n\n1. Liuyishou Hotpot (ID: rst_cq_001)\n   Cuisine: Hotpot\n   Location: Yuzhong\n   Rating: 4.8/5.0\n\n2. Xiao Tian E Hotpot (ID: rst_cq_002)\n   Cuisine: Hotpot\n   Location: Jiangbei\n   Rating: 4.7/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cq_001",
+                "name": "Liuyishou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Yuzhong",
+                "rating": 4.8
+              },
+              {
+                "restaurant_id": "rst_cq_002",
+                "name": "Xiao Tian E Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jiangbei",
+                "rating": 4.7
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.11610984802246094
+          },
+          "latency_ms": 0.11610984802246094
+        }
+      ],
+      "total_latency_ms": 30998.666048049927,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1358400,
+        "event_count": 253,
+        "latency": {
+          "speech_ms": 1724.568115234375,
+          "tool_call_ms": 987.632080078125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 7,
+    "total_llm_calls": 14,
+    "total_tool_calls": 7
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 7,
+    "style": "conversational",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true,
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "manual",
+    "latency": {
+      "search_flights": {
+        "speech_ms": 1908.553955078125,
+        "tool_call_ms": 1170.619873046875
+      },
+      "book_flight": {
+        "speech_ms": 2134.1474609375,
+        "tool_call_ms": 1364.892578125
+      },
+      "search_hotels": {
+        "speech_ms": 2130.30615234375,
+        "tool_call_ms": 1100.31103515625
+      },
+      "book_hotel": {
+        "speech_ms": 2507.898681640625,
+        "tool_call_ms": 1389.804931640625
+      },
+      "search_attractions": {
+        "speech_ms": 2750.53271484375,
+        "tool_call_ms": 1302.9248046875
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 2903.156982421875,
+        "tool_call_ms": 1954.05810546875
+      },
+      "search_restaurants": {
+        "speech_ms": 1724.568115234375,
+        "tool_call_ms": 987.632080078125
+      }
+    },
+    "info_complete_turn": {
+      "search_flights": 1,
+      "book_flight": 2,
+      "search_hotels": 3,
+      "book_hotel": 4,
+      "search_attractions": 5,
+      "book_attraction_ticket": 6,
+      "search_restaurants": 7
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_flight.passenger_name: 期望'Li Na', 实际'Lina'; book_hotel.guest_name: 期望'Wu Qian', 实际'Wu Chen'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.7142857142857143,
+    "behavior_score_details": "search_flights: 1(correct), book_flight: 0(param_mismatch), search_hotels: 1(correct), book_hotel: 0(param_mismatch), search_attractions: 1(correct), book_attraction_ticket: 1(correct), search_restaurants: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_flight",
+          "error_type": "entity_mishearing",
+          "phase": "no_interrupt",
+          "detail": "passenger_name: 'Li Na' vs 'Lina'"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "parameter_reasoning",
+          "phase": "no_interrupt",
+          "detail": "guest_name: 'Wu Qian' vs 'Wu Chen'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1,
+        "parameter_reasoning": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 0,
+        "no_interrupt": 2
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 0,
+          "no_interrupt": 1
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 0,
+          "no_interrupt": 1
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

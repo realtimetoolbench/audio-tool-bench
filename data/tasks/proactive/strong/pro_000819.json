@@ -1,0 +1,195 @@
+{
+  "task_id": "pro_000819",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m putting together this little trip plan: I’ll be in Shanghai for a few days, and I’m also doing a Beijing stretch earlier in the week.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "After Beijing, I’m taking the train down to Shanghai—so it’s Beijing to Shanghai on the way over.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 10.21273923206118
+    },
+    {
+      "speaker": "user",
+      "text": "For Beijing, I’m planning that Great Wall Badaling day on 2026-03-25, and I’m aiming for the morning slot.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-25",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 18.562661006905916
+    },
+    {
+      "speaker": "user",
+      "text": "That Great Wall visit is under Hu Bin, and it’s for two tickets since I’m not going solo.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=2",
+          "book_attraction_ticket.visitor_name=Hu Bin"
+        ]
+      },
+      "timestamp": 26.574372670837977
+    },
+    {
+      "speaker": "user",
+      "text": "Then on 2026-03-27 I’m on train G1, and I’m taking First Class for that ride.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-03-27",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 34.456353748878335
+    },
+    {
+      "speaker": "user",
+      "text": "That train ticket’s under Hu Bin as the passenger name, just keeping everything consistent.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.passenger_name=Hu Bin"
+        ]
+      },
+      "timestamp": 41.02698404018931
+    },
+    {
+      "speaker": "user",
+      "text": "And once I’m in Shanghai, I’m staying at the Pudong Shangri-La—check-in is 2026-05-18 for 4 nights, and it’s under Feng Jie, so I’ll probably just head over after I land and then…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-18",
+          "book_hotel.guest_name=Feng Jie",
+          "book_hotel.nights=4",
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 48.52690185321787
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_002",
+        "checkin_date": "2026-05-18",
+        "nights": 4,
+        "guest_name": "Feng Jie"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_002",
+        "date": "2026-03-25",
+        "time_slot": "morning",
+        "visitor_name": "Hu Bin",
+        "ticket_count": 2
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_001",
+        "date": "2026-03-27",
+        "passenger_name": "Hu Bin",
+        "seat_class": "First Class"
+      }
+    }
+  ],
+  "transcript_hash": "df84aa990f73",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "travel",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_hotels": 7,
+    "book_hotel": 7,
+    "search_attractions": 1,
+    "book_attraction_ticket": 4,
+    "search_trains": 2,
+    "book_train": 6
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m putting together this little trip plan",
+      "I’m taking the train down to Shanghai",
+      "I’m planning that Great Wall Badaling day",
+      "I’m on train G1",
+      "I’m staying at the Pudong Shangri-La"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates fixed upcoming plans with specific dates, names, and selections. Search context (cities/route) appears before any booking details, and no execution/authorization language is used."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_attractions",
+      "search_hotels",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_attraction_ticket",
+      "book_hotel",
+      "book_train"
+    ]
+  },
+  "expected_tool_if_act": "search_hotels",
+  "expected_params_if_act": {
+    "city": "Shanghai"
+  }
+}

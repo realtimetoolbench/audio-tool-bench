@@ -1,0 +1,519 @@
+{
+  "task_name": "tint_000071",
+  "start_time": "2026-04-29T01:40:56.910771",
+  "end_time": "2026-04-29T01:41:31.765147",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Hangzhou. Check-in 2026-03-03. Stay 2 nights.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-03",
+            "book_hotel.nights=2"
+          ]
+        },
+        "audio_size_bytes": 252000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_avCjl7uc7nV4Gw3m",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou",
+                "checkin_date": "2026-03-03"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7433.071851730347,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 35,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Hangzhou, I meant Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 99600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_lx65z137WXipuR4y",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-03"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_lx65z137WXipuR4y",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shanghai",
+            "checkin_date": "2026-03-03"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 5 hotels in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001)\n   Location: the Bund | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Pudong Shangri-La (ID: hotel_sh_002)\n   Location: Pudong | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Hyatt on the Bund (ID: hotel_sh_003)\n   Location: the Bund | 4 stars\n   Price: ¥750/night | Rating: 4.5/5.0\n\n4. Home Inn the Bund (ID: hotel_sh_004)\n   Location: the Bund | 3 stars\n   Price: ¥400/night | Rating: 4.2/5.0\n\n5. Hanting Hotel People's Square (ID: hotel_sh_005)\n   Location: People's Square | 3 stars\n   Price: ¥350/night | Rating: 4.0/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_sh_001",
+                "name": "Waldorf Astoria Shanghai on the Bund",
+                "location": "the Bund",
+                "stars": 5,
+                "price": 1200,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_sh_002",
+                "name": "Pudong Shangri-La",
+                "location": "Pudong",
+                "stars": 5,
+                "price": 1000,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_sh_003",
+                "name": "Hyatt on the Bund",
+                "location": "the Bund",
+                "stars": 4,
+                "price": 750,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_sh_004",
+                "name": "Home Inn the Bund",
+                "location": "the Bund",
+                "stars": 3,
+                "price": 400,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_sh_005",
+                "name": "Hanting Hotel People's Square",
+                "location": "People's Square",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.06508827209472656
+          },
+          "latency_ms": 0.06508827209472656
+        }
+      ],
+      "total_latency_ms": 3739.3839359283447,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 220,
+        "latency": {
+          "tool_call_ms": 343.60498046875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.693707948598012,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Hyatt on the Bund. Guest name Zhang Wei.",
+        "timestamp": 10.693707948598012,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 129000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_UMIgn4MJKR4fe7BZ",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_sh_003",
+                "guest_name": "Zhang Wei",
+                "checkin_date": "2026-03-03",
+                "nights": 2
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_UMIgn4MJKR4fe7BZ",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_sh_003",
+            "guest_name": "Zhang Wei",
+            "checkin_date": "2026-03-03",
+            "nights": 2
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_sh_003\nCheck-in: 2026-03-03\nNights: 2\nGuest: Zhang Wei\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_sh_003",
+              "checkin_date": "2026-03-03",
+              "nights": 2,
+              "guest_name": "Zhang Wei",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.022172927856445312
+          },
+          "latency_ms": 0.022172927856445312
+        }
+      ],
+      "total_latency_ms": 4222.230911254883,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 131,
+        "latency": {
+          "tool_call_ms": 671.208251953125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.478820698817014,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Chengdu.",
+        "timestamp": 15.478820698817014,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 78600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_rA0gL1TRFq8yVBaI",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_rA0gL1TRFq8yVBaI",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0400543212890625
+          },
+          "latency_ms": 0.0400543212890625
+        }
+      ],
+      "total_latency_ms": 3925.623893737793,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 122,
+        "latency": {
+          "tool_call_ms": 485.8408203125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.366195395850404,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Chen Mapo Tofu for 2026-03-12 at 11:30. Party size 5.",
+        "timestamp": 20.366195395850404,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-03-12",
+            "book_restaurant.party_size=5",
+            "book_restaurant.time=11:30"
+          ]
+        },
+        "audio_size_bytes": 285600
+      },
+      "assistant_response": "Sure! I can help with that. Could you also provide the contact person’s name and phone number for the reservation? That way, I can finalize everything for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure! I can help with that. Could you also provide the contact person’s name and phone number for the reservation? That way, I can finalize everything for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8999.688148498535,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 379200,
+        "event_count": 69,
+        "latency": {
+          "speech_ms": 621.471923828125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.461914539799665,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use contact name Zhang Wei. Phone 13877949128.",
+        "timestamp": 26.461914539799665,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Zhang Wei",
+            "book_restaurant.phone=13877949128"
+          ]
+        },
+        "audio_size_bytes": 231000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_k3v7Kg5J495GzfVl",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_cd_001",
+                "date": "2026-03-12",
+                "time": "11:30",
+                "party_size": 5,
+                "contact_name": "Zhang Wei",
+                "phone": "13877949128"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_k3v7Kg5J495GzfVl",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_cd_001",
+            "date": "2026-03-12",
+            "time": "11:30",
+            "party_size": 5,
+            "contact_name": "Zhang Wei",
+            "phone": "13877949128"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_cd_001\nRestaurant: Chen Mapo Tofu\nDate: 2026-03-12\nTime: 11:30\nParty size: 5\nContact: Zhang Wei (13877949128)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_cd_001",
+              "restaurant_name": "Chen Mapo Tofu",
+              "date": "2026-03-12",
+              "time": "11:30",
+              "party_size": 5,
+              "contact_name": "Zhang Wei",
+              "phone": "13877949128",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.031948089599609375
+          },
+          "latency_ms": 0.031948089599609375
+        }
+      ],
+      "total_latency_ms": 6526.955127716064,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 144,
+        "latency": {
+          "tool_call_ms": 917.2978515625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 11,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Hangzhou"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Shanghai"
+    },
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_hotels": {
+        "tool_call_ms": 343.60498046875
+      },
+      "book_hotel": {
+        "tool_call_ms": 671.208251953125
+      },
+      "search_restaurants": {
+        "tool_call_ms": 485.8408203125
+      },
+      "book_restaurant": {
+        "tool_call_ms": 917.2978515625
+      }
+    },
+    "info_complete_turn": {
+      "search_hotels": 2,
+      "book_hotel": 3,
+      "search_restaurants": 4,
+      "book_restaurant": 6
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'book_restaurant', 'search_restaurants', 'search_hotels', 'book_hotel'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_hotels: 1(correct), book_hotel: 1(correct), search_restaurants: 1(correct), book_restaurant: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

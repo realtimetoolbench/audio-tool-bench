@@ -1,0 +1,151 @@
+{
+  "task_id": "pro_001049",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_cars",
+    "book_car",
+    "search_parking",
+    "reserve_parking_spot"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m going to be in Chengdu for a quick trip, and I’m planning to sort out a rental car situation while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_cars.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I’ve got Shanghai on my calendar too, and I’m thinking through parking options so I’m not circling around forever at night.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_parking.city=Shanghai"
+        ]
+      },
+      "timestamp": 9.004040269635702
+    },
+    {
+      "speaker": "user",
+      "text": "For the Chengdu day, I’m set on a Nissan Sylphy, just for 1 day.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.days=1"
+        ]
+      },
+      "timestamp": 18.110039431519667
+    },
+    {
+      "speaker": "user",
+      "text": "Pickup is on 2026-05-03, and it’s under Sophia Garcia.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.pickup_date=2026-05-03",
+          "book_car.renter_name=Sophia Garcia"
+        ]
+      },
+      "timestamp": 23.861404020470953
+    },
+    {
+      "speaker": "user",
+      "text": "In Shanghai that same week, I’m planning to park at Lujiazui IFC Parking starting 2026-04-27 20:00 for 4 hours; my plate is 京A12345 and the phone on it is 13867894321, and then after that I’ll probably head over to—",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13867894321",
+          "reserve_parking_spot.duration_hours=4",
+          "reserve_parking_spot.license_plate=京A12345",
+          "reserve_parking_spot.start_time=2026-04-27 20:00"
+        ]
+      },
+      "timestamp": 29.86841368618593
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_cd_001",
+        "pickup_date": "2026-05-03",
+        "days": 1,
+        "renter_name": "Sophia Garcia"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_sh_001",
+        "start_time": "2026-04-27 20:00",
+        "duration_hours": 4,
+        "license_plate": "京A12345",
+        "driver_phone": "13867894321"
+      }
+    }
+  ],
+  "transcript_hash": "1b20b08ae355",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_cars": 1,
+    "book_car": 4,
+    "search_parking": 2,
+    "reserve_parking_spot": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m going to be in Chengdu",
+      "planning to sort out a rental car",
+      "I’ve got Shanghai on my calendar",
+      "thinking through parking options",
+      "I’m set on a Nissan Sylphy",
+      "Pickup is on 2026-05-03",
+      "it’s under Sophia Garcia",
+      "planning to park at Lujiazui IFC Parking"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed logistics and specific booking details in future tense without asking or using execution/authorization verbs. Search cities appear before any booking parameters."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_cars",
+      "search_parking"
+    ],
+    "write_tools": [
+      "book_car",
+      "reserve_parking_spot"
+    ]
+  },
+  "expected_tool_if_act": "search_cars",
+  "expected_params_if_act": {
+    "city": "Chengdu"
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "task_id": "tint_000149",
+  "description": "Interruption (priority_late_return): 7 tools, 11 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel",
+    "search_sports_events",
+    "book_sports_ticket",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chongqing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Chongqing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search sports events in Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_sports_events.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book tickets for event CSL: Chengdu Rongcheng vs Beijing Guoan.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 10.306147871229639
+    },
+    {
+      "speaker": "user",
+      "text": "Seat zone Home Stand, 4 tickets.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Home Stand",
+          "book_sports_ticket.ticket_count=4"
+        ]
+      },
+      "timestamp": 16.870735010203568
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Li Na, phone 13856781234.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Li Na",
+          "book_sports_ticket.phone=13856781234"
+        ]
+      },
+      "timestamp": 21.912781461249153
+    },
+    {
+      "speaker": "user",
+      "text": "Use ID number 510107199203153456. Then check ride status for RIDE789012.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.id_number=510107199203153456",
+          "check_ride_status.ride_id=RIDE789012"
+        ]
+      },
+      "timestamp": 27.13488752300497
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Liuyishou Hotpot for 2026-04-15 at 12:00.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-04-15",
+          "book_restaurant.time=12:00"
+        ]
+      },
+      "timestamp": 38.37839483986421
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 3, contact name Chen Ming.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Chen Ming",
+          "book_restaurant.party_size=3"
+        ]
+      },
+      "timestamp": 44.697102611080396
+    },
+    {
+      "speaker": "user",
+      "text": "Phone 13898776655. Then search hotels in Nanjing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.phone=13898776655",
+          "search_hotels.city=Nanjing"
+        ]
+      },
+      "timestamp": 49.821757145285865
+    },
+    {
+      "speaker": "user",
+      "text": "Book Sofitel Nanjing Galaxy, check-in 2026-05-27 for 5 nights, guest name Chen Ming.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-27",
+          "book_hotel.guest_name=Chen Ming",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 54.95995365215482
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_cd_001",
+        "seat_zone": "Home Stand",
+        "ticket_count": 4,
+        "buyer_name": "Li Na",
+        "phone": "13856781234",
+        "id_number": "510107199203153456"
+      }
+    },
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cq_001",
+        "date": "2026-04-15",
+        "time": "12:00",
+        "party_size": 3,
+        "contact_name": "Chen Ming",
+        "phone": "13898776655"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_nj_002",
+        "checkin_date": "2026-05-27",
+        "nights": 5,
+        "guest_name": "Chen Ming"
+      }
+    }
+  ],
+  "transcript_hash": "1826882f65aa",
+  "info_complete_turn": {
+    "search_sports_events": 2,
+    "book_sports_ticket": 6,
+    "check_ride_status": 6,
+    "search_restaurants": 1,
+    "book_restaurant": 10,
+    "search_hotels": 10,
+    "book_hotel": 11
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 11,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "inserted_tools": [
+      "search_sports_events",
+      "book_sports_ticket",
+      "check_ride_status"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "check_ride_status"
+  ]
+}

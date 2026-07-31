@@ -1,0 +1,197 @@
+{
+  "task_id": "tint_000120",
+  "description": "Interruption (priority_no_return): 6 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "cancel_ride",
+    "search_restaurants_delivery",
+    "place_food_order",
+    "search_cars",
+    "search_shows",
+    "book_show_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search delivery restaurants in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants_delivery.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search shows in Suzhou.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_shows.city=Suzhou"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants_delivery",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book show tickets for show Kunqu Opera Peony Pavilion.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 10.002875471156614
+    },
+    {
+      "speaker": "user",
+      "text": "Seat zone Orchestra, and ticket count 5.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Orchestra",
+          "book_show_ticket.ticket_count=5"
+        ]
+      },
+      "timestamp": 15.258029464672468
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Huang Tao. Phone 13898776655.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Huang Tao",
+          "book_show_ticket.phone=13898776655"
+        ]
+      },
+      "timestamp": 19.866504818510645
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Cancel the ride with ride ID RIDE123456.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "cancel_ride.ride_id=RIDE123456"
+        ]
+      },
+      "timestamp": 29.221472080045977
+    },
+    {
+      "speaker": "user",
+      "text": "Place a delivery order with delivery_id Yang's Dumplings. Item: Steamed Crab Roe Dumplings.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.items=Steamed Crab Roe Dumplings"
+        ]
+      },
+      "timestamp": 34.18874586740995
+    },
+    {
+      "speaker": "user",
+      "text": "Deliver to Room 502, Building B, East Apartment. Phone 13899887766. Then search cars in Beijing.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 502, Building B, East Apartment",
+          "place_food_order.phone=13899887766",
+          "search_cars.city=Beijing"
+        ]
+      },
+      "timestamp": 41.67752637705668
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_su_001",
+        "seat_zone": "Orchestra",
+        "ticket_count": 5,
+        "buyer_name": "Huang Tao",
+        "phone": "13898776655"
+      }
+    },
+    {
+      "tool": "cancel_ride",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    },
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_sh_002",
+        "items": "Steamed Crab Roe Dumplings",
+        "delivery_address": "Room 502, Building B, East Apartment",
+        "phone": "13899887766"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Beijing"
+      }
+    }
+  ],
+  "transcript_hash": "b092096bca15",
+  "info_complete_turn": {
+    "search_shows": 2,
+    "book_show_ticket": 5,
+    "cancel_ride": 7,
+    "search_restaurants_delivery": 1,
+    "place_food_order": 9,
+    "search_cars": 9
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants_delivery",
+    "inserted_tools": [
+      "search_shows",
+      "book_show_ticket"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "search_shows",
+    "book_show_ticket"
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "task_id": "pro_001054",
+  "description": "Generated: 5 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket",
+    "search_medicine"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m going to be in Guangzhou soon, and I’ve been thinking a lot about where we’ll eat since it’s a pretty big group.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_restaurants.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "And separately, I’ll be in Shanghai too, so I’ve been keeping an eye on what movies are out while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_movies.city=Shanghai"
+        ]
+      },
+      "timestamp": 8.867972951687207
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I’ve been meaning to check what to take for this annoying cough—like what medicine options make sense, since I don’t want it dragging on.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 17.127094276725217
+    },
+    {
+      "speaker": "user",
+      "text": "For the Guangzhou dinner, we’re doing Bingsheng Restaurant on 2026-05-21 at 20:00, and it’s a party of 8.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.date=2026-05-21",
+          "book_restaurant.party_size=8",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 27.48986541673833
+    },
+    {
+      "speaker": "user",
+      "text": "It’s under Hu Bin, and the contact number I’m using is 13855667788—just keeping it consistent with the rest of my plans.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.contact_name=Hu Bin",
+          "book_restaurant.phone=13855667788"
+        ]
+      },
+      "timestamp": 35.771829447425795
+    },
+    {
+      "speaker": "user",
+      "text": "In Shanghai I’m catching Dune 2 at CGV Longzhimeng, the 20:30 showtime—just one seat—and I’m putting it under Sarah Chen, and then after that I’ll probably swing by a pharmacy if my throat still feels scratchy…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Sarah Chen",
+          "book_movie_ticket.cinema=CGV Longzhimeng",
+          "book_movie_ticket.seat_count=1",
+          "book_movie_ticket.showtime=20:30"
+        ]
+      },
+      "timestamp": 44.865400881344115
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_gz_001",
+        "date": "2026-05-21",
+        "time": "20:00",
+        "party_size": 8,
+        "contact_name": "Hu Bin",
+        "phone": "13855667788"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_sh_003",
+        "cinema": "CGV Longzhimeng",
+        "showtime": "20:30",
+        "seat_count": 1,
+        "buyer_name": "Sarah Chen"
+      }
+    },
+    {
+      "tool": "search_medicine",
+      "params": {}
+    }
+  ],
+  "transcript_hash": "310c0bfd2718",
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 6,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "date",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 5,
+    "search_movies": 2,
+    "book_movie_ticket": 6,
+    "search_medicine": 1
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m going to be in Guangzhou soon",
+      "I’ll be in Shanghai too",
+      "we’re doing Bingsheng Restaurant on 2026-05-21 at 20:00",
+      "party of 8",
+      "It’s under Hu Bin",
+      "catching Dune 2 at CGV Longzhimeng",
+      "20:30 showtime",
+      "just one seat",
+      "under Sarah Chen",
+      "swing by a pharmacy"
+    ],
+    "ambiguity_notes": "Strong intent: the user narrates confirmed plans with specific restaurant and movie ticket details; cities are mentioned before booking details, and the medicine topic is introduced as a personal health need."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_medicine",
+      "search_movies",
+      "search_restaurants"
+    ],
+    "write_tools": [
+      "book_movie_ticket",
+      "book_restaurant"
+    ]
+  },
+  "expected_tool_if_act": "search_restaurants",
+  "expected_params_if_act": {
+    "city": "Guangzhou"
+  }
+}

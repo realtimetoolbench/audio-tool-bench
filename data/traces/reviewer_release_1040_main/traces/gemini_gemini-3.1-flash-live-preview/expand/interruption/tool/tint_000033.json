@@ -1,0 +1,485 @@
+{
+  "task_name": "tint_000033",
+  "start_time": "2026-05-06T23:30:03.876272",
+  "end_time": "2026-05-06T23:31:51.488328",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Chongqing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_hotels.city=Chongqing"
+          ]
+        },
+        "audio_size_bytes": 73200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 30559.86523628235,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 1
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search movies in Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_movies.city=Chengdu"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 112800
+      },
+      "assistant_response": "When would you like to check in? I need the date like this: '2026-03-15'.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "When would you like to check in? I need the date like this: '2026-03-15'.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1598.3021259307861,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 221762,
+        "event_count": 33,
+        "latency": {
+          "speech_ms": 0.7231235504150391
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 9.908880143383492,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book movie tickets for The Wandering Earth 3 at Wanda Cinema Jinhua.",
+        "timestamp": 9.908880143383492,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_movie_ticket.cinema=Wanda Cinema Jinhua"
+          ]
+        },
+        "audio_size_bytes": 214200
+      },
+      "assistant_response": "To book the tickets, I need the showtime, the number of seats you want, and your name. Also, could you tell me when would you like to go see it?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "To book the tickets, I need the showtime, the number of seats you want, and your name. Also, could you tell me when would you like to go see it?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10356.71877861023,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 354752,
+        "event_count": 58,
+        "latency": {
+          "speech_ms": 1785.3429317474365
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.509804696724483,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the showtime to 21:50 and reserve 3 seats. Buyer name Noah Wilson.",
+        "timestamp": 16.509804696724483,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_movie_ticket.buyer_name=Noah Wilson",
+            "book_movie_ticket.seat_count=3",
+            "book_movie_ticket.showtime=21:50"
+          ]
+        },
+        "audio_size_bytes": 253200
+      },
+      "assistant_response": "I'm sorry, but I can't find that movie. Would you like me to search for movies in Chengdu first so you can see what's playing? Then we can try booking again.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_9283980435614426098",
+              "name": "book_movie_ticket",
+              "arguments": {
+                "cinema": "Wanda Cinema, Jinhua",
+                "buyer_name": "Noah Wilson",
+                "movie_id": "The Wandering Earth II",
+                "showtime": "21:50",
+                "seat_count": 3
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I'm sorry, but I can't find that movie. Would you like me to search for movies in Chengdu first so you can see what's playing? Then we can try booking again.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_movie_ticket",
+          "arguments": {
+            "cinema": "Wanda Cinema, Jinhua",
+            "buyer_name": "Noah Wilson",
+            "movie_id": "The Wandering Earth II",
+            "showtime": "21:50",
+            "seat_count": 3
+          },
+          "output": "Movie not found: The Wandering Earth II. Please search for movies first.",
+          "error": "Invalid movie_id: The Wandering Earth II",
+          "latency_ms": 0.0591278076171875
+        }
+      ],
+      "total_latency_ms": 13069.8881149292,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 399390,
+        "event_count": 61,
+        "latency": {
+          "speech_ms": 3642.9028511047363,
+          "tool_call_ms": 1834.9699974060059
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 91200
+      },
+      "assistant_response": "Could you tell me which city you'd like me to search for movies in, and whether you're looking for any particular genre? Also, did you still want to search for hotels in Chongqing?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Could you tell me which city you'd like me to search for movies in, and whether you're looking for any particular genre? Also, did you still want to search for hotels in Chongqing?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10631.385087966919,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 413282,
+        "event_count": 60,
+        "latency": {
+          "speech_ms": 1342.1447277069092
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.50025768228468,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the JW Marriott Chongqing. Check in 2026-03-05.",
+        "timestamp": 27.50025768228468,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-05"
+          ]
+        },
+        "audio_size_bytes": 217200
+      },
+      "assistant_response": "To book the hotel, I need to know how many nights you'll be staying, and also the guest's name. Can you provide those details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "To book the hotel, I need to know how many nights you'll be staying, and also the guest's name. Can you provide those details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9594.065189361572,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 315364,
+        "event_count": 49,
+        "latency": {
+          "speech_ms": 1737.973690032959
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 33.109933033898,
+      "input_chunk": {
+        "role": "user",
+        "content": "Stay 1 night. Guest name Mia Anderson.",
+        "timestamp": 33.109933033898,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.guest_name=Mia Anderson",
+            "book_hotel.nights=1"
+          ]
+        },
+        "audio_size_bytes": 117600
+      },
+      "assistant_response": "I've successfully booked the JW Marriott Chung for one night, checking in on March 5th, 2026, under the name Mia Anderson. Your booking ID is HT20001. Anything else I can help you with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_9574072392078453970",
+              "name": "book_hotel",
+              "arguments": {
+                "checkin_date": "2026-03-05",
+                "hotel_id": "JW Marriott Chung",
+                "nights": 1,
+                "guest_name": "Mia Anderson"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've successfully booked the JW Marriott Chung for one night, checking in on March 5th, 2026, under the name Mia Anderson. Your booking ID is HT20001. Anything else I can help you with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_hotel",
+          "arguments": {
+            "checkin_date": "2026-03-05",
+            "hotel_id": "JW Marriott Chung",
+            "nights": 1,
+            "guest_name": "Mia Anderson"
+          },
+          "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: JW Marriott Chung\nCheck-in: 2026-03-05\nNights: 1\nGuest: Mia Anderson\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.04601478576660156
+        }
+      ],
+      "total_latency_ms": 15350.152969360352,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 571202,
+        "event_count": 68,
+        "latency": {
+          "speech_ms": 2631.18314743042,
+          "tool_call_ms": 1649.0910053253174
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 38.1338528258653,
+      "input_chunk": {
+        "role": "user",
+        "content": "After booking, search attractions in Xi'an.",
+        "timestamp": 38.1338528258653,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_attractions.city=Xi'an"
+          ]
+        },
+        "audio_size_bytes": 124800
+      },
+      "assistant_response": "I found four attractions in Xi'an: the Terracotta Warriors, the Giant Wild Goose Pagoda, Huaqing Palace, and the Bell Tower. Let me know if you'd like more information on any of these! Did you still want to search for movies or hotels?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_18066483020877969220",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Xi'an"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found four attractions in Xi'an: the Terracotta Warriors, the Giant Wild Goose Pagoda, Huaqing Palace, and the Bell Tower. Let me know if you'd like more information on any of these! Did you still want to search for movies or hotels?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Xi'an"
+          },
+          "output": "Found 4 attractions in Xi'an:\n\n1. Terracotta Warriors (ID: attr_xa_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥120\n   Hours: 08:30-17:00\n   Location: Lintong\n\n2. Giant Wild Goose Pagoda (ID: attr_xa_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Yanta\n\n3. Huaqing Palace (ID: attr_xa_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥120\n   Hours: 07:30-19:00\n   Location: Lintong\n\n4. Bell Tower (ID: attr_xa_004)\n   Type: Historical\n   Rating: 4.3/5.0\n   Ticket: ¥35\n   Hours: 08:00-22:00\n   Location: Beilin\n\n",
+          "error": null,
+          "latency_ms": 0.11372566223144531
+        }
+      ],
+      "total_latency_ms": 16443.93801689148,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 610112,
+        "event_count": 78,
+        "latency": {
+          "speech_ms": 2930.158853530884,
+          "tool_call_ms": 1904.8089981079102
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 11,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "inserted_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_movies": {
+        "speech_ms": 0.7231235504150391
+      },
+      "book_movie_ticket": {
+        "speech_ms": 3642.9028511047363,
+        "tool_call_ms": 1834.9699974060059
+      },
+      "book_hotel": {
+        "speech_ms": 2631.18314743042,
+        "tool_call_ms": 1649.0910053253174
+      },
+      "search_attractions": {
+        "speech_ms": 2930.158853530884,
+        "tool_call_ms": 1904.8089981079102
+      }
+    },
+    "info_complete_turn": {
+      "search_movies": 2,
+      "book_movie_ticket": 4,
+      "search_hotels": 1,
+      "book_hotel": 7,
+      "search_attractions": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "search_movies",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_movie_ticket",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "movie_id: 'mov_cd_001' vs 'The Wandering Earth II'; cinema: 'Wanda Cinema Jinhua' vs 'Wanda Cinema, Jinhua'"
+        },
+        {
+          "tool": "search_hotels",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "hotel_id: 'hotel_cq_001' vs 'JW Marriott Chung'"
+        }
+      ],
+      "error_types": {
+        "missing_call": 2,
+        "parameter_reasoning": 2
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 1,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

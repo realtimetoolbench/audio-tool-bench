@@ -1,0 +1,167 @@
+{
+  "task_id": "int_000033",
+  "description": "Interruption (redirection): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "check_balance",
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "search_sports_events",
+    "book_sports_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search sports events in Beijing. I want the CBA Playoffs: Beijing Shougang vs Guangdong Tigers.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_sports_events.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 2 tickets in Stand A for the CBA Playoffs: Beijing Shougang vs Guangdong Tigers. Buyer name Li Na.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Li Na",
+          "book_sports_ticket.seat_zone=Stand A",
+          "book_sports_ticket.ticket_count=2"
+        ]
+      },
+      "timestamp": 7.72553792801541
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—hold on. First check the balance for account number 6228480012345678, then search hotels in Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_balance.account_number=6228480012345678",
+          "search_hotels.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "game",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel The Peninsula Beijing for guest Wang Fang. Check-in date 2026-03-05.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-05",
+          "book_hotel.guest_name=Wang Fang"
+        ]
+      },
+      "timestamp": 24.522197316394756
+    },
+    {
+      "speaker": "user",
+      "text": "Set the hotel stay to 2 nights. Also search restaurants in Beijing.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_hotel.nights=2",
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 31.806089018126954
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the game—continue the ticket booking.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 38.239230751722815
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13892862812 and ID number 110101199001011234 for buyer Li Na.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_sports_ticket.id_number=110101199001011234",
+          "book_sports_ticket.phone=13892862812"
+        ]
+      },
+      "timestamp": 43.93296987324494
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_balance",
+      "params": {
+        "account_number": "6228480012345678"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_001",
+        "checkin_date": "2026-03-05",
+        "nights": 2,
+        "guest_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_bj_001",
+        "seat_zone": "Stand A",
+        "ticket_count": 2,
+        "buyer_name": "Li Na",
+        "phone": "13892862812",
+        "id_number": "110101199001011234"
+      }
+    }
+  ],
+  "transcript_hash": "c027e040fb61",
+  "info_complete_turn": {
+    "check_balance": 3,
+    "search_hotels": 3,
+    "book_hotel": 5,
+    "search_restaurants": 5,
+    "search_sports_events": 1,
+    "book_sports_ticket": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "game",
+    "generated": true
+  }
+}

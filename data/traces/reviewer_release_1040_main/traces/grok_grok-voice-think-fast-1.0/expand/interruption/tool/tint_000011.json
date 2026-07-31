@@ -1,0 +1,734 @@
+{
+  "task_name": "tint_000011",
+  "start_time": "2026-05-06T12:09:54.127677",
+  "end_time": "2026-05-06T12:11:08.961894",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Guangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 118800
+      },
+      "assistant_response": "Let me check the available trains from Beijing to Guangzhou for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Let me check the available trains from Beijing to Guangzhou for you.",
+          "tool_calls": [
+            {
+              "id": "call-c29c4490-41cd-431d-8c6c-e6659b40d95d-0",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Guangzhou"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Let me check the available trains from Beijing to Guangzhou for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8615.058183670044,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 162720,
+        "event_count": 27,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "Let me check the available trains from Beijing to Guangzhou for you."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Guangzhou, I meant Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 106800
+      },
+      "assistant_response": "Got it, I'll search for trains from Beijing to Shanghai instead. I've found three trains from Beijing to Shanghai. The fastest options are the G1 departing at 6 AM and the G3 at 7 AM, both taking about 4.5 hours. There's also a slower but cheaper express train D321 that leaves at 8:30 AM and takes about 8 hours. Which one interests you, or would you like to book a ticket?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, I'll search for trains from Beijing to Shanghai instead.",
+          "tool_calls": [
+            {
+              "id": "call-0f0f8cc8-61ad-415d-a648-a019d429da25-1",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found three trains from Beijing to Shanghai. The fastest options are the G1 departing at 6 AM and the G3 at 7 AM, both taking about 4.5 hours. There's also a slower but cheaper express train D321 that leaves at 8:30 AM and takes about 8 hours. Which one interests you, or would you like to book a ticket?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-0f0f8cc8-61ad-415d-a648-a019d429da25-1",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.102996826171875
+          },
+          "latency_ms": 0.102996826171875
+        }
+      ],
+      "total_latency_ms": 7029.34193611145,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1138080,
+        "event_count": 64,
+        "latency": {
+          "speech_ms": 329.932861328125,
+          "tool_call_ms": 893.60888671875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.01645408881767,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G1 on 2026-03-16 for Wu Qian.",
+        "timestamp": 10.01645408881767,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-16",
+            "book_train.passenger_name=Wu Qian"
+          ]
+        },
+        "audio_size_bytes": 198000
+      },
+      "assistant_response": "Thank you, I'll help you book the G1 train. The train ID is trn_bj_sh_001, and the date is 2026-03-16 with passenger name Wuchang. Could you tell me if you'd prefer second class or first class?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I'll help you book the G1 train. The train ID is trn_bj_sh_001, and the date is 2026-03-16 with passenger name Wuchang. Could you tell me if you'd prefer second class or first class?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8731.603860855103,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 822720,
+        "event_count": 37,
+        "latency": {
+          "speech_ms": 182.48193359375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.061931323538229,
+      "input_chunk": {
+        "role": "user",
+        "content": "Seat class: Second Class.",
+        "timestamp": 15.061931323538229,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 70200
+      },
+      "assistant_response": "Thanks, second class it is. Great, I've successfully booked your train ticket. Your booking ID is TR40001, with seat 01F in second class for March 16th, 2026. The ticket is confirmed and ready for your trip. Is there anything else I can help with, like a hotel in Shanghai?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, second class it is.",
+          "tool_calls": [
+            {
+              "id": "call-887b0625-9e4b-40f1-b606-92b1aa061d2d-2",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_001",
+                "date": "2026-03-16",
+                "passenger_name": "Wuchang",
+                "seat_class": "second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, I've successfully booked your train ticket. Your booking ID is TR40001, with seat 01F in second class for March 16th, 2026. The ticket is confirmed and ready for your trip. Is there anything else I can help with, like a hotel in Shanghai?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-887b0625-9e4b-40f1-b606-92b1aa061d2d-2",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_001",
+            "date": "2026-03-16",
+            "passenger_name": "Wuchang",
+            "seat_class": "second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_001\nDate: 2026-03-16\nPassenger: Wuchang\nSeat: second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_001",
+              "date": "2026-03-16",
+              "passenger_name": "Wuchang",
+              "seat_class": "second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.1087188720703125
+          },
+          "latency_ms": 0.1087188720703125
+        }
+      ],
+      "total_latency_ms": 8574.314832687378,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 918240,
+        "event_count": 57,
+        "latency": {
+          "speech_ms": 0.22314453125,
+          "tool_call_ms": 556.2041015625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 18.94809346057506,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Shanghai.",
+        "timestamp": 18.94809346057506,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_attractions.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 87000
+      },
+      "assistant_response": "Sure, I'll look up the top attractions in Shanghai for you. I've found four popular attractions in Shanghai. The Oriental Pearl Tower, Shanghai Disneyland, The Bund, and Yu Garden. Would you like more details on any of them, or to book tickets for a specific attraction?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'll look up the top attractions in Shanghai for you.",
+          "tool_calls": [
+            {
+              "id": "call-10096cab-dfea-4ce2-bc32-aa30d2bf232d-3",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found four popular attractions in Shanghai. The Oriental Pearl Tower, Shanghai Disneyland, The Bund, and Yu Garden. Would you like more details on any of them, or to book tickets for a specific attraction?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-10096cab-dfea-4ce2-bc32-aa30d2bf232d-3",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Shanghai:\n\n1. Oriental Pearl Tower (ID: attr_sh_001)\n   Type: Modern\n   Rating: 4.5/5.0\n   Ticket: ¥180\n   Hours: 08:00-22:00\n   Location: Pudong\n\n2. Shanghai Disneyland (ID: attr_sh_002)\n   Type: Theme Park\n   Rating: 4.7/5.0\n   Ticket: ¥399\n   Hours: 09:00-21:00\n   Location: Pudong\n\n3. The Bund (ID: attr_sh_003)\n   Type: Sightseeing\n   Rating: 4.6/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Huangpu\n\n4. Yu Garden (ID: attr_sh_004)\n   Type: Garden\n   Rating: 4.4/5.0\n   Ticket: ¥40\n   Hours: 08:30-17:00\n   Location: Huangpu\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_sh_001",
+                "name": "Oriental Pearl Tower",
+                "type": "Modern",
+                "rating": 4.5,
+                "price": 180,
+                "opening_hours": "08:00-22:00",
+                "location": "Pudong"
+              },
+              {
+                "attraction_id": "attr_sh_002",
+                "name": "Shanghai Disneyland",
+                "type": "Theme Park",
+                "rating": 4.7,
+                "price": 399,
+                "opening_hours": "09:00-21:00",
+                "location": "Pudong"
+              },
+              {
+                "attraction_id": "attr_sh_003",
+                "name": "The Bund",
+                "type": "Sightseeing",
+                "rating": 4.6,
+                "price": 0,
+                "opening_hours": "24 hours",
+                "location": "Huangpu"
+              },
+              {
+                "attraction_id": "attr_sh_004",
+                "name": "Yu Garden",
+                "type": "Garden",
+                "rating": 4.4,
+                "price": 40,
+                "opening_hours": "08:30-17:00",
+                "location": "Huangpu"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.08678436279296875
+          },
+          "latency_ms": 0.08678436279296875
+        }
+      ],
+      "total_latency_ms": 7254.057168960571,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 756000,
+        "event_count": 56,
+        "latency": {
+          "speech_ms": 10.257080078125,
+          "tool_call_ms": 682.60693359375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 23.32325343960924,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 5 tickets for Oriental Pearl Tower for Emily Wang on 2026-03-24.",
+        "timestamp": 23.32325343960924,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-24",
+            "book_attraction_ticket.ticket_count=5",
+            "book_attraction_ticket.visitor_name=Emily Wang"
+          ]
+        },
+        "audio_size_bytes": 286200
+      },
+      "assistant_response": "Thank you, let me help you book those tickets. The attraction ID is attr_sh_001, and the date would be 2026-03-24. The tool needs a time slot like 'morning' or 'afternoon'—do you have a preference?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, let me help you book those tickets. The attraction ID is attr_sh_001, and the date would be 2026-03-24. The tool needs a time slot like 'morning' or 'afternoon'—do you have a preference?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10089.84112739563,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 780480,
+        "event_count": 36,
+        "latency": {
+          "speech_ms": 7.938232421875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 29.853661792281073,
+      "input_chunk": {
+        "role": "user",
+        "content": "Time slot: afternoon. Search hotels in Suzhou.",
+        "timestamp": 29.853661792281073,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.time_slot=afternoon",
+            "search_hotels.city=Suzhou"
+          ]
+        },
+        "audio_size_bytes": 127200
+      },
+      "assistant_response": "Thanks, I'll use the afternoon time slot for the attraction booking and also search for hotels in Suzhou. Your attraction tickets for the Oriental Pearl Tower are confirmed—I've booked five afternoon tickets for Emily Wang on March 24th, 2026, under booking ID AT50001. I've also found three hotels in Suzhou for you. The Shangri-La is the most luxurious at about ¥1050 per night, followed by the Pan Pacific at ¥900, and the budget-friendly Home Inn at ¥330. Which one interests you, or do you have a specific date in mind?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'll use the afternoon time slot for the attraction booking and also search for hotels in Suzhou.",
+          "tool_calls": [
+            {
+              "id": "call-cc51439c-7480-4492-bb29-b9707be74bd3-4",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_sh_001",
+                "date": "2026-03-24",
+                "time_slot": "afternoon",
+                "visitor_name": "Emily Wang",
+                "ticket_count": 5
+              }
+            },
+            {
+              "id": "call-cc51439c-7480-4492-bb29-b9707be74bd3-5",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Suzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your attraction tickets for the Oriental Pearl Tower are confirmed—I've booked five afternoon tickets for Emily Wang on March 24th, 2026, under booking ID AT50001. I've also found three hotels in Suzhou for you. The Shangri-La is the most luxurious at about ¥1050 per night, followed by the Pan Pacific at ¥900, and the budget-friendly Home Inn at ¥330. Which one interests you, or do you have a specific date in mind?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-cc51439c-7480-4492-bb29-b9707be74bd3-4",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_sh_001",
+            "date": "2026-03-24",
+            "time_slot": "afternoon",
+            "visitor_name": "Emily Wang",
+            "ticket_count": 5
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_sh_001\nDate: 2026-03-24\nTime slot: afternoon\nVisitor: Emily Wang\nTickets: 5\nTicket numbers: AT50001-01, AT50001-02, AT50001-03, AT50001-04, AT50001-05\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_sh_001",
+              "date": "2026-03-24",
+              "time_slot": "afternoon",
+              "visitor_name": "Emily Wang",
+              "ticket_count": 5,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02",
+                "AT50001-03",
+                "AT50001-04",
+                "AT50001-05"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.06604194641113281
+          },
+          "latency_ms": 0.06604194641113281
+        },
+        {
+          "tool_call_id": "call-cc51439c-7480-4492-bb29-b9707be74bd3-5",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Suzhou:\n\n1. Shangri-La Suzhou (ID: hotel_su_001)\n   Location: Suzhou Industrial Park | 5 stars\n   Price: ¥1050/night | Rating: 4.8/5.0\n\n2. Pan Pacific Suzhou (ID: hotel_su_002)\n   Location: Gusu | 5 stars\n   Price: ¥900/night | Rating: 4.7/5.0\n\n3. Home Inn Pingjiang (ID: hotel_su_003)\n   Location: Pingjiang | 3 stars\n   Price: ¥330/night | Rating: 4.2/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_su_001",
+                "name": "Shangri-La Suzhou",
+                "location": "Suzhou Industrial Park",
+                "stars": 5,
+                "price": 1050,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_su_002",
+                "name": "Pan Pacific Suzhou",
+                "location": "Gusu",
+                "stars": 5,
+                "price": 900,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_su_003",
+                "name": "Home Inn Pingjiang",
+                "location": "Pingjiang",
+                "stars": 3,
+                "price": 330,
+                "rating": 4.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.064849853515625
+          },
+          "latency_ms": 0.064849853515625
+        }
+      ],
+      "total_latency_ms": 14583.559274673462,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1794720,
+        "event_count": 79,
+        "latency": {
+          "speech_ms": 107.702880859375,
+          "tool_call_ms": 3117.885986328125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.196040271478466,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Shangri-La Suzhou; check in 2026-03-12 for 4 nights; guest Luo Fei.",
+        "timestamp": 35.196040271478466,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-12",
+            "book_hotel.guest_name=Luo Fei",
+            "book_hotel.nights=4"
+          ]
+        },
+        "audio_size_bytes": 286800
+      },
+      "assistant_response": "Thanks, I'll book the Shangri-La Suzhou for you. for Luo Fei. Great, I've successfully booked it—your booking ID is HT20001, checking in on March 12th for four nights. If you need anything else like train tickets or more attractions, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'll book the Shangri-La Suzhou for you.",
+          "tool_calls": [
+            {
+              "id": "call-31cf6406-625e-4bf5-a775-32ab5f8f03a3-6",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_su_001",
+                "checkin_date": "2026-03-12",
+                "nights": 4,
+                "guest_name": "Luo Fei"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "for Luo Fei. Great, I've successfully booked it—your booking ID is HT20001, checking in on March 12th for four nights. If you need anything else like train tickets or more attractions, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-31cf6406-625e-4bf5-a775-32ab5f8f03a3-6",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_su_001",
+            "checkin_date": "2026-03-12",
+            "nights": 4,
+            "guest_name": "Luo Fei"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_su_001\nCheck-in: 2026-03-12\nNights: 4\nGuest: Luo Fei\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_su_001",
+              "checkin_date": "2026-03-12",
+              "nights": 4,
+              "guest_name": "Luo Fei",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0209808349609375
+          },
+          "latency_ms": 0.0209808349609375
+        }
+      ],
+      "total_latency_ms": 9945.222854614258,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 863520,
+        "event_count": 58,
+        "latency": {
+          "speech_ms": 0.278076171875,
+          "tool_call_ms": 604.2958984375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 14,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "wrong_params": {
+      "search_trains.destination": "Guangzhou"
+    },
+    "corrected_params": {
+      "search_trains.destination": "Shanghai"
+    },
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 329.932861328125,
+        "tool_call_ms": 893.60888671875
+      },
+      "book_train": {
+        "speech_ms": 0.22314453125,
+        "tool_call_ms": 556.2041015625
+      },
+      "search_attractions": {
+        "speech_ms": 10.257080078125,
+        "tool_call_ms": 682.60693359375
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 107.702880859375,
+        "tool_call_ms": 3117.885986328125
+      },
+      "search_hotels": {
+        "speech_ms": 107.702880859375,
+        "tool_call_ms": 3117.885986328125
+      },
+      "book_hotel": {
+        "speech_ms": 0.278076171875,
+        "tool_call_ms": 604.2958984375
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 2,
+      "book_train": 4,
+      "search_attractions": 5,
+      "book_attraction_ticket": 7,
+      "search_hotels": 7,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[re-called with correction]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_train",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "passenger_name: 'Wu Qian' vs 'Wuchang'"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

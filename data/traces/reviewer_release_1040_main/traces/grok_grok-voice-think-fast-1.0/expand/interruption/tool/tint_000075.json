@@ -1,0 +1,621 @@
+{
+  "task_name": "tint_000075",
+  "start_time": "2026-05-06T21:08:41.629627",
+  "end_time": "2026-05-06T21:10:00.787061",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for 2 adults, check in 2026-03-18 and check out 2026-03-20, and also help me with a train booking and an attraction ticket later.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 610800
+      },
+      "assistant_response": "Thanks, I've got your request for hotels in Shanghai.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got your request for hotels in Shanghai.",
+          "tool_calls": [
+            {
+              "id": "call-53e0cba4-afd4-4cfd-b839-2e047bf10e77-0",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-18"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Thanks, I've got your request for hotels in Shanghai.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 13238.1751537323,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 148320,
+        "event_count": 26,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "Thanks, I've got your request for hotels in Shanghai."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel part. Cancel any hotel search or booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 164400
+      },
+      "assistant_response": "Got it, I'll cancel the hotel search right away. Since we only searched and didn't book anything, there's nothing to cancel. What would you like to do next—search for trains or attractions?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, I'll cancel the hotel search right away. Since we only searched and didn't book anything, there's nothing to cancel. What would you like to do next—search for trains or attractions?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3015.449285507202,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 481920,
+        "event_count": 32,
+        "latency": {
+          "speech_ms": 120.84619140625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 16.69994104093205,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 16.69994104093205,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 112800
+      },
+      "assistant_response": "Sure, I'll search for trains from Beijing to Shanghai. I've found three train options from Beijing to Shanghai for you. The first two are high-speed trains taking about four and a half hours, while the third is a slower express option that's more budget-friendly. Which one would you like to book, or do you have a preferred departure time?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'll search for trains from Beijing to Shanghai.",
+          "tool_calls": [
+            {
+              "id": "call-97027248-b81a-41fc-98e2-5da73043cd29-1",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found three train options from Beijing to Shanghai for you. The first two are high-speed trains taking about four and a half hours, while the third is a slower express option that's more budget-friendly. Which one would you like to book, or do you have a preferred departure time?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-97027248-b81a-41fc-98e2-5da73043cd29-1",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.016927719116210938
+          },
+          "latency_ms": 0.016927719116210938
+        }
+      ],
+      "total_latency_ms": 10264.841079711914,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 845280,
+        "event_count": 58,
+        "latency": {
+          "speech_ms": 1348.681884765625,
+          "tool_call_ms": 1417.825927734375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 21.701710356260904,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3.",
+        "timestamp": 21.701710356260904,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 48000
+      },
+      "assistant_response": "Thanks, I'd be happy to book the G3 train for you. Could you let me know the travel date, your name as the passenger, and whether you'd prefer second class or first class? The G3 train ID is trn_bj_sh_002.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'd be happy to book the G3 train for you. Could you let me know the travel date, your name as the passenger, and whether you'd prefer second class or first class? The G3 train ID is trn_bj_sh_002.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8934.010744094849,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 760320,
+        "event_count": 37,
+        "latency": {
+          "speech_ms": 149.711181640625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.82538922821436,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the train date to 2026-03-19 and passenger name to Wu Qian.",
+        "timestamp": 25.82538922821436,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-19",
+            "book_train.passenger_name=Wu Qian"
+          ]
+        },
+        "audio_size_bytes": 250800
+      },
+      "assistant_response": "Thanks, I've got the date as 2026-03-19 and passenger name as Wu Chun. Now, which seat class would you prefer—second class or first class? Once I have that, I can complete the booking for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the date as 2026-03-19 and passenger name as Wu Chun. Now, which seat class would you prefer—second class or first class? Once I have that, I can complete the booking for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10192.6109790802,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 630720,
+        "event_count": 34,
+        "latency": {
+          "speech_ms": 1613.4267578125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.941629760126926,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use First Class for the train seat.",
+        "timestamp": 31.941629760126926,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 99000
+      },
+      "assistant_response": "Thanks, I'll book first class for you. Great, your train booking is confirmed. Your booking ID is TR40001, with seat first class 01A. Let me know if you'd like to book an attraction ticket or need anything else.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'll book first class for you.",
+          "tool_calls": [
+            {
+              "id": "call-f1080e7b-b42b-49a0-ac9e-1f475cb67804-2",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-03-19",
+                "passenger_name": "Wu Chun",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your train booking is confirmed. Your booking ID is TR40001, with seat first class 01A. Let me know if you'd like to book an attraction ticket or need anything else.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-f1080e7b-b42b-49a0-ac9e-1f475cb67804-2",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-03-19",
+            "passenger_name": "Wu Chun",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-03-19\nPassenger: Wu Chun\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-03-19",
+              "passenger_name": "Wu Chun",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.009059906005859375
+          },
+          "latency_ms": 0.009059906005859375
+        }
+      ],
+      "total_latency_ms": 9169.115781784058,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 804960,
+        "event_count": 55,
+        "latency": {
+          "speech_ms": 569.483154296875,
+          "tool_call_ms": 1460.468017578125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 36.88793209909484,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Chengdu.",
+        "timestamp": 36.88793209909484,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_attractions.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 90000
+      },
+      "assistant_response": "Sure, I'd be happy to search for attractions in Chengdu. I've found four popular attractions in Chengdu for you. The top one is the Giant Panda Base with a 4.8 rating and ¥58 tickets, open from 7:30 AM. Which one interests you, or would you like me to book tickets for any of them? Let me know if you'd like more details on any of these or help booking tickets.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'd be happy to search for attractions in Chengdu.",
+          "tool_calls": [
+            {
+              "id": "call-e88a5e3f-9ce3-4704-a695-cb2748881b5e-3",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found four popular attractions in Chengdu for you. The top one is the Giant Panda Base with a 4.8 rating and ¥58 tickets, open from 7:30 AM. Which one interests you, or would you like me to book tickets for any of them? Let me know if you'd like more details on any of these or help booking tickets.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-e88a5e3f-9ce3-4704-a695-cb2748881b5e-3",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Chengdu:\n\n1. Giant Panda Base (ID: attr_cd_001)\n   Type: Zoo\n   Rating: 4.8/5.0\n   Ticket: ¥58\n   Hours: 07:30-18:00\n   Location: Chenghua\n\n2. Wuhou Shrine (ID: attr_cd_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Wuhou\n\n3. Du Fu Thatched Cottage (ID: attr_cd_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Qingyang\n\n4. Kuanzhai Alley (ID: attr_cd_004)\n   Type: Sightseeing\n   Rating: 4.3/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Qingyang\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_cd_001",
+                "name": "Giant Panda Base",
+                "type": "Zoo",
+                "rating": 4.8,
+                "price": 58,
+                "opening_hours": "07:30-18:00",
+                "location": "Chenghua"
+              },
+              {
+                "attraction_id": "attr_cd_002",
+                "name": "Wuhou Shrine",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Wuhou"
+              },
+              {
+                "attraction_id": "attr_cd_003",
+                "name": "Du Fu Thatched Cottage",
+                "type": "Historical",
+                "rating": 4.4,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Qingyang"
+              },
+              {
+                "attraction_id": "attr_cd_004",
+                "name": "Kuanzhai Alley",
+                "type": "Sightseeing",
+                "rating": 4.3,
+                "price": 0,
+                "opening_hours": "24 hours",
+                "location": "Qingyang"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.032901763916015625
+          },
+          "latency_ms": 0.032901763916015625
+        }
+      ],
+      "total_latency_ms": 10079.413890838623,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1149600,
+        "event_count": 63,
+        "latency": {
+          "speech_ms": 481.95703125,
+          "tool_call_ms": 1089.406982421875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 41.63239450251253,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 3 tickets for Giant Panda Base on 2026-03-17 in the morning for visitor Olivia Brown.",
+        "timestamp": 41.63239450251253,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-17",
+            "book_attraction_ticket.ticket_count=3",
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=Olivia Brown"
+          ]
+        },
+        "audio_size_bytes": 351000
+      },
+      "assistant_response": "Thanks, I'll book three tickets for the Giant Panda Base. Great, your booking for the Giant Panda Base is confirmed. The booking ID is AT50001, and your three ticket numbers are AT50001-01, AT50001-02, and AT50001-03. If you need to book anything else or make changes, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'll book three tickets for the Giant Panda Base.",
+          "tool_calls": [
+            {
+              "id": "call-905800e0-bb60-4d3c-aa16-1fcb6d823f99-4",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_cd_001",
+                "date": "2026-03-17",
+                "time_slot": "morning",
+                "visitor_name": "Olivia Brown",
+                "ticket_count": 3
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your booking for the Giant Panda Base is confirmed. The booking ID is AT50001, and your three ticket numbers are AT50001-01, AT50001-02, and AT50001-03. If you need to book anything else or make changes, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-905800e0-bb60-4d3c-aa16-1fcb6d823f99-4",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_cd_001",
+            "date": "2026-03-17",
+            "time_slot": "morning",
+            "visitor_name": "Olivia Brown",
+            "ticket_count": 3
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_cd_001\nDate: 2026-03-17\nTime slot: morning\nVisitor: Olivia Brown\nTickets: 3\nTicket numbers: AT50001-01, AT50001-02, AT50001-03\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_cd_001",
+              "date": "2026-03-17",
+              "time_slot": "morning",
+              "visitor_name": "Olivia Brown",
+              "ticket_count": 3,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02",
+                "AT50001-03"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.009059906005859375
+          },
+          "latency_ms": 0.009059906005859375
+        }
+      ],
+      "total_latency_ms": 14257.296800613403,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1250400,
+        "event_count": 64,
+        "latency": {
+          "speech_ms": 160.587890625,
+          "tool_call_ms": 1639.914794921875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 1348.681884765625,
+        "tool_call_ms": 1417.825927734375
+      },
+      "book_train": {
+        "speech_ms": 569.483154296875,
+        "tool_call_ms": 1460.468017578125
+      },
+      "search_attractions": {
+        "speech_ms": 481.95703125,
+        "tool_call_ms": 1089.406982421875
+      },
+      "book_attraction_ticket": {
+        "speech_ms": 160.587890625,
+        "tool_call_ms": 1639.914794921875
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 3,
+      "book_train": 6,
+      "search_attractions": 7,
+      "book_attraction_ticket": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[respected cancel]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_train",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "passenger_name: 'Wu Qian' vs 'Wu Chun'"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

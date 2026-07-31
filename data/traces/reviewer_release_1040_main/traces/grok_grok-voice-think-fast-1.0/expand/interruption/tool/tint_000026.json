@@ -1,0 +1,625 @@
+{
+  "task_name": "tint_000026",
+  "start_time": "2026-05-06T14:47:43.848619",
+  "end_time": "2026-05-06T14:49:34.057327",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search sports events in Shanghai for CSL: Chengdu Rongcheng vs Beijing Guoan.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_sports_events.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 229800
+      },
+      "assistant_response": "Let me check for that CSL match in Shanghai for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Let me check for that CSL match in Shanghai for you.",
+          "tool_calls": [
+            {
+              "id": "call-553cd2aa-34e3-4ec4-aed2-d9be973dc2ae-0",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Let me check for that CSL match in Shanghai for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 11139.445066452026,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 163680,
+        "event_count": 26,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "Let me check for that CSL match in Shanghai for you."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shanghai, I meant Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_sports_events",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 100800
+      },
+      "assistant_response": "Thanks for the correction—I'll search for the CSL match in Chengdu. I've found the CSL match you're looking for: Chengdu Rongcheng versus Beijing Guoan. It's at Phoenix Hill Sports Park on March 10th, 2026 at 7:30 PM, with tickets from ¥100 to ¥580. Available seating includes Home Stand, Away Stand, and Neutral Stand. Would you like to book tickets for this match?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks for the correction—I'll search for the CSL match in Chengdu.",
+          "tool_calls": [
+            {
+              "id": "call-380c7b87-dc9c-4fe3-8e89-0fdd0a779bc9-1",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found the CSL match you're looking for: Chengdu Rongcheng versus Beijing Guoan. It's at Phoenix Hill Sports Park on March 10th, 2026 at 7:30 PM, with tickets from ¥100 to ¥580. Available seating includes Home Stand, Away Stand, and Neutral Stand. Would you like to book tickets for this match?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-380c7b87-dc9c-4fe3-8e89-0fdd0a779bc9-1",
+          "tool_name": "search_sports_events",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 sports events in Chengdu:\n\n1. CSL: Chengdu Rongcheng vs Beijing Guoan (ID: evt_cd_001)\n   Sport: Football\n   Venue: Phoenix Hill Sports Park\n   Date/Time: 2026-03-10 19:30\n   Match: Chengdu Rongcheng vs Beijing Guoan\n   Price: ¥100-580\n   Available zones: Home Stand, Away Stand, Neutral Stand\n   Rating: 8.4/10.0\n\n",
+            "raw_output": [
+              {
+                "event_id": "evt_cd_001",
+                "name": "CSL: Chengdu Rongcheng vs Beijing Guoan",
+                "sport_type": "Football",
+                "venue": "Phoenix Hill Sports Park",
+                "date": "2026-03-10",
+                "time": "19:30",
+                "home_team": "Chengdu Rongcheng",
+                "away_team": "Beijing Guoan",
+                "price_range": "100-580",
+                "available_zones": [
+                  "Home Stand",
+                  "Away Stand",
+                  "Neutral Stand"
+                ],
+                "rating": 8.4
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04291534423828125
+          },
+          "latency_ms": 0.04291534423828125
+        }
+      ],
+      "total_latency_ms": 10784.372091293335,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1252320,
+        "event_count": 64,
+        "latency": {
+          "speech_ms": 1717.6025390625,
+          "tool_call_ms": 2902.28662109375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 11.694106753197289,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 2 tickets in the Home Stand; buyer name Deng Hui.",
+        "timestamp": 11.694106753197289,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_sports_ticket.buyer_name=Deng Hui",
+            "book_sports_ticket.seat_zone=Home Stand",
+            "book_sports_ticket.ticket_count=2"
+          ]
+        },
+        "audio_size_bytes": 167400
+      },
+      "assistant_response": "Thanks, I've got the details for the Chengdu Rongcheng vs Beijing Guoan match. To complete the booking for two tickets in the Home Stand, I'll need your phone number and ID card number. Once I have those, I can process it right away.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the details for the Chengdu Rongcheng vs Beijing Guoan match. To complete the booking for two tickets in the Home Stand, I'll need your phone number and ID card number. Once I have those, I can process it right away.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8149.849891662598,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 674880,
+        "event_count": 35,
+        "latency": {
+          "speech_ms": 708.21484375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 17.025097996016697,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13822334455 and ID number 610104199404096789 for the ticket order.",
+        "timestamp": 17.025097996016697,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_sports_ticket.id_number=610104199404096789",
+            "book_sports_ticket.phone=13822334455"
+          ]
+        },
+        "audio_size_bytes": 489000
+      },
+      "assistant_response": "Thanks, I've got the phone and ID details. Great, your booking is confirmed! The booking ID is SP80001, and you've got two seats in the Home Stand—Row 10 Seat 20 and Row 11 Seat 20. The total comes to ¥960, and it's confirmed with real-name registration. If you need anything else, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the phone and ID details.",
+          "tool_calls": [
+            {
+              "id": "call-b0c5b4c5-4a9d-40e7-9305-a4feac022b9e-2",
+              "name": "book_sports_ticket",
+              "arguments": {
+                "event_id": "evt_cd_001",
+                "seat_zone": "Home Stand",
+                "ticket_count": 2,
+                "buyer_name": "Deng Hui",
+                "phone": "1382334455",
+                "id_number": "6101041944096789"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your booking is confirmed! The booking ID is SP80001, and you've got two seats in the Home Stand—Row 10 Seat 20 and Row 11 Seat 20. The total comes to ¥960, and it's confirmed with real-name registration. If you need anything else, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-b0c5b4c5-4a9d-40e7-9305-a4feac022b9e-2",
+          "tool_name": "book_sports_ticket",
+          "arguments": {
+            "event_id": "evt_cd_001",
+            "seat_zone": "Home Stand",
+            "ticket_count": 2,
+            "buyer_name": "Deng Hui",
+            "phone": "1382334455",
+            "id_number": "6101041944096789"
+          },
+          "result": {
+            "success": true,
+            "output": "Sports ticket booking successful!\n\nBooking ID: SP80001\nEvent ID: evt_cd_001\nEvent: CSL: Chengdu Rongcheng vs Beijing Guoan\nVenue: Phoenix Hill Sports Park\nDate: 2026-03-10\nZone: Home Stand\nSeats: Home Stand Row 10 Seat 20, Home Stand Row 11 Seat 20\nQuantity: 2\nBuyer: Deng Hui\nPhone: 1382334455\nID: 610104****6789\nTotal: ¥960\nStatus: Confirmed (Real-name Required)\n",
+            "raw_output": {
+              "booking_id": "SP80001",
+              "event_id": "evt_cd_001",
+              "event_name": "CSL: Chengdu Rongcheng vs Beijing Guoan",
+              "venue": "Phoenix Hill Sports Park",
+              "date": "2026-03-10",
+              "seat_zone": "Home Stand",
+              "ticket_count": 2,
+              "seats": [
+                "Home Stand Row 10 Seat 20",
+                "Home Stand Row 11 Seat 20"
+              ],
+              "buyer_name": "Deng Hui",
+              "phone": "1382334455",
+              "id_number": "6101041944096789",
+              "total_price": 960,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.10585784912109375
+          },
+          "latency_ms": 0.10585784912109375
+        }
+      ],
+      "total_latency_ms": 23052.857160568237,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1152480,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 1804.4521484375,
+          "tool_call_ms": 7787.90185546875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.269217806729547,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Nanjing.",
+        "timestamp": 24.269217806729547,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_restaurants.city=Nanjing"
+          ]
+        },
+        "audio_size_bytes": 85800
+      },
+      "assistant_response": "Sure, I'd be happy to help you find some restaurants in Nanjing. I've found two popular Jiangsu cuisine restaurants in Nanjing for you. The first is Nanjing Impressions in Xinjiekou with a 4.7 rating, and the second is Lao Men Dong Restaurant in Qinhuai with a 4.5 rating. Do either of those interest you, or would you like me to search with a specific cuisine type?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'd be happy to help you find some restaurants in Nanjing.",
+          "tool_calls": [
+            {
+              "id": "call-a8c2f5b5-8fe2-42ab-b87b-64595eae10c7-3",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Nanjing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found two popular Jiangsu cuisine restaurants in Nanjing for you. The first is Nanjing Impressions in Xinjiekou with a 4.7 rating, and the second is Lao Men Dong Restaurant in Qinhuai with a 4.5 rating. Do either of those interest you, or would you like me to search with a specific cuisine type?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-a8c2f5b5-8fe2-42ab-b87b-64595eae10c7-3",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Nanjing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Nanjing:\n\n1. Nanjing Impressions (ID: rst_nj_001)\n   Cuisine: Jiangsu\n   Location: Xinjiekou\n   Rating: 4.7/5.0\n\n2. Lao Men Dong Restaurant (ID: rst_nj_002)\n   Cuisine: Jiangsu\n   Location: Qinhuai\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_nj_001",
+                "name": "Nanjing Impressions",
+                "cuisine": "Jiangsu",
+                "location": "Xinjiekou",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_nj_002",
+                "name": "Lao Men Dong Restaurant",
+                "cuisine": "Jiangsu",
+                "location": "Qinhuai",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.07677078247070312
+          },
+          "latency_ms": 0.07677078247070312
+        }
+      ],
+      "total_latency_ms": 13578.030109405518,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1254240,
+        "event_count": 65,
+        "latency": {
+          "speech_ms": 1426.983154296875,
+          "tool_call_ms": 2318.166015625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.143413334399195,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Lao Men Dong Restaurant for 2026-03-21 at 12:00 for 9 people.",
+        "timestamp": 29.143413334399195,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-03-21",
+            "book_restaurant.party_size=9",
+            "book_restaurant.time=12:00"
+          ]
+        },
+        "audio_size_bytes": 314400
+      },
+      "assistant_response": "Thanks, I've noted the details for Lao Men Dong restaurant. But to finish the reservation, I need to confirm a few details. Is the date October 20th, 2026, at 12:00, with contact name Joe? Also, what's the phone number for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've noted the details for Lao Men Dong restaurant. But to finish the reservation, I need to confirm a few details. Is the date October 20th, 2026, at 12:00, with contact name Joe? Also, what's the phone number for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 20206.135034561157,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 732480,
+        "event_count": 37,
+        "latency": {
+          "speech_ms": 734.1611328125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 35.073598728559745,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the restaurant booking contact to Ethan Thomas, phone 13800112233; then cancel ride RIDE789012.",
+        "timestamp": 35.073598728559745,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Ethan Thomas",
+            "book_restaurant.phone=13800112233",
+            "cancel_ride.ride_id=RIDE789012"
+          ]
+        },
+        "audio_size_bytes": 445800
+      },
+      "assistant_response": "Thanks, I've got the contact details for the restaurant booking. Thanks, I've successfully booked the table for nine at Lao Men Dong on October 20th at noon, under Ethan Thomas. The booking ID is BK1001, and the ride with ID 789012 has been successfully cancelled with no fee. Let me know if there's anything else I can assist with.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the contact details for the restaurant booking.",
+          "tool_calls": [
+            {
+              "id": "call-997b7098-31f7-4981-8884-cf561fd64602-4",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_nj_002",
+                "date": "2026-10-20",
+                "time": "12:00",
+                "party_size": 9,
+                "contact_name": "Ethan Thomas",
+                "phone": "13801122333"
+              }
+            },
+            {
+              "id": "call-997b7098-31f7-4981-8884-cf561fd64602-5",
+              "name": "cancel_ride",
+              "arguments": {
+                "ride_id": "789012"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Thanks, I've successfully booked the table for nine at Lao Men Dong on October 20th at noon, under Ethan Thomas. The booking ID is BK1001, and the ride with ID 789012 has been successfully cancelled with no fee. Let me know if there's anything else I can assist with.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-997b7098-31f7-4981-8884-cf561fd64602-4",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_nj_002",
+            "date": "2026-10-20",
+            "time": "12:00",
+            "party_size": 9,
+            "contact_name": "Ethan Thomas",
+            "phone": "13801122333"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_nj_002\nRestaurant: Lao Men Dong Restaurant\nDate: 2026-10-20\nTime: 12:00\nParty size: 9\nContact: Ethan Thomas (13801122333)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_nj_002",
+              "restaurant_name": "Lao Men Dong Restaurant",
+              "date": "2026-10-20",
+              "time": "12:00",
+              "party_size": 9,
+              "contact_name": "Ethan Thomas",
+              "phone": "13801122333",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.08869171142578125
+          },
+          "latency_ms": 0.08869171142578125
+        },
+        {
+          "tool_call_id": "call-997b7098-31f7-4981-8884-cf561fd64602-5",
+          "tool_name": "cancel_ride",
+          "arguments": {
+            "ride_id": "789012"
+          },
+          "result": {
+            "success": true,
+            "message": "Ride cancelled",
+            "cancellation": {
+              "ride_id": "789012",
+              "reason": "Not provided",
+              "cancel_time": "2026-05-06 14:49:24",
+              "status": "Cancelled",
+              "cancellation_fee": 0
+            },
+            "output": "{\n  \"success\": true,\n  \"message\": \"Ride cancelled\",\n  \"cancellation\": {\n    \"ride_id\": \"789012\",\n    \"reason\": \"Not provided\",\n    \"cancel_time\": \"2026-05-06 14:49:24\",\n    \"status\": \"Cancelled\",\n    \"cancellation_fee\": 0\n  }\n}",
+            "raw_output": {
+              "success": true,
+              "message": "Ride cancelled",
+              "cancellation": {
+                "ride_id": "789012",
+                "reason": "Not provided",
+                "cancel_time": "2026-05-06 14:49:24",
+                "status": "Cancelled",
+                "cancellation_fee": 0
+              },
+              "output": "{\n  \"success\": true,\n  \"message\": \"Ride cancelled\",\n  \"cancellation\": {\n    \"ride_id\": \"789012\",\n    \"reason\": \"Not provided\",\n    \"cancel_time\": \"2026-05-06 14:49:24\",\n    \"status\": \"Cancelled\",\n    \"cancellation_fee\": 0\n  }\n}"
+            },
+            "error": null,
+            "latency_ms": 0.1380443572998047
+          },
+          "latency_ms": 0.1380443572998047
+        }
+      ],
+      "total_latency_ms": 23291.48817062378,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1219680,
+        "event_count": 71,
+        "latency": {
+          "speech_ms": 2946.0859375,
+          "tool_call_ms": 7839.98486328125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 7,
+    "total_llm_calls": 12,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "sports_event",
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "wrong_params": {
+      "search_sports_events.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_sports_events.city": "Chengdu"
+    },
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "book_sports_ticket": {
+        "speech_ms": 1804.4521484375,
+        "tool_call_ms": 7787.90185546875
+      },
+      "search_restaurants": {
+        "speech_ms": 1426.983154296875,
+        "tool_call_ms": 2318.166015625
+      },
+      "book_restaurant": {
+        "speech_ms": 2946.0859375,
+        "tool_call_ms": 7839.98486328125
+      },
+      "cancel_ride": {
+        "speech_ms": 2946.0859375,
+        "tool_call_ms": 7839.98486328125
+      }
+    },
+    "info_complete_turn": {
+      "search_sports_events": 1,
+      "book_sports_ticket": 4,
+      "search_restaurants": 5,
+      "book_restaurant": 7,
+      "cancel_ride": 7
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[re-called with correction]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_sports_ticket",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13822334455' vs '1382334455'; id_number: '610104199404096789' vs '6101041944096789'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "date: '2026-03-21' vs '2026-10-20'; phone: '13800112233' vs '13801122333'"
+        },
+        {
+          "tool": "cancel_ride",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "ride_id: 'RIDE789012' vs '789012'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "parameter_reasoning": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

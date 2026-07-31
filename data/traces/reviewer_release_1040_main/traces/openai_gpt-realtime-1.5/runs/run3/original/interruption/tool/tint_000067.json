@@ -1,0 +1,675 @@
+{
+  "task_name": "tint_000067",
+  "start_time": "2026-07-29T03:52:38.926092",
+  "end_time": "2026-07-29T03:53:16.837657",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 112200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_EwJ2mBbvGG1CVIwb",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4475.502967834473,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 25,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Hold on—list my bills now.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 69600
+      },
+      "assistant_response": "I’ve pulled up your bills. You have five listed: \n\n1. Electricity bill from State Grid for 156.8 due by March 9, 2026 (Unpaid).\n2. Water bill from Water Company for 45.2 due by March 6, 2026 (Unpaid).\n3. Gas bill from Gas Group for 89.5 due by March 14, 2026 (Unpaid).\n4. An older electricity bill from State Grid for 142.3 from the December 2025 period, already paid on January 20, 2026.\n5. Internet bill from China Telecom for 129.0 due by March 2, 2026 (Unpaid).\n\nI’m still waiting on the flight search results for Beijing to Shanghai and will share them as soon as I have them.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Pe5oLaEFOWzqNNOq",
+              "name": "list_bills",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I’ve pulled up your bills. You have five listed: \n\n1. Electricity bill from State Grid for 156.8 due by March 9, 2026 (Unpaid).\n2. Water bill from Water Company for 45.2 due by March 6, 2026 (Unpaid).\n3. Gas bill from Gas Group for 89.5 due by March 14, 2026 (Unpaid).\n4. An older electricity bill from State Grid for 142.3 from the December 2025 period, already paid on January 20, 2026.\n5. Internet bill from China Telecom for 129.0 due by March 2, 2026 (Unpaid).\n\nI’m still waiting on the flight search results for Beijing to Shanghai and will share them as soon as I have them.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Pe5oLaEFOWzqNNOq",
+          "tool_name": "list_bills",
+          "arguments": {},
+          "result": {
+            "success": true,
+            "count": 5,
+            "bills": [
+              {
+                "bill_id": "DL20260219001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 156.8,
+                "due_date": "2026-03-09",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215002",
+                "bill_type": "Water",
+                "company": "Water Company",
+                "account_number": "9876543210",
+                "amount": 45.2,
+                "due_date": "2026-03-06",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215003",
+                "bill_type": "Gas",
+                "company": "Gas Group",
+                "account_number": "5555666677",
+                "amount": 89.5,
+                "due_date": "2026-03-14",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260115001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 142.3,
+                "due_date": "2026-01-28",
+                "status": "Paid",
+                "billing_period": "2025-12",
+                "payment_date": "2026-01-20"
+              },
+              {
+                "bill_id": "BILL20260215004",
+                "bill_type": "Internet",
+                "company": "China Telecom",
+                "account_number": "1111222233",
+                "amount": 129.0,
+                "due_date": "2026-03-02",
+                "status": "Unpaid",
+                "billing_period": "2026-02"
+              }
+            ],
+            "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]",
+            "raw_output": {
+              "success": true,
+              "count": 5,
+              "bills": [
+                {
+                  "bill_id": "DL20260219001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 156.8,
+                  "due_date": "2026-03-09",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215002",
+                  "bill_type": "Water",
+                  "company": "Water Company",
+                  "account_number": "9876543210",
+                  "amount": 45.2,
+                  "due_date": "2026-03-06",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215003",
+                  "bill_type": "Gas",
+                  "company": "Gas Group",
+                  "account_number": "5555666677",
+                  "amount": 89.5,
+                  "due_date": "2026-03-14",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260115001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 142.3,
+                  "due_date": "2026-01-28",
+                  "status": "Paid",
+                  "billing_period": "2025-12",
+                  "payment_date": "2026-01-20"
+                },
+                {
+                  "bill_id": "BILL20260215004",
+                  "bill_type": "Internet",
+                  "company": "China Telecom",
+                  "account_number": "1111222233",
+                  "amount": 129.0,
+                  "due_date": "2026-03-02",
+                  "status": "Unpaid",
+                  "billing_period": "2026-02"
+                }
+              ],
+              "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]"
+            },
+            "error": null,
+            "latency_ms": 0.0040531158447265625
+          },
+          "latency_ms": 0.0040531158447265625
+        }
+      ],
+      "total_latency_ms": 12777.148723602295,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2176800,
+        "event_count": 311,
+        "latency": {
+          "speech_ms": 1084.885986328125,
+          "tool_call_ms": 243.962646484375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the flight search.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 103200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1682.3883056640625,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 14.346000372076137,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-21.",
+        "timestamp": 14.346000372076137,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-21"
+          ]
+        },
+        "audio_size_bytes": 204600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2795.403003692627,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.347535597101526,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set passenger name to Wang Fang.",
+        "timestamp": 19.347535597101526,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.passenger_name=Wang Fang"
+          ]
+        },
+        "audio_size_bytes": 95400
+      },
+      "assistant_response": "I'd be happy to help",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "I'd be happy to help",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1577.3849487304688,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 20
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 23.951847570551344,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use airline China Eastern for the booking.",
+        "timestamp": 23.951847570551344,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 119400
+      },
+      "assistant_response": "Sure, I'll book flight",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure, I'll book flight",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1836.8189334869385,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 20
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 28.673151802920255,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shanghai.",
+        "timestamp": 28.673151802920255,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 88800
+      },
+      "assistant_response": "Got it.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Got it.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1532.3529243469238,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 18
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 33.23086619392603,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Shanghai Classic for 2 people on 2026-03-11 at 11:30.",
+        "timestamp": 33.23086619392603,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-11",
+            "book_restaurant.party_size=2",
+            "book_restaurant.time=11:30"
+          ]
+        },
+        "audio_size_bytes": 238800
+      },
+      "assistant_response": "I found three restaurants in Shanghai, including Shanghai Classic, which has the ID rst_sh_002. To book a reservation, I’ll need your contact name and phone number. Could you provide those, please?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_JUxGKP6o2EHoL3r8",
+              "name": "search_restaurants",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ZuNx8j8Ffz6Ulpd5",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_evvBCnSlUDLQvMqJ",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "finish_reason": "completed",
+          "content": "I found three restaurants in Shanghai, including Shanghai Classic, which has the ID rst_sh_002. To book a reservation, I’ll need your contact name and phone number. Could you provide those, please?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_JUxGKP6o2EHoL3r8",
+          "tool_name": "search_restaurants",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: RestaurantSearchTool.execute() missing 1 required positional argument: 'city'",
+            "raw_output": null,
+            "error": "RestaurantSearchTool.execute() missing 1 required positional argument: 'city'",
+            "latency_ms": 0.011920928955078125
+          },
+          "latency_ms": 0.011920928955078125
+        },
+        {
+          "tool_call_id": "call_ZuNx8j8Ffz6Ulpd5",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Shanghai:\n\n1. Chuanfu Laozao (ID: rst_sh_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.6/5.0\n\n2. Shanghai Classic (ID: rst_sh_002)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.4/5.0\n\n3. Xiao Nan Guo (ID: rst_sh_003)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_sh_001",
+                "name": "Chuanfu Laozao",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_sh_002",
+                "name": "Shanghai Classic",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_sh_003",
+                "name": "Xiao Nan Guo",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04076957702636719
+          },
+          "latency_ms": 0.04076957702636719
+        },
+        {
+          "tool_call_id": "call_evvBCnSlUDLQvMqJ",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Shanghai:\n\n1. Chuanfu Laozao (ID: rst_sh_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.6/5.0\n\n2. Shanghai Classic (ID: rst_sh_002)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.4/5.0\n\n3. Xiao Nan Guo (ID: rst_sh_003)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_sh_001",
+                "name": "Chuanfu Laozao",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_sh_002",
+                "name": "Shanghai Classic",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_sh_003",
+                "name": "Xiao Nan Guo",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03695487976074219
+          },
+          "latency_ms": 0.03695487976074219
+        }
+      ],
+      "total_latency_ms": 7759.078741073608,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 552000,
+        "event_count": 134,
+        "latency": {
+          "speech_ms": 1587.3408203125,
+          "tool_call_ms": 2.684814453125
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 39.62974549408768,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set party size 2; contact Zhang Wei; phone 13892862812.",
+        "timestamp": 39.62974549408768,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Zhang Wei",
+            "book_restaurant.phone=13892862812"
+          ]
+        },
+        "audio_size_bytes": 267000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3467.8738117218018,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 14,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_restaurants', 'book_restaurant', 'search_flights', 'list_bills', 'book_flight'}，实际: {'search_restaurants', 'list_bills'}，缺失: {'book_flight', 'search_flights', 'book_restaurant'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "list_bills: +1 turns (info@1, call@2); search_restaurants: +1 turns (info@7, call@8)",
+    "behavior_score": 0.4,
+    "behavior_score_details": "list_bills: 1(correct), search_flights: 0(not_called), book_flight: 0(not_called), search_restaurants: 1(correct), book_restaurant: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "search_flights",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 3
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 1,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

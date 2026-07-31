@@ -1,0 +1,149 @@
+{
+  "task_id": "int_000069",
+  "description": "Interruption (cancellation): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "multi",
+  "tools": [
+    "pay_bill",
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight",
+    "search_hotels"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Pay bill DL20260219001. Also search restaurants in Chengdu. Later, help with a flight and hotels in Shenzhen.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "pay_bill.bill_id=DL20260219001",
+          "search_hotels.city=Shenzhen",
+          "search_restaurants.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Lao Ma Tou Hotpot.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 8.543963965545936
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation date to 2026-05-06.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-05-06"
+        ]
+      },
+      "timestamp": 12.924228549805008
+    },
+    {
+      "speaker": "user",
+      "text": "Set the time to 19:00 and party size to 7.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.party_size=7",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 17.92469621259471
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the flight.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 4,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "flight",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Cao Yun and phone 13877665544 for the restaurant booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Cao Yun",
+          "book_restaurant.phone=13877665544"
+        ]
+      },
+      "timestamp": 27.07543911422135
+    },
+    {
+      "speaker": "user",
+      "text": "Now find hotels in Shenzhen.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 33.75661104004533
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "pay_bill",
+      "params": {
+        "bill_id": "DL20260219001"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_002",
+        "date": "2026-05-06",
+        "time": "19:00",
+        "party_size": 7,
+        "contact_name": "Cao Yun",
+        "phone": "13877665544"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shenzhen"
+      }
+    }
+  ],
+  "transcript_hash": "c04a0ec63da1",
+  "info_complete_turn": {
+    "pay_bill": 1,
+    "search_restaurants": 1,
+    "book_restaurant": 6,
+    "search_hotels": 1
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "flight",
+    "template": null,
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_flights",
+    "book_flight"
+  ]
+}

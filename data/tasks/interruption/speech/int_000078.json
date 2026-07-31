@@ -1,0 +1,166 @@
+{
+  "task_id": "int_000078",
+  "description": "Interruption (redirection): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_courses",
+    "enroll_course",
+    "search_cars",
+    "book_car",
+    "search_parking",
+    "reserve_parking_spot"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search cars in Shanghai. Then book a BMW 5 Series for renter Qiu Lan.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_car.renter_name=Qiu Lan",
+          "search_cars.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Set the pickup date to 2026-03-10 and rent it for 6 days.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_car.days=6",
+          "book_car.pickup_date=2026-03-10"
+        ]
+      },
+      "timestamp": 6.279589135195339
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search courses and enroll Sarah Chen in Data Science Fundamentals.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "enroll_course.student_name=Sarah Chen"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "car",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search parking in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_parking.city=Beijing"
+        ]
+      },
+      "timestamp": 18.839919009907696
+    },
+    {
+      "speaker": "user",
+      "text": "Reserve Zhongguancun Plaza Parking starting 2026-03-16 15:00 for 8 hours.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "reserve_parking_spot.duration_hours=8",
+          "reserve_parking_spot.start_time=2026-03-16 15:00"
+        ]
+      },
+      "timestamp": 23.504272903300077
+    },
+    {
+      "speaker": "user",
+      "text": "Use license plate 浙E34567 and driver phone 13856781234.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13856781234",
+          "reserve_parking_spot.license_plate=浙E34567"
+        ]
+      },
+      "timestamp": 30.173965816991092
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the car—continue.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 36.15358488093223
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_courses",
+      "params": {}
+    },
+    {
+      "tool": "enroll_course",
+      "params": {
+        "course_id": "DS101",
+        "student_name": "Sarah Chen"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_sh_003",
+        "pickup_date": "2026-03-10",
+        "days": 6,
+        "renter_name": "Qiu Lan"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_bj_004",
+        "start_time": "2026-03-16 15:00",
+        "duration_hours": 8,
+        "license_plate": "浙E34567",
+        "driver_phone": "13856781234"
+      }
+    }
+  ],
+  "transcript_hash": "b244982c8294",
+  "info_complete_turn": {
+    "search_courses": 1,
+    "enroll_course": 3,
+    "search_cars": 1,
+    "book_car": 2,
+    "search_parking": 4,
+    "reserve_parking_spot": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "car",
+    "template": null,
+    "generated": true
+  }
+}

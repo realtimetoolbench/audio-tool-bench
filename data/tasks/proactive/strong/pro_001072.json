@@ -1,0 +1,194 @@
+{
+  "task_id": "pro_001072",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m gonna be in Beijing that week, and I’m already thinking about where to park when I’m running around downtown.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_parking.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Then right after that I’m heading from Beijing over to Shanghai, so it’s kind of a quick hop for work.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai"
+        ]
+      },
+      "timestamp": 8.224710383017438
+    },
+    {
+      "speaker": "user",
+      "text": "And later on I’ve got Shenzhen on the calendar too, so I’ll be staying in the city for that part.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Shenzhen"
+        ]
+      },
+      "timestamp": 16.16679785488313
+    },
+    {
+      "speaker": "user",
+      "text": "For that Beijing day, I’m set on China World Trade Center Parking, starting 2026-03-21 11:00, and I’ll be there about 8 hours.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.duration_hours=8",
+          "reserve_parking_spot.start_time=2026-03-21 11:00"
+        ]
+      },
+      "timestamp": 24.458248755098854
+    },
+    {
+      "speaker": "user",
+      "text": "I’m using the plate 沪B67890 and the driver phone is 13866778899, just so everything matches up.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13866778899",
+          "reserve_parking_spot.license_plate=沪B67890"
+        ]
+      },
+      "timestamp": 34.085886291452155
+    },
+    {
+      "speaker": "user",
+      "text": "For the Beijing-to-Shanghai flight, it’s CA1234 on 2026-04-10, and it’s under Emma Taylor.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-04-10",
+          "book_flight.passenger_name=Emma Taylor",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 41.339402983942826
+    },
+    {
+      "speaker": "user",
+      "text": "That one’s Air China, and in Shenzhen I’m staying at Holiday Inn Nanshan—check-in 2026-05-30 for 3 nights, under Tang Xue… and I still need to think through the rest of the schedule after that.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-30",
+          "book_hotel.guest_name=Tang Xue",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 48.41989172115936
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_bj_001",
+        "start_time": "2026-03-21 11:00",
+        "duration_hours": 8,
+        "license_plate": "沪B67890",
+        "driver_phone": "13866778899"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_001",
+        "date": "2026-04-10",
+        "passenger_name": "Emma Taylor"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sz_003",
+        "checkin_date": "2026-05-30",
+        "nights": 3,
+        "guest_name": "Tang Xue"
+      }
+    }
+  ],
+  "transcript_hash": "0d6fb7a5ace0",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_parking": 1,
+    "reserve_parking_spot": 5,
+    "search_flights": 6,
+    "book_flight": 6,
+    "search_hotels": 3,
+    "book_hotel": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m gonna be in Beijing",
+      "heading from Beijing over to Shanghai",
+      "I’ve got Shenzhen on the calendar",
+      "I’m set on China World Trade Center Parking",
+      "it’s CA1234 on 2026-04-10 under Emma Taylor",
+      "staying at Holiday Inn Nanshan"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed upcoming travel and lodging/parking details in a matter-of-fact way, without asking the assistant to take actions."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_flights",
+      "search_hotels",
+      "search_parking"
+    ],
+    "write_tools": [
+      "book_flight",
+      "book_hotel",
+      "reserve_parking_spot"
+    ]
+  },
+  "expected_tool_if_act": "search_parking",
+  "expected_params_if_act": {
+    "city": "Beijing"
+  }
+}

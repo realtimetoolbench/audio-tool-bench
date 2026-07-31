@@ -1,0 +1,395 @@
+{
+  "task_name": "int_000047",
+  "start_time": "2026-05-04T22:05:48.900954",
+  "end_time": "2026-05-04T22:07:43.654370",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search doctors in Guangzhou. Then book an appointment with doctor Guo Ping for patient Song Qi.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "book_appointment.patient_name=Song Qi",
+            "search_doctors.city=Guangzhou"
+          ]
+        },
+        "audio_size_bytes": 286800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 15631.479978561401,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 481952,
+        "event_count": 63
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 7.4696151739702685,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the appointment on 2026-04-08, morning slot.",
+        "timestamp": 7.4696151739702685,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "book_appointment.date=2026-04-08",
+            "book_appointment.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 213000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "tool_name": "search_doctors",
+              "arguments": {
+                "city": "Guangzhou"
+              },
+              "output": "Found 2 doctors in Guangzhou:\n\n1. Dr. Lin Hua (ID: doc_gz_001)\n   Hospital: Sun Yat-sen Memorial Hospital\n   Department: Internal Medicine\n   Specialty: Respiratory Disease\n   Title: Chief Physician\n   Rating: 4.8/5.0\n   Experience: 21 years\n   Available: 2026-03-15, 2026-04-05, 2026-04-10\n\n2. Dr. Guo Ping (ID: doc_gz_002)\n   Hospital: Guangzhou First People's Hospital\n   Department: Dermatology\n   Specialty: Dermatology\n   Title: Associate Chief Physician\n   Rating: 4.6/5.0\n   Experience: 14 years\n   Available: 2026-04-08, 2026-04-12\n\n",
+              "error": null,
+              "latency_ms": 0.05984306335449219
+            },
+            {
+              "tool_name": "book_appointment",
+              "arguments": {
+                "doctor_id": "doc_gz_002",
+                "time_slot": "morning",
+                "patient_name": "Song Chi",
+                "date": "2026-04-08"
+              },
+              "output": "Doctor appointment booked successfully!\n\nAppointment ID: HAR3PVOYAD\nDoctor ID: doc_gz_002\nDoctor: Guo Ping\nHospital: Guangzhou First People's Hospital\nDepartment: Dermatology\nDate: 2026-04-08\nTime slot: morning\nPatient: Song Chi\nQueue number: 26\nStatus: Confirmed\n",
+              "error": null,
+              "latency_ms": 0.07772445678710938
+            }
+          ]
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_doctors",
+          "arguments": {
+            "city": "Guangzhou"
+          },
+          "output": "Found 2 doctors in Guangzhou:\n\n1. Dr. Lin Hua (ID: doc_gz_001)\n   Hospital: Sun Yat-sen Memorial Hospital\n   Department: Internal Medicine\n   Specialty: Respiratory Disease\n   Title: Chief Physician\n   Rating: 4.8/5.0\n   Experience: 21 years\n   Available: 2026-03-15, 2026-04-05, 2026-04-10\n\n2. Dr. Guo Ping (ID: doc_gz_002)\n   Hospital: Guangzhou First People's Hospital\n   Department: Dermatology\n   Specialty: Dermatology\n   Title: Associate Chief Physician\n   Rating: 4.6/5.0\n   Experience: 14 years\n   Available: 2026-04-08, 2026-04-12\n\n",
+          "error": null,
+          "latency_ms": 0.05984306335449219
+        },
+        {
+          "tool_name": "book_appointment",
+          "arguments": {
+            "doctor_id": "doc_gz_002",
+            "time_slot": "morning",
+            "patient_name": "Song Chi",
+            "date": "2026-04-08"
+          },
+          "output": "Doctor appointment booked successfully!\n\nAppointment ID: HAR3PVOYAD\nDoctor ID: doc_gz_002\nDoctor: Guo Ping\nHospital: Guangzhou First People's Hospital\nDepartment: Dermatology\nDate: 2026-04-08\nTime slot: morning\nPatient: Song Chi\nQueue number: 26\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.07772445678710938
+        }
+      ],
+      "total_latency_ms": 21963.77682685852,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 677764,
+        "event_count": 87
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search movies in Guangzhou. Then book 3 seats for The Wandering Earth 3 at Jinyi Cinema Tianhe, 19:00, buyer He Xia.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "book_movie_ticket.buyer_name=He Xia",
+            "book_movie_ticket.cinema=Jinyi Cinema Tianhe",
+            "book_movie_ticket.seat_count=3",
+            "book_movie_ticket.showtime=19:00",
+            "search_movies.city=Guangzhou"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 2,
+          "interrupt_trigger": {
+            "type": "keyword",
+            "keyword": "doctor",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 443400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "tool_name": "search_movies",
+              "arguments": {
+                "city": "Guangzhou"
+              },
+              "output": "Found 2 movies in Guangzhou:\n\n1. The Wandering Earth 3 (ID: mov_gz_001)\n   Genre: Sci-Fi | Duration: 150 min\n   Rating: 8.5/10.0\n   Price: ¥48\n   Cinemas: UA Taikoo Hui, Jinyi Cinema Tianhe, CGV Zhujiang New Town\n   Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50\n\n2. Dune 2 (ID: mov_gz_002)\n   Genre: Sci-Fi | Duration: 165 min\n   Rating: 8.8/10.0\n   Price: ¥52\n   Cinemas: UA Taikoo Hui, CGV Zhujiang New Town\n   Showtimes: 10:00, 13:30, 17:00, 20:30\n\n",
+              "error": null,
+              "latency_ms": 0.10800361633300781
+            },
+            {
+              "tool_name": "book_movie_ticket",
+              "arguments": {
+                "showtime": "19:00",
+                "buyer_name": "Hixia",
+                "movie_id": "mov_gz_001",
+                "seat_count": 3,
+                "cinema": "Jinyi Cinema Tianhe"
+              },
+              "output": "Movie ticket booking successful!\n\nBooking ID: MV60001\nMovie ID: mov_gz_001\nMovie: The Wandering Earth 3\nCinema: Jinyi Cinema Tianhe\nDate: 2026-03-01\nShowtime: 19:00\nSeats: E5, E6, E7\nTicket type: adult\nQuantity: 3\nTotal: ¥135\nStatus: Confirmed\n",
+              "error": null,
+              "latency_ms": 0.04291534423828125
+            }
+          ]
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_movies",
+          "arguments": {
+            "city": "Guangzhou"
+          },
+          "output": "Found 2 movies in Guangzhou:\n\n1. The Wandering Earth 3 (ID: mov_gz_001)\n   Genre: Sci-Fi | Duration: 150 min\n   Rating: 8.5/10.0\n   Price: ¥48\n   Cinemas: UA Taikoo Hui, Jinyi Cinema Tianhe, CGV Zhujiang New Town\n   Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50\n\n2. Dune 2 (ID: mov_gz_002)\n   Genre: Sci-Fi | Duration: 165 min\n   Rating: 8.8/10.0\n   Price: ¥52\n   Cinemas: UA Taikoo Hui, CGV Zhujiang New Town\n   Showtimes: 10:00, 13:30, 17:00, 20:30\n\n",
+          "error": null,
+          "latency_ms": 0.10800361633300781
+        },
+        {
+          "tool_name": "book_movie_ticket",
+          "arguments": {
+            "showtime": "19:00",
+            "buyer_name": "Hixia",
+            "movie_id": "mov_gz_001",
+            "seat_count": 3,
+            "cinema": "Jinyi Cinema Tianhe"
+          },
+          "output": "Movie ticket booking successful!\n\nBooking ID: MV60001\nMovie ID: mov_gz_001\nMovie: The Wandering Earth 3\nCinema: Jinyi Cinema Tianhe\nDate: 2026-03-01\nShowtime: 19:00\nSeats: E5, E6, E7\nTicket type: adult\nQuantity: 3\nTotal: ¥135\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.04291534423828125
+        }
+      ],
+      "total_latency_ms": 29972.895860671997,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 686402,
+        "event_count": 87
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 22.762211485977964,
+      "input_chunk": {
+        "role": "user",
+        "content": "Confirm the movie ticket booking: showtime 19:00, seat count 3, buyer name He Xia.",
+        "timestamp": 22.762211485977964,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 277200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 20946.902990341187,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 692644,
+        "event_count": 82
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 29.418149433527248,
+      "input_chunk": {
+        "role": "user",
+        "content": "Now pull transaction history for account 6217001234567890.",
+        "timestamp": 29.418149433527248,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "get_transaction_history.account_number=6217001234567890"
+          ]
+        },
+        "audio_size_bytes": 310200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "tool_name": "get_transaction_history",
+              "arguments": {
+                "account_number": "621700124567890"
+              },
+              "output": "账户不存在或无交易记录",
+              "error": "账户不存在或无交易记录",
+              "latency_ms": 0.03910064697265625
+            }
+          ]
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "get_transaction_history",
+          "arguments": {
+            "account_number": "621700124567890"
+          },
+          "output": "账户不存在或无交易记录",
+          "error": "账户不存在或无交易记录",
+          "latency_ms": 0.03910064697265625
+        }
+      ],
+      "total_latency_ms": 13711.513996124268,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 261604,
+        "event_count": 45
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 35.63995202753406,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, back to the doctor—continue.",
+        "timestamp": 35.63995202753406,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 91200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 12520.24221420288,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 439684,
+        "event_count": 63
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 6,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 6,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "doctor",
+    "template": null,
+    "generated": true,
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "manual"
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_movie_ticket.buyer_name: 期望'He Xia', 实际'Hixia'; book_appointment.patient_name: 期望'Song Qi', 实际'Song Chi'; get_transaction_history.account_number: 期望'6217001234567890', 实际'621700124567890'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 1,
+    "extra_turns_details": "search_doctors: +1 turns (info@1, call@2)",
+    "behavior_score": 0.4,
+    "behavior_score_details": "search_movies: 1(correct), book_movie_ticket: 0(param_mismatch), search_doctors: 1(correct), book_appointment: 0(param_mismatch), get_transaction_history: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_movie_ticket",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "buyer_name: 'He Xia' vs 'Hixia'"
+        },
+        {
+          "tool": "book_appointment",
+          "error_type": "entity_mishearing",
+          "phase": "pre",
+          "detail": "patient_name: 'Song Qi' vs 'Song Chi'"
+        },
+        {
+          "tool": "get_transaction_history",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "account_number: '6217001234567890' vs '621700124567890'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 2,
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 1,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

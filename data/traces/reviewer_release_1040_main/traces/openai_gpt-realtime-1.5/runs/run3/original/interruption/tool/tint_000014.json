@@ -1,0 +1,697 @@
+{
+  "task_name": "tint_000014",
+  "start_time": "2026-07-29T03:44:27.942759",
+  "end_time": "2026-07-29T03:45:29.608668",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_restaurants.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 85800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_JFTcOjupUczNkgY1",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chengdu"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_JFTcOjupUczNkgY1",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chengdu:\n\n1. Chen Mapo Tofu (ID: rst_cd_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.7/5.0\n\n2. Lao Ma Tou Hotpot (ID: rst_cd_002)\n   Cuisine: Hotpot\n   Location: Jinjiang\n   Rating: 4.8/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cd_001",
+                "name": "Chen Mapo Tofu",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_cd_002",
+                "name": "Lao Ma Tou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jinjiang",
+                "rating": 4.8
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03409385681152344
+          },
+          "latency_ms": 0.03409385681152344,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 7300.502061843872,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 20,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Hold on, first check my balance for account number 6222021234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "check_balance.account_number=6222021234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 333000
+      },
+      "assistant_response": "It looks like the account number 622220124567890 couldn't be found or might be incorrect. Could you double-check the number and let me know if there's a mistake? I'm here to help once we have the correct details.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_mb8pKrnxErtpksB3",
+              "name": "check_balance",
+              "arguments": {
+                "account_number": "622220124567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "It looks like the account number 622220124567890 couldn't be found or might be incorrect. Could you double-check the number and let me know if there's a mistake? I'm here to help once we have the correct details.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_mb8pKrnxErtpksB3",
+          "tool_name": "check_balance",
+          "arguments": {
+            "account_number": "622220124567890"
+          },
+          "result": {
+            "success": false,
+            "error": "账户不存在或账户号码错误",
+            "output": "账户不存在或账户号码错误",
+            "raw_output": {
+              "success": false,
+              "error": "账户不存在或账户号码错误",
+              "output": "账户不存在或账户号码错误"
+            },
+            "latency_ms": 0.0007152557373046875
+          },
+          "latency_ms": 0.0007152557373046875
+        }
+      ],
+      "total_latency_ms": 4596.74072265625,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 640800,
+        "event_count": 119,
+        "latency": {
+          "speech_ms": 1330.071044921875,
+          "tool_call_ms": 420.716064453125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the restaurant search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 112800
+      },
+      "assistant_response": "Sure thing! As I mentioned, I found two restaurants in Chengdu:\n\n1. Chen Mapo Tofu – Sichuan cuisine, located downtown, with a 4.7/5 rating.\n\n2. Lao Ma Tou Hotpot – Hotpot cuisine, located in Jinjiang, with a 4.8/5 rating.\n\nIf you'd like more details or want to book a reservation at either, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing! As I mentioned, I found two restaurants in Chengdu:\n\n1. Chen Mapo Tofu – Sichuan cuisine, located downtown, with a 4.7/5 rating.\n\n2. Lao Ma Tou Hotpot – Hotpot cuisine, located in Jinjiang, with a 4.8/5 rating.\n\nIf you'd like more details or want to book a reservation at either, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7972.710132598877,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 996000,
+        "event_count": 154,
+        "latency": {
+          "speech_ms": 712.108154296875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.636064422083596,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the restaurant Chen Mapo Tofu on 2026-03-17 at 20:00.",
+        "timestamp": 15.636064422083596,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-17",
+            "book_restaurant.time=20:00"
+          ]
+        },
+        "audio_size_bytes": 281400
+      },
+      "assistant_response": "I'd be happy to help you with that. Could you please tell me how many people will be in your party and provide a contact name and phone number for the reservation?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'd be happy to help you with that. Could you please tell me how many people will be in your party and provide a contact name and phone number for the reservation?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5929.19921875,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 350400,
+        "event_count": 69,
+        "latency": {
+          "speech_ms": 660.861083984375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.478636352566582,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set party size 2 and contact name Zhang Wei.",
+        "timestamp": 21.478636352566582,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Zhang Wei",
+            "book_restaurant.party_size=2"
+          ]
+        },
+        "audio_size_bytes": 139200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2055.811882019043,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.166248046158294,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13812345678 for the restaurant booking.",
+        "timestamp": 27.166248046158294,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.phone=13812345678"
+          ]
+        },
+        "audio_size_bytes": 243600
+      },
+      "assistant_response": "I'll also need",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "I'll also need",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3194.577217102051,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 18
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 32.59179468524151,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai.",
+        "timestamp": 32.59179468524151,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 77400
+      },
+      "assistant_response": "Your reservation at Chen Mapo Tofu has been successfully booked for March 17, 2026, at 20:00 for 2 people. Contact name is Zhang Wei, phone number 13812345678.\n\nAs for hotels in Shanghai, here are some options:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001) – 5 stars, ¥1200/night, rating 4.8/5.0\n2. Pudong Shangri-La (ID: hotel_sh_002) – 5 stars, ¥1000/night, rating 4.7/5.0\n3. Hyatt on the Bund (ID: hotel_sh_003) – 4 stars, ¥750/night, rating 4.5/5.0\n4. Home Inn the Bund (ID: hotel_sh_004) – 3 stars, ¥400/night, rating 4.2/5.0\n5. Hanting Hotel People's Square (ID: hotel_sh_005) – 3 stars, ¥350/night, rating 4.0/5.0\n\nLet me know if you'd like to book any of these hotels!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_4iC28KwRTxa9mypn",
+              "name": "book_restaurant",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_2wOCJAUzzk5Msu4p",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_cd_001",
+                "date": "2026-03-17",
+                "time": "20:00",
+                "party_size": 2,
+                "contact_name": "Zhang Wei",
+                "phone": "13812345678"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_PV99WItpxyvH8Ft8",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "finish_reason": "completed",
+          "content": "Your reservation at Chen Mapo Tofu has been successfully booked for March 17, 2026, at 20:00 for 2 people. Contact name is Zhang Wei, phone number 13812345678.\n\nAs for hotels in Shanghai, here are some options:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001) – 5 stars, ¥1200/night, rating 4.8/5.0\n2. Pudong Shangri-La (ID: hotel_sh_002) – 5 stars, ¥1000/night, rating 4.7/5.0\n3. Hyatt on the Bund (ID: hotel_sh_003) – 4 stars, ¥750/night, rating 4.5/5.0\n4. Home Inn the Bund (ID: hotel_sh_004) – 3 stars, ¥400/night, rating 4.2/5.0\n5. Hanting Hotel People's Square (ID: hotel_sh_005) – 3 stars, ¥350/night, rating 4.0/5.0\n\nLet me know if you'd like to book any of these hotels!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_4iC28KwRTxa9mypn",
+          "tool_name": "book_restaurant",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: MakeReservationTool.execute() missing 6 required positional arguments: 'restaurant_id', 'date', 'time', 'party_size', 'contact_name', and 'phone'",
+            "raw_output": null,
+            "error": "MakeReservationTool.execute() missing 6 required positional arguments: 'restaurant_id', 'date', 'time', 'party_size', 'contact_name', and 'phone'",
+            "latency_ms": 0.005245208740234375
+          },
+          "latency_ms": 0.005245208740234375
+        },
+        {
+          "tool_call_id": "call_2wOCJAUzzk5Msu4p",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_cd_001",
+            "date": "2026-03-17",
+            "time": "20:00",
+            "party_size": 2,
+            "contact_name": "Zhang Wei",
+            "phone": "13812345678"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_cd_001\nRestaurant: Chen Mapo Tofu\nDate: 2026-03-17\nTime: 20:00\nParty size: 2\nContact: Zhang Wei (13812345678)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_cd_001",
+              "restaurant_name": "Chen Mapo Tofu",
+              "date": "2026-03-17",
+              "time": "20:00",
+              "party_size": 2,
+              "contact_name": "Zhang Wei",
+              "phone": "13812345678",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.025987625122070312
+          },
+          "latency_ms": 0.025987625122070312
+        },
+        {
+          "tool_call_id": "call_PV99WItpxyvH8Ft8",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 5 hotels in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001)\n   Location: the Bund | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Pudong Shangri-La (ID: hotel_sh_002)\n   Location: Pudong | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Hyatt on the Bund (ID: hotel_sh_003)\n   Location: the Bund | 4 stars\n   Price: ¥750/night | Rating: 4.5/5.0\n\n4. Home Inn the Bund (ID: hotel_sh_004)\n   Location: the Bund | 3 stars\n   Price: ¥400/night | Rating: 4.2/5.0\n\n5. Hanting Hotel People's Square (ID: hotel_sh_005)\n   Location: People's Square | 3 stars\n   Price: ¥350/night | Rating: 4.0/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_sh_001",
+                "name": "Waldorf Astoria Shanghai on the Bund",
+                "location": "the Bund",
+                "stars": 5,
+                "price": 1200,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_sh_002",
+                "name": "Pudong Shangri-La",
+                "location": "Pudong",
+                "stars": 5,
+                "price": 1000,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_sh_003",
+                "name": "Hyatt on the Bund",
+                "location": "the Bund",
+                "stars": 4,
+                "price": 750,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_sh_004",
+                "name": "Home Inn the Bund",
+                "location": "the Bund",
+                "stars": 3,
+                "price": 400,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_sh_005",
+                "name": "Hanting Hotel People's Square",
+                "location": "People's Square",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0362396240234375
+          },
+          "latency_ms": 0.0362396240234375
+        }
+      ],
+      "total_latency_ms": 20124.703884124756,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2906400,
+        "event_count": 528,
+        "latency": {
+          "speech_ms": 3086.307861328125,
+          "tool_call_ms": 2.181884765625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.90146627015829,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Hanting Hotel People's Square, check in 2026-03-22 for 1 night.",
+        "timestamp": 36.90146627015829,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-22",
+            "book_hotel.nights=1"
+          ]
+        },
+        "audio_size_bytes": 278400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3573.287010192871,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 43.063206131696546,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set hotel guest name Liu Yang. Search flights from Beijing to Shanghai.",
+        "timestamp": 43.063206131696546,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.guest_name=Liu Yang",
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 209400
+      },
+      "assistant_response": "Sure, I can do",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure, I can do",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2827.3088932037354,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 20
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 49.46315973933973,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-25 for passenger Zhou Jun on China Eastern.",
+        "timestamp": 49.46315973933973,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-25",
+            "book_flight.passenger_name=Zhou Jun"
+          ]
+        },
+        "audio_size_bytes": 326400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4081.918954849243,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 15,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "check_balance",
+    "inserted_tools": [
+      "check_balance"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "check_balance": {
+        "speech_ms": 1330.071044921875,
+        "tool_call_ms": 420.716064453125
+      },
+      "search_hotels": {
+        "speech_ms": 3086.307861328125,
+        "tool_call_ms": 2.181884765625
+      }
+    },
+    "info_complete_turn": {
+      "check_balance": 2,
+      "search_restaurants": 1,
+      "book_restaurant": 6,
+      "search_hotels": 7,
+      "book_hotel": 9,
+      "search_flights": 9,
+      "book_flight": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_restaurants', 'book_restaurant', 'search_flights', 'check_balance', 'search_hotels', 'book_flight', 'book_hotel'}，实际: {'search_hotels', 'search_restaurants', 'check_balance', 'book_restaurant'}，缺失: {'book_flight', 'book_hotel', 'search_flights'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 1,
+    "extra_turns_details": "book_restaurant: +1 turns (info@6, call@7)",
+    "behavior_score": 0.42857142857142855,
+    "behavior_score_details": "check_balance: 0(param_mismatch), search_restaurants: 1(correct), book_restaurant: 1(correct), search_hotels: 1(correct), book_hotel: 0(not_called), search_flights: 0(not_called), book_flight: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "check_balance",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "account_number: '6222021234567890' vs '622220124567890'"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_flights",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 1,
+        "missing_call": 3
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 3,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

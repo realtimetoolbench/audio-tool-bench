@@ -1,0 +1,197 @@
+{
+  "task_id": "pro_001043",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m heading out from Beijing to Shanghai soon, kind of mapping out the route in my head.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "While I’m in Shanghai, I’m also planning to squeeze in some sightseeing around the city.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Shanghai"
+        ]
+      },
+      "timestamp": 7.895497511703445
+    },
+    {
+      "speaker": "user",
+      "text": "And after that, I’m doing a separate stop in Chongqing, so I’ve been thinking about where to stay there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Chongqing"
+        ]
+      },
+      "timestamp": 15.101412626141194
+    },
+    {
+      "speaker": "user",
+      "text": "For the Beijing–Shanghai leg, I’m on train G3 on 2026-03-20, and it’s under Deng Hui.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-03-20",
+          "book_train.passenger_name=Deng Hui",
+          "search_trains.destination=Shanghai"
+        ]
+      },
+      "timestamp": 23.283425997197668
+    },
+    {
+      "speaker": "user",
+      "text": "I kept it simple for that ride—Second Class is what I’m traveling in.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.seat_class=Second Class"
+        ]
+      },
+      "timestamp": 30.20735690572316
+    },
+    {
+      "speaker": "user",
+      "text": "In Shanghai, we’re doing Yu Garden on 2026-03-04 in the afternoon—John Smith’s name, and it’s for 4 tickets.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-04",
+          "book_attraction_ticket.ticket_count=4",
+          "book_attraction_ticket.time_slot=afternoon",
+          "book_attraction_ticket.visitor_name=John Smith"
+        ]
+      },
+      "timestamp": 36.728140041492296
+    },
+    {
+      "speaker": "user",
+      "text": "Then Chongqing is JW Marriott Chongqing, checking in 2026-04-12 for 3 nights, and it’s under David Liu… and I’m still figuring out what to do that first evening.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-12",
+          "book_hotel.guest_name=David Liu",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 44.90244433473038
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-20",
+        "passenger_name": "Deng Hui",
+        "seat_class": "Second Class"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_sh_004",
+        "date": "2026-03-04",
+        "time_slot": "afternoon",
+        "visitor_name": "John Smith",
+        "ticket_count": 4
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_cq_001",
+        "checkin_date": "2026-04-12",
+        "nights": 3,
+        "guest_name": "David Liu"
+      }
+    }
+  ],
+  "transcript_hash": "5a1aff849354",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "travel",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_trains": 4,
+    "book_train": 5,
+    "search_attractions": 2,
+    "book_attraction_ticket": 6,
+    "search_hotels": 3,
+    "book_hotel": 7
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m heading out from Beijing to Shanghai",
+      "planning to squeeze in some sightseeing",
+      "doing a separate stop in Chongqing",
+      "I’m on train G3 on 2026-03-20",
+      "we’re doing Yu Garden",
+      "checking in 2026-04-12 for 3 nights"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed upcoming travel details (train, attraction visit, hotel stay) with concrete dates, names, and quantities; no requests or execution/authorization phrasing."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_attractions",
+      "search_hotels",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_attraction_ticket",
+      "book_hotel",
+      "book_train"
+    ]
+  },
+  "expected_tool_if_act": "search_trains",
+  "expected_params_if_act": {
+    "origin": "Beijing",
+    "destination": "Shanghai"
+  }
+}

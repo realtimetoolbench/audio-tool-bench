@@ -1,0 +1,168 @@
+{
+  "task_id": "int_000081",
+  "description": "Interruption (redirection): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "get_transaction_history",
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_books"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search sports events in Beijing. Focus on the China Open Tennis.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_sports_events.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 5 tickets in Court 1 for China Open Tennis. Buyer name Sun Lei.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Sun Lei",
+          "book_sports_ticket.seat_zone=Court 1",
+          "book_sports_ticket.ticket_count=5"
+        ]
+      },
+      "timestamp": 6.528527979368428
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13866778899 for the China Open Tennis booking.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_sports_ticket.phone=13866778899"
+        ]
+      },
+      "timestamp": 12.95323434907247
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search attractions in Shanghai. Then book Shanghai Disneyland for 2026-03-14.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-14",
+          "search_attractions.city=Shanghai"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "game",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "For Shanghai Disneyland, set time slot to afternoon. Visitor name Deng Hui. Ticket count 3.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.time_slot=afternoon",
+          "book_attraction_ticket.visitor_name=Deng Hui"
+        ]
+      },
+      "timestamp": 27.004508895488357
+    },
+    {
+      "speaker": "user",
+      "text": "Get transaction history for account number 6228480012345678.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "get_transaction_history.account_number=6228480012345678"
+        ]
+      },
+      "timestamp": 34.24917634649539
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the game—continue with the original booking steps.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 40.59068113227305
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_sh_002",
+        "date": "2026-03-14",
+        "time_slot": "afternoon",
+        "visitor_name": "Deng Hui",
+        "ticket_count": 3
+      }
+    },
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6228480012345678"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_bj_003",
+        "seat_zone": "Court 1",
+        "ticket_count": 5,
+        "buyer_name": "Sun Lei",
+        "phone": "13866778899",
+        "id_number": "110101199001011234"
+      }
+    },
+    {
+      "tool": "search_books",
+      "params": {}
+    }
+  ],
+  "transcript_hash": "0a19fa371df7",
+  "info_complete_turn": {
+    "search_attractions": 4,
+    "book_attraction_ticket": 5,
+    "get_transaction_history": 6,
+    "search_sports_events": 1,
+    "book_sports_ticket": 3,
+    "search_books": 1
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "game",
+    "template": null,
+    "generated": true
+  }
+}

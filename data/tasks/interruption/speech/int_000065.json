@@ -1,0 +1,188 @@
+{
+  "task_id": "int_000065",
+  "description": "Interruption (correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Chengdu.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Chengdu, I meant Chongqing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Chengdu",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Chongqing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book JW Marriott Chongqing, check in 2026-03-21 for 3 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-21",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 9.182825373550298
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name Feng Jie.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Feng Jie"
+        ]
+      },
+      "timestamp": 15.024453611806086
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 18.65427044916712
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight CA1456 on 2026-03-02 for passenger Song Qi.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-03-02",
+          "book_flight.passenger_name=Song Qi"
+        ]
+      },
+      "timestamp": 23.724019222877125
+    },
+    {
+      "speaker": "user",
+      "text": "Airline Air China.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 29.3017069054845
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai and book Shanghai Classic on 2026-04-02 at 14:00 for 9 people, contact Ethan Thomas, phone 13877665544.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Ethan Thomas",
+          "book_restaurant.date=2026-04-02",
+          "book_restaurant.party_size=9",
+          "book_restaurant.phone=13877665544",
+          "book_restaurant.time=14:00",
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 33.47284120919609
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_cq_001",
+        "checkin_date": "2026-03-21",
+        "nights": 3,
+        "guest_name": "Feng Jie"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_003",
+        "date": "2026-03-02",
+        "passenger_name": "Song Qi"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-04-02",
+        "time": "14:00",
+        "party_size": 9,
+        "contact_name": "Ethan Thomas",
+        "phone": "13877665544"
+      }
+    }
+  ],
+  "transcript_hash": "2a937a7a4680",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 4,
+    "search_flights": 5,
+    "book_flight": 6,
+    "search_restaurants": 8,
+    "book_restaurant": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Chengdu",
+    "template": "business_trip",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_hotels",
+      "param": "city",
+      "wrong_value": "Chengdu"
+    }
+  }
+}

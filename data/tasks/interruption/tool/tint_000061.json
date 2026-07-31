@@ -1,0 +1,149 @@
+{
+  "task_id": "tint_000061",
+  "description": "Interruption (tool_correction): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shanghai for check-in 2026-03-26, 1 night.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-26",
+          "book_hotel.nights=1",
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Park Hyatt Beijing for Zhang Wei.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Zhang Wei"
+        ]
+      },
+      "timestamp": 10.90998291748261
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 15.965307896440624
+    },
+    {
+      "speaker": "user",
+      "text": "Book Shanghai Classic for 2026-03-02 at 19:00 for 7 people.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-02",
+          "book_restaurant.party_size=7",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 20.138130632892526
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact Wang Fang, phone 13856781234.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Wang Fang",
+          "book_restaurant.phone=13856781234"
+        ]
+      },
+      "timestamp": 26.533410893362305
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_002",
+        "checkin_date": "2026-03-26",
+        "nights": 1,
+        "guest_name": "Zhang Wei"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-03-02",
+        "time": "19:00",
+        "party_size": 7,
+        "contact_name": "Wang Fang",
+        "phone": "13856781234"
+      }
+    }
+  ],
+  "transcript_hash": "b9589c40bbc8",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 3,
+    "search_restaurants": 1,
+    "book_restaurant": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Beijing"
+    }
+  }
+}

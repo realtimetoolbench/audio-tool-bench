@@ -1,0 +1,150 @@
+{
+  "task_id": "ms_000019",
+  "scenario_type": "multi_step",
+  "server": "amazon",
+  "template": "search_and_buy_5",
+  "description": "Search product, view details, add to cart, place order, track shipment",
+  "tools": [
+    "search_products",
+    "get_product_details",
+    "add_to_cart",
+    "place_order",
+    "track_shipment"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find me some Sony products.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_products"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me details for the first one on the list.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_product_details"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add two of those to my cart, just go with the first color option.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_to_cart"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Place the order using my default address and primary payment method.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "place_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you track the shipment for that order?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "track_shipment"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_products",
+      "params": {
+        "query": "Sony"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_product_details",
+      "params": {
+        "product_id": "AMZ-PROD-4001"
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        }
+      }
+    },
+    {
+      "tool": "add_to_cart",
+      "params": {
+        "product_id": "AMZ-PROD-4001",
+        "variant_id": "AMZ-VAR-4001A",
+        "quantity": 2
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        },
+        "variant_id": {
+          "from_tool": "get_product_details",
+          "field": "variations[0].variant_id"
+        },
+        "quantity": "user"
+      }
+    },
+    {
+      "tool": "place_order",
+      "params": {
+        "address_id": "AMZ-ADDR-001",
+        "payment_method_id": "AMZ-PAY-001"
+      },
+      "param_source": {
+        "address_id": {
+          "from_tool": "list_addresses",
+          "field": "address_id"
+        },
+        "payment_method_id": {
+          "from_tool": "list_payment_methods",
+          "field": "payment_method_id"
+        }
+      }
+    },
+    {
+      "tool": "track_shipment",
+      "params": {
+        "order_id": "order_1"
+      },
+      "param_source": {
+        "order_id": {
+          "from_tool": "place_order",
+          "field": "$"
+        }
+      }
+    }
+  ],
+  "chain_depth": 5,
+  "info_complete_turn": {
+    "search_products": 1,
+    "get_product_details": 1,
+    "add_to_cart": 3,
+    "place_order": 3,
+    "track_shipment": 3
+  }
+}

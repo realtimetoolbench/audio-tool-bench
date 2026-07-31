@@ -1,0 +1,183 @@
+{
+  "task_id": "int_000070",
+  "description": "Interruption (redirection): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_doctors",
+    "book_appointment",
+    "search_hotels",
+    "book_hotel",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the Beijing Hotel for Emma Taylor. Check in 2026-04-20.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-20",
+          "book_hotel.guest_name=Emma Taylor"
+        ]
+      },
+      "timestamp": 4.486482215103404
+    },
+    {
+      "speaker": "user",
+      "text": "Set the stay length to 5 nights.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 10.432320707070229
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search doctors in Guangzhou.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_doctors.city=Guangzhou"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "hotel",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book an appointment with doctor Lin Hua for Gao Yan.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.patient_name=Gao Yan"
+        ]
+      },
+      "timestamp": 21.045685054441055
+    },
+    {
+      "speaker": "user",
+      "text": "Schedule it for 2026-04-10 in the morning.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.date=2026-04-10",
+          "book_appointment.time_slot=morning"
+        ]
+      },
+      "timestamp": 27.06594289251743
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the hotel—continue the original trip booking.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 31.971822349060933
+    },
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai, then book train G3 on 2026-04-27 for Isabella Jackson in Second Class.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_train.date=2026-04-27",
+          "book_train.passenger_name=Isabella Jackson",
+          "book_train.seat_class=Second Class",
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 37.36057022325983
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_gz_001",
+        "date": "2026-04-10",
+        "time_slot": "morning",
+        "patient_name": "Gao Yan"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_004",
+        "checkin_date": "2026-04-20",
+        "nights": 5,
+        "guest_name": "Emma Taylor"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-04-27",
+        "passenger_name": "Isabella Jackson",
+        "seat_class": "Second Class"
+      }
+    }
+  ],
+  "transcript_hash": "9466c9492fc9",
+  "info_complete_turn": {
+    "search_doctors": 4,
+    "book_appointment": 6,
+    "search_hotels": 1,
+    "book_hotel": 3,
+    "search_trains": 8,
+    "book_train": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "hotel",
+    "template": null,
+    "generated": true
+  }
+}

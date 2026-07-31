@@ -1,0 +1,771 @@
+{
+  "task_name": "tint_000039",
+  "start_time": "2026-05-06T23:45:58.455791",
+  "end_time": "2026-05-06T23:48:58.094327",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Nanjing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_shows.city=Nanjing"
+          ]
+        },
+        "audio_size_bytes": 70800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_4382448629619532084",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Nanjing"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Nanjing"
+          },
+          "output": "Found 2 shows in Nanjing:\n\n1. Eason Chan Concert (ID: show_nj_001)\n   Type: Concert\n   Venue: Nanjing Olympic Sports Center\n   Date/Time: 2026-04-25 19:30\n   Duration: 180 min\n   Price: ¥480-1880\n   Available zones: Floor, Stand A, Stand B\n   Rating: 9.4/10.0\n\n2. Peking Opera Collection (ID: show_nj_002)\n   Type: Theater\n   Venue: Jiangsu Grand Theatre\n   Date/Time: 2026-05-06 19:30\n   Duration: 140 min\n   Price: ¥180-580\n   Available zones: Orchestra, First Floor, Second Floor\n   Rating: 8.8/10.0\n\n",
+          "error": null,
+          "latency_ms": 0.05602836608886719,
+          "dangling": false,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 3108.8650226593018,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5,
+        "latency": {
+          "tool_call_ms": 1089.1823768615723
+        },
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_shows",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 171000
+      },
+      "assistant_response": "I found",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I found",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2.777099609375,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 11524,
+        "event_count": 8,
+        "latency": {
+          "speech_ms": 1.384735107421875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.116078055416807,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5890 on 2026-03-13 for Mia Anderson.",
+        "timestamp": 10.116078055416807,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_flight.date=2026-03-13",
+            "book_flight.passenger_name=Mia Anderson"
+          ]
+        },
+        "audio_size_bytes": 258000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_3781557261109513902",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+          "error": null,
+          "latency_ms": 0.17213821411132812
+        }
+      ],
+      "total_latency_ms": 1855.8127880096436,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 9,
+        "latency": {
+          "tool_call_ms": 490.65208435058594
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.390063141262676,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use China Eastern as the airline for that booking.",
+        "timestamp": 15.390063141262676,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 136800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_12974328355089862530",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "MU5890",
+                "date": "2026-03-13",
+                "passenger_name": "Mia Anderson"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "MU5890",
+            "date": "2026-03-13",
+            "passenger_name": "Mia Anderson"
+          },
+          "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: MU5890\nPassenger: Mia Anderson\nDate: 2026-03-13\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.0209808349609375
+        }
+      ],
+      "total_latency_ms": 5508.710861206055,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 9,
+        "latency": {
+          "tool_call_ms": 4634.709119796753
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.04367542939992,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Suzhou.",
+        "timestamp": 21.04367542939992,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "search_restaurants.city=Suzhou"
+          ]
+        },
+        "audio_size_bytes": 82800
+      },
+      "assistant_response": "Flight MU5890 has been successfully booked for Mia Anderson on March 13th, 2026. I also found some flights from Beijing to Shanghai, including China Eastern, and a couple of restaurants in Suzhou. Is there anything else you need help with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_8166593178225808895",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_8166593178225808638",
+              "name": "book_flight",
+              "arguments": {
+                "passenger_name": "Mia Anderson",
+                "flight_id": "MU5890",
+                "date": "2026-03-13"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_8166593178225808381",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Suzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "finish_reason": "completed",
+          "content": "Flight MU5890 has been successfully booked for Mia Anderson on March 13th, 2026. I also found some flights from Beijing to Shanghai, including China Eastern, and a couple of restaurants in Suzhou. Is there anything else you need help with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+          "error": null,
+          "latency_ms": 0.03886222839355469
+        },
+        {
+          "tool_name": "book_flight",
+          "arguments": {
+            "passenger_name": "Mia Anderson",
+            "flight_id": "MU5890",
+            "date": "2026-03-13"
+          },
+          "output": "Flight booking successful!\n\nBooking ID: FL10002\nFlight ID: MU5890\nPassenger: Mia Anderson\nDate: 2026-03-13\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.010013580322265625
+        },
+        {
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "output": "Found 2 restaurants in Suzhou:\n\n1. Songhelou Restaurant (ID: rst_su_001)\n   Cuisine: Jiangsu\n   Location: Gusu\n   Rating: 4.7/5.0\n\n2. Dexing Noodle House (ID: rst_su_002)\n   Cuisine: Jiangsu\n   Location: Pingjiang\n   Rating: 4.5/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.04982948303222656
+        }
+      ],
+      "total_latency_ms": 18768.428087234497,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 648004,
+        "event_count": 86,
+        "latency": {
+          "speech_ms": 4554.740905761719,
+          "tool_call_ms": 3392.4660682678223
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 25.59187613461825,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Dexing Noodle House on 2026-04-25 at 19:00.",
+        "timestamp": 25.59187613461825,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_restaurant.date=2026-04-25",
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 248400
+      },
+      "assistant_response": "I can certainly help with that, but I need a few more details first. Could you please provide your contact name, phone number, and the number of people in your party? Also, which specific restaurant ID should I use? Was it `rst_su_002`?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can certainly help with that, but I need a few more details first. Could you please provide your contact name, phone number, and the number of people in your party? Also, which specific restaurant ID should I use? Was it `rst_su_002`?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 19679.288864135742,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 677764,
+        "event_count": 89,
+        "latency": {
+          "speech_ms": 4285.946846008301
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.379771382556243,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 2. Contact Olivia Brown, phone 13811223344.",
+        "timestamp": 31.379771382556243,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_restaurant.contact_name=Olivia Brown",
+            "book_restaurant.party_size=2",
+            "book_restaurant.phone=13811223344"
+          ]
+        },
+        "audio_size_bytes": 262800
+      },
+      "assistant_response": "Your reservation at Dexing Noodle House for two people on April 25th, 2026, at 19:00 is confirmed! Is there anything else I can add to your travel plans?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_1999538261046621277",
+              "name": "book_restaurant",
+              "arguments": {
+                "party_size": 2,
+                "time": "19:00",
+                "contact_name": "Olivia Brown",
+                "date": "2026-04-25",
+                "restaurant_id": "rst_su_002",
+                "phone": "1381122344"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your reservation at Dexing Noodle House for two people on April 25th, 2026, at 19:00 is confirmed! Is there anything else I can add to your travel plans?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "party_size": 2,
+            "time": "19:00",
+            "contact_name": "Olivia Brown",
+            "date": "2026-04-25",
+            "restaurant_id": "rst_su_002",
+            "phone": "1381122344"
+          },
+          "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_su_002\nRestaurant: Dexing Noodle House\nDate: 2026-04-25\nTime: 19:00\nParty size: 2\nContact: Olivia Brown (1381122344)\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.09799003601074219
+        }
+      ],
+      "total_latency_ms": 13406.99291229248,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 392164,
+        "event_count": 61,
+        "latency": {
+          "speech_ms": 3754.680871963501,
+          "tool_call_ms": 2601.591110229492
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 93600
+      },
+      "assistant_response": "Just to clarify, which search were you referring to? I was previously looking into shows in Nanjing or I can search for something else for you. What would you like me to do?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Just to clarify, which search were you referring to? I was previously looking into shows in Nanjing or I can search for something else for you. What would you like me to do?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 11260.710954666138,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 397442,
+        "event_count": 53,
+        "latency": {
+          "speech_ms": 2467.824935913086
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 41.465356386741014,
+      "input_chunk": {
+        "role": "user",
+        "content": "Transfer 948.18 to Liu Yang.",
+        "timestamp": 41.465356386741014,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "transfer_money.amount=948.18",
+            "transfer_money.payee_name=Liu Yang"
+          ]
+        },
+        "audio_size_bytes": 126000
+      },
+      "assistant_response": "I'm sorry, but the transfer could not be completed. The system indicates that the payee account does not exist. Please double-check the recipient's name and account details before trying again. Is there anything else I can help you with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_8550570329423885595",
+              "name": "transfer_money",
+              "arguments": {
+                "payee_name": "Liu Yang",
+                "amount": 948.18
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I'm sorry, but the transfer could not be completed. The system indicates that the payee account does not exist. Please double-check the recipient's name and account details before trying again. Is there anything else I can help you with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "transfer_money",
+          "arguments": {
+            "payee_name": "Liu Yang",
+            "amount": 948.18
+          },
+          "output": "收款账户不存在",
+          "error": "收款账户不存在",
+          "latency_ms": 0.07724761962890625
+        }
+      ],
+      "total_latency_ms": 16220.458984375,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 568322,
+        "event_count": 82,
+        "latency": {
+          "speech_ms": 3546.7958450317383,
+          "tool_call_ms": 2662.268877029419
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 46.08041779482903,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the show Peking Opera Collection, Second Floor, 2 tickets.",
+        "timestamp": 46.08041779482903,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.seat_zone=Second Floor",
+            "book_show_ticket.ticket_count=2"
+          ]
+        },
+        "audio_size_bytes": 187800
+      },
+      "assistant_response": "I can help with booking those tickets, but I need a few more details first to ensure the booking is complete. Could you please provide your full name and a contact phone number? And how many tickets in total would you like, just to confirm?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can help with booking those tickets, but I need a few more details first to ensure the booking is complete. Could you please provide your full name and a contact phone number? And how many tickets in total would you like, just to confirm?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 67578.81426811218,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 560644,
+        "event_count": 73,
+        "latency": {
+          "speech_ms": 55126.23310089111
+        }
+      }
+    },
+    {
+      "step_id": 11,
+      "timestamp": 52.63853904971612,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set buyer name Feng Jie and phone 13845678901.",
+        "timestamp": 52.63853904971612,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Feng Jie",
+            "book_show_ticket.phone=13845678901"
+          ]
+        },
+        "audio_size_bytes": 234000
+      },
+      "assistant_response": "Your tickets for the Peking Opera Collection show on May 6th, 2026, at the Jiangsu Grand Theatre are confirmed! You have two tickets on the Second Floor, Row 1 Seat 10 and Row 2 Seat 10. Buyer: Fung J, Phone: 13845678901. Is there anything else you need help with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_2968961036233999305",
+              "name": "book_show_ticket",
+              "arguments": {
+                "show_id": "show_nj_002",
+                "buyer_name": "Fung J",
+                "ticket_count": 2,
+                "phone": "13845678901",
+                "seat_zone": "Second Floor"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your tickets for the Peking Opera Collection show on May 6th, 2026, at the Jiangsu Grand Theatre are confirmed! You have two tickets on the Second Floor, Row 1 Seat 10 and Row 2 Seat 10. Buyer: Fung J, Phone: 13845678901. Is there anything else you need help with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "show_id": "show_nj_002",
+            "buyer_name": "Fung J",
+            "ticket_count": 2,
+            "phone": "13845678901",
+            "seat_zone": "Second Floor"
+          },
+          "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_nj_002\nShow: Peking Opera Collection\nVenue: Jiangsu Grand Theatre\nDate: 2026-05-06\nZone: Second Floor\nSeats: Floor Row 1 Seat 10, Floor Row 2 Seat 10\nQuantity: 2\nBuyer: Fung J\nPhone: 13845678901\nTotal: ¥760\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.13208389282226562
+        }
+      ],
+      "total_latency_ms": 22235.803842544556,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 756962,
+        "event_count": 96,
+        "latency": {
+          "speech_ms": 5203.705072402954,
+          "tool_call_ms": 3817.5599575042725
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 11,
+    "total_llm_calls": 20,
+    "total_tool_calls": 9
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 11,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_shows",
+    "inserted_tools": [
+      "search_flights",
+      "book_flight",
+      "search_restaurants",
+      "book_restaurant"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_shows": {
+        "tool_call_ms": 1089.1823768615723
+      },
+      "search_flights": {
+        "speech_ms": 1.384735107421875
+      },
+      "book_flight": {
+        "tool_call_ms": 490.65208435058594
+      },
+      "search_restaurants": {
+        "speech_ms": 4554.740905761719,
+        "tool_call_ms": 3392.4660682678223
+      },
+      "book_restaurant": {
+        "speech_ms": 3754.680871963501,
+        "tool_call_ms": 2601.591110229492
+      },
+      "transfer_money": {
+        "speech_ms": 3546.7958450317383,
+        "tool_call_ms": 2662.268877029419
+      },
+      "book_show_ticket": {
+        "speech_ms": 5203.705072402954,
+        "tool_call_ms": 3817.5599575042725
+      }
+    },
+    "info_complete_turn": {
+      "search_flights": 2,
+      "book_flight": 3,
+      "search_restaurants": 5,
+      "book_restaurant": 7,
+      "transfer_money": 9,
+      "search_shows": 1,
+      "book_show_ticket": 11
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_flight",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "flight_id: 'flt_bj_sh_004' vs 'MU5890'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13811223344' vs '1381122344'"
+        },
+        {
+          "tool": "book_show_ticket",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "buyer_name: 'Feng Jie' vs 'Fung J'"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 2,
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        },
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

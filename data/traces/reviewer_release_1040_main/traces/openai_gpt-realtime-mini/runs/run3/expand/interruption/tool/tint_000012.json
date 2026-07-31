@@ -1,0 +1,588 @@
+{
+  "task_name": "tint_000012",
+  "start_time": "2026-07-29T03:06:29.959096",
+  "end_time": "2026-07-29T03:07:20.118003",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search movies in Guangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_movies.city=Guangzhou"
+          ]
+        },
+        "audio_size_bytes": 80400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_JUaYM3QXj3rQRRZE",
+              "name": "search_movies",
+              "arguments": {
+                "city": "Guangzhou"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6045.849084854126,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 24,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search restaurants for delivery in Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_restaurants_delivery.city=Chengdu"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_movies",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 173400
+      },
+      "assistant_response": "Great! We've got some options in Chengdu. \n\n1. Shu Da Xia Hotpot – delicious hotpot, rating 4.8, delivery fee ¥10.\n2. Bo Bo Chicken – Sichuan snacks, rating 4.6, delivery fee ¥4.\n3. Luckin Coffee – coffee and more, rating 4.4, delivery fee ¥3.\n\nWhich one would you like to explore, or should we dive into placing an order?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Xg8TR8m5DXHKQQre",
+              "name": "search_restaurants_delivery",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great! We've got some options in Chengdu. \n\n1. Shu Da Xia Hotpot – delicious hotpot, rating 4.8, delivery fee ¥10.\n2. Bo Bo Chicken – Sichuan snacks, rating 4.6, delivery fee ¥4.\n3. Luckin Coffee – coffee and more, rating 4.4, delivery fee ¥3.\n\nWhich one would you like to explore, or should we dive into placing an order?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Xg8TR8m5DXHKQQre",
+          "tool_name": "search_restaurants_delivery",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 delivery restaurants in Chengdu:\n\n1. Shu Da Xia Hotpot (ID: dlv_cd_001)\n   Cuisine: Hotpot | Rating: 4.8/5.0\n   Delivery time: 40 min | Delivery fee: ¥10\n   Min order: ¥60\n\n2. Bo Bo Chicken (ID: dlv_cd_002)\n   Cuisine: Sichuan Snacks | Rating: 4.6/5.0\n   Delivery time: 25 min | Delivery fee: ¥4\n   Min order: ¥20\n\n3. Luckin Coffee (ID: dlv_cd_003)\n   Cuisine: Coffee | Rating: 4.4/5.0\n   Delivery time: 15 min | Delivery fee: ¥3\n   Min order: ¥0\n\n",
+            "raw_output": [
+              {
+                "delivery_id": "dlv_cd_001",
+                "name": "Shu Da Xia Hotpot",
+                "cuisine": "Hotpot",
+                "rating": 4.8,
+                "delivery_time": 40,
+                "min_order": 60,
+                "delivery_fee": 10,
+                "menu": [
+                  "Mala Hotpot with Tripe and Duck Blood",
+                  "Tomato Hotpot with Beef and Tofu",
+                  "Sichuan Pepper Hotpot Combo"
+                ]
+              },
+              {
+                "delivery_id": "dlv_cd_002",
+                "name": "Bo Bo Chicken",
+                "cuisine": "Sichuan Snacks",
+                "rating": 4.6,
+                "delivery_time": 25,
+                "min_order": 20,
+                "delivery_fee": 4,
+                "menu": [
+                  "Spicy Bo Bo Chicken Skewers",
+                  "Mapo Tofu and Rice",
+                  "Dan Dan Noodles and Cold Chicken"
+                ]
+              },
+              {
+                "delivery_id": "dlv_cd_003",
+                "name": "Luckin Coffee",
+                "cuisine": "Coffee",
+                "rating": 4.4,
+                "delivery_time": 15,
+                "min_order": 0,
+                "delivery_fee": 3,
+                "menu": [
+                  "Coconut Latte and Toast",
+                  "Iced Americano and Cheese Bagel",
+                  "Velvet Latte and Cookie"
+                ]
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04100799560546875
+          },
+          "latency_ms": 0.04100799560546875
+        }
+      ],
+      "total_latency_ms": 7085.661888122559,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 960000,
+        "event_count": 182,
+        "latency": {
+          "speech_ms": 3621.720947265625,
+          "tool_call_ms": 134.77685546875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.30888195915606,
+      "input_chunk": {
+        "role": "user",
+        "content": "Place a food order with delivery_id Luckin Coffee.",
+        "timestamp": 10.30888195915606,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 139200
+      },
+      "assistant_response": "Got it! Could you tell me what you'd like to order from Luckin Coffee, and where you’d like the delivery to go? That way, we can get everything set up.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! Could you tell me what you'd like to order from Luckin Coffee, and where you’d like the delivery to go? That way, we can get everything set up.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4712.510108947754,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 333600,
+        "event_count": 71,
+        "latency": {
+          "speech_ms": 1224.451904296875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.598992154613631,
+      "input_chunk": {
+        "role": "user",
+        "content": "Order items: Iced Americano and Cheese Bagel.",
+        "timestamp": 15.598992154613631,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "place_food_order.items=Iced Americano and Cheese Bagel"
+          ]
+        },
+        "audio_size_bytes": 133200
+      },
+      "assistant_response": "Perfect! Now, could you provide the delivery address and a contact phone number for the order? That way, I can place it right away.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect! Now, could you provide the delivery address and a contact phone number for the order? That way, I can place it right away.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9846.066951751709,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 319200,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 7294.794921875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.875372159403273,
+      "input_chunk": {
+        "role": "user",
+        "content": "Deliver to Room 502, Building B, East Apartment. Use phone 13892862812.",
+        "timestamp": 20.875372159403273,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "place_food_order.delivery_address=Room 502, Building B, East Apartment",
+            "place_food_order.phone=13892862812"
+          ]
+        },
+        "audio_size_bytes": 324000
+      },
+      "assistant_response": "Your order has been placed! The delivery includes an Iced Americano and a Cheese Bagel, with an estimated delivery time of about 35 minutes. If you need anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_yDjYwkdoq2GebIBX",
+              "name": "place_food_order",
+              "arguments": {
+                "delivery_id": "dlv_cd_003",
+                "items": "Iced Americano, Cheese Bagel",
+                "delivery_address": "Room 502, Building B, East Apartment",
+                "phone": "13892862812"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your order has been placed! The delivery includes an Iced Americano and a Cheese Bagel, with an estimated delivery time of about 35 minutes. If you need anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_yDjYwkdoq2GebIBX",
+          "tool_name": "place_food_order",
+          "arguments": {
+            "delivery_id": "dlv_cd_003",
+            "items": "Iced Americano, Cheese Bagel",
+            "delivery_address": "Room 502, Building B, East Apartment",
+            "phone": "13892862812"
+          },
+          "result": {
+            "success": true,
+            "output": "Food order placed!\n\nOrder ID: FD90001\nRestaurant ID: dlv_cd_003\nItems: Iced Americano, Cheese Bagel\nDelivery address: Room 502, Building B, East Apartment\nPhone: 13892862812\nTotal: ¥55\nEstimated delivery: 35 min\nStatus: Placed\n",
+            "raw_output": {
+              "order_id": "FD90001",
+              "delivery_id": "dlv_cd_003",
+              "items": [
+                "Iced Americano",
+                "Cheese Bagel"
+              ],
+              "delivery_address": "Room 502, Building B, East Apartment",
+              "phone": "13892862812",
+              "note": "",
+              "total_price": 55,
+              "status": "Placed",
+              "estimated_time": 35
+            },
+            "error": null,
+            "latency_ms": 0.028133392333984375
+          },
+          "latency_ms": 0.028133392333984375
+        }
+      ],
+      "total_latency_ms": 9441.153049468994,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 441600,
+        "event_count": 146,
+        "latency": {
+          "speech_ms": 3398.89306640625,
+          "tool_call_ms": 1181.731201171875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 95400
+      },
+      "assistant_response": "Here are the movies currently available in Guangzhou:\n\n1. \"The Wandering Earth 3\" – it's a sci-fi film, 150 minutes, rated 8.5/10. Showtimes are 10:30, 13:20, 16:10, 19:00, 21:50.\n\n2. \"Dune 2\" – also sci-fi, 165 minutes, rated 8.8/10. Showtimes are 10:00, 13:30, 17:00, 20:30.\n\nWhich one are you interested in, or would you like more details on a specific showtime or cinema?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Z7F6MzY0rrrRcFhv",
+              "name": "search_movies",
+              "arguments": {
+                "city": "Guangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are the movies currently available in Guangzhou:\n\n1. \"The Wandering Earth 3\" – it's a sci-fi film, 150 minutes, rated 8.5/10. Showtimes are 10:30, 13:20, 16:10, 19:00, 21:50.\n\n2. \"Dune 2\" – also sci-fi, 165 minutes, rated 8.8/10. Showtimes are 10:00, 13:30, 17:00, 20:30.\n\nWhich one are you interested in, or would you like more details on a specific showtime or cinema?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Z7F6MzY0rrrRcFhv",
+          "tool_name": "search_movies",
+          "arguments": {
+            "city": "Guangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 movies in Guangzhou:\n\n1. The Wandering Earth 3 (ID: mov_gz_001)\n   Genre: Sci-Fi | Duration: 150 min\n   Rating: 8.5/10.0\n   Price: ¥48\n   Cinemas: UA Taikoo Hui, Jinyi Cinema Tianhe, CGV Zhujiang New Town\n   Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50\n\n2. Dune 2 (ID: mov_gz_002)\n   Genre: Sci-Fi | Duration: 165 min\n   Rating: 8.8/10.0\n   Price: ¥52\n   Cinemas: UA Taikoo Hui, CGV Zhujiang New Town\n   Showtimes: 10:00, 13:30, 17:00, 20:30\n\n",
+            "raw_output": [
+              {
+                "movie_id": "mov_gz_001",
+                "name": "The Wandering Earth 3",
+                "genre": "Sci-Fi",
+                "duration": 150,
+                "rating": 8.5,
+                "cinemas": [
+                  "UA Taikoo Hui",
+                  "Jinyi Cinema Tianhe",
+                  "CGV Zhujiang New Town"
+                ],
+                "showtimes": [
+                  "10:30",
+                  "13:20",
+                  "16:10",
+                  "19:00",
+                  "21:50"
+                ],
+                "price": 48
+              },
+              {
+                "movie_id": "mov_gz_002",
+                "name": "Dune 2",
+                "genre": "Sci-Fi",
+                "duration": 165,
+                "rating": 8.8,
+                "cinemas": [
+                  "UA Taikoo Hui",
+                  "CGV Zhujiang New Town"
+                ],
+                "showtimes": [
+                  "10:00",
+                  "13:30",
+                  "17:00",
+                  "20:30"
+                ],
+                "price": 52
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.032901763916015625
+          },
+          "latency_ms": 0.032901763916015625
+        }
+      ],
+      "total_latency_ms": 8138.390064239502,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1274400,
+        "event_count": 243,
+        "latency": {
+          "speech_ms": 2219.64208984375,
+          "tool_call_ms": 723.2900390625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 32.30929593155474,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Dune 2 at UA Taikoo Hui for 10:00, 4 seats.",
+        "timestamp": 32.30929593155474,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_movie_ticket.cinema=UA Taikoo Hui",
+            "book_movie_ticket.seat_count=4",
+            "book_movie_ticket.showtime=10:00"
+          ]
+        },
+        "audio_size_bytes": 192600
+      },
+      "assistant_response": "Got it! I'll need the buyer's name to complete the booking. Could you please provide that for me?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! I'll need the buyer's name to complete the booking. Could you please provide that for me?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3407.572031021118,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 244800,
+        "event_count": 52,
+        "latency": {
+          "speech_ms": 236.700927734375
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.41310446058194,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set buyer name to John Smith.",
+        "timestamp": 37.41310446058194,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_movie_ticket.buyer_name=John Smith"
+          ]
+        },
+        "audio_size_bytes": 85800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1474.081039428711,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 12,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_movies",
+    "inserted_tools": [
+      "search_restaurants_delivery",
+      "place_food_order"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_restaurants_delivery": {
+        "speech_ms": 3621.720947265625,
+        "tool_call_ms": 134.77685546875
+      },
+      "place_food_order": {
+        "speech_ms": 3398.89306640625,
+        "tool_call_ms": 1181.731201171875
+      }
+    },
+    "info_complete_turn": {
+      "search_restaurants_delivery": 2,
+      "place_food_order": 5,
+      "search_movies": 1,
+      "book_movie_ticket": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'book_movie_ticket', 'search_movies', 'place_food_order', 'search_restaurants_delivery'}，实际: {'search_movies', 'place_food_order', 'search_restaurants_delivery'}，缺失: {'book_movie_ticket'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 5,
+    "extra_turns_details": "search_movies: +5 turns (info@1, call@6)",
+    "behavior_score": 0.75,
+    "behavior_score_details": "search_restaurants_delivery: 1(correct), place_food_order: 1(correct), search_movies: 1(correct), book_movie_ticket: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_movie_ticket",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

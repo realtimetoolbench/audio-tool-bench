@@ -1,0 +1,223 @@
+{
+  "task_id": "tint_000008",
+  "description": "Interruption (priority_late_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—urgent. Check my ride status for ride RIDE789012 now.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "check_ride_status.ride_id=RIDE789012"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the restaurant search.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the restaurant Imperial Kitchen for 2026-03-14 at 14:00.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-14",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 15.670941374613452
+    },
+    {
+      "speaker": "user",
+      "text": "Set party size to 7 and use contact name Li Na.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Li Na",
+          "book_restaurant.party_size=7"
+        ]
+      },
+      "timestamp": 21.225770060302267
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13856781234 for the restaurant booking.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.phone=13856781234"
+        ]
+      },
+      "timestamp": 27.029639573747403
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 32.39273941438166
+    },
+    {
+      "speaker": "user",
+      "text": "Book Waldorf Astoria Shanghai on the Bund; check in 2026-03-20 for 2 nights.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-20",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 36.64973542789528
+    },
+    {
+      "speaker": "user",
+      "text": "Set the hotel guest name to Li Na. Then search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Li Na",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 43.291804395027015
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5890 on 2026-03-26 for passenger Liu Yang on China Eastern.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-03-26",
+          "book_flight.passenger_name=Liu Yang"
+        ]
+      },
+      "timestamp": 50.53992374612312
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_008",
+        "date": "2026-03-14",
+        "time": "14:00",
+        "party_size": 7,
+        "contact_name": "Li Na",
+        "phone": "13856781234"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_001",
+        "checkin_date": "2026-03-20",
+        "nights": 2,
+        "guest_name": "Li Na"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_004",
+        "date": "2026-03-26",
+        "passenger_name": "Liu Yang"
+      }
+    }
+  ],
+  "transcript_hash": "43ae4189a40b",
+  "info_complete_turn": {
+    "check_ride_status": 2,
+    "search_restaurants": 1,
+    "book_restaurant": 6,
+    "search_hotels": 7,
+    "book_hotel": 9,
+    "search_flights": 9,
+    "book_flight": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "check_ride_status",
+    "inserted_tools": [
+      "check_ride_status"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "check_ride_status"
+  ]
+}

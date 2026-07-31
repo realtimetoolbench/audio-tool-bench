@@ -1,0 +1,133 @@
+{
+  "task_id": "pro_000969",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m heading to Shanghai soon and I’m trying to sort out both a place to stay and the whole parking situation so it’s not a scramble when I get there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Shanghai",
+          "search_parking.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "For the hotel, I’m leaning toward Hyatt on the Bund, and I’d be checking in on 2026-03-04.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-04"
+        ]
+      },
+      "timestamp": 10.873357676562552
+    },
+    {
+      "speaker": "user",
+      "text": "Two nights should be enough, and yeah—go ahead and lock it in under Liu Yang.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.guest_name=Liu Yang",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 18.3596452880084
+    },
+    {
+      "speaker": "user",
+      "text": "Also, that same trip I’ll be driving over to Xujiahui—Xujiahui Grand Gateway Parking would be perfect, starting at 2026-04-02 21:00.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "reserve_parking_spot.start_time=2026-04-02 21:00"
+        ]
+      },
+      "timestamp": 25.192812928211474
+    },
+    {
+      "speaker": "user",
+      "text": "Let’s do it—reserve it for 1 hour. Plate is 浙E34567, and my phone is 13898776655.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13898776655",
+          "reserve_parking_spot.duration_hours=1",
+          "reserve_parking_spot.license_plate=浙E34567"
+        ]
+      },
+      "timestamp": 34.31896323181541
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_sh_002",
+        "start_time": "2026-04-02 21:00",
+        "duration_hours": 1,
+        "license_plate": "浙E34567",
+        "driver_phone": "13898776655"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_003",
+        "checkin_date": "2026-03-04",
+        "nights": 2,
+        "guest_name": "Liu Yang"
+      }
+    }
+  ],
+  "transcript_hash": "0af679a7e5e5",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_parking": 1,
+    "reserve_parking_spot": 5,
+    "search_hotels": 1,
+    "book_hotel": 3
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "trying to sort out both a place to stay and the whole parking situation",
+      "leaning toward Hyatt on the Bund",
+      "go ahead and lock it in",
+      "would be perfect",
+      "Let’s do it—reserve it"
+    ],
+    "ambiguity_notes": "Strong intent: user sets Shanghai context first, then provides specific hotel and parking details across later turns and gives casual confirmations for both bookings."
+  }
+}

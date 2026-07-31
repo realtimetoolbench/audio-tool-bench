@@ -1,0 +1,764 @@
+{
+  "task_name": "tint_000062",
+  "start_time": "2026-04-28T11:55:56.396259",
+  "end_time": "2026-04-28T11:56:46.108356",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_restaurants.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 89400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_MKW69lAoHjbqRKaj",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6828.823089599609,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 23,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—before that, track my package with tracking number SF1234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "track_package.tracking_number=SF1234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 294600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_unNqiXKeUjl0OPEu",
+              "name": "track_package",
+              "arguments": {
+                "tracking_number": "SF134567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_bSzTciBDPQJma4w7",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_unNqiXKeUjl0OPEu",
+          "tool_name": "track_package",
+          "arguments": {
+            "tracking_number": "SF134567890"
+          },
+          "result": {
+            "success": false,
+            "output": "Package not found: SF134567890",
+            "raw_output": null,
+            "error": "Not found",
+            "latency_ms": 0.007152557373046875
+          },
+          "latency_ms": 0.007152557373046875
+        },
+        {
+          "tool_call_id": "call_bSzTciBDPQJma4w7",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 11 restaurants in Beijing:\n\n1. Shu Xiang Yuan (ID: rst_bj_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.5/5.0\n\n2. Mala Youhuo (ID: rst_bj_002)\n   Cuisine: Sichuan\n   Location: Chaoyang\n   Rating: 4.3/5.0\n\n3. Jingwei Zhai (ID: rst_bj_003)\n   Cuisine: Beijing\n   Location: Downtown\n   Rating: 4.7/5.0\n\n4. Quanjude Roast Duck (ID: rst_bj_004)\n   Cuisine: Beijing\n   Location: Qianmen\n   Rating: 4.6/5.0\n\n5. Chuan Ban (ID: rst_bj_005)\n   Cuisine: Sichuan\n   Location: CBD\n   Rating: 4.4/5.0\n\n6. Da Dong Roast Duck (ID: rst_bj_006)\n   Cuisine: Beijing\n   Location: CBD\n   Rating: 4.8/5.0\n\n7. Beijing Garden (ID: rst_bj_007)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.7/5.0\n\n8. Imperial Kitchen (ID: rst_bj_008)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.6/5.0\n\n9. China Palace (ID: rst_bj_009)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.5/5.0\n\n10. Golden Dragon (ID: rst_bj_010)\n   Cuisine: Chinese\n   Location: CBD\n   Rating: 4.3/5.0\n\n11. Green Lotus (ID: rst_bj_011)\n   Cuisine: Vegetarian\n   Location: Wangfujing\n   Rating: 4.6/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_bj_001",
+                "name": "Shu Xiang Yuan",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.5
+              },
+              {
+                "restaurant_id": "rst_bj_002",
+                "name": "Mala Youhuo",
+                "cuisine": "Sichuan",
+                "location": "Chaoyang",
+                "rating": 4.3
+              },
+              {
+                "restaurant_id": "rst_bj_003",
+                "name": "Jingwei Zhai",
+                "cuisine": "Beijing",
+                "location": "Downtown",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_bj_004",
+                "name": "Quanjude Roast Duck",
+                "cuisine": "Beijing",
+                "location": "Qianmen",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_bj_005",
+                "name": "Chuan Ban",
+                "cuisine": "Sichuan",
+                "location": "CBD",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_bj_006",
+                "name": "Da Dong Roast Duck",
+                "cuisine": "Beijing",
+                "location": "CBD",
+                "rating": 4.8
+              },
+              {
+                "restaurant_id": "rst_bj_007",
+                "name": "Beijing Garden",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_bj_008",
+                "name": "Imperial Kitchen",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_bj_009",
+                "name": "China Palace",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.5
+              },
+              {
+                "restaurant_id": "rst_bj_010",
+                "name": "Golden Dragon",
+                "cuisine": "Chinese",
+                "location": "CBD",
+                "rating": 4.3
+              },
+              {
+                "restaurant_id": "rst_bj_011",
+                "name": "Green Lotus",
+                "cuisine": "Vegetarian",
+                "location": "Wangfujing",
+                "rating": 4.6
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0820159912109375
+          },
+          "latency_ms": 0.0820159912109375
+        }
+      ],
+      "total_latency_ms": 3277.531862258911,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 210,
+        "latency": {
+          "tool_call_ms": 523.33984375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the restaurant search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 125400
+      },
+      "assistant_response": "Sure thing! We’ve got the list of top restaurants in Beijing ready for you. If you want to know more about any of them—details, menus, or if you'd like help making a reservation—just say the word. And if you want to explore a specific cuisine or area, we can dive into that too.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing! We’ve got the list of top restaurants in Beijing ready for you. If you want to know more about any of them—details, menus, or if you'd like help making a reservation—just say the word. And if you want to explore a specific cuisine or area, we can dive into that too.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6813.290119171143,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 708000,
+        "event_count": 139,
+        "latency": {
+          "speech_ms": 1397.041748046875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.113195851203386,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book a table at Imperial Kitchen for 2026-03-25.",
+        "timestamp": 15.113195851203386,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-25"
+          ]
+        },
+        "audio_size_bytes": 211800
+      },
+      "assistant_response": "Got it! How many people should I book the table for, and what time would you like the reservation? Plus, I’ll need your name and a contact phone number for the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! How many people should I book the table for, and what time would you like the reservation? Plus, I’ll need your name and a contact phone number for the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5308.034896850586,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 403200,
+        "event_count": 86,
+        "latency": {
+          "speech_ms": 748.887939453125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.676193859897097,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the reservation time to 18:00 and party size to 5.",
+        "timestamp": 20.676193859897097,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.party_size=5",
+            "book_restaurant.time=18:00"
+          ]
+        },
+        "audio_size_bytes": 206400
+      },
+      "assistant_response": "Perfect, we’ve got a reservation for 5 people at 18:00 on 2026-03-25 at Imperial Kitchen. Now I just need your name and a contact phone number to lock it in.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect, we’ve got a reservation for 5 people at 18:00 on 2026-03-25 at Imperial Kitchen. Now I just need your name and a contact phone number to lock it in.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5846.57621383667,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 540000,
+        "event_count": 104,
+        "latency": {
+          "speech_ms": 782.51806640625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.664090845379555,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use contact name Wang Fang and phone 13830018365 for the reservation.",
+        "timestamp": 26.664090845379555,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Wang Fang",
+            "book_restaurant.phone=13830018365"
+          ]
+        },
+        "audio_size_bytes": 306600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_qgH0F3b8UncAbfTu",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_bj_008",
+                "date": "2026-03-25",
+                "time": "18:00",
+                "party_size": 5,
+                "contact_name": "Wang Fang",
+                "phone": "13830018365"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_qgH0F3b8UncAbfTu",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_bj_008",
+            "date": "2026-03-25",
+            "time": "18:00",
+            "party_size": 5,
+            "contact_name": "Wang Fang",
+            "phone": "13830018365"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_bj_008\nRestaurant: Imperial Kitchen\nDate: 2026-03-25\nTime: 18:00\nParty size: 5\nContact: Wang Fang (13830018365)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_bj_008",
+              "restaurant_name": "Imperial Kitchen",
+              "date": "2026-03-25",
+              "time": "18:00",
+              "party_size": 5,
+              "contact_name": "Wang Fang",
+              "phone": "13830018365",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.026226043701171875
+          },
+          "latency_ms": 0.026226043701171875
+        }
+      ],
+      "total_latency_ms": 6097.692966461182,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 149,
+        "latency": {
+          "tool_call_ms": 950.27197265625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 32.977515363208965,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search rental cars in Chengdu.",
+        "timestamp": 32.977515363208965,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_cars.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 82200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_wW4nwGzXdCHlQ3nh",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_wW4nwGzXdCHlQ3nh",
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 rental cars in Chengdu:\n\n1. Nissan Sylphy (ID: car_cd_001)\n   Type: economy | Seats: 5\n   Price: ¥140/day | Insurance: ¥25/day\n   Rating: 4.3/5.0\n\n2. Toyota Camry (ID: car_cd_002)\n   Type: comfort | Seats: 5\n   Price: ¥260/day | Insurance: ¥45/day\n   Rating: 4.7/5.0\n\n",
+            "raw_output": [
+              {
+                "car_id": "car_cd_001",
+                "model": "Nissan Sylphy",
+                "type": "economy",
+                "seats": 5,
+                "price_per_day": 140,
+                "insurance": 25,
+                "rating": 4.3
+              },
+              {
+                "car_id": "car_cd_002",
+                "model": "Toyota Camry",
+                "type": "comfort",
+                "seats": 5,
+                "price_per_day": 260,
+                "insurance": 45,
+                "rating": 4.7
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03409385681152344
+          },
+          "latency_ms": 0.03409385681152344
+        }
+      ],
+      "total_latency_ms": 3957.1280479431152,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 146,
+        "latency": {
+          "tool_call_ms": 607.336669921875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.71363345667476,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the Toyota Camry starting 2026-03-21 for 5 days.",
+        "timestamp": 37.71363345667476,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_car.days=5",
+            "book_car.pickup_date=2026-03-21"
+          ]
+        },
+        "audio_size_bytes": 237600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_xE7t8aAe5bMVTcsK",
+              "name": "book_car",
+              "arguments": {
+                "car_id": "car_cd_002",
+                "pickup_date": "2026-03-21",
+                "days": 5,
+                "renter_name": "Wang Fang"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_xE7t8aAe5bMVTcsK",
+          "tool_name": "book_car",
+          "arguments": {
+            "car_id": "car_cd_002",
+            "pickup_date": "2026-03-21",
+            "days": 5,
+            "renter_name": "Wang Fang"
+          },
+          "result": {
+            "success": true,
+            "output": "Car rental booking successful!\n\nBooking ID: CR30001\nCar ID: car_cd_002\nPickup: 2026-03-21\nDays: 5\nRenter: Wang Fang\nInsurance: Included\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "CR30001",
+              "car_id": "car_cd_002",
+              "pickup_date": "2026-03-21",
+              "days": 5,
+              "renter_name": "Wang Fang",
+              "with_insurance": true,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.021219253540039062
+          },
+          "latency_ms": 0.021219253540039062
+        }
+      ],
+      "total_latency_ms": 5856.001853942871,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 141,
+        "latency": {
+          "tool_call_ms": 821.93115234375
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 43.25835349087947,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the renter name to Wang Fang, then check ride status for ride ID RIDE123456.",
+        "timestamp": 43.25835349087947,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_car.renter_name=Wang Fang",
+            "check_ride_status.ride_id=RIDE123456"
+          ]
+        },
+        "audio_size_bytes": 285000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_AGsW1b3PnwGZX2Zy",
+              "name": "check_ride_status",
+              "arguments": {
+                "ride_id": "ride123456"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_AGsW1b3PnwGZX2Zy",
+          "tool_name": "check_ride_status",
+          "arguments": {
+            "ride_id": "ride123456"
+          },
+          "result": {
+            "success": false,
+            "error": "Ride not found or invalid ride ID",
+            "output": "Ride not found or invalid ride ID",
+            "raw_output": {
+              "success": false,
+              "error": "Ride not found or invalid ride ID",
+              "output": "Ride not found or invalid ride ID"
+            },
+            "latency_ms": 0.0050067901611328125
+          },
+          "latency_ms": 0.0050067901611328125
+        }
+      ],
+      "total_latency_ms": 5719.7370529174805,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 103,
+        "latency": {
+          "tool_call_ms": 678.561279296875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 16,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "track_package": {
+        "tool_call_ms": 523.33984375
+      },
+      "book_restaurant": {
+        "tool_call_ms": 950.27197265625
+      },
+      "search_cars": {
+        "tool_call_ms": 607.336669921875
+      },
+      "book_car": {
+        "tool_call_ms": 678.561279296875
+      },
+      "check_ride_status": {
+        "tool_call_ms": 678.561279296875
+      }
+    },
+    "info_complete_turn": {
+      "track_package": 2,
+      "search_restaurants": 1,
+      "book_restaurant": 6,
+      "search_cars": 7,
+      "book_car": 9,
+      "check_ride_status": 9
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch+premature_call",
+    "details": "参数不匹配: track_package.tracking_number: 期望'SF1234567890', 实际'SF134567890'",
+    "call_timing": "book_car 在 step 8 调用，但信息要到 turn 9 才收齐",
+    "extra_turns": 1,
+    "extra_turns_details": "search_restaurants: +1 turns (info@1, call@2)",
+    "behavior_score": 0.6666666666666666,
+    "behavior_score_details": "track_package: 0(param_mismatch), search_restaurants: 1(correct), book_restaurant: 1(correct), search_cars: 1(correct), book_car: 0(premature_call), check_ride_status: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "track_package",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "tracking_number: 'SF1234567890' vs 'SF134567890'"
+        },
+        {
+          "tool": "book_car",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 8 调用，info_complete_turn=9"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "premature_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "premature_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

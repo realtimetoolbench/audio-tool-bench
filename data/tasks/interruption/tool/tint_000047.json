@@ -1,0 +1,218 @@
+{
+  "task_id": "tint_000047",
+  "description": "Interruption (priority_no_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant",
+    "list_bills"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on—list my bills now.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_flights",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the flight search.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5678 on 2026-03-15.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-03-15"
+        ]
+      },
+      "timestamp": 13.61597690610277
+    },
+    {
+      "speaker": "user",
+      "text": "Set passenger name to Li Na and airline to China Eastern.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.passenger_name=Li Na"
+        ]
+      },
+      "timestamp": 18.305818359981686
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 24.316108740029463
+    },
+    {
+      "speaker": "user",
+      "text": "Book hotel Hyatt on the Bund; check in 2026-03-22.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-22"
+        ]
+      },
+      "timestamp": 28.39525789302423
+    },
+    {
+      "speaker": "user",
+      "text": "Stay 5 nights; guest name Zhou Jun.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.guest_name=Zhou Jun",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 34.07530994542566
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 39.05310363541438
+    },
+    {
+      "speaker": "user",
+      "text": "Book Shanghai Classic for 7 people on 2026-03-14 at 11:30; contact Chen Ming, phone 13898765432.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Chen Ming",
+          "book_restaurant.date=2026-03-14",
+          "book_restaurant.party_size=7",
+          "book_restaurant.phone=13898765432",
+          "book_restaurant.time=11:30"
+        ]
+      },
+      "timestamp": 43.1136858209832
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_bills",
+      "params": {}
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-15",
+        "passenger_name": "Li Na"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_003",
+        "checkin_date": "2026-03-22",
+        "nights": 5,
+        "guest_name": "Zhou Jun"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-03-14",
+        "time": "11:30",
+        "party_size": 7,
+        "contact_name": "Chen Ming",
+        "phone": "13898765432"
+      }
+    }
+  ],
+  "transcript_hash": "1a3bad2f24e0",
+  "info_complete_turn": {
+    "list_bills": 1,
+    "search_flights": 1,
+    "book_flight": 5,
+    "search_hotels": 6,
+    "book_hotel": 8,
+    "search_restaurants": 9,
+    "book_restaurant": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "list_bills"
+  ]
+}

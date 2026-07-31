@@ -1,0 +1,207 @@
+{
+  "task_id": "pro_001040",
+  "description": "Generated: 8 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_doctors",
+    "book_appointment",
+    "search_medicine",
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m going to be in Suzhou for a bit, and I’m already thinking through the practical stuff there—like where I’d stay and also which doctors are decent in town.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_doctors.city=Suzhou",
+          "search_hotels.city=Suzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I’ve been checking what flights look like from Beijing to Shanghai since that leg is part of the plan.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 10.710486068542334
+    },
+    {
+      "speaker": "user",
+      "text": "Oh, and when I’m down in Shenzhen, I’m kind of mapping out where to eat—just getting a feel for restaurants there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_restaurants.city=Shenzhen"
+        ]
+      },
+      "timestamp": 18.74536102864127
+    },
+    {
+      "speaker": "user",
+      "text": "On top of all that, I’ve been looking up some medicine info too, just so I’m not scrambling if something minor flares up.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 27.509842732805236
+    },
+    {
+      "speaker": "user",
+      "text": "For the Suzhou stay, it’s set as Pan Pacific Suzhou, checking in on 2026-05-21 for 5 nights, under Song Qi.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-21",
+          "book_hotel.guest_name=Song Qi",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 36.538334024510405
+    },
+    {
+      "speaker": "user",
+      "text": "And the flight piece is nailed down too: China Eastern MU5678 on 2026-03-12, passenger name Song Qi.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-03-12",
+          "book_flight.passenger_name=Song Qi"
+        ]
+      },
+      "timestamp": 45.07260219068378
+    },
+    {
+      "speaker": "user",
+      "text": "Then there’s a clinic thing in Suzhou—Tang Xue is seeing Shen Yuan on 2026-04-29 in the afternoon, and after that I’ll probably just head straight to—",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_appointment.date=2026-04-29",
+          "book_appointment.patient_name=Tang Xue",
+          "book_appointment.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 53.44208895202358
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_su_001",
+        "date": "2026-04-29",
+        "time_slot": "afternoon",
+        "patient_name": "Tang Xue"
+      }
+    },
+    {
+      "tool": "search_medicine",
+      "params": {}
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-12",
+        "passenger_name": "Song Qi"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_su_002",
+        "checkin_date": "2026-05-21",
+        "nights": 5,
+        "guest_name": "Song Qi"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shenzhen"
+      }
+    }
+  ],
+  "transcript_hash": "bf78bf723858",
+  "metadata": {
+    "tool_count": 8,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_doctors": 1,
+    "book_appointment": 7,
+    "search_medicine": 1,
+    "search_flights": 2,
+    "book_flight": 6,
+    "search_hotels": 1,
+    "book_hotel": 5,
+    "search_restaurants": 3
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m going to be in Suzhou",
+      "checking what flights look like from Beijing to Shanghai",
+      "mapping out where to eat in Shenzhen",
+      "it’s set as Pan Pacific Suzhou",
+      "flight piece is nailed down",
+      "seeing Shen Yuan on 2026-04-29 in the afternoon"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates concrete upcoming plans and confirmed booking details; search context appears earlier than booking info, with no direct requests."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_doctors",
+      "search_flights",
+      "search_hotels",
+      "search_medicine",
+      "search_restaurants"
+    ],
+    "write_tools": [
+      "book_appointment",
+      "book_flight",
+      "book_hotel"
+    ]
+  },
+  "expected_tool_if_act": "search_doctors",
+  "expected_params_if_act": {
+    "city": "Suzhou"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "task_id": "pro_000853",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_cars",
+    "book_car"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Been thinking about heading into Beijing that week and driving around a bit, and I’m already stressing about where I’d even park if I end up going.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_parking.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also kinda considering just renting something while I’m there in Beijing, since dealing with my own car logistics sounds like a headache.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_cars.city=Beijing"
+        ]
+      },
+      "timestamp": 10.53914119298145
+    },
+    {
+      "speaker": "user",
+      "text": "If I do the parking thing, it’d probably be at Sanlitun SOHO Parking, starting around 2026-03-12 18:00 for maybe 4 hours.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.pickup_date=2026-03-12",
+          "reserve_parking_spot.duration_hours=4",
+          "reserve_parking_spot.start_time=2026-03-12 18:00"
+        ]
+      },
+      "timestamp": 20.84850987559358
+    },
+    {
+      "speaker": "user",
+      "text": "And if I’m driving my own car that day, the plate would be 浙E34567, and the phone number tied to it is 13856781234.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13856781234",
+          "reserve_parking_spot.license_plate=浙E34567"
+        ]
+      },
+      "timestamp": 30.331726349644914
+    },
+    {
+      "speaker": "user",
+      "text": "On the rental side, I might go with a Buick GL8, picking it up on 2026-03-12 for like 7 days, under Lucas Martinez… not sure if I’ll actually do this.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.days=7",
+          "book_car.renter_name=Lucas Martinez"
+        ]
+      },
+      "timestamp": 38.63311501929288
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_bj_003",
+        "start_time": "2026-03-12 18:00",
+        "duration_hours": 4,
+        "license_plate": "浙E34567",
+        "driver_phone": "13856781234"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_bj_004",
+        "pickup_date": "2026-03-12",
+        "days": 7,
+        "renter_name": "Lucas Martinez"
+      }
+    }
+  ],
+  "transcript_hash": "0025e0abc29d",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_medium",
+    "sample_type": "dag",
+    "template": "driving",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_parking": 1,
+    "reserve_parking_spot": 4,
+    "search_cars": 2,
+    "book_car": 5
+  },
+  "intent": {
+    "strength": "medium",
+    "signals": [
+      "Been thinking about",
+      "kinda considering",
+      "If I do",
+      "probably",
+      "might",
+      "not sure if I’ll actually do this"
+    ],
+    "ambiguity_notes": "Ambiguous intent: user is thinking out loud and sharing tentative details for parking and a rental in Beijing, but ends with hesitation and avoids any explicit authorization to execute."
+  },
+  "strength": "medium",
+  "tool_universe": {
+    "read_tools": [
+      "search_cars",
+      "search_parking"
+    ],
+    "write_tools": [
+      "book_car",
+      "reserve_parking_spot"
+    ]
+  },
+  "acceptable_decisions": [
+    "offer",
+    "ask"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "task_id": "int_000067",
+  "description": "Interruption (redirection): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_shows",
+    "book_show_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Suzhou.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_shows.city=Suzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 5 tickets for Kunqu Opera Peony Pavilion, Second Floor.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Second Floor",
+          "book_show_ticket.ticket_count=5"
+        ]
+      },
+      "timestamp": 3.7423649712529237
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "show",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Xiao Nan Guo on 2026-04-05 at 14:00.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.date=2026-04-05",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 15.549412050177917
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 5. Contact name Lin Bo. Phone 13855667788.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.contact_name=Lin Bo",
+          "book_restaurant.party_size=5",
+          "book_restaurant.phone=13855667788"
+        ]
+      },
+      "timestamp": 20.195702019012472
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the show—continue the ticket booking.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 26.277473854765322
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Emma Taylor. Phone 13812345678.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Emma Taylor",
+          "book_show_ticket.phone=13812345678"
+        ]
+      },
+      "timestamp": 31.825515265745693
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_003",
+        "date": "2026-04-05",
+        "time": "14:00",
+        "party_size": 5,
+        "contact_name": "Lin Bo",
+        "phone": "13855667788"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_su_001",
+        "seat_zone": "Second Floor",
+        "ticket_count": 5,
+        "buyer_name": "Emma Taylor",
+        "phone": "13812345678"
+      }
+    }
+  ],
+  "transcript_hash": "884de62d3a17",
+  "info_complete_turn": {
+    "search_restaurants": 3,
+    "book_restaurant": 5,
+    "search_shows": 1,
+    "book_show_ticket": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "show",
+    "template": null,
+    "generated": true
+  }
+}

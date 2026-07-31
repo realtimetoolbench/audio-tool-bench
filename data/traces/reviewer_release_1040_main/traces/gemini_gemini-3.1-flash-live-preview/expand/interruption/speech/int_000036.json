@@ -1,0 +1,470 @@
+{
+  "task_name": "int_000036",
+  "start_time": "2026-05-07T01:04:25.136107",
+  "end_time": "2026-05-07T01:14:35.090289",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shenzhen.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt"
+        },
+        "audio_size_bytes": 78000
+      },
+      "assistant_response": "When would you like to check in? Please provide",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "When would you like to check in? Please provide",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3619.8601722717285,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 98402,
+        "event_count": 21,
+        "latency": {
+          "speech_ms": 1194.7200298309326
+        },
+        "interrupted": true,
+        "interrupt_trigger_type": "forced",
+        "partial_transcript": "When would you like to check in? Please provide"
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shenzhen, I meant Guangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "keyword",
+            "keyword": "Shenzhen",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_hotels.city=Guangzhou"
+          ]
+        },
+        "audio_size_bytes": 105600
+      },
+      "assistant_response": " a date in YYYY-MM-DD format.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": " a date in YYYY-MM-DD format.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 166.64600372314453,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 174720,
+        "event_count": 21,
+        "latency": {
+          "speech_ms": 0.4069805145263672
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 9.027060102760336,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Hanting Hotel Tianhe for check-in 2026-05-27, for 2 nights.",
+        "timestamp": 9.027060102760336,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-05-27",
+            "book_hotel.nights=2"
+          ]
+        },
+        "audio_size_bytes": 268200
+      },
+      "assistant_response": "I can't directly book that hotel for you yet. I first need to search for hotels in Guangzhou using your check in date to get the hotel ID. Would you like me to search for hotels in Guangzhou first? Also, could you please provide me with your full name for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can't directly book that hotel for you yet. I first need to search for hotels in Guangzhou using your check in date to get the hotel ID. Would you like me to search for hotels in Guangzhou first? Also, could you please provide me with your full name for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 17605.17930984497,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 648964,
+        "event_count": 83,
+        "latency": {
+          "speech_ms": 2588.578939437866
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.031868026288418,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book it under Wang Fang.",
+        "timestamp": 15.031868026288418,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Wang Fang"
+          ]
+        },
+        "audio_size_bytes": 68400
+      },
+      "assistant_response": "I've successfully booked your stay at the Hanting Hotel Tianhe in Guangzhou for check in on May 27, 2026, for two nights under Wong Feng. Your booking ID is HT20001. Is there anything else I can help you with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_13181486716918607141",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Guangzhou",
+                "checkin_date": "2026-05-27"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_3627776684267348104",
+              "name": "book_hotel",
+              "arguments": {
+                "nights": 2,
+                "hotel_id": "hotel_gz_004",
+                "guest_name": "Wong Feng",
+                "checkin_date": "2026-05-27"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "I've successfully booked your stay at the Hanting Hotel Tianhe in Guangzhou for check in on May 27, 2026, for two nights under Wong Feng. Your booking ID is HT20001. Is there anything else I can help you with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Guangzhou",
+            "checkin_date": "2026-05-27"
+          },
+          "output": "Found 4 hotels in Guangzhou:\n\n1. The Ritz-Carlton Guangzhou (ID: hotel_gz_001)\n   Location: Zhujiang New Town | 5 stars\n   Price: ¥1600/night | Rating: 4.8/5.0\n\n2. Four Seasons Guangzhou (ID: hotel_gz_002)\n   Location: Zhujiang New Town | 5 stars\n   Price: ¥1700/night | Rating: 4.9/5.0\n\n3. White Swan Hotel (ID: hotel_gz_003)\n   Location: Shamian Island | 5 stars\n   Price: ¥1100/night | Rating: 4.7/5.0\n\n4. Hanting Hotel Tianhe (ID: hotel_gz_004)\n   Location: Tianhe | 3 stars\n   Price: ¥380/night | Rating: 4.2/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.10180473327636719
+        },
+        {
+          "tool_name": "book_hotel",
+          "arguments": {
+            "nights": 2,
+            "hotel_id": "hotel_gz_004",
+            "guest_name": "Wong Feng",
+            "checkin_date": "2026-05-27"
+          },
+          "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_gz_004\nCheck-in: 2026-05-27\nNights: 2\nGuest: Wong Feng\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.04887580871582031
+        }
+      ],
+      "total_latency_ms": 17660.635948181152,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 617762,
+        "event_count": 81,
+        "latency": {
+          "speech_ms": 3919.466972351074,
+          "tool_call_ms": 1640.6738758087158
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 18.98741015390808,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Chengdu.",
+        "timestamp": 18.98741015390808,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_attractions.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 85800
+      },
+      "assistant_response": "I found 4 popular attractions in Chengdu: the Giant Panda Base, Wuhou Shrine, Du Fu Thatched Cottage, and Kuanzhai Alley. Are you interested in visiting any of these, or would you like more details on one? I can also help you book tickets if needed.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_10912947385247317052",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found 4 popular attractions in Chengdu: the Giant Panda Base, Wuhou Shrine, Du Fu Thatched Cottage, and Kuanzhai Alley. Are you interested in visiting any of these, or would you like more details on one? I can also help you book tickets if needed.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "output": "Found 4 attractions in Chengdu:\n\n1. Giant Panda Base (ID: attr_cd_001)\n   Type: Zoo\n   Rating: 4.8/5.0\n   Ticket: ¥58\n   Hours: 07:30-18:00\n   Location: Chenghua\n\n2. Wuhou Shrine (ID: attr_cd_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Wuhou\n\n3. Du Fu Thatched Cottage (ID: attr_cd_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Qingyang\n\n4. Kuanzhai Alley (ID: attr_cd_004)\n   Type: Sightseeing\n   Rating: 4.3/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Qingyang\n\n",
+          "error": null,
+          "latency_ms": 0.12803077697753906
+        }
+      ],
+      "total_latency_ms": 16632.275342941284,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 656644,
+        "event_count": 88,
+        "latency": {
+          "speech_ms": 2183.011054992676,
+          "tool_call_ms": 1159.001111984253
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 23.043473000377556,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 1 ticket for Du Fu Thatched Cottage on 2026-03-11 in the afternoon.",
+        "timestamp": 23.043473000377556,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-11",
+            "book_attraction_ticket.ticket_count=1",
+            "book_attraction_ticket.time_slot=afternoon"
+          ]
+        },
+        "audio_size_bytes": 295800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 554252.9830932617,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 14
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.104678869818954,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the visitor name to Ma Liang.",
+        "timestamp": 30.104678869818954,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.visitor_name=Ma Liang"
+          ]
+        },
+        "audio_size_bytes": 93000
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 34.26421680512627,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G1 from Beijing to Shanghai on 2026-03-03 for Zhou Jun in First Class.",
+        "timestamp": 34.26421680512627,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-03",
+            "book_train.passenger_name=Zhou Jun",
+            "book_train.seat_class=First Class",
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 320400
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 9,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": "travel",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_hotels",
+      "param": "city",
+      "wrong_value": "Shenzhen"
+    },
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_hotels": {
+        "speech_ms": 0.4069805145263672
+      },
+      "book_hotel": {
+        "speech_ms": 3919.466972351074,
+        "tool_call_ms": 1640.6738758087158
+      },
+      "search_attractions": {
+        "speech_ms": 2183.011054992676,
+        "tool_call_ms": 1159.001111984253
+      }
+    },
+    "info_complete_turn": {
+      "search_hotels": 2,
+      "book_hotel": 4,
+      "search_attractions": 5,
+      "book_attraction_ticket": 7,
+      "search_trains": 8,
+      "book_train": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_trains', 'book_train', 'book_attraction_ticket', 'search_hotels', 'search_attractions', 'book_hotel'}，实际: {'search_attractions', 'search_hotels', 'book_hotel'}，缺失: {'search_trains', 'book_attraction_ticket', 'book_train'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "search_hotels: +2 turns (info@2, call@4)",
+    "behavior_score": 0.3333333333333333,
+    "behavior_score_details": "search_hotels: 1(correct), book_hotel: 0(param_mismatch), search_attractions: 1(correct), book_attraction_ticket: 0(not_called), search_trains: 0(not_called), book_train: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "guest_name: 'Wang Fang' vs 'Wong Feng'"
+        },
+        {
+          "tool": "book_attraction_ticket",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_trains",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1,
+        "missing_call": 3
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 3,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

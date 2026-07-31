@@ -1,0 +1,458 @@
+{
+  "task_name": "tint_000007",
+  "start_time": "2026-04-30T16:56:53.102257",
+  "end_time": "2026-04-30T16:57:30.294984",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai. Use check-in date 2026-03-25 and stay 5 nights.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-25",
+            "book_hotel.nights=5",
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 297600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_9f1087ad0ada4018b8f875b1",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-25"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7286.670923233032,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 30,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shanghai, I meant Hangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_hotels.city=Hangzhou"
+          ]
+        },
+        "audio_size_bytes": 102000
+      },
+      "assistant_response": "I found three hotels in Hangzhou for your check-in on March 25th, 2026. The West Lake State Guesthouse is a 5-star option right by the lake for ¥1500 a night with a 4.9 rating. There's also the 4-star Hilton Hangzhou West Lake, also by the lake, at ¥800 per night with a 4.6 rating. For a more budget-friendly choice, Home Inn West Lake is a 3-star hotel near the lake for ¥450 a night and has a 4.3 rating.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_0c52bd19262c4f16b2db4b9a",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou",
+                "checkin_date": "2026-03-25"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three hotels in Hangzhou for your check-in on March 25th, 2026. The West Lake State Guesthouse is a 5-star option right by the lake for ¥1500 a night with a 4.9 rating. There's also the 4-star Hilton Hangzhou West Lake, also by the lake, at ¥800 per night with a 4.6 rating. For a more budget-friendly choice, Home Inn West Lake is a 3-star hotel near the lake for ¥450 a night and has a 4.3 rating.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_0c52bd19262c4f16b2db4b9a",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Hangzhou",
+            "checkin_date": "2026-03-25"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_hz_001",
+                "name": "West Lake State Guesthouse",
+                "location": "West Lake",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_hz_002",
+                "name": "Hilton Hangzhou West Lake",
+                "location": "West Lake",
+                "stars": 4,
+                "price": 800,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_hz_003",
+                "name": "Home Inn West Lake",
+                "location": "West Lake",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.3
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.14019012451171875
+          },
+          "latency_ms": 0.14019012451171875
+        }
+      ],
+      "total_latency_ms": 9408.126831054688,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1363200,
+        "event_count": 245,
+        "latency": {
+          "speech_ms": 1513.554931640625,
+          "tool_call_ms": 819.48486328125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 11.460448287743747,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the hotel Hilton Hangzhou West Lake. Guest name Li Na.",
+        "timestamp": 11.460448287743747,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Li Na"
+          ]
+        },
+        "audio_size_bytes": 174600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2439.9449825286865,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 8
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 17.75852798456279,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 17.75852798456279,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 103200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1664.7849082946777,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 12
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 23.076265877229982,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 for 2026-03-18.",
+        "timestamp": 23.076265877229982,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-18"
+          ]
+        },
+        "audio_size_bytes": 162600
+      },
+      "assistant_response": "I can help with that. What name should I use for the passenger, and which seat class would you like to book?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_0c8db1a148414b23a68cf6aa",
+              "name": "search_trains",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I can help with that. What name should I use for the passenger, and which seat class would you like to book?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_0c8db1a148414b23a68cf6aa",
+          "tool_name": "search_trains",
+          "arguments": {},
+          "result": {
+            "success": false,
+            "output": "Tool execution error: TrainSearchTool.execute() missing 2 required positional arguments: 'origin' and 'destination'",
+            "raw_output": null,
+            "error": "TrainSearchTool.execute() missing 2 required positional arguments: 'origin' and 'destination'",
+            "latency_ms": 0.05507469177246094
+          },
+          "latency_ms": 0.05507469177246094
+        }
+      ],
+      "total_latency_ms": 4039.7047996520996,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 230400,
+        "event_count": 67,
+        "latency": {
+          "speech_ms": 428.413330078125,
+          "tool_call_ms": 0.1142578125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.086564395048345,
+      "input_chunk": {
+        "role": "user",
+        "content": "Passenger name Zhang Wei. Seat class First Class.",
+        "timestamp": 27.086564395048345,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.passenger_name=Zhang Wei",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 144000
+      },
+      "assistant_response": "Great news! Your train ticket is all set. The booking for Zhang Wei on train G3, departing March 18th, 2026 in First Class seat 01A has been confirmed. Your booking ID is TR40001.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_14c30b9c7cd246df9cdd5ed8",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "G3",
+                "date": "2026-03-18",
+                "passenger_name": "Zhang Wei",
+                "seat_class": "First Class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great news! Your train ticket is all set. The booking for Zhang Wei on train G3, departing March 18th, 2026 in First Class seat 01A has been confirmed. Your booking ID is TR40001.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_14c30b9c7cd246df9cdd5ed8",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "G3",
+            "date": "2026-03-18",
+            "passenger_name": "Zhang Wei",
+            "seat_class": "First Class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: G3\nDate: 2026-03-18\nPassenger: Zhang Wei\nSeat: First Class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "G3",
+              "date": "2026-03-18",
+              "passenger_name": "Zhang Wei",
+              "seat_class": "First Class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.10704994201660156
+          },
+          "latency_ms": 0.10704994201660156
+        }
+      ],
+      "total_latency_ms": 12347.146987915039,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 625920,
+        "event_count": 143,
+        "latency": {
+          "speech_ms": 3755.29833984375,
+          "tool_call_ms": 2657.63623046875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 10,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Hangzhou"
+    },
+    "mode": "audio_crawl",
+    "provider": "qwen",
+    "tts_voice": "Ethan",
+    "realtime_model": "qwen3.5-omni-plus-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_hotels": {
+        "speech_ms": 1513.554931640625,
+        "tool_call_ms": 819.48486328125
+      },
+      "book_train": {
+        "speech_ms": 3755.29833984375,
+        "tool_call_ms": 2657.63623046875
+      }
+    },
+    "info_complete_turn": {
+      "search_hotels": 2,
+      "book_hotel": 3,
+      "search_trains": 4,
+      "book_train": 6
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[re-called with correction]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_trains",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "origin: 'Beijing' vs 'None'; destination: 'Shanghai' vs 'None'"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "train_id: 'trn_bj_sh_002' vs 'G3'"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1,
+        "parameter_reasoning": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

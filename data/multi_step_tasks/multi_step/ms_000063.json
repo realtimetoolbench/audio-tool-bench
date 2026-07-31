@@ -1,0 +1,194 @@
+{
+  "task_id": "ms_000063",
+  "scenario_type": "multi_step",
+  "server": "amazon",
+  "template": "buy_and_review_8",
+  "description": "Search, details, add to cart, shipping, list addr+pay, place order, track, write review",
+  "tools": [
+    "search_products",
+    "get_product_details",
+    "add_to_cart",
+    "select_shipping_option",
+    "list_addresses",
+    "list_payment_methods",
+    "place_order",
+    "write_review"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Show me Sony products.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_products"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Tell me more about the first one.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_product_details"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add two of those to my cart, just go with the first color option.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_to_cart"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Ship them with the standard shipping option.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "select_shipping_option"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Use my default address and payment method to place the order.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_addresses",
+          "list_payment_methods",
+          "place_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Write a review for the Sony product with 4 stars, titled Good value, saying exactly as described, fast shipping too.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "write_review"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_products",
+      "params": {
+        "query": "Sony"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_product_details",
+      "params": {
+        "product_id": "AMZ-PROD-4001"
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        }
+      }
+    },
+    {
+      "tool": "add_to_cart",
+      "params": {
+        "product_id": "AMZ-PROD-4001",
+        "variant_id": "AMZ-VAR-4001A",
+        "quantity": 2
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        },
+        "variant_id": {
+          "from_tool": "get_product_details",
+          "field": "variations[0].variant_id"
+        },
+        "quantity": "user"
+      }
+    },
+    {
+      "tool": "select_shipping_option",
+      "params": {
+        "shipping_option": "standard"
+      },
+      "param_source": {
+        "shipping_option": "user"
+      }
+    },
+    {
+      "tool": "list_addresses",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "list_payment_methods",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "place_order",
+      "params": {
+        "address_id": "AMZ-ADDR-001",
+        "payment_method_id": "AMZ-PAY-001"
+      },
+      "param_source": {
+        "address_id": {
+          "from_tool": "list_addresses",
+          "field": "address_id"
+        },
+        "payment_method_id": {
+          "from_tool": "list_payment_methods",
+          "field": "payment_method_id"
+        }
+      }
+    },
+    {
+      "tool": "write_review",
+      "params": {
+        "product_id": "AMZ-PROD-4001",
+        "rating": 4,
+        "title": "Good value",
+        "body": "Exactly as described, fast shipping too."
+      },
+      "param_source": {
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        },
+        "rating": "user",
+        "title": "user",
+        "body": "user"
+      }
+    }
+  ],
+  "chain_depth": 8,
+  "info_complete_turn": {
+    "search_products": 1,
+    "get_product_details": 1,
+    "add_to_cart": 3,
+    "select_shipping_option": 4,
+    "list_addresses": 4,
+    "list_payment_methods": 4,
+    "place_order": 4,
+    "write_review": 6
+  }
+}

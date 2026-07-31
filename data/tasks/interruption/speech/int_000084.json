@@ -1,0 +1,168 @@
+{
+  "task_id": "int_000084",
+  "description": "Interruption (redirection): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "get_transaction_history",
+    "search_hotels",
+    "book_hotel",
+    "search_attractions"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Get transaction history. Use account number 6217001234567890.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "get_transaction_history.account_number=6217001234567890"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Wuhan.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_hotels.city=Wuhan"
+        ]
+      },
+      "timestamp": 5.617833339317993
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search movies in Wuhan.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_movies.city=Wuhan"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "get_transaction_history",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie ticket. Use movie YOLO and cinema Jinyi Cinema Jianghan Road.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.cinema=Jinyi Cinema Jianghan Road"
+        ]
+      },
+      "timestamp": 14.728070355883164
+    },
+    {
+      "speaker": "user",
+      "text": "Set showtime 17:00. Book 3 seats. Buyer name Ma Liang.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Ma Liang",
+          "book_movie_ticket.seat_count=3",
+          "book_movie_ticket.showtime=17:00"
+        ]
+      },
+      "timestamp": 20.967417016594908
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the get_transaction_history. Continue the original requests.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 26.76887895977446
+    },
+    {
+      "speaker": "user",
+      "text": "Book hotel. Hotel ID Home Inn Guanggu. Check-in 2026-03-17. Nights 1. Guest name Zhou Jun. Then search attractions in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-17",
+          "book_hotel.guest_name=Zhou Jun",
+          "book_hotel.nights=1",
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 33.11562920638788
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_wh_002",
+        "cinema": "Jinyi Cinema Jianghan Road",
+        "showtime": "17:00",
+        "seat_count": 3,
+        "buyer_name": "Ma Liang"
+      }
+    },
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6217001234567890"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_wh_003",
+        "checkin_date": "2026-03-17",
+        "nights": 1,
+        "guest_name": "Zhou Jun"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    }
+  ],
+  "transcript_hash": "8f541b1afc5a",
+  "info_complete_turn": {
+    "search_movies": 3,
+    "book_movie_ticket": 5,
+    "get_transaction_history": 1,
+    "search_hotels": 2,
+    "book_hotel": 7,
+    "search_attractions": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "get_transaction_history",
+    "template": null,
+    "generated": true
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "task_id": "int_000071",
+  "description": "Interruption (correction): 5 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "search_medicine"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search sports events in Beijing for CBA games.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Beijing, I meant Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Beijing",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_sports_events.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book tickets for CBA: Shanghai Sharks vs Liaoning Steelers, VIP seats, 3 tickets.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=VIP",
+          "book_sports_ticket.ticket_count=3"
+        ]
+      },
+      "timestamp": 10.115842437647576
+    },
+    {
+      "speaker": "user",
+      "text": "Use buyer name Noah Wilson and phone 13812345678.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Noah Wilson",
+          "book_sports_ticket.phone=13812345678"
+        ]
+      },
+      "timestamp": 17.584317937415925
+    },
+    {
+      "speaker": "user",
+      "text": "Use ID number 440106199512044567 and 3 tickets total.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_sports_ticket.id_number=440106199512044567"
+        ]
+      },
+      "timestamp": 22.996894325235182
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shenzhen and pick Din Tai Fung Shenzhen.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Shenzhen"
+        ]
+      },
+      "timestamp": 28.451790163669003
+    },
+    {
+      "speaker": "user",
+      "text": "Book Din Tai Fung Shenzhen on 2026-04-18 at 20:00 for 10 people, contact Yang Yu, phone 13800112233.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Yang Yu",
+          "book_restaurant.date=2026-04-18",
+          "book_restaurant.party_size=10",
+          "book_restaurant.phone=13800112233",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 34.146615124889266
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_sh_001",
+        "seat_zone": "VIP",
+        "ticket_count": 3,
+        "buyer_name": "Noah Wilson",
+        "phone": "13812345678",
+        "id_number": "440106199512044567"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sz_002",
+        "date": "2026-04-18",
+        "time": "20:00",
+        "party_size": 10,
+        "contact_name": "Yang Yu",
+        "phone": "13800112233"
+      }
+    },
+    {
+      "tool": "search_medicine",
+      "params": {}
+    }
+  ],
+  "transcript_hash": "55f01c46013f",
+  "info_complete_turn": {
+    "search_sports_events": 2,
+    "book_sports_ticket": 5,
+    "search_restaurants": 6,
+    "book_restaurant": 7,
+    "search_medicine": 1
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Beijing",
+    "template": "sports_event",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_sports_events",
+      "param": "city",
+      "wrong_value": "Beijing"
+    }
+  }
+}

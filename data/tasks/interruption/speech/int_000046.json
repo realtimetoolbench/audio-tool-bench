@@ -1,0 +1,183 @@
+{
+  "task_id": "int_000046",
+  "description": "Interruption (redirection): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5678 on 2026-03-26.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_flight.date=2026-03-26"
+        ]
+      },
+      "timestamp": 4.578800198078458
+    },
+    {
+      "speaker": "user",
+      "text": "Use passenger name Li Na, airline China Eastern.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_flight.passenger_name=Li Na"
+        ]
+      },
+      "timestamp": 9.02197847948555
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search movies in Shenzhen.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_movies.city=Shenzhen"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "flight",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book a ticket for The Wandering Earth 3 at CGV MixC.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.cinema=CGV MixC"
+        ]
+      },
+      "timestamp": 20.186070026916802
+    },
+    {
+      "speaker": "user",
+      "text": "Set showtime 19:00, one seat, buyer name Huang Tao.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Huang Tao",
+          "book_movie_ticket.seat_count=1",
+          "book_movie_ticket.showtime=19:00"
+        ]
+      },
+      "timestamp": 25.64770505308378
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the flight.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 30.88999364334044
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou, then book Hilton Hangzhou West Lake for Sun Lei; check in 2026-03-11 for 3 nights.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-11",
+          "book_hotel.guest_name=Sun Lei",
+          "book_hotel.nights=3",
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 34.60954879216418
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_sz_001",
+        "cinema": "CGV MixC",
+        "showtime": "19:00",
+        "seat_count": 1,
+        "buyer_name": "Huang Tao"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-26",
+        "passenger_name": "Li Na"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_002",
+        "checkin_date": "2026-03-11",
+        "nights": 3,
+        "guest_name": "Sun Lei"
+      }
+    }
+  ],
+  "transcript_hash": "febd28d955a5",
+  "info_complete_turn": {
+    "search_movies": 4,
+    "book_movie_ticket": 6,
+    "search_flights": 1,
+    "book_flight": 3,
+    "search_hotels": 8,
+    "book_hotel": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "flight",
+    "template": null,
+    "generated": true
+  }
+}

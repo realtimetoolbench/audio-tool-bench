@@ -1,0 +1,192 @@
+{
+  "task_id": "tint_000021",
+  "description": "Interruption (tool_correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Beijing, I meant Hangzhou.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use city Hangzhou. Then book hotel Home Inn West Lake for guest Chen Ming.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Chen Ming"
+        ]
+      },
+      "timestamp": 8.973511897564702
+    },
+    {
+      "speaker": "user",
+      "text": "Set hotel check-in date 2026-03-19 and nights 3.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-19",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 15.575375664774734
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Beijing. Book Green Lotus for Zhang Wei.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "search_restaurants.city=Beijing"
+        ]
+      },
+      "timestamp": 20.798051190619226
+    },
+    {
+      "speaker": "user",
+      "text": "Restaurant booking: date 2026-03-12, time 19:00, party size 1.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-12",
+          "book_restaurant.party_size=1",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 26.96923734094214
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13812345678. Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13812345678",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 33.17655868013806
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5678 on 2026-03-13 for passenger Zhou Jun with airline China Eastern.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-03-13",
+          "book_flight.passenger_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 39.34342093456478
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_003",
+        "checkin_date": "2026-03-19",
+        "nights": 3,
+        "guest_name": "Chen Ming"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_011",
+        "date": "2026-03-12",
+        "time": "19:00",
+        "party_size": 1,
+        "contact_name": "Zhang Wei",
+        "phone": "13812345678"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-13",
+        "passenger_name": "Zhou Jun"
+      }
+    }
+  ],
+  "transcript_hash": "9ffff6c2db41",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 4,
+    "search_restaurants": 5,
+    "book_restaurant": 7,
+    "search_flights": 7,
+    "book_flight": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Beijing"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Hangzhou"
+    }
+  }
+}

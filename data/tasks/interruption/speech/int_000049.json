@@ -1,0 +1,135 @@
+{
+  "task_id": "int_000049",
+  "description": "Interruption (correction): 5 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_books",
+    "reserve_book",
+    "search_cars",
+    "book_car",
+    "search_parking"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search books for \"Python Crash Course\" and reserve it for Aiden Miller.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "reserve_book.reader_name=Aiden Miller"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search cars in Shenzhen.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 6.6856844442644014
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shenzhen, I meant Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shenzhen",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_parking.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book a Toyota Corolla for pickup on 2026-03-19 for 2 days.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_car.days=2",
+          "book_car.pickup_date=2026-03-19"
+        ]
+      },
+      "timestamp": 15.470697590351367
+    },
+    {
+      "speaker": "user",
+      "text": "Use renter name Huang Tao, and search parking in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_car.renter_name=Huang Tao",
+          "search_cars.city=Shanghai"
+        ]
+      },
+      "timestamp": 21.080204621122856
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_books",
+      "params": {}
+    },
+    {
+      "tool": "reserve_book",
+      "params": {
+        "book_id": "ISBN9787020008735",
+        "reader_name": "Aiden Miller"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_sh_001",
+        "pickup_date": "2026-03-19",
+        "days": 2,
+        "renter_name": "Huang Tao"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "147ccce59f02",
+  "info_complete_turn": {
+    "search_books": 1,
+    "reserve_book": 1,
+    "search_cars": 5,
+    "book_car": 5,
+    "search_parking": 3
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 5,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": null,
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_cars",
+      "param": "city",
+      "wrong_value": "Shenzhen"
+    }
+  }
+}

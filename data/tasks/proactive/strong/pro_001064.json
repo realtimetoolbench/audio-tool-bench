@@ -1,0 +1,149 @@
+{
+  "task_id": "pro_001064",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_cars",
+    "book_car"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m going to be around Beijing later, and I keep thinking about how parking is always a mess there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_parking.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Then after that I’m heading to Shanghai, and I’m leaning toward just getting a car while I’m there so I’m not stuck juggling rides all day.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_cars.city=Shanghai"
+        ]
+      },
+      "timestamp": 8.093129324964163
+    },
+    {
+      "speaker": "user",
+      "text": "For that Beijing evening, I’m planning to leave the car at Zhongguancun Plaza Parking starting 2026-04-08 17:00.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.start_time=2026-04-08 17:00"
+        ]
+      },
+      "timestamp": 17.7440579418981
+    },
+    {
+      "speaker": "user",
+      "text": "It’ll be for about 12 hours, and the plate is 浙E34567.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "reserve_parking_spot.duration_hours=12",
+          "reserve_parking_spot.license_plate=浙E34567"
+        ]
+      },
+      "timestamp": 26.10489843045493
+    },
+    {
+      "speaker": "user",
+      "text": "And for the Shanghai stretch I’m set on a Toyota Corolla, picking it up on 2026-05-09 for 4 days—name’s Luo Fei—and I’ll probably just use 13822334455 for the driver phone, since that’s the one I always have on me, and then I was thinking about where to head first after I grab the keys…",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_car.days=4",
+          "book_car.pickup_date=2026-05-09",
+          "book_car.renter_name=Luo Fei",
+          "reserve_parking_spot.driver_phone=13822334455"
+        ]
+      },
+      "timestamp": 31.804033843250906
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_bj_004",
+        "start_time": "2026-04-08 17:00",
+        "duration_hours": 12,
+        "license_plate": "浙E34567",
+        "driver_phone": "13822334455"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_sh_001",
+        "pickup_date": "2026-05-09",
+        "days": 4,
+        "renter_name": "Luo Fei"
+      }
+    }
+  ],
+  "transcript_hash": "65098d7b515b",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "driving",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_parking": 1,
+    "reserve_parking_spot": 5,
+    "search_cars": 2,
+    "book_car": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m going to be around Beijing",
+      "heading to Shanghai",
+      "planning to leave the car at Zhongguancun Plaza Parking",
+      "starting 2026-04-08 17:00",
+      "set on a Toyota Corolla",
+      "picking it up on 2026-05-09 for 4 days"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates confirmed upcoming plans and specific booking details; no request/authorization phrasing."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_cars",
+      "search_parking"
+    ],
+    "write_tools": [
+      "book_car",
+      "reserve_parking_spot"
+    ]
+  },
+  "expected_tool_if_act": "search_parking",
+  "expected_params_if_act": {
+    "city": "Beijing"
+  }
+}

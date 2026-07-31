@@ -1,0 +1,152 @@
+{
+  "task_id": "pro_000265",
+  "description": "Generated: 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Been thinking about doing a quick trip from Beijing to Shanghai sometime soon, just to get a change of scenery.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "If I end up in Shanghai, I might catch a movie there one evening, just to kill time.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_movies.city=Shanghai"
+        ]
+      },
+      "timestamp": 8.380217167019921
+    },
+    {
+      "speaker": "user",
+      "text": "I keep circling back to taking train D321 on 2026-04-02, though I’m still not totally sure it’s smart with my schedule.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.date=2026-04-02"
+        ]
+      },
+      "timestamp": 15.983105379369926
+    },
+    {
+      "speaker": "user",
+      "text": "And if I actually did it, it’d probably be under my name, Luo Fei, and I’d just do Second Class like usual.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.passenger_name=Luo Fei",
+          "book_train.seat_class=Second Class"
+        ]
+      },
+      "timestamp": 24.999339221091105
+    },
+    {
+      "speaker": "user",
+      "text": "For the movie idea, I was kinda considering Dune 2 at CGV Longzhimeng, the 20:30 show, maybe 2 seats, and it’d be under Luo Fei too… not sure if I’ll actually do this.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Luo Fei",
+          "book_movie_ticket.cinema=CGV Longzhimeng",
+          "book_movie_ticket.seat_count=2",
+          "book_movie_ticket.showtime=20:30"
+        ]
+      },
+      "timestamp": 33.77603916457461
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_003",
+        "date": "2026-04-02",
+        "passenger_name": "Luo Fei",
+        "seat_class": "Second Class"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_sh_003",
+        "cinema": "CGV Longzhimeng",
+        "showtime": "20:30",
+        "seat_count": 2,
+        "buyer_name": "Luo Fei"
+      }
+    }
+  ],
+  "transcript_hash": "63bb568ca73c",
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "style": "proactive_medium",
+    "sample_type": "dag",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_trains": 1,
+    "book_train": 4,
+    "search_movies": 2,
+    "book_movie_ticket": 5
+  },
+  "intent": {
+    "strength": "medium",
+    "signals": [
+      "Been thinking about",
+      "might",
+      "If I end up",
+      "still not totally sure",
+      "probably",
+      "kinda considering",
+      "not sure if I’ll actually do this"
+    ],
+    "ambiguity_notes": "Ambiguous, tentative planning: user is thinking out loud about a Beijing→Shanghai train and a Shanghai movie, sharing specific details but repeatedly signaling uncertainty and no explicit authorization."
+  },
+  "strength": "medium",
+  "tool_universe": {
+    "read_tools": [
+      "search_movies",
+      "search_trains"
+    ],
+    "write_tools": [
+      "book_movie_ticket",
+      "book_train"
+    ]
+  },
+  "acceptable_decisions": [
+    "offer",
+    "ask"
+  ]
+}

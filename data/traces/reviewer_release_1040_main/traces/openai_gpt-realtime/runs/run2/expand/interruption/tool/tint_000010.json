@@ -1,0 +1,374 @@
+{
+  "task_name": "tint_000010",
+  "start_time": "2026-07-29T00:33:04.886452",
+  "end_time": "2026-07-29T00:33:52.637251",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search movies in Chongqing for 2026-04-02, evening showtimes. Also plan a restaurant booking after that.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-04-02",
+            "search_restaurants.city=Chongqing"
+          ]
+        },
+        "audio_size_bytes": 374400
+      },
+      "assistant_response": "Alright, let’s find some movies playing in Chongqing for the evening of 2026-04-02. After that, we’ll line up a nice restaurant reservation for you. Let's kick things off with the movie search! Do you have any particular genre in mind, or should we check out all the options?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Alright, let’s find some movies playing in Chongqing for the evening of 2026-04-02. After that, we’ll line up a nice restaurant reservation for you. Let's kick things off with the movie search! Do you have any particular genre in mind, or should we check out all the options?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9258.839130401611,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 823200,
+        "event_count": 147
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Cancel the movie search. Skip all movie ticket steps.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_movies",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 157200
+      },
+      "assistant_response": "Got it, we’ll skip the movie search and ticket steps completely. We’ll focus on planning a great restaurant reservation for you in Chongqing. Let's jump right into that. What kind of cuisine are you in the mood for, and how many people will be dining?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, we’ll skip the movie search and ticket steps completely. We’ll focus on planning a great restaurant reservation for you in Chongqing. Let's jump right into that. What kind of cuisine are you in the mood for, and how many people will be dining?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6248.445987701416,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 638400,
+        "event_count": 123,
+        "latency": {
+          "speech_ms": 678.953125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.298110185337258,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Chongqing for a group dinner.",
+        "timestamp": 14.298110185337258,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 153000
+      },
+      "assistant_response": "I found a couple of great hotpot spots in Chongqing:\n\n1. Liuyishou Hotpot in Yuzhong, with an awesome rating of 4.8 out of 5.\n2. Xiao Tian E Hotpot in Jiangbei, rated 4.7 out of 5.\n\nDo any of these catch your eye? Once you pick one, we’ll lock down the reservation details.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_vhHJU7K9Qodow7tF",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Chongqing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found a couple of great hotpot spots in Chongqing:\n\n1. Liuyishou Hotpot in Yuzhong, with an awesome rating of 4.8 out of 5.\n2. Xiao Tian E Hotpot in Jiangbei, rated 4.7 out of 5.\n\nDo any of these catch your eye? Once you pick one, we’ll lock down the reservation details.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_vhHJU7K9Qodow7tF",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Chongqing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Chongqing:\n\n1. Liuyishou Hotpot (ID: rst_cq_001)\n   Cuisine: Hotpot\n   Location: Yuzhong\n   Rating: 4.8/5.0\n\n2. Xiao Tian E Hotpot (ID: rst_cq_002)\n   Cuisine: Hotpot\n   Location: Jiangbei\n   Rating: 4.7/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_cq_001",
+                "name": "Liuyishou Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Yuzhong",
+                "rating": 4.8
+              },
+              {
+                "restaurant_id": "rst_cq_002",
+                "name": "Xiao Tian E Hotpot",
+                "cuisine": "Hotpot",
+                "location": "Jiangbei",
+                "rating": 4.7
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05888938903808594
+          },
+          "latency_ms": 0.05888938903808594
+        }
+      ],
+      "total_latency_ms": 18530.064821243286,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 820800,
+        "event_count": 191,
+        "latency": {
+          "speech_ms": 13283.959228515625,
+          "tool_call_ms": 10249.556884765625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 19.435525760409085,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book a table at Liuyishou Hotpot.",
+        "timestamp": 19.435525760409085,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 96000
+      },
+      "assistant_response": "Perfect choice! Let’s get that table booked at Liuyishou Hotpot. I just need a few more details: what’s the date and time for your reservation, how many people will be in your group, and what name and phone number should we use for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect choice! Let’s get that table booked at Liuyishou Hotpot. I just need a few more details: what’s the date and time for your reservation, how many people will be in your group, and what name and phone number should we use for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4762.986898422241,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 578400,
+        "event_count": 121,
+        "latency": {
+          "speech_ms": 464.58984375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.063814430103236,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the reservation date to 2026-04-02 and time to 19:00.",
+        "timestamp": 24.063814430103236,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 272400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3526.8332958221436,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.604127388564525,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size is 10. Use contact name Gao Yan.",
+        "timestamp": 29.604127388564525,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Gao Yan",
+            "book_restaurant.party_size=10"
+          ]
+        },
+        "audio_size_bytes": 139200
+      },
+      "assistant_response": "Great,",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Great,",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2062.6380443573,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 4800,
+        "event_count": 18,
+        "latency": {
+          "speech_ms": 1.593017578125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 34.62923297215245,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone number 13855667788. Confirm the reservation.",
+        "timestamp": 34.62923297215245,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.phone=13855667788"
+          ]
+        },
+        "audio_size_bytes": 251400
+      },
+      "assistant_response": "Got it.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Got it.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3352.289915084839,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 4800,
+        "event_count": 19,
+        "latency": {
+          "speech_ms": 1.97509765625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 7,
+    "total_llm_calls": 8,
+    "total_tool_calls": 1
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "date",
+    "generated": true,
+    "dangling_call": "search_movies",
+    "forbidden_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_restaurant": {
+        "speech_ms": 1.97509765625
+      }
+    },
+    "info_complete_turn": {
+      "search_restaurants": 1,
+      "book_restaurant": 7
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool+dangling_not_intercepted",
+    "details": "预期: {'search_restaurants', 'book_restaurant'}，实际: {'search_restaurants'}，缺失: {'book_restaurant'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "search_restaurants: +2 turns (info@1, call@3)",
+    "behavior_score": 0.5,
+    "behavior_score_details": "search_restaurants: 1(correct), book_restaurant: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

@@ -1,0 +1,396 @@
+{
+  "task_name": "tint_000030",
+  "start_time": "2026-05-06T14:41:32.232116",
+  "end_time": "2026-05-06T14:42:15.565517",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for 2 nights starting 2026-05-06. Also plan a train trip after that.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_train.date=2026-05-06",
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 362400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_f3aaf9d88a754cac8dc4e666",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-05-06"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8342.817068099976,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 30,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel search. Skip all hotel steps.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 133200
+      },
+      "assistant_response": "Okay, no problem. We can just focus on the train trip. Where would you like to go after Shanghai?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Okay, no problem. We can just focus on the train trip. Where would you like to go after Shanghai?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2579.6170234680176,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 253440,
+        "event_count": 54,
+        "latency": {
+          "speech_ms": 553.21484375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 12.865769373553924,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 12.865769373553924,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 115800
+      },
+      "assistant_response": "I found three trains going from Beijing to Shanghai. The G1 is a high-speed train that leaves at 6 in the morning and gets you there by 10:28. The G3 is another high-speed option, departing at 7 AM and arriving at 11:35. Both of those cost ¥553 for a second-class seat. There's also the D321 express train, which is a bit slower. It leaves at 8:30 AM and arrives in the afternoon at 4:45, but it's cheaper at ¥309 for a second-class ticket. All of them have seats available.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_4755cbf4ac994b959ddeb95c",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three trains going from Beijing to Shanghai. The G1 is a high-speed train that leaves at 6 in the morning and gets you there by 10:28. The G3 is another high-speed option, departing at 7 AM and arriving at 11:35. Both of those cost ¥553 for a second-class seat. There's also the D321 express train, which is a bit slower. It leaves at 8:30 AM and arrives in the afternoon at 4:45, but it's cheaper at ¥309 for a second-class ticket. All of them have seats available.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_4755cbf4ac994b959ddeb95c",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.164031982421875
+          },
+          "latency_ms": 0.164031982421875
+        }
+      ],
+      "total_latency_ms": 13594.954013824463,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1593600,
+        "event_count": 266,
+        "latency": {
+          "speech_ms": 2029.873779296875,
+          "tool_call_ms": 1163.798828125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 17.670455415636674,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train D321.",
+        "timestamp": 17.670455415636674,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 73200
+      },
+      "assistant_response": "Sure, I can help with that. To book the D321 train, I'll need a few more details from you. What date would you like to travel, what is the passenger's name, and would you prefer a second-class or first-class seat?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help with that. To book the D321 train, I'll need a few more details from you. What date would you like to travel, what is the passenger's name, and would you prefer a second-class or first-class seat?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5241.479873657227,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 583680,
+        "event_count": 103,
+        "latency": {
+          "speech_ms": 517.73828125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.258323088147076,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use travel date 2026-05-06 and passenger name Zhang Wei.",
+        "timestamp": 21.258323088147076,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.passenger_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 229200
+      },
+      "assistant_response": "Got it. Just to confirm, you'd like to book the D321 train for Zhang Wei on May 6th, 2026. Would you like a second-class seat or a first-class seat?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it. Just to confirm, you'd like to book the D321 train for Zhang Wei on May 6th, 2026. Would you like a second-class seat or a first-class seat?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6335.616111755371,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 437760,
+        "event_count": 85,
+        "latency": {
+          "speech_ms": 614.729248046875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.261165294416728,
+      "input_chunk": {
+        "role": "user",
+        "content": "Choose Second Class seat.",
+        "timestamp": 27.261165294416728,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 73800
+      },
+      "assistant_response": "All set. The train ticket has been successfully booked for Zhang Wei. Here are the details: the booking ID is TR40001 for the D321 train on May 6th, 2026. You have a confirmed second-class seat, number 01F.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_1a858ba36f834ff2b3867893",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_003",
+                "date": "2026-05-06",
+                "passenger_name": "Zhang Wei",
+                "seat_class": "Second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "All set. The train ticket has been successfully booked for Zhang Wei. Here are the details: the booking ID is TR40001 for the D321 train on May 6th, 2026. You have a confirmed second-class seat, number 01F.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_1a858ba36f834ff2b3867893",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_003",
+            "date": "2026-05-06",
+            "passenger_name": "Zhang Wei",
+            "seat_class": "Second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_003\nDate: 2026-05-06\nPassenger: Zhang Wei\nSeat: Second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_003",
+              "date": "2026-05-06",
+              "passenger_name": "Zhang Wei",
+              "seat_class": "Second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.06198883056640625
+          },
+          "latency_ms": 0.06198883056640625
+        }
+      ],
+      "total_latency_ms": 7233.018159866333,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 683520,
+        "event_count": 160,
+        "latency": {
+          "speech_ms": 2265.171630859375,
+          "tool_call_ms": 1510.29296875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 9,
+    "total_tool_calls": 2
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "qwen",
+    "tts_voice": "Ethan",
+    "realtime_model": "qwen3.5-omni-plus-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 2029.873779296875,
+        "tool_call_ms": 1163.798828125
+      },
+      "book_train": {
+        "speech_ms": 2265.171630859375,
+        "tool_call_ms": 1510.29296875
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 3,
+      "book_train": 6
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": "base[tool+timing OK] + priority[respected cancel]",
+    "attribution": {
+      "errors": [],
+      "error_types": {}
+    }
+  }
+}

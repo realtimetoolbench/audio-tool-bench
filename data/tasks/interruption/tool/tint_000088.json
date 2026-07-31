@@ -1,0 +1,141 @@
+{
+  "task_id": "tint_000088",
+  "description": "Interruption (tool_cancel): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search movies in Chongqing for 2026-04-02, evening showtimes. Also plan a restaurant booking after that.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-04-02",
+          "search_restaurants.city=Chongqing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Cancel the movie search. Skip all movie ticket steps.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_movies",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chongqing for a group dinner.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 14.298110185337258
+    },
+    {
+      "speaker": "user",
+      "text": "Book a table at Liuyishou Hotpot.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 19.435525760409085
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation date to 2026-04-02 and time to 19:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 24.063814430103236
+    },
+    {
+      "speaker": "user",
+      "text": "Party size is 10. Use contact name Gao Yan.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Gao Yan",
+          "book_restaurant.party_size=10"
+        ]
+      },
+      "timestamp": 29.604127388564525
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone number 13855667788. Confirm the reservation.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13855667788"
+        ]
+      },
+      "timestamp": 34.62923297215245
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chongqing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cq_001",
+        "date": "2026-04-02",
+        "time": "19:00",
+        "party_size": 10,
+        "contact_name": "Gao Yan",
+        "phone": "13855667788"
+      }
+    }
+  ],
+  "transcript_hash": "eccd73074556",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "date",
+    "generated": true,
+    "dangling_call": "search_movies",
+    "forbidden_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ]
+  },
+  "forbidden_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "cancelled_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "task_id": "int_000052",
+  "description": "Interruption (correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shenzhen.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_flights.origin=Beijing",
+          "search_restaurants.city=Shenzhen"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shenzhen, I meant Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shenzhen",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_flights.destination=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight CA1456 on 2026-04-10.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-04-10"
+        ]
+      },
+      "timestamp": 9.245555372742881
+    },
+    {
+      "speaker": "user",
+      "text": "Passenger name Liu Yang; airline Air China.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.passenger_name=Liu Yang"
+        ]
+      },
+      "timestamp": 13.700736811588225
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shenzhen.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 18.8376940932557
+    },
+    {
+      "speaker": "user",
+      "text": "Book Jiang Hotpot Shenzhen on 2026-03-16 at 20:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-16",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 23.844216896131837
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 4; contact name Hu Bin; phone 13830018365.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Hu Bin",
+          "book_restaurant.party_size=4",
+          "book_restaurant.phone=13830018365"
+        ]
+      },
+      "timestamp": 29.28179670140507
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Nanjing, then book Hanting Hotel Xuanwu for Qiu Lan checking in 2026-03-19 for 1 night.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-19",
+          "book_hotel.guest_name=Qiu Lan",
+          "book_hotel.nights=1",
+          "search_hotels.city=Nanjing"
+        ]
+      },
+      "timestamp": 35.27694149845093
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_003",
+        "date": "2026-04-10",
+        "passenger_name": "Liu Yang"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sz_003",
+        "date": "2026-03-16",
+        "time": "20:00",
+        "party_size": 4,
+        "contact_name": "Hu Bin",
+        "phone": "13830018365"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_nj_004",
+        "checkin_date": "2026-03-19",
+        "nights": 1,
+        "guest_name": "Qiu Lan"
+      }
+    }
+  ],
+  "transcript_hash": "570db858f9db",
+  "info_complete_turn": {
+    "search_flights": 2,
+    "book_flight": 4,
+    "search_restaurants": 1,
+    "book_restaurant": 7,
+    "search_hotels": 8,
+    "book_hotel": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": "business_trip",
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_flights",
+      "param": "destination",
+      "wrong_value": "Shenzhen"
+    }
+  }
+}

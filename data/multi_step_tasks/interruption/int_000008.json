@@ -1,0 +1,157 @@
+{
+  "task_id": "int_000008",
+  "description": "Interruption (redirection): 5 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "pay_bill",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book train G1 for Zhou Jun.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_train.passenger_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 4.481868922626572
+    },
+    {
+      "speaker": "user",
+      "text": "Set the seat class to First Class.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 8.437633572800507
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search movies in Chengdu, then book movie YOLO at Wanda Cinema Jinhua.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "book_movie_ticket.cinema=Wanda Cinema Jinhua",
+          "search_movies.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "train",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Set the showtime to 20:30 and seat count to 3.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.seat_count=3",
+          "book_movie_ticket.showtime=20:30"
+        ]
+      },
+      "timestamp": 21.19231613654065
+    },
+    {
+      "speaker": "user",
+      "text": "Use buyer name Li Na and pay bill BILL20260215003.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Li Na",
+          "pay_bill.bill_id=BILL20260215003"
+        ]
+      },
+      "timestamp": 26.147310624485968
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the train—continue the booking.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 31.250531067468366
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cd_002",
+        "cinema": "Wanda Cinema Jinhua",
+        "showtime": "20:30",
+        "seat_count": 3,
+        "buyer_name": "Li Na"
+      }
+    },
+    {
+      "tool": "pay_bill",
+      "params": {
+        "bill_id": "BILL20260215003"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_001",
+        "date": "2026-03-05",
+        "passenger_name": "Zhou Jun",
+        "seat_class": "First Class"
+      }
+    }
+  ],
+  "transcript_hash": "9492d678eee6",
+  "info_complete_turn": {
+    "search_movies": 4,
+    "book_movie_ticket": 6,
+    "pay_bill": 6,
+    "search_trains": 1,
+    "book_train": 3
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "train",
+    "generated": true
+  }
+}

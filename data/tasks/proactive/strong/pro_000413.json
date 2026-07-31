@@ -1,0 +1,197 @@
+{
+  "task_id": "pro_000413",
+  "description": "Generated: 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’ve got that little work trip coming up—starting out in Beijing and heading to Shanghai.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Somewhere in the middle of all that, I’m also planning a day over in Nanjing for food and wandering around.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_restaurants.city=Nanjing"
+        ]
+      },
+      "timestamp": 7.478485101349573
+    },
+    {
+      "speaker": "user",
+      "text": "And yeah, I’m staying in Shanghai for the main part of it, so I’ve been thinking through the hotel situation there too.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 15.94522572114666
+    },
+    {
+      "speaker": "user",
+      "text": "For the flight piece, it’s Air China, flight CA1456 on 2026-03-05, and it’s under Mia Anderson.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-03-05",
+          "book_flight.passenger_name=Mia Anderson"
+        ]
+      },
+      "timestamp": 24.68156849698937
+    },
+    {
+      "speaker": "user",
+      "text": "Hotel-wise I’m at the Pudong Shangri-La—checking in 2026-03-03 for 3 nights, and the guest name is Zhao Min.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-03",
+          "book_hotel.guest_name=Zhao Min",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 32.89059358398187
+    },
+    {
+      "speaker": "user",
+      "text": "Then in Nanjing we’re doing Lao Men Dong Restaurant on 2026-03-20 at 11:30, party of 7.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.date=2026-03-20",
+          "book_restaurant.party_size=7",
+          "book_restaurant.time=11:30"
+        ]
+      },
+      "timestamp": 40.839676860910686
+    },
+    {
+      "speaker": "user",
+      "text": "It’s all under Chen Ming, and the contact number I’m using is 13866778899—anyway I’m still figuring out how tight the timing is between all these stops and—",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_restaurant.contact_name=Chen Ming",
+          "book_restaurant.phone=13866778899"
+        ]
+      },
+      "timestamp": 48.49485623541718
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_003",
+        "date": "2026-03-05",
+        "passenger_name": "Mia Anderson"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_nj_002",
+        "date": "2026-03-20",
+        "time": "11:30",
+        "party_size": 7,
+        "contact_name": "Chen Ming",
+        "phone": "13866778899"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_002",
+        "checkin_date": "2026-03-03",
+        "nights": 3,
+        "guest_name": "Zhao Min"
+      }
+    }
+  ],
+  "transcript_hash": "fcd1a670622b",
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "business_trip",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_flights": 1,
+    "book_flight": 4,
+    "search_restaurants": 2,
+    "book_restaurant": 7,
+    "search_hotels": 3,
+    "book_hotel": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’ve got that little work trip coming up",
+      "heading to Shanghai",
+      "I’m staying in Shanghai",
+      "it’s under Mia Anderson",
+      "checking in 2026-03-03 for 3 nights",
+      "we’re doing Lao Men Dong Restaurant on 2026-03-20 at 11:30"
+    ],
+    "ambiguity_notes": "Strong intent: the user narrates confirmed upcoming travel, lodging, and dining plans with specific dates, names, and IDs; no requests or authorization phrasing."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_flights",
+      "search_hotels",
+      "search_restaurants"
+    ],
+    "write_tools": [
+      "book_flight",
+      "book_hotel",
+      "book_restaurant"
+    ]
+  },
+  "expected_tool_if_act": "search_flights",
+  "expected_params_if_act": {
+    "origin": "Beijing",
+    "destination": "Shanghai"
+  }
+}

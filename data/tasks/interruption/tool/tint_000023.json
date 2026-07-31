@@ -1,0 +1,221 @@
+{
+  "task_id": "tint_000023",
+  "description": "Interruption (priority_late_return): 7 tools, 10 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train",
+    "search_hotels",
+    "book_hotel",
+    "track_package"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search attractions in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait—track my package first. Use tracking number SF1234567890.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "track_package.tracking_number=SF1234567890"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_attractions",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book an attraction ticket for attraction ID Summer Palace.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 15.238849860249553
+    },
+    {
+      "speaker": "user",
+      "text": "Set the ticket date to 2026-03-04 and the time slot to morning.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-04",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 20.891314122753943
+    },
+    {
+      "speaker": "user",
+      "text": "Use visitor name Liu Yang and ticket count 1.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=1",
+          "book_attraction_ticket.visitor_name=Liu Yang"
+        ]
+      },
+      "timestamp": 27.103095235111883
+    },
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 32.020137052693435
+    },
+    {
+      "speaker": "user",
+      "text": "Book train G3 on 2026-03-13 for passenger Zhou Jun.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_train.date=2026-03-13",
+          "book_train.passenger_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 36.722505076810265
+    },
+    {
+      "speaker": "user",
+      "text": "Seat class First Class. Then search hotels in Hangzhou.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_train.seat_class=First Class",
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 42.57187737040366
+    },
+    {
+      "speaker": "user",
+      "text": "Book hotel West Lake State Guesthouse. Check in 2026-03-20 for 2 nights under guest name Wang Fang.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-20",
+          "book_hotel.guest_name=Wang Fang",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 48.63930106434166
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "track_package",
+      "params": {
+        "tracking_number": "SF1234567890"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_003",
+        "date": "2026-03-04",
+        "time_slot": "morning",
+        "visitor_name": "Liu Yang",
+        "ticket_count": 1
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-13",
+        "passenger_name": "Zhou Jun",
+        "seat_class": "First Class"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_001",
+        "checkin_date": "2026-03-20",
+        "nights": 2,
+        "guest_name": "Wang Fang"
+      }
+    }
+  ],
+  "transcript_hash": "32d604ababb0",
+  "info_complete_turn": {
+    "track_package": 2,
+    "search_attractions": 1,
+    "book_attraction_ticket": 6,
+    "search_trains": 7,
+    "book_train": 9,
+    "search_hotels": 9,
+    "book_hotel": 10
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "track_package"
+  ]
+}

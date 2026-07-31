@@ -1,0 +1,175 @@
+{
+  "task_id": "tint_000101",
+  "description": "Interruption (priority_late_return): 5 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "list_bills",
+    "search_restaurants_delivery",
+    "place_food_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search attractions in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_attractions.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search delivery restaurants in Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants_delivery.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_attractions",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Place a delivery order from Bo Bo Chicken.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 10.453001373645261
+    },
+    {
+      "speaker": "user",
+      "text": "Order Mapo Tofu and Rice.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.items=Mapo Tofu and Rice"
+        ]
+      },
+      "timestamp": 15.913934672289676
+    },
+    {
+      "speaker": "user",
+      "text": "Deliver to Room 1505, Building I, Silver Creek Residence. Use 13892862812.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 1505, Building I, Silver Creek Residence",
+          "place_food_order.phone=13892862812"
+        ]
+      },
+      "timestamp": 19.945907268407957
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 ticket for Shanghai Disneyland for Zhao Min on 2026-04-02.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-04-02",
+          "book_attraction_ticket.ticket_count=1",
+          "book_attraction_ticket.visitor_name=Zhao Min"
+        ]
+      },
+      "timestamp": 31.564436047330627
+    },
+    {
+      "speaker": "user",
+      "text": "Set the time slot to morning, then list my bills.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 37.60407778569914
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_cd_002",
+        "items": "Mapo Tofu and Rice",
+        "delivery_address": "Room 1505, Building I, Silver Creek Residence",
+        "phone": "13892862812"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_sh_002",
+        "date": "2026-04-02",
+        "time_slot": "morning",
+        "visitor_name": "Zhao Min",
+        "ticket_count": 1
+      }
+    },
+    {
+      "tool": "list_bills",
+      "params": {}
+    }
+  ],
+  "transcript_hash": "85edc86ef0bd",
+  "info_complete_turn": {
+    "search_restaurants_delivery": 2,
+    "place_food_order": 5,
+    "search_attractions": 1,
+    "book_attraction_ticket": 8,
+    "list_bills": 1
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "inserted_tools": [
+      "search_restaurants_delivery",
+      "place_food_order"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "search_restaurants_delivery",
+    "place_food_order"
+  ]
+}

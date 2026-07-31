@@ -1,0 +1,164 @@
+{
+  "task_id": "int_000041",
+  "description": "Interruption (redirection): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_doctors",
+    "book_appointment",
+    "search_movies",
+    "book_movie_ticket",
+    "search_books",
+    "reserve_book"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search books for the title \"Deep Learning\".",
+      "metadata": {
+        "phase": "original"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Reserve the book for reader Tang Xue.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "reserve_book.reader_name=Tang Xue"
+        ]
+      },
+      "timestamp": 4.87264138813977
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search doctors in Shenzhen.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_doctors.city=Shenzhen"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "book",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book an appointment with doctor He Ling on 2026-05-09.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.date=2026-05-09"
+        ]
+      },
+      "timestamp": 14.67985041996907
+    },
+    {
+      "speaker": "user",
+      "text": "Use the afternoon time slot and set the patient name to Sophia Garcia.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_appointment.patient_name=Sophia Garcia",
+          "book_appointment.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 20.69205689058441
+    },
+    {
+      "speaker": "user",
+      "text": "Search movies in Shanghai, then book 2 tickets for Dune 2 at SFC Cinema for 17:00, buyer Cao Yun.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Cao Yun",
+          "book_movie_ticket.cinema=SFC Cinema",
+          "book_movie_ticket.seat_count=2",
+          "book_movie_ticket.showtime=17:00",
+          "search_movies.city=Shanghai"
+        ]
+      },
+      "timestamp": 26.86178716640265
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the book—continue.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 34.852479966527646
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_sz_002",
+        "date": "2026-05-09",
+        "time_slot": "afternoon",
+        "patient_name": "Sophia Garcia"
+      }
+    },
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_sh_003",
+        "cinema": "SFC Cinema",
+        "showtime": "17:00",
+        "seat_count": 2,
+        "buyer_name": "Cao Yun"
+      }
+    },
+    {
+      "tool": "search_books",
+      "params": {}
+    },
+    {
+      "tool": "reserve_book",
+      "params": {
+        "book_id": "ISBN9787020008735",
+        "reader_name": "Tang Xue"
+      }
+    }
+  ],
+  "transcript_hash": "f83f97f9ce12",
+  "info_complete_turn": {
+    "search_doctors": 3,
+    "book_appointment": 5,
+    "search_movies": 6,
+    "book_movie_ticket": 6,
+    "search_books": 1,
+    "reserve_book": 2
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "book",
+    "template": null,
+    "generated": true
+  }
+}

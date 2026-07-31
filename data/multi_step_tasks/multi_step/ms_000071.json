@@ -1,0 +1,226 @@
+{
+  "task_id": "ms_000071",
+  "scenario_type": "multi_step",
+  "server": "instacart",
+  "template": "full_grocery_8",
+  "description": "Search stores, products, create cart, add items, get delivery windows, list addr+pay, checkout, get status",
+  "tools": [
+    "search_stores",
+    "search_products",
+    "create_cart",
+    "add_to_cart",
+    "get_delivery_windows",
+    "list_addresses",
+    "list_payment_methods",
+    "checkout"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I'm looking for stores that deliver around Union Square in San Francisco.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_stores"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you find milk at that first store you found near Union Square?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_products"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Great, create a cart for that same store so I can add items.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_cart"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add three cartons of milk to my cart, please.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_to_cart"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me the available delivery windows for that store near Union Square.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_delivery_windows"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Use my default address for delivery.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_addresses"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Use my primary payment method on file.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_payment_methods"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Go ahead and checkout with my cart, default address, primary payment method, and the earliest delivery window.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "checkout"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_stores",
+      "params": {
+        "location": {
+          "lat": 37.7749,
+          "lng": -122.4194
+        }
+      },
+      "param_source": {
+        "location": "user"
+      }
+    },
+    {
+      "tool": "search_products",
+      "params": {
+        "query": "milk",
+        "store_id": "IC-STORE-001"
+      },
+      "param_source": {
+        "query": "user",
+        "store_id": {
+          "from_tool": "search_stores",
+          "field": "store_id"
+        }
+      }
+    },
+    {
+      "tool": "create_cart",
+      "params": {
+        "store_id": "IC-STORE-001"
+      },
+      "param_source": {
+        "store_id": {
+          "from_tool": "search_stores",
+          "field": "store_id"
+        }
+      }
+    },
+    {
+      "tool": "add_to_cart",
+      "params": {
+        "cart_id": "cart_1",
+        "product_id": "IC-PROD-1003",
+        "quantity": 3
+      },
+      "param_source": {
+        "cart_id": {
+          "from_tool": "create_cart",
+          "field": "$"
+        },
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        },
+        "quantity": "user"
+      }
+    },
+    {
+      "tool": "get_delivery_windows",
+      "params": {
+        "store_id": "IC-STORE-001"
+      },
+      "param_source": {
+        "store_id": {
+          "from_tool": "search_stores",
+          "field": "store_id"
+        }
+      }
+    },
+    {
+      "tool": "list_addresses",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "list_payment_methods",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "checkout",
+      "params": {
+        "cart_id": "cart_1",
+        "address_id": "IC-ADDR-001",
+        "payment_method_id": "IC-PAY-001",
+        "delivery_window_id": "IC-DW-001A"
+      },
+      "param_source": {
+        "cart_id": {
+          "from_tool": "create_cart",
+          "field": "$"
+        },
+        "address_id": {
+          "from_tool": "list_addresses",
+          "field": "address_id"
+        },
+        "payment_method_id": {
+          "from_tool": "list_payment_methods",
+          "field": "payment_method_id"
+        },
+        "delivery_window_id": {
+          "from_tool": "get_delivery_windows",
+          "field": "window_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 8,
+  "info_complete_turn": {
+    "search_stores": 1,
+    "search_products": 2,
+    "create_cart": 2,
+    "add_to_cart": 4,
+    "get_delivery_windows": 4,
+    "list_addresses": 4,
+    "list_payment_methods": 4,
+    "checkout": 4
+  }
+}

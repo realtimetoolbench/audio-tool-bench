@@ -1,0 +1,677 @@
+{
+  "task_name": "tint_000052",
+  "start_time": "2026-07-29T01:38:53.160733",
+  "end_time": "2026-07-29T01:41:30.743441",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 113400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_s9z59EWyoTtP5xgF",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5719.897985458374,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 25,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search doctors in Chongqing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_doctors.city=Chongqing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 133200
+      },
+      "assistant_response": "I found one doctor in Chongqing: Dr. Peng Hui, a Chief Physician specializing in Gastroenterology at The First Affiliated Hospital of Chongqing Medical University. He has 18 years of experience, a 4.7/5.0 rating, and availability on 2026-05-09 and 2026-05-15. \n\nAlso, I'm still waiting on the train search results from Beijing to Shanghai, and I'll share those with you as soon as I have them.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_EAvH3wos1VU5b5Ik",
+              "name": "search_doctors",
+              "arguments": {
+                "city": "Chongqing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found one doctor in Chongqing: Dr. Peng Hui, a Chief Physician specializing in Gastroenterology at The First Affiliated Hospital of Chongqing Medical University. He has 18 years of experience, a 4.7/5.0 rating, and availability on 2026-05-09 and 2026-05-15. \n\nAlso, I'm still waiting on the train search results from Beijing to Shanghai, and I'll share those with you as soon as I have them.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_EAvH3wos1VU5b5Ik",
+          "tool_name": "search_doctors",
+          "arguments": {
+            "city": "Chongqing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 doctors in Chongqing:\n\n1. Dr. Peng Hui (ID: doc_cq_001)\n   Hospital: The First Affiliated Hospital of Chongqing Medical University\n   Department: Internal Medicine\n   Specialty: Gastroenterology\n   Title: Chief Physician\n   Rating: 4.7/5.0\n   Experience: 18 years\n   Available: 2026-05-09, 2026-05-15\n\n",
+            "raw_output": [
+              {
+                "doctor_id": "doc_cq_001",
+                "name": "Peng Hui",
+                "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Gastroenterology",
+                "rating": 4.7,
+                "experience_years": 18,
+                "available_dates": [
+                  "2026-05-09",
+                  "2026-05-15"
+                ]
+              }
+            ],
+            "error": null,
+            "count": 1,
+            "doctors": [
+              {
+                "doctor_id": "doc_cq_001",
+                "name": "Peng Hui",
+                "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Gastroenterology",
+                "rating": 4.7,
+                "experience_years": 18,
+                "available_dates": [
+                  "2026-05-09",
+                  "2026-05-15"
+                ]
+              }
+            ],
+            "latency_ms": 0.09489059448242188
+          },
+          "latency_ms": 0.09489059448242188
+        }
+      ],
+      "total_latency_ms": 17575.40488243103,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1231200,
+        "event_count": 199,
+        "latency": {
+          "speech_ms": 2920.318115234375,
+          "tool_call_ms": 460.285888671875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.330363986513488,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book an appointment with doctor Peng Hui.",
+        "timestamp": 10.330363986513488,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 115800
+      },
+      "assistant_response": "Sure, I can help with that. Could you let me know which of the two available dates—2026-05-09 or 2026-05-15—works better for you, and whether you'd prefer a morning or afternoon time slot?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help with that. Could you let me know which of the two available dates—2026-05-09 or 2026-05-15—works better for you, and whether you'd prefer a morning or afternoon time slot?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 14714.395999908447,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 561600,
+        "event_count": 97,
+        "latency": {
+          "speech_ms": 2570.46484375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.809507164115896,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the appointment for 2026-05-15 in the morning.",
+        "timestamp": 15.809507164115896,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.date=2026-05-15",
+            "book_appointment.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 213600
+      },
+      "assistant_response": "I'll also need the patient's name to complete the booking. Could you provide that?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'll also need the patient's name to complete the booking. Could you provide that?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10948.866128921509,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 168000,
+        "event_count": 42,
+        "latency": {
+          "speech_ms": 4236.820068359375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.00609269188492,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use patient name Emma Taylor for the appointment.",
+        "timestamp": 21.00609269188492,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.patient_name=Emma Taylor"
+          ]
+        },
+        "audio_size_bytes": 145800
+      },
+      "assistant_response": "Your appointment with Dr. Peng Hui has been successfully booked for Emma Taylor on the morning of 2026-05-15 at The First Affiliated Hospital of Chongqing Medical University. Your queue number is 40, and the status is confirmed. Please let me know if there's anything else I can do for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_NhYhxgRpJsZN0ODI",
+              "name": "book_appointment",
+              "arguments": {
+                "doctor_id": "doc_cq_001",
+                "date": "2026-05-15",
+                "time_slot": "morning",
+                "patient_name": "Emma Taylor"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your appointment with Dr. Peng Hui has been successfully booked for Emma Taylor on the morning of 2026-05-15 at The First Affiliated Hospital of Chongqing Medical University. Your queue number is 40, and the status is confirmed. Please let me know if there's anything else I can do for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_NhYhxgRpJsZN0ODI",
+          "tool_name": "book_appointment",
+          "arguments": {
+            "doctor_id": "doc_cq_001",
+            "date": "2026-05-15",
+            "time_slot": "morning",
+            "patient_name": "Emma Taylor"
+          },
+          "result": {
+            "success": true,
+            "output": "Doctor appointment booked successfully!\n\nAppointment ID: 0CU49UKK5C\nDoctor ID: doc_cq_001\nDoctor: Peng Hui\nHospital: The First Affiliated Hospital of Chongqing Medical University\nDepartment: Internal Medicine\nDate: 2026-05-15\nTime slot: morning\nPatient: Emma Taylor\nQueue number: 40\nStatus: Confirmed\n",
+            "raw_output": {
+              "appointment_id": "0CU49UKK5C",
+              "doctor_id": "doc_cq_001",
+              "doctor_name": "Peng Hui",
+              "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+              "department": "Internal Medicine",
+              "date": "2026-05-15",
+              "time_slot": "morning",
+              "patient_name": "Emma Taylor",
+              "patient_phone": null,
+              "id_number": null,
+              "symptoms": "Not provided",
+              "status": "Confirmed",
+              "queue_number": 40
+            },
+            "error": null,
+            "latency_ms": 0.17213821411132812,
+            "message": "Appointment booked successfully",
+            "appointment": {
+              "appointment_id": "0CU49UKK5C",
+              "doctor_id": "doc_cq_001",
+              "doctor_name": "Peng Hui",
+              "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+              "department": "Internal Medicine",
+              "date": "2026-05-15",
+              "time_slot": "morning",
+              "patient_name": "Emma Taylor",
+              "patient_phone": null,
+              "id_number": null,
+              "symptoms": "Not provided",
+              "status": "Confirmed",
+              "queue_number": 40
+            }
+          },
+          "latency_ms": 0.17213821411132812
+        }
+      ],
+      "total_latency_ms": 34943.26400756836,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 808800,
+        "event_count": 171,
+        "latency": {
+          "speech_ms": 5242.392822265625,
+          "tool_call_ms": 2816.298095703125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 93000
+      },
+      "assistant_response": "I'm still waiting for the train search results to come through. It shouldn't be much longer—as soon as I have the details, I'll share them with you right away. Thank you for your patience!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'm still waiting for the train search results to come through. It shouldn't be much longer—as soon as I have the details, I'll share them with you right away. Thank you for your patience!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 19169.15798187256,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 427200,
+        "event_count": 79,
+        "latency": {
+          "speech_ms": 4332.55517578125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.771874387395176,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 for 2026-04-22 for passenger Song Qi.",
+        "timestamp": 30.771874387395176,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-04-22",
+            "book_train.passenger_name=Song Qi"
+          ]
+        },
+        "audio_size_bytes": 232800
+      },
+      "assistant_response": "I'm still waiting on the train search results, so I don't have a train ID for G3 yet. Once I have the list of available trains, I can confirm the train ID and proceed with booking your ticket for 2026-04-27 under the passenger name Song Qi. Thanks for your patience while I wait for those results!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'm still waiting on the train search results, so I don't have a train ID for G3 yet. Once I have the list of available trains, I can confirm the train ID and proceed with booking your ticket for 2026-04-27 under the passenger name Song Qi. Thanks for your patience while I wait for those results!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 19728.445768356323,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 852000,
+        "event_count": 130,
+        "latency": {
+          "speech_ms": 2480.9951171875
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.755782829284364,
+      "input_chunk": {
+        "role": "user",
+        "content": "Choose Second Class, then list bills.",
+        "timestamp": 36.755782829284364,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 103800
+      },
+      "assistant_response": "Here are the bills I found for you:\n\n1. Electricity from State Grid, account 1234567890, amount 156.8, due 2026-03-09, unpaid, billing period 2026-01.\n\n2. Water from Water Company, account 9876543210, amount 45.2, due 2026-03-06, unpaid, billing period 2026-01.\n\n3. Gas from Gas Group, account 5555666677, amount 89.5, due 2026-03-14, unpaid, billing period 2026-01.\n\n4. Electricity from State Grid, account 1234567890, amount 142.3, due 2026-01-28, status Paid, billing period 2025-12, paid on 2026-01-20.\n\n5. Internet from China Telecom, account 1111222233, amount 129.0, due 2026-03-02, unpaid, billing period 2026-02.\n\nAnd as soon as I get the train details, I'll book that second class ticket for you on G3 with passenger Song Qi for 2026-04-27.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_YJpCcq4Zceav9Kz8",
+              "name": "list_bills",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are the bills I found for you:\n\n1. Electricity from State Grid, account 1234567890, amount 156.8, due 2026-03-09, unpaid, billing period 2026-01.\n\n2. Water from Water Company, account 9876543210, amount 45.2, due 2026-03-06, unpaid, billing period 2026-01.\n\n3. Gas from Gas Group, account 5555666677, amount 89.5, due 2026-03-14, unpaid, billing period 2026-01.\n\n4. Electricity from State Grid, account 1234567890, amount 142.3, due 2026-01-28, status Paid, billing period 2025-12, paid on 2026-01-20.\n\n5. Internet from China Telecom, account 1111222233, amount 129.0, due 2026-03-02, unpaid, billing period 2026-02.\n\nAnd as soon as I get the train details, I'll book that second class ticket for you on G3 with passenger Song Qi for 2026-04-27.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_YJpCcq4Zceav9Kz8",
+          "tool_name": "list_bills",
+          "arguments": {},
+          "result": {
+            "success": true,
+            "count": 5,
+            "bills": [
+              {
+                "bill_id": "DL20260219001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 156.8,
+                "due_date": "2026-03-09",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215002",
+                "bill_type": "Water",
+                "company": "Water Company",
+                "account_number": "9876543210",
+                "amount": 45.2,
+                "due_date": "2026-03-06",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260215003",
+                "bill_type": "Gas",
+                "company": "Gas Group",
+                "account_number": "5555666677",
+                "amount": 89.5,
+                "due_date": "2026-03-14",
+                "status": "Unpaid",
+                "billing_period": "2026-01"
+              },
+              {
+                "bill_id": "BILL20260115001",
+                "bill_type": "Electricity",
+                "company": "State Grid",
+                "account_number": "1234567890",
+                "amount": 142.3,
+                "due_date": "2026-01-28",
+                "status": "Paid",
+                "billing_period": "2025-12",
+                "payment_date": "2026-01-20"
+              },
+              {
+                "bill_id": "BILL20260215004",
+                "bill_type": "Internet",
+                "company": "China Telecom",
+                "account_number": "1111222233",
+                "amount": 129.0,
+                "due_date": "2026-03-02",
+                "status": "Unpaid",
+                "billing_period": "2026-02"
+              }
+            ],
+            "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]",
+            "raw_output": {
+              "success": true,
+              "count": 5,
+              "bills": [
+                {
+                  "bill_id": "DL20260219001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 156.8,
+                  "due_date": "2026-03-09",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215002",
+                  "bill_type": "Water",
+                  "company": "Water Company",
+                  "account_number": "9876543210",
+                  "amount": 45.2,
+                  "due_date": "2026-03-06",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260215003",
+                  "bill_type": "Gas",
+                  "company": "Gas Group",
+                  "account_number": "5555666677",
+                  "amount": 89.5,
+                  "due_date": "2026-03-14",
+                  "status": "Unpaid",
+                  "billing_period": "2026-01"
+                },
+                {
+                  "bill_id": "BILL20260115001",
+                  "bill_type": "Electricity",
+                  "company": "State Grid",
+                  "account_number": "1234567890",
+                  "amount": 142.3,
+                  "due_date": "2026-01-28",
+                  "status": "Paid",
+                  "billing_period": "2025-12",
+                  "payment_date": "2026-01-20"
+                },
+                {
+                  "bill_id": "BILL20260215004",
+                  "bill_type": "Internet",
+                  "company": "China Telecom",
+                  "account_number": "1111222233",
+                  "amount": 129.0,
+                  "due_date": "2026-03-02",
+                  "status": "Unpaid",
+                  "billing_period": "2026-02"
+                }
+              ],
+              "output": "找到 5 个结果。\n\n[\n  {\n    \"bill_id\": \"DL20260219001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 156.8,\n    \"due_date\": \"2026-03-09\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215002\",\n    \"bill_type\": \"Water\",\n    \"company\": \"Water Company\",\n    \"account_number\": \"9876543210\",\n    \"amount\": 45.2,\n    \"due_date\": \"2026-03-06\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260215003\",\n    \"bill_type\": \"Gas\",\n    \"company\": \"Gas Group\",\n    \"account_number\": \"5555666677\",\n    \"amount\": 89.5,\n    \"due_date\": \"2026-03-14\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-01\"\n  },\n  {\n    \"bill_id\": \"BILL20260115001\",\n    \"bill_type\": \"Electricity\",\n    \"company\": \"State Grid\",\n    \"account_number\": \"1234567890\",\n    \"amount\": 142.3,\n    \"due_date\": \"2026-01-28\",\n    \"status\": \"Paid\",\n    \"billing_period\": \"2025-12\",\n    \"payment_date\": \"2026-01-20\"\n  },\n  {\n    \"bill_id\": \"BILL20260215004\",\n    \"bill_type\": \"Internet\",\n    \"company\": \"China Telecom\",\n    \"account_number\": \"1111222233\",\n    \"amount\": 129.0,\n    \"due_date\": \"2026-03-02\",\n    \"status\": \"Unpaid\",\n    \"billing_period\": \"2026-02\"\n  }\n]"
+            },
+            "error": null,
+            "latency_ms": 0.053882598876953125
+          },
+          "latency_ms": 0.053882598876953125
+        }
+      ],
+      "total_latency_ms": 34775.07305145264,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 3585600,
+        "event_count": 466,
+        "latency": {
+          "speech_ms": 7467.893798828125,
+          "tool_call_ms": 4655.26171875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 12,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_trains",
+    "inserted_tools": [
+      "search_doctors",
+      "book_appointment"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_doctors": {
+        "speech_ms": 2920.318115234375,
+        "tool_call_ms": 460.285888671875
+      },
+      "book_appointment": {
+        "speech_ms": 5242.392822265625,
+        "tool_call_ms": 2816.298095703125
+      },
+      "book_train": {
+        "speech_ms": 7467.893798828125,
+        "tool_call_ms": 4655.26171875
+      }
+    },
+    "info_complete_turn": {
+      "search_doctors": 2,
+      "book_appointment": 5,
+      "search_trains": 1,
+      "book_train": 8,
+      "list_bills": 1
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'list_bills', 'book_appointment', 'search_doctors', 'search_trains', 'book_train'}，实际: {'list_bills', 'book_appointment', 'search_doctors'}，缺失: {'book_train', 'search_trains'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 7,
+    "extra_turns_details": "list_bills: +7 turns (info@1, call@8)",
+    "behavior_score": 0.6,
+    "behavior_score_details": "search_doctors: 1(correct), book_appointment: 1(correct), search_trains: 0(not_called), book_train: 0(not_called), list_bills: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "search_trains",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 2
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 1,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

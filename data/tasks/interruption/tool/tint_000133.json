@@ -1,0 +1,152 @@
+{
+  "task_id": "tint_000133",
+  "description": "Interruption (tool_correction): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_cars",
+    "book_car",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search cars in Chengdu. Pickup date 2026-03-25. Rental length 6 days.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_car.days=6",
+          "book_car.pickup_date=2026-03-25"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Chengdu, I meant Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_cars",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_cars.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use Shanghai for the car search. Book car Toyota Corolla. Renter name Sun Lei.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_car.renter_name=Sun Lei"
+        ]
+      },
+      "timestamp": 10.937698636702034
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Wuhan. Restaurant Yangtze River Restaurant. Dinner date 2026-03-17.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-17",
+          "search_restaurants.city=Wuhan"
+        ]
+      },
+      "timestamp": 17.533562308393186
+    },
+    {
+      "speaker": "user",
+      "text": "Book at 19:00. Party size 7. Contact name Isabella Jackson.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Isabella Jackson",
+          "book_restaurant.party_size=7",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 25.395059459445186
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13833445566 for the restaurant booking.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13833445566"
+        ]
+      },
+      "timestamp": 31.22535531151982
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_sh_001",
+        "pickup_date": "2026-03-25",
+        "days": 6,
+        "renter_name": "Sun Lei"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_wh_002",
+        "date": "2026-03-17",
+        "time": "19:00",
+        "party_size": 7,
+        "contact_name": "Isabella Jackson",
+        "phone": "13833445566"
+      }
+    }
+  ],
+  "transcript_hash": "3bd757f7e278",
+  "info_complete_turn": {
+    "search_cars": 2,
+    "book_car": 3,
+    "search_restaurants": 4,
+    "book_restaurant": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_cars",
+    "wrong_params": {
+      "search_cars.city": "Chengdu"
+    },
+    "corrected_params": {
+      "search_cars.city": "Shanghai"
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "task_name": "tint_000035",
+  "start_time": "2026-07-29T03:31:28.417355",
+  "end_time": "2026-07-29T03:32:06.235233",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for 2026-03-18 to 2026-03-20 for 1 adult, and also handle flights and a restaurant booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-03-18",
+            "book_restaurant.party_size=1",
+            "search_flights.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 502800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Bjts0MbKcp92qmvT",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-18"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10728.271961212158,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 39,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel search. Cancel anything related to hotels.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 168600
+      },
+      "assistant_response": "Got it! I'll drop the hotel search. We’ll focus on the flights and the restaurant booking. Just let me know the details for those—departure and arrival cities for the flight, preferred cabin class, and what kind of restaurant or cuisine you have in mind.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! I'll drop the hotel search. We’ll focus on the flights and the restaurant booking. Just let me know the details for those—departure and arrival cities for the flight, preferred cabin class, and what kind of restaurant or cuisine you have in mind.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4751.629829406738,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 669600,
+        "event_count": 124,
+        "latency": {
+          "speech_ms": 566.619140625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.176179561851058,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Suzhou.",
+        "timestamp": 14.176179561851058,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_restaurants.city=Suzhou"
+          ]
+        },
+        "audio_size_bytes": 86400
+      },
+      "assistant_response": "I found a couple of great spots in Suzhou!\n\nFirst, there’s Songhelou Restaurant in the Gusu district, known for its Jiangsu cuisine and a top rating of 4.7. \n\nSecond, there's Dexing Noodle House in Pingjiang, another Jiangsu gem with a 4.5 rating.\n\nWhich one are you feeling? Or do you want more details or a reservation?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_yAFGD83p5MeuJvoF",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Suzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found a couple of great spots in Suzhou!\n\nFirst, there’s Songhelou Restaurant in the Gusu district, known for its Jiangsu cuisine and a top rating of 4.7. \n\nSecond, there's Dexing Noodle House in Pingjiang, another Jiangsu gem with a 4.5 rating.\n\nWhich one are you feeling? Or do you want more details or a reservation?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_yAFGD83p5MeuJvoF",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Suzhou:\n\n1. Songhelou Restaurant (ID: rst_su_001)\n   Cuisine: Jiangsu\n   Location: Gusu\n   Rating: 4.7/5.0\n\n2. Dexing Noodle House (ID: rst_su_002)\n   Cuisine: Jiangsu\n   Location: Pingjiang\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_su_001",
+                "name": "Songhelou Restaurant",
+                "cuisine": "Jiangsu",
+                "location": "Gusu",
+                "rating": 4.7
+              },
+              {
+                "restaurant_id": "rst_su_002",
+                "name": "Dexing Noodle House",
+                "cuisine": "Jiangsu",
+                "location": "Pingjiang",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0247955322265625
+          },
+          "latency_ms": 0.0247955322265625
+        }
+      ],
+      "total_latency_ms": 7598.523855209351,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 888000,
+        "event_count": 195,
+        "latency": {
+          "speech_ms": 1624.323974609375,
+          "tool_call_ms": 835.130859375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 18.426575009861665,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Dexing Noodle House on 2026-04-18 at 20:00.",
+        "timestamp": 18.426575009861665,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-04-18",
+            "book_restaurant.time=20:00"
+          ]
+        },
+        "audio_size_bytes": 249600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3239.678144454956,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 23.973670272026403,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set party size to 1 and use contact name Olivia Brown.",
+        "timestamp": 23.973670272026403,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Olivia Brown"
+          ]
+        },
+        "audio_size_bytes": 170400
+      },
+      "assistant_response": "Sure thing! How many people should I",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure thing! How many people should I",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2418.7231063842773,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 48000,
+        "event_count": 28,
+        "latency": {
+          "speech_ms": 1.313232421875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.971081290035876,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13855667788 for the restaurant booking.",
+        "timestamp": 29.971081290035876,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.phone=13855667788"
+          ]
+        },
+        "audio_size_bytes": 244200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3195.9879398345947,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 35.85453938809131,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai for 2026-03-18.",
+        "timestamp": 35.85453938809131,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 234000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3086.721181869507,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 41.61044652074388,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight CA1456 on Air China for passenger Zhang Wei.",
+        "timestamp": 41.61044652074388,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.passenger_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 201000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2789.9088859558105,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 10,
+    "total_tool_calls": 1
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_restaurants": {
+        "speech_ms": 1624.323974609375,
+        "tool_call_ms": 835.130859375
+      }
+    },
+    "info_complete_turn": {
+      "search_restaurants": 3,
+      "book_restaurant": 6,
+      "search_flights": 7,
+      "book_flight": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'book_restaurant', 'search_restaurants', 'search_flights', 'book_flight'}，实际: {'search_restaurants'}，缺失: {'book_restaurant', 'search_flights', 'book_flight'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.25,
+    "behavior_score_details": "search_restaurants: 1(correct), book_restaurant: 0(not_called), search_flights: 0(not_called), book_flight: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_flights",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 3
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 3,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 3,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

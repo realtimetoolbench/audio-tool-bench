@@ -1,0 +1,263 @@
+{
+  "task_id": "tint_000105",
+  "description": "Interruption (priority_no_return): 8 tools, 12 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight",
+    "search_movies",
+    "book_movie_ticket",
+    "search_sports_events",
+    "book_sports_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search movies in Suzhou.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_movies.city=Suzhou"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie tickets for movie YOLO.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 8.826940331623106
+    },
+    {
+      "speaker": "user",
+      "text": "Use Jinyi Cinema Suzhou Center and set showtime to 17:00.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.cinema=Jinyi Cinema Suzhou Center",
+          "book_movie_ticket.showtime=17:00"
+        ]
+      },
+      "timestamp": 13.114300144838104
+    },
+    {
+      "speaker": "user",
+      "text": "Make it 2 seats, buyer name Mike Davis.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Mike Davis",
+          "book_movie_ticket.seat_count=2"
+        ]
+      },
+      "timestamp": 18.978362782260596
+    },
+    {
+      "speaker": "user",
+      "text": "Now search sports events in Shanghai.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_sports_events.city=Shanghai"
+        ]
+      },
+      "timestamp": 23.852403593742117
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 ticket for event CSL: Shanghai Port vs Shandong Taishan, Away Stand.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Away Stand",
+          "book_sports_ticket.ticket_count=1"
+        ]
+      },
+      "timestamp": 28.273774342751675
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Sun Lei, phone 13856781234, ID number 440106199512044567.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Sun Lei",
+          "book_sports_ticket.id_number=440106199512044567",
+          "book_sports_ticket.phone=13856781234"
+        ]
+      },
+      "timestamp": 35.37780876587341
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel The Peninsula Beijing for Deng Hui, check in 2026-03-14.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-14",
+          "book_hotel.guest_name=Deng Hui"
+        ]
+      },
+      "timestamp": 46.585049859568976
+    },
+    {
+      "speaker": "user",
+      "text": "Set the stay to 5 nights.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 53.30595462460257
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai, then book flight MU5678 on 2026-05-12 for Wu Qian with China Eastern.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-05-12",
+          "book_flight.passenger_name=Wu Qian",
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 57.35744813266036
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_su_002",
+        "cinema": "Jinyi Cinema Suzhou Center",
+        "showtime": "17:00",
+        "seat_count": 2,
+        "buyer_name": "Mike Davis"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_sh_002",
+        "seat_zone": "Away Stand",
+        "ticket_count": 1,
+        "buyer_name": "Sun Lei",
+        "phone": "13856781234",
+        "id_number": "440106199512044567"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_001",
+        "checkin_date": "2026-03-14",
+        "nights": 5,
+        "guest_name": "Deng Hui"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-05-12",
+        "passenger_name": "Wu Qian"
+      }
+    }
+  ],
+  "transcript_hash": "067bc620f430",
+  "info_complete_turn": {
+    "search_movies": 2,
+    "book_movie_ticket": 5,
+    "search_sports_events": 6,
+    "book_sports_ticket": 8,
+    "search_hotels": 1,
+    "book_hotel": 11,
+    "search_flights": 12,
+    "book_flight": 12
+  },
+  "metadata": {
+    "tool_count": 8,
+    "turn_count": 12,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "inserted_tools": [
+      "search_movies",
+      "book_movie_ticket",
+      "search_sports_events",
+      "book_sports_ticket"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "search_movies",
+    "book_movie_ticket",
+    "search_sports_events",
+    "book_sports_ticket"
+  ]
+}

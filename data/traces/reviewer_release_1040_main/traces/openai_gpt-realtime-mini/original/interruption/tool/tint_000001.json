@@ -1,0 +1,610 @@
+{
+  "task_name": "tint_000001",
+  "start_time": "2026-04-28T22:42:40.397098",
+  "end_time": "2026-04-28T22:43:21.379743",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Beijing; focus on stage play listings.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt"
+        },
+        "audio_size_bytes": 159600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_8Ghx4wgkR8r32GKp",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Beijing",
+                "show_type": "Theater"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6223.313093185425,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 30,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Beijing, I meant Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_shows",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_shows.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 97800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_s4gR4rjJONqZreNo",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Chengdu",
+                "show_type": "Theater"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_s4gR4rjJONqZreNo",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Chengdu",
+            "show_type": "Theater"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 shows in Chengdu:\n\n1. Teahouse (ID: show_cd_002)\n   Type: Theater\n   Venue: Jincheng Art Palace\n   Date/Time: 2026-03-19 19:30\n   Duration: 145 min\n   Price: ¥180-580\n   Available zones: VIP, First Class, Second Class\n   Rating: 8.7/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_cd_002",
+                "name": "Teahouse",
+                "type": "Theater",
+                "venue": "Jincheng Art Palace",
+                "date": "2026-03-19",
+                "time": "19:30",
+                "duration": 145,
+                "price_range": "180-580",
+                "available_zones": [
+                  "VIP",
+                  "First Class",
+                  "Second Class"
+                ],
+                "rating": 8.7
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05793571472167969
+          },
+          "latency_ms": 0.05793571472167969
+        }
+      ],
+      "total_latency_ms": 1597.0947742462158,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 144,
+        "latency": {
+          "tool_call_ms": 388.2041015625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.884331659356402,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book show ticket: show_id Teahouse; seat_zone VIP.",
+        "timestamp": 10.884331659356402,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.seat_zone=VIP"
+          ]
+        },
+        "audio_size_bytes": 142200
+      },
+      "assistant_response": "Got it! Could you please provide the number of tickets you'd like to book, along with the buyer's name and a contact phone number? That way I can complete the booking for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! Could you please provide the number of tickets you'd like to book, along with the buyer's name and a contact phone number? That way I can complete the booking for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3607.663869857788,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 386400,
+        "event_count": 75,
+        "latency": {
+          "speech_ms": 481.65576171875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.86955318001716,
+      "input_chunk": {
+        "role": "user",
+        "content": "Ticket_count 4; buyer_name Chen Ming.",
+        "timestamp": 16.86955318001716,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Chen Ming",
+            "book_show_ticket.ticket_count=4"
+          ]
+        },
+        "audio_size_bytes": 114600
+      },
+      "assistant_response": "Great! I just need the contact phone number to finalize the booking. Could you share that with me?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! I just need the contact phone number to finalize the booking. Could you share that with me?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3203.2697200775146,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 252000,
+        "event_count": 50,
+        "latency": {
+          "speech_ms": 382.4599609375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 22.074870901032305,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13898765432; then search restaurants in Shanghai.",
+        "timestamp": 22.074870901032305,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.phone=13898765432",
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 271200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_GeLN7oKPCcUdWuMJ",
+              "name": "book_show_ticket",
+              "arguments": {
+                "show_id": "show_cd_002",
+                "seat_zone": "VIP",
+                "ticket_count": 4,
+                "buyer_name": "Chen Ming",
+                "phone": "13898765432"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_MLeiAjAxa28M9xiz",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_GeLN7oKPCcUdWuMJ",
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "show_id": "show_cd_002",
+            "seat_zone": "VIP",
+            "ticket_count": 4,
+            "buyer_name": "Chen Ming",
+            "phone": "13898765432"
+          },
+          "result": {
+            "success": true,
+            "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_cd_002\nShow: Teahouse\nVenue: Jincheng Art Palace\nDate: 2026-03-19\nZone: VIP\nSeats: VIP Row 3 Seat 8, VIP Row 4 Seat 8, VIP Row 5 Seat 8, VIP Row 6 Seat 8\nQuantity: 4\nBuyer: Chen Ming\nPhone: 13898765432\nTotal: ¥3520\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "SH70001",
+              "show_id": "show_cd_002",
+              "show_name": "Teahouse",
+              "venue": "Jincheng Art Palace",
+              "date": "2026-03-19",
+              "seat_zone": "VIP",
+              "ticket_count": 4,
+              "seats": [
+                "VIP Row 3 Seat 8",
+                "VIP Row 4 Seat 8",
+                "VIP Row 5 Seat 8",
+                "VIP Row 6 Seat 8"
+              ],
+              "buyer_name": "Chen Ming",
+              "phone": "13898765432",
+              "total_price": 3520,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.09799003601074219
+          },
+          "latency_ms": 0.09799003601074219
+        },
+        {
+          "tool_call_id": "call_MLeiAjAxa28M9xiz",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Shanghai:\n\n1. Chuanfu Laozao (ID: rst_sh_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.6/5.0\n\n2. Shanghai Classic (ID: rst_sh_002)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.4/5.0\n\n3. Xiao Nan Guo (ID: rst_sh_003)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_sh_001",
+                "name": "Chuanfu Laozao",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_sh_002",
+                "name": "Shanghai Classic",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_sh_003",
+                "name": "Xiao Nan Guo",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.07390975952148438
+          },
+          "latency_ms": 0.07390975952148438
+        }
+      ],
+      "total_latency_ms": 7081.303119659424,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 188,
+        "latency": {
+          "tool_call_ms": 462.389892578125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 28.391354567787573,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book restaurant: restaurant_id Chuanfu Laozao; date 2026-03-22; time 14:00.",
+        "timestamp": 28.391354567787573,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-03-22",
+            "book_restaurant.time=14:00"
+          ]
+        },
+        "audio_size_bytes": 321600
+      },
+      "assistant_response": "Great! I'll just need a few more details: the number of people in your party, the contact person’s name, and the contact phone number. Once you provide those, I can finalize the reservation.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! I'll just need a few more details: the number of people in your party, the contact person’s name, and the contact phone number. Once you provide those, I can finalize the reservation.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8008.152723312378,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 504000,
+        "event_count": 84,
+        "latency": {
+          "speech_ms": 812.201171875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 35.021480792826736,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party_size 10; contact_name Wang Fang; phone 13864788741; then get transaction history for account_number 6222021234567890.",
+        "timestamp": 35.021480792826736,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Wang Fang",
+            "book_restaurant.party_size=10",
+            "book_restaurant.phone=13864788741",
+            "get_transaction_history.account_number=6222021234567890"
+          ]
+        },
+        "audio_size_bytes": 618600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Ic5GmKX7i8GQZzC2",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_sh_001",
+                "date": "2026-03-22",
+                "time": "14:00",
+                "party_size": 10,
+                "contact_name": "Wang Fang",
+                "phone": "13864788741"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_78FJKnsrYuTJBW3S",
+              "name": "get_transaction_history",
+              "arguments": {
+                "account_number": "6222022134567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Ic5GmKX7i8GQZzC2",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_sh_001",
+            "date": "2026-03-22",
+            "time": "14:00",
+            "party_size": 10,
+            "contact_name": "Wang Fang",
+            "phone": "13864788741"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_sh_001\nRestaurant: Chuanfu Laozao\nDate: 2026-03-22\nTime: 14:00\nParty size: 10\nContact: Wang Fang (13864788741)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_sh_001",
+              "restaurant_name": "Chuanfu Laozao",
+              "date": "2026-03-22",
+              "time": "14:00",
+              "party_size": 10,
+              "contact_name": "Wang Fang",
+              "phone": "13864788741",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.028133392333984375
+          },
+          "latency_ms": 0.028133392333984375
+        },
+        {
+          "tool_call_id": "call_78FJKnsrYuTJBW3S",
+          "tool_name": "get_transaction_history",
+          "arguments": {
+            "account_number": "6222022134567890"
+          },
+          "result": {
+            "success": false,
+            "error": "账户不存在或无交易记录",
+            "output": "账户不存在或无交易记录",
+            "raw_output": {
+              "success": false,
+              "error": "账户不存在或无交易记录",
+              "output": "账户不存在或无交易记录"
+            },
+            "latency_ms": 0.012874603271484375
+          },
+          "latency_ms": 0.012874603271484375
+        }
+      ],
+      "total_latency_ms": 11253.259897232056,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 154,
+        "latency": {
+          "tool_call_ms": 1124.98681640625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 7,
+    "total_llm_calls": 13,
+    "total_tool_calls": 5
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_shows",
+    "wrong_params": {
+      "search_shows.city": "Beijing"
+    },
+    "corrected_params": {
+      "search_shows.city": "Chengdu"
+    },
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_shows": {
+        "tool_call_ms": 388.2041015625
+      },
+      "book_show_ticket": {
+        "tool_call_ms": 462.389892578125
+      },
+      "search_restaurants": {
+        "tool_call_ms": 462.389892578125
+      },
+      "book_restaurant": {
+        "tool_call_ms": 1124.98681640625
+      },
+      "get_transaction_history": {
+        "tool_call_ms": 1124.98681640625
+      }
+    },
+    "info_complete_turn": {
+      "search_shows": 2,
+      "book_show_ticket": 5,
+      "search_restaurants": 5,
+      "book_restaurant": 7,
+      "get_transaction_history": 7
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: get_transaction_history.account_number: 期望'6222021234567890', 实际'6222022134567890'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.8,
+    "behavior_score_details": "search_shows: 1(correct), book_show_ticket: 1(correct), search_restaurants: 1(correct), book_restaurant: 1(correct), get_transaction_history: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "get_transaction_history",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "account_number: '6222021234567890' vs '6222022134567890'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

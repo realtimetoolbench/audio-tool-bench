@@ -1,0 +1,228 @@
+{
+  "task_id": "tint_000116",
+  "description": "Interruption (priority_late_return): 6 tools, 11 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "search_restaurants_delivery",
+    "place_food_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search sports events in Chengdu.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_sports_events.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search restaurant delivery options in Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants_delivery.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_sports_events",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Place a food order for delivery_id Hunan Restaurant.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 10.455216434795151
+    },
+    {
+      "speaker": "user",
+      "text": "Order items: Dong'an Chicken and Rice.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.items=Dong'an Chicken and Rice"
+        ]
+      },
+      "timestamp": 16.41225415364699
+    },
+    {
+      "speaker": "user",
+      "text": "Deliver to Room 505, Block F, Maple Lane Apartment. Use phone 13864788741.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 505, Block F, Maple Lane Apartment",
+          "place_food_order.phone=13864788741"
+        ]
+      },
+      "timestamp": 21.482286997517313
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book a ticket for event_id CSL: Chengdu Rongcheng vs Beijing Guoan. Seat zone Neutral Stand.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Neutral Stand"
+        ]
+      },
+      "timestamp": 33.1374116744452
+    },
+    {
+      "speaker": "user",
+      "text": "Ticket count 1. Buyer name Chen Ming.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Chen Ming",
+          "book_sports_ticket.ticket_count=1"
+        ]
+      },
+      "timestamp": 40.63750803513321
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13833445566 and id number 330102199708085678.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.id_number=330102199708085678",
+          "book_sports_ticket.phone=13833445566"
+        ]
+      },
+      "timestamp": 45.222025048732554
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 51.20796171009664
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant_id Chuanfu Laozao for 2026-03-06 at 14:00, party size 1. Contact Gao Yan, phone 13822334455.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Gao Yan",
+          "book_restaurant.date=2026-03-06",
+          "book_restaurant.party_size=1",
+          "book_restaurant.phone=13822334455",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 56.17420166410866
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_bj_003",
+        "items": "Dong'an Chicken and Rice",
+        "delivery_address": "Room 505, Block F, Maple Lane Apartment",
+        "phone": "13864788741"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_cd_001",
+        "seat_zone": "Neutral Stand",
+        "ticket_count": 1,
+        "buyer_name": "Chen Ming",
+        "phone": "13833445566",
+        "id_number": "330102199708085678"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_001",
+        "date": "2026-03-06",
+        "time": "14:00",
+        "party_size": 1,
+        "contact_name": "Gao Yan",
+        "phone": "13822334455"
+      }
+    }
+  ],
+  "transcript_hash": "53a879759ad1",
+  "info_complete_turn": {
+    "search_restaurants_delivery": 2,
+    "place_food_order": 5,
+    "search_sports_events": 1,
+    "book_sports_ticket": 9,
+    "search_restaurants": 10,
+    "book_restaurant": 11
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 11,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "inserted_tools": [
+      "search_restaurants_delivery",
+      "place_food_order"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "search_restaurants_delivery",
+    "place_food_order"
+  ]
+}

@@ -1,0 +1,521 @@
+{
+  "task_name": "int_000027",
+  "start_time": "2026-05-06T14:46:41.290403",
+  "end_time": "2026-05-06T14:47:46.260843",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Suzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_hotels.city=Suzhou",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 106200
+      },
+      "assistant_response": "I'll help you find some train options from Beijing to Suzhou.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "I'll help you find some train options from Beijing to Suzhou.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4023.994207382202,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 26880,
+        "event_count": 22,
+        "interrupted": true,
+        "interrupt_trigger_type": "keyword",
+        "partial_transcript": "I'll help you find some train options from Beijing to Suzhou."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Suzhou, I meant Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "keyword",
+            "keyword": "Suzhou",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 97800
+      },
+      "assistant_response": "No problem, I'll search for trains from Beijing to Shanghai instead. Thanks, I've got the train options for you. The G1 is the quickest at about 4.5 hours, while the D321 is cheaper but takes over 8 hours. Which train would you like to book, and for what date? I'll also need the passenger's name and seat class—second or first.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "No problem, I'll search for trains from Beijing to Shanghai instead.",
+          "tool_calls": [
+            {
+              "id": "call-1d49b65f-c260-4eb9-9a7e-b79663040ab3-1",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the train options for you. The G1 is the quickest at about 4.5 hours, while the D321 is cheaper but takes over 8 hours. Which train would you like to book, and for what date? I'll also need the passenger's name and seat class—second or first.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-1d49b65f-c260-4eb9-9a7e-b79663040ab3-1",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0400543212890625
+          },
+          "latency_ms": 0.0400543212890625
+        }
+      ],
+      "total_latency_ms": 10500.030994415283,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1123680,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 1216.310791015625,
+          "tool_call_ms": 2255.00390625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 9.596448715550903,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 on 2026-03-27 for Lucas Martinez in Second Class.",
+        "timestamp": 9.596448715550903,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-27",
+            "book_train.passenger_name=Lucas Martinez",
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 269400
+      },
+      "assistant_response": "Thanks, I've got the details for booking the G3 train. Great, your booking is confirmed. Here's your booking summary: Booking ID TR40001 for train trn_bj_sh_002 on 2026-03-27, second class seat 01F for Lucas Martinez. If you need a hotel in Shanghai or anything else, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the details for booking the G3 train.",
+          "tool_calls": [
+            {
+              "id": "call-a944e5cf-b004-4b30-b77f-741bb4e0cea0-2",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-03-27",
+                "passenger_name": "Lucas Martinez",
+                "seat_class": "second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your booking is confirmed. Here's your booking summary: Booking ID TR40001 for train trn_bj_sh_002 on 2026-03-27, second class seat 01F for Lucas Martinez. If you need a hotel in Shanghai or anything else, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-a944e5cf-b004-4b30-b77f-741bb4e0cea0-2",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-03-27",
+            "passenger_name": "Lucas Martinez",
+            "seat_class": "second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-03-27\nPassenger: Lucas Martinez\nSeat: second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-03-27",
+              "passenger_name": "Lucas Martinez",
+              "seat_class": "second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.02002716064453125
+          },
+          "latency_ms": 0.02002716064453125
+        }
+      ],
+      "total_latency_ms": 12730.736255645752,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1270560,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 1571.255859375,
+          "tool_call_ms": 2452.52099609375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.116747081792354,
+      "input_chunk": {
+        "role": "user",
+        "content": "Second Class seat class.",
+        "timestamp": 16.116747081792354,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 70800
+      },
+      "assistant_response": "Yes, I've got that right—it's already booked in second class. Your seat is confirmed as second class, seat 01F. If you need anything else like a hotel booking in Shanghai, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Yes, I've got that right—it's already booked in second class. Your seat is confirmed as second class, seat 01F. If you need anything else like a hotel booking in Shanghai, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6152.00400352478,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 593280,
+        "event_count": 35,
+        "latency": {
+          "speech_ms": 3045.12890625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.027644241366186,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Suzhou.",
+        "timestamp": 20.027644241366186,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 70800
+      },
+      "assistant_response": "Sure, I'd be happy to help you find some hotels in Suzhou. Here are a few hotel options I found in Suzhou. The Shangri-La is a 5-star option at 1050 yuan per night with a 4.8 rating. The Pan Pacific is similar at 900 yuan, and there's a more affordable Home Inn at 330 yuan. Let me know if you'd like to book one and when you'll be checking in.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'd be happy to help you find some hotels in Suzhou.",
+          "tool_calls": [
+            {
+              "id": "call-c5685208-8d04-4fe8-9ffc-267b8476138e-3",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Suzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are a few hotel options I found in Suzhou. The Shangri-La is a 5-star option at 1050 yuan per night with a 4.8 rating. The Pan Pacific is similar at 900 yuan, and there's a more affordable Home Inn at 330 yuan. Let me know if you'd like to book one and when you'll be checking in.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-c5685208-8d04-4fe8-9ffc-267b8476138e-3",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Suzhou:\n\n1. Shangri-La Suzhou (ID: hotel_su_001)\n   Location: Suzhou Industrial Park | 5 stars\n   Price: ¥1050/night | Rating: 4.8/5.0\n\n2. Pan Pacific Suzhou (ID: hotel_su_002)\n   Location: Gusu | 5 stars\n   Price: ¥900/night | Rating: 4.7/5.0\n\n3. Home Inn Pingjiang (ID: hotel_su_003)\n   Location: Pingjiang | 3 stars\n   Price: ¥330/night | Rating: 4.2/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_su_001",
+                "name": "Shangri-La Suzhou",
+                "location": "Suzhou Industrial Park",
+                "stars": 5,
+                "price": 1050,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_su_002",
+                "name": "Pan Pacific Suzhou",
+                "location": "Gusu",
+                "stars": 5,
+                "price": 900,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_su_003",
+                "name": "Home Inn Pingjiang",
+                "location": "Pingjiang",
+                "stars": 3,
+                "price": 330,
+                "rating": 4.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.08511543273925781
+          },
+          "latency_ms": 0.08511543273925781
+        }
+      ],
+      "total_latency_ms": 19024.102687835693,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1148640,
+        "event_count": 64,
+        "latency": {
+          "speech_ms": 1544.806884765625,
+          "tool_call_ms": 2100.4208984375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 24.683982084916245,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book hotel Home Inn Pingjiang, check in 2026-03-19 for 3 nights, guest Aiden Miller.",
+        "timestamp": 24.683982084916245,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-19",
+            "book_hotel.guest_name=Aiden Miller",
+            "book_hotel.nights=3"
+          ]
+        },
+        "audio_size_bytes": 322800
+      },
+      "assistant_response": "Thanks, let me get that booked for you. Great, your booking is confirmed. The details are: check-in March 19th for three nights, under Aidan Miller. Your booking ID is HT20001 if you need to reference it later. Anything else I can assist with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, let me get that booked for you.",
+          "tool_calls": [
+            {
+              "id": "call-fda97090-e0bb-4d52-b5ec-d1fc68d08fae-4",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_su_003",
+                "checkin_date": "2026-03-19",
+                "nights": 3,
+                "guest_name": "Aidan Miller"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your booking is confirmed. The details are: check-in March 19th for three nights, under Aidan Miller. Your booking ID is HT20001 if you need to reference it later. Anything else I can assist with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-fda97090-e0bb-4d52-b5ec-d1fc68d08fae-4",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_su_003",
+            "checkin_date": "2026-03-19",
+            "nights": 3,
+            "guest_name": "Aidan Miller"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_su_003\nCheck-in: 2026-03-19\nNights: 3\nGuest: Aidan Miller\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_su_003",
+              "checkin_date": "2026-03-19",
+              "nights": 3,
+              "guest_name": "Aidan Miller",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.0476837158203125
+          },
+          "latency_ms": 0.0476837158203125
+        }
+      ],
+      "total_latency_ms": 12532.994031906128,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 903840,
+        "event_count": 58,
+        "latency": {
+          "speech_ms": 1706.011474609375,
+          "tool_call_ms": 2964.408203125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 10,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Suzhou",
+    "template": null,
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_trains",
+      "param": "destination",
+      "wrong_value": "Suzhou"
+    },
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "manual",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 1216.310791015625,
+        "tool_call_ms": 2255.00390625
+      },
+      "book_train": {
+        "speech_ms": 1571.255859375,
+        "tool_call_ms": 2452.52099609375
+      },
+      "book_hotel": {
+        "speech_ms": 1706.011474609375,
+        "tool_call_ms": 2964.408203125
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 2,
+      "book_train": 3,
+      "search_hotels": 1,
+      "book_hotel": 6
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_hotel.guest_name: 期望'Aiden Miller', 实际'Aidan Miller'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 4,
+    "extra_turns_details": "search_hotels: +4 turns (info@1, call@5)",
+    "behavior_score": 0.75,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 1(correct), search_hotels: 1(correct), book_hotel: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "guest_name: 'Aiden Miller' vs 'Aidan Miller'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

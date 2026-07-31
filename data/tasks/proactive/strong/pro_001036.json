@@ -1,0 +1,151 @@
+{
+  "task_id": "pro_001036",
+  "description": "Generated: 5 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_doctors",
+    "book_appointment",
+    "search_medicine",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m going to be in Shenzhen for a bit, and I’ve been thinking about finally getting a doctor visit sorted while I’m there.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_doctors.city=Shenzhen"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I’m heading from Beijing to Shanghai soon, so I’ve been keeping that route in mind while I plan everything around the trip.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 8.623235081818708
+    },
+    {
+      "speaker": "user",
+      "text": "On the medicine side, I’ve been double-checking what I’m taking lately too, just to make sure I’m not missing anything.",
+      "metadata": {
+        "phase": "search"
+      },
+      "timestamp": 17.740399896905167
+    },
+    {
+      "speaker": "user",
+      "text": "For the clinic visit, I’ve got it down as Wu Qiang on 2026-04-25, and it’s in the afternoon; it’s under Wang Fang.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_appointment.date=2026-04-25",
+          "book_appointment.patient_name=Wang Fang",
+          "book_appointment.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 26.499539042446635
+    },
+    {
+      "speaker": "user",
+      "text": "And for the flight, it’s CA1456 with Air China on 2026-03-05, passenger name John Smith… I just hope the timing lines up with everything else and I don’t end up",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-03-05",
+          "book_flight.passenger_name=John Smith"
+        ]
+      },
+      "timestamp": 35.482706708029156
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_sz_001",
+        "date": "2026-04-25",
+        "time_slot": "afternoon",
+        "patient_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_medicine",
+      "params": {}
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_003",
+        "date": "2026-03-05",
+        "passenger_name": "John Smith"
+      }
+    }
+  ],
+  "transcript_hash": "6fc48fd70ebd",
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "chain",
+    "template": null,
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_doctors": 1,
+    "book_appointment": 4,
+    "search_medicine": 1,
+    "search_flights": 2,
+    "book_flight": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "I’m going to be in Shenzhen",
+      "getting a doctor visit sorted",
+      "heading from Beijing to Shanghai",
+      "I’ve got it down as Wu Qiang on 2026-04-25 in the afternoon",
+      "it’s CA1456 with Air China on 2026-03-05, passenger name John Smith"
+    ],
+    "ambiguity_notes": "Strong intent: user narrates concrete upcoming plans and confirmed booking details; no requests or execution/authorization language."
+  },
+  "strength": "strong",
+  "tool_universe": {
+    "read_tools": [
+      "search_doctors",
+      "search_flights",
+      "search_medicine"
+    ],
+    "write_tools": [
+      "book_appointment",
+      "book_flight"
+    ]
+  },
+  "expected_tool_if_act": "search_doctors",
+  "expected_params_if_act": {
+    "city": "Shenzhen"
+  }
+}

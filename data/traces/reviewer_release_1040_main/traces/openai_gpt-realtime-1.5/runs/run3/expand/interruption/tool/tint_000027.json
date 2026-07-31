@@ -1,0 +1,821 @@
+{
+  "task_name": "tint_000027",
+  "start_time": "2026-07-29T03:29:03.089267",
+  "end_time": "2026-07-29T03:30:19.154059",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_hotels.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 71400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_XBBhmaOlKo4T31BV",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5007.333040237427,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 19,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search movies in Suzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_movies.city=Suzhou"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 120000
+      },
+      "assistant_response": "I found two movies playing in Suzhou. \"The Wandering Earth 3,\" a Sci-Fi film, and \"YOLO,\" a Drama. Both are showing at Jinyi Cinema Suzhou Center and Broadway Cinema Gusu. Let me know if you'd like more details or to book tickets. Meanwhile, I'm still awaiting the hotel search results for Beijing.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_VZMQ27ngVKcdXDaA",
+              "name": "search_movies",
+              "arguments": {
+                "city": "Suzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found two movies playing in Suzhou. \"The Wandering Earth 3,\" a Sci-Fi film, and \"YOLO,\" a Drama. Both are showing at Jinyi Cinema Suzhou Center and Broadway Cinema Gusu. Let me know if you'd like more details or to book tickets. Meanwhile, I'm still awaiting the hotel search results for Beijing.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_VZMQ27ngVKcdXDaA",
+          "tool_name": "search_movies",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 movies in Suzhou:\n\n1. The Wandering Earth 3 (ID: mov_su_001)\n   Genre: Sci-Fi | Duration: 150 min\n   Rating: 8.5/10.0\n   Price: ¥42\n   Cinemas: Jinyi Cinema Suzhou Center, Broadway Cinema Gusu\n   Showtimes: 10:30, 13:20, 16:10, 19:00\n\n2. YOLO (ID: mov_su_002)\n   Genre: Drama | Duration: 120 min\n   Rating: 7.8/10.0\n   Price: ¥40\n   Cinemas: Jinyi Cinema Suzhou Center, Broadway Cinema Gusu\n   Showtimes: 11:00, 14:30, 17:00, 20:30\n\n",
+            "raw_output": [
+              {
+                "movie_id": "mov_su_001",
+                "name": "The Wandering Earth 3",
+                "genre": "Sci-Fi",
+                "duration": 150,
+                "rating": 8.5,
+                "cinemas": [
+                  "Jinyi Cinema Suzhou Center",
+                  "Broadway Cinema Gusu"
+                ],
+                "showtimes": [
+                  "10:30",
+                  "13:20",
+                  "16:10",
+                  "19:00"
+                ],
+                "price": 42
+              },
+              {
+                "movie_id": "mov_su_002",
+                "name": "YOLO",
+                "genre": "Drama",
+                "duration": 120,
+                "rating": 7.8,
+                "cinemas": [
+                  "Jinyi Cinema Suzhou Center",
+                  "Broadway Cinema Gusu"
+                ],
+                "showtimes": [
+                  "11:00",
+                  "14:30",
+                  "17:00",
+                  "20:30"
+                ],
+                "price": 40
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0438690185546875
+          },
+          "latency_ms": 0.0438690185546875
+        }
+      ],
+      "total_latency_ms": 5682.559013366699,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 818400,
+        "event_count": 147,
+        "latency": {
+          "speech_ms": 1594.309326171875,
+          "tool_call_ms": 451.51416015625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 8.826940331623106,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book movie tickets for movie YOLO.",
+        "timestamp": 8.826940331623106,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 99600
+      },
+      "assistant_response": "Sure, I can help you with that. Could you tell me which cinema you'd prefer—Jinyi Cinema Suzhou Center or Broadway Cinema Gusu, the showtime you'd like, the number of tickets, and the buyer's name?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can help you with that. Could you tell me which cinema you'd prefer—Jinyi Cinema Suzhou Center or Broadway Cinema Gusu, the showtime you'd like, the number of tickets, and the buyer's name?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5174.484014511108,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 470400,
+        "event_count": 88,
+        "latency": {
+          "speech_ms": 656.68994140625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 13.114300144838104,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use Jinyi Cinema Suzhou Center and set showtime to 17:00.",
+        "timestamp": 13.114300144838104,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_movie_ticket.cinema=Jinyi Cinema Suzhou Center",
+            "book_movie_ticket.showtime=17:00"
+          ]
+        },
+        "audio_size_bytes": 205800
+      },
+      "assistant_response": "Got it. How many tickets would you like to buy, and under whose name should I book them?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it. How many tickets would you like to buy, and under whose name should I book them?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4605.436086654663,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 177600,
+        "event_count": 47,
+        "latency": {
+          "speech_ms": 697.36181640625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 18.978362782260596,
+      "input_chunk": {
+        "role": "user",
+        "content": "Make it 2 seats, buyer name Mike Davis.",
+        "timestamp": 18.978362782260596,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_movie_ticket.buyer_name=Mike Davis",
+            "book_movie_ticket.seat_count=2"
+          ]
+        },
+        "audio_size_bytes": 116400
+      },
+      "assistant_response": "Your tickets for \"YOLO\" at Jinyi Cinema Suzhou Center on March 1st, 2026 at 17:00 are confirmed under Mike Davis for seats E5 and E6. The total cost is ¥90. If there's anything else I can do, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_v4FYBpSf3ouRCsmT",
+              "name": "book_movie_ticket",
+              "arguments": {
+                "movie_id": "mov_su_002",
+                "cinema": "Jinyi Cinema Suzhou Center",
+                "showtime": "17:00",
+                "seat_count": 2,
+                "buyer_name": "Mike Davis"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your tickets for \"YOLO\" at Jinyi Cinema Suzhou Center on March 1st, 2026 at 17:00 are confirmed under Mike Davis for seats E5 and E6. The total cost is ¥90. If there's anything else I can do, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_v4FYBpSf3ouRCsmT",
+          "tool_name": "book_movie_ticket",
+          "arguments": {
+            "movie_id": "mov_su_002",
+            "cinema": "Jinyi Cinema Suzhou Center",
+            "showtime": "17:00",
+            "seat_count": 2,
+            "buyer_name": "Mike Davis"
+          },
+          "result": {
+            "success": true,
+            "output": "Movie ticket booking successful!\n\nBooking ID: MV60001\nMovie ID: mov_su_002\nMovie: YOLO\nCinema: Jinyi Cinema Suzhou Center\nDate: 2026-03-01\nShowtime: 17:00\nSeats: E5, E6\nTicket type: adult\nQuantity: 2\nTotal: ¥90\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "MV60001",
+              "movie_id": "mov_su_002",
+              "movie_name": "YOLO",
+              "cinema": "Jinyi Cinema Suzhou Center",
+              "date": "2026-03-01",
+              "showtime": "17:00",
+              "seat_count": 2,
+              "seats": [
+                "E5",
+                "E6"
+              ],
+              "buyer_name": "Mike Davis",
+              "ticket_type": "adult",
+              "total_price": 90,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03600120544433594
+          },
+          "latency_ms": 0.03600120544433594
+        }
+      ],
+      "total_latency_ms": 8248.249769210815,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 628800,
+        "event_count": 167,
+        "latency": {
+          "speech_ms": 2243.81689453125,
+          "tool_call_ms": 1186.06591796875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 23.852403593742117,
+      "input_chunk": {
+        "role": "user",
+        "content": "Now search sports events in Shanghai.",
+        "timestamp": 23.852403593742117,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "search_sports_events.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 111000
+      },
+      "assistant_response": "In Shanghai, there are two upcoming sports events: First, a CBA basketball game—Shanghai Sharks vs. Liaoning Steelers at Yuanshen Sports Center on March 9th at 19:35, with ticket prices ranging from ¥150 to ¥980 and zones VIP, Stand A, and Stand B. Second, a CSL football match—Shanghai Port vs. Shandong Taishan at Shanghai Stadium on March 16th at 19:30, with tickets priced from ¥150 to ¥880 and zones Home Stand, Away Stand, and Neutral Stand. If you’d like to book tickets, just let me know the event, seat zone, number of tickets, your name, phone number, and ID number for registration.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_z8yURfDQioZokiy5",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "In Shanghai, there are two upcoming sports events: First, a CBA basketball game—Shanghai Sharks vs. Liaoning Steelers at Yuanshen Sports Center on March 9th at 19:35, with ticket prices ranging from ¥150 to ¥980 and zones VIP, Stand A, and Stand B. Second, a CSL football match—Shanghai Port vs. Shandong Taishan at Shanghai Stadium on March 16th at 19:30, with tickets priced from ¥150 to ¥880 and zones Home Stand, Away Stand, and Neutral Stand. If you’d like to book tickets, just let me know the event, seat zone, number of tickets, your name, phone number, and ID number for registration.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_z8yURfDQioZokiy5",
+          "tool_name": "search_sports_events",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 sports events in Shanghai:\n\n1. CBA: Shanghai Sharks vs Liaoning Steelers (ID: evt_sh_001)\n   Sport: Basketball\n   Venue: Yuanshen Sports Center\n   Date/Time: 2026-03-09 19:35\n   Match: Shanghai Sharks vs Liaoning Steelers\n   Price: ¥150-980\n   Available zones: VIP, Stand A, Stand B\n   Rating: 8.3/10.0\n\n2. CSL: Shanghai Port vs Shandong Taishan (ID: evt_sh_002)\n   Sport: Football\n   Venue: Shanghai Stadium\n   Date/Time: 2026-03-16 19:30\n   Match: Shanghai Port vs Shandong Taishan\n   Price: ¥150-880\n   Available zones: Home Stand, Away Stand, Neutral Stand\n   Rating: 8.7/10.0\n\n",
+            "raw_output": [
+              {
+                "event_id": "evt_sh_001",
+                "name": "CBA: Shanghai Sharks vs Liaoning Steelers",
+                "sport_type": "Basketball",
+                "venue": "Yuanshen Sports Center",
+                "date": "2026-03-09",
+                "time": "19:35",
+                "home_team": "Shanghai Sharks",
+                "away_team": "Liaoning Steelers",
+                "price_range": "150-980",
+                "available_zones": [
+                  "VIP",
+                  "Stand A",
+                  "Stand B"
+                ],
+                "rating": 8.3
+              },
+              {
+                "event_id": "evt_sh_002",
+                "name": "CSL: Shanghai Port vs Shandong Taishan",
+                "sport_type": "Football",
+                "venue": "Shanghai Stadium",
+                "date": "2026-03-16",
+                "time": "19:30",
+                "home_team": "Shanghai Port",
+                "away_team": "Shandong Taishan",
+                "price_range": "150-880",
+                "available_zones": [
+                  "Home Stand",
+                  "Away Stand",
+                  "Neutral Stand"
+                ],
+                "rating": 8.7
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.047206878662109375
+          },
+          "latency_ms": 0.047206878662109375
+        }
+      ],
+      "total_latency_ms": 18660.61282157898,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1932000,
+        "event_count": 282,
+        "latency": {
+          "speech_ms": 1573.243896484375,
+          "tool_call_ms": 525.5048828125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 28.273774342751675,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book 1 ticket for event CSL: Shanghai Port vs Shandong Taishan, Away Stand.",
+        "timestamp": 28.273774342751675,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_sports_ticket.seat_zone=Away Stand",
+            "book_sports_ticket.ticket_count=1"
+          ]
+        },
+        "audio_size_bytes": 225000
+      },
+      "assistant_response": "I'll need your full name, a contact phone number, and your ID card number to complete the booking. Could you provide those details?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'll need your full name, a contact phone number, and your ID card number to complete the booking. Could you provide those details?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5199.533939361572,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 307200,
+        "event_count": 59,
+        "latency": {
+          "speech_ms": 705.5
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.37780876587341,
+      "input_chunk": {
+        "role": "user",
+        "content": "Buyer name Sun Lei, phone 13856781234, ID number 440106199512044567.",
+        "timestamp": 35.37780876587341,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_sports_ticket.buyer_name=Sun Lei",
+            "book_sports_ticket.id_number=440106199512044567",
+            "book_sports_ticket.phone=13856781234"
+          ]
+        },
+        "audio_size_bytes": 456600
+      },
+      "assistant_response": "Your ticket is confirmed, Sun Lei! You’ve got one Away Stand seat (Row 10, Seat 20) for the CSL match: Shanghai Port vs Shandong Taishan on March 16th, 2026 at Shanghai Stadium. The total cost was ¥380. If you need anything else, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_oS1i380gLYLAtyzn",
+              "name": "book_sports_ticket",
+              "arguments": {
+                "event_id": "evt_sh_002",
+                "seat_zone": "Away Stand",
+                "ticket_count": 1,
+                "buyer_name": "Sun Lei",
+                "phone": "13856781234",
+                "id_number": "44010119951204567X"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your ticket is confirmed, Sun Lei! You’ve got one Away Stand seat (Row 10, Seat 20) for the CSL match: Shanghai Port vs Shandong Taishan on March 16th, 2026 at Shanghai Stadium. The total cost was ¥380. If you need anything else, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_oS1i380gLYLAtyzn",
+          "tool_name": "book_sports_ticket",
+          "arguments": {
+            "event_id": "evt_sh_002",
+            "seat_zone": "Away Stand",
+            "ticket_count": 1,
+            "buyer_name": "Sun Lei",
+            "phone": "13856781234",
+            "id_number": "44010119951204567X"
+          },
+          "result": {
+            "success": true,
+            "output": "Sports ticket booking successful!\n\nBooking ID: SP80001\nEvent ID: evt_sh_002\nEvent: CSL: Shanghai Port vs Shandong Taishan\nVenue: Shanghai Stadium\nDate: 2026-03-16\nZone: Away Stand\nSeats: Away Stand Row 10 Seat 20\nQuantity: 1\nBuyer: Sun Lei\nPhone: 13856781234\nID: 440101****567X\nTotal: ¥380\nStatus: Confirmed (Real-name Required)\n",
+            "raw_output": {
+              "booking_id": "SP80001",
+              "event_id": "evt_sh_002",
+              "event_name": "CSL: Shanghai Port vs Shandong Taishan",
+              "venue": "Shanghai Stadium",
+              "date": "2026-03-16",
+              "seat_zone": "Away Stand",
+              "ticket_count": 1,
+              "seats": [
+                "Away Stand Row 10 Seat 20"
+              ],
+              "buyer_name": "Sun Lei",
+              "phone": "13856781234",
+              "id_number": "44010119951204567X",
+              "total_price": 380,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.030755996704101562
+          },
+          "latency_ms": 0.030755996704101562
+        }
+      ],
+      "total_latency_ms": 11565.303087234497,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 792000,
+        "event_count": 180,
+        "latency": {
+          "speech_ms": 2754.26318359375,
+          "tool_call_ms": 1063.380859375
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 91200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1519.6900367736816,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 46.585049859568976,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the hotel The Peninsula Beijing for Deng Hui, check in 2026-03-14.",
+        "timestamp": 46.585049859568976,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-14",
+            "book_hotel.guest_name=Deng Hui"
+          ]
+        },
+        "audio_size_bytes": 282000
+      },
+      "assistant_response": "The search for hotels",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "The search for hotels",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3612.060785293579,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 19
+      }
+    },
+    {
+      "step_id": 11,
+      "timestamp": 53.30595462460257,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the stay to 5 nights.",
+        "timestamp": 53.30595462460257,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.nights=5"
+          ]
+        },
+        "audio_size_bytes": 79800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1411.8859767913818,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 11
+      }
+    },
+    {
+      "step_id": 12,
+      "timestamp": 57.35744813266036,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai, then book flight MU5678 on 2026-05-12 for Wu Qian with China Eastern.",
+        "timestamp": 57.35744813266036,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-05-12",
+            "book_flight.passenger_name=Wu Qian",
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 438600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5363.271951675415,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 12,
+    "total_llm_calls": 17,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 8,
+    "turn_count": 12,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "inserted_tools": [
+      "search_movies",
+      "book_movie_ticket",
+      "search_sports_events",
+      "book_sports_ticket"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_movies": {
+        "speech_ms": 1594.309326171875,
+        "tool_call_ms": 451.51416015625
+      },
+      "book_movie_ticket": {
+        "speech_ms": 2243.81689453125,
+        "tool_call_ms": 1186.06591796875
+      },
+      "search_sports_events": {
+        "speech_ms": 1573.243896484375,
+        "tool_call_ms": 525.5048828125
+      },
+      "book_sports_ticket": {
+        "speech_ms": 2754.26318359375,
+        "tool_call_ms": 1063.380859375
+      }
+    },
+    "info_complete_turn": {
+      "search_movies": 2,
+      "book_movie_ticket": 5,
+      "search_sports_events": 6,
+      "book_sports_ticket": 8,
+      "search_hotels": 1,
+      "book_hotel": 11,
+      "search_flights": 12,
+      "book_flight": 12
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_hotels', 'search_sports_events', 'book_sports_ticket', 'search_flights', 'book_movie_ticket', 'book_flight', 'search_movies', 'book_hotel'}，实际: {'book_sports_ticket', 'search_movies', 'book_movie_ticket', 'search_sports_events'}，缺失: {'book_flight', 'search_hotels', 'search_flights', 'book_hotel'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.375,
+    "behavior_score_details": "search_movies: 1(correct), book_movie_ticket: 1(correct), search_sports_events: 1(correct), book_sports_ticket: 0(param_mismatch), search_hotels: 0(not_called), book_hotel: 0(not_called), search_flights: 0(not_called), book_flight: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_sports_ticket",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "id_number: '440106199512044567' vs '44010119951204567X'"
+        },
+        {
+          "tool": "search_hotels",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_flights",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "missing_call": 4
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 1,
+          "post": 3,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

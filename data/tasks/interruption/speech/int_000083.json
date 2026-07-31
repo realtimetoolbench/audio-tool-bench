@@ -1,0 +1,119 @@
+{
+  "task_id": "int_000083",
+  "description": "Interruption (cancellation): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "multi",
+  "tools": [
+    "search_cars",
+    "book_car",
+    "search_parking",
+    "reserve_parking_spot"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search cars in Chengdu, then help me book a Toyota Camry. Also find parking near my destination.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_cars.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Set the pickup date to 2026-03-15.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_car.pickup_date=2026-03-15"
+        ]
+      },
+      "timestamp": 7.4192859323700855
+    },
+    {
+      "speaker": "user",
+      "text": "Book it for 1 day.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_car.days=1"
+        ]
+      },
+      "timestamp": 12.321921570610533
+    },
+    {
+      "speaker": "user",
+      "text": "Never mind the parking, I don't need it.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "parking",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use renter name Ethan Thomas.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_car.renter_name=Ethan Thomas"
+        ]
+      },
+      "timestamp": 21.54468834599334
+    },
+    {
+      "speaker": "user",
+      "text": "Confirm the Toyota Camry booking in Chengdu for 2026-03-15, 1 day, under Ethan Thomas.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 26.00716939024328
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_cd_002",
+        "pickup_date": "2026-03-15",
+        "days": 1,
+        "renter_name": "Ethan Thomas"
+      }
+    }
+  ],
+  "transcript_hash": "387fc8fb34ec",
+  "info_complete_turn": {
+    "search_cars": 1,
+    "book_car": 5
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "parking",
+    "template": "driving",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_parking",
+    "reserve_parking_spot"
+  ]
+}

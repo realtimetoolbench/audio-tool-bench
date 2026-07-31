@@ -1,0 +1,581 @@
+{
+  "task_name": "tint_000060",
+  "start_time": "2026-05-06T20:31:26.159494",
+  "end_time": "2026-05-06T20:33:13.206298",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai on 2026-03-22, and also plan Shanghai attractions and book a Beijing hotel.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_attractions.city=Shanghai",
+            "search_hotels.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 415800
+      },
+      "assistant_response": "Thank you for your request.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you for your request.",
+          "tool_calls": [
+            {
+              "id": "call-26de6d22-ba92-4289-8896-e26443e145dc-0",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Thank you for your request.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 19001.676082611084,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 83040,
+        "event_count": 35,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "Thank you for your request."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Cancel the train search. Skip trains entirely.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 128400
+      },
+      "assistant_response": "Understood, I've canceled the train search. I'll continue with the Shanghai attractions search and Beijing hotel options as you originally requested. Let me know if there's a specific date or other details you'd like me to include for those.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Understood, I've canceled the train search. I'll continue with the Shanghai attractions search and Beijing hotel options as you originally requested. Let me know if there's a specific date or other details you'd like me to include for those.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 13066.449165344238,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 633600,
+        "event_count": 34,
+        "latency": {
+          "speech_ms": 2604.533935546875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.357640593213924,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Shanghai.",
+        "timestamp": 14.357640593213924,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 85800
+      },
+      "assistant_response": "I'll search for attractions in Shanghai right away. I've got the list of attractions in Shanghai for you. Here are the top ones: Oriental Pearl Tower at ¥180, Shanghai Disneyland at ¥399, The Bund which is free, and Yu Garden at ¥40. Which one interests you, or would you like to book tickets for any of them?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'll search for attractions in Shanghai right away.",
+          "tool_calls": [
+            {
+              "id": "call-96768480-b813-474b-a48b-539785abdcd9-3",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've got the list of attractions in Shanghai for you. Here are the top ones: Oriental Pearl Tower at ¥180, Shanghai Disneyland at ¥399, The Bund which is free, and Yu Garden at ¥40. Which one interests you, or would you like to book tickets for any of them?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-96768480-b813-474b-a48b-539785abdcd9-3",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Shanghai:\n\n1. Oriental Pearl Tower (ID: attr_sh_001)\n   Type: Modern\n   Rating: 4.5/5.0\n   Ticket: ¥180\n   Hours: 08:00-22:00\n   Location: Pudong\n\n2. Shanghai Disneyland (ID: attr_sh_002)\n   Type: Theme Park\n   Rating: 4.7/5.0\n   Ticket: ¥399\n   Hours: 09:00-21:00\n   Location: Pudong\n\n3. The Bund (ID: attr_sh_003)\n   Type: Sightseeing\n   Rating: 4.6/5.0\n   Ticket: Free\n   Hours: 24 hours\n   Location: Huangpu\n\n4. Yu Garden (ID: attr_sh_004)\n   Type: Garden\n   Rating: 4.4/5.0\n   Ticket: ¥40\n   Hours: 08:30-17:00\n   Location: Huangpu\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_sh_001",
+                "name": "Oriental Pearl Tower",
+                "type": "Modern",
+                "rating": 4.5,
+                "price": 180,
+                "opening_hours": "08:00-22:00",
+                "location": "Pudong"
+              },
+              {
+                "attraction_id": "attr_sh_002",
+                "name": "Shanghai Disneyland",
+                "type": "Theme Park",
+                "rating": 4.7,
+                "price": 399,
+                "opening_hours": "09:00-21:00",
+                "location": "Pudong"
+              },
+              {
+                "attraction_id": "attr_sh_003",
+                "name": "The Bund",
+                "type": "Sightseeing",
+                "rating": 4.6,
+                "price": 0,
+                "opening_hours": "24 hours",
+                "location": "Huangpu"
+              },
+              {
+                "attraction_id": "attr_sh_004",
+                "name": "Yu Garden",
+                "type": "Garden",
+                "rating": 4.4,
+                "price": 40,
+                "opening_hours": "08:30-17:00",
+                "location": "Huangpu"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.07295608520507812
+          },
+          "latency_ms": 0.07295608520507812
+        }
+      ],
+      "total_latency_ms": 11312.376737594604,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1064160,
+        "event_count": 61,
+        "latency": {
+          "speech_ms": 375.119873046875,
+          "tool_call_ms": 1274.67578125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 18.592792178299483,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book an attraction ticket for Shanghai Disneyland.",
+        "timestamp": 18.592792178299483,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 142200
+      },
+      "assistant_response": "Thank you, I'd be happy to help you book Shanghai Disneyland tickets. To proceed, could you let me know the visit date, preferred time slot like morning or afternoon, your name, and how many tickets you need?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I'd be happy to help you book Shanghai Disneyland tickets. To proceed, could you let me know the visit date, preferred time slot like morning or afternoon, your name, and how many tickets you need?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 17960.46805381775,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 633600,
+        "event_count": 35,
+        "latency": {
+          "speech_ms": 8252.18212890625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.14726663174602,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the Shanghai Disneyland ticket date to 2026-03-23 and the time slot to morning.",
+        "timestamp": 24.14726663174602,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-23",
+            "book_attraction_ticket.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 301200
+      },
+      "assistant_response": "Thank you, I've noted the date as 2026-03-23 and the morning time slot for Shanghai Disneyland. Now, could you tell me the visitor's name and how many tickets you'd like? Once I have those details, I can complete the booking for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I've noted the date as 2026-03-23 and the morning time slot for Shanghai Disneyland. Now, could you tell me the visitor's name and how many tickets you'd like? Once I have those details, I can complete the booking for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10465.614795684814,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 755520,
+        "event_count": 38,
+        "latency": {
+          "speech_ms": 742.944091796875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.71853018225783,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use visitor name Wang Fang and ticket count 1 for the Shanghai Disneyland booking.",
+        "timestamp": 31.71853018225783,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.ticket_count=1",
+            "book_attraction_ticket.visitor_name=Wang Fang"
+          ]
+        },
+        "audio_size_bytes": 252600
+      },
+      "assistant_response": "Thank you, I've got all the details now. Great, your Shanghai Disneyland ticket has been successfully booked. The booking ID is AT50001, and your ticket number is AT50001-01. If you'd like to book anything else, such as the Beijing hotel, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I've got all the details now.",
+          "tool_calls": [
+            {
+              "id": "call-0920a589-802d-4a92-ad7b-9c2ffe2186eb-4",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_sh_002",
+                "date": "2026-03-23",
+                "time_slot": "morning",
+                "visitor_name": "Wang Fang",
+                "ticket_count": 1
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your Shanghai Disneyland ticket has been successfully booked. The booking ID is AT50001, and your ticket number is AT50001-01. If you'd like to book anything else, such as the Beijing hotel, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-0920a589-802d-4a92-ad7b-9c2ffe2186eb-4",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_sh_002",
+            "date": "2026-03-23",
+            "time_slot": "morning",
+            "visitor_name": "Wang Fang",
+            "ticket_count": 1
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_sh_002\nDate: 2026-03-23\nTime slot: morning\nVisitor: Wang Fang\nTickets: 1\nTicket numbers: AT50001-01\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_sh_002",
+              "date": "2026-03-23",
+              "time_slot": "morning",
+              "visitor_name": "Wang Fang",
+              "ticket_count": 1,
+              "ticket_numbers": [
+                "AT50001-01"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.02288818359375
+          },
+          "latency_ms": 0.02288818359375
+        }
+      ],
+      "total_latency_ms": 12593.486070632935,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 995040,
+        "event_count": 59,
+        "latency": {
+          "speech_ms": 555.873046875,
+          "tool_call_ms": 2139.3427734375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 39.056565689519864,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Beijing.",
+        "timestamp": 39.056565689519864,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 71400
+      },
+      "assistant_response": "Sure, I'll search for hotels in Beijing right away. I've found seven hotels in Beijing for you, ranging from luxury 5-star options to more affordable 3-star ones. The Peninsula Beijing is the highest rated at 4.9 with a price of ¥1800 per night. Which one would you like to book, or do you have a preferred price range or star rating? Once you choose one, I'll need the check-in date, number of nights, and your name to complete the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'll search for hotels in Beijing right away.",
+          "tool_calls": [
+            {
+              "id": "call-bc8e468b-177b-48db-a1b7-1421003d7c33-5",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found seven hotels in Beijing for you, ranging from luxury 5-star options to more affordable 3-star ones. The Peninsula Beijing is the highest rated at 4.9 with a price of ¥1800 per night. Which one would you like to book, or do you have a preferred price range or star rating? Once you choose one, I'll need the check-in date, number of nights, and your name to complete the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-bc8e468b-177b-48db-a1b7-1421003d7c33-5",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 7 hotels in Beijing:\n\n1. The Peninsula Beijing (ID: hotel_bj_001)\n   Location: Wangfujing | 5 stars\n   Price: ¥1800/night | Rating: 4.9/5.0\n\n2. Park Hyatt Beijing (ID: hotel_bj_002)\n   Location: CBD | 5 stars\n   Price: ¥1500/night | Rating: 4.8/5.0\n\n3. Holiday Inn Express (ID: hotel_bj_003)\n   Location: Zhongguancun | 3 stars\n   Price: ¥450/night | Rating: 4.2/5.0\n\n4. Beijing Hotel (ID: hotel_bj_004)\n   Location: Downtown | 4 stars\n   Price: ¥600/night | Rating: 4.4/5.0\n\n5. Novotel Beijing Peace (ID: hotel_bj_005)\n   Location: Downtown | 4 stars\n   Price: ¥550/night | Rating: 4.5/5.0\n\n6. Grand Mercure Beijing (ID: hotel_bj_006)\n   Location: Downtown | 4 stars\n   Price: ¥700/night | Rating: 4.6/5.0\n\n7. Home Inn Dongzhimen (ID: hotel_bj_007)\n   Location: Downtown | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_bj_001",
+                "name": "The Peninsula Beijing",
+                "location": "Wangfujing",
+                "stars": 5,
+                "price": 1800,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_bj_002",
+                "name": "Park Hyatt Beijing",
+                "location": "CBD",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_bj_003",
+                "name": "Holiday Inn Express",
+                "location": "Zhongguancun",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_bj_004",
+                "name": "Beijing Hotel",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 600,
+                "rating": 4.4
+              },
+              {
+                "hotel_id": "hotel_bj_005",
+                "name": "Novotel Beijing Peace",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 550,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_bj_006",
+                "name": "Grand Mercure Beijing",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 700,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_bj_007",
+                "name": "Home Inn Dongzhimen",
+                "location": "Downtown",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.1
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04100799560546875
+          },
+          "latency_ms": 0.04100799560546875
+        }
+      ],
+      "total_latency_ms": 12997.936964035034,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1374240,
+        "event_count": 65,
+        "latency": {
+          "speech_ms": 1512.603271484375,
+          "tool_call_ms": 3322.59033203125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 43.5908391411118,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Beijing Hotel for 1 night with check-in 2026-05-06, guest name Sun Lei.",
+        "timestamp": 43.5908391411118,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-05-06",
+            "book_hotel.guest_name=Sun Lei",
+            "book_hotel.nights=1"
+          ]
+        },
+        "audio_size_bytes": 285000
+      },
+      "assistant_response": "Thank you, I've noted the details for the Beijing hotel booking. Could you tell me which hotel you'd like, such as the Peninsula Beijing with ID hotel_bj_001 or another from the list? Once I have that, I can complete the booking for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I've noted the details for the Beijing hotel booking. Could you tell me which hotel you'd like, such as the Peninsula Beijing with ID hotel_bj_001 or another from the list? Once I have that, I can complete the booking for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9639.127016067505,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 836160,
+        "event_count": 37,
+        "latency": {
+          "speech_ms": 310.259765625
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 12,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ],
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "book_attraction_ticket": {
+        "speech_ms": 555.873046875,
+        "tool_call_ms": 2139.3427734375
+      },
+      "book_hotel": {
+        "speech_ms": 310.259765625
+      }
+    },
+    "info_complete_turn": {
+      "search_attractions": 1,
+      "book_attraction_ticket": 6,
+      "search_hotels": 1,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[respected cancel]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "task_id": "int_000020",
+  "description": "Interruption (correction): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search attractions in Chengdu.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_attractions.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 ticket for Kuanzhai Alley on 2026-03-12 in the morning.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=1",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 4.93296240007505
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not 2026-03-12, I meant 2026-03-21.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "2026-03-12",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-21"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use visitor name Chen Ming.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.visitor_name=Chen Ming"
+        ]
+      },
+      "timestamp": 16.365391182018005
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 20.524797111158037
+    },
+    {
+      "speaker": "user",
+      "text": "Book Home Inn the Bund for Zhou Jun, check in 2026-03-13 for 1 night.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-13",
+          "book_hotel.guest_name=Zhou Jun",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 25.09281525990312
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_004",
+        "date": "2026-03-21",
+        "time_slot": "morning",
+        "visitor_name": "Chen Ming",
+        "ticket_count": 1
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_004",
+        "checkin_date": "2026-03-13",
+        "nights": 1,
+        "guest_name": "Zhou Jun"
+      }
+    }
+  ],
+  "transcript_hash": "76628315eef5",
+  "info_complete_turn": {
+    "search_attractions": 1,
+    "book_attraction_ticket": 4,
+    "search_hotels": 5,
+    "book_hotel": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "correction",
+    "interrupt_keyword": "2026-03-12",
+    "generated": true,
+    "wrong_param": {
+      "tool": "book_attraction_ticket",
+      "param": "date",
+      "wrong_value": "2026-03-12"
+    }
+  }
+}

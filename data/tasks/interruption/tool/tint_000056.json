@@ -1,0 +1,159 @@
+{
+  "task_id": "tint_000056",
+  "description": "Interruption (tool_correction): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Chengdu.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Chengdu, I meant Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_shows",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search shows in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_shows.city=Shanghai"
+        ]
+      },
+      "timestamp": 9.230654161254598
+    },
+    {
+      "speaker": "user",
+      "text": "Book tickets for the show ID JJ Lin Concert. Seat zone Stand C.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Stand C"
+        ]
+      },
+      "timestamp": 13.329874301054065
+    },
+    {
+      "speaker": "user",
+      "text": "Ticket count 3. Buyer name Liu Yang. Phone 13864788741.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Liu Yang",
+          "book_show_ticket.phone=13864788741",
+          "book_show_ticket.ticket_count=3"
+        ]
+      },
+      "timestamp": 19.29466025524087
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 25.261876855833293
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant Chuanfu Laozao for 2026-03-26 at 19:00, party size 6. Contact Wang Fang, phone 13856781234.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Wang Fang",
+          "book_restaurant.date=2026-03-26",
+          "book_restaurant.party_size=6",
+          "book_restaurant.phone=13856781234",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 29.687212498511478
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_sh_004",
+        "seat_zone": "Stand C",
+        "ticket_count": 3,
+        "buyer_name": "Liu Yang",
+        "phone": "13864788741"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_001",
+        "date": "2026-03-26",
+        "time": "19:00",
+        "party_size": 6,
+        "contact_name": "Wang Fang",
+        "phone": "13856781234"
+      }
+    }
+  ],
+  "transcript_hash": "07b83cc659b1",
+  "info_complete_turn": {
+    "search_shows": 3,
+    "book_show_ticket": 5,
+    "search_restaurants": 6,
+    "book_restaurant": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_shows",
+    "wrong_params": {
+      "search_shows.city": "Chengdu"
+    },
+    "corrected_params": {
+      "search_shows.city": "Shanghai"
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "task_id": "tint_000103",
+  "description": "Interruption (tool_cancel): 4 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants_delivery",
+    "place_food_order",
+    "search_courses",
+    "enroll_course"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find delivery restaurants near 94105 for pizza, and also look up online data science courses.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the delivery. Skip restaurant search and any food ordering.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants_delivery",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search courses for Data Science Fundamentals, online only.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 14.237263846556138
+    },
+    {
+      "speaker": "user",
+      "text": "Enroll Noah Wilson in Data Science Fundamentals.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "enroll_course.student_name=Noah Wilson"
+        ]
+      },
+      "timestamp": 19.806473435179193
+    },
+    {
+      "speaker": "user",
+      "text": "Finish the enrollment now.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 25.619461715257135
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_courses",
+      "params": {}
+    },
+    {
+      "tool": "enroll_course",
+      "params": {
+        "course_id": "DS101",
+        "student_name": "Noah Wilson"
+      }
+    }
+  ],
+  "transcript_hash": "a936b800362e",
+  "info_complete_turn": {
+    "search_courses": 1,
+    "enroll_course": 4
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 5,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_restaurants_delivery",
+    "forbidden_tools": [
+      "search_restaurants_delivery",
+      "place_food_order"
+    ]
+  },
+  "forbidden_tools": [
+    "search_restaurants_delivery",
+    "place_food_order"
+  ],
+  "cancelled_tools": [
+    "search_restaurants_delivery",
+    "place_food_order"
+  ]
+}

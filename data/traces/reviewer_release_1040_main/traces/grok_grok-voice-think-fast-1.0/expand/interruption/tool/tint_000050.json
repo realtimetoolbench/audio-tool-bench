@@ -1,0 +1,603 @@
+{
+  "task_name": "tint_000050",
+  "start_time": "2026-05-06T20:17:59.830766",
+  "end_time": "2026-05-06T20:19:36.412945",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for 2 adults, check in 2026-04-26, check out 2026-04-28. Also, later I want restaurant and flight help.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_flights.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 529200
+      },
+      "assistant_response": "Thank you, I'd be happy to help with your hotel search in Shanghai and the other bookings later.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I'd be happy to help with your hotel search in Shanghai and the other bookings later.",
+          "tool_calls": [
+            {
+              "id": "call-e745741e-f974-4538-9baf-02ac594f94d5-0",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-04-26"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Thank you, I'd be happy to help with your hotel search in Shanghai and the other bookings later.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 12970.72720527649,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 261600,
+        "event_count": 29,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "Thank you, I'd be happy to help with your hotel search in Shanghai and the other bookings later."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel part. Cancel anything about hotels.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 145800
+      },
+      "assistant_response": "Understood, I've canceled the hotel search. What would you like to do next? Are you looking for restaurant recommendations or flight options? Just let me know the details.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Understood, I've canceled the hotel search. What would you like to do next? Are you looking for restaurant recommendations or flight options? Just let me know the details.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3001.5950202941895,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 444480,
+        "event_count": 31,
+        "latency": {
+          "speech_ms": 355.31787109375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.463776044244455,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Wuhan.",
+        "timestamp": 14.463776044244455,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_restaurants.city=Wuhan"
+          ]
+        },
+        "audio_size_bytes": 84000
+      },
+      "assistant_response": "Sure, I'd be happy to search for restaurants in Wuhan. I've found two restaurants in Wuhan for you. The first is Cai Lin Ji Hot Noodles, Hubei cuisine in the Hankou area with a 4.6 rating. The second is Yangtze River Restaurant, also Hubei cuisine but in Wuchang with a 4.4 rating. Would you like to book one of these or search with more specific preferences like cuisine type?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'd be happy to search for restaurants in Wuhan.",
+          "tool_calls": [
+            {
+              "id": "call-a8ad4449-e712-4579-a7ff-f2536b6d3a44-1",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Wuhan"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found two restaurants in Wuhan for you. The first is Cai Lin Ji Hot Noodles, Hubei cuisine in the Hankou area with a 4.6 rating. The second is Yangtze River Restaurant, also Hubei cuisine but in Wuchang with a 4.4 rating. Would you like to book one of these or search with more specific preferences like cuisine type?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-a8ad4449-e712-4579-a7ff-f2536b6d3a44-1",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Wuhan"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 2 restaurants in Wuhan:\n\n1. Cai Lin Ji Hot Noodles (ID: rst_wh_001)\n   Cuisine: Hubei\n   Location: Hankou\n   Rating: 4.6/5.0\n\n2. Yangtze River Restaurant (ID: rst_wh_002)\n   Cuisine: Hubei\n   Location: Wuchang\n   Rating: 4.4/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_wh_001",
+                "name": "Cai Lin Ji Hot Noodles",
+                "cuisine": "Hubei",
+                "location": "Hankou",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_wh_002",
+                "name": "Yangtze River Restaurant",
+                "cuisine": "Hubei",
+                "location": "Wuchang",
+                "rating": 4.4
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0362396240234375
+          },
+          "latency_ms": 0.0362396240234375
+        }
+      ],
+      "total_latency_ms": 11287.753105163574,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1137120,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 1116.364013671875,
+          "tool_call_ms": 1199.4599609375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 18.451584871092646,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book a restaurant: restaurant_id Cai Lin Ji Hot Noodles, date 2026-05-03, time 12:00.",
+        "timestamp": 18.451584871092646,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-05-03",
+            "book_restaurant.time=12:00"
+          ]
+        },
+        "audio_size_bytes": 344400
+      },
+      "assistant_response": "Thank you, let me check that. I see you're trying to book Cai Lin Ji Hot Noodles for May 3rd, 2026 at 12:00. The tool needs a few more details first - how many people will be in your party, your name as the contact, and a phone number?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, let me check that. I see you're trying to book Cai Lin Ji Hot Noodles for May 3rd, 2026 at 12:00. The tool needs a few more details first - how many people will be in your party, your name as the contact, and a phone number?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 12375.356912612915,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 697920,
+        "event_count": 35,
+        "latency": {
+          "speech_ms": 1382.675048828125
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.413358797870295,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the party size to 8 and the contact name to Emily Wang.",
+        "timestamp": 25.413358797870295,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Emily Wang",
+            "book_restaurant.party_size=8"
+          ]
+        },
+        "audio_size_bytes": 182400
+      },
+      "assistant_response": "Thank you, I've noted the party size of eight and contact name Emily Wong. To complete the booking, I'll need your contact phone number as well. Once I have that, I can proceed with reserving Cai Lin Ji Hot Noodles for eight people on May 3rd, 2026 at 12:00 under Emily Wong.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I've noted the party size of eight and contact name Emily Wong. To complete the booking, I'll need your contact phone number as well. Once I have that, I can proceed with reserving Cai Lin Ji Hot Noodles for eight people on May 3rd, 2026 at 12:00 under Emily Wong.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 12335.763931274414,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 783360,
+        "event_count": 38,
+        "latency": {
+          "speech_ms": 3678.72998046875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.31929366623622,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13855667788 for the restaurant booking.",
+        "timestamp": 31.31929366623622,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.phone=13855667788"
+          ]
+        },
+        "audio_size_bytes": 244800
+      },
+      "assistant_response": "Thank you, I've got the phone number as 138555667788. Great, your reservation is confirmed. The booking ID is BK1001 for Cai Lin Ji Hot Noodles on May 3rd, 2026 at noon for eight people. If there's anything else, like flight bookings or other help, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I've got the phone number as 138555667788.",
+          "tool_calls": [
+            {
+              "id": "call-1185207c-bda3-40e8-97f9-13924ff257d1-2",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_wh_001",
+                "date": "2026-05-03",
+                "time": "12:00",
+                "party_size": 8,
+                "contact_name": "Emily Wong",
+                "phone": "138555667788"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your reservation is confirmed. The booking ID is BK1001 for Cai Lin Ji Hot Noodles on May 3rd, 2026 at noon for eight people. If there's anything else, like flight bookings or other help, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-1185207c-bda3-40e8-97f9-13924ff257d1-2",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_wh_001",
+            "date": "2026-05-03",
+            "time": "12:00",
+            "party_size": 8,
+            "contact_name": "Emily Wong",
+            "phone": "138555667788"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_wh_001\nRestaurant: Cai Lin Ji Hot Noodles\nDate: 2026-05-03\nTime: 12:00\nParty size: 8\nContact: Emily Wong (138555667788)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_wh_001",
+              "restaurant_name": "Cai Lin Ji Hot Noodles",
+              "date": "2026-05-03",
+              "time": "12:00",
+              "party_size": 8,
+              "contact_name": "Emily Wong",
+              "phone": "138555667788",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03314018249511719
+          },
+          "latency_ms": 0.03314018249511719
+        }
+      ],
+      "total_latency_ms": 11056.816339492798,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1076640,
+        "event_count": 60,
+        "latency": {
+          "speech_ms": 127.58984375,
+          "tool_call_ms": 1786.432861328125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 36.88942478597475,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 36.88942478597475,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 109200
+      },
+      "assistant_response": "Thank you, I'll search for available flights from Beijing to Shanghai right away. I've found four flights from Beijing to Shanghai, all in economy class. The cheapest option is China Eastern flight MU5678 departing at 10:00 AM for ¥750. Would you like to book one of these, and if so, which flight ID and passenger name should I use?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I'll search for available flights from Beijing to Shanghai right away.",
+          "tool_calls": [
+            {
+              "id": "call-c1c14c75-d4b1-4773-aada-0cba0fd19a2b-3",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found four flights from Beijing to Shanghai, all in economy class. The cheapest option is China Eastern flight MU5678 departing at 10:00 AM for ¥750. Would you like to book one of these, and if so, which flight ID and passenger name should I use?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-c1c14c75-d4b1-4773-aada-0cba0fd19a2b-3",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.051021575927734375
+          },
+          "latency_ms": 0.051021575927734375
+        }
+      ],
+      "total_latency_ms": 14616.736888885498,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1178400,
+        "event_count": 61,
+        "latency": {
+          "speech_ms": 2140.439208984375,
+          "tool_call_ms": 3373.049072265625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 41.592374198136675,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5890 on 2026-04-27 for passenger Deng Hui, airline China Eastern.",
+        "timestamp": 41.592374198136675,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_flight.date=2026-04-27",
+            "book_flight.passenger_name=Deng Hui"
+          ]
+        },
+        "audio_size_bytes": 331200
+      },
+      "assistant_response": "Thank you, I've noted the details for China Eastern flight MU5890 on April 27, 2026 for passenger Deng Hui. Perfect, the booking is confirmed. Your booking ID is FL10001 for flight flt_bj_sh_004 on April 27, 2026 for Deng Hui. If there's anything else you'd like help with, such as another booking or different dates, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I've noted the details for China Eastern flight MU5890 on April 27, 2026 for passenger Deng Hui.",
+          "tool_calls": [
+            {
+              "id": "call-d1221f9e-0cc7-40bb-a05a-1a9dbafb36f4-4",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "flt_bj_sh_004",
+                "passenger_name": "Deng Hui",
+                "date": "2026-04-27"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Perfect, the booking is confirmed. Your booking ID is FL10001 for flight flt_bj_sh_004 on April 27, 2026 for Deng Hui. If there's anything else you'd like help with, such as another booking or different dates, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-d1221f9e-0cc7-40bb-a05a-1a9dbafb36f4-4",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "flt_bj_sh_004",
+            "passenger_name": "Deng Hui",
+            "date": "2026-04-27"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: flt_bj_sh_004\nPassenger: Deng Hui\nDate: 2026-04-27\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "flt_bj_sh_004",
+              "passenger_name": "Deng Hui",
+              "date": "2026-04-27",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.032901763916015625
+          },
+          "latency_ms": 0.032901763916015625
+        }
+      ],
+      "total_latency_ms": 18926.894187927246,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1490400,
+        "event_count": 67,
+        "latency": {
+          "speech_ms": 4929.06884765625,
+          "tool_call_ms": 7198.56689453125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_restaurants": {
+        "speech_ms": 1116.364013671875,
+        "tool_call_ms": 1199.4599609375
+      },
+      "book_restaurant": {
+        "speech_ms": 127.58984375,
+        "tool_call_ms": 1786.432861328125
+      },
+      "search_flights": {
+        "speech_ms": 2140.439208984375,
+        "tool_call_ms": 3373.049072265625
+      },
+      "book_flight": {
+        "speech_ms": 4929.06884765625,
+        "tool_call_ms": 7198.56689453125
+      }
+    },
+    "info_complete_turn": {
+      "search_restaurants": 3,
+      "book_restaurant": 6,
+      "search_flights": 7,
+      "book_flight": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[respected cancel]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_restaurant",
+          "error_type": "entity_mishearing",
+          "phase": "post",
+          "detail": "contact_name: 'Emily Wang' vs 'Emily Wong'; phone: '13855667788' vs '138555667788'"
+        }
+      ],
+      "error_types": {
+        "entity_mishearing": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "entity_mishearing": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "entity_mishearing"
+    }
+  }
+}

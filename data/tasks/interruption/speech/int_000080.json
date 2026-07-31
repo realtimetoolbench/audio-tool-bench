@@ -1,0 +1,168 @@
+{
+  "task_id": "int_000080",
+  "description": "Interruption (cancellation): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Nanjing. Also, later help me with a flight.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Nanjing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Jinling Hotel Nanjing for Olivia Brown.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Olivia Brown"
+        ]
+      },
+      "timestamp": 6.496732662767592
+    },
+    {
+      "speaker": "user",
+      "text": "Set check-in to 2026-05-15.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-15"
+        ]
+      },
+      "timestamp": 11.790624216404748
+    },
+    {
+      "speaker": "user",
+      "text": "Make it 2 nights. Then move on to the flight.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 16.02342871989209
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the flight.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 4,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "flight",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Wuhan.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Wuhan"
+        ]
+      },
+      "timestamp": 26.367045535800532
+    },
+    {
+      "speaker": "user",
+      "text": "Book Cai Lin Ji Hot Noodles for 2026-03-02 at 18:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-02",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 30.342224700570796
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 3. Contact Gao Yan, phone 13844556677.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Gao Yan",
+          "book_restaurant.party_size=3",
+          "book_restaurant.phone=13844556677"
+        ]
+      },
+      "timestamp": 35.75846498019839
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_nj_003",
+        "checkin_date": "2026-05-15",
+        "nights": 2,
+        "guest_name": "Olivia Brown"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Wuhan"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_wh_001",
+        "date": "2026-03-02",
+        "time": "18:00",
+        "party_size": 3,
+        "contact_name": "Gao Yan",
+        "phone": "13844556677"
+      }
+    }
+  ],
+  "transcript_hash": "ff52dee3f9f3",
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 4,
+    "search_restaurants": 6,
+    "book_restaurant": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "flight",
+    "template": "business_trip",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_flights",
+    "book_flight"
+  ]
+}

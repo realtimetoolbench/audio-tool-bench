@@ -1,0 +1,23 @@
+# Expanded benchmark (3 OpenAI Realtime models × 6 task_sets)
+# Usage: python3 scripts/run_benchmark.py --config benchmark_expanded.yaml --eval-only
+
+provider: openai
+
+key_groups:
+  key1:
+    env: OPENAI_API_KEY
+    models:
+      - gpt-realtime
+      - gpt-realtime-1.5
+      - gpt-realtime-mini
+
+match_modes:
+  - lenient
+
+task_sets:
+  reactive: data/tasks/reactive
+  strong: data/tasks/proactive/strong_v2
+  medium: data/tasks/proactive/medium_v2
+  weak: data/tasks/proactive/weak_v2
+  v31_tool_phase: data/tasks/interruption_v31
+  v31_extra: data/tasks/interruption_v31_extra

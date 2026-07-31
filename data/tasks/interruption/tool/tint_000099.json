@@ -1,0 +1,146 @@
+{
+  "task_id": "tint_000099",
+  "description": "Interruption (tool_correction): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels. City Shenzhen. Check-in 2026-03-14. Nights 1.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-14",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shenzhen, I meant Nanjing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Nanjing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use city Nanjing. Book Sofitel Nanjing Galaxy. Guest name Zhou Jun.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 10.393344526839373
+    },
+    {
+      "speaker": "user",
+      "text": "Search flights. Origin Beijing. Destination Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 16.37224978798563
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5890. Date 2026-04-27. Passenger name Emma Taylor.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_flight.date=2026-04-27",
+          "book_flight.passenger_name=Emma Taylor"
+        ]
+      },
+      "timestamp": 22.1848096359501
+    },
+    {
+      "speaker": "user",
+      "text": "Airline China Eastern.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 28.3964127226926
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Nanjing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_nj_002",
+        "checkin_date": "2026-03-14",
+        "nights": 1,
+        "guest_name": "Zhou Jun"
+      }
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_004",
+        "date": "2026-04-27",
+        "passenger_name": "Emma Taylor"
+      }
+    }
+  ],
+  "transcript_hash": "60e55a8e9048",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 3,
+    "search_flights": 4,
+    "book_flight": 5
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": "business_trip",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Shenzhen"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Nanjing"
+    }
+  }
+}

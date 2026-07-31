@@ -1,0 +1,599 @@
+{
+  "task_name": "tint_000040",
+  "start_time": "2026-05-06T14:44:41.286309",
+  "end_time": "2026-05-06T14:45:25.563439",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Find attractions in Kyoto for April 10, 2026, for 2 adults. Also plan my Beijing to Shanghai train and a hotel in Hangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_hotels.city=Hangzhou",
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 426000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_gDD9VOLpwFrZb6u7",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Kyoto"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9257.686853408813,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 21,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the attraction search. Skip attractions and tickets.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_attractions",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 172800
+      },
+      "assistant_response": "No problem! We'll skip the attractions for now. Let's focus on the train from Beijing to Shanghai and the hotel in Hangzhou. I'll start by finding the train options. Here we go! Great! Now, could you let me know which train you'd prefer—G1, G3, or D321? And we’ll also need the travel date, passenger name, and seat class. Once we have those details, we will move forward smoothly!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "No problem! We'll skip the attractions for now. Let's focus on the train from Beijing to Shanghai and the hotel in Hangzhou. I'll start by finding the train options. Here we go!",
+          "tool_calls": [
+            {
+              "id": "call_ilhT6q93hsTnZ6Vv",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great! Now, could you let me know which train you'd prefer—G1, G3, or D321? And we’ll also need the travel date, passenger name, and seat class. Once we have those details, we will move forward smoothly!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ilhT6q93hsTnZ6Vv",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.031948089599609375
+          },
+          "latency_ms": 0.031948089599609375
+        }
+      ],
+      "total_latency_ms": 4594.317674636841,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1010400,
+        "event_count": 193,
+        "latency": {
+          "speech_ms": 626.534912109375,
+          "tool_call_ms": 2299.888916015625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 15.25525225946939,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 15.25525225946939,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 115800
+      },
+      "assistant_response": "Got it! I've already found the train options. There are three main trains: the G1, the G3, and the D321. Do you have a preferred departure time? Once you pick one, we can move forward to book it.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! I've already found the train options. There are three main trains: the G1, the G3, and the D321. Do you have a preferred departure time? Once you pick one, we can move forward to book it.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4240.517139434814,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 525600,
+        "event_count": 93,
+        "latency": {
+          "speech_ms": 677.646240234375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.345207002957963,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 on 2026-04-08.",
+        "timestamp": 20.345207002957963,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-04-08"
+          ]
+        },
+        "audio_size_bytes": 160200
+      },
+      "assistant_response": "Sure! Could you please provide the passenger name and the seat class you'd like—second class or first class? Then we can finalize the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure! Could you please provide the passenger name and the seat class you'd like—second class or first class? Then we can finalize the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4595.529079437256,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 376800,
+        "event_count": 64,
+        "latency": {
+          "speech_ms": 892.18212890625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.34873623705762,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use passenger name Noah Wilson and First Class.",
+        "timestamp": 24.34873623705762,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.passenger_name=Noah Wilson",
+            "book_train.seat_class=First Class"
+          ]
+        },
+        "audio_size_bytes": 137400
+      },
+      "assistant_response": "Your train ticket from Beijing to Shanghai on April 8, 2026, for Noah Wilson in first class has been booked! The seat is 01A. \n\nNow, let’s move on to finding a hotel in Hangzhou. Could you tell me the check-in date? That way I can search for the best options for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_pQeTdKJA5xE96Xuk",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-04-08",
+                "passenger_name": "Noah Wilson",
+                "seat_class": "first class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your train ticket from Beijing to Shanghai on April 8, 2026, for Noah Wilson in first class has been booked! The seat is 01A. \n\nNow, let’s move on to finding a hotel in Hangzhou. Could you tell me the check-in date? That way I can search for the best options for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_pQeTdKJA5xE96Xuk",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-04-08",
+            "passenger_name": "Noah Wilson",
+            "seat_class": "first class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-04-08\nPassenger: Noah Wilson\nSeat: first class 01A\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-04-08",
+              "passenger_name": "Noah Wilson",
+              "seat_class": "first class",
+              "seat_no": "01A",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.051021575927734375
+          },
+          "latency_ms": 0.051021575927734375
+        }
+      ],
+      "total_latency_ms": 6170.093774795532,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 710400,
+        "event_count": 177,
+        "latency": {
+          "speech_ms": 1724.774169921875,
+          "tool_call_ms": 818.08984375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.488145048409464,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Hangzhou.",
+        "timestamp": 29.488145048409464,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 75000
+      },
+      "assistant_response": "Understood! I'll start searching for hotels in Hangzhou. Could you let me know the check-in date you're aiming for? That way I can find the best options for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Understood! I'll start searching for hotels in Hangzhou. Could you let me know the check-in date you're aiming for? That way I can find the best options for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3669.6550846099854,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 357600,
+        "event_count": 70,
+        "latency": {
+          "speech_ms": 771.188232421875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 33.289324433968844,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book West Lake State Guesthouse for check-in 2026-03-16 for 2 nights.",
+        "timestamp": 33.289324433968844,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-16",
+            "book_hotel.nights=2"
+          ]
+        },
+        "audio_size_bytes": 283800
+      },
+      "assistant_response": "Your hotel booking at the West Lake State Guesthouse in Hangzhou is confirmed for March 16, 2026, for 2 nights.\n\nNow everything is set: the train and the hotel. If you need anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_dmnEqMnn7dpKfoiZ",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Hangzhou",
+                "checkin_date": "2026-03-16"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_iwwqScGZH2ShBtnZ",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_hz_001",
+                "guest_name": "Noah Wilson",
+                "checkin_date": "2026-03-16",
+                "nights": 2
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "finish_reason": "completed",
+          "content": "Your hotel booking at the West Lake State Guesthouse in Hangzhou is confirmed for March 16, 2026, for 2 nights.\n\nNow everything is set: the train and the hotel. If you need anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_dmnEqMnn7dpKfoiZ",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Hangzhou",
+            "checkin_date": "2026-03-16"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Hangzhou:\n\n1. West Lake State Guesthouse (ID: hotel_hz_001)\n   Location: West Lake | 5 stars\n   Price: ¥1500/night | Rating: 4.9/5.0\n\n2. Hilton Hangzhou West Lake (ID: hotel_hz_002)\n   Location: West Lake | 4 stars\n   Price: ¥800/night | Rating: 4.6/5.0\n\n3. Home Inn West Lake (ID: hotel_hz_003)\n   Location: West Lake | 3 stars\n   Price: ¥450/night | Rating: 4.3/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_hz_001",
+                "name": "West Lake State Guesthouse",
+                "location": "West Lake",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_hz_002",
+                "name": "Hilton Hangzhou West Lake",
+                "location": "West Lake",
+                "stars": 4,
+                "price": 800,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_hz_003",
+                "name": "Home Inn West Lake",
+                "location": "West Lake",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.3
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05412101745605469
+          },
+          "latency_ms": 0.05412101745605469
+        },
+        {
+          "tool_call_id": "call_iwwqScGZH2ShBtnZ",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_hz_001",
+            "guest_name": "Noah Wilson",
+            "checkin_date": "2026-03-16",
+            "nights": 2
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_hz_001\nCheck-in: 2026-03-16\nNights: 2\nGuest: Noah Wilson\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_hz_001",
+              "checkin_date": "2026-03-16",
+              "nights": 2,
+              "guest_name": "Noah Wilson",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.08702278137207031
+          },
+          "latency_ms": 0.08702278137207031
+        }
+      ],
+      "total_latency_ms": 8150.209903717041,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 578400,
+        "event_count": 184,
+        "latency": {
+          "speech_ms": 3480.44921875,
+          "tool_call_ms": 1037.412109375
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 39.36991181236164,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the hotel guest name to Noah Wilson.",
+        "timestamp": 39.36991181236164,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Noah Wilson"
+          ]
+        },
+        "audio_size_bytes": 114600
+      },
+      "assistant_response": "It looks like the guest name is already set to Noah Wilson for the booking. If you'd like to make any other changes or need help with anything else, just let me know!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "It looks like the guest name is already set to Noah Wilson for the booking. If you'd like to make any other changes or need help with anything else, just let me know!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3592.254877090454,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 396000,
+        "event_count": 72,
+        "latency": {
+          "speech_ms": 812.289794921875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "forbidden_tools": [
+      "search_attractions",
+      "book_attraction_ticket"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "book_train": {
+        "speech_ms": 1724.774169921875,
+        "tool_call_ms": 818.08984375
+      },
+      "book_hotel": {
+        "speech_ms": 812.289794921875
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 1,
+      "book_train": 5,
+      "search_hotels": 1,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "premature_call",
+    "details": "完全匹配预期工具: {'book_train', 'search_hotels', 'search_trains', 'book_hotel'}",
+    "call_timing": "book_hotel 在 step 7 调用，但信息要到 turn 8 才收齐",
+    "extra_turns": 7,
+    "extra_turns_details": "search_trains: +1 turns (info@1, call@2); search_hotels: +6 turns (info@1, call@7)",
+    "behavior_score": 0.75,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 1(correct), search_hotels: 1(correct), book_hotel: 0(premature_call)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 7 调用，info_complete_turn=8"
+        }
+      ],
+      "error_types": {
+        "premature_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

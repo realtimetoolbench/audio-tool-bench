@@ -1,0 +1,387 @@
+{
+  "task_name": "tint_000045",
+  "start_time": "2026-04-28T11:42:06.653135",
+  "end_time": "2026-04-28T11:42:39.141554",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for check-in 2026-03-24 and check-out 2026-03-26; also handle a restaurant plan after that.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-03-24",
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 491400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_nZnbdH53YVEUCZyo",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-24"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9928.003072738647,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 37,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the hotel search and skip any hotel booking.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 154800
+      },
+      "assistant_response": "Got it! We’ll skip the hotel part. Let’s jump straight into planning your restaurant adventure. What kind of cuisine are you in the mood for in Shanghai?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! We’ll skip the hotel part. Let’s jump straight into planning your restaurant adventure. What kind of cuisine are you in the mood for in Shanghai?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2004.4918060302734,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 376800,
+        "event_count": 81,
+        "latency": {
+          "speech_ms": 426.01708984375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.957741384739709,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shanghai for lunch.",
+        "timestamp": 14.957741384739709,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 115800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_MCVoT6phRzF1FsX2",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_MCVoT6phRzF1FsX2",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Shanghai:\n\n1. Chuanfu Laozao (ID: rst_sh_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.6/5.0\n\n2. Shanghai Classic (ID: rst_sh_002)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.4/5.0\n\n3. Xiao Nan Guo (ID: rst_sh_003)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_sh_001",
+                "name": "Chuanfu Laozao",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_sh_002",
+                "name": "Shanghai Classic",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_sh_003",
+                "name": "Xiao Nan Guo",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03218650817871094
+          },
+          "latency_ms": 0.03218650817871094
+        }
+      ],
+      "total_latency_ms": 4037.814140319824,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 132,
+        "latency": {
+          "tool_call_ms": 549.671142578125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.19287799839619,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the restaurant Xiao Nan Guo for 2026-03-24.",
+        "timestamp": 20.19287799839619,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 211200
+      },
+      "assistant_response": "Sure thing! What time would you like to book the reservation for, and how many people will be joining you?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing! What time would you like to book the reservation for, and how many people will be joining you?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4663.674831390381,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 256800,
+        "event_count": 59,
+        "latency": {
+          "speech_ms": 664.156982421875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 25.53469361453213,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the reservation time to 12:00 and party size to 6.",
+        "timestamp": 25.53469361453213,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.party_size=6",
+            "book_restaurant.time=12:00"
+          ]
+        },
+        "audio_size_bytes": 206400
+      },
+      "assistant_response": "Great! I’ll go ahead and book a table at Xiao Nan Guo for six people at 12:00 on 2026-03-24. Could you share the name and phone number for the reservation?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! I’ll go ahead and book a table at Xiao Nan Guo for six people at 12:00 on 2026-03-24. Could you share the name and phone number for the reservation?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6054.485082626343,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 513600,
+        "event_count": 101,
+        "latency": {
+          "speech_ms": 583.263916015625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.16896358473391,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use contact name Zhang Wei and phone 13877949128.",
+        "timestamp": 31.16896358473391,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Zhang Wei",
+            "book_restaurant.phone=13877949128"
+          ]
+        },
+        "audio_size_bytes": 244200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_zz9k0pKI8FznCbw4",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_sh_003",
+                "date": "2026-03-24",
+                "time": "12:00",
+                "party_size": 6,
+                "contact_name": "Zhang Wei",
+                "phone": "13877949128"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_zz9k0pKI8FznCbw4",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_sh_003",
+            "date": "2026-03-24",
+            "time": "12:00",
+            "party_size": 6,
+            "contact_name": "Zhang Wei",
+            "phone": "13877949128"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_sh_003\nRestaurant: Xiao Nan Guo\nDate: 2026-03-24\nTime: 12:00\nParty size: 6\nContact: Zhang Wei (13877949128)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_sh_003",
+              "restaurant_name": "Xiao Nan Guo",
+              "date": "2026-03-24",
+              "time": "12:00",
+              "party_size": 6,
+              "contact_name": "Zhang Wei",
+              "phone": "13877949128",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.027894973754882812
+          },
+          "latency_ms": 0.027894973754882812
+        }
+      ],
+      "total_latency_ms": 5793.522834777832,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 140,
+        "latency": {
+          "tool_call_ms": 1191.25927734375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 9,
+    "total_tool_calls": 2
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "forbidden_tools": [
+      "search_hotels",
+      "book_hotel"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "book_restaurant": {
+        "tool_call_ms": 1191.25927734375
+      }
+    },
+    "info_complete_turn": {
+      "search_restaurants": 1,
+      "book_restaurant": 6
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'book_restaurant', 'search_restaurants'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 2,
+    "extra_turns_details": "search_restaurants: +2 turns (info@1, call@3)",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_restaurants: 1(correct), book_restaurant: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

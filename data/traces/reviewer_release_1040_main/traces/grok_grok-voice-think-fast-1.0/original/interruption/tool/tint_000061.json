@@ -1,0 +1,536 @@
+{
+  "task_name": "tint_000061",
+  "start_time": "2026-04-30T17:26:50.902946",
+  "end_time": "2026-04-30T17:27:52.394814",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai for check-in 2026-03-26, 1 night.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-26",
+            "book_hotel.nights=1",
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 249600
+      },
+      "assistant_response": "Sure, I'll search for hotels in Shanghai with a check-in date of March 26, 2026, for one night.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'll search for hotels in Shanghai with a check-in date of March 26, 2026, for one night.",
+          "tool_calls": [
+            {
+              "id": "call-12741654-cf3f-4cc5-9a3a-49366f3b87b4-0",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-26"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "Sure, I'll search for hotels in Shanghai with a check-in date of March 26, 2026, for one night.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9637.349843978882,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 307680,
+        "event_count": 29,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "Sure, I'll search for hotels in Shanghai with a check-in date of March 26, 2026, for one night."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Shanghai, I meant Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_hotels",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_hotels.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 94800
+      },
+      "assistant_response": "Got it, no problem—I'll update the search for Beijing instead. Thanks, I've got the list of hotels in Beijing for your check-in on March 26th, 2026. Which one would you like to book, or do you need more details on any of them? Once you pick one, I can help book it for one night—just let me know the hotel ID or name and your full name as the guest.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, no problem—I'll update the search for Beijing instead.",
+          "tool_calls": [
+            {
+              "id": "call-fd7cc426-f5d9-4a02-84fd-9716c18e1fe5-1",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing",
+                "checkin_date": "2026-03-26"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the list of hotels in Beijing for your check-in on March 26th, 2026. Which one would you like to book, or do you need more details on any of them? Once you pick one, I can help book it for one night—just let me know the hotel ID or name and your full name as the guest.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-fd7cc426-f5d9-4a02-84fd-9716c18e1fe5-1",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Beijing",
+            "checkin_date": "2026-03-26"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 7 hotels in Beijing:\n\n1. The Peninsula Beijing (ID: hotel_bj_001)\n   Location: Wangfujing | 5 stars\n   Price: ¥1800/night | Rating: 4.9/5.0\n\n2. Park Hyatt Beijing (ID: hotel_bj_002)\n   Location: CBD | 5 stars\n   Price: ¥1500/night | Rating: 4.8/5.0\n\n3. Holiday Inn Express (ID: hotel_bj_003)\n   Location: Zhongguancun | 3 stars\n   Price: ¥450/night | Rating: 4.2/5.0\n\n4. Beijing Hotel (ID: hotel_bj_004)\n   Location: Downtown | 4 stars\n   Price: ¥600/night | Rating: 4.4/5.0\n\n5. Novotel Beijing Peace (ID: hotel_bj_005)\n   Location: Downtown | 4 stars\n   Price: ¥550/night | Rating: 4.5/5.0\n\n6. Grand Mercure Beijing (ID: hotel_bj_006)\n   Location: Downtown | 4 stars\n   Price: ¥700/night | Rating: 4.6/5.0\n\n7. Home Inn Dongzhimen (ID: hotel_bj_007)\n   Location: Downtown | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_bj_001",
+                "name": "The Peninsula Beijing",
+                "location": "Wangfujing",
+                "stars": 5,
+                "price": 1800,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_bj_002",
+                "name": "Park Hyatt Beijing",
+                "location": "CBD",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_bj_003",
+                "name": "Holiday Inn Express",
+                "location": "Zhongguancun",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_bj_004",
+                "name": "Beijing Hotel",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 600,
+                "rating": 4.4
+              },
+              {
+                "hotel_id": "hotel_bj_005",
+                "name": "Novotel Beijing Peace",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 550,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_bj_006",
+                "name": "Grand Mercure Beijing",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 700,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_bj_007",
+                "name": "Home Inn Dongzhimen",
+                "location": "Downtown",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.1
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.04982948303222656
+          },
+          "latency_ms": 0.04982948303222656
+        }
+      ],
+      "total_latency_ms": 7478.991985321045,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1014240,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 899.4970703125,
+          "tool_call_ms": 1793.167236328125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.90998291748261,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Park Hyatt Beijing for Zhang Wei.",
+        "timestamp": 10.90998291748261,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Zhang Wei"
+          ]
+        },
+        "audio_size_bytes": 114600
+      },
+      "assistant_response": "Thanks, I'll help you book the Park Hyatt Beijing for Zhang Wei. Great, your booking is confirmed! The details are: Booking ID HT20001, check-in March 26th, 2026, for one night under the name Zhang Wei. If you'd like to book a restaurant or need anything else, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'll help you book the Park Hyatt Beijing for Zhang Wei.",
+          "tool_calls": [
+            {
+              "id": "call-9d8736cb-49e9-46c4-98ae-9cc9b92692f1-2",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_bj_002",
+                "checkin_date": "2026-03-26",
+                "nights": 1,
+                "guest_name": "Zhang Wei"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great, your booking is confirmed! The details are: Booking ID HT20001, check-in March 26th, 2026, for one night under the name Zhang Wei. If you'd like to book a restaurant or need anything else, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-9d8736cb-49e9-46c4-98ae-9cc9b92692f1-2",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_bj_002",
+            "checkin_date": "2026-03-26",
+            "nights": 1,
+            "guest_name": "Zhang Wei"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_bj_002\nCheck-in: 2026-03-26\nNights: 1\nGuest: Zhang Wei\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_bj_002",
+              "checkin_date": "2026-03-26",
+              "nights": 1,
+              "guest_name": "Zhang Wei",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.026702880859375
+          },
+          "latency_ms": 0.026702880859375
+        }
+      ],
+      "total_latency_ms": 10668.69306564331,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 969120,
+        "event_count": 59,
+        "latency": {
+          "speech_ms": 910.4140625,
+          "tool_call_ms": 1635.751953125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.965307896440624,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shanghai.",
+        "timestamp": 15.965307896440624,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 90600
+      },
+      "assistant_response": "Sure, I'd be happy to search for restaurants in Shanghai. I've found three restaurants in Shanghai for you. Would you like to book one of these, or should I narrow it down by cuisine like Sichuan or Shanghainese?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I'd be happy to search for restaurants in Shanghai.",
+          "tool_calls": [
+            {
+              "id": "call-e103c0ad-cfff-4ff5-8996-ac3501159a9b-3",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I've found three restaurants in Shanghai for you. Would you like to book one of these, or should I narrow it down by cuisine like Sichuan or Shanghainese?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-e103c0ad-cfff-4ff5-8996-ac3501159a9b-3",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Shanghai:\n\n1. Chuanfu Laozao (ID: rst_sh_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.6/5.0\n\n2. Shanghai Classic (ID: rst_sh_002)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.4/5.0\n\n3. Xiao Nan Guo (ID: rst_sh_003)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_sh_001",
+                "name": "Chuanfu Laozao",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_sh_002",
+                "name": "Shanghai Classic",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_sh_003",
+                "name": "Xiao Nan Guo",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.09608268737792969
+          },
+          "latency_ms": 0.09608268737792969
+        }
+      ],
+      "total_latency_ms": 10292.877912521362,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 561120,
+        "event_count": 54,
+        "latency": {
+          "speech_ms": 1207.092041015625,
+          "tool_call_ms": 2457.56591796875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.138130632892526,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Shanghai Classic for 2026-03-02 at 19:00 for 7 people.",
+        "timestamp": 20.138130632892526,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-03-02",
+            "book_restaurant.party_size=7",
+            "book_restaurant.time=19:00"
+          ]
+        },
+        "audio_size_bytes": 288600
+      },
+      "assistant_response": "Thanks, I'll book that for you. The restaurant ID is rst_sh_002, date is 2026-03-02, time 19:00, and party size 7. Could you please provide the contact name and phone number to complete the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'll book that for you. The restaurant ID is rst_sh_002, date is 2026-03-02, time 19:00, and party size 7. Could you please provide the contact name and phone number to complete the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10156.549215316772,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 885120,
+        "event_count": 37,
+        "latency": {
+          "speech_ms": 0.300048828125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.533410893362305,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use contact Wang Fang, phone 13856781234.",
+        "timestamp": 26.533410893362305,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Wang Fang",
+            "book_restaurant.phone=13856781234"
+          ]
+        },
+        "audio_size_bytes": 214800
+      },
+      "assistant_response": "Thanks, I've got the details—Wang Fang as contact with phone 13856781234. Perfect, your reservation is confirmed. The booking ID is BK1001, for Shanghai Classic on March 2nd at 7 PM for 7 people under Wang Fang. If there's anything else I can assist with, just let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the details—Wang Fang as contact with phone 13856781234.",
+          "tool_calls": [
+            {
+              "id": "call-46017974-7a2c-4a61-ae19-7223abaeb76d-4",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_sh_002",
+                "date": "2026-03-02",
+                "time": "19:00",
+                "party_size": 7,
+                "contact_name": "Wang Fang",
+                "phone": "13856781234"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Perfect, your reservation is confirmed. The booking ID is BK1001, for Shanghai Classic on March 2nd at 7 PM for 7 people under Wang Fang. If there's anything else I can assist with, just let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-46017974-7a2c-4a61-ae19-7223abaeb76d-4",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_sh_002",
+            "date": "2026-03-02",
+            "time": "19:00",
+            "party_size": 7,
+            "contact_name": "Wang Fang",
+            "phone": "13856781234"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_sh_002\nRestaurant: Shanghai Classic\nDate: 2026-03-02\nTime: 19:00\nParty size: 7\nContact: Wang Fang (13856781234)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_sh_002",
+              "restaurant_name": "Shanghai Classic",
+              "date": "2026-03-02",
+              "time": "19:00",
+              "party_size": 7,
+              "contact_name": "Wang Fang",
+              "phone": "13856781234",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.08296966552734375
+          },
+          "latency_ms": 0.08296966552734375
+        }
+      ],
+      "total_latency_ms": 13249.447107315063,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1105440,
+        "event_count": 62,
+        "latency": {
+          "speech_ms": 1422.48486328125,
+          "tool_call_ms": 3049.001953125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 11,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Beijing"
+    },
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_hotels": {
+        "speech_ms": 899.4970703125,
+        "tool_call_ms": 1793.167236328125
+      },
+      "book_hotel": {
+        "speech_ms": 910.4140625,
+        "tool_call_ms": 1635.751953125
+      },
+      "book_restaurant": {
+        "speech_ms": 1422.48486328125,
+        "tool_call_ms": 3049.001953125
+      }
+    },
+    "info_complete_turn": {
+      "search_hotels": 2,
+      "book_hotel": 3,
+      "search_restaurants": 1,
+      "book_restaurant": 6
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": "base[tool+timing OK] + priority[re-called with correction]",
+    "attribution": {
+      "errors": [],
+      "error_types": {}
+    }
+  }
+}

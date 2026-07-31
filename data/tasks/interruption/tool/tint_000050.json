@@ -1,0 +1,173 @@
+{
+  "task_id": "tint_000050",
+  "description": "Interruption (tool_cancel): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find attractions in Shanghai for 2026-03-19, and also plan my train and hotel bookings for Shanghai.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Shanghai",
+          "search_trains.destination=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Cancel the attractions part. Skip attraction search and any attraction tickets.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_attractions",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 14.761148255883626
+    },
+    {
+      "speaker": "user",
+      "text": "Book train G3 on 2026-03-19.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.date=2026-03-19"
+        ]
+      },
+      "timestamp": 20.13286017126682
+    },
+    {
+      "speaker": "user",
+      "text": "Set the train passenger name to Liu Yang and seat class to Second Class.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_train.passenger_name=Liu Yang",
+          "book_train.seat_class=Second Class"
+        ]
+      },
+      "timestamp": 24.74576638017082
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shanghai.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 31.49372129447633
+    },
+    {
+      "speaker": "user",
+      "text": "Book the Pudong Shangri-La hotel, check in 2026-03-19 for 3 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-19",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 36.013303087574755
+    },
+    {
+      "speaker": "user",
+      "text": "Set the hotel guest name to Zhou Jun.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 42.68063628451285
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-19",
+        "passenger_name": "Liu Yang",
+        "seat_class": "Second Class"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_002",
+        "checkin_date": "2026-03-19",
+        "nights": 3,
+        "guest_name": "Zhou Jun"
+      }
+    }
+  ],
+  "transcript_hash": "fd82b88e88e2",
+  "info_complete_turn": {
+    "search_trains": 3,
+    "book_train": 5,
+    "search_hotels": 1,
+    "book_hotel": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "forbidden_tools": [
+      "search_attractions",
+      "book_attraction_ticket"
+    ]
+  },
+  "forbidden_tools": [
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "cancelled_tools": [
+    "search_attractions",
+    "book_attraction_ticket"
+  ]
+}

@@ -1,0 +1,606 @@
+{
+  "task_name": "tint_000064",
+  "start_time": "2026-04-30T19:39:02.684092",
+  "end_time": "2026-04-30T19:40:08.148390",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 84600
+      },
+      "assistant_response": "I'll help you find some great restaurants in Shanghai.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'll help you find some great restaurants in Shanghai.",
+          "tool_calls": [
+            {
+              "id": "call-c730f7f5-87f8-42b9-9780-a641aeb7c8f3-0",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "I'll help you find some great restaurants in Shanghai.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-c730f7f5-87f8-42b9-9780-a641aeb7c8f3-0",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Shanghai:\n\n1. Chuanfu Laozao (ID: rst_sh_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.6/5.0\n\n2. Shanghai Classic (ID: rst_sh_002)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.4/5.0\n\n3. Xiao Nan Guo (ID: rst_sh_003)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_sh_001",
+                "name": "Chuanfu Laozao",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_sh_002",
+                "name": "Shanghai Classic",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_sh_003",
+                "name": "Xiao Nan Guo",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.0400543212890625
+          },
+          "latency_ms": 0.0400543212890625,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 10697.333097457886,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 124320,
+        "event_count": 26,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": "I'll help you find some great restaurants in Shanghai."
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—before that, track my package with tracking number SF1234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "track_package.tracking_number=SF1234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_restaurants",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 292200
+      },
+      "assistant_response": "Got it, I'll check the status of your package right away. I'm sorry, but I couldn't find any package with the tracking number SF124567890. Could you double-check the tracking number and try again? If it's correct, maybe the package hasn't been scanned into the system yet.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, I'll check the status of your package right away.",
+          "tool_calls": [
+            {
+              "id": "call-42b88b98-03c4-4abd-b4f9-76820a21d381-1",
+              "name": "track_package",
+              "arguments": {
+                "tracking_number": "SF124567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I'm sorry, but I couldn't find any package with the tracking number SF124567890. Could you double-check the tracking number and try again? If it's correct, maybe the package hasn't been scanned into the system yet.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-42b88b98-03c4-4abd-b4f9-76820a21d381-1",
+          "tool_name": "track_package",
+          "arguments": {
+            "tracking_number": "SF124567890"
+          },
+          "result": {
+            "success": false,
+            "output": "Package not found: SF124567890",
+            "raw_output": null,
+            "error": "Not found",
+            "latency_ms": 0.011920928955078125
+          },
+          "latency_ms": 0.011920928955078125
+        }
+      ],
+      "total_latency_ms": 6069.363355636597,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 814560,
+        "event_count": 59,
+        "latency": {
+          "speech_ms": 1063.7939453125,
+          "tool_call_ms": 1799.127197265625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the restaurant search.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 96000
+      },
+      "assistant_response": "Sure, I have the restaurant search results for Shanghai ready. Here's what I found: Chuanfu Laozao is a Sichuan restaurant downtown with a 4.6 rating, ID rst_sh_001. Then there are two Shanghainese spots in Pudong—Shanghai Classic at 4.4, ID rst_sh_002, and Xiao Nan Guo at 4.5, ID rst_sh_003. Do any of these catch your eye, or would you like me to help book a table?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I have the restaurant search results for Shanghai ready. Here's what I found: Chuanfu Laozao is a Sichuan restaurant downtown with a 4.6 rating, ID rst_sh_001. Then there are two Shanghainese spots in Pudong—Shanghai Classic at 4.4, ID rst_sh_002, and Xiao Nan Guo at 4.5, ID rst_sh_003. Do any of these catch your eye, or would you like me to help book a table?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 11257.89499282837,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1660800,
+        "event_count": 48,
+        "latency": {
+          "speech_ms": 0.26806640625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.31970807841356,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the restaurant Shanghai Classic.",
+        "timestamp": 16.31970807841356,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 103800
+      },
+      "assistant_response": "I'd be happy to help you book Shanghai Classic. Could you tell me the date and time you'd like to book, how many people will be in your party, and your name and phone number for the reservation? Once I have those details, I can proceed with the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I'd be happy to help you book Shanghai Classic. Could you tell me the date and time you'd like to book, how many people will be in your party, and your name and phone number for the reservation? Once I have those details, I can proceed with the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6605.948209762573,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 634560,
+        "event_count": 36,
+        "latency": {
+          "speech_ms": 177.948974609375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.404575942818475,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the booking date to 2026-03-23 and time to 18:00.",
+        "timestamp": 21.404575942818475,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-23",
+            "book_restaurant.time=18:00"
+          ]
+        },
+        "audio_size_bytes": 256800
+      },
+      "assistant_response": "Thanks, I've noted the date as 2026-03-23 and time as 18:00. Now I just need to know how many people will be in your party, your name, and a contact phone number to complete the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've noted the date as 2026-03-23 and time as 18:00. Now I just need to know how many people will be in your party, your name, and a contact phone number to complete the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7801.362037658691,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 691200,
+        "event_count": 36,
+        "latency": {
+          "speech_ms": 954.3349609375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.976799128399144,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party size 4. Contact name Li Na.",
+        "timestamp": 26.976799128399144,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Li Na",
+            "book_restaurant.party_size=4"
+          ]
+        },
+        "audio_size_bytes": 103200
+      },
+      "assistant_response": "Thanks, I've got the party size as 4 and contact name as Lina. To finish the booking, I'll need a contact phone number as well. What's the best number to use?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've got the party size as 4 and contact name as Lina. To finish the booking, I'll need a contact phone number as well. What's the best number to use?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5265.480995178223,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 463680,
+        "event_count": 31,
+        "latency": {
+          "speech_ms": 990.41943359375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.44885604051389,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13892862812. Then search flights from Beijing to Shanghai.",
+        "timestamp": 31.44885604051389,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.phone=13892862812",
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 298200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4776.230096817017,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 8
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.572199015580416,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight MU5678 on 2026-03-03 for passenger Li Na.",
+        "timestamp": 37.572199015580416,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-03",
+            "book_flight.passenger_name=Li Na"
+          ]
+        },
+        "audio_size_bytes": 254400
+      },
+      "assistant_response": "Thanks, I've noted the phone number as 13892862812.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I've noted the phone number as 13892862812.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4290.3149127960205,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 201600,
+        "event_count": 17,
+        "latency": {
+          "speech_ms": 0.31201171875
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 43.02129439431101,
+      "input_chunk": {
+        "role": "user",
+        "content": "Airline is China Eastern. Then search hotels in Shanghai.",
+        "timestamp": 43.02129439431101,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_hotels.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 169800
+      },
+      "assistant_response": "Thanks, I'd be happy to help book flight MU5678.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks, I'd be happy to help book flight MU5678.",
+          "tool_calls": [
+            {
+              "id": "call-4edec620-f89d-411a-8939-1f62efb814d4-2",
+              "name": "book_flight",
+              "arguments": {
+                "flight_id": "MU5678",
+                "passenger_name": "Li Na",
+                "date": "2026-03-03"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call-4edec620-f89d-411a-8939-1f62efb814d4-2",
+          "tool_name": "book_flight",
+          "arguments": {
+            "flight_id": "MU5678",
+            "passenger_name": "Li Na",
+            "date": "2026-03-03"
+          },
+          "result": {
+            "success": true,
+            "output": "Flight booking successful!\n\nBooking ID: FL10001\nFlight ID: MU5678\nPassenger: Li Na\nDate: 2026-03-03\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "FL10001",
+              "flight_id": "MU5678",
+              "passenger_name": "Li Na",
+              "date": "2026-03-03",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.03981590270996094
+          },
+          "latency_ms": 0.03981590270996094
+        }
+      ],
+      "total_latency_ms": 3709.1808319091797,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 193440,
+        "event_count": 36,
+        "latency": {
+          "speech_ms": 0.203857421875,
+          "tool_call_ms": 0.888916015625
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 48.99183587846487,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book hotel Pudong Shangri-La. Check in 2026-03-17 for 4 nights. Guest name Liu Yang.",
+        "timestamp": 48.99183587846487,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-17",
+            "book_hotel.guest_name=Liu Yang",
+            "book_hotel.nights=4"
+          ]
+        },
+        "audio_size_bytes": 319200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4978.263139724731,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 13,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 10,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "grok",
+    "tts_voice": "Ara",
+    "realtime_model": "grok-voice-think-fast-1.0",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "track_package": {
+        "speech_ms": 1063.7939453125,
+        "tool_call_ms": 1799.127197265625
+      },
+      "book_flight": {
+        "speech_ms": 0.31201171875
+      },
+      "search_hotels": {
+        "speech_ms": 0.203857421875,
+        "tool_call_ms": 0.888916015625
+      }
+    },
+    "info_complete_turn": {
+      "track_package": 2,
+      "search_restaurants": 1,
+      "book_restaurant": 7,
+      "search_flights": 7,
+      "book_flight": 8,
+      "search_hotels": 9,
+      "book_hotel": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "track_package",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "tracking_number: 'SF1234567890' vs 'SF124567890'"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_flights",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_flight",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "flight_id: 'flt_bj_sh_002' vs 'MU5678'"
+        },
+        {
+          "tool": "search_hotels",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "missing_call": 4,
+        "parameter_reasoning": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 6,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 4,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

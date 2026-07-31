@@ -1,0 +1,151 @@
+{
+  "task_id": "tint_000071",
+  "description": "Interruption (tool_correction): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou. Check-in 2026-03-03. Stay 2 nights.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-03",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Hangzhou, I meant Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Hyatt on the Bund. Guest name Zhang Wei.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Zhang Wei"
+        ]
+      },
+      "timestamp": 10.693707948598012
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Chengdu"
+        ]
+      },
+      "timestamp": 15.478820698817014
+    },
+    {
+      "speaker": "user",
+      "text": "Book Chen Mapo Tofu for 2026-03-12 at 11:30. Party size 5.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-12",
+          "book_restaurant.party_size=5",
+          "book_restaurant.time=11:30"
+        ]
+      },
+      "timestamp": 20.366195395850404
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Zhang Wei. Phone 13877949128.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.phone=13877949128"
+        ]
+      },
+      "timestamp": 26.461914539799665
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_003",
+        "checkin_date": "2026-03-03",
+        "nights": 2,
+        "guest_name": "Zhang Wei"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_001",
+        "date": "2026-03-12",
+        "time": "11:30",
+        "party_size": 5,
+        "contact_name": "Zhang Wei",
+        "phone": "13877949128"
+      }
+    }
+  ],
+  "transcript_hash": "28b5d6cad35f",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 3,
+    "search_restaurants": 4,
+    "book_restaurant": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Hangzhou"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Shanghai"
+    }
+  }
+}

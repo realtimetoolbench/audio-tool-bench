@@ -1,0 +1,425 @@
+{
+  "task_name": "tint_000001",
+  "start_time": "2026-07-29T03:45:01.819109",
+  "end_time": "2026-07-29T03:45:35.287623",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search shows in Beijing; focus on stage play listings.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt"
+        },
+        "audio_size_bytes": 154200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_KYagkQRecKoi4LsF",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Beijing",
+                "show_type": "Theater"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5445.286989212036,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 35,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Beijing, I meant Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_shows",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_shows.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 93000
+      },
+      "assistant_response": "我找到了一个成都的舞台剧，叫做《茶馆》，将在锦城艺术宫上演，演出时间是2026年3月19日晚上7点半，持续145分钟，票价在180到580元之间，有VIP、头等和二等座区。你想了解更多细节，还是要订票呢？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_AMr7xC9MY0QrEjpF",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Chengdu",
+                "show_type": "Theater"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "我找到了一个成都的舞台剧，叫做《茶馆》，将在锦城艺术宫上演，演出时间是2026年3月19日晚上7点半，持续145分钟，票价在180到580元之间，有VIP、头等和二等座区。你想了解更多细节，还是要订票呢？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_AMr7xC9MY0QrEjpF",
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Chengdu",
+            "show_type": "Theater"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 shows in Chengdu:\n\n1. Teahouse (ID: show_cd_002)\n   Type: Theater\n   Venue: Jincheng Art Palace\n   Date/Time: 2026-03-19 19:30\n   Duration: 145 min\n   Price: ¥180-580\n   Available zones: VIP, First Class, Second Class\n   Rating: 8.7/10.0\n\n",
+            "raw_output": [
+              {
+                "show_id": "show_cd_002",
+                "name": "Teahouse",
+                "type": "Theater",
+                "venue": "Jincheng Art Palace",
+                "date": "2026-03-19",
+                "time": "19:30",
+                "duration": 145,
+                "price_range": "180-580",
+                "available_zones": [
+                  "VIP",
+                  "First Class",
+                  "Second Class"
+                ],
+                "rating": 8.7
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.06794929504394531
+          },
+          "latency_ms": 0.06794929504394531
+        }
+      ],
+      "total_latency_ms": 5924.426078796387,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1053600,
+        "event_count": 216,
+        "latency": {
+          "speech_ms": 1016.381591796875,
+          "tool_call_ms": 330.53369140625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.884331659356402,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book show ticket: show_id Teahouse; seat_zone VIP.",
+        "timestamp": 10.884331659356402,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.seat_zone=VIP"
+          ]
+        },
+        "audio_size_bytes": 142800
+      },
+      "assistant_response": "好的，我还需要知道购票人的姓名和联系电话，另外请告诉我想订几张票。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，我还需要知道购票人的姓名和联系电话，另外请告诉我想订几张票。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3929.8648834228516,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 336000,
+        "event_count": 69,
+        "latency": {
+          "speech_ms": 270.25390625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.86955318001716,
+      "input_chunk": {
+        "role": "user",
+        "content": "Ticket_count 4; buyer_name Chen Ming.",
+        "timestamp": 16.86955318001716,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Chen Ming",
+            "book_show_ticket.ticket_count=4"
+          ]
+        },
+        "audio_size_bytes": 115800
+      },
+      "assistant_response": "好的，请再告诉我一个联系电话，这样我就能帮你把票订好。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，请再告诉我一个联系电话，这样我就能帮你把票订好。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3563.6889934539795,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 249600,
+        "event_count": 57,
+        "latency": {
+          "speech_ms": 527.026123046875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 22.074870901032305,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13898765432; then search restaurants in Shanghai.",
+        "timestamp": 22.074870901032305,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_show_ticket.phone=13898765432",
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 269400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3520.4432010650635,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 28.391354567787573,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book restaurant: restaurant_id Chuanfu Laozao; date 2026-03-22; time 14:00.",
+        "timestamp": 28.391354567787573,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.date=2026-03-22",
+            "book_restaurant.time=14:00"
+          ]
+        },
+        "audio_size_bytes": 303600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3882.2147846221924,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 35.021480792826736,
+      "input_chunk": {
+        "role": "user",
+        "content": "Party_size 10; contact_name Wang Fang; phone 13864788741; then get transaction history for account_number 6222021234567890.",
+        "timestamp": 35.021480792826736,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_restaurant.contact_name=Wang Fang",
+            "book_restaurant.party_size=10",
+            "book_restaurant.phone=13864788741",
+            "get_transaction_history.account_number=6222021234567890"
+          ]
+        },
+        "audio_size_bytes": 609000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7196.54393196106,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 7,
+    "total_llm_calls": 9,
+    "total_tool_calls": 1
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_shows",
+    "wrong_params": {
+      "search_shows.city": "Beijing"
+    },
+    "corrected_params": {
+      "search_shows.city": "Chengdu"
+    },
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_shows": {
+        "speech_ms": 1016.381591796875,
+        "tool_call_ms": 330.53369140625
+      }
+    },
+    "info_complete_turn": {
+      "search_shows": 2,
+      "book_show_ticket": 5,
+      "search_restaurants": 5,
+      "book_restaurant": 7,
+      "get_transaction_history": 7
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'get_transaction_history', 'book_restaurant', 'search_restaurants', 'search_shows', 'book_show_ticket'}，实际: {'search_shows'}，缺失: {'book_restaurant', 'get_transaction_history', 'book_show_ticket', 'search_restaurants'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.2,
+    "behavior_score_details": "search_shows: 1(correct), book_show_ticket: 0(not_called), search_restaurants: 0(not_called), book_restaurant: 0(not_called), get_transaction_history: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_show_ticket",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_restaurants",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_restaurant",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "get_transaction_history",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 4
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 4,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

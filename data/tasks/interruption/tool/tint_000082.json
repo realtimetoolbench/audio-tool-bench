@@ -1,0 +1,190 @@
+{
+  "task_id": "tint_000082",
+  "description": "Interruption (priority_early_return): 5 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_early_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_early_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_restaurants",
+    "search_restaurants_delivery",
+    "place_food_order"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search sports events in Beijing.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_sports_events.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search restaurant delivery options in Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants_delivery.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_sports_events",
+          "dangling_return": "before_resume",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Place a food order for delivery_id Shu Da Xia Hotpot.",
+      "metadata": {
+        "phase": "inserted"
+      },
+      "timestamp": 11.041763172087323
+    },
+    {
+      "speaker": "user",
+      "text": "Order item: Mala Hotpot with Tripe and Duck Blood.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.items=Mala Hotpot with Tripe and Duck Blood"
+        ]
+      },
+      "timestamp": 16.65007294270486
+    },
+    {
+      "speaker": "user",
+      "text": "Deliver to Room 209, Tower 3, Pearl Gardens. Use phone 13877949128.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "place_food_order.delivery_address=Room 209, Tower 3, Pearl Gardens",
+          "place_food_order.phone=13877949128"
+        ]
+      },
+      "timestamp": 22.05768637339872
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book tickets for event_id CBA Playoffs: Beijing Shougang vs Guangdong Tigers. Seat zone Stand C.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.seat_zone=Stand C"
+        ]
+      },
+      "timestamp": 32.83832560006622
+    },
+    {
+      "speaker": "user",
+      "text": "Ticket count 2. Buyer name Chen Ming.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Chen Ming",
+          "book_sports_ticket.ticket_count=2"
+        ]
+      },
+      "timestamp": 41.11833748657463
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13898776655 and ID number 440106199512044567. Then search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.id_number=440106199512044567",
+          "book_sports_ticket.phone=13898776655",
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 45.69114494655619
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants_delivery",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "place_food_order",
+      "params": {
+        "delivery_id": "dlv_cd_001",
+        "items": "Mala Hotpot with Tripe and Duck Blood",
+        "delivery_address": "Room 209, Tower 3, Pearl Gardens",
+        "phone": "13877949128"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_bj_001",
+        "seat_zone": "Stand C",
+        "ticket_count": 2,
+        "buyer_name": "Chen Ming",
+        "phone": "13898776655",
+        "id_number": "440106199512044567"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    }
+  ],
+  "transcript_hash": "a3631d4e6cd0",
+  "info_complete_turn": {
+    "search_restaurants_delivery": 2,
+    "place_food_order": 5,
+    "search_sports_events": 1,
+    "book_sports_ticket": 9,
+    "search_restaurants": 9
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "inserted_tools": [
+      "search_restaurants_delivery",
+      "place_food_order"
+    ],
+    "dangling_return": "before_resume"
+  },
+  "inserted_tools": [
+    "search_restaurants_delivery",
+    "place_food_order"
+  ]
+}

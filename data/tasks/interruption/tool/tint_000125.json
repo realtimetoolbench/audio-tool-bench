@@ -1,0 +1,243 @@
+{
+  "task_id": "tint_000125",
+  "description": "Interruption (priority_no_return): 7 tools, 11 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "check_ride_status",
+    "search_sports_events",
+    "book_sports_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search sports events in Chengdu.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_sports_events.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search restaurants in Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_restaurants.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_sports_events",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Da Dong Roast Duck for 2 people.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.party_size=2"
+        ]
+      },
+      "timestamp": 9.545307522052939
+    },
+    {
+      "speaker": "user",
+      "text": "Set the restaurant booking for 2026-05-30 at 14:00.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.date=2026-05-30",
+          "book_restaurant.time=14:00"
+        ]
+      },
+      "timestamp": 13.966353840357494
+    },
+    {
+      "speaker": "user",
+      "text": "Use Luo Fei, phone 13864788741, for the restaurant reservation.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_restaurant.contact_name=Luo Fei",
+          "book_restaurant.phone=13864788741"
+        ]
+      },
+      "timestamp": 19.36040792127582
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_hotels.city=Hangzhou"
+        ]
+      },
+      "timestamp": 25.317002851600606
+    },
+    {
+      "speaker": "user",
+      "text": "Book Home Inn West Lake, check in 2026-05-18 for 5 nights.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-05-18",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 29.128077883907164
+    },
+    {
+      "speaker": "user",
+      "text": "Set the hotel guest name to Mia Anderson.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_hotel.guest_name=Mia Anderson"
+        ]
+      },
+      "timestamp": 35.526524576926064
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Check ride status for ride ID RIDE123456.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "check_ride_status.ride_id=RIDE123456"
+        ]
+      },
+      "timestamp": 44.78642812953397
+    },
+    {
+      "speaker": "user",
+      "text": "Book 1 ticket for CSL: Chengdu Rongcheng vs Beijing Guoan in the Away Stand; buyer Ethan Thomas, phone 13844556677, ID 310115198805062345.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_sports_ticket.buyer_name=Ethan Thomas",
+          "book_sports_ticket.id_number=310115198805062345",
+          "book_sports_ticket.phone=13844556677",
+          "book_sports_ticket.seat_zone=Away Stand",
+          "book_sports_ticket.ticket_count=1"
+        ]
+      },
+      "timestamp": 49.62865993238725
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_bj_006",
+        "date": "2026-05-30",
+        "time": "14:00",
+        "party_size": 2,
+        "contact_name": "Luo Fei",
+        "phone": "13864788741"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Hangzhou"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_hz_003",
+        "checkin_date": "2026-05-18",
+        "nights": 5,
+        "guest_name": "Mia Anderson"
+      }
+    },
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    },
+    {
+      "tool": "search_sports_events",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_sports_ticket",
+      "params": {
+        "event_id": "evt_cd_001",
+        "seat_zone": "Away Stand",
+        "ticket_count": 1,
+        "buyer_name": "Ethan Thomas",
+        "phone": "13844556677",
+        "id_number": "310115198805062345"
+      }
+    }
+  ],
+  "transcript_hash": "8fcc377b9d4d",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 5,
+    "search_hotels": 6,
+    "book_hotel": 8,
+    "check_ride_status": 10,
+    "search_sports_events": 1,
+    "book_sports_ticket": 11
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 11,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "inserted_tools": [
+      "search_restaurants",
+      "book_restaurant",
+      "search_hotels",
+      "book_hotel"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel"
+  ]
+}

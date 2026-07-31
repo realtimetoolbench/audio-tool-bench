@@ -1,0 +1,176 @@
+{
+  "task_id": "tint_000119",
+  "description": "Interruption (tool_correction): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "multi",
+  "tools": [
+    "get_transaction_history",
+    "search_cars",
+    "book_car",
+    "search_parking",
+    "reserve_parking_spot",
+    "search_shows"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search rental cars in Shanghai. Use pickup date 2026-04-27 and rental duration 8 days.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_car.days=8",
+          "book_car.pickup_date=2026-04-27"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_cars",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_parking.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use account number 6217001234567890 and pull transaction history.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "get_transaction_history.account_number=6217001234567890"
+        ]
+      },
+      "timestamp": 12.347594955329058
+    },
+    {
+      "speaker": "user",
+      "text": "Now search rental cars in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_cars.city=Beijing"
+        ]
+      },
+      "timestamp": 18.96907634177016
+    },
+    {
+      "speaker": "user",
+      "text": "Book the car Volkswagen Lavida. Renter name Zhang Wei.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_car.renter_name=Zhang Wei"
+        ]
+      },
+      "timestamp": 24.105079548024996
+    },
+    {
+      "speaker": "user",
+      "text": "Search parking in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 30.140576650622236
+    },
+    {
+      "speaker": "user",
+      "text": "Reserve China World Trade Center Parking. Start time 2026-03-22 13:00 for 2 hours. Use license plate 浙E34567 and driver phone 13830018365. Then search shows in Nanjing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13830018365",
+          "reserve_parking_spot.duration_hours=2",
+          "reserve_parking_spot.license_plate=浙E34567",
+          "reserve_parking_spot.start_time=2026-03-22 13:00",
+          "search_shows.city=Nanjing"
+        ]
+      },
+      "timestamp": 34.80798497857796
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "get_transaction_history",
+      "params": {
+        "account_number": "6217001234567890"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_bj_001",
+        "pickup_date": "2026-04-27",
+        "days": 8,
+        "renter_name": "Zhang Wei"
+      }
+    },
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_bj_001",
+        "start_time": "2026-03-22 13:00",
+        "duration_hours": 2,
+        "license_plate": "浙E34567",
+        "driver_phone": "13830018365"
+      }
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Nanjing"
+      }
+    }
+  ],
+  "transcript_hash": "7e0ca7b30c89",
+  "info_complete_turn": {
+    "get_transaction_history": 3,
+    "search_cars": 4,
+    "book_car": 5,
+    "search_parking": 2,
+    "reserve_parking_spot": 7,
+    "search_shows": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_cars",
+    "wrong_params": {
+      "search_cars.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_cars.city": "Beijing"
+    }
+  }
+}

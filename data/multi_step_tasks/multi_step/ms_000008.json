@@ -1,0 +1,119 @@
+{
+  "task_id": "ms_000008",
+  "scenario_type": "multi_step",
+  "server": "gmail",
+  "template": "search_reply_forward_4",
+  "description": "Search emails, reply to email, forward email, get thread",
+  "tools": [
+    "search_emails",
+    "reply_to_email",
+    "forward_email",
+    "get_thread"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search my emails for anything related to the team.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_emails"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Reply to the first one and say, sounds good, let's proceed with that plan.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "reply_to_email"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Now forward that same email to my manager.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "forward_email"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Finally, get the full thread for that email.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_thread"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_emails",
+      "params": {
+        "query": "team"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "reply_to_email",
+      "params": {
+        "email_id": "email_014",
+        "body": "Sounds good, let's proceed with that plan."
+      },
+      "param_source": {
+        "email_id": {
+          "from_tool": "search_emails",
+          "field": "email_id"
+        },
+        "body": "user"
+      }
+    },
+    {
+      "tool": "forward_email",
+      "params": {
+        "email_id": "email_014",
+        "to": [
+          "brian.torres@gmail.com"
+        ]
+      },
+      "param_source": {
+        "email_id": {
+          "from_tool": "search_emails",
+          "field": "email_id"
+        },
+        "to": "literal"
+      }
+    },
+    {
+      "tool": "get_thread",
+      "params": {
+        "thread_id": "thread_007"
+      },
+      "param_source": {
+        "thread_id": {
+          "from_tool": "search_emails",
+          "field": "thread_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 4,
+  "info_complete_turn": {
+    "search_emails": 1,
+    "reply_to_email": 2,
+    "forward_email": 2,
+    "get_thread": 2
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "task_id": "tint_000035",
+  "description": "Interruption (tool_cancel): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_cancel",
+  "test_dimension": "interruption",
+  "sub_category": "tool_cancel",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search trains from Shanghai Hongqiao to Beijing South for 2026-03-12, and also help me book Great Wall Badaling tickets and a hotel in Beijing.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-12",
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Forget the train search and any train booking. Skip the train part.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_trains",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 16.309706305916606
+    },
+    {
+      "speaker": "user",
+      "text": "Book attraction tickets for Great Wall Badaling for 2026-03-12 in the morning.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 21.119136762594433
+    },
+    {
+      "speaker": "user",
+      "text": "Set the ticket booking name to Chen Ming and make it 2 tickets.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=2",
+          "book_attraction_ticket.visitor_name=Chen Ming"
+        ]
+      },
+      "timestamp": 27.525635522272495
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 33.9814547741053
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel Grand Mercure Beijing for check-in 2026-03-27 for 5 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-27",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 38.42959416909353
+    },
+    {
+      "speaker": "user",
+      "text": "Set the hotel guest name to Liu Yang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Liu Yang"
+        ]
+      },
+      "timestamp": 44.96984468561152
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_002",
+        "date": "2026-03-12",
+        "time_slot": "morning",
+        "visitor_name": "Chen Ming",
+        "ticket_count": 2
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_006",
+        "checkin_date": "2026-03-27",
+        "nights": 5,
+        "guest_name": "Liu Yang"
+      }
+    }
+  ],
+  "transcript_hash": "e6f16216e780",
+  "info_complete_turn": {
+    "search_attractions": 3,
+    "book_attraction_ticket": 5,
+    "search_hotels": 1,
+    "book_hotel": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ]
+  },
+  "forbidden_tools": [
+    "search_trains",
+    "book_train"
+  ],
+  "cancelled_tools": [
+    "search_trains",
+    "book_train"
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "task_id": "int_000066",
+  "description": "Interruption (cancellation): 4 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "multi",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find restaurants in Guangzhou for dinner, then also help with a movie plan afterward.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Guangzhou"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Panxi Restaurant.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 7.240132799417402
+    },
+    {
+      "speaker": "user",
+      "text": "Set the reservation date to 2026-04-10.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-04-10"
+        ]
+      },
+      "timestamp": 10.941356966984051
+    },
+    {
+      "speaker": "user",
+      "text": "Set the time to 20:00 and party size to 8.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.party_size=8",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 15.52982115930159
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the movie.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 4,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "movie",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Use contact name Hu Bin.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Hu Bin"
+        ]
+      },
+      "timestamp": 25.658402705912113
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone number 13899887766.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13899887766"
+        ]
+      },
+      "timestamp": 30.167230244967424
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Guangzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_gz_003",
+        "date": "2026-04-10",
+        "time": "20:00",
+        "party_size": 8,
+        "contact_name": "Hu Bin",
+        "phone": "13899887766"
+      }
+    }
+  ],
+  "transcript_hash": "b7d0ae3c5c16",
+  "info_complete_turn": {
+    "search_restaurants": 1,
+    "book_restaurant": 7
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 7,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "movie",
+    "template": "date",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ]
+}

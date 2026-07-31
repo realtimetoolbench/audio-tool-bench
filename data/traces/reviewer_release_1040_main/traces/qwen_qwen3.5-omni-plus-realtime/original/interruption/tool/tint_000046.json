@@ -1,0 +1,620 @@
+{
+  "task_name": "tint_000046",
+  "start_time": "2026-04-30T17:48:31.019371",
+  "end_time": "2026-04-30T17:49:20.928869",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Xi'an.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 106800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_beeff1e056dc402db17033e1",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Xi'an"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4916.1529541015625,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 22,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, not Xi'an, I meant Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          },
+          "contains_params": [
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 91800
+      },
+      "assistant_response": "I found three trains from Beijing to Shanghai. The G1 is a high-speed train leaving at 6:00 AM and arriving at 10:28 AM, taking about four and a half hours. The G3 is also high-speed, departing at 7:00 AM and arriving at 11:35 AM. Then there's the D321 express train which leaves at 8:30 AM and arrives in the late afternoon at 4:45 PM, so it takes much longer but is cheaper. All of them have seats available in both second and first class.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_e6ecf533de9245fa887197a6",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three trains from Beijing to Shanghai. The G1 is a high-speed train leaving at 6:00 AM and arriving at 10:28 AM, taking about four and a half hours. The G3 is also high-speed, departing at 7:00 AM and arriving at 11:35 AM. Then there's the D321 express train which leaves at 8:30 AM and arrives in the late afternoon at 4:45 PM, so it takes much longer but is cheaper. All of them have seats available in both second and first class.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_e6ecf533de9245fa887197a6",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.06914138793945312
+          },
+          "latency_ms": 0.06914138793945312
+        }
+      ],
+      "total_latency_ms": 9143.136024475098,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1466880,
+        "event_count": 248,
+        "latency": {
+          "speech_ms": 1335.998046875,
+          "tool_call_ms": 648.8681640625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 9.28327077795343,
+      "input_chunk": {
+        "role": "user",
+        "content": "Also track package SF1234567890.",
+        "timestamp": 9.28327077795343,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "track_package.tracking_number=SF1234567890"
+          ]
+        },
+        "audio_size_bytes": 183000
+      },
+      "assistant_response": "I couldn't find any information for the package with tracking number SF134567890. It might be a typo, or perhaps it hasn't been scanned into the system yet. You could double-check the number or try again a little later.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_3c346d2998cf47b6a7c35131",
+              "name": "track_package",
+              "arguments": {
+                "tracking_number": "SF134567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I couldn't find any information for the package with tracking number SF134567890. It might be a typo, or perhaps it hasn't been scanned into the system yet. You could double-check the number or try again a little later.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_3c346d2998cf47b6a7c35131",
+          "tool_name": "track_package",
+          "arguments": {
+            "tracking_number": "SF134567890"
+          },
+          "result": {
+            "success": false,
+            "output": "Package not found: SF134567890",
+            "raw_output": null,
+            "error": "Not found",
+            "latency_ms": 0.09608268737792969
+          },
+          "latency_ms": 0.09608268737792969
+        }
+      ],
+      "total_latency_ms": 8699.687957763672,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 760320,
+        "event_count": 135,
+        "latency": {
+          "speech_ms": 1983.489990234375,
+          "tool_call_ms": 1078.040283203125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 13.792508875879742,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 on 2026-03-19 for passenger Wang Fang.",
+        "timestamp": 13.792508875879742,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-19",
+            "book_train.passenger_name=Wang Fang"
+          ]
+        },
+        "audio_size_bytes": 235200
+      },
+      "assistant_response": "Great news! The train ticket has been booked successfully. Here are the details for your booking. The booking ID is TR40001 for passenger Wang Fang on train G3, which is train ID trn_bj_sh_002. The travel date is March 19th, 2026, and you have a confirmed second-class seat, number 01F.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_9a8b1368a5e34dfaaf38d43c",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-03-19",
+                "passenger_name": "Wang Fang",
+                "seat_class": "Second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great news! The train ticket has been booked successfully. Here are the details for your booking. The booking ID is TR40001 for passenger Wang Fang on train G3, which is train ID trn_bj_sh_002. The travel date is March 19th, 2026, and you have a confirmed second-class seat, number 01F.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_9a8b1368a5e34dfaaf38d43c",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-03-19",
+            "passenger_name": "Wang Fang",
+            "seat_class": "Second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-03-19\nPassenger: Wang Fang\nSeat: Second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-03-19",
+              "passenger_name": "Wang Fang",
+              "seat_class": "Second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.15282630920410156
+          },
+          "latency_ms": 0.15282630920410156
+        }
+      ],
+      "total_latency_ms": 11723.769187927246,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 929280,
+        "event_count": 198,
+        "latency": {
+          "speech_ms": 2923.65087890625,
+          "tool_call_ms": 1944.118896484375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.55760447202969,
+      "input_chunk": {
+        "role": "user",
+        "content": "Seat class Second Class for the train booking.",
+        "timestamp": 19.55760447202969,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 138600
+      },
+      "assistant_response": "You're all set! The booking for Wang Fang is already confirmed in second class on train G3 for March 19th, 2026. Your seat is 01F and the booking ID is TR40001.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "You're all set! The booking for Wang Fang is already confirmed in second class on train G3 for March 19th, 2026. Your seat is 01F and the booking ID is TR40001.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5243.757009506226,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 526080,
+        "event_count": 97,
+        "latency": {
+          "speech_ms": 539.204833984375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 24.723191691845507,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Beijing. Then book Grand Mercure Beijing for Zhang Wei.",
+        "timestamp": 24.723191691845507,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Zhang Wei",
+            "search_hotels.city=Beijing"
+          ]
+        },
+        "audio_size_bytes": 215400
+      },
+      "assistant_response": "I found the Grand Mercure Beijing in the search results. To book it for Zhang Wei, I'll need to know the check-in date and how many nights you'd like to stay.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_8434bb4c5d2842c197b51278",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found the Grand Mercure Beijing in the search results. To book it for Zhang Wei, I'll need to know the check-in date and how many nights you'd like to stay.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_8434bb4c5d2842c197b51278",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 7 hotels in Beijing:\n\n1. The Peninsula Beijing (ID: hotel_bj_001)\n   Location: Wangfujing | 5 stars\n   Price: ¥1800/night | Rating: 4.9/5.0\n\n2. Park Hyatt Beijing (ID: hotel_bj_002)\n   Location: CBD | 5 stars\n   Price: ¥1500/night | Rating: 4.8/5.0\n\n3. Holiday Inn Express (ID: hotel_bj_003)\n   Location: Zhongguancun | 3 stars\n   Price: ¥450/night | Rating: 4.2/5.0\n\n4. Beijing Hotel (ID: hotel_bj_004)\n   Location: Downtown | 4 stars\n   Price: ¥600/night | Rating: 4.4/5.0\n\n5. Novotel Beijing Peace (ID: hotel_bj_005)\n   Location: Downtown | 4 stars\n   Price: ¥550/night | Rating: 4.5/5.0\n\n6. Grand Mercure Beijing (ID: hotel_bj_006)\n   Location: Downtown | 4 stars\n   Price: ¥700/night | Rating: 4.6/5.0\n\n7. Home Inn Dongzhimen (ID: hotel_bj_007)\n   Location: Downtown | 3 stars\n   Price: ¥350/night | Rating: 4.1/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_bj_001",
+                "name": "The Peninsula Beijing",
+                "location": "Wangfujing",
+                "stars": 5,
+                "price": 1800,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_bj_002",
+                "name": "Park Hyatt Beijing",
+                "location": "CBD",
+                "stars": 5,
+                "price": 1500,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_bj_003",
+                "name": "Holiday Inn Express",
+                "location": "Zhongguancun",
+                "stars": 3,
+                "price": 450,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_bj_004",
+                "name": "Beijing Hotel",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 600,
+                "rating": 4.4
+              },
+              {
+                "hotel_id": "hotel_bj_005",
+                "name": "Novotel Beijing Peace",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 550,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_bj_006",
+                "name": "Grand Mercure Beijing",
+                "location": "Downtown",
+                "stars": 4,
+                "price": 700,
+                "rating": 4.6
+              },
+              {
+                "hotel_id": "hotel_bj_007",
+                "name": "Home Inn Dongzhimen",
+                "location": "Downtown",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.1
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.5271434783935547
+          },
+          "latency_ms": 0.5271434783935547
+        }
+      ],
+      "total_latency_ms": 6636.8560791015625,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 387840,
+        "event_count": 90,
+        "latency": {
+          "speech_ms": 1618.3818359375,
+          "tool_call_ms": 883.770751953125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 31.17894458631188,
+      "input_chunk": {
+        "role": "user",
+        "content": "Check in 2026-03-14 for 1 night. Then search restaurants in Shanghai.",
+        "timestamp": 31.17894458631188,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-14",
+            "book_hotel.nights=1",
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 275400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3536.4599227905273,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 8
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 7,
+    "total_llm_calls": 12,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "wrong_params": {
+      "search_trains.destination": "Xi'an"
+    },
+    "corrected_params": {
+      "search_trains.destination": "Shanghai"
+    },
+    "mode": "audio_crawl",
+    "provider": "qwen",
+    "tts_voice": "Ethan",
+    "realtime_model": "qwen3.5-omni-plus-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 1335.998046875,
+        "tool_call_ms": 648.8681640625
+      },
+      "track_package": {
+        "speech_ms": 1983.489990234375,
+        "tool_call_ms": 1078.040283203125
+      },
+      "book_train": {
+        "speech_ms": 539.204833984375
+      },
+      "search_hotels": {
+        "speech_ms": 1618.3818359375,
+        "tool_call_ms": 883.770751953125
+      }
+    },
+    "info_complete_turn": {
+      "track_package": 3,
+      "search_trains": 2,
+      "book_train": 5,
+      "search_hotels": 6,
+      "book_hotel": 7,
+      "search_restaurants": 7
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=False] + priority[re-called with correction]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "track_package",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "tracking_number: 'SF1234567890' vs 'SF134567890'"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 4 调用，info_complete_turn=5"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_restaurants",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "premature_call": 1,
+        "missing_call": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "premature_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

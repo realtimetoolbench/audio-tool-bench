@@ -1,0 +1,152 @@
+{
+  "task_id": "pro_001008",
+  "description": "Generated: 5 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_trains",
+    "book_train",
+    "search_attractions",
+    "book_attraction_ticket",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m in Beijing right now and thinking about popping over to Shanghai soon, just trying to get a feel for the train options.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "While I’m still here, I also want to do something touristy in Beijing—curious what attractions are worth squeezing in.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_attractions.city=Beijing"
+        ]
+      },
+      "timestamp": 8.67038612868043
+    },
+    {
+      "speaker": "user",
+      "text": "For the Great Wall, Badaling sounds like the easiest plan—morning on 2026-04-10, and it’d be 4 tickets under Xie Peng.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-04-10",
+          "book_attraction_ticket.ticket_count=4",
+          "book_attraction_ticket.time_slot=morning",
+          "book_attraction_ticket.visitor_name=Xie Peng"
+        ]
+      },
+      "timestamp": 17.431888238181223
+    },
+    {
+      "speaker": "user",
+      "text": "Yeah, that works—go ahead and reserve the Badaling Great Wall tickets for Xie Peng, 4 of them.",
+      "metadata": {
+        "phase": "book_confirm"
+      },
+      "timestamp": 26.35752153328924
+    },
+    {
+      "speaker": "user",
+      "text": "For the Beijing to Shanghai trip, I’m leaning toward train G3 on 2026-04-27, and it should be First Class.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "book_train.date=2026-04-27",
+          "book_train.seat_class=First Class"
+        ]
+      },
+      "timestamp": 33.7396673570843
+    },
+    {
+      "speaker": "user",
+      "text": "Sounds good—book that G3 First Class seat for Song Qi. Also, I’ve got a car ride going and I keep refreshing it… what’s up with ride RIDE789012?",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_train.passenger_name=Song Qi",
+          "check_ride_status.ride_id=RIDE789012"
+        ]
+      },
+      "timestamp": 42.43274808411956
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-04-27",
+        "passenger_name": "Song Qi",
+        "seat_class": "First Class"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_bj_002",
+        "date": "2026-04-10",
+        "time_slot": "morning",
+        "visitor_name": "Xie Peng",
+        "ticket_count": 4
+      }
+    },
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    }
+  ],
+  "transcript_hash": "2779f086ceac",
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 6,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "travel",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_trains": 1,
+    "book_train": 6,
+    "search_attractions": 2,
+    "book_attraction_ticket": 3,
+    "check_ride_status": 6
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "thinking about popping over to Shanghai",
+      "get a feel for the train options",
+      "curious what attractions are worth squeezing in",
+      "go ahead and reserve",
+      "book that ... seat"
+    ],
+    "ambiguity_notes": "Strong intent: early turns set travel context and cities, then the user provides concrete booking details and gives casual confirmations for both bookings; adds a clear ride status check at the end."
+  }
+}

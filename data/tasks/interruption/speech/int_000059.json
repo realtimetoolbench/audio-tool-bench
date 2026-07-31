@@ -1,0 +1,119 @@
+{
+  "task_id": "int_000059",
+  "description": "Interruption (cancellation): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shenzhen, and also line up an attraction plan for me.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Shenzhen"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book The St. Regis Shenzhen.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 6.5773521452567625
+    },
+    {
+      "speaker": "user",
+      "text": "Check in 2026-04-18. Also pick a top attraction after that.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-18"
+        ]
+      },
+      "timestamp": 11.181923981471687
+    },
+    {
+      "speaker": "user",
+      "text": "Never mind the attraction. Cancel that.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "attraction",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Stay 5 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 21.355646640778897
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name: Wang Fang.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Wang Fang"
+        ]
+      },
+      "timestamp": 24.845034604381006
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sz_001",
+        "checkin_date": "2026-04-18",
+        "nights": 5,
+        "guest_name": "Wang Fang"
+      }
+    }
+  ],
+  "transcript_hash": "4c323045b9f8",
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "attraction",
+    "template": "travel",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_attractions",
+    "book_attraction_ticket"
+  ]
+}

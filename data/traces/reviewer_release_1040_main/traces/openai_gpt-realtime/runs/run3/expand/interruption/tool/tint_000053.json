@@ -1,0 +1,584 @@
+{
+  "task_name": "tint_000053",
+  "start_time": "2026-07-29T03:34:16.422647",
+  "end_time": "2026-07-29T03:34:51.255439",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 114000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_I0IJQ8hROSAlLxYr",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_I0IJQ8hROSAlLxYr",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.011682510375976562
+          },
+          "latency_ms": 0.011682510375976562,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 5282.366991043091,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 33,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that—search doctors in Chongqing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_doctors.city=Chongqing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 127200
+      },
+      "assistant_response": "我找到了重庆的医生：彭辉医生，是重医附一院的内科（胃肠方向）主任医师，口碑很不错，经验也非常丰富，目前有两个可约的日期：2026年5月9日和5月15日。\n\n同时，北京到上海的火车我也查到了几个选项。接下来你想优先处理哪一块？比如是约医生，还是订火车票？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Lu9MPA0jLIk5uDnK",
+              "name": "search_doctors",
+              "arguments": {
+                "city": "Chongqing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "我找到了重庆的医生：彭辉医生，是重医附一院的内科（胃肠方向）主任医师，口碑很不错，经验也非常丰富，目前有两个可约的日期：2026年5月9日和5月15日。\n\n同时，北京到上海的火车我也查到了几个选项。接下来你想优先处理哪一块？比如是约医生，还是订火车票？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Lu9MPA0jLIk5uDnK",
+          "tool_name": "search_doctors",
+          "arguments": {
+            "city": "Chongqing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 doctors in Chongqing:\n\n1. Dr. Peng Hui (ID: doc_cq_001)\n   Hospital: The First Affiliated Hospital of Chongqing Medical University\n   Department: Internal Medicine\n   Specialty: Gastroenterology\n   Title: Chief Physician\n   Rating: 4.7/5.0\n   Experience: 18 years\n   Available: 2026-05-09, 2026-05-15\n\n",
+            "raw_output": [
+              {
+                "doctor_id": "doc_cq_001",
+                "name": "Peng Hui",
+                "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Gastroenterology",
+                "rating": 4.7,
+                "experience_years": 18,
+                "available_dates": [
+                  "2026-05-09",
+                  "2026-05-15"
+                ]
+              }
+            ],
+            "error": null,
+            "count": 1,
+            "doctors": [
+              {
+                "doctor_id": "doc_cq_001",
+                "name": "Peng Hui",
+                "hospital": "The First Affiliated Hospital of Chongqing Medical University",
+                "department": "Internal Medicine",
+                "title": "Chief Physician",
+                "specialty": "Gastroenterology",
+                "rating": 4.7,
+                "experience_years": 18,
+                "available_dates": [
+                  "2026-05-09",
+                  "2026-05-15"
+                ]
+              }
+            ],
+            "latency_ms": 0.02193450927734375
+          },
+          "latency_ms": 0.02193450927734375
+        }
+      ],
+      "total_latency_ms": 7497.313976287842,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1252800,
+        "event_count": 244,
+        "latency": {
+          "speech_ms": 1507.77294921875,
+          "tool_call_ms": 537.068115234375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.577800898852331,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book an appointment with doctor Peng Hui.",
+        "timestamp": 10.577800898852331,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 115200
+      },
+      "assistant_response": "好的，我们来预约彭辉医生的号。先告诉我具体想预约哪一天，以及上午还是下午的时段，还有患者的姓名，我就帮你安排。",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，我们来预约彭辉医生的号。先告诉我具体想预约哪一天，以及上午还是下午的时段，还有患者的姓名，我就帮你安排。",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4198.37498664856,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 494400,
+        "event_count": 94,
+        "latency": {
+          "speech_ms": 353.00927734375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.572650597959509,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the appointment date to 2026-05-15.",
+        "timestamp": 15.572650597959509,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.date=2026-05-15"
+          ]
+        },
+        "audio_size_bytes": 188400
+      },
+      "assistant_response": "好的，那是预约2026年5月15日。接下来，你想上午还是下午的时段呢？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，那是预约2026年5月15日。接下来，你想上午还是下午的时段呢？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4852.185249328613,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 369600,
+        "event_count": 71,
+        "latency": {
+          "speech_ms": 485.2607421875
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.74942831352655,
+      "input_chunk": {
+        "role": "user",
+        "content": "Morning time slot, patient name Deng Hui.",
+        "timestamp": 20.74942831352655,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.patient_name=Deng Hui",
+            "book_appointment.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 117600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1863.157033920288,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 3
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 94200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1565.5689239501953,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.191209090894677,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 for 2026-03-26.",
+        "timestamp": 30.191209090894677,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-03-26"
+          ]
+        },
+        "audio_size_bytes": 162000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 2313.0972385406494,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.05073897093201,
+      "input_chunk": {
+        "role": "user",
+        "content": "Passenger name Zhao Min, Second Class seat.",
+        "timestamp": 35.05073897093201,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.passenger_name=Zhao Min",
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 121800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1881.7908763885498,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 40.08309673972564,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Xi'an.",
+        "timestamp": 40.08309673972564,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_attractions.city=Xi'an"
+          ]
+        },
+        "audio_size_bytes": 83400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 1463.5860919952393,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 44.51976378430163,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Bell Tower tickets for 2026-05-09 morning, visitor Wang Fang, 5 tickets.",
+        "timestamp": 44.51976378430163,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-05-09",
+            "book_attraction_ticket.ticket_count=5",
+            "book_attraction_ticket.time_slot=morning",
+            "book_attraction_ticket.visitor_name=Wang Fang"
+          ]
+        },
+        "audio_size_bytes": 303600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3908.3597660064697,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 7
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 12,
+    "total_tool_calls": 2
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_trains",
+    "inserted_tools": [
+      "search_doctors",
+      "book_appointment"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "search_doctors": {
+        "speech_ms": 1507.77294921875,
+        "tool_call_ms": 537.068115234375
+      }
+    },
+    "info_complete_turn": {
+      "search_doctors": 2,
+      "book_appointment": 5,
+      "search_trains": 1,
+      "book_train": 8,
+      "search_attractions": 9,
+      "book_attraction_ticket": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'search_trains', 'search_attractions', 'book_appointment', 'book_attraction_ticket', 'search_doctors', 'book_train'}，实际: {'search_trains', 'search_doctors'}，缺失: {'book_train', 'search_attractions', 'book_appointment', 'book_attraction_ticket'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.3333333333333333,
+    "behavior_score_details": "search_doctors: 1(correct), book_appointment: 0(not_called), search_trains: 1(correct), book_train: 0(not_called), search_attractions: 0(not_called), book_attraction_ticket: 0(not_called)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_appointment",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_attractions",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_attraction_ticket",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 4
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 4,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

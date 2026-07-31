@@ -1,0 +1,166 @@
+{
+  "task_id": "int_000077",
+  "description": "Interruption (cancellation): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "test_dimension": "interruption",
+  "sub_category": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_restaurants",
+    "book_restaurant",
+    "search_flights",
+    "book_flight"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Shenzhen. Also handle a flight later.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Shenzhen"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel: Home Inn Futian CBD.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 5.95016800378383
+    },
+    {
+      "speaker": "user",
+      "text": "Check in 2026-03-19. Stay 5 nights.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-19",
+          "book_hotel.nights=5"
+        ]
+      },
+      "timestamp": 10.43142574647343
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name: Isabella Jackson.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Isabella Jackson"
+        ]
+      },
+      "timestamp": 15.07972135995122
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Suzhou.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_restaurants.city=Suzhou"
+        ]
+      },
+      "timestamp": 19.5217032637102
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the flight.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 5,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "flight",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Songhelou Restaurant for 2026-04-10 at 20:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-04-10",
+          "book_restaurant.time=20:00"
+        ]
+      },
+      "timestamp": 28.10883049636835
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 3. Contact Hu Bin, phone 13855443322.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Hu Bin",
+          "book_restaurant.party_size=3",
+          "book_restaurant.phone=13855443322"
+        ]
+      },
+      "timestamp": 33.9821601039545
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sz_004",
+        "checkin_date": "2026-03-19",
+        "nights": 5,
+        "guest_name": "Isabella Jackson"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Suzhou"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_su_001",
+        "date": "2026-04-10",
+        "time": "20:00",
+        "party_size": 3,
+        "contact_name": "Hu Bin",
+        "phone": "13855443322"
+      }
+    }
+  ],
+  "transcript_hash": "ee36aec393eb",
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 4,
+    "search_restaurants": 5,
+    "book_restaurant": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "flight",
+    "template": "business_trip",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_flights",
+    "book_flight"
+  ]
+}

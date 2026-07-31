@@ -1,0 +1,183 @@
+{
+  "task_id": "tint_000067",
+  "description": "Interruption (priority_no_return): 5 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_restaurants",
+    "book_restaurant",
+    "list_bills"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search flights from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on—list my bills now.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_flights",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the flight search.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book flight MU5678 on 2026-03-21.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.date=2026-03-21"
+        ]
+      },
+      "timestamp": 14.346000372076137
+    },
+    {
+      "speaker": "user",
+      "text": "Set passenger name to Wang Fang.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_flight.passenger_name=Wang Fang"
+        ]
+      },
+      "timestamp": 19.347535597101526
+    },
+    {
+      "speaker": "user",
+      "text": "Use airline China Eastern for the booking.",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 23.951847570551344
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 28.673151802920255
+    },
+    {
+      "speaker": "user",
+      "text": "Book Shanghai Classic for 2 people on 2026-03-11 at 11:30.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-11",
+          "book_restaurant.party_size=2",
+          "book_restaurant.time=11:30"
+        ]
+      },
+      "timestamp": 33.23086619392603
+    },
+    {
+      "speaker": "user",
+      "text": "Set party size 2; contact Zhang Wei; phone 13892862812.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.phone=13892862812"
+        ]
+      },
+      "timestamp": 39.62974549408768
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_bills",
+      "params": {}
+    },
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-03-21",
+        "passenger_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-03-11",
+        "time": "11:30",
+        "party_size": 2,
+        "contact_name": "Zhang Wei",
+        "phone": "13892862812"
+      }
+    }
+  ],
+  "transcript_hash": "f967d5d72235",
+  "info_complete_turn": {
+    "list_bills": 1,
+    "search_flights": 1,
+    "book_flight": 5,
+    "search_restaurants": 7,
+    "book_restaurant": 9
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "list_bills"
+  ]
+}

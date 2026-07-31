@@ -1,0 +1,166 @@
+{
+  "task_id": "int_000064",
+  "description": "Interruption (redirection): 6 tools, 7 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "test_dimension": "interruption",
+  "sub_category": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_parking",
+    "reserve_parking_spot",
+    "search_courses",
+    "enroll_course",
+    "search_trains",
+    "book_train"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search courses and enroll me. Use student name Xie Peng.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "enroll_course.student_name=Xie Peng"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Enroll in the course Business English Speaking.",
+      "metadata": {
+        "phase": "original"
+      },
+      "timestamp": 5.390878045443177
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search parking in Beijing. Then reserve China World Trade Center Parking.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_parking.city=Beijing"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 2,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "course",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Reserve starting 2026-04-08 10:00 for 8 hours.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "reserve_parking_spot.duration_hours=8",
+          "reserve_parking_spot.start_time=2026-04-08 10:00"
+        ]
+      },
+      "timestamp": 18.05607263802846
+    },
+    {
+      "speaker": "user",
+      "text": "Use license plate 粤C23456 and driver phone 13844556677.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "reserve_parking_spot.driver_phone=13844556677",
+          "reserve_parking_spot.license_plate=粤C23456"
+        ]
+      },
+      "timestamp": 23.22974879780899
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the course.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 29.11893939575103
+    },
+    {
+      "speaker": "user",
+      "text": "Now search trains from Beijing to Shanghai, then book train G3 on 2026-03-11 for Chen Ming in Second Class.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_train.date=2026-03-11",
+          "book_train.passenger_name=Chen Ming",
+          "book_train.seat_class=Second Class",
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 33.28820016400528
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_parking",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "reserve_parking_spot",
+      "params": {
+        "parking_id": "park_bj_001",
+        "start_time": "2026-04-08 10:00",
+        "duration_hours": 8,
+        "license_plate": "粤C23456",
+        "driver_phone": "13844556677"
+      }
+    },
+    {
+      "tool": "search_courses",
+      "params": {}
+    },
+    {
+      "tool": "enroll_course",
+      "params": {
+        "course_id": "EN101",
+        "student_name": "Xie Peng"
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_002",
+        "date": "2026-03-11",
+        "passenger_name": "Chen Ming",
+        "seat_class": "Second Class"
+      }
+    }
+  ],
+  "transcript_hash": "7bc9c1d75e76",
+  "info_complete_turn": {
+    "search_parking": 3,
+    "reserve_parking_spot": 5,
+    "search_courses": 1,
+    "enroll_course": 1,
+    "search_trains": 7,
+    "book_train": 7
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 7,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "course",
+    "template": null,
+    "generated": true
+  }
+}

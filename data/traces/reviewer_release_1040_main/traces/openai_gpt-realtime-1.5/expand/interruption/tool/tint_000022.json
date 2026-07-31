@@ -1,0 +1,604 @@
+{
+  "task_name": "tint_000022",
+  "start_time": "2026-05-06T14:32:17.766706",
+  "end_time": "2026-05-06T14:33:15.788612",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search cars in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_cars.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 70200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_HIu0TksLhi8sO0Sl",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5099.233865737915,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 16,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search movies in Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_movies.city=Chengdu"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_cars",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 121800
+      },
+      "assistant_response": "For Chengdu, here are three movies currently playing:\n\n1. The Wandering Earth 3 (Sci-Fi, 150 min, rating 8.5) showing at Pacific Cinema, Wanda Cinema Jinhua, and CGV Chunxi Road at 10:30, 13:20, 16:10, 19:00, and 21:50.\n\n2. YOLO (Drama, 120 min, rating 7.8) showing at Pacific Cinema, Wanda Cinema Jinhua, and Emei 1958 Cinema at 11:00, 14:30, 17:00, and 20:30.\n\n3. Kung Fu Panda 4 (Animation, 95 min, rating 7.5) showing at CGV Chunxi Road, Emei 1958 Cinema, and Wanda Cinema Jinhua at 09:30, 11:30, 14:00, 16:30, and 19:00.\n\nAnd I'm still waiting on the rental car search for Shanghai—I'll let you know as soon as I have those results.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_zOVmjK2b64FVFzA3",
+              "name": "search_movies",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "For Chengdu, here are three movies currently playing:\n\n1. The Wandering Earth 3 (Sci-Fi, 150 min, rating 8.5) showing at Pacific Cinema, Wanda Cinema Jinhua, and CGV Chunxi Road at 10:30, 13:20, 16:10, 19:00, and 21:50.\n\n2. YOLO (Drama, 120 min, rating 7.8) showing at Pacific Cinema, Wanda Cinema Jinhua, and Emei 1958 Cinema at 11:00, 14:30, 17:00, and 20:30.\n\n3. Kung Fu Panda 4 (Animation, 95 min, rating 7.5) showing at CGV Chunxi Road, Emei 1958 Cinema, and Wanda Cinema Jinhua at 09:30, 11:30, 14:00, 16:30, and 19:00.\n\nAnd I'm still waiting on the rental car search for Shanghai—I'll let you know as soon as I have those results.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_zOVmjK2b64FVFzA3",
+          "tool_name": "search_movies",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 movies in Chengdu:\n\n1. The Wandering Earth 3 (ID: mov_cd_001)\n   Genre: Sci-Fi | Duration: 150 min\n   Rating: 8.5/10.0\n   Price: ¥42\n   Cinemas: Pacific Cinema, Wanda Cinema Jinhua, CGV Chunxi Road\n   Showtimes: 10:30, 13:20, 16:10, 19:00, 21:50\n\n2. YOLO (ID: mov_cd_002)\n   Genre: Drama | Duration: 120 min\n   Rating: 7.8/10.0\n   Price: ¥38\n   Cinemas: Pacific Cinema, Wanda Cinema Jinhua, Emei 1958 Cinema\n   Showtimes: 11:00, 14:30, 17:00, 20:30\n\n3. Kung Fu Panda 4 (ID: mov_cd_003)\n   Genre: Animation | Duration: 95 min\n   Rating: 7.5/10.0\n   Price: ¥32\n   Cinemas: CGV Chunxi Road, Emei 1958 Cinema, Wanda Cinema Jinhua\n   Showtimes: 09:30, 11:30, 14:00, 16:30, 19:00\n\n",
+            "raw_output": [
+              {
+                "movie_id": "mov_cd_001",
+                "name": "The Wandering Earth 3",
+                "genre": "Sci-Fi",
+                "duration": 150,
+                "rating": 8.5,
+                "cinemas": [
+                  "Pacific Cinema",
+                  "Wanda Cinema Jinhua",
+                  "CGV Chunxi Road"
+                ],
+                "showtimes": [
+                  "10:30",
+                  "13:20",
+                  "16:10",
+                  "19:00",
+                  "21:50"
+                ],
+                "price": 42
+              },
+              {
+                "movie_id": "mov_cd_002",
+                "name": "YOLO",
+                "genre": "Drama",
+                "duration": 120,
+                "rating": 7.8,
+                "cinemas": [
+                  "Pacific Cinema",
+                  "Wanda Cinema Jinhua",
+                  "Emei 1958 Cinema"
+                ],
+                "showtimes": [
+                  "11:00",
+                  "14:30",
+                  "17:00",
+                  "20:30"
+                ],
+                "price": 38
+              },
+              {
+                "movie_id": "mov_cd_003",
+                "name": "Kung Fu Panda 4",
+                "genre": "Animation",
+                "duration": 95,
+                "rating": 7.5,
+                "cinemas": [
+                  "CGV Chunxi Road",
+                  "Emei 1958 Cinema",
+                  "Wanda Cinema Jinhua"
+                ],
+                "showtimes": [
+                  "09:30",
+                  "11:30",
+                  "14:00",
+                  "16:30",
+                  "19:00"
+                ],
+                "price": 32
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.09679794311523438
+          },
+          "latency_ms": 0.09679794311523438
+        }
+      ],
+      "total_latency_ms": 13976.701021194458,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 2294400,
+        "event_count": 376,
+        "latency": {
+          "speech_ms": 2900.714111328125,
+          "tool_call_ms": 1688.123046875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 9.695987644491495,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book movie tickets for The Wandering Earth 3 at Pacific Cinema.",
+        "timestamp": 9.695987644491495,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_movie_ticket.cinema=Pacific Cinema"
+          ]
+        },
+        "audio_size_bytes": 198600
+      },
+      "assistant_response": "Sure, I can book tickets for \"The Wandering Earth 3\" at Pacific Cinema. Could you tell me which showtime you'd prefer, how many tickets you need, and the buyer name to put on the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can book tickets for \"The Wandering Earth 3\" at Pacific Cinema. Could you tell me which showtime you'd prefer, how many tickets you need, and the buyer name to put on the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8706.392049789429,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 456000,
+        "event_count": 84,
+        "latency": {
+          "speech_ms": 1101.238037109375
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.567564575235949,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the showtime to 21:50 and get 4 seats.",
+        "timestamp": 15.567564575235949,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_movie_ticket.seat_count=4",
+            "book_movie_ticket.showtime=21:50"
+          ]
+        },
+        "audio_size_bytes": 169800
+      },
+      "assistant_response": "Got it. And what name should I put on the booking for those 4 seats?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it. And what name should I put on the booking for those 4 seats?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3901.359796524048,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 165600,
+        "event_count": 42,
+        "latency": {
+          "speech_ms": 862.322021484375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.374133685302514,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use buyer name Huang Tao.",
+        "timestamp": 20.374133685302514,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_movie_ticket.buyer_name=Huang Tao"
+          ]
+        },
+        "audio_size_bytes": 74400
+      },
+      "assistant_response": "Your four tickets for \"The Wandering Earth 3\" at Pacific Cinema on 2026-03-01 at 21:50 are confirmed under the name Huang Tao. Your seats are E5, E6, E7, and E8, and the total cost is ¥180. Enjoy the movie!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_QtqZNaOguzdXSe2R",
+              "name": "book_movie_ticket",
+              "arguments": {
+                "movie_id": "mov_cd_001",
+                "cinema": "Pacific Cinema",
+                "showtime": "21:50",
+                "seat_count": 4,
+                "buyer_name": "Huang Tao"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your four tickets for \"The Wandering Earth 3\" at Pacific Cinema on 2026-03-01 at 21:50 are confirmed under the name Huang Tao. Your seats are E5, E6, E7, and E8, and the total cost is ¥180. Enjoy the movie!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_QtqZNaOguzdXSe2R",
+          "tool_name": "book_movie_ticket",
+          "arguments": {
+            "movie_id": "mov_cd_001",
+            "cinema": "Pacific Cinema",
+            "showtime": "21:50",
+            "seat_count": 4,
+            "buyer_name": "Huang Tao"
+          },
+          "result": {
+            "success": true,
+            "output": "Movie ticket booking successful!\n\nBooking ID: MV60001\nMovie ID: mov_cd_001\nMovie: The Wandering Earth 3\nCinema: Pacific Cinema\nDate: 2026-03-01\nShowtime: 21:50\nSeats: E5, E6, E7, E8\nTicket type: adult\nQuantity: 4\nTotal: ¥180\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "MV60001",
+              "movie_id": "mov_cd_001",
+              "movie_name": "The Wandering Earth 3",
+              "cinema": "Pacific Cinema",
+              "date": "2026-03-01",
+              "showtime": "21:50",
+              "seat_count": 4,
+              "seats": [
+                "E5",
+                "E6",
+                "E7",
+                "E8"
+              ],
+              "buyer_name": "Huang Tao",
+              "ticket_type": "adult",
+              "total_price": 180,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.102996826171875
+          },
+          "latency_ms": 0.102996826171875
+        }
+      ],
+      "total_latency_ms": 6301.409959793091,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 662400,
+        "event_count": 164,
+        "latency": {
+          "speech_ms": 2225.7919921875,
+          "tool_call_ms": 947.7470703125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 91800
+      },
+      "assistant_response": "Sure thing—I'm still waiting on the results of the rental car search in Shanghai. As soon as I have them, I'll share the options with you. Thanks for your patience!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing—I'm still waiting on the results of the rental car search in Shanghai. As soon as I have them, I'll share the options with you. Thanks for your patience!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4030.2977561950684,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 376800,
+        "event_count": 71,
+        "latency": {
+          "speech_ms": 889.820068359375
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.034455495460712,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the Volkswagen Passat for pickup date 2026-03-17 for 9 days.",
+        "timestamp": 30.034455495460712,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_car.days=9",
+            "book_car.pickup_date=2026-03-17"
+          ]
+        },
+        "audio_size_bytes": 273600
+      },
+      "assistant_response": "I don’t have the available car options from Shanghai yet, so I’m not sure if a Volkswagen Passat is available. Could you wait a moment until we get the search results, or would you like me to try searching again for the car options?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I don’t have the available car options from Shanghai yet, so I’m not sure if a Volkswagen Passat is available. Could you wait a moment until we get the search results, or would you like me to try searching again for the car options?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7489.764213562012,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 578400,
+        "event_count": 97,
+        "latency": {
+          "speech_ms": 1078.332275390625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 36.6890066667508,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use renter name He Xia, then check ride status for RIDE123456.",
+        "timestamp": 36.6890066667508,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_car.renter_name=He Xia",
+            "check_ride_status.ride_id=RIDE123456"
+          ]
+        },
+        "audio_size_bytes": 237000
+      },
+      "assistant_response": "I tried checking the status for ride ID 123456, but it looks like the ride wasn't found or the ID might be invalid. If you have a different ride ID, feel free to share it. And once we have the available car options from Shanghai, I’ll be happy to book a Volkswagen Passat for He Xia, if it’s available.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_92EoS0sEkMEuIyaE",
+              "name": "check_ride_status",
+              "arguments": {
+                "ride_id": "123456"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I tried checking the status for ride ID 123456, but it looks like the ride wasn't found or the ID might be invalid. If you have a different ride ID, feel free to share it. And once we have the available car options from Shanghai, I’ll be happy to book a Volkswagen Passat for He Xia, if it’s available.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_92EoS0sEkMEuIyaE",
+          "tool_name": "check_ride_status",
+          "arguments": {
+            "ride_id": "123456"
+          },
+          "result": {
+            "success": false,
+            "error": "Ride not found or invalid ride ID",
+            "output": "Ride not found or invalid ride ID",
+            "raw_output": {
+              "success": false,
+              "error": "Ride not found or invalid ride ID",
+              "output": "Ride not found or invalid ride ID"
+            },
+            "latency_ms": 0.03910064697265625
+          },
+          "latency_ms": 0.03910064697265625
+        }
+      ],
+      "total_latency_ms": 8511.06882095337,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 784800,
+        "event_count": 141,
+        "latency": {
+          "speech_ms": 1738.56201171875,
+          "tool_call_ms": 792.13037109375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 12,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_cars",
+    "inserted_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ],
+    "dangling_return": "never",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_movies": {
+        "speech_ms": 2900.714111328125,
+        "tool_call_ms": 1688.123046875
+      },
+      "book_movie_ticket": {
+        "speech_ms": 2225.7919921875,
+        "tool_call_ms": 947.7470703125
+      },
+      "book_car": {
+        "speech_ms": 1738.56201171875,
+        "tool_call_ms": 792.13037109375
+      },
+      "check_ride_status": {
+        "speech_ms": 1738.56201171875,
+        "tool_call_ms": 792.13037109375
+      }
+    },
+    "info_complete_turn": {
+      "search_movies": 2,
+      "book_movie_ticket": 5,
+      "search_cars": 1,
+      "book_car": 8,
+      "check_ride_status": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "missing_expected_tool",
+    "details": "预期: {'book_car', 'search_movies', 'search_cars', 'book_movie_ticket', 'check_ride_status'}，实际: {'book_movie_ticket', 'check_ride_status', 'search_movies'}，缺失: {'search_cars', 'book_car'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.4,
+    "behavior_score_details": "search_movies: 1(correct), book_movie_ticket: 1(correct), search_cars: 0(not_called), book_car: 0(not_called), check_ride_status: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "search_cars",
+          "error_type": "missing_call",
+          "phase": "pre",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_car",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "check_ride_status",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "ride_id: 'RIDE123456' vs '123456'"
+        }
+      ],
+      "error_types": {
+        "missing_call": 2,
+        "parameter_reasoning": 1
+      },
+      "phase_counts": {
+        "pre": 1,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 1,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

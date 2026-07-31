@@ -1,0 +1,116 @@
+{
+  "task_id": "int_000023",
+  "description": "Interruption (cancellation): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "cancellation",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing. Also line up an attraction plan after that.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Pick Beijing Hotel and book it.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 6.142856368782497
+    },
+    {
+      "speaker": "user",
+      "text": "Check in 2026-03-27.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-27"
+        ]
+      },
+      "timestamp": 11.04568081177311
+    },
+    {
+      "speaker": "user",
+      "text": "Actually forget the attraction.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "attraction",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Stay 2 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 19.596532279707976
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name Zhou Jun.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Zhou Jun"
+        ]
+      },
+      "timestamp": 23.14748250328221
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_004",
+        "checkin_date": "2026-03-27",
+        "nights": 2,
+        "guest_name": "Zhou Jun"
+      }
+    }
+  ],
+  "transcript_hash": "ad0c278ee0fe",
+  "info_complete_turn": {
+    "search_hotels": 1,
+    "book_hotel": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "cancellation",
+    "interrupt_keyword": "attraction",
+    "generated": true
+  },
+  "cancelled_tools": [
+    "search_attractions",
+    "book_attraction_ticket"
+  ]
+}

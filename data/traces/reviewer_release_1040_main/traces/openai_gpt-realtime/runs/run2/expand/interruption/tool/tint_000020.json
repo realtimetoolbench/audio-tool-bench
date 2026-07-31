@@ -1,0 +1,486 @@
+{
+  "task_name": "tint_000020",
+  "start_time": "2026-07-29T01:23:45.075924",
+  "end_time": "2026-07-29T01:25:04.068447",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Xi'an on 2026-05-15, and also plan Xi'an attractions for that day.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-05-15",
+            "search_attractions.city=Xi'an"
+          ]
+        },
+        "audio_size_bytes": 357000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_9qH1tXOVQ4HadVXK",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Xi'an"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8197.473049163818,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 34,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the train part. Cancel anything about trains.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 149400
+      },
+      "assistant_response": "哎，咱们这就把西安的几个景点找出来了！有四个热门选择：第一是世界闻名的兵马俑，评分超高；第二是大雁塔，古色古香；还有华清宫和鼓楼，都是特别有韵味的地儿。你想安排哪几个景点玩？咱们可以选具体时间段和张数，一块儿定票！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_HaSjNlg7lYFtx8Ez",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Xi'an"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "哎，咱们这就把西安的几个景点找出来了！有四个热门选择：第一是世界闻名的兵马俑，评分超高；第二是大雁塔，古色古香；还有华清宫和鼓楼，都是特别有韵味的地儿。你想安排哪几个景点玩？咱们可以选具体时间段和张数，一块儿定票！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_HaSjNlg7lYFtx8Ez",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Xi'an"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Xi'an:\n\n1. Terracotta Warriors (ID: attr_xa_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥120\n   Hours: 08:30-17:00\n   Location: Lintong\n\n2. Giant Wild Goose Pagoda (ID: attr_xa_002)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥50\n   Hours: 08:00-18:00\n   Location: Yanta\n\n3. Huaqing Palace (ID: attr_xa_003)\n   Type: Historical\n   Rating: 4.4/5.0\n   Ticket: ¥120\n   Hours: 07:30-19:00\n   Location: Lintong\n\n4. Bell Tower (ID: attr_xa_004)\n   Type: Historical\n   Rating: 4.3/5.0\n   Ticket: ¥35\n   Hours: 08:00-22:00\n   Location: Beilin\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_xa_001",
+                "name": "Terracotta Warriors",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 120,
+                "opening_hours": "08:30-17:00",
+                "location": "Lintong"
+              },
+              {
+                "attraction_id": "attr_xa_002",
+                "name": "Giant Wild Goose Pagoda",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 50,
+                "opening_hours": "08:00-18:00",
+                "location": "Yanta"
+              },
+              {
+                "attraction_id": "attr_xa_003",
+                "name": "Huaqing Palace",
+                "type": "Historical",
+                "rating": 4.4,
+                "price": 120,
+                "opening_hours": "07:30-19:00",
+                "location": "Lintong"
+              },
+              {
+                "attraction_id": "attr_xa_004",
+                "name": "Bell Tower",
+                "type": "Historical",
+                "rating": 4.3,
+                "price": 35,
+                "opening_hours": "08:00-22:00",
+                "location": "Beilin"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.41413307189941406
+          },
+          "latency_ms": 0.41413307189941406
+        }
+      ],
+      "total_latency_ms": 28765.46001434326,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1051200,
+        "event_count": 216,
+        "latency": {
+          "speech_ms": 1481.808349609375,
+          "tool_call_ms": 450.239990234375
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 13.086915606625443,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Xi'an.",
+        "timestamp": 13.086915606625443,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 82800
+      },
+      "assistant_response": "刚刚我已经给你列出了西安的几个热门景点：兵马俑、大雁塔、华清宫和鼓楼。你还有什么特别想了解的，或者想预定的景点吗？",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "刚刚我已经给你列出了西安的几个热门景点：兵马俑、大雁塔、华清宫和鼓楼。你还有什么特别想了解的，或者想预定的景点吗？",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9349.06530380249,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 590400,
+        "event_count": 115,
+        "latency": {
+          "speech_ms": 295.380126953125
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 17.42212335901873,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Bell Tower tickets for 2026-05-15.",
+        "timestamp": 17.42212335901873,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 185400
+      },
+      "assistant_response": "好的，咱们来确定一下几个细节：首先，你想预订几张票？还有想选哪个时间段，比如上午、下午或具体时间？再告诉我你的名字，我就能帮你把票订好咯！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "好的，咱们来确定一下几个细节：首先，你想预订几张票？还有想选哪个时间段，比如上午、下午或具体时间？再告诉我你的名字，我就能帮你把票订好咯！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 10154.255867004395,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 679200,
+        "event_count": 123,
+        "latency": {
+          "speech_ms": 612.02490234375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 22.49685831998242,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the time slot to afternoon and the visitor name to Zhou Jun.",
+        "timestamp": 22.49685831998242,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.time_slot=afternoon",
+            "book_attraction_ticket.visitor_name=Zhou Jun"
+          ]
+        },
+        "audio_size_bytes": 190800
+      },
+      "assistant_response": "太棒了，票已经订好啦！周军，您的西安鼓楼门票已经确认，时间是2026年5月15日下午。祝你玩得开心，有什么其他需要帮忙的，尽管说！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_TnW5yGnfoKzq3oOI",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_xa_004",
+                "date": "2026-05-15",
+                "time_slot": "afternoon",
+                "visitor_name": "Zhou Jun",
+                "ticket_count": 1
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "太棒了，票已经订好啦！周军，您的西安鼓楼门票已经确认，时间是2026年5月15日下午。祝你玩得开心，有什么其他需要帮忙的，尽管说！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_TnW5yGnfoKzq3oOI",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_xa_004",
+            "date": "2026-05-15",
+            "time_slot": "afternoon",
+            "visitor_name": "Zhou Jun",
+            "ticket_count": 1
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_xa_004\nDate: 2026-05-15\nTime slot: afternoon\nVisitor: Zhou Jun\nTickets: 1\nTicket numbers: AT50001-01\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_xa_004",
+              "date": "2026-05-15",
+              "time_slot": "afternoon",
+              "visitor_name": "Zhou Jun",
+              "ticket_count": 1,
+              "ticket_numbers": [
+                "AT50001-01"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.02288818359375
+          },
+          "latency_ms": 0.02288818359375
+        }
+      ],
+      "total_latency_ms": 9669.153928756714,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 607200,
+        "event_count": 187,
+        "latency": {
+          "speech_ms": 1866.90576171875,
+          "tool_call_ms": 1054.23193359375
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 29.017964294209396,
+      "input_chunk": {
+        "role": "user",
+        "content": "Buy 3 tickets total.",
+        "timestamp": 29.017964294209396,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.ticket_count=3"
+          ]
+        },
+        "audio_size_bytes": 64800
+      },
+      "assistant_response": "搞定啦！现在一共三张鼓楼的票都订好了，时间是2026年5月15日下午。祝你们在西安玩得愉快，有需要随时喊我哦！",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_7E1ou3lozHWloe9L",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_xa_004",
+                "date": "2026-05-15",
+                "time_slot": "afternoon",
+                "visitor_name": "Zhou Jun",
+                "ticket_count": 2
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "搞定啦！现在一共三张鼓楼的票都订好了，时间是2026年5月15日下午。祝你们在西安玩得愉快，有需要随时喊我哦！",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_7E1ou3lozHWloe9L",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_xa_004",
+            "date": "2026-05-15",
+            "time_slot": "afternoon",
+            "visitor_name": "Zhou Jun",
+            "ticket_count": 2
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50002\nAttraction ID: attr_xa_004\nDate: 2026-05-15\nTime slot: afternoon\nVisitor: Zhou Jun\nTickets: 2\nTicket numbers: AT50002-01, AT50002-02\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50002",
+              "attraction_id": "attr_xa_004",
+              "date": "2026-05-15",
+              "time_slot": "afternoon",
+              "visitor_name": "Zhou Jun",
+              "ticket_count": 2,
+              "ticket_numbers": [
+                "AT50002-01",
+                "AT50002-02"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.026702880859375
+          },
+          "latency_ms": 0.026702880859375
+        }
+      ],
+      "total_latency_ms": 12849.847793579102,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 542400,
+        "event_count": 176,
+        "latency": {
+          "speech_ms": 2144.2958984375,
+          "tool_call_ms": 1178.1689453125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 6,
+    "total_llm_calls": 10,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "tts_backend": "openai",
+    "audio_variant": "default",
+    "clone_filter_accent": null,
+    "tool_environment": {
+      "profile": "immediate"
+    },
+    "latency": {
+      "book_attraction_ticket": {
+        "speech_ms": 2144.2958984375,
+        "tool_call_ms": 1178.1689453125
+      }
+    },
+    "info_complete_turn": {
+      "search_attractions": 1,
+      "book_attraction_ticket": 6
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch+premature_call",
+    "details": "参数不匹配: book_attraction_ticket.ticket_count: 期望'3', 实际'2'",
+    "call_timing": "book_attraction_ticket 在 step 5 调用，但信息要到 turn 6 才收齐",
+    "extra_turns": 1,
+    "extra_turns_details": "search_attractions: +1 turns (info@1, call@2)",
+    "behavior_score": 0.5,
+    "behavior_score_details": "search_attractions: 1(correct), book_attraction_ticket: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_attraction_ticket",
+          "error_type": "premature_call",
+          "phase": "post",
+          "detail": "在 step 5 调用，info_complete_turn=6"
+        }
+      ],
+      "error_types": {
+        "premature_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "premature_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "premature_call"
+    }
+  }
+}

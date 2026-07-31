@@ -1,0 +1,190 @@
+{
+  "task_id": "int_000073",
+  "description": "Interruption (correction): 6 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "correction",
+  "test_dimension": "interruption",
+  "sub_category": "correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shenzhen.",
+      "metadata": {
+        "phase": "pre_interrupt"
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shenzhen, I meant Shanghai.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "Shenzhen",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book Shanghai Classic for 2026-03-26 at 19:00.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-26",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 9.520751349075269
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 10, contact name Xie Peng, phone 13892862812.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Xie Peng",
+          "book_restaurant.party_size=10",
+          "book_restaurant.phone=13892862812"
+        ]
+      },
+      "timestamp": 14.650607713929091
+    },
+    {
+      "speaker": "user",
+      "text": "Search hotels in Beijing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 20.367861270579343
+    },
+    {
+      "speaker": "user",
+      "text": "Book Novotel Beijing Peace for 2026-03-04 for 2 nights, guest name Ethan Thomas.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-04",
+          "book_hotel.guest_name=Ethan Thomas",
+          "book_hotel.nights=2"
+        ]
+      },
+      "timestamp": 24.870070830531937
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name Ethan Thomas.",
+      "metadata": {
+        "phase": "post_interrupt"
+      },
+      "timestamp": 31.514694796734577
+    },
+    {
+      "speaker": "user",
+      "text": "Search attractions in Xi'an and book Huaqing Palace for 2026-03-23 in the afternoon for Xie Peng, 4 tickets.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-23",
+          "book_attraction_ticket.ticket_count=4",
+          "book_attraction_ticket.time_slot=afternoon",
+          "book_attraction_ticket.visitor_name=Xie Peng",
+          "search_attractions.city=Xi'an"
+        ]
+      },
+      "timestamp": 36.068982895040264
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-03-26",
+        "time": "19:00",
+        "party_size": 10,
+        "contact_name": "Xie Peng",
+        "phone": "13892862812"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_005",
+        "checkin_date": "2026-03-04",
+        "nights": 2,
+        "guest_name": "Ethan Thomas"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Xi'an"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_xa_003",
+        "date": "2026-03-23",
+        "time_slot": "afternoon",
+        "visitor_name": "Xie Peng",
+        "ticket_count": 4
+      }
+    }
+  ],
+  "transcript_hash": "fb1115f9bad3",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 4,
+    "search_hotels": 5,
+    "book_hotel": 6,
+    "search_attractions": 8,
+    "book_attraction_ticket": 8
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "correction",
+    "interrupt_keyword": "Shenzhen",
+    "template": null,
+    "generated": true,
+    "wrong_param": {
+      "tool": "search_restaurants",
+      "param": "city",
+      "wrong_value": "Shenzhen"
+    }
+  }
+}

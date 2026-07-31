@@ -1,0 +1,636 @@
+{
+  "task_name": "tint_000034",
+  "start_time": "2026-04-30T17:01:08.774372",
+  "end_time": "2026-04-30T17:02:14.554979",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search flights from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_flights.destination=Shanghai",
+            "search_flights.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 105600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_f5c76e10107e43729a5d55f7",
+              "name": "search_flights",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "before_resume"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_f5c76e10107e43729a5d55f7",
+          "tool_name": "search_flights",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 flights (Beijing -> Shanghai):\n\n1. CA1234 - Air China (ID: flt_bj_sh_001)\n   Departure: 08:00 -> Arrival: 10:30\n   Class: economy | Price: ¥800\n\n2. MU5678 - China Eastern (ID: flt_bj_sh_002)\n   Departure: 10:00 -> Arrival: 12:30\n   Class: economy | Price: ¥750\n\n3. CA1456 - Air China (ID: flt_bj_sh_003)\n   Departure: 14:00 -> Arrival: 16:30\n   Class: economy | Price: ¥850\n\n4. MU5890 - China Eastern (ID: flt_bj_sh_004)\n   Departure: 18:00 -> Arrival: 20:30\n   Class: economy | Price: ¥900\n\n",
+            "raw_output": [
+              {
+                "flight_id": "flt_bj_sh_001",
+                "flight_no": "CA1234",
+                "airline": "Air China",
+                "departure": "08:00",
+                "arrival": "10:30",
+                "price": 800,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_002",
+                "flight_no": "MU5678",
+                "airline": "China Eastern",
+                "departure": "10:00",
+                "arrival": "12:30",
+                "price": 750,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_003",
+                "flight_no": "CA1456",
+                "airline": "Air China",
+                "departure": "14:00",
+                "arrival": "16:30",
+                "price": 850,
+                "class": "economy",
+                "available": true
+              },
+              {
+                "flight_id": "flt_bj_sh_004",
+                "flight_no": "MU5890",
+                "airline": "China Eastern",
+                "departure": "18:00",
+                "arrival": "20:30",
+                "price": 900,
+                "class": "economy",
+                "available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.11587142944335938
+          },
+          "latency_ms": 0.11587142944335938,
+          "dangling_return": "before_resume"
+        }
+      ],
+      "total_latency_ms": 7086.507081985474,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 22,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait—before that, track my package with tracking number SF1234567890.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "track_package.tracking_number=SF1234567890"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_flights",
+            "dangling_return": "before_resume",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 294000
+      },
+      "assistant_response": "Your package with tracking number SF1234567890 is currently in transit. It was shipped from the Beijing Distribution Center on February 14th at 10:00, arrived at the Shanghai Distribution Center later that day at 18:00, and is now out for delivery from the Shanghai Pudong Station as of this morning at 08:00.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_e8e0e14b99ec47de980680b3",
+              "name": "track_package",
+              "arguments": {
+                "tracking_number": "SF1234567890"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your package with tracking number SF1234567890 is currently in transit. It was shipped from the Beijing Distribution Center on February 14th at 10:00, arrived at the Shanghai Distribution Center later that day at 18:00, and is now out for delivery from the Shanghai Pudong Station as of this morning at 08:00.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_e8e0e14b99ec47de980680b3",
+          "tool_name": "track_package",
+          "arguments": {
+            "tracking_number": "SF1234567890"
+          },
+          "result": {
+            "success": true,
+            "output": "Package tracking successful!\n\nTracking number: SF1234567890\nCompany: SF Express\nStatus: In Transit\n\nTracking history:\n  2024-02-14 10:00 - Beijing Distribution Center: Shipped\n  2024-02-14 18:00 - Shanghai Distribution Center: Arrived\n  2024-02-15 08:00 - Shanghai Pudong Station: Out for Delivery\n",
+            "raw_output": {
+              "company": "SF Express",
+              "status": "In Transit",
+              "history": [
+                {
+                  "time": "2024-02-14 10:00",
+                  "location": "Beijing Distribution Center",
+                  "status": "Shipped"
+                },
+                {
+                  "time": "2024-02-14 18:00",
+                  "location": "Shanghai Distribution Center",
+                  "status": "Arrived"
+                },
+                {
+                  "time": "2024-02-15 08:00",
+                  "location": "Shanghai Pudong Station",
+                  "status": "Out for Delivery"
+                }
+              ]
+            },
+            "error": null,
+            "latency_ms": 0.14019012451171875
+          },
+          "latency_ms": 0.14019012451171875
+        }
+      ],
+      "total_latency_ms": 7057.82675743103,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1113600,
+        "event_count": 187,
+        "latency": {
+          "speech_ms": 1376.69091796875,
+          "tool_call_ms": 628.089111328125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the flight search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 110400
+      },
+      "assistant_response": "I already found four flights from Beijing to Shanghai for you. There's an Air China flight leaving at 8 in the morning for 800 yuan, a China Eastern flight at 10 am for 750 yuan, another Air China flight at 2 pm for 850 yuan, and a China Eastern flight at 6 pm for 900 yuan. All of them are economy class.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I already found four flights from Beijing to Shanghai for you. There's an Air China flight leaving at 8 in the morning for 800 yuan, a China Eastern flight at 10 am for 750 yuan, another Air China flight at 2 pm for 850 yuan, and a China Eastern flight at 6 pm for 900 yuan. All of them are economy class.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6868.880987167358,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1013760,
+        "event_count": 158,
+        "latency": {
+          "speech_ms": 360.974853515625
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.64064258924666,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book flight CA1456.",
+        "timestamp": 16.64064258924666,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 89400
+      },
+      "assistant_response": "I can't find a flight with the ID CA456 in the search results I just showed you. The available flights from Beijing to Shanghai are CA1234, MU5678, CA1456, and MU5890. Could you please check the flight ID again or choose one of the available options? Also, I'll need your name and the travel date to proceed with the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can't find a flight with the ID CA456 in the search results I just showed you. The available flights from Beijing to Shanghai are CA1234, MU5678, CA1456, and MU5890. Could you please check the flight ID again or choose one of the available options? Also, I'll need your name and the travel date to proceed with the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7229.211091995239,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 1017600,
+        "event_count": 168,
+        "latency": {
+          "speech_ms": 297.22509765625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.038216450948575,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the flight date to 2026-03-05 and passenger name to Liu Yang.",
+        "timestamp": 21.038216450948575,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_flight.date=2026-03-05",
+            "book_flight.passenger_name=Liu Yang"
+          ]
+        },
+        "audio_size_bytes": 261600
+      },
+      "assistant_response": "Thanks for the details. I still need you to choose one of the available flight IDs from the list I provided earlier, since CA456 isn't a valid option. Once you confirm which flight you'd like to book, I can proceed with the booking for Liu Yang on March 5th, 2026.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thanks for the details. I still need you to choose one of the available flight IDs from the list I provided earlier, since CA456 isn't a valid option. Once you confirm which flight you'd like to book, I can proceed with the booking for Liu Yang on March 5th, 2026.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 7207.7319622039795,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 679680,
+        "event_count": 124,
+        "latency": {
+          "speech_ms": 423.15087890625
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 27.55552837912911,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use airline Air China for this booking.",
+        "timestamp": 27.55552837912911,
+        "metadata": {
+          "phase": "post_return"
+        },
+        "audio_size_bytes": 114600
+      },
+      "assistant_response": "There are two Air China flights available. One is flight CA1234 departing at 08:00 and the other is CA1456 departing at 14:00. Please let me know which one you would like to book for Liu Yang on March 5th, 2026.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "There are two Air China flights available. One is flight CA1234 departing at 08:00 and the other is CA1456 departing at 14:00. Please let me know which one you would like to book for Liu Yang on March 5th, 2026.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5601.8102169036865,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 718080,
+        "event_count": 125,
+        "latency": {
+          "speech_ms": 428.216064453125
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 32.50874084363567,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search restaurants in Shanghai.",
+        "timestamp": 32.50874084363567,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "search_restaurants.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 91200
+      },
+      "assistant_response": "I found three restaurants in Shanghai for you. There's Chuanfu Laozao which serves Sichuan food downtown with a 4.6 rating, Shanghai Classic which offers Shanghainese cuisine in Pudong with a 4.4 rating, and Xiao Nan Guo, also serving Shanghainese food in Pudong with a 4.5 rating.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_bcd3eefda5f44b3bb0c1ecad",
+              "name": "search_restaurants",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three restaurants in Shanghai for you. There's Chuanfu Laozao which serves Sichuan food downtown with a 4.6 rating, Shanghai Classic which offers Shanghainese cuisine in Pudong with a 4.4 rating, and Xiao Nan Guo, also serving Shanghainese food in Pudong with a 4.5 rating.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_bcd3eefda5f44b3bb0c1ecad",
+          "tool_name": "search_restaurants",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 restaurants in Shanghai:\n\n1. Chuanfu Laozao (ID: rst_sh_001)\n   Cuisine: Sichuan\n   Location: Downtown\n   Rating: 4.6/5.0\n\n2. Shanghai Classic (ID: rst_sh_002)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.4/5.0\n\n3. Xiao Nan Guo (ID: rst_sh_003)\n   Cuisine: Shanghainese\n   Location: Pudong\n   Rating: 4.5/5.0\n\n",
+            "raw_output": [
+              {
+                "restaurant_id": "rst_sh_001",
+                "name": "Chuanfu Laozao",
+                "cuisine": "Sichuan",
+                "location": "Downtown",
+                "rating": 4.6
+              },
+              {
+                "restaurant_id": "rst_sh_002",
+                "name": "Shanghai Classic",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.4
+              },
+              {
+                "restaurant_id": "rst_sh_003",
+                "name": "Xiao Nan Guo",
+                "cuisine": "Shanghainese",
+                "location": "Pudong",
+                "rating": 4.5
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.11110305786132812
+          },
+          "latency_ms": 0.11110305786132812
+        }
+      ],
+      "total_latency_ms": 7120.284080505371,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 929280,
+        "event_count": 160,
+        "latency": {
+          "speech_ms": 1263.388916015625,
+          "tool_call_ms": 548.3720703125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.47129529685524,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book restaurant Chuanfu Laozao on 2026-03-14 at 12:00 for 3 people.",
+        "timestamp": 37.47129529685524,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.date=2026-03-14",
+            "book_restaurant.party_size=3",
+            "book_restaurant.time=12:00"
+          ]
+        },
+        "audio_size_bytes": 307800
+      },
+      "assistant_response": "I can help with that reservation. To book Chuanfu Laozao for three people on March 14th, 2026 at 12:00, I'll also need a contact name and a phone number for the booking.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I can help with that reservation. To book Chuanfu Laozao for three people on March 14th, 2026 at 12:00, I'll also need a contact name and a phone number for the booking.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6814.9378299713135,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 510720,
+        "event_count": 97,
+        "latency": {
+          "speech_ms": 440.9189453125
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 43.74742482608463,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the reservation party size to 3, contact name Li Na, phone 13813897597.",
+        "timestamp": 43.74742482608463,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_restaurant.contact_name=Li Na",
+            "book_restaurant.phone=13813897597"
+          ]
+        },
+        "audio_size_bytes": 326400
+      },
+      "assistant_response": "Your reservation at Chuanfu Laozao is confirmed for March 14th, 2026 at 12:00 for three people. The booking ID is BK1001 under the name Li Na with the phone number 13813897597.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_19c4d44698cc475a903f4945",
+              "name": "book_restaurant",
+              "arguments": {
+                "restaurant_id": "rst_sh_001",
+                "date": "2026-03-14",
+                "time": "12:00",
+                "party_size": 3,
+                "contact_name": "Li Na",
+                "phone": "13813897597"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your reservation at Chuanfu Laozao is confirmed for March 14th, 2026 at 12:00 for three people. The booking ID is BK1001 under the name Li Na with the phone number 13813897597.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_19c4d44698cc475a903f4945",
+          "tool_name": "book_restaurant",
+          "arguments": {
+            "restaurant_id": "rst_sh_001",
+            "date": "2026-03-14",
+            "time": "12:00",
+            "party_size": 3,
+            "contact_name": "Li Na",
+            "phone": "13813897597"
+          },
+          "result": {
+            "success": true,
+            "output": "Reservation successful!\n\nBooking ID: BK1001\nRestaurant ID: rst_sh_001\nRestaurant: Chuanfu Laozao\nDate: 2026-03-14\nTime: 12:00\nParty size: 3\nContact: Li Na (13813897597)\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "BK1001",
+              "restaurant_id": "rst_sh_001",
+              "restaurant_name": "Chuanfu Laozao",
+              "date": "2026-03-14",
+              "time": "12:00",
+              "party_size": 3,
+              "contact_name": "Li Na",
+              "phone": "13813897597",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.10704994201660156
+          },
+          "latency_ms": 0.10704994201660156
+        }
+      ],
+      "total_latency_ms": 10774.059057235718,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 879360,
+        "event_count": 191,
+        "latency": {
+          "speech_ms": 2832.051025390625,
+          "tool_call_ms": 2074.080078125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_early_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_flights",
+    "priority_tool": "track_package",
+    "inserted_tools": [
+      "track_package"
+    ],
+    "dangling_return": "before_resume",
+    "mode": "audio_crawl",
+    "provider": "qwen",
+    "tts_voice": "Ethan",
+    "realtime_model": "qwen3.5-omni-plus-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "track_package": {
+        "speech_ms": 1376.69091796875,
+        "tool_call_ms": 628.089111328125
+      },
+      "book_flight": {
+        "speech_ms": 423.15087890625
+      },
+      "search_restaurants": {
+        "speech_ms": 1263.388916015625,
+        "tool_call_ms": 548.3720703125
+      },
+      "book_restaurant": {
+        "speech_ms": 2832.051025390625,
+        "tool_call_ms": 2074.080078125
+      }
+    },
+    "info_complete_turn": {
+      "track_package": 2,
+      "search_flights": 1,
+      "book_flight": 5,
+      "search_restaurants": 7,
+      "book_restaurant": 9
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_flight",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "missing_call": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "missing_call": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "missing_call"
+    }
+  }
+}

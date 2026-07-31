@@ -1,0 +1,141 @@
+{
+  "task_id": "pro_000158",
+  "description": "Generated: 5 tools, 5 turns",
+  "task": "generated",
+  "scenario_type": "proactive",
+  "tool_category": "multi",
+  "tools": [
+    "search_flights",
+    "book_flight",
+    "search_hotels",
+    "book_hotel",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I’m trying to sort out a quick trip soon—starting from Beijing and heading to Shanghai.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_flights.destination=Shanghai",
+          "search_flights.origin=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Also, I’ll be in Shenzhen around that time, and I haven’t picked a place to stay yet.",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "search_hotels.city=Shenzhen"
+        ]
+      },
+      "timestamp": 7.204376016175735
+    },
+    {
+      "speaker": "user",
+      "text": "If that China Eastern flight MU5678 on 2026-05-15 is still a good option, yeah—go ahead and book it under Yang Yu.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_flight.date=2026-05-15",
+          "book_flight.passenger_name=Yang Yu"
+        ]
+      },
+      "timestamp": 14.62503423744479
+    },
+    {
+      "speaker": "user",
+      "text": "For Shenzhen, the Grand Hyatt Shenzhen sounds perfect—lock in 1 night starting 2026-04-12, and put it under Zhang Wei.",
+      "metadata": {
+        "phase": "book_confirm",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-04-12",
+          "book_hotel.guest_name=Zhang Wei",
+          "book_hotel.nights=1"
+        ]
+      },
+      "timestamp": 23.088870469838874
+    },
+    {
+      "speaker": "user",
+      "text": "One more thing—I’m waiting on a car and I’m a little paranoid; the ride ID is RIDE789012. Any update on where it’s at?",
+      "metadata": {
+        "phase": "search",
+        "contains_params": [
+          "check_ride_status.ride_id=RIDE789012"
+        ]
+      },
+      "timestamp": 31.771101635423975
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_flights",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_flight",
+      "params": {
+        "flight_id": "flt_bj_sh_002",
+        "date": "2026-05-15",
+        "passenger_name": "Yang Yu"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shenzhen"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sz_002",
+        "checkin_date": "2026-04-12",
+        "nights": 1,
+        "guest_name": "Zhang Wei"
+      }
+    },
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE789012"
+      }
+    }
+  ],
+  "transcript_hash": "79cba0f221d7",
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 5,
+    "style": "proactive_strong",
+    "sample_type": "dag",
+    "template": "business_trip",
+    "generated": true
+  },
+  "info_complete_turn": {
+    "search_flights": 1,
+    "book_flight": 3,
+    "search_hotels": 2,
+    "book_hotel": 4,
+    "check_ride_status": 5
+  },
+  "intent": {
+    "strength": "strong",
+    "signals": [
+      "trying to sort out a quick trip",
+      "heading to Shanghai",
+      "haven’t picked a place to stay yet",
+      "go ahead and book it",
+      "lock in 1 night",
+      "Any update on where it’s at?"
+    ],
+    "ambiguity_notes": "Strong intent: the user casually sets travel context first (flight route, hotel city), then clearly confirms both bookings, and finally asks for a specific ride status by ID."
+  }
+}

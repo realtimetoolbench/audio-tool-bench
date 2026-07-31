@@ -1,0 +1,190 @@
+{
+  "task_id": "int_000035",
+  "description": "Interruption (redirection): 7 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "redirection",
+  "tool_category": "multi",
+  "tools": [
+    "search_attractions",
+    "book_attraction_ticket",
+    "search_trains",
+    "book_train",
+    "search_doctors",
+    "book_appointment",
+    "check_ride_status"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search doctors in Beijing. Then prepare to book an appointment with doctor Zhang Wei.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_doctors.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the appointment for Wang Fang on 2026-03-04.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_appointment.date=2026-03-04",
+          "book_appointment.patient_name=Wang Fang"
+        ]
+      },
+      "timestamp": 7.584628203374162
+    },
+    {
+      "speaker": "user",
+      "text": "Set the appointment time slot to afternoon.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "book_appointment.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 13.210659791913038
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search attractions in Chengdu, and book Kuanzhai Alley tickets for Chen Ming on 2026-03-27.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-27",
+          "book_attraction_ticket.visitor_name=Chen Ming",
+          "search_attractions.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 3,
+        "interrupt_trigger": {
+          "type": "keyword",
+          "keyword": "doctor",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Set the Kuanzhai Alley visit to morning, and make it 3 tickets, date 2026-03-27.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=3",
+          "book_attraction_ticket.time_slot=morning"
+        ]
+      },
+      "timestamp": 27.566017708493586
+    },
+    {
+      "speaker": "user",
+      "text": "Search trains from Beijing to Shanghai.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "search_trains.destination=Shanghai",
+          "search_trains.origin=Beijing"
+        ]
+      },
+      "timestamp": 34.5191544249201
+    },
+    {
+      "speaker": "user",
+      "text": "Book train D321 on 2026-03-12 for Zhou Jun, Second Class.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_train.date=2026-03-12",
+          "book_train.passenger_name=Zhou Jun",
+          "book_train.seat_class=Second Class"
+        ]
+      },
+      "timestamp": 39.3798144889857
+    },
+    {
+      "speaker": "user",
+      "text": "OK, back to the doctor. Continue and check the ride status too.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 44.81928470844101
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_004",
+        "date": "2026-03-27",
+        "time_slot": "morning",
+        "visitor_name": "Chen Ming",
+        "ticket_count": 3
+      }
+    },
+    {
+      "tool": "search_trains",
+      "params": {
+        "origin": "Beijing",
+        "destination": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_train",
+      "params": {
+        "train_id": "trn_bj_sh_003",
+        "date": "2026-03-12",
+        "passenger_name": "Zhou Jun",
+        "seat_class": "Second Class"
+      }
+    },
+    {
+      "tool": "search_doctors",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_appointment",
+      "params": {
+        "doctor_id": "doc_bj_001",
+        "date": "2026-03-04",
+        "time_slot": "afternoon",
+        "patient_name": "Wang Fang"
+      }
+    },
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    }
+  ],
+  "transcript_hash": "38dc2115723a",
+  "info_complete_turn": {
+    "search_attractions": 4,
+    "book_attraction_ticket": 5,
+    "search_trains": 6,
+    "book_train": 7,
+    "search_doctors": 1,
+    "book_appointment": 3,
+    "check_ride_status": 1
+  },
+  "metadata": {
+    "tool_count": 7,
+    "turn_count": 8,
+    "interruption_type": "redirection",
+    "interrupt_keyword": "doctor",
+    "generated": true
+  }
+}

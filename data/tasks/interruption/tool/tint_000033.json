@@ -1,0 +1,185 @@
+{
+  "task_id": "tint_000033",
+  "description": "Interruption (priority_late_return): 5 tools, 9 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_late_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_late_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_shows",
+    "book_show_ticket",
+    "search_restaurants",
+    "book_restaurant",
+    "list_bills"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search shows in Chengdu.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_shows.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Hold on—list my bills now.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_shows",
+          "dangling_return": "during_inserted",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the show search.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book a ticket for the show ID \"Joker Xue Concert\".",
+      "metadata": {
+        "phase": "post_return"
+      },
+      "timestamp": 13.379177827241651
+    },
+    {
+      "speaker": "user",
+      "text": "Seat zone Stand B. One ticket.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.seat_zone=Stand B",
+          "book_show_ticket.ticket_count=1"
+        ]
+      },
+      "timestamp": 19.16434949730789
+    },
+    {
+      "speaker": "user",
+      "text": "Buyer name Wang Fang. Phone 13830018365.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_show_ticket.buyer_name=Wang Fang",
+          "book_show_ticket.phone=13830018365"
+        ]
+      },
+      "timestamp": 23.333033487878684
+    },
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "search_restaurants.city=Shanghai"
+        ]
+      },
+      "timestamp": 28.408266299030682
+    },
+    {
+      "speaker": "user",
+      "text": "Book restaurant ID \"Shanghai Classic\" for 2026-03-25 at 19:00.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.date=2026-03-25",
+          "book_restaurant.time=19:00"
+        ]
+      },
+      "timestamp": 33.194835243188145
+    },
+    {
+      "speaker": "user",
+      "text": "Party size 7. Contact name Zhang Wei. Phone 13845678901.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhang Wei",
+          "book_restaurant.party_size=7",
+          "book_restaurant.phone=13845678901"
+        ]
+      },
+      "timestamp": 38.86645403915654
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_bills",
+      "params": {}
+    },
+    {
+      "tool": "search_shows",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_show_ticket",
+      "params": {
+        "show_id": "show_cd_001",
+        "seat_zone": "Stand B",
+        "ticket_count": 1,
+        "buyer_name": "Wang Fang",
+        "phone": "13830018365"
+      }
+    },
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_sh_002",
+        "date": "2026-03-25",
+        "time": "19:00",
+        "party_size": 7,
+        "contact_name": "Zhang Wei",
+        "phone": "13845678901"
+      }
+    }
+  ],
+  "transcript_hash": "f78d33eedb76",
+  "info_complete_turn": {
+    "list_bills": 1,
+    "search_shows": 1,
+    "book_show_ticket": 6,
+    "search_restaurants": 7,
+    "book_restaurant": 9
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_shows",
+    "priority_tool": "list_bills",
+    "inserted_tools": [
+      "list_bills"
+    ],
+    "dangling_return": "during_inserted"
+  },
+  "inserted_tools": [
+    "list_bills"
+  ]
+}

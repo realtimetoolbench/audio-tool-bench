@@ -1,0 +1,608 @@
+{
+  "task_name": "tint_000000",
+  "start_time": "2026-05-06T11:55:50.694865",
+  "end_time": "2026-05-06T11:56:29.551220",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Shanghai to Beijing on 2026-03-19. Also line up attraction tickets in Beijing and a hotel in Suzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_attractions.city=Beijing",
+            "search_hotels.city=Suzhou"
+          ]
+        },
+        "audio_size_bytes": 427800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Px6flBWSAmsHNqVA",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Shanghai",
+                "destination": "Beijing"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9482.853174209595,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 28,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Forget the train. Cancel the train search and do not book any train.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 199800
+      },
+      "assistant_response": "Got it! I’ll cancel the train search now. Let’s focus on the attraction tickets in Beijing and the hotel in Suzhou. I'll proceed by looking up attractions first. Great! Now let’s pick an attraction. Which one would you like to visit? The Forbidden City, the Great Wall at Badaling, the Summer Palace, or the Temple of Heaven?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it! I’ll cancel the train search now. Let’s focus on the attraction tickets in Beijing and the hotel in Suzhou. I'll proceed by looking up attractions first.",
+          "tool_calls": [
+            {
+              "id": "call_zrLy5AOJ9KJlsL1x",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Great! Now let’s pick an attraction. Which one would you like to visit? The Forbidden City, the Great Wall at Badaling, the Summer Palace, or the Temple of Heaven?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_zrLy5AOJ9KJlsL1x",
+          "tool_name": "search_attractions",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 attractions in Beijing:\n\n1. Forbidden City (ID: attr_bj_001)\n   Type: Historical\n   Rating: 4.8/5.0\n   Ticket: ¥60\n   Hours: 08:30-17:00\n   Location: Dongcheng\n\n2. Great Wall Badaling (ID: attr_bj_002)\n   Type: Historical\n   Rating: 4.7/5.0\n   Ticket: ¥40\n   Hours: 06:30-19:00\n   Location: Yanqing\n\n3. Summer Palace (ID: attr_bj_003)\n   Type: Garden\n   Rating: 4.6/5.0\n   Ticket: ¥30\n   Hours: 06:30-18:00\n   Location: Haidian\n\n4. Temple of Heaven (ID: attr_bj_004)\n   Type: Historical\n   Rating: 4.5/5.0\n   Ticket: ¥15\n   Hours: 06:00-22:00\n   Location: Dongcheng\n\n",
+            "raw_output": [
+              {
+                "attraction_id": "attr_bj_001",
+                "name": "Forbidden City",
+                "type": "Historical",
+                "rating": 4.8,
+                "price": 60,
+                "opening_hours": "08:30-17:00",
+                "location": "Dongcheng"
+              },
+              {
+                "attraction_id": "attr_bj_002",
+                "name": "Great Wall Badaling",
+                "type": "Historical",
+                "rating": 4.7,
+                "price": 40,
+                "opening_hours": "06:30-19:00",
+                "location": "Yanqing"
+              },
+              {
+                "attraction_id": "attr_bj_003",
+                "name": "Summer Palace",
+                "type": "Garden",
+                "rating": 4.6,
+                "price": 30,
+                "opening_hours": "06:30-18:00",
+                "location": "Haidian"
+              },
+              {
+                "attraction_id": "attr_bj_004",
+                "name": "Temple of Heaven",
+                "type": "Historical",
+                "rating": 4.5,
+                "price": 15,
+                "opening_hours": "06:00-22:00",
+                "location": "Dongcheng"
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.14781951904296875
+          },
+          "latency_ms": 0.14781951904296875
+        }
+      ],
+      "total_latency_ms": 3315.6578540802,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 787200,
+        "event_count": 158,
+        "latency": {
+          "speech_ms": 563.148681640625,
+          "tool_call_ms": 1537.67578125
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 15.497491029023598,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search attractions in Beijing. Focus on the Great Wall Badaling.",
+        "timestamp": 15.497491029023598,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 189600
+      },
+      "assistant_response": "Perfect! The Great Wall at Badaling is a fantastic choice. Now, let’s figure out the details—what date and time slot are you aiming for?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect! The Great Wall at Badaling is a fantastic choice. Now, let’s figure out the details—what date and time slot are you aiming for?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3849.4949340820312,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 367200,
+        "event_count": 67,
+        "latency": {
+          "speech_ms": 532.403076171875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 21.956298396153365,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Great Wall Badaling tickets for 2026-03-19 in the morning.",
+        "timestamp": 21.956298396153365,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.date=2026-03-19",
+            "book_attraction_ticket.time_slot=morning"
+          ]
+        },
+        "audio_size_bytes": 258000
+      },
+      "assistant_response": "Great! Could you tell me the visitor's name and how many tickets you’ll need? That way I can book them for you.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Great! Could you tell me the visitor's name and how many tickets you’ll need? That way I can book them for you.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4232.770681381226,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 271200,
+        "event_count": 57,
+        "latency": {
+          "speech_ms": 364.31005859375
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 27.765957712530255,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the visitor name to He Xia. Make it 2 tickets.",
+        "timestamp": 27.765957712530255,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_attraction_ticket.ticket_count=2",
+            "book_attraction_ticket.visitor_name=He Xia"
+          ]
+        },
+        "audio_size_bytes": 155400
+      },
+      "assistant_response": "All set! The Great Wall at Badaling tickets for He Xia are booked for the morning of 2026-03-19. You have two tickets confirmed. Now, let’s move on to the hotel in Suzhou. When are you looking to check in?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_Xku8k76darfbUldG",
+              "name": "book_attraction_ticket",
+              "arguments": {
+                "attraction_id": "attr_bj_002",
+                "visitor_name": "He Xia",
+                "ticket_count": 2,
+                "date": "2026-03-19",
+                "time_slot": "morning"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "All set! The Great Wall at Badaling tickets for He Xia are booked for the morning of 2026-03-19. You have two tickets confirmed. Now, let’s move on to the hotel in Suzhou. When are you looking to check in?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_Xku8k76darfbUldG",
+          "tool_name": "book_attraction_ticket",
+          "arguments": {
+            "attraction_id": "attr_bj_002",
+            "visitor_name": "He Xia",
+            "ticket_count": 2,
+            "date": "2026-03-19",
+            "time_slot": "morning"
+          },
+          "result": {
+            "success": true,
+            "output": "Attraction ticket booking successful!\n\nBooking ID: AT50001\nAttraction ID: attr_bj_002\nDate: 2026-03-19\nTime slot: morning\nVisitor: He Xia\nTickets: 2\nTicket numbers: AT50001-01, AT50001-02\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "AT50001",
+              "attraction_id": "attr_bj_002",
+              "date": "2026-03-19",
+              "time_slot": "morning",
+              "visitor_name": "He Xia",
+              "ticket_count": 2,
+              "ticket_numbers": [
+                "AT50001-01",
+                "AT50001-02"
+              ],
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.05698204040527344
+          },
+          "latency_ms": 0.05698204040527344
+        }
+      ],
+      "total_latency_ms": 4891.072988510132,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 556800,
+        "event_count": 159,
+        "latency": {
+          "speech_ms": 1464.416015625,
+          "tool_call_ms": 720.803955078125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 33.18857211068376,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Suzhou.",
+        "timestamp": 33.18857211068376,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 66000
+      },
+      "assistant_response": "Here are the options:\n\n1. Shangri-La Suzhou – 5 stars, ¥1050 per night.\n2. Pan Pacific Suzhou – 5 stars, ¥900 per night.\n3. Home Inn Pingjiang – 3 stars, ¥330 per night.\n\nWhich hotel would you like to go with, and what’s the check-in date?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_qoH4TK3Vc8qJK1rm",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Suzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are the options:\n\n1. Shangri-La Suzhou – 5 stars, ¥1050 per night.\n2. Pan Pacific Suzhou – 5 stars, ¥900 per night.\n3. Home Inn Pingjiang – 3 stars, ¥330 per night.\n\nWhich hotel would you like to go with, and what’s the check-in date?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_qoH4TK3Vc8qJK1rm",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Suzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 hotels in Suzhou:\n\n1. Shangri-La Suzhou (ID: hotel_su_001)\n   Location: Suzhou Industrial Park | 5 stars\n   Price: ¥1050/night | Rating: 4.8/5.0\n\n2. Pan Pacific Suzhou (ID: hotel_su_002)\n   Location: Gusu | 5 stars\n   Price: ¥900/night | Rating: 4.7/5.0\n\n3. Home Inn Pingjiang (ID: hotel_su_003)\n   Location: Pingjiang | 3 stars\n   Price: ¥330/night | Rating: 4.2/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_su_001",
+                "name": "Shangri-La Suzhou",
+                "location": "Suzhou Industrial Park",
+                "stars": 5,
+                "price": 1050,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_su_002",
+                "name": "Pan Pacific Suzhou",
+                "location": "Gusu",
+                "stars": 5,
+                "price": 900,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_su_003",
+                "name": "Home Inn Pingjiang",
+                "location": "Pingjiang",
+                "stars": 3,
+                "price": 330,
+                "rating": 4.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.07510185241699219
+          },
+          "latency_ms": 0.07510185241699219
+        }
+      ],
+      "total_latency_ms": 4205.851793289185,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 741600,
+        "event_count": 145,
+        "latency": {
+          "speech_ms": 1327.52978515625,
+          "tool_call_ms": 595.806884765625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 37.1664434523554,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Pan Pacific Suzhou. Check in on 2026-03-19 for 4 nights.",
+        "timestamp": 37.1664434523554,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-19",
+            "book_hotel.nights=4"
+          ]
+        },
+        "audio_size_bytes": 250800
+      },
+      "assistant_response": "Perfect! Could you provide the guest name for the booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect! Could you provide the guest name for the booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 4213.864088058472,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 151200,
+        "event_count": 35,
+        "latency": {
+          "speech_ms": 753.48095703125
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 42.93175721446299,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the hotel guest name to Tang Xue.",
+        "timestamp": 42.93175721446299,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Tang Xue"
+          ]
+        },
+        "audio_size_bytes": 109200
+      },
+      "assistant_response": "All set! The Pan Pacific Suzhou is booked for Tong She, with check-in on 2026-03-19 for 4 nights.\n\nSo, we’ve got the attraction tickets in Beijing and the hotel in Suzhou all lined up! If you need anything else, let me know.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_oltnZr22PGI2bfTx",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_su_002",
+                "guest_name": "Tong She",
+                "checkin_date": "2026-03-19",
+                "nights": 4
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "All set! The Pan Pacific Suzhou is booked for Tong She, with check-in on 2026-03-19 for 4 nights.\n\nSo, we’ve got the attraction tickets in Beijing and the hotel in Suzhou all lined up! If you need anything else, let me know.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_oltnZr22PGI2bfTx",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_su_002",
+            "guest_name": "Tong She",
+            "checkin_date": "2026-03-19",
+            "nights": 4
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_su_002\nCheck-in: 2026-03-19\nNights: 4\nGuest: Tong She\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_su_002",
+              "checkin_date": "2026-03-19",
+              "nights": 4,
+              "guest_name": "Tong She",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.09083747863769531
+          },
+          "latency_ms": 0.09083747863769531
+        }
+      ],
+      "total_latency_ms": 4610.565900802612,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 631200,
+        "event_count": 162,
+        "latency": {
+          "speech_ms": 1494.356201171875,
+          "tool_call_ms": 698.02099609375
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "template": "travel",
+    "generated": true,
+    "dangling_call": "search_trains",
+    "forbidden_tools": [
+      "search_trains",
+      "book_train"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-mini",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "book_attraction_ticket": {
+        "speech_ms": 1464.416015625,
+        "tool_call_ms": 720.803955078125
+      },
+      "book_hotel": {
+        "speech_ms": 1494.356201171875,
+        "tool_call_ms": 698.02099609375
+      }
+    },
+    "info_complete_turn": {
+      "search_attractions": 1,
+      "book_attraction_ticket": 5,
+      "search_hotels": 1,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_hotel.guest_name: 期望'Tang Xue', 实际'Tong She'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 6,
+    "extra_turns_details": "search_attractions: +1 turns (info@1, call@2); search_hotels: +5 turns (info@1, call@6)",
+    "behavior_score": 0.75,
+    "behavior_score_details": "search_attractions: 1(correct), book_attraction_ticket: 1(correct), search_hotels: 1(correct), book_hotel: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_hotel",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "guest_name: 'Tang Xue' vs 'Tong She'"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

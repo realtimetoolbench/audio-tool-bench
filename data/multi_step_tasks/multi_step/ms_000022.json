@@ -1,0 +1,144 @@
+{
+  "task_id": "ms_000022",
+  "scenario_type": "multi_step",
+  "server": "spotify",
+  "template": "create_playlist_5",
+  "description": "Search artist, get top tracks, create playlist, add tracks, play playlist",
+  "tools": [
+    "search_artists",
+    "get_artist_top_tracks",
+    "create_playlist",
+    "add_tracks_to_playlist",
+    "play_context"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Can you find the artist Amara Sinclair for me?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_artists"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Great, show me the top tracks by the first one you found.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_artist_top_tracks"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Create a new playlist called Workout Playlist.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_playlist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add all those top tracks from Amara Sinclair to my Workout Playlist.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_tracks_to_playlist"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Now play my Workout Playlist, please.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "play_context"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_artists",
+      "params": {
+        "query": "Amara Sinclair"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_artist_top_tracks",
+      "params": {
+        "artist_id": "artist_009"
+      },
+      "param_source": {
+        "artist_id": {
+          "from_tool": "search_artists",
+          "field": "artist_id"
+        }
+      }
+    },
+    {
+      "tool": "create_playlist",
+      "params": {
+        "name": "Workout Playlist"
+      },
+      "param_source": {
+        "name": "user"
+      }
+    },
+    {
+      "tool": "add_tracks_to_playlist",
+      "params": {
+        "playlist_id": "playlist_1",
+        "track_ids": [
+          "track_020",
+          "track_019",
+          "track_021"
+        ]
+      },
+      "param_source": {
+        "playlist_id": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        },
+        "track_ids": {
+          "from_tool": "get_artist_top_tracks",
+          "field": "song_id"
+        }
+      }
+    },
+    {
+      "tool": "play_context",
+      "params": {
+        "context_uri": "playlist:playlist_1"
+      },
+      "param_source": {
+        "context_uri": {
+          "from_tool": "create_playlist",
+          "field": "$"
+        }
+      }
+    }
+  ],
+  "chain_depth": 5,
+  "info_complete_turn": {
+    "search_artists": 1,
+    "get_artist_top_tracks": 1,
+    "create_playlist": 3,
+    "add_tracks_to_playlist": 3,
+    "play_context": 3
+  }
+}

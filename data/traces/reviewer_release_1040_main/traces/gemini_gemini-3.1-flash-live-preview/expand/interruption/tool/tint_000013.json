@@ -1,0 +1,633 @@
+{
+  "task_name": "tint_000013",
+  "start_time": "2026-05-06T21:12:37.720846",
+  "end_time": "2026-05-06T21:14:57.002381",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search cars in Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_cars.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 69600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_14841069907255154087",
+              "name": "search_cars",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_cars",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "output": "Found 3 rental cars in Shanghai:\n\n1. Toyota Corolla (ID: car_sh_001)\n   Type: economy | Seats: 5\n   Price: ¥160/day | Insurance: ¥30/day\n   Rating: 4.4/5.0\n\n2. Volkswagen Passat (ID: car_sh_002)\n   Type: comfort | Seats: 5\n   Price: ¥280/day | Insurance: ¥50/day\n   Rating: 4.6/5.0\n\n3. BMW 5 Series (ID: car_sh_003)\n   Type: luxury | Seats: 5\n   Price: ¥600/day | Insurance: ¥100/day\n   Rating: 4.9/5.0\n\n",
+          "error": null,
+          "latency_ms": 0.031948089599609375,
+          "dangling": false,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 2837.078094482422,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5,
+        "latency": {
+          "tool_call_ms": 938.992977142334
+        },
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that—search sports events in Beijing.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_sports_events.city=Beijing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_cars",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 147600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 0.39386749267578125,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 4
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.201953669923581,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book a ticket for China Open Tennis.",
+        "timestamp": 10.201953669923581,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 93600
+      },
+      "assistant_response": "I found three sports events in Beijing, including the China Open Tennis tournament (ID: evt\\_bj\\_003).\n\nTo book a ticket, I'll need your full name, phone number, and ID number for real-name registration. Also, which zone would you like to sit in (Center Court, Court 1, or Court 2)?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_16945282675377888410",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Beijing"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found three sports events in Beijing, including the China Open Tennis tournament (ID: evt\\_bj\\_003).\n\nTo book a ticket, I'll need your full name, phone number, and ID number for real-name registration. Also, which zone would you like to sit in (Center Court, Court 1, or Court 2)?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_sports_events",
+          "arguments": {
+            "city": "Beijing"
+          },
+          "output": "Found 3 sports events in Beijing:\n\n1. CBA Playoffs: Beijing Shougang vs Guangdong Tigers (ID: evt_bj_001)\n   Sport: Basketball\n   Venue: Cadillac Arena\n   Date/Time: 2026-03-06 19:35\n   Match: Beijing Shougang vs Guangdong Tigers\n   Price: ¥180-1280\n   Available zones: VIP, Stand A, Stand B, Stand C\n   Rating: 8.8/10.0\n\n2. CSL: Beijing Guoan vs Shanghai Shenhua (ID: evt_bj_002)\n   Sport: Football\n   Venue: Workers' Stadium\n   Date/Time: 2026-03-01 19:30\n   Match: Beijing Guoan vs Shanghai Shenhua\n   Price: ¥120-680\n   Available zones: Home Stand, Away Stand, Neutral Stand, Regular Stand\n   Rating: 8.5/10.0\n\n3. China Open Tennis (ID: evt_bj_003)\n   Sport: Tennis\n   Venue: National Tennis Center\n   Date/Time: 2026-03-21 14:00\n   Price: ¥280-2880\n   Available zones: Center Court, Court 1, Court 2\n   Rating: 9.2/10.0\n\n",
+          "error": null,
+          "latency_ms": 0.015020370483398438
+        }
+      ],
+      "total_latency_ms": 19742.9518699646,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 791072,
+        "event_count": 105,
+        "latency": {
+          "speech_ms": 2619.5120811462402,
+          "tool_call_ms": 1794.2681312561035
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.082845016214783,
+      "input_chunk": {
+        "role": "user",
+        "content": "Seat zone Center Court. One ticket.",
+        "timestamp": 15.082845016214783,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_sports_ticket.seat_zone=Center Court",
+            "book_sports_ticket.ticket_count=1"
+          ]
+        },
+        "audio_size_bytes": 100800
+      },
+      "assistant_response": "Thank you, I'll also need your full name, phone number, and ID number for the registration. Could you provide those, please?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Thank you, I'll also need your full name, phone number, and ID number for the registration. Could you provide those, please?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8529.459953308105,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 288004,
+        "event_count": 46,
+        "latency": {
+          "speech_ms": 1804.6960830688477
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 19.457486631616224,
+      "input_chunk": {
+        "role": "user",
+        "content": "Buyer name Emily Wang. Phone 13867894321. ID number 310115198805062345.",
+        "timestamp": 19.457486631616224,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_sports_ticket.buyer_name=Emily Wang",
+            "book_sports_ticket.id_number=310115198805062345",
+            "book_sports_ticket.phone=13867894321"
+          ]
+        },
+        "audio_size_bytes": 462000
+      },
+      "assistant_response": "Your ticket for the China Open Tennis tournament is booked successfully! The booking ID is SP80001, and it's for one ticket in the Center Court on March 21st. The total cost was ¥2880. Now, would you like to go back to the car rental search in Shanghai?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_1631986786818626114",
+              "name": "book_sports_ticket",
+              "arguments": {
+                "event_id": "evt_bj_003",
+                "seat_zone": "Center Court",
+                "phone": "1386794321",
+                "id_number": "31011151980562345",
+                "buyer_name": "Emily Wong",
+                "ticket_count": 1
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your ticket for the China Open Tennis tournament is booked successfully! The booking ID is SP80001, and it's for one ticket in the Center Court on March 21st. The total cost was ¥2880. Now, would you like to go back to the car rental search in Shanghai?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_sports_ticket",
+          "arguments": {
+            "event_id": "evt_bj_003",
+            "seat_zone": "Center Court",
+            "phone": "1386794321",
+            "id_number": "31011151980562345",
+            "buyer_name": "Emily Wong",
+            "ticket_count": 1
+          },
+          "output": "Sports ticket booking successful!\n\nBooking ID: SP80001\nEvent ID: evt_bj_003\nEvent: China Open Tennis\nVenue: National Tennis Center\nDate: 2026-03-21\nZone: Center Court\nSeats: Center Court Row 15 Seat 25\nQuantity: 1\nBuyer: Emily Wong\nPhone: 1386794321\nID: 310111****2345\nTotal: ¥2880\nStatus: Confirmed (Real-name Required)\n",
+          "error": null,
+          "latency_ms": 0.6608963012695312
+        }
+      ],
+      "total_latency_ms": 19739.5761013031,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 678272,
+        "event_count": 89,
+        "latency": {
+          "speech_ms": 3300.845146179199,
+          "tool_call_ms": 2465.7390117645264
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 26.233397869654127,
+      "input_chunk": {
+        "role": "user",
+        "content": "Now search doctors in Shanghai.",
+        "timestamp": 26.233397869654127,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "search_doctors.city=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 91800
+      },
+      "assistant_response": "I found two doctors in Shanghai: Dr. Chen Jing at Ruijin Hospital, specializing in Internal Medicine, and Dr. Liu Yang at Huashan Hospital, specializing in Neurology. Did you want to book an appointment with either of them, or were you looking for a different department?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_8691306399678867801",
+              "name": "search_doctors",
+              "arguments": {
+                "city": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found two doctors in Shanghai: Dr. Chen Jing at Ruijin Hospital, specializing in Internal Medicine, and Dr. Liu Yang at Huashan Hospital, specializing in Neurology. Did you want to book an appointment with either of them, or were you looking for a different department?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_doctors",
+          "arguments": {
+            "city": "Shanghai"
+          },
+          "output": "Found 2 doctors in Shanghai:\n\n1. Dr. Chen Jing (ID: doc_sh_001)\n   Hospital: Ruijin Hospital\n   Department: Internal Medicine\n   Specialty: Digestive System Disease\n   Title: Chief Physician\n   Rating: 4.8/5.0\n   Experience: 22 years\n   Available: 2026-03-02, 2026-03-04\n\n2. Dr. Liu Yang (ID: doc_sh_002)\n   Hospital: Huashan Hospital\n   Department: Neurology\n   Specialty: Nervous System Disease\n   Title: Associate Chief Physician\n   Rating: 4.9/5.0\n   Experience: 16 years\n   Available: 2026-03-03, 2026-03-05\n\n",
+          "error": null,
+          "latency_ms": 0.022649765014648438
+        }
+      ],
+      "total_latency_ms": 16739.6297454834,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 648964,
+        "event_count": 89,
+        "latency": {
+          "speech_ms": 2124.63116645813,
+          "tool_call_ms": 1289.7329330444336
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.76854089979968,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book an appointment with doctor Liu Yang on 2026-03-03 in the afternoon.",
+        "timestamp": 30.76854089979968,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.date=2026-03-03",
+            "book_appointment.time_slot=afternoon"
+          ]
+        },
+        "audio_size_bytes": 274200
+      },
+      "assistant_response": "To book an appointment, I'll just need your name, please.\n\nPlease know that any information you receive from this service is not considered medical advice and shouldn't be used to diagnose or treat any condition. You should always consult with a healthcare professional. What name should I use?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "To book an appointment, I'll just need your name, please.\n\nPlease know that any information you receive from this service is not considered medical advice and shouldn't be used to diagnose or treat any condition. You should always consult with a healthcare professional. What name should I use?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 17429.075956344604,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 660992,
+        "event_count": 81,
+        "latency": {
+          "speech_ms": 2164.6111011505127
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.1534016666438,
+      "input_chunk": {
+        "role": "user",
+        "content": "Patient name Mason White.",
+        "timestamp": 37.1534016666438,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_appointment.patient_name=Mason White"
+          ]
+        },
+        "audio_size_bytes": 70800
+      },
+      "assistant_response": "Your appointment with Dr. Liu Yang at Huashan Hospital is confirmed for the afternoon of March 3, 2026. The appointment ID is BP1Q353WEG, and your queue number is 1.\n\nIs there anything else I can help you with today? Perhaps back to the car rental search, or something else entirely?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_10737476764677016324",
+              "name": "book_appointment",
+              "arguments": {
+                "doctor_id": "doc_sh_002",
+                "date": "2026-03-03",
+                "patient_name": "Mason White",
+                "time_slot": "afternoon"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your appointment with Dr. Liu Yang at Huashan Hospital is confirmed for the afternoon of March 3, 2026. The appointment ID is BP1Q353WEG, and your queue number is 1.\n\nIs there anything else I can help you with today? Perhaps back to the car rental search, or something else entirely?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_appointment",
+          "arguments": {
+            "doctor_id": "doc_sh_002",
+            "date": "2026-03-03",
+            "patient_name": "Mason White",
+            "time_slot": "afternoon"
+          },
+          "output": "Doctor appointment booked successfully!\n\nAppointment ID: BP1Q353WEG\nDoctor ID: doc_sh_002\nDoctor: Liu Yang\nHospital: Huashan Hospital\nDepartment: Neurology\nDate: 2026-03-03\nTime slot: afternoon\nPatient: Mason White\nQueue number: 1\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.4620552062988281
+        }
+      ],
+      "total_latency_ms": 19951.696157455444,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 762752,
+        "event_count": 92,
+        "latency": {
+          "speech_ms": 3527.3728370666504,
+          "tool_call_ms": 1966.4428234100342
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 89400
+      },
+      "assistant_response": "Just to confirm, you'd like to continue with searching for rental cars in Shanghai, right? Based on the previous search, I found a Toyota Corolla, Volkswagen Passat, and a BMW 5 Series. Were you interested in any of those, or something else?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Just to confirm, you'd like to continue with searching for rental cars in Shanghai, right? Based on the previous search, I found a Toyota Corolla, Volkswagen Passat, and a BMW 5 Series. Were you interested in any of those, or something else?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 14973.536014556885,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 593764,
+        "event_count": 74,
+        "latency": {
+          "speech_ms": 1887.4030113220215
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 45.574387407478156,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Volkswagen Passat for Ma Liang, pickup 2026-03-27, for 3 days.",
+        "timestamp": 45.574387407478156,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_car.days=3",
+            "book_car.pickup_date=2026-03-27",
+            "book_car.renter_name=Ma Liang"
+          ]
+        },
+        "audio_size_bytes": 273000
+      },
+      "assistant_response": "Your Volkswagen Passat rental is booked successfully! The booking ID is CR30001, and it's for 3 days, starting on March 27, 2026, for Ali Alang. Insurance is included.\n\nIs there anything else I can assist you with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_1610120384056956671",
+              "name": "book_car",
+              "arguments": {
+                "days": 3,
+                "pickup_date": "2026-03-27",
+                "car_id": "car_sh_002",
+                "renter_name": "Ali Alang"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your Volkswagen Passat rental is booked successfully! The booking ID is CR30001, and it's for 3 days, starting on March 27, 2026, for Ali Alang. Insurance is included.\n\nIs there anything else I can assist you with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_car",
+          "arguments": {
+            "days": 3,
+            "pickup_date": "2026-03-27",
+            "car_id": "car_sh_002",
+            "renter_name": "Ali Alang"
+          },
+          "output": "Car rental booking successful!\n\nBooking ID: CR30001\nCar ID: car_sh_002\nPickup: 2026-03-27\nDays: 3\nRenter: Ali Alang\nInsurance: Included\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.031232833862304688
+        }
+      ],
+      "total_latency_ms": 19325.079917907715,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 643204,
+        "event_count": 82,
+        "latency": {
+          "speech_ms": 4430.152893066406,
+          "tool_call_ms": 2242.905855178833
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 16,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_cars",
+    "inserted_tools": [
+      "search_sports_events",
+      "book_sports_ticket",
+      "search_doctors",
+      "book_appointment"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_cars": {
+        "tool_call_ms": 938.992977142334
+      },
+      "book_sports_ticket": {
+        "speech_ms": 3300.845146179199,
+        "tool_call_ms": 2465.7390117645264
+      },
+      "search_doctors": {
+        "speech_ms": 2124.63116645813,
+        "tool_call_ms": 1289.7329330444336
+      },
+      "book_appointment": {
+        "speech_ms": 3527.3728370666504,
+        "tool_call_ms": 1966.4428234100342
+      },
+      "book_car": {
+        "speech_ms": 4430.152893066406,
+        "tool_call_ms": 2242.905855178833
+      }
+    },
+    "info_complete_turn": {
+      "search_sports_events": 2,
+      "book_sports_ticket": 5,
+      "search_doctors": 6,
+      "book_appointment": 8,
+      "search_cars": 1,
+      "book_car": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_sports_ticket",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "buyer_name: 'Emily Wang' vs 'Emily Wong'; phone: '13867894321' vs '1386794321'; id_number: '310115198805062345' vs '31011151980562345'"
+        },
+        {
+          "tool": "book_car",
+          "error_type": "parameter_reasoning",
+          "phase": "post",
+          "detail": "renter_name: 'Ma Liang' vs 'Ali Alang'"
+        }
+      ],
+      "error_types": {
+        "parameter_reasoning": 2
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 2,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "parameter_reasoning": {
+          "pre": 0,
+          "post": 2,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "parameter_reasoning"
+    }
+  }
+}

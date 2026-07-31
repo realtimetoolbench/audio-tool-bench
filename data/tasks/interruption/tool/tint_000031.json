@@ -1,0 +1,149 @@
+{
+  "task_id": "tint_000031",
+  "description": "Interruption (tool_correction): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_hotels",
+    "book_hotel",
+    "search_attractions",
+    "book_attraction_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search hotels in Hangzhou. Check in 2026-03-26.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-26"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Hangzhou, I meant Beijing.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_hotels",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_hotels.city=Beijing"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "For that hotel search, stay 4 nights. Book Holiday Inn Express.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.nights=4"
+        ]
+      },
+      "timestamp": 9.41898821013018
+    },
+    {
+      "speaker": "user",
+      "text": "Put the hotel booking under Chen Ming. Search attractions in Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Chen Ming",
+          "search_attractions.city=Chengdu"
+        ]
+      },
+      "timestamp": 15.808021704505618
+    },
+    {
+      "speaker": "user",
+      "text": "Book a ticket for Wuhou Shrine on 2026-03-02, afternoon.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.date=2026-03-02",
+          "book_attraction_ticket.time_slot=afternoon"
+        ]
+      },
+      "timestamp": 21.885905785421542
+    },
+    {
+      "speaker": "user",
+      "text": "Use visitor name Liu Yang. Ticket count 1. Also confirm the hotel search city is Beijing.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_attraction_ticket.ticket_count=1",
+          "book_attraction_ticket.visitor_name=Liu Yang"
+        ]
+      },
+      "timestamp": 27.23528102892066
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Beijing"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_bj_003",
+        "checkin_date": "2026-03-26",
+        "nights": 4,
+        "guest_name": "Chen Ming"
+      }
+    },
+    {
+      "tool": "search_attractions",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_attraction_ticket",
+      "params": {
+        "attraction_id": "attr_cd_002",
+        "date": "2026-03-02",
+        "time_slot": "afternoon",
+        "visitor_name": "Liu Yang",
+        "ticket_count": 1
+      }
+    }
+  ],
+  "transcript_hash": "969cb31a407f",
+  "info_complete_turn": {
+    "search_hotels": 2,
+    "book_hotel": 4,
+    "search_attractions": 4,
+    "book_attraction_ticket": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_hotels",
+    "wrong_params": {
+      "search_hotels.city": "Hangzhou"
+    },
+    "corrected_params": {
+      "search_hotels.city": "Beijing"
+    }
+  }
+}

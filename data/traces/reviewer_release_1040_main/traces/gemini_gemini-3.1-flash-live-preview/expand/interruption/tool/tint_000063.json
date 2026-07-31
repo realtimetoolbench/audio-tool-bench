@@ -1,0 +1,525 @@
+{
+  "task_name": "tint_000063",
+  "start_time": "2026-05-06T22:39:23.175197",
+  "end_time": "2026-05-06T22:40:42.597174",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 117000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_5054381937028375599",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+          "error": null,
+          "latency_ms": 0.01621246337890625,
+          "dangling": false,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 3755.112886428833,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 5,
+        "latency": {
+          "tool_call_ms": 1673.3176708221436
+        },
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search shows in Guangzhou.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_shows.city=Guangzhou"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_trains",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 128400
+      },
+      "assistant_response": "I found 3",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "I found 3",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 326.7998695373535,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 25472,
+        "event_count": 11,
+        "latency": {
+          "speech_ms": 0.6120204925537109
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 10.729302704677735,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book show tickets for Joker Xue Concert.",
+        "timestamp": 10.729302704677735,
+        "metadata": {
+          "phase": "inserted"
+        },
+        "audio_size_bytes": 121200
+      },
+      "assistant_response": "I found one concert in Guangzhou: Joker Xue Concert at Guangzhou Tianhe Stadium on April 5th, 2026, at 7 30 PM. To book tickets, I need your name, phone number, and which seat zone you'd prefer (Floor, Stand A, or Stand B). How many tickets would you like?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_6991214642856194788",
+              "name": "search_shows",
+              "arguments": {
+                "city": "Guangzhou",
+                "show_type": "Concert"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "I found one concert in Guangzhou: Joker Xue Concert at Guangzhou Tianhe Stadium on April 5th, 2026, at 7 30 PM. To book tickets, I need your name, phone number, and which seat zone you'd prefer (Floor, Stand A, or Stand B). How many tickets would you like?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "search_shows",
+          "arguments": {
+            "city": "Guangzhou",
+            "show_type": "Concert"
+          },
+          "output": "Found 1 shows in Guangzhou:\n\n1. Joker Xue Concert (ID: show_gz_001)\n   Type: Concert\n   Venue: Guangzhou Tianhe Stadium\n   Date/Time: 2026-04-05 19:30\n   Duration: 180 min\n   Price: ¥380-1580\n   Available zones: Floor, Stand A, Stand B\n   Rating: 9.1/10.0\n\n",
+          "error": null,
+          "latency_ms": 0.020265579223632812
+        }
+      ],
+      "total_latency_ms": 19855.71002960205,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 756512,
+        "event_count": 96,
+        "latency": {
+          "speech_ms": 3215.7349586486816,
+          "tool_call_ms": 2085.1619243621826
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 15.282961847563264,
+      "input_chunk": {
+        "role": "user",
+        "content": "Make the seat zone Floor.",
+        "timestamp": 15.282961847563264,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_show_ticket.seat_zone=Floor"
+          ]
+        },
+        "audio_size_bytes": 63600
+      },
+      "assistant_response": "OK, and what about the rest of the information? I still need your name, phone number, and how many tickets you want to book.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "OK, and what about the rest of the information? I still need your name, phone number, and how many tickets you want to book.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 8011.061906814575,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 284192,
+        "event_count": 46,
+        "latency": {
+          "speech_ms": 1532.465934753418
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 20.012136249450236,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set ticket count to 3 and buyer name Deng Hui.",
+        "timestamp": 20.012136249450236,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_show_ticket.buyer_name=Deng Hui",
+            "book_show_ticket.ticket_count=3"
+          ]
+        },
+        "audio_size_bytes": 148800
+      },
+      "assistant_response": "Got it. The last thing I need is a phone number to complete the booking. What's your phone number?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it. The last thing I need is a phone number to complete the booking. What's your phone number?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6872.259855270386,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 215042,
+        "event_count": 38,
+        "latency": {
+          "speech_ms": 1447.3490715026855
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 25.546452087628563,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use phone 13855667788 for the purchase.",
+        "timestamp": 25.546452087628563,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_show_ticket.phone=13855667788"
+          ]
+        },
+        "audio_size_bytes": 205800
+      },
+      "assistant_response": "Your tickets for the Joker Xue Concert in Guangzhou have been booked successfully! The Booking ID is SH70001. The total cost was ¥4740 for 3 floor tickets, and the show is on April 5th, 2026. Can I help you with anything else, perhaps going back to the train search?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "fc_16529539331481022384",
+              "name": "book_show_ticket",
+              "arguments": {
+                "phone": "1385566788",
+                "show_id": "show_gz_001",
+                "ticket_count": 3,
+                "seat_zone": "Floor",
+                "buyer_name": "Deng Hui"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your tickets for the Joker Xue Concert in Guangzhou have been booked successfully! The Booking ID is SH70001. The total cost was ¥4740 for 3 floor tickets, and the show is on April 5th, 2026. Can I help you with anything else, perhaps going back to the train search?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_name": "book_show_ticket",
+          "arguments": {
+            "phone": "1385566788",
+            "show_id": "show_gz_001",
+            "ticket_count": 3,
+            "seat_zone": "Floor",
+            "buyer_name": "Deng Hui"
+          },
+          "output": "Show ticket booking successful!\n\nBooking ID: SH70001\nShow ID: show_gz_001\nShow: Joker Xue Concert\nVenue: Guangzhou Tianhe Stadium\nDate: 2026-04-05\nZone: Floor\nSeats: Floor Row 1 Seat 10, Floor Row 2 Seat 10, Floor Row 3 Seat 10\nQuantity: 3\nBuyer: Deng Hui\nPhone: 1385566788\nTotal: ¥4740\nStatus: Confirmed\n",
+          "error": null,
+          "latency_ms": 0.04792213439941406
+        }
+      ],
+      "total_latency_ms": 20503.230094909668,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 794882,
+        "event_count": 98,
+        "latency": {
+          "speech_ms": 2748.1861114501953,
+          "tool_call_ms": 1782.0329666137695
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 92400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 20090.79098701477,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 2
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 35.17254286609264,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train D321 on 2026-03-11 for passenger Hu Bin.",
+        "timestamp": 35.17254286609264,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.date=2026-03-11",
+            "book_train.passenger_name=Hu Bin"
+          ]
+        },
+        "audio_size_bytes": 244800
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 40.78601532628877,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use Second Class for the train seat, then search hotels in Nanjing.",
+        "timestamp": 40.78601532628877,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_train.seat_class=Second Class",
+            "search_hotels.city=Nanjing"
+          ]
+        },
+        "audio_size_bytes": 195000
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": 47.338978268299456,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book Jinling Hotel Nanjing, check in 2026-03-13 for 2 nights, guest name Yang Yu.",
+        "timestamp": 47.338978268299456,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-13",
+            "book_hotel.guest_name=Yang Yu",
+            "book_hotel.nights=2"
+          ]
+        },
+        "audio_size_bytes": 315600
+      },
+      "assistant_response": "",
+      "llm_calls": [],
+      "tool_executions": [],
+      "total_latency_ms": 0.0,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 0
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 10,
+    "total_llm_calls": 10,
+    "total_tool_calls": 3
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 10,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_trains",
+    "inserted_tools": [
+      "search_shows",
+      "book_show_ticket"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "gemini",
+    "tts_voice": "Puck",
+    "realtime_model": "gemini-3.1-flash-live-preview",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "tool_call_ms": 1673.3176708221436
+      },
+      "search_shows": {
+        "speech_ms": 0.6120204925537109
+      },
+      "book_show_ticket": {
+        "speech_ms": 2748.1861114501953,
+        "tool_call_ms": 1782.0329666137695
+      }
+    },
+    "info_complete_turn": {
+      "search_shows": 2,
+      "book_show_ticket": 6,
+      "search_trains": 1,
+      "book_train": 9,
+      "search_hotels": 9,
+      "book_hotel": 10
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "base[tool=False timing=True] + priority[no redundant re-call]",
+    "attribution": {
+      "errors": [
+        {
+          "tool": "book_show_ticket",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13855667788' vs '1385566788'"
+        },
+        {
+          "tool": "book_train",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "search_hotels",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        },
+        {
+          "tool": "book_hotel",
+          "error_type": "missing_call",
+          "phase": "post",
+          "detail": "模型未调用该工具"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1,
+        "missing_call": 3
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 4,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        },
+        "missing_call": {
+          "pre": 0,
+          "post": 3,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

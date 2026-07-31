@@ -1,0 +1,180 @@
+{
+  "task_id": "tint_000100",
+  "description": "Interruption (priority_no_return): 5 tools, 8 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "priority_no_return",
+  "test_dimension": "interruption",
+  "sub_category": "priority_no_return",
+  "tool_category": "multi",
+  "tools": [
+    "search_cars",
+    "book_car",
+    "check_ride_status",
+    "search_movies",
+    "book_movie_ticket"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search cars in Shanghai.",
+      "metadata": {
+        "phase": "original",
+        "contains_params": [
+          "search_cars.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, before that, search movies in Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "contains_params": [
+          "search_movies.city=Chengdu"
+        ],
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_cars",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        }
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book movie tickets for The Wandering Earth 3 at Pacific Cinema.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.cinema=Pacific Cinema"
+        ]
+      },
+      "timestamp": 9.695987644491495
+    },
+    {
+      "speaker": "user",
+      "text": "Set the showtime to 21:50 and get 4 seats.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.seat_count=4",
+          "book_movie_ticket.showtime=21:50"
+        ]
+      },
+      "timestamp": 15.567564575235949
+    },
+    {
+      "speaker": "user",
+      "text": "Use buyer name Huang Tao.",
+      "metadata": {
+        "phase": "inserted",
+        "contains_params": [
+          "book_movie_ticket.buyer_name=Huang Tao"
+        ]
+      },
+      "timestamp": 20.374133685302514
+    },
+    {
+      "speaker": "user",
+      "text": "OK, continue with the search now.",
+      "metadata": {
+        "phase": "return"
+      },
+      "timestamp": 6.0
+    },
+    {
+      "speaker": "user",
+      "text": "Book the Volkswagen Passat for pickup date 2026-03-17 for 9 days.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_car.days=9",
+          "book_car.pickup_date=2026-03-17"
+        ]
+      },
+      "timestamp": 30.034455495460712
+    },
+    {
+      "speaker": "user",
+      "text": "Use renter name He Xia, then check ride status for RIDE123456.",
+      "metadata": {
+        "phase": "post_return",
+        "contains_params": [
+          "book_car.renter_name=He Xia",
+          "check_ride_status.ride_id=RIDE123456"
+        ]
+      },
+      "timestamp": 36.6890066667508
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_movies",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_movie_ticket",
+      "params": {
+        "movie_id": "mov_cd_001",
+        "cinema": "Pacific Cinema",
+        "showtime": "21:50",
+        "seat_count": 4,
+        "buyer_name": "Huang Tao"
+      }
+    },
+    {
+      "tool": "search_cars",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_car",
+      "params": {
+        "car_id": "car_sh_002",
+        "pickup_date": "2026-03-17",
+        "days": 9,
+        "renter_name": "He Xia"
+      }
+    },
+    {
+      "tool": "check_ride_status",
+      "params": {
+        "ride_id": "RIDE123456"
+      }
+    }
+  ],
+  "transcript_hash": "bb56a2eb80b7",
+  "info_complete_turn": {
+    "search_movies": 2,
+    "book_movie_ticket": 5,
+    "search_cars": 1,
+    "book_car": 8,
+    "check_ride_status": 8
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 8,
+    "interruption_type": "priority_no_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_cars",
+    "inserted_tools": [
+      "search_movies",
+      "book_movie_ticket"
+    ],
+    "dangling_return": "never"
+  },
+  "inserted_tools": [
+    "search_movies",
+    "book_movie_ticket"
+  ]
+}

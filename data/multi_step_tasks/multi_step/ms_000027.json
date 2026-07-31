@@ -1,0 +1,150 @@
+{
+  "task_id": "ms_000027",
+  "scenario_type": "multi_step",
+  "server": "uber",
+  "template": "ride_and_cancel_5",
+  "description": "list ride types, estimate, request ride, get ride status, cancel ride",
+  "tools": [
+    "list_ride_types",
+    "estimate_ride",
+    "request_ride",
+    "get_ride",
+    "cancel_ride"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "What ride options do I have for a trip in San Francisco?",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_ride_types"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Estimate the fare for a ride from Union Square to the Ferry Building using the first option you listed.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "estimate_ride"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Book that same ride from Union Square to the Ferry Building with the first ride type.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "request_ride"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you give me the status of my current ride?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_ride"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Cancel that ride for me, please.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "cancel_ride"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "list_ride_types",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "estimate_ride",
+      "params": {
+        "ride_type_id": "UberX",
+        "pickup_lat": 37.7749,
+        "pickup_lng": -122.4194,
+        "dropoff_lat": 37.7899,
+        "dropoff_lng": -122.4004
+      },
+      "param_source": {
+        "ride_type_id": {
+          "from_tool": "list_ride_types",
+          "field": "name"
+        },
+        "pickup_lat": "user",
+        "pickup_lng": "user",
+        "dropoff_lat": "user",
+        "dropoff_lng": "user"
+      }
+    },
+    {
+      "tool": "request_ride",
+      "params": {
+        "ride_type_id": "UberX",
+        "pickup_lat": 37.7749,
+        "pickup_lng": -122.4194,
+        "dropoff_lat": 37.7899,
+        "dropoff_lng": -122.4004
+      },
+      "param_source": {
+        "ride_type_id": {
+          "from_tool": "list_ride_types",
+          "field": "name"
+        },
+        "pickup_lat": "user",
+        "pickup_lng": "user",
+        "dropoff_lat": "user",
+        "dropoff_lng": "user"
+      }
+    },
+    {
+      "tool": "get_ride",
+      "params": {
+        "ride_id": "ride_1"
+      },
+      "param_source": {
+        "ride_id": {
+          "from_tool": "request_ride",
+          "field": "ride_id"
+        }
+      }
+    },
+    {
+      "tool": "cancel_ride",
+      "params": {
+        "ride_id": "ride_1"
+      },
+      "param_source": {
+        "ride_id": {
+          "from_tool": "request_ride",
+          "field": "ride_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 5,
+  "info_complete_turn": {
+    "list_ride_types": 1,
+    "estimate_ride": 2,
+    "request_ride": 3,
+    "get_ride": 3,
+    "cancel_ride": 3
+  }
+}

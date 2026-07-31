@@ -1,0 +1,151 @@
+{
+  "task_id": "tint_000011",
+  "description": "Interruption (tool_correction): 4 tools, 6 turns",
+  "task": "generated",
+  "scenario_type": "interruption",
+  "interruption_type": "tool_correction",
+  "test_dimension": "interruption",
+  "sub_category": "tool_correction",
+  "tool_category": "travel_booking",
+  "tools": [
+    "search_restaurants",
+    "book_restaurant",
+    "search_hotels",
+    "book_hotel"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Search restaurants in Shanghai. Target restaurant: Lao Ma Tou Hotpot. Date 2026-03-20.",
+      "metadata": {
+        "phase": "pre_interrupt",
+        "contains_params": [
+          "book_restaurant.date=2026-03-20",
+          "search_hotels.city=Shanghai"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Wait, not Shanghai, I meant Chengdu.",
+      "metadata": {
+        "phase": "interruption",
+        "is_interruption": true,
+        "interrupts_after_step": 1,
+        "interrupt_trigger": {
+          "type": "tool_phase",
+          "dangling_tool": "search_restaurants",
+          "dangling_return": "never",
+          "timeout_s": 5.0
+        },
+        "contains_params": [
+          "search_restaurants.city=Chengdu"
+        ]
+      },
+      "timestamp": 0.0
+    },
+    {
+      "speaker": "user",
+      "text": "Set the restaurant booking time to 18:00. Party size 2. Contact name Zhou Jun.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.contact_name=Zhou Jun",
+          "book_restaurant.party_size=2",
+          "book_restaurant.time=18:00"
+        ]
+      },
+      "timestamp": 12.445535805450408
+    },
+    {
+      "speaker": "user",
+      "text": "Use phone 13845678901. Search hotels in Shanghai. Hotel: Waldorf Astoria Shanghai on the Bund.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_restaurant.phone=13845678901"
+        ]
+      },
+      "timestamp": 19.811717301051807
+    },
+    {
+      "speaker": "user",
+      "text": "Book the hotel. Check in 2026-03-22. Stay 3 nights.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.checkin_date=2026-03-22",
+          "book_hotel.nights=3"
+        ]
+      },
+      "timestamp": 27.842403797120994
+    },
+    {
+      "speaker": "user",
+      "text": "Guest name Zhang Wei. Also confirm the restaurant city is Chengdu.",
+      "metadata": {
+        "phase": "post_interrupt",
+        "contains_params": [
+          "book_hotel.guest_name=Zhang Wei"
+        ]
+      },
+      "timestamp": 33.41319425052519
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_restaurants",
+      "params": {
+        "city": "Chengdu"
+      }
+    },
+    {
+      "tool": "book_restaurant",
+      "params": {
+        "restaurant_id": "rst_cd_002",
+        "date": "2026-03-20",
+        "time": "18:00",
+        "party_size": 2,
+        "contact_name": "Zhou Jun",
+        "phone": "13845678901"
+      }
+    },
+    {
+      "tool": "search_hotels",
+      "params": {
+        "city": "Shanghai"
+      }
+    },
+    {
+      "tool": "book_hotel",
+      "params": {
+        "hotel_id": "hotel_sh_001",
+        "checkin_date": "2026-03-22",
+        "nights": 3,
+        "guest_name": "Zhang Wei"
+      }
+    }
+  ],
+  "transcript_hash": "6ae043aa9585",
+  "info_complete_turn": {
+    "search_restaurants": 2,
+    "book_restaurant": 4,
+    "search_hotels": 1,
+    "book_hotel": 6
+  },
+  "metadata": {
+    "tool_count": 4,
+    "turn_count": 6,
+    "interruption_type": "tool_correction",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_restaurants",
+    "wrong_params": {
+      "search_restaurants.city": "Shanghai"
+    },
+    "corrected_params": {
+      "search_restaurants.city": "Chengdu"
+    }
+  }
+}

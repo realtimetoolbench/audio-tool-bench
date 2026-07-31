@@ -1,0 +1,761 @@
+{
+  "task_name": "tint_000028",
+  "start_time": "2026-05-06T14:39:24.766288",
+  "end_time": "2026-05-06T14:40:21.416694",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search sports events in Chengdu.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "original",
+          "contains_params": [
+            "search_sports_events.city=Chengdu"
+          ]
+        },
+        "audio_size_bytes": 95400
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_yi5NMjnQuJP8Nsxc",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Chengdu"
+              },
+              "dangling": true,
+              "dangling_return": "during_inserted"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_yi5NMjnQuJP8Nsxc",
+          "tool_name": "search_sports_events",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 sports events in Chengdu:\n\n1. CSL: Chengdu Rongcheng vs Beijing Guoan (ID: evt_cd_001)\n   Sport: Football\n   Venue: Phoenix Hill Sports Park\n   Date/Time: 2026-03-10 19:30\n   Match: Chengdu Rongcheng vs Beijing Guoan\n   Price: ¥100-580\n   Available zones: Home Stand, Away Stand, Neutral Stand\n   Rating: 8.4/10.0\n\n",
+            "raw_output": [
+              {
+                "event_id": "evt_cd_001",
+                "name": "CSL: Chengdu Rongcheng vs Beijing Guoan",
+                "sport_type": "Football",
+                "venue": "Phoenix Hill Sports Park",
+                "date": "2026-03-10",
+                "time": "19:30",
+                "home_team": "Chengdu Rongcheng",
+                "away_team": "Beijing Guoan",
+                "price_range": "100-580",
+                "available_zones": [
+                  "Home Stand",
+                  "Away Stand",
+                  "Neutral Stand"
+                ],
+                "rating": 8.4
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.022172927856445312
+          },
+          "latency_ms": 0.022172927856445312,
+          "dangling_return": "during_inserted"
+        }
+      ],
+      "total_latency_ms": 5437.719821929932,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 24,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Wait, before that, search trains from Beijing to Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "contains_params": [
+            "search_trains.destination=Shanghai",
+            "search_trains.origin=Beijing"
+          ],
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_sports_events",
+            "dangling_return": "during_inserted",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 160200
+      },
+      "assistant_response": "All right, I’ve got the train options for you from Beijing to Shanghai, and I’ve got a sports event in Chengdu as well. Which one do you want to dive into first? Looking to book a train, or maybe grab some tickets for that football match in Chengdu?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_FBfPnK5CQPTJL5gi",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "All right, I’ve got the train options for you from Beijing to Shanghai, and I’ve got a sports event in Chengdu as well. Which one do you want to dive into first? Looking to book a train, or maybe grab some tickets for that football match in Chengdu?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_FBfPnK5CQPTJL5gi",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.2028942108154297
+          },
+          "latency_ms": 0.2028942108154297
+        }
+      ],
+      "total_latency_ms": 3792.801856994629,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 636000,
+        "event_count": 157,
+        "latency": {
+          "speech_ms": 1224.10400390625,
+          "tool_call_ms": 453.031982421875
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 11.112477950968838,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train D321 on 2026-03-25.",
+        "timestamp": 11.112477950968838,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_train.date=2026-03-25"
+          ]
+        },
+        "audio_size_bytes": 184800
+      },
+      "assistant_response": "You got it! I'll just need a few details: your name and the seat class you want—second class or first class. Then we’ll lock that ticket in.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "You got it! I'll just need a few details: your name and the seat class you want—second class or first class. Then we’ll lock that ticket in.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5021.363019943237,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 381600,
+        "event_count": 80,
+        "latency": {
+          "speech_ms": 587.31591796875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 16.066189992805498,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use passenger name Lin Bo and Second Class.",
+        "timestamp": 16.066189992805498,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "book_train.passenger_name=Lin Bo",
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 130200
+      },
+      "assistant_response": "Your train ticket is all set! Lin Bo has a seat in second class on train D321 for March 25, 2026. Seat number: 01F. You’re good to go! Anything else you need help with?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_DrXw8KlC4J7z5xgx",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_003",
+                "date": "2026-03-25",
+                "passenger_name": "Lin Bo",
+                "seat_class": "second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your train ticket is all set! Lin Bo has a seat in second class on train D321 for March 25, 2026. Seat number: 01F. You’re good to go! Anything else you need help with?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_DrXw8KlC4J7z5xgx",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_003",
+            "date": "2026-03-25",
+            "passenger_name": "Lin Bo",
+            "seat_class": "second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_003\nDate: 2026-03-25\nPassenger: Lin Bo\nSeat: second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_003",
+              "date": "2026-03-25",
+              "passenger_name": "Lin Bo",
+              "seat_class": "second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.04410743713378906
+          },
+          "latency_ms": 0.04410743713378906
+        }
+      ],
+      "total_latency_ms": 6938.724040985107,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 609600,
+        "event_count": 173,
+        "latency": {
+          "speech_ms": 2354.1669921875,
+          "tool_call_ms": 1685.004150390625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 21.03758912631886,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Guangzhou.",
+        "timestamp": 21.03758912631886,
+        "metadata": {
+          "phase": "inserted",
+          "contains_params": [
+            "search_hotels.city=Guangzhou"
+          ]
+        },
+        "audio_size_bytes": 79800
+      },
+      "assistant_response": "Here are some great options for hotels in Guangzhou. We've got luxury spots like The Ritz-Carlton and Four Seasons in Zhujiang New Town, a classic like the White Swan on Shamian Island, and a budget-friendly option at Hanting Hotel in Tianhe. Any of these catch your eye, or do you need more info?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_hqbRkrIRBIboA7CM",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Guangzhou"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here are some great options for hotels in Guangzhou. We've got luxury spots like The Ritz-Carlton and Four Seasons in Zhujiang New Town, a classic like the White Swan on Shamian Island, and a budget-friendly option at Hanting Hotel in Tianhe. Any of these catch your eye, or do you need more info?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_hqbRkrIRBIboA7CM",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Guangzhou"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 4 hotels in Guangzhou:\n\n1. The Ritz-Carlton Guangzhou (ID: hotel_gz_001)\n   Location: Zhujiang New Town | 5 stars\n   Price: ¥1600/night | Rating: 4.8/5.0\n\n2. Four Seasons Guangzhou (ID: hotel_gz_002)\n   Location: Zhujiang New Town | 5 stars\n   Price: ¥1700/night | Rating: 4.9/5.0\n\n3. White Swan Hotel (ID: hotel_gz_003)\n   Location: Shamian Island | 5 stars\n   Price: ¥1100/night | Rating: 4.7/5.0\n\n4. Hanting Hotel Tianhe (ID: hotel_gz_004)\n   Location: Tianhe | 3 stars\n   Price: ¥380/night | Rating: 4.2/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_gz_001",
+                "name": "The Ritz-Carlton Guangzhou",
+                "location": "Zhujiang New Town",
+                "stars": 5,
+                "price": 1600,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_gz_002",
+                "name": "Four Seasons Guangzhou",
+                "location": "Zhujiang New Town",
+                "stars": 5,
+                "price": 1700,
+                "rating": 4.9
+              },
+              {
+                "hotel_id": "hotel_gz_003",
+                "name": "White Swan Hotel",
+                "location": "Shamian Island",
+                "stars": 5,
+                "price": 1100,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_gz_004",
+                "name": "Hanting Hotel Tianhe",
+                "location": "Tianhe",
+                "stars": 3,
+                "price": 380,
+                "rating": 4.2
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05817413330078125
+          },
+          "latency_ms": 0.05817413330078125
+        }
+      ],
+      "total_latency_ms": 6649.85203742981,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 789600,
+        "event_count": 168,
+        "latency": {
+          "speech_ms": 1327.001953125,
+          "tool_call_ms": 709.065673828125
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 6.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "OK, continue with the search now.",
+        "timestamp": 6.0,
+        "metadata": {
+          "phase": "return"
+        },
+        "audio_size_bytes": 94800
+      },
+      "assistant_response": "Here’s the sports event in Chengdu: a big football match—Chengdu Rongcheng versus Beijing Guoan on March 10, 2026, at 19:30, held at Phoenix Hill Sports Park. You’ve got zones like Home Stand, Away Stand, and Neutral Stand, with prices ranging from ¥100 to ¥580. \n\nWant to go ahead and book tickets for this match?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_jeF8O8zf8ieWm7XO",
+              "name": "search_sports_events",
+              "arguments": {
+                "city": "Chengdu"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Here’s the sports event in Chengdu: a big football match—Chengdu Rongcheng versus Beijing Guoan on March 10, 2026, at 19:30, held at Phoenix Hill Sports Park. You’ve got zones like Home Stand, Away Stand, and Neutral Stand, with prices ranging from ¥100 to ¥580. \n\nWant to go ahead and book tickets for this match?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_jeF8O8zf8ieWm7XO",
+          "tool_name": "search_sports_events",
+          "arguments": {
+            "city": "Chengdu"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 1 sports events in Chengdu:\n\n1. CSL: Chengdu Rongcheng vs Beijing Guoan (ID: evt_cd_001)\n   Sport: Football\n   Venue: Phoenix Hill Sports Park\n   Date/Time: 2026-03-10 19:30\n   Match: Chengdu Rongcheng vs Beijing Guoan\n   Price: ¥100-580\n   Available zones: Home Stand, Away Stand, Neutral Stand\n   Rating: 8.4/10.0\n\n",
+            "raw_output": [
+              {
+                "event_id": "evt_cd_001",
+                "name": "CSL: Chengdu Rongcheng vs Beijing Guoan",
+                "sport_type": "Football",
+                "venue": "Phoenix Hill Sports Park",
+                "date": "2026-03-10",
+                "time": "19:30",
+                "home_team": "Chengdu Rongcheng",
+                "away_team": "Beijing Guoan",
+                "price_range": "100-580",
+                "available_zones": [
+                  "Home Stand",
+                  "Away Stand",
+                  "Neutral Stand"
+                ],
+                "rating": 8.4
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.06079673767089844
+          },
+          "latency_ms": 0.06079673767089844
+        }
+      ],
+      "total_latency_ms": 8104.901313781738,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 991200,
+        "event_count": 197,
+        "latency": {
+          "speech_ms": 1516.69580078125,
+          "tool_call_ms": 865.828857421875
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 30.55929879944895,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book event CSL: Chengdu Rongcheng vs Beijing Guoan, Neutral Stand, 5 tickets.",
+        "timestamp": 30.55929879944895,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_sports_ticket.seat_zone=Neutral Stand",
+            "book_sports_ticket.ticket_count=5"
+          ]
+        },
+        "audio_size_bytes": 231000
+      },
+      "assistant_response": "To complete the booking, I'll need a few more details: your name, contact phone number, and your ID card number for the real-name registration. Once I have that, we’ll lock in your five tickets in the Neutral Stand.",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "To complete the booking, I'll need a few more details: your name, contact phone number, and your ID card number for the real-name registration. Once I have that, we’ll lock in your five tickets in the Neutral Stand.",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 6156.5399169921875,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 585600,
+        "event_count": 110,
+        "latency": {
+          "speech_ms": 613.5224609375
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 37.19943339892596,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set buyer name Cao Yun and phone 13822334455.",
+        "timestamp": 37.19943339892596,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_sports_ticket.buyer_name=Cao Yun",
+            "book_sports_ticket.phone=13822334455"
+          ]
+        },
+        "audio_size_bytes": 234600
+      },
+      "assistant_response": "Perfect, I've got the buyer name as Cao Yun and the phone number. Now I just need the ID card number to finalize the booking. Once I have that, we’ll be all set!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Perfect, I've got the buyer name as Cao Yun and the phone number. Now I just need the ID card number to finalize the booking. Once I have that, we’ll be all set!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5710.799694061279,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 439200,
+        "event_count": 90,
+        "latency": {
+          "speech_ms": 581.3837890625
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": 41.99501365059078,
+      "input_chunk": {
+        "role": "user",
+        "content": "Use ID number 110101199001011234.",
+        "timestamp": 41.99501365059078,
+        "metadata": {
+          "phase": "post_return",
+          "contains_params": [
+            "book_sports_ticket.id_number=110101199001011234"
+          ]
+        },
+        "audio_size_bytes": 258000
+      },
+      "assistant_response": "Your tickets are booked and confirmed! Cao Yun now has 5 tickets in the Neutral Stand for the Chengdu Rongcheng vs Beijing Guoan match on March 10, 2026, at Phoenix Hill Sports Park. The total was ¥1400. \n\nEnjoy the match, and let me know if you need anything else!",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_kEivEesFRfQmOk9u",
+              "name": "book_sports_ticket",
+              "arguments": {
+                "event_id": "evt_cd_001",
+                "seat_zone": "Neutral Stand",
+                "ticket_count": 5,
+                "buyer_name": "Cao Yun",
+                "phone": "13822334555",
+                "id_number": "110101199001011234"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "Your tickets are booked and confirmed! Cao Yun now has 5 tickets in the Neutral Stand for the Chengdu Rongcheng vs Beijing Guoan match on March 10, 2026, at Phoenix Hill Sports Park. The total was ¥1400. \n\nEnjoy the match, and let me know if you need anything else!",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_kEivEesFRfQmOk9u",
+          "tool_name": "book_sports_ticket",
+          "arguments": {
+            "event_id": "evt_cd_001",
+            "seat_zone": "Neutral Stand",
+            "ticket_count": 5,
+            "buyer_name": "Cao Yun",
+            "phone": "13822334555",
+            "id_number": "110101199001011234"
+          },
+          "result": {
+            "success": true,
+            "output": "Sports ticket booking successful!\n\nBooking ID: SP80001\nEvent ID: evt_cd_001\nEvent: CSL: Chengdu Rongcheng vs Beijing Guoan\nVenue: Phoenix Hill Sports Park\nDate: 2026-03-10\nZone: Neutral Stand\nSeats: Neutral Stand Row 10 Seat 20, Neutral Stand Row 11 Seat 20, Neutral Stand Row 12 Seat 20, Neutral Stand Row 13 Seat 20, Neutral Stand Row 14 Seat 20\nQuantity: 5\nBuyer: Cao Yun\nPhone: 13822334555\nID: 110101****1234\nTotal: ¥1400\nStatus: Confirmed (Real-name Required)\n",
+            "raw_output": {
+              "booking_id": "SP80001",
+              "event_id": "evt_cd_001",
+              "event_name": "CSL: Chengdu Rongcheng vs Beijing Guoan",
+              "venue": "Phoenix Hill Sports Park",
+              "date": "2026-03-10",
+              "seat_zone": "Neutral Stand",
+              "ticket_count": 5,
+              "seats": [
+                "Neutral Stand Row 10 Seat 20",
+                "Neutral Stand Row 11 Seat 20",
+                "Neutral Stand Row 12 Seat 20",
+                "Neutral Stand Row 13 Seat 20",
+                "Neutral Stand Row 14 Seat 20"
+              ],
+              "buyer_name": "Cao Yun",
+              "phone": "13822334555",
+              "id_number": "110101199001011234",
+              "total_price": 1400,
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.09202957153320312
+          },
+          "latency_ms": 0.09202957153320312
+        }
+      ],
+      "total_latency_ms": 8830.489873886108,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 828000,
+        "event_count": 227,
+        "latency": {
+          "speech_ms": 2234.454833984375,
+          "tool_call_ms": 1354.4638671875
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 9,
+    "total_llm_calls": 15,
+    "total_tool_calls": 6
+  },
+  "metadata": {
+    "tool_count": 5,
+    "turn_count": 9,
+    "interruption_type": "priority_late_return",
+    "interrupt_keyword": "",
+    "template": null,
+    "generated": true,
+    "dangling_call": "search_sports_events",
+    "inserted_tools": [
+      "search_trains",
+      "book_train",
+      "search_hotels"
+    ],
+    "dangling_return": "during_inserted",
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "speech_ms": 1224.10400390625,
+        "tool_call_ms": 453.031982421875
+      },
+      "book_train": {
+        "speech_ms": 2354.1669921875,
+        "tool_call_ms": 1685.004150390625
+      },
+      "search_hotels": {
+        "speech_ms": 1327.001953125,
+        "tool_call_ms": 709.065673828125
+      },
+      "book_sports_ticket": {
+        "speech_ms": 2234.454833984375,
+        "tool_call_ms": 1354.4638671875
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 2,
+      "book_train": 4,
+      "search_hotels": 5,
+      "search_sports_events": 1,
+      "book_sports_ticket": 9
+    }
+  },
+  "evaluation": {
+    "passed": false,
+    "reason": "param_mismatch",
+    "details": "参数不匹配: book_sports_ticket.phone: 期望'13822334455', 实际'13822334555'",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 0,
+    "extra_turns_details": "无多余追问",
+    "behavior_score": 0.8,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 1(correct), search_hotels: 1(correct), search_sports_events: 1(correct), book_sports_ticket: 0(param_mismatch)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": {
+      "errors": [
+        {
+          "tool": "book_sports_ticket",
+          "error_type": "numerical_id_error",
+          "phase": "post",
+          "detail": "phone: '13822334455' vs '13822334555'"
+        }
+      ],
+      "error_types": {
+        "numerical_id_error": 1
+      },
+      "phase_counts": {
+        "pre": 0,
+        "post": 1,
+        "no_interrupt": 0
+      },
+      "error_by_phase": {
+        "numerical_id_error": {
+          "pre": 0,
+          "post": 1,
+          "no_interrupt": 0
+        }
+      },
+      "primary_error": "numerical_id_error"
+    }
+  }
+}

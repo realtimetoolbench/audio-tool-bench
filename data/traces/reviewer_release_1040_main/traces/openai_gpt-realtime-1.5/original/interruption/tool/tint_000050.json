@@ -1,0 +1,591 @@
+{
+  "task_name": "tint_000050",
+  "start_time": "2026-04-29T01:41:20.554862",
+  "end_time": "2026-04-29T01:42:06.220552",
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Find attractions in Shanghai for 2026-03-19, and also plan my train and hotel bookings for Shanghai.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "pre_interrupt",
+          "contains_params": [
+            "search_hotels.city=Shanghai",
+            "search_trains.destination=Shanghai"
+          ]
+        },
+        "audio_size_bytes": 364200
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_MSaZYiEnkeNwIWsS",
+              "name": "search_attractions",
+              "arguments": {
+                "city": "Shanghai"
+              },
+              "dangling": true,
+              "dangling_return": "never"
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "finish_reason": "cancelled",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 9212.820053100586,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 16,
+        "interrupted": true,
+        "interrupt_trigger_type": "vad_tool_phase",
+        "partial_transcript": ""
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": 0.0,
+      "input_chunk": {
+        "role": "user",
+        "content": "Cancel the attractions part. Skip attraction search and any attraction tickets.",
+        "timestamp": 0.0,
+        "metadata": {
+          "phase": "interruption",
+          "is_interruption": true,
+          "interrupts_after_step": 1,
+          "interrupt_trigger": {
+            "type": "tool_phase",
+            "dangling_tool": "search_attractions",
+            "dangling_return": "never",
+            "timeout_s": 5.0
+          }
+        },
+        "audio_size_bytes": 233400
+      },
+      "assistant_response": "Got it, I'll skip the attractions part. Let's focus on your train and hotel bookings for Shanghai. Could you tell me your departure city and the exact dates you'll be traveling and staying in Shanghai?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Got it, I'll skip the attractions part. Let's focus on your train and hotel bookings for Shanghai. Could you tell me your departure city and the exact dates you'll be traveling and staying in Shanghai?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 3661.9162559509277,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 513600,
+        "event_count": 84,
+        "latency": {
+          "speech_ms": 907.142822265625
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": 14.761148255883626,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search trains from Beijing to Shanghai.",
+        "timestamp": 14.761148255883626,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "search_trains.origin=Beijing"
+          ]
+        },
+        "audio_size_bytes": 112800
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_ppZjVkZpspBPrI2q",
+              "name": "search_trains",
+              "arguments": {
+                "origin": "Beijing",
+                "destination": "Shanghai"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_ppZjVkZpspBPrI2q",
+          "tool_name": "search_trains",
+          "arguments": {
+            "origin": "Beijing",
+            "destination": "Shanghai"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 3 trains (Beijing -> Shanghai):\n\n1. G1 - High-speed (ID: trn_bj_sh_001)\n   Departure: 06:00 -> Arrival: 10:28\n   Duration: 4h28m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n2. G3 - High-speed (ID: trn_bj_sh_002)\n   Departure: 07:00 -> Arrival: 11:35\n   Duration: 4h35m\n   Second class: ¥553 | First class: ¥933\n   Available\n\n3. D321 - Express (ID: trn_bj_sh_003)\n   Departure: 08:30 -> Arrival: 16:45\n   Duration: 8h15m\n   Second class: ¥309 | First class: ¥494\n   Available\n\n",
+            "raw_output": [
+              {
+                "train_id": "trn_bj_sh_001",
+                "train_no": "G1",
+                "type": "High-speed",
+                "departure": "06:00",
+                "arrival": "10:28",
+                "duration": "4h28m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_002",
+                "train_no": "G3",
+                "type": "High-speed",
+                "departure": "07:00",
+                "arrival": "11:35",
+                "duration": "4h35m",
+                "price_second": 553,
+                "price_first": 933,
+                "seats_available": true
+              },
+              {
+                "train_id": "trn_bj_sh_003",
+                "train_no": "D321",
+                "type": "Express",
+                "departure": "08:30",
+                "arrival": "16:45",
+                "duration": "8h15m",
+                "price_second": 309,
+                "price_first": 494,
+                "seats_available": true
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.03600120544433594
+          },
+          "latency_ms": 0.03600120544433594
+        }
+      ],
+      "total_latency_ms": 7046.101093292236,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 258,
+        "latency": {
+          "tool_call_ms": 1516.362060546875
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": 20.13286017126682,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book train G3 on 2026-03-19.",
+        "timestamp": 20.13286017126682,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.date=2026-03-19"
+          ]
+        },
+        "audio_size_bytes": 160200
+      },
+      "assistant_response": "Sure, I can book train G3 for you on 2026-03-19. Could you please provide the passenger name and specify whether you prefer second class or first class seating?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure, I can book train G3 for you on 2026-03-19. Could you please provide the passenger name and specify whether you prefer second class or first class seating?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5389.17088508606,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 472800,
+        "event_count": 76,
+        "latency": {
+          "speech_ms": 766.8837890625
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": 24.74576638017082,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the train passenger name to Liu Yang and seat class to Second Class.",
+        "timestamp": 24.74576638017082,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_train.passenger_name=Liu Yang",
+            "book_train.seat_class=Second Class"
+          ]
+        },
+        "audio_size_bytes": 216000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_KF82hWv5uicZFNQT",
+              "name": "book_train",
+              "arguments": {
+                "train_id": "trn_bj_sh_002",
+                "date": "2026-03-19",
+                "passenger_name": "Liu Yang",
+                "seat_class": "second class"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_KF82hWv5uicZFNQT",
+          "tool_name": "book_train",
+          "arguments": {
+            "train_id": "trn_bj_sh_002",
+            "date": "2026-03-19",
+            "passenger_name": "Liu Yang",
+            "seat_class": "second class"
+          },
+          "result": {
+            "success": true,
+            "output": "Train ticket booking successful!\n\nBooking ID: TR40001\nTrain ID: trn_bj_sh_002\nDate: 2026-03-19\nPassenger: Liu Yang\nSeat: second class 01F\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "TR40001",
+              "train_id": "trn_bj_sh_002",
+              "date": "2026-03-19",
+              "passenger_name": "Liu Yang",
+              "seat_class": "second class",
+              "seat_no": "01F",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.017881393432617188
+          },
+          "latency_ms": 0.017881393432617188
+        }
+      ],
+      "total_latency_ms": 5804.477214813232,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 153,
+        "latency": {
+          "tool_call_ms": 1180.6171875
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": 31.49372129447633,
+      "input_chunk": {
+        "role": "user",
+        "content": "Search hotels in Shanghai.",
+        "timestamp": 31.49372129447633,
+        "metadata": {
+          "phase": "post_interrupt"
+        },
+        "audio_size_bytes": 75600
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_PTKRBTCMBZvvkTwa",
+              "name": "search_hotels",
+              "arguments": {
+                "city": "Shanghai",
+                "checkin_date": "2026-03-19"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_PTKRBTCMBZvvkTwa",
+          "tool_name": "search_hotels",
+          "arguments": {
+            "city": "Shanghai",
+            "checkin_date": "2026-03-19"
+          },
+          "result": {
+            "success": true,
+            "output": "Found 5 hotels in Shanghai:\n\n1. Waldorf Astoria Shanghai on the Bund (ID: hotel_sh_001)\n   Location: the Bund | 5 stars\n   Price: ¥1200/night | Rating: 4.8/5.0\n\n2. Pudong Shangri-La (ID: hotel_sh_002)\n   Location: Pudong | 5 stars\n   Price: ¥1000/night | Rating: 4.7/5.0\n\n3. Hyatt on the Bund (ID: hotel_sh_003)\n   Location: the Bund | 4 stars\n   Price: ¥750/night | Rating: 4.5/5.0\n\n4. Home Inn the Bund (ID: hotel_sh_004)\n   Location: the Bund | 3 stars\n   Price: ¥400/night | Rating: 4.2/5.0\n\n5. Hanting Hotel People's Square (ID: hotel_sh_005)\n   Location: People's Square | 3 stars\n   Price: ¥350/night | Rating: 4.0/5.0\n\n",
+            "raw_output": [
+              {
+                "hotel_id": "hotel_sh_001",
+                "name": "Waldorf Astoria Shanghai on the Bund",
+                "location": "the Bund",
+                "stars": 5,
+                "price": 1200,
+                "rating": 4.8
+              },
+              {
+                "hotel_id": "hotel_sh_002",
+                "name": "Pudong Shangri-La",
+                "location": "Pudong",
+                "stars": 5,
+                "price": 1000,
+                "rating": 4.7
+              },
+              {
+                "hotel_id": "hotel_sh_003",
+                "name": "Hyatt on the Bund",
+                "location": "the Bund",
+                "stars": 4,
+                "price": 750,
+                "rating": 4.5
+              },
+              {
+                "hotel_id": "hotel_sh_004",
+                "name": "Home Inn the Bund",
+                "location": "the Bund",
+                "stars": 3,
+                "price": 400,
+                "rating": 4.2
+              },
+              {
+                "hotel_id": "hotel_sh_005",
+                "name": "Hanting Hotel People's Square",
+                "location": "People's Square",
+                "stars": 3,
+                "price": 350,
+                "rating": 4.0
+              }
+            ],
+            "error": null,
+            "latency_ms": 0.05626678466796875
+          },
+          "latency_ms": 0.05626678466796875
+        }
+      ],
+      "total_latency_ms": 5235.848903656006,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 266,
+        "latency": {
+          "tool_call_ms": 749.5400390625
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": 36.013303087574755,
+      "input_chunk": {
+        "role": "user",
+        "content": "Book the Pudong Shangri-La hotel, check in 2026-03-19 for 3 nights.",
+        "timestamp": 36.013303087574755,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.checkin_date=2026-03-19",
+            "book_hotel.nights=3"
+          ]
+        },
+        "audio_size_bytes": 279000
+      },
+      "assistant_response": "Sure thing! Could you provide the guest name for the hotel booking?",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "Sure thing! Could you provide the guest name for the hotel booking?",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [],
+      "total_latency_ms": 5329.4970989227295,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 146400,
+        "event_count": 37,
+        "latency": {
+          "speech_ms": 880.218994140625
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": 42.68063628451285,
+      "input_chunk": {
+        "role": "user",
+        "content": "Set the hotel guest name to Zhou Jun.",
+        "timestamp": 42.68063628451285,
+        "metadata": {
+          "phase": "post_interrupt",
+          "contains_params": [
+            "book_hotel.guest_name=Zhou Jun"
+          ]
+        },
+        "audio_size_bytes": 108000
+      },
+      "assistant_response": "",
+      "llm_calls": [
+        {
+          "round": 1,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "call_j9RMoUc8qWeSGmxl",
+              "name": "book_hotel",
+              "arguments": {
+                "hotel_id": "hotel_sh_002",
+                "checkin_date": "2026-03-19",
+                "nights": 3,
+                "guest_name": "Zhou Jun"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "finish_reason": "completed",
+          "content": "",
+          "tool_calls": null
+        }
+      ],
+      "tool_executions": [
+        {
+          "tool_call_id": "call_j9RMoUc8qWeSGmxl",
+          "tool_name": "book_hotel",
+          "arguments": {
+            "hotel_id": "hotel_sh_002",
+            "checkin_date": "2026-03-19",
+            "nights": 3,
+            "guest_name": "Zhou Jun"
+          },
+          "result": {
+            "success": true,
+            "output": "Hotel booking successful!\n\nBooking ID: HT20001\nHotel ID: hotel_sh_002\nCheck-in: 2026-03-19\nNights: 3\nGuest: Zhou Jun\nStatus: Confirmed\n",
+            "raw_output": {
+              "booking_id": "HT20001",
+              "hotel_id": "hotel_sh_002",
+              "checkin_date": "2026-03-19",
+              "nights": 3,
+              "guest_name": "Zhou Jun",
+              "status": "confirmed"
+            },
+            "error": null,
+            "latency_ms": 0.01811981201171875
+          },
+          "latency_ms": 0.01811981201171875
+        }
+      ],
+      "total_latency_ms": 3977.1811962127686,
+      "metadata": {
+        "usage": {},
+        "audio_output_size_bytes": 0,
+        "event_count": 106,
+        "latency": {
+          "tool_call_ms": 947.27392578125
+        }
+      }
+    }
+  ],
+  "conversation_history": [],
+  "summary": {
+    "total_steps": 8,
+    "total_llm_calls": 13,
+    "total_tool_calls": 4
+  },
+  "metadata": {
+    "tool_count": 6,
+    "turn_count": 8,
+    "interruption_type": "tool_cancel",
+    "interrupt_keyword": "",
+    "generated": true,
+    "dangling_call": "search_attractions",
+    "forbidden_tools": [
+      "search_attractions",
+      "book_attraction_ticket"
+    ],
+    "mode": "audio_crawl",
+    "provider": "openai",
+    "tts_voice": "alloy",
+    "realtime_model": "gpt-realtime-1.5",
+    "input_mode": "audio",
+    "turn_detection_mode": "server_vad",
+    "latency": {
+      "search_trains": {
+        "tool_call_ms": 1516.362060546875
+      },
+      "book_train": {
+        "tool_call_ms": 1180.6171875
+      },
+      "book_hotel": {
+        "tool_call_ms": 947.27392578125
+      }
+    },
+    "info_complete_turn": {
+      "search_trains": 3,
+      "book_train": 5,
+      "search_hotels": 1,
+      "book_hotel": 8
+    }
+  },
+  "evaluation": {
+    "passed": true,
+    "reason": null,
+    "details": "完全匹配预期工具: {'book_hotel', 'search_hotels', 'search_trains', 'book_train'}",
+    "call_timing": "所有工具调用时机合理",
+    "extra_turns": 5,
+    "extra_turns_details": "search_hotels: +5 turns (info@1, call@6)",
+    "behavior_score": 1.0,
+    "behavior_score_details": "search_trains: 1(correct), book_train: 1(correct), search_hotels: 1(correct), book_hotel: 1(correct)",
+    "diagnosis": null,
+    "per_turn_behaviors": null,
+    "hallucination": "跳过: OPENAI_API_KEY 未设置",
+    "hallucination_skipped": true,
+    "hallucination_passed": null,
+    "error_attribution": null
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "task_id": "ms_000055",
+  "scenario_type": "multi_step",
+  "server": "instacart",
+  "template": "grocery_order_7",
+  "description": "Search stores, products, create cart, add to cart, delivery windows, list addresses, checkout",
+  "tools": [
+    "search_stores",
+    "search_products",
+    "create_cart",
+    "add_to_cart",
+    "get_delivery_windows",
+    "list_addresses",
+    "checkout"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "I'm looking for stores near downtown San Francisco.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_stores"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Can you find me bread from the first store you found?",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_products"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Great, create a cart for that same store.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "create_cart"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Add four loaves of that bread to my cart.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "add_to_cart"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me delivery windows for that store and use the first available one.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_delivery_windows"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "List my saved addresses, and use my default address for delivery.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "list_addresses"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Proceed to checkout with my cart, default address, primary payment method, and the first delivery window.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "checkout"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_stores",
+      "params": {
+        "location": {
+          "lat": 37.7749,
+          "lng": -122.4194
+        }
+      },
+      "param_source": {
+        "location": "user"
+      }
+    },
+    {
+      "tool": "search_products",
+      "params": {
+        "query": "bread",
+        "store_id": "IC-STORE-001"
+      },
+      "param_source": {
+        "query": "user",
+        "store_id": {
+          "from_tool": "search_stores",
+          "field": "store_id"
+        }
+      }
+    },
+    {
+      "tool": "create_cart",
+      "params": {
+        "store_id": "IC-STORE-001"
+      },
+      "param_source": {
+        "store_id": {
+          "from_tool": "search_stores",
+          "field": "store_id"
+        }
+      }
+    },
+    {
+      "tool": "add_to_cart",
+      "params": {
+        "cart_id": "cart_1",
+        "product_id": "IC-PROD-1005",
+        "quantity": 4
+      },
+      "param_source": {
+        "cart_id": {
+          "from_tool": "create_cart",
+          "field": "$"
+        },
+        "product_id": {
+          "from_tool": "search_products",
+          "field": "product_id"
+        },
+        "quantity": "user"
+      }
+    },
+    {
+      "tool": "get_delivery_windows",
+      "params": {
+        "store_id": "IC-STORE-001"
+      },
+      "param_source": {
+        "store_id": {
+          "from_tool": "search_stores",
+          "field": "store_id"
+        }
+      }
+    },
+    {
+      "tool": "list_addresses",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "checkout",
+      "params": {
+        "cart_id": "cart_1",
+        "address_id": "IC-ADDR-001",
+        "payment_method_id": "IC-PAY-001",
+        "delivery_window_id": "IC-DW-001A"
+      },
+      "param_source": {
+        "cart_id": {
+          "from_tool": "create_cart",
+          "field": "$"
+        },
+        "address_id": {
+          "from_tool": "list_addresses",
+          "field": "address_id"
+        },
+        "payment_method_id": {
+          "from_tool": "list_payment_methods",
+          "field": "payment_method_id"
+        },
+        "delivery_window_id": {
+          "from_tool": "get_delivery_windows",
+          "field": "window_id"
+        }
+      }
+    }
+  ],
+  "chain_depth": 7,
+  "info_complete_turn": {
+    "search_stores": 1,
+    "search_products": 2,
+    "create_cart": 2,
+    "add_to_cart": 4,
+    "get_delivery_windows": 4,
+    "list_addresses": 4,
+    "checkout": 4
+  }
+}

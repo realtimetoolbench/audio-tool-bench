@@ -1,0 +1,138 @@
+{
+  "task_id": "ms_000044",
+  "scenario_type": "multi_step",
+  "server": "robinhood",
+  "template": "trade_and_watchlist_6",
+  "description": "Search stocks, get portfolio, place order, get order, get watchlist, get dividends",
+  "tools": [
+    "search_stocks",
+    "get_portfolio",
+    "place_order",
+    "get_order",
+    "get_watchlist",
+    "get_dividends"
+  ],
+  "transcript": [
+    {
+      "speaker": "user",
+      "text": "Find me information on NVDA stock.",
+      "timestamp": 0.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "search_stocks"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Show me my current portfolio.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_portfolio"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Sell 8 shares of that NVDA stock as a market order.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "place_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Get the details for that order I just placed.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_order"
+        ]
+      }
+    },
+    {
+      "speaker": "user",
+      "text": "Also, show me my watchlist and any dividends I've received recently.",
+      "timestamp": 6.0,
+      "metadata": {
+        "phase": "step",
+        "triggers_tools": [
+          "get_watchlist",
+          "get_dividends"
+        ]
+      }
+    }
+  ],
+  "expected_tools": [
+    {
+      "tool": "search_stocks",
+      "params": {
+        "query": "NVDA"
+      },
+      "param_source": {
+        "query": "user"
+      }
+    },
+    {
+      "tool": "get_portfolio",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "place_order",
+      "params": {
+        "symbol": "NVDA",
+        "side": "sell",
+        "quantity": 8,
+        "order_type": "market"
+      },
+      "param_source": {
+        "symbol": {
+          "from_tool": "search_stocks",
+          "field": "symbol"
+        },
+        "side": "user",
+        "quantity": "user",
+        "order_type": "user"
+      }
+    },
+    {
+      "tool": "get_order",
+      "params": {
+        "order_id": "order_1"
+      },
+      "param_source": {
+        "order_id": {
+          "from_tool": "place_order",
+          "field": "order_id"
+        }
+      }
+    },
+    {
+      "tool": "get_watchlist",
+      "params": {},
+      "param_source": {}
+    },
+    {
+      "tool": "get_dividends",
+      "params": {},
+      "param_source": {}
+    }
+  ],
+  "chain_depth": 6,
+  "info_complete_turn": {
+    "search_stocks": 1,
+    "get_portfolio": 1,
+    "place_order": 3,
+    "get_order": 3,
+    "get_watchlist": 3,
+    "get_dividends": 3
+  }
+}
