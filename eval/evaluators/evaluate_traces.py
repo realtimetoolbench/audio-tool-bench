@@ -289,16 +289,16 @@ TURN 3: offer_to_act"""
 
 def check_expected_tools(trace: Dict, task_data: Dict) -> Dict:
     """
-    Compare expected_tools against actual tool calls (intersection match + blacklist).
+    Compare expected_tools against actual tool calls using exact set match.
 
     - expected_tools is empty (cancellation) → must have no actual tool calls to pass.
-    - expected_tools non-empty → actual calls must include every expected tool (extras allowed).
+    - expected_tools non-empty → actual calls must include every expected tool and no extras.
     - forbidden_tools non-empty → actual calls must not include any forbidden tool.
 
     Strategy:
     1. Check that every expected tool was called (missing → fail).
     2. Check that no forbidden tool was called (called → fail).
-    3. Allow extra tool calls (neither expected nor forbidden).
+    3. Reject every extra tool call (neither expected nor forbidden).
     """
     expected = task_data.get("expected_tools", [])
     expected_names = {item["tool"] for item in expected}
@@ -381,11 +381,11 @@ def check_expected_tools(trace: Dict, task_data: Dict) -> Dict:
                 param_check["behavior"] = "immediate_act"
                 return param_check
 
-            extra = actual_names - expected_names - forbidden_names
+            extra = actual_names - expected_names
             if extra:
-                return {"passed": True, "reason": "correct_with_extra",
+                return {"passed": False, "reason": "unexpected_call",
                         "behavior": "immediate_act",
-                        "details": f"All expected tools present: {expected_names}; extras called: {extra}"}
+                        "details": f"Expected exact tool set: {expected_names}; extras called: {extra}"}
             else:
                 return {"passed": True, "reason": "correct",
                         "behavior": "immediate_act",
